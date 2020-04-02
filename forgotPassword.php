@@ -1,3 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password Page</title>
+
+    <!--Bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!--SweetAlert.js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <style>
+        h3 {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- PHP Code Start -->
+
 <?php 
 require_once "config.php";
 
@@ -13,13 +39,7 @@ if(isset($_POST['submit'])){
     $email = $_POST['email'];
 
     // Mail Code 
-/**
- * This example shows settings to use when sending via Google's Gmail servers.
- * The IMAP section shows how to save this message to the 'Sent Mail' folder using IMAP commands.
- */
 
-//SMTP needs accurate times, and the PHP time zone MUST be set
-//This should be done in your php.ini, but this is how to do it if you don't have access to that
 date_default_timezone_set('Etc/UTC');
 
 require 'PHPMailer/PHPMailerAutoload.php';
@@ -78,8 +98,8 @@ $mail->msgHTML("<!doctype html><html><body><h1>$email Your Password is Successfu
     Your Password is Now $pass, Go to login page & Enter above Password for login. </h1></body></html>");
 
 //Replace the plain text body with one created manually
-$mail->AltBody = "<!doctype html><html><body><h1>$email Your Password is Successfully  Reset. 
-    Your Password is Now $pass, Go to login page & Enter above Password for login.</h1></body></html>";
+$mail->AltBody = "$email Your Password is Successfully  Reset. 
+    Your Password is Now $pass, Go to login page & Enter above Password for login.";
 
 //Attach an image file
 //$mail->addAttachment('images/phpmailer_mini.png');
@@ -94,11 +114,21 @@ if (!$mail->send()) {
     $sql = "UPDATE user_information SET mainPassword ='$pass', confirmPass = '$pass'  WHERE email = '$email'";
     $result1 = mysqli_query($conn, $sql);
     if($result1) {
-        echo "Your Password Successfully Reset";
+         echo "<script>Swal.fire({
+        icon: 'success',
+        title: 'Successful',
+        text: 'Your Password has been Successfully Reset, Check Your Mail.'
+           })</script>";
+
     }
     else{
-        echo "We are failed to reset your password";
+        echo "<script>Swal.fire({
+        icon: 'error',
+        title: 'Failed',
+        text: 'We are failed to reset your password.'
+           })</script>";
     }
+
     //Section 2: IMAP
     //Uncomment these to save your message in the 'Sent Mail' folder.
     #if (save_mail($mail)) {
@@ -106,11 +136,6 @@ if (!$mail->send()) {
     #}
 }
 
-//Section 2: IMAP
-//IMAP commands requires the PHP IMAP Extension, found at: https://php.net/manual/en/imap.setup.php
-//Function to call which uses the PHP imap_*() functions to save messages: https://php.net/manual/en/book.imap.php
-//You can use imap_getmailboxes($imapStream, '/imap/ssl') to get a list of available folders or labels, this can
-//be useful if you are trying to get this working on a non-Gmail IMAP server.
 function save_mail($mail) {
     //You can change 'Sent Mail' to any other folder or tag
     $path = "{imap.gmail.com:993/imap/ssl}[Gmail]/Sent Mail";
@@ -123,35 +148,15 @@ function save_mail($mail) {
 
     return $result;
 }
-
-  // Mail Code Ended
-  
+ 
 }
 
 ?>
 
 
+<!-- PHP Code Ended -->
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password Page</title>
-
-    <!--Bootstrap css -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <style>
-        h3 {
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: bold;
-        }
-    </style>
-</head>
-
-<body>
 
     <main class="container">
         <div class="row mt-5">
