@@ -18,6 +18,12 @@
 
   
   <title>GIT SHODH 2K20 Registration</title>
+  <style>
+  a {
+          text-decoration:none !important;
+        }
+  </style>
+  
 </head>
 
 <body>
@@ -286,16 +292,12 @@ else
 
     <h2 class="text-center text-uppercase">git <span class="text-danger">shodh</span> 2K20 Registration</h2>
     <hr>
-
     <div>
+     <h5 class="my-4 text-center">Already have an Account? <a href="login.php"> Please Login here</a></h5>
       <h5 class="text-danger animated heartBeat slow">Note: 1) Following details will be used for your Certificate
         Generation so please provide proper details.</h5>
       <h5 class="text-danger animated heartBeat slow">2) We'll never share your details with anyone else.</h5>
     </div>
-
-    <br>
-
-
     <form action="" method="post" name="myForm" onsubmit="return formValidationRegister()">
 
       <div class="form-row">
