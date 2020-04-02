@@ -62,7 +62,7 @@ require_once "config.php";
     $password =  $_POST["password"];
     
    
-    $sql = "select mainPassword from user_information where email='$userName'";
+    $sql = "select mainPassword from user_information where email='$userName' and status='active'";
     $res = mysqli_query($conn,$sql);
     $row = mysqli_fetch_assoc($res);
     $dbpassword = $row['mainPassword'];

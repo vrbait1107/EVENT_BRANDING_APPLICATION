@@ -51,6 +51,7 @@ $login= "login.php";
     $year =  $_POST['year'];
     $password =  $_POST['password'];
     $confirm_password =  $_POST['confirm_password'];
+    $token = bin2hex(random_bytes(15));
 
 
 
@@ -100,8 +101,8 @@ $login= "login.php";
     else {
     
     $sql = "insert into user_information(email, firstName, lastName, 
-    mobileNumber, collegeName, departmentName, academicYear, mainPassword, confirmPass) VALUES ('$userName', '$firstName', '$lastName', 
-    '$mobileNumber', '$collegeName', '$department', '$year', '$hashPass', '$hashConPass')";
+    mobileNumber, collegeName, departmentName, academicYear, mainPassword, confirmPass, token) VALUES ('$userName', '$firstName', '$lastName', 
+    '$mobileNumber', '$collegeName', '$department', '$year', '$hashPass', '$hashConPass', '$token')";
 
     $result = mysqli_query($conn, $sql);
 
@@ -110,9 +111,8 @@ $login= "login.php";
   
     echo "<script>Swal.fire({
       icon: 'success',
-      title: 'Successfully Registered',
-      text: 'You have been Succesfully Registerd with GIT SHODH 2K20, Login to Continue',
-      footer: '<a href= $login >Go to the Login Page</a>'
+      title: 'Activate Your Account',
+      text: 'Check Your Email for acivate your account'
     })</script>";
 
 
@@ -177,16 +177,16 @@ $mail->addReplyTo('non-reply@gmail.com', 'vishal bait');
 $mail->addAddress($userName, $userName);
 
 //Set the subject line
-$mail->Subject = "GIT SHODH 2K20";
+$mail->Subject = "GIT SHODH 2K20 Activate Your Account";
 
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
-$mail->msgHTML("<!doctype html><html><body><h1> <i><b>$userName</b></i> You are Successfully Registered to GIT SHODH 2K20 System. For More Details about
- GIT SHODH 2K20, Please Visit GIT SHODH 2K20 Website or Download GIT SHODH Android Application</h1></body></html>");
+$mail->msgHTML("<!doctype html><html><body><h1> <i><b>$userName</b></i> You are Successfully Registered to GIT SHODH 2K20 System. Please activate your account by clicking below link
+http://localhost/EBA/activateEmail.php?token=$token </h1></body></html>");
 
 //Replace the plain text body with one created manually
-$mail->AltBody = "<!doctype html><html><body><h1> <i><b>$userName</b></i> You are Successfully Registered to GIT SHODH 2K20 System. For More Details about
-GIT SHODH 2K20, Please Visit GIT SHODH 2K20 Website or Download GIT SHODH Android Application</h1></body></html>";
+$mail->AltBody = "$userName You are Successfully Registered to GIT SHODH 2K20 System. Please activate your account by clicking below link
+http://localhost/EBA/activateEmail.php?token=$token";
 
 //Attach an image file
 //$mail->addAttachment('images/phpmailer_mini.png');
@@ -203,11 +203,6 @@ if (!$mail->send()) {
     #}
 }
 
-//Section 2: IMAP
-//IMAP commands requires the PHP IMAP Extension, found at: https://php.net/manual/en/imap.setup.php
-//Function to call which uses the PHP imap_*() functions to save messages: https://php.net/manual/en/book.imap.php
-//You can use imap_getmailboxes($imapStream, '/imap/ssl') to get a list of available folders or labels, this can
-//be useful if you are trying to get this working on a non-Gmail IMAP server.
 function save_mail($mail) {
     //You can change 'Sent Mail' to any other folder or tag
     $path = "{imap.gmail.com:993/imap/ssl}[Gmail]/Sent Mail";
