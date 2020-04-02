@@ -1,0 +1,26 @@
+body {
+    background-color: white;
+}
+
+
+body p {
+    font-size: 30px;
+    text-align: center;
+    padding-top:290px;
+}
+
+span {
+    color: blue;
+}
+
+
+.footer-text {
+     font-size:20px;
+     padding:0px 0px 0px 0px;
+     padding-top:35px;
+}
+
+section .center {
+    display: block;
+    margin-left: 46%;
+}
