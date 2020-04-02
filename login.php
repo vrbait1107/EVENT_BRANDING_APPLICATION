@@ -37,6 +37,10 @@ if(isset($_SESSION['user'])) {
           border-radius:30px;
         }
 
+        a {
+          text-decoration:none !important;
+        }
+
     </style>
   </head>
   <body>
@@ -114,7 +118,7 @@ require_once "config.php";
 
 
     
-<main class="container mt-4">
+<main class="container my-4">
   <div class="row">
 <section class="col-md-6 offset-md-3">
 
@@ -143,6 +147,7 @@ require_once "config.php";
   </div>
 
   <button type="submit" class="btn btn-primary btn-block" name="login">Login</button>
+  <h6 class="mt-3">Not have an Account? <a href="register.php"> Create Account Here</a></h6>
 
 </form>
 
