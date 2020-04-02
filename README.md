@@ -17,12 +17,12 @@ Event Branding Application is mobile Application with Website for collecting reg
 
 ## Typical functions supported by Event Branding Application with Website
 
-• User registration with email notification.
-• Event Registration with email notification and event information.
-• Payment and checkout.
-• Generating event certificates after events.
-• Event certificate verification
-• Administrator panel with three types of Administrator (Administrator, Faculty Coordinator, Event Coordinator
+1. User registration with email notification.
+2. Event Registration with email notification and event information.
+3. Payment and checkout.
+4. Generating event certificates after events.
+5. Event certificate verification
+6. Administrator panel with three types of Administrator (Administrator, Faculty Coordinator, Event Coordinator
 
 ## Technology Used
 
