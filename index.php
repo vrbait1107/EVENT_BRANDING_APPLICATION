@@ -16,8 +16,7 @@ if(!isset($_SESSION['user'])) {
 
     <title>GIT SHODH 2K20</title>
 
-    <!--Navigation CSS-->
-    <link rel="stylesheet" href="css/nav.css">
+    
     <!--Animate CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <!--Bootstrap CSS-->
@@ -119,8 +118,7 @@ if(!isset($_SESSION['user'])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-    <script src="js/nav.js"> </script>
-
+    
 </body>
 
 </html>

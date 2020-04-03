@@ -1,29 +1,29 @@
-<footer class="bg-footer text-white">
-        <div class="container footer-container">
+<footer class="p-5 text-white bg-dark">
+        <div class="container">
             <div class="row">
 
                 <div class="col-md-4">
-                    <p class="footerHead">Pages</p>
+                    <h5 class="mb-3 text-uppercase">Pages</h5>
                     <ul class="footerList">
-                        <li><a href="welcome.php">Home</a></li>
-                        <li><a href="eventPage.php">Events</a></li>
-                        <li><a href="redirect.php">Get Certificate</a></li>
-                        <li><a href="developers.php">Developers</a></li>
+                        <li><a  class="text-white" href="welcome.php">Home</a></li>
+                        <li><a  class="text-white" href="eventPage.php">Events</a></li>
+                        <li><a  class="text-white" href="redirect.php">Get Certificate</a></li>
+                        <li><a  class="text-white" href="developers.php">Developers</a></li>
 
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <p class="footerHead">About</p>
+                    <h5 class="mb-3 text-uppercase">About</h5>
                     <ul class="footerList">
-                        <li><a href="aboutPage.php">About</a></li>
-                        <li><a href="contactUs.php">Contact Us</a></li>
-                        <li><a href="#">Terms & Condition </a></li>
-                        <li><a href="#">Privacy policy</a></li>
+                        <li><a  class="text-white" href="aboutPage.php">About</a></li>
+                        <li><a class="text-white" href="contactUs.php">Contact Us</a></li>
+                        <li><a class="text-white" href="#">Terms & Condition </a></li>
+                        <li><a class="text-white" href="#">Privacy policy</a></li>
 
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <p class="footerHead">Join Us</p>
+                    <h5 class="mb-3 text-uppercase">Join Us</h5>
                     <a href="#" target="_blank">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-facebook-f fa-stack-1x fa-inverse"></i>
