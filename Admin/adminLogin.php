@@ -186,8 +186,8 @@ else{
            
             <section class="col-md-6 offset-md-3">
 
-                <div class="card shadow p-3">
-                    <h2 class="text-center text-uppercase mb-4 mt-4">Welcome Administrator</h2>
+                <div class="card shadow p-5">
+                    <h2 class="text-center text-uppercase mb-4 mt-2">Welcome Administrator</h2>
 
                     <form action="" method="post">
                         <div class="text-center">
@@ -256,13 +256,18 @@ else{
                                 placeholder="Password" required autocomplete="off">
                         </div>
 
+                        <div class="form-group">
+                         <a href="../forgotPassword.php" class="text-danger font-weight-bold">Forgot your password?</a>
+                        </div>
+
+
 
                         <div class="form-group">
                             <input class="btn btn-primary btn-block mt-3" type="submit" class="form-control"
                                 name="login" id="login" value="Login">
                         </div>
                     </form>
-                </div class="mb-5">
+                </div>
             </section>
             
         </div>

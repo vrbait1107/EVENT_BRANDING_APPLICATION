@@ -11,6 +11,8 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!--SweetAlert.js -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <!--Font-Awesome CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
         h3 {
@@ -22,9 +24,11 @@
 
 <body>
 
-<!-- PHP Code Start -->
+    <!-- Navbar PHP -->
+    <?php include_once "navbar.php"; ?>
 
-<?php 
+    <!-- PHP Code Start -->
+    <?php 
 require_once "config.php";
 
 // Generating Random Password to Send Over Email.
@@ -33,7 +37,7 @@ require_once "config.php";
     return substr(str_shuffle($chars),0,$length);
 }
 
-$pass = rand_string(10);
+    $pass = rand_string(10);
 
 if(isset($_POST['submit'])){
     $email = $_POST['email'];
@@ -107,35 +111,72 @@ $mail->AltBody = "$email Your Password is Successfully  Reset.
 //send the message, check for errors
 if (!$mail->send()) {
     echo "Mailer Error: " . $mail->ErrorInfo;
-} else {
+} 
+
+else {
 
     $pass = password_hash($pass,PASSWORD_BCRYPT);
-   
-    $sql = "UPDATE user_information SET mainPassword ='$pass', confirmPass = '$pass'  WHERE email = '$email'";
-    $result1 = mysqli_query($conn, $sql);
+    $userType = $_POST['userType'];
+
+    if($userType=== "user") {
+
+         $sql = "UPDATE user_information SET mainPassword ='$pass', confirmPass = '$pass'  WHERE email = '$email'";
+         $result1 = mysqli_query($conn, $sql);
+
     if($result1) {
          echo "<script>Swal.fire({
-        icon: 'success',
-        title: 'Successful',
-        text: 'Your Password has been Successfully Reset, Check Your Mail.'
-           })</script>";
-
+                icon: 'success',
+                title: 'Successful',
+                text: 'Your Password has been Successfully Reset, Check Your Mail.'
+            })</script>";
     }
+
     else{
         echo "<script>Swal.fire({
-        icon: 'error',
-        title: 'Failed',
-        text: 'We are failed to reset your password.'
-           })</script>";
+                icon: 'error',
+                title: 'Failed',
+                text: 'We are failed to reset your password.'
+            })</script>";
     }
 
+    } //if($userType=== "user") bracket
+
+    elseif($userType=== "admin"){
+
+     $sql = "UPDATE admin_information SET adminPassword ='$pass' WHERE email = '$email'";
+     $result1 = mysqli_query($conn, $sql);
+
+    if($result1) {
+         echo "<script>Swal.fire({
+                icon: 'success',
+                title: 'Successful',
+                text: 'Your Password has been Successfully Reset, Check Your Mail.'
+            })</script>";
+    }
+
+    else{
+        echo "<script>Swal.fire({
+                icon: 'error',
+                title: 'Failed',
+                text: 'We are failed to reset your password.'
+            })</script>";
+    }
+
+    } // elseif($userType==="admin")
+
+    else {
+        echo "Something Went Wrong";
+    }
+
+
+    } // else bracket
+
+    
     //Section 2: IMAP
     //Uncomment these to save your message in the 'Sent Mail' folder.
     #if (save_mail($mail)) {
     #    echo "Message saved!";
     #}
-}
-
 function save_mail($mail) {
     //You can change 'Sent Mail' to any other folder or tag
     $path = "{imap.gmail.com:993/imap/ssl}[Gmail]/Sent Mail";
@@ -152,35 +193,59 @@ function save_mail($mail) {
 }
 
 ?>
-
-
-<!-- PHP Code Ended -->
+    <!-- PHP Code Ended -->
 
 
 
     <main class="container">
-        <div class="row mt-5">
-            <section class="col-md-6 offset-md-3 mt-5">
+        <div class="row my-5">
+            <section class="col-md-6 offset-md-3 mb-5">
                 <div class="card shadow p-5">
 
-                    <div class="card-header text-white bg-info mb-3">
-                        <h3 class="text-center text-uppercase">Password Recovery</h3>
-                    </div>
+
+                    <h3 class="text-center text-uppercase text-primary mb-3">Password Recovery</h3>
+                    <hr>
+
 
                     <form action="" method="POST">
                         <div class="form-group">
                             <label>Enter Your Email</label>
-                            <input type="email" name="email" id="email" class="form-control mb-3" autocomplete="off">
-                            <input type="submit" value="Submit" name="submit"
-                                class="btn btn-primary btn-block rounded-pill">
+                            <input type="email" name="email" id="email" class="form-control mb-3" placeholder="Email"
+                                autocomplete="off">
                         </div>
+
+                        <div class="form-group">
+                            <label>User Type</label>
+                            <select name="userType" class="form-control">
+                                <option value="user">Normal User</option>
+                                <option value="admin">Administrator</option>
+                            </select>
+                        </div>
+
+                        <input type="submit" value="Submit" name="submit"
+                            class="btn btn-primary mt-3 btn-block rounded-pill">
+
+
                     </form>
-                    <a href="login.php" class="text-danger font-weight-bold">Go to Login Page</a>
                 </div>
             </section>
         </div>
     </main>
 
+    <!-- Footer PHP -->
+    <?php include_once "footer.php"; ?>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
 </body>
 
