@@ -1,4 +1,3 @@
-
 <?php 
 session_start();
 require_once "config.php";
@@ -28,6 +27,8 @@ $event = $row['event'];
 
 <head>
     <title>Certificate</title>
+
+    <!-- Certificate CSS-->
     <link rel="stylesheet" href="css/certificate.css">
 
     <style type="text/css">
@@ -40,44 +41,44 @@ $event = $row['event'];
             background-size: 1200px 750px;
         }
 
-        #qrcode{
-            padding-top:25px;
+        #qrcode {
+            padding-top: 25px;
         }
-        
-     .validate {
-    color:red !important;
-}
 
-span {
-    color:blue;
-}
+        .validate {
+            color: red !important;
+        }
 
-button {
-    margin-left: 45%;
-    background-color:#0275d8;
-    color:white;
-    padding: 5px 15px 5px 15px;
-    font-size:18px;
-    border-radius:10px;
+        span {
+            color: blue;
+        }
 
-}
-   
-section .center {
-    display: block;
-    margin-left: 46%;
-}
+        button {
+            margin-left: 45%;
+            background-color: #0275d8;
+            color: white;
+            padding: 5px 15px 5px 15px;
+            font-size: 18px;
+            border-radius: 10px;
+
+        }
+
+        section .center {
+            display: block;
+            margin-left: 46%;
+        }
     </style>
 
 </head>
 
 
-<body  onload="makeCode()">
+<body onload="makeCode()">
 
     <button id="btnPrint">Save as PDF</button>
 
     <section class="cert">
-        <!--         Content of Certificate         -->
 
+        <!--Content of Certificate-->
         <p> Mr./Ms.<span><?php echo $firstName?></span>&nbsp;<span><?php echo $lastName?></span> of
             <span><?php echo $department?></span>&nbsp;Department <br><br>
             has Participated in <span><?php echo $event ?></span> Event of Shodh 2K20 held <br><br>
@@ -86,37 +87,42 @@ section .center {
         <span id="qrcode" class="center" style="width:100px; height:100px; margin-top:15px;"></span>
 
         <p class="footer-text"><b><span class="validate">Certficate Id: <?php echo $validate ?></span><br>
-        This is computer generated Certificate does not required any signature, to Authenticate this Certificate <br> 
-        Go to GIT SHODH Verification System Page.</b></p>
+                This is computer generated Certificate does not required any signature, to Authenticate this Certificate
+                <br>
+                Go to GIT SHODH Verification System Page.</b></p>
     </section>
 
+    <!--Jquerry-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript">
+    <!-- JS Variables to Convert data into QR Code-->
+    <script type="text/javascript">
+        var a = "<?php echo $firstName ?>";
+        var b = "<?php  echo $lastName ?>";
+        var c = "<?php  echo $department?>";
+        var d = "<?php  echo $event ?>";
+        var e = "<?php echo $prize ?>";
+    </script>
 
-var a= "<?php echo $firstName ?>" ;
-var b="<?php  echo $lastName ?>";
-var c= "<?php  echo $department?>";
-var d= "<?php  echo $event ?>" ;
-var e= "<?php echo $prize ?>";
-</script>
+    <!-- QR Code JS Library-->
+    <script type="text/javascript" src="js/qrcode.js"></script>
 
-<script type="text/javascript" src="js/qrcode.js"></script>
-<script type="text/javascript" src="js/php-certQrCode.js"> </script>
+    <!-- Convert JS Variable data into QR Code takes input above JS Variable-->
+    <script type="text/javascript" src="js/php-certQrCode.js"> </script>
 
 
-
+    <!--Script of Button to Save PDF-->
     <script type="text/javascript">
         $("#btnPrint").live("click", function () {
             var printButton = document.getElementById("btnPrint");
-        //Set the print button visibility to 'hidden' 
-        printButton.style.visibility = 'hidden';
-        //Print the page content
-    
-        window.print();
+            //Set the print button visibility to 'hidden' 
+            printButton.style.visibility = 'hidden';
+            //Print the page content
+
+            window.print();
         });
     </script>
 
 </body>
+
 </html>
