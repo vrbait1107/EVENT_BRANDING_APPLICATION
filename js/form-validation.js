@@ -155,7 +155,6 @@ function validateFormContact() {
 }
 
 // User Validate form
-
 function formValidationUserProfileForm() {
   var a = document.forms["userProfileForm"]["firstName"].value;
   var b = document.forms["userProfileForm"]["lastName"].value;
