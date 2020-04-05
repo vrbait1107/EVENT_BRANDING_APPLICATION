@@ -6,45 +6,46 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Certificate Generator</title>
 
-<!-- Bootstrap css-->  
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <!-- Animate css-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-<!--Font-Awesome css-->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <!--Font-Awesome css-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
     <style>
-    h2{
-        font-family:sans sarif;
-        font-weight:bold;
-    }
-
-    
+        h2 {
+            font-family: sans sarif;
+            font-weight: bold;
+        }
     </style>
-    
+
 </head>
+
 <body>
 
-<?php include_once 'navbar.php'; ?>
-    
-<div class="container">
-    <div class="row">
-        <div class="col"></div>
-        <div class="col-md-6">
-        <div class="card shadow animated zoomIn slow p-5 my-5">
-        <h2 class="text-center mb-4">GIT <span class="text-danger font-weight-bold">SHODH </span>CERTIFICATE</h2>
 
-        <?php
+    <!-- Navbar-->
+    <?php include_once 'navbar.php'; ?>
 
+    <main class="container">
+        <div class="row">
 
+            <section class="col-md-6 offset-md-3">
+                <div class="card shadow animated zoomIn slow p-5 my-5">
 
+                    <h2 class="text-center mb-4">GIT <span class="text-danger font-weight-bold">
+                            SHODH </span>CERTIFICATE</h2>
+
+                    <?php
 
 $vrb= $_SESSION['user'];
 
@@ -79,13 +80,16 @@ echo "</table>";
 }
 ?>
 
-</div>
+                </div>
+            </section>
         </div>
-        <div class="col"></div>
-    </div>
-</div>
+    </main>
 
+    <!-- Footer PHP-->
+    <?php include_once "footer.php"; ?>
 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -97,4 +101,5 @@ echo "</table>";
         crossorigin="anonymous"></script>
 
 </body>
+
 </html>
