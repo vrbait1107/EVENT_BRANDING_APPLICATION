@@ -32,12 +32,8 @@
 require_once "config.php";
 
 // Generating Random Password to Send Over Email.
-    function rand_string( $length ) {
-    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    return substr(str_shuffle($chars),0,$length);
-}
-
-    $pass = rand_string(10);
+    
+$token =   bin2hex(random_bytes(15));
 
 if(isset($_POST['submit'])){
     $email = $_POST['email'];
@@ -94,16 +90,16 @@ $mail->addReplyTo('non-reply@gmail.com', 'vishal bait');
 $mail->addAddress($email, $email);
 
 //Set the subject line
-$mail->Subject = "GIT SHODH 2K20 PASSWORD RECOVERY";
+$mail->Subject = "GIT SHODH 2K20 PASSWORD RESET";
 
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
-$mail->msgHTML("<!doctype html><html><body><h1>$email Your Password is Successfully Reset. 
-    Your Password is Now $pass, Go to login page & Enter above Password for login. </h1></body></html>");
+$mail->msgHTML("<!doctype html><html><body><h4>$email Please Click below link to reset your password 
+   http://localhost/EBA/resetPassword.php?token=$token </h4></body></html>");
 
 //Replace the plain text body with one created manually
-$mail->AltBody = "$email Your Password is Successfully  Reset. 
-    Your Password is Now $pass, Go to login page & Enter above Password for login.";
+$mail->AltBody = "$email Please Click below link to reset your password 
+   http://localhost/EBA/resetPassword.php?token=$token";
 
 //Attach an image file
 //$mail->addAttachment('images/phpmailer_mini.png');
@@ -115,19 +111,19 @@ if (!$mail->send()) {
 
 else {
 
-    $pass = password_hash($pass,PASSWORD_BCRYPT);
+   
     $userType = $_POST['userType'];
 
     if($userType=== "user") {
 
-         $sql = "UPDATE user_information SET mainPassword ='$pass', confirmPass = '$pass'  WHERE email = '$email'";
+         $sql = "UPDATE user_information SET token ='$token' WHERE email = '$email'";
          $result1 = mysqli_query($conn, $sql);
 
     if($result1) {
          echo "<script>Swal.fire({
                 icon: 'success',
                 title: 'Successful',
-                text: 'Your Password has been Successfully Reset, Check Your Mail.'
+                text: 'Password Reset Link sent to your email, Check Your Mail.'
             })</script>";
     }
 
@@ -135,7 +131,7 @@ else {
         echo "<script>Swal.fire({
                 icon: 'error',
                 title: 'Failed',
-                text: 'We are failed to reset your password.'
+                text: 'We are failed to send email for reset password.'
             })</script>";
     }
 
@@ -143,14 +139,14 @@ else {
 
     elseif($userType=== "admin"){
 
-     $sql = "UPDATE admin_information SET adminPassword ='$pass' WHERE email = '$email'";
+     $sql = "UPDATE admin_information SET token ='$token' WHERE email = '$email'";
      $result1 = mysqli_query($conn, $sql);
 
     if($result1) {
          echo "<script>Swal.fire({
                 icon: 'success',
                 title: 'Successful',
-                text: 'Your Password has been Successfully Reset, Check Your Mail.'
+                text: 'Password Reset Link sent to your email, Check Your Mail.'
             })</script>";
     }
 
@@ -158,7 +154,7 @@ else {
         echo "<script>Swal.fire({
                 icon: 'error',
                 title: 'Failed',
-                text: 'We are failed to reset your password.'
+                text: 'We are failed to send email for reset password.'
             })</script>";
     }
 
