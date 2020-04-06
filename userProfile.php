@@ -56,9 +56,29 @@ if(isset($_POST['update'])) {
     $departmentName = $_POST['departmentName'];
     $academicYear = $_POST['academicYear'];
 
+
+    // Avoid SQL Injection
+    $firstName = mysqli_real_escape_string($conn, $firstName);
+    $lastName = mysqli_real_escape_string($conn, $lastName);
+    $mobileNumber = mysqli_real_escape_string($conn, $mobileNumber);
+    $collegeName = mysqli_real_escape_string($conn, $collegeName);
+    $departmentName = mysqli_real_escape_string($conn, $departmentName);
+    $academicYear = mysqli_real_escape_string($conn, $academicYear);
+
+
+      // Avoid Cross Site Scripting
+    $firstName = htmlentities($firstName);
+    $lastName = htmlentities($lastName);
+    $mobileNumber = htmlentities($mobileNumber);
+    $collegeName = htmlentities($collegeName);
+    $departmentName = htmlentities($departmentName);
+    $academicYear = htmlentities($academicYear);
+
+
     $sql = "update user_information set firstName ='$firstName', lastName = '$lastName', 
     mobileNumber = '$mobileNumber', collegeName = '$collegeName', departmentName = '$departmentName',
-    academicYear = '$academicYear'";
+    academicYear = '$academicYear' where email = '$email'";
+
     $result = mysqli_query($conn,$sql);
 
     if($result) {
@@ -73,7 +93,7 @@ if(isset($_POST['update'])) {
 ?>
 
     <!-- Navbar PHP -->
-    <?php include_once "navbar.php" ?>
+    <?php include_once "navbar.php"; ?>
 
 
     <main class="container">

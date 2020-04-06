@@ -50,14 +50,20 @@ session_start();
 
 if(isset($_POST["submit"])) {
 
-
 $validate =   $_POST["validateData"];
+
+// Avoid SQL Injection
+$validate = mysqli_real_escape_string($conn, $validate);
+// Avoid Cross Site Scripting
+$validate = htmlentities($validate);
+
+
 $sql ="select * FROM user_information INNER JOIN event_information ON 
 user_information.email= event_information.email 
 WHERE event_information.certificateId = '$validate'";
 
-    $res = mysqli_query($conn,$sql);
-    $row = mysqli_fetch_assoc($res);
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($result);
     $validateCertificate = $row['certificateId'];
 
 
@@ -142,14 +148,20 @@ if(isset($_POST["synergySubmit"])) {
 
 
     $validate =   $_POST["synergyValidateData"];
+
+    // Avoid SQL Injection
+    $validate = mysqli_real_escape_string($conn, $validate);
+    // Avoid Cross Site Scripting
+    $validate = htmlentities($validate);
+
     $sql ="select * FROM synergy_user_information 
     WHERE certificateId = '$validate'";
     
-        $res = mysqli_query($conn,$sql);
-        $row = mysqli_fetch_assoc($res);
+        $result = mysqli_query($conn,$sql);
+        $row = mysqli_fetch_assoc($result);
         $validateCertificate = $row['certificateId'];
-    
-    
+
+       
         if($validateCertificate===$validate) {
     
             $firstName = $row['firstName'];
