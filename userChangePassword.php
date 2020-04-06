@@ -40,72 +40,70 @@ header("location:login.php");
 
 if(isset($_POST['changePassword'])){
     
-    $email = $_SESSION['user'];
-    $currentPassword = $_POST['currentPassword'];
-    $newPassword = $_POST['newPassword'];
-    $conNewPassword = $_POST['conNewPassword'];
+$email = $_SESSION['user'];
+$currentPassword = $_POST['currentPassword'];
+$newPassword = $_POST['newPassword'];
+$conNewPassword = $_POST['conNewPassword'];
 
 
-    $sql = "select mainPassword from user_information where email = '$email'";
-    $result = mysqli_query($conn,$sql);
-    $row = mysqli_fetch_assoc($result);
-    $dbPassword = $row['mainPassword'];
+$sql = "select mainPassword from user_information where email = '$email'";
+$result = mysqli_query($conn,$sql);
+$row = mysqli_fetch_assoc($result);
+$dbPassword = $row['mainPassword'];
 
-   if(password_verify($currentPassword,$dbPassword)) {
+    if(password_verify($currentPassword,$dbPassword)) {
        
-if( $newPassword===  $conNewPassword ) {
+        if( $newPassword===  $conNewPassword ) {
 
-    $newPassword = password_hash($newPassword, PASSWORD_BCRYPT);
-    $conNewPassword= password_hash($conNewPassword, PASSWORD_BCRYPT);
+        $newPassword = password_hash($newPassword, PASSWORD_BCRYPT);
+        $conNewPassword= password_hash($conNewPassword, PASSWORD_BCRYPT);
 
-    $sql1 = "update user_information set mainPassword= '$newPassword', confirmPass ='$newPassword' where email = '$email'";
-    $result1 = mysqli_query($conn, $sql1);
+        $sql1 = "update user_information set mainPassword= '$newPassword', confirmPass ='$newPassword' where email = '$email'";
+        $result1 = mysqli_query($conn, $sql1);
 
-    if($result1) {
+            if($result1) {
        
-         echo "<script>Swal.fire({
-        icon: 'success',
-        title: 'Successful',
-        text: 'Your Password is Successfully Changed'
-           })</script>";
+            echo "<script>Swal.fire({
+            icon: 'success',
+            title: 'Successful',
+            text: 'Your Password is Successfully Changed'
+            })</script>";
 
-    }
+            }
 
-    else {
+            else {
         
-         echo "<script>Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'We are failed to change Password'
-           })</script>";
+            echo "<script>Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'We are failed to change Password'
+            })</script>";
 
-    }
+            }
 
-}
+        }
 
-else {
+        else {
       
        echo "<script>Swal.fire({
-        icon: 'warning',
-        title: 'Field does not match',
-        text: 'New Password and Confirm New Password field are not match'
-           })</script>";
-}
+            icon: 'warning',
+            title: 'Field does not match',
+            text: 'New Password and Confirm New Password field are not match'
+        })</script>";
+        }
 
-   }
+    }
 
-   else{
+    else{
        
-        echo "<script>Swal.fire({
+    echo "<script>Swal.fire({
         icon: 'warning',
         title: 'Field does not match',
         text: 'Current Password is not Correct'
-           })</script>";
-   }
+        })</script>";
+    }
 
 }
-
-
 
 ?>
 
@@ -136,7 +134,7 @@ else {
                             </div>
 
                             <div class="form-group">
-                                <label>Enter New Password</label>
+                                <label>Confirm New Password</label>
                                 <input type="password" class="form-control" name="conNewPassword">
                             </div>
 
