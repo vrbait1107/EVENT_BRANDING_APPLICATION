@@ -47,11 +47,11 @@ session_start();
 
                     <?php
 
-$vrb= $_SESSION['user'];
+$email= $_SESSION['user'];
 
 $sql = "select * FROM user_information INNER JOIN event_information ON 
 user_information.email= event_information.email 
-WHERE user_information.email = '$vrb'";
+WHERE user_information.email = '$email'";
 
 $result = mysqli_query($conn,$sql);
 
@@ -68,8 +68,8 @@ echo "<tbody>";
 while($row = mysqli_fetch_assoc($result)){
     echo "<tr>";
     echo "<td class='text-center'>". $row['event']. "</td>";
-    $eventMain= $row['event'];
-    echo "<td><form action ='certGeneration.php' method ='post'><input type='hidden' name='event1' value= '$eventMain' />
+    $event = $row['event'];
+    echo "<td><form action ='certGeneration.php' method ='post'><input type='hidden' name='event1' value= '$event' />
     <input type='submit' class='btn btn btn-primary rounded-pill' name='submit' value='Generate Your Certificate'></form></td>";
     echo "</tr>";       
 }

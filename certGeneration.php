@@ -3,13 +3,14 @@ session_start();
 require_once "config.php";
 
 $buttonEvent= $_POST['event1'];
-$vrb = $_SESSION['user'];
+$email = $_SESSION['user'];
+
 $sql ="select * FROM user_information INNER JOIN event_information ON 
 user_information.email= event_information.email 
-WHERE user_information.email = '$vrb' and event_information.event = '$buttonEvent'";
+WHERE user_information.email = '$email' and event_information.event = '$buttonEvent'";
 
-$res= mysqli_query($conn,$sql);
-$row=mysqli_fetch_assoc($res);
+$result= mysqli_query($conn,$sql);
+$row=mysqli_fetch_assoc($result);
 
 
 $firstName = $row['firstName'];
@@ -18,6 +19,13 @@ $department= $row['departmentName'];
 $prize = $row['prize'];
 $validate =$row['certificateId'];
 $event = $row['event'];
+
+
+// Different Certificate for Every Department 
+$sql1 = "select * from events_details_information where eventName = '$buttonEvent'";
+$result1 = mysqli_query($conn,$sql1);
+$row1 = mysqli_fetch_assoc($result1);
+$certificateDepartment = $row1['eventDepartment'];
 
 ?>
 
@@ -33,8 +41,31 @@ $event = $row['event'];
 
     <style type="text/css">
         .cert {
+
+            <?php
+
+    if($certificateDepartment=== "Electronics & Telecommunication"){
+      echo "background-image: url(cert-images/extc-cert.jpg);";
+    }
+
+    elseif($certificateDepartment=== "Chemical") {
+      echo "background-image: url(cert-images/chem-cert.jpg);";
+    }
+
+   elseif($certificateDepartment=== "Civil") {
+   echo "background-image: url(cert-images/civil-cert.jpg);";  
+   }
+
+   elseif($certificateDepartment=== "Computer") {
+    echo "background-image: url(cert-images/comp-cert.jpg);";  
+   }
+
+    else {
+      echo "background-image: url(cert-images/mech-cert.jpg);";
+    }
+ 
+ ?>
             margin: auto;
-            background-image: url(cert-images/extc-cert.jpg);
             width: 1200px;
             height: 750px;
             background-repeat: no-repeat;
