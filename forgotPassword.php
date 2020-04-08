@@ -27,171 +27,177 @@
     <!-- Navbar PHP -->
     <?php include_once "navbar.php"; ?>
 
+
     <!-- PHP Code Start -->
-    <?php 
+
+<?php 
 require_once "config.php";
 
 // Generating Random Password to Send Over Email.
-    
 $token =   bin2hex(random_bytes(15));
 
 if(isset($_POST['submit'])){
-    $email = $_POST['email'];
+$email = $_POST['email'];
+$userType = $_POST['userType'];
 
-    // Mail Code 
+    // User Part
+    if($userType=== "user"){
 
-date_default_timezone_set('Etc/UTC');
+    $sql = "select email from user_information where email = '$email'";
+    $result = mysqli_query($conn,$sql);
 
-require 'PHPMailer/PHPMailerAutoload.php';
+    if(mysqli_num_rows($result)===1) {
 
-//Create a new PHPMailer instance
-$mail = new PHPMailer;
+    // Mail PHP code 
+    date_default_timezone_set('Etc/UTC');
+    require 'PHPMailer/PHPMailerAutoload.php';
 
-//Tell PHPMailer to use SMTP
-$mail->isSMTP();
+    $mail = new PHPMailer;
+    $mail->isSMTP();
+    $mail->SMTPDebug = 0;
+    $mail->Debugoutput = 'html';
+    $mail->Host = 'smtp.gmail.com';
+    $mail->Port = 587;
+    $mail->SMTPSecure = 'tls';
+    $mail->SMTPAuth = true;
+    $mail->Username = "vishalbait02@gmail.com";
+    $mail->Password = "9921172153";
+    $mail->setFrom('vishalbait02@gmail.com', 'Vishal Bait');
+    $mail->addReplyTo('non-reply@gmail.com', 'vishal bait');
+    $mail->addAddress($email, $email);
+    $mail->Subject = "GIT SHODH 2K20 PASSWORD RESET";
 
-//Enable SMTP debugging
-// 0 = off (for production use)
-// 1 = client messages
-// 2 = client and server messages
-$mail->SMTPDebug = 0;
+    $mail->msgHTML("<!doctype html><html><body><h3>$email Please Click below link to reset your password 
+   http://localhost/EBA/resetPassword.php?token=$token </h3></body></html>");
 
-//Ask for HTML-friendly debug output
-$mail->Debugoutput = 'html';
-
-//Set the hostname of the mail server
-$mail->Host = 'smtp.gmail.com';
-// use
-// $mail->Host = gethostbyname('smtp.gmail.com');
-// if your network does not support SMTP over IPv6
-
-//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-$mail->Port = 587;
-
-//Set the encryption system to use - ssl (deprecated) or tls
-$mail->SMTPSecure = 'tls';
-
-//Whether to use SMTP authentication
-$mail->SMTPAuth = true;
-
-//Username to use for SMTP authentication - use full email address for gmail
-$mail->Username = "vishalbait02@gmail.com";
-
-//Password to use for SMTP authentication
-$mail->Password = "9921172153";
-
-//Set who the message is to be sent from
-$mail->setFrom('vishalbait02@gmail.com', 'Vishal Bait');
-
-//Set an alternative reply-to address
-$mail->addReplyTo('non-reply@gmail.com', 'vishal bait');
-
-//Set who the message is to be sent to
-$mail->addAddress($email, $email);
-
-//Set the subject line
-$mail->Subject = "GIT SHODH 2K20 PASSWORD RESET";
-
-//Read an HTML message body from an external file, convert referenced images to embedded,
-//convert HTML into a basic plain-text alternative body
-$mail->msgHTML("<!doctype html><html><body><h4>$email Please Click below link to reset your password 
-   http://localhost/EBA/resetPassword.php?token=$token </h4></body></html>");
-
-//Replace the plain text body with one created manually
-$mail->AltBody = "$email Please Click below link to reset your password 
+    $mail->AltBody = "$email Please Click below link to reset your password 
    http://localhost/EBA/resetPassword.php?token=$token";
 
-//Attach an image file
-//$mail->addAttachment('images/phpmailer_mini.png');
 
-//send the message, check for errors
-if (!$mail->send()) {
-    echo "Mailer Error: " . $mail->ErrorInfo;
-} 
+            if (!$mail->send()) {
+            echo "Mailer Error: " . $mail->ErrorInfo;
+            } 
 
-else {
+            else {
+    
+            $sql = "UPDATE user_information SET token ='$token' WHERE email = '$email'";
+            $result1 = mysqli_query($conn, $sql);
 
-   
-    $userType = $_POST['userType'];
-
-    if($userType=== "user") {
-
-         $sql = "UPDATE user_information SET token ='$token' WHERE email = '$email'";
-         $result1 = mysqli_query($conn, $sql);
-
-    if($result1) {
-         echo "<script>Swal.fire({
+                if($result1) {
+                echo "<script>Swal.fire({
                 icon: 'success',
                 title: 'Successful',
                 text: 'Password Reset Link sent to your email, Check Your Mail.'
-            })</script>";
-    }
+                })</script>";
+                }
 
-    else{
-        echo "<script>Swal.fire({
+                else{
+                echo "<script>Swal.fire({
                 icon: 'error',
                 title: 'Failed',
                 text: 'We are failed to send email for reset password.'
+                })</script>";
+
+                }
+
+            }
+
+        } // if($result)
+
+        else {
+            echo "<script>Swal.fire({
+                icon: 'warning',
+                title: 'Warning',
+                text: 'No Such Email Found'
             })</script>";
-    }
+        }
 
     } //if($userType=== "user") bracket
 
-    elseif($userType=== "admin"){
 
-     $sql = "UPDATE admin_information SET token ='$token' WHERE email = '$email'";
-     $result1 = mysqli_query($conn, $sql);
+    // Admin Part
+ elseif($userType=== "admin"){
 
-    if($result1) {
-         echo "<script>Swal.fire({
+    $sql = "select email from admin_information where email = '$email'";
+    $result = mysqli_query($conn,$sql);
+
+    if(mysqli_num_rows($result)===1) {
+
+    // Mail PHP code 
+    date_default_timezone_set('Etc/UTC');
+    require 'PHPMailer/PHPMailerAutoload.php';
+
+    $mail = new PHPMailer;
+    $mail->isSMTP();
+    $mail->SMTPDebug = 0;
+    $mail->Debugoutput = 'html';
+    $mail->Host = 'smtp.gmail.com';
+    $mail->Port = 587;
+    $mail->SMTPSecure = 'tls';
+    $mail->SMTPAuth = true;
+    $mail->Username = "vishalbait02@gmail.com";
+    $mail->Password = "9921172153";
+    $mail->setFrom('vishalbait02@gmail.com', 'Vishal Bait');
+    $mail->addReplyTo('non-reply@gmail.com', 'vishal bait');
+    $mail->addAddress($email, $email);
+    $mail->Subject = "GIT SHODH 2K20 PASSWORD RESET";
+
+    $mail->msgHTML("<!doctype html><html><body><h3>$email Please Click below link to reset your password 
+   http://localhost/EBA/resetPassword.php?token=$token </h3></body></html>");
+
+    $mail->AltBody = "$email Please Click below link to reset your password 
+   http://localhost/EBA/resetPassword.php?token=$token";
+
+
+            if (!$mail->send()) {
+            echo "Mailer Error: " . $mail->ErrorInfo;
+            } 
+
+            else {
+    
+            $sql = "UPDATE user_information SET token ='$token' WHERE email = '$email'";
+            $result1 = mysqli_query($conn, $sql);
+
+                if($result1) {
+                echo "<script>Swal.fire({
                 icon: 'success',
                 title: 'Successful',
                 text: 'Password Reset Link sent to your email, Check Your Mail.'
-            })</script>";
-    }
+                })</script>";
+                }
 
-    else{
-        echo "<script>Swal.fire({
+                else{
+                echo "<script>Swal.fire({
                 icon: 'error',
                 title: 'Failed',
                 text: 'We are failed to send email for reset password.'
+                })</script>";
+
+                }
+
+            } //if ($result)
+
+            }
+
+        else {
+            echo "<script>Swal.fire({
+                icon: 'warning',
+                title: 'Warning',
+                text: 'No Such Email Found'
             })</script>";
-    }
+        }
 
-    } // elseif($userType==="admin")
+    } //elseif($userType=== "user") bracket
 
-    else {
-        echo "Something Went Wrong";
-    }
+   else {
+    echo "Something Went Wrong";
+   }
 
-
-    } // else bracket
-
-    
-    //Section 2: IMAP
-    //Uncomment these to save your message in the 'Sent Mail' folder.
-    #if (save_mail($mail)) {
-    #    echo "Message saved!";
-    #}
-function save_mail($mail) {
-    //You can change 'Sent Mail' to any other folder or tag
-    $path = "{imap.gmail.com:993/imap/ssl}[Gmail]/Sent Mail";
-
-    //Tell your server to open an IMAP connection using the same username and password as you used for SMTP
-    $imapStream = imap_open($path, $mail->Username, $mail->Password);
-
-    $result = imap_append($imapStream, $path, $mail->getSentMIMEMessage());
-    imap_close($imapStream);
-
-    return $result;
-}
- 
 }
 
 ?>
+
     <!-- PHP Code Ended -->
-
-
 
     <main class="container">
         <div class="row my-5">
@@ -201,7 +207,6 @@ function save_mail($mail) {
 
                     <h3 class="text-center text-uppercase text-primary mb-3">Password Recovery</h3>
                     <hr>
-
 
                     <form action="" method="POST">
                         <div class="form-group">
