@@ -2,7 +2,7 @@
 require_once 'config.php';
 
 
-$sql = "SELECT * FROM events_details_information WHERE eventDeparment ='Computer'";
+$sql = "SELECT * FROM events_details_information WHERE eventDepartment ='Computer'";
 
 $result = mysqli_query($conn,$sql);
 
