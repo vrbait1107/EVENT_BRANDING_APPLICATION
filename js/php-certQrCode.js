@@ -1,19 +1,18 @@
- var elem = document.getElementById("qrcode");
-var qrcode = new QRCode(elem, {
-    width : 100,
-    height : 100
+let elem = document.getElementById("qrcode");
+let qrcode = new QRCode(elem, {
+  width: 100,
+  height: 100,
 });
 
-function makeCode () {
-var obj = {  First_Name: a, Last_Name: b, Department: c, Event: d, Prize:e };
-var myJSON = JSON.stringify(obj);
+const makeCode = () => {
+  let certificateData = {
+    First_Name: a,
+    Last_Name: b,
+    Department: c,
+    Event: d,
+    Prize: e,
+  };
 
-
-    if (myJSON.value === "") {
-        //alert("Input a text");
-        //elText.focus();
-        return;
-    }
- 
-    qrcode.makeCode(myJSON);
-}
+  let myJSON = JSON.stringify(certificateData);
+  qrcode.makeCode(myJSON);
+};

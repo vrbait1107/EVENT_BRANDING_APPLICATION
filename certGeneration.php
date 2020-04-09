@@ -128,11 +128,11 @@ $certificateDepartment = $row1['eventDepartment'];
 
     <!-- JS Variables to Convert data into QR Code-->
     <script type="text/javascript">
-        var a = "<?php echo $firstName ?>";
-        var b = "<?php  echo $lastName ?>";
-        var c = "<?php  echo $department?>";
-        var d = "<?php  echo $event ?>";
-        var e = "<?php echo $prize ?>";
+        let a = "<?php echo $firstName ?>";
+        let b = "<?php  echo $lastName ?>";
+        let c = "<?php  echo $department?>";
+        let d = "<?php  echo $event ?>";
+        let e = "<?php echo $prize ?>";
     </script>
 
     <!-- QR Code JS Library-->

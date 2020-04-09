@@ -1,47 +1,46 @@
-function validateForm() {
-  var x = document.forms["myForm"]["firstName"].value;
+const validateForm = () => {
+  let x = document.forms["myForm"]["firstName"].value;
   if (!isNaN(x)) {
     alert("Only Characters are allowed");
     return false;
   }
 
-  var y = document.forms["myForm"]["lastName"].value;
+  let y = document.forms["myForm"]["lastName"].value;
   if (!isNaN(y)) {
     alert("Only Characters are allowed");
     return false;
   }
 
-  var z = document.forms["myForm"]["department"].value;
+  let z = document.forms["myForm"]["department"].value;
   if (!isNaN(z)) {
     alert("Only Characters are allowed");
     return false;
   }
 
-  var a = document.forms["myForm"]["event"].value;
+  let a = document.forms["myForm"]["event"].value;
   if (!isNaN(a)) {
     alert("Only Characters are allowed");
     return false;
   }
 
-  var b = document.forms["myForm"]["prize"].value;
+  let b = document.forms["myForm"]["prize"].value;
   if (!isNaN(b)) {
     alert("Only Characters are allowed");
     return false;
   }
-}
+};
 
 // Register Validate form
 
-function formValidationRegister() {
-  var a = document.forms["myForm"]["firstName"].value;
-  var n = document.forms["myForm"]["lastName"].value;
-  var b = document.forms["myForm"]["collegeName"].value;
-  var c = document.forms["myForm"]["department"].value;
-  var d = document.forms["myForm"]["year"].value;
-
-  var x = document.forms["myForm"]["mobileNumber"].value;
-  var y = document.forms["myForm"]["password"].value;
-  var z = document.forms["myForm"]["confirm_password"].value;
+const formValidationRegister = () => {
+  let a = document.forms["myForm"]["firstName"].value;
+  let n = document.forms["myForm"]["lastName"].value;
+  let b = document.forms["myForm"]["collegeName"].value;
+  let c = document.forms["myForm"]["department"].value;
+  let d = document.forms["myForm"]["year"].value;
+  let x = document.forms["myForm"]["mobileNumber"].value;
+  let y = document.forms["myForm"]["password"].value;
+  let z = document.forms["myForm"]["confirm_password"].value;
 
   if (!isNaN(a)) {
     Swal.fire({
@@ -69,6 +68,7 @@ function formValidationRegister() {
     });
     return false;
   }
+
   if (!isNaN(c)) {
     Swal.fire({
       icon: "error",
@@ -77,6 +77,7 @@ function formValidationRegister() {
     });
     return false;
   }
+
   if (!isNaN(d)) {
     Swal.fire({
       icon: "error",
@@ -121,47 +122,50 @@ function formValidationRegister() {
     });
     return false;
   }
-}
+};
 
 // Contact Form Validation
 
-function validateFormContact() {
-  var name = document.getElementById("name").value;
+const validateFormContact = () => {
+  let name = document.getElementById("name").value;
   if (name == "") {
     alert("Name cannot be empty");
     return false;
   }
-  var email = document.getElementById("email").value;
+
+  let email = document.getElementById("email").value;
   if (email == "") {
     alert("Email cannot be empty");
     return false;
   } else {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test(email)) {
       alert("Email format invalid");
       return false;
     }
   }
-  var subject = document.getElementById("subject").value;
+
+  let subject = document.getElementById("subject").value;
   if (subject == "") {
     alert("Subject cannot be empty");
     return false;
   }
-  var message = document.getElementById("message").value;
+
+  let message = document.getElementById("message").value;
   if (message == "") {
     alert("Message cannot be empty");
     return false;
   }
-}
+};
 
 // User Validate form
-function formValidationUserProfileForm() {
-  var a = document.forms["userProfileForm"]["firstName"].value;
-  var b = document.forms["userProfileForm"]["lastName"].value;
-  var c = document.forms["userProfileForm"]["collegeName"].value;
-  var d = document.forms["userProfileForm"]["departmentName"].value;
-  var e = document.forms["userProfileForm"]["academicYear"].value;
-  var f = document.forms["userProfileForm"]["mobileNumber"].value;
+const formValidationUserProfileForm = () => {
+  let a = document.forms["userProfileForm"]["firstName"].value;
+  let b = document.forms["userProfileForm"]["lastName"].value;
+  let c = document.forms["userProfileForm"]["collegeName"].value;
+  let d = document.forms["userProfileForm"]["departmentName"].value;
+  let e = document.forms["userProfileForm"]["academicYear"].value;
+  let f = document.forms["userProfileForm"]["mobileNumber"].value;
 
   if (!isNaN(a)) {
     Swal.fire({
@@ -189,6 +193,7 @@ function formValidationUserProfileForm() {
     });
     return false;
   }
+
   if (!isNaN(d)) {
     Swal.fire({
       icon: "error",
@@ -197,6 +202,7 @@ function formValidationUserProfileForm() {
     });
     return false;
   }
+
   if (!isNaN(e)) {
     Swal.fire({
       icon: "error",
@@ -223,4 +229,4 @@ function formValidationUserProfileForm() {
     });
     return false;
   }
-}
+};
