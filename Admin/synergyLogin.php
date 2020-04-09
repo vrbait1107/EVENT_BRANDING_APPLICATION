@@ -6,8 +6,6 @@ if(isset($_SESSION['Admin'])) {
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,42 +13,45 @@ if(isset($_SESSION['Admin'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SYNERGY 2K20 LOGIN</title>
+
+    <!--Bootstrap.css-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Font-Awesome.css-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Event-Reg.css-->
     <link rel="stylesheet" href="../css/event-reg.css">
+    <!--SweetAlert.js-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 
     <style>
-        .btn-block {
-            border-radius: 30px;
-        }
-
         .fa-users {
             border-radius: 100%;
             border: 2px solid #f0ad4e;
             padding: 10px;
         }
     </style>
-
-
 </head>
 
 <body>
 
 
 
-<!-- PHP CODE START -->
+    <!-- PHP CODE START -->
 
-<?php
+    <?php
 // Checking Wether Password Correct or Not
 if(isset($_POST['login'])) {
 
 $email = $_POST['email'];
-
 $password = $_POST['password'];
 
+$email = mysqli_real_escape_string($conn,$email);
+$password = mysqli_real_escape_string($conn,$password);
+
+$email = htmlentities($email);
+$password = htmlentities($email);
 
 $sql = "select adminPassword from admin_information where email='$email'";
 $result = mysqli_query($conn,$sql);
@@ -76,11 +77,10 @@ else {
 }
 ?>
 
+    <!-- PHP CODE END -->
 
-<!-- PHP CODE END -->
 
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand font-weight-bold" href="#">GIT SHODH/SYNERGY 2K20</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -139,26 +139,30 @@ else {
 
 
                         <div class="form-group">
-                            <input class="btn btn-primary btn-block mt-3" type="submit" class="form-control"
-                                name="login" id="login" value="Login">
+                            <input class="btn btn-primary  rounded-pill btn-block mt-3" type="submit"
+                                class="form-control" name="login" id="login" value="Login">
                         </div>
 
                     </form>
-            </div>
+                </div>
+            </section>
         </div>
-    </div>
-</main>
+    </main>
 
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-                  
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <!--Proper.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <!--Bootstrap.js-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
 </body>
+
 </html>

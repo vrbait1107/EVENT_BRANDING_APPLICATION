@@ -22,7 +22,7 @@ require_once "../config.php";
 <html>
 
 <head>
-    <title>Certificate</title>
+    <title>Synergy Certificate</title>
 
     <style type="text/css">
         .cert {
@@ -35,37 +35,36 @@ require_once "../config.php";
         }
 
         .cert .para {
-            padding-top:350px !important;
-        
+            padding-top: 350px !important;
+
         }
 
         body p {
-    font-size: 30px;
-    text-align: center;
-}
+            font-size: 30px;
+            text-align: center;
+        }
 
-span {
-    color: blue;
-}
+        span {
+            color: blue;
+        }
 
+        .footer-text {
+            font-size: 20px;
+        }
 
-.footer-text {
-     font-size:20px;
-}
+        div .center {
+            display: block;
+            margin-left: 46%;
+        }
 
-div .center {
-    display: block;
-    margin-left: 46%;
-}
+        .validate {
+            color: red !important;
+        }
 
-.validate {
-    color:red !important;
-} 
-
-section .center {
-    display: block;
-    margin-left: 46%;
-}
+        section .center {
+            display: block;
+            margin-left: 46%;
+        }
     </style>
 
 </head>
@@ -85,23 +84,26 @@ section .center {
         <span id="qrcode" class="center" style="width:100px; height:100px;"></span>
 
         <p class="footer-text"><b><span class="validate">Certficate Id: <?php echo $validate ?></span><br>
-        This is computer generated Certificate does not required any signature, to Authenticate this Certificate <br> 
-        Go to GIT SHODH/SYNERGY Verification System Page.</b></p>
+                This is computer generated Certificate does not required any signature, to Authenticate this Certificate
+                <br>
+                Go to GIT SHODH/SYNERGY Verification System Page.</b></p>
 
     </section>
 
-<script type="text/javascript" src="../js/jquery.min.js"></script>  
-<script type="text/javascript">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript">
 
-var a= "<?php echo $firstName ?>" ;
-var b="<?php  echo $lastName ?>";
-var c= "<?php  echo $department?>";
-var d= "<?php  echo $event ?>" ;
-var e= "<?php echo $prize ?>";
-</script>
+        let a = "<?php echo $firstName ?>";
+        let b = "<?php  echo $lastName ?>";
+        let c = "<?php  echo $department?>";
+        let d = "<?php  echo $event ?>";
+        let e = "<?php echo $prize ?>";
 
-<script type="text/javascript" src="../js/qrcode.js"></script>
-<script type="text/javascript" src="../js/php-certQrCode.js"> </script>
+    </script>
+
+    <script type="text/javascript" src="../js/qrcode.js"></script>
+    <script type="text/javascript" src="../js/php-certQrCode.js"> </script>
 
 </body>
+
 </html>
