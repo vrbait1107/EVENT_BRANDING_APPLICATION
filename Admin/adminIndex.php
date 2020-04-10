@@ -268,24 +268,9 @@ header('Location:adminLogin.php');
 
                     <!--  ADD Administartor Profile Form Complete -->
 
-                    <div class="row">
-                        <div class="col-xl-6">
-                            <div class="card mb-4">
-                                <div class="card-header"><i class="fas fa-chart-area mr-1"></i>Area Chart Example</div>
-                                <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="card mb-4">
-                                <div class="card-header"><i class="fas fa-chart-bar mr-1"></i>Bar Chart Example</div>
-                                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                            </div>
-                        </div>
-                    </div>
-
 
                     <div class="card mb-4">
-                        <div class="card-header"><i class="fas fa-table mr-1"></i>DataTable Example</div>
+                        <div class="card-header"><i class="fas fa-table mr-1"></i>Administrator Details</div>
                         <div class="card-body">
                             <div class="table-responsive">
 
@@ -294,19 +279,17 @@ header('Location:adminLogin.php');
 
                                 // Fetching All Details From user_information Table 
 
-                    $sql = 'select * from user_information order by user_information.firstName ASC';
-                    $result =mysqli_query($conn,$sql);
+                    $sql = 'select * from admin_information where adminType = "Faculty Coordinator"';
+                    $result = mysqli_query($conn,$sql);
 
 
                      echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
                      echo '<thead>';
                      echo '<tr>';
                      echo '<th>Email</th>';
-                     echo '<th>First Name</th>';
-                     echo '<th>Last Name</th>';
-                     echo '<th>Department Name</th>';
-                     echo '<th>College Name</th>';
-                     echo ' <th>Academic Year</th>';
+                     echo '<th>Admin Type</th>';
+                     echo '<th>Admin Department</th>';
+                     echo '<th>Admin Event</th>';
                      echo '</tr>';
                      echo '</thead>';
                      echo '<tbody>';
@@ -314,11 +297,9 @@ header('Location:adminLogin.php');
                     while($row=mysqli_fetch_assoc($result)) {
                     echo '<tr>';
                     echo '<td>' . $row['email'] . '</td>';
-                    echo '<td>' . $row['firstName'] . '</td>';
-                    echo '<td>' . $row['lastName'] . '</td>';
-                    echo '<td>' . $row['departmentName'] . '</td>';
-                    echo '<td>' . $row['collegeName'] . '</td>';
-                    echo '<td>' . $row['academicYear'] . '</td>';
+                    echo '<td>' . $row['adminType'] . '</td>';
+                    echo '<td>' . $row['adminDepartment'] . '</td>';
+                    echo '<td>' . $row['adminEvent'] . '</td>';
                     echo '</tr>';
 
                     }

@@ -297,7 +297,58 @@ $_SESSION['adminEvent']) {
                     </div>
 
                     <!--  ADD Administartor Profile Form Complete -->
+
+
+                    <!-- Display Student Coordinator Admin Department Wise -->
+
+                    <div class="card mb-4">
+                        <div class="card-header"><i class="fas fa-table mr-1"></i>Administrator Details</div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+
+                                <?php  
+
+                                // Fetching All Details From user_information Table 
+                                $departmentAdmin = $_SESSION["adminDepartment"];
+
+                    $sql = "select * from admin_information where adminType = 'Student Coordinator' and adminDepartment = '$departmentAdmin'";
+                
+                    $result = mysqli_query($conn,$sql);
+
+
+                     echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
+                     echo '<thead>';
+                     echo '<tr>';
+                     echo '<th>Email</th>';
+                     echo '<th>Admin Type</th>';
+                     echo '<th>Admin Department</th>';
+                     echo '<th>Admin Event</th>';
+                     echo '</tr>';
+                     echo '</thead>';
+                     echo '<tbody>';
+
+                    while($row=mysqli_fetch_assoc($result)) {
+                    echo '<tr>';
+                    echo '<td>' . $row['email'] . '</td>';
+                    echo '<td>' . $row['adminType'] . '</td>';
+                    echo '<td>' . $row['adminDepartment'] . '</td>';
+                    echo '<td>' . $row['adminEvent'] . '</td>';
+                    echo '</tr>';
+
+                    }
+
+                    echo '</tbody>';
+                    echo '</table>';
+
+                            ?>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </main>
+
 
 
             <footer class="py-4 bg-light mt-auto">
