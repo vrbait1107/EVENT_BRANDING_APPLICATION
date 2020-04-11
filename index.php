@@ -2,8 +2,30 @@
 session_start();
 if(!isset($_SESSION['user'])) {
  header("location:login.php");
-
 }
+
+require_once "config.php";
+
+$visitorIpAddress = $_SERVER['REMOTE_ADDR'];
+
+$sql1 = "select * from visitor_counter where ipAddress = '$visitorIpAddress'";
+$result1 = mysqli_query($conn,$sql1);
+$totaVisitor =  mysqli_num_rows($result1);
+
+if($totaVisitor == 0) {
+$sql2 = "Insert into visitor_counter (ipAddress) values ('$visitorIpAddress')";
+$result2 = mysqli_query($conn,$sql2);
+}
+
+
+// Retrive Data from Database
+$sql = "select * from visitor_counter";
+$result = mysqli_query($conn,$sql);
+
+if($result){
+    $totaVisitors =  mysqli_num_rows($result);
+}
+
 ?>
 
 <!Doctype html>
@@ -16,7 +38,7 @@ if(!isset($_SESSION['user'])) {
 
     <title>GIT SHODH 2K20</title>
 
-    
+
     <!--Animate CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <!--Bootstrap CSS-->
@@ -32,8 +54,18 @@ if(!isset($_SESSION['user'])) {
             font-weight: bold;
         }
 
-        .card {
+        .col-md-12 .card {
             background-color: aliceblue;
+        }
+
+        .container-fluid {
+            background: #24C6DC;
+            background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);
+            background: linear-gradient(to right, #514A9D, #24C6DC);
+        }
+
+        .card-header {
+            background-color: #3475;
         }
     </style>
 
@@ -106,6 +138,23 @@ if(!isset($_SESSION['user'])) {
         </div>
     </main>
 
+    <div class="container-fluid">
+        <div class="row">
+            <section class="col-md-6 my-5 offset-md-3 text-center">
+
+                <div class="card-header">
+                    <h1 class="text-uppercase text-white">Visitor
+                        Counter</h1>
+                </div>
+
+                <div class="card-body">
+                    <p class="display-3 text-white font-weight-bold"><?php echo $totaVisitors ?> </p>
+                </div>
+
+            </section>
+        </div>
+    </div>
+
     <!--Footer-->
     <?php include_once 'footer.php'; ?>
 
@@ -118,7 +167,7 @@ if(!isset($_SESSION['user'])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-    
+
 </body>
 
 </html>
