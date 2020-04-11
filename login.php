@@ -25,6 +25,8 @@ if(isset($_SESSION['user'])) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <!-- Google Recaptcha -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
   <title>GIT SHODH 2K20</title>
 
@@ -35,10 +37,6 @@ if(isset($_SESSION['user'])) {
       padding: 10px;
     }
 
-    .btn-block {
-      border-radius: 30px;
-    }
-
     a {
       text-decoration: none !important;
     }
@@ -47,45 +45,60 @@ if(isset($_SESSION['user'])) {
 
 <body>
 
-
-
   <!-- PHP CODE START -->
-
-
   <?php
 
-// Checking for Username and Password Correct or not from user_information Table Database Name is User Registration.
+    require_once "config.php";
 
-require_once "config.php";
+    if(isset($_POST["login"])) {
 
- if(isset($_POST["login"])) {
+      if(isset($_POST['g-recaptcha-response'])) {
 
-    $userName =   $_POST["userName"];
-    $password =  $_POST["password"];
-    
-   
-    $sql = "select mainPassword from user_information where email='$userName' and status='active'";
-    $res = mysqli_query($conn,$sql);
-    $row = mysqli_fetch_assoc($res);
-    $dbpassword = $row['mainPassword'];
+      $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
+      $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g-recaptcha-response']);
+      $response = json_decode($verifyResponse);
 
-
-
-    if(password_verify($password,$dbpassword)){
-        $_SESSION['user'] = $userName;
-        header ("Location:index.php");
-       
-    }
-
-    else {
+      if($response->success){
         
-      echo "<script>Swal.fire({
-        icon: 'error',
-        title: 'Unable to Login',
-        text: 'Please Check Your Credentials'
-      })</script>";
-    
-    }
+        $userName =   $_POST["userName"];
+        $password =  $_POST["password"];
+
+        $userName = mysqli_real_escape_string($conn,$userName);
+        $password = mysqli_real_escape_string($conn,$password);
+
+        $userName = htmlentities($userName);
+        $password = htmlentities($email);
+        
+        $sql = "select mainPassword from user_information where email='$userName' and status='active'";
+        $res = mysqli_query($conn,$sql);
+        $row = mysqli_fetch_assoc($res);
+        $dbpassword = $row['mainPassword'];
+
+        if(password_verify($password,$dbpassword)){
+            $_SESSION['user'] = $userName;
+            header ("Location:index.php");
+          
+        }
+
+        else {
+          echo "<script>Swal.fire({
+              icon: 'error',
+              title: 'Unable to Login',
+              text: 'Please Check Your Credentials'
+            })</script>";
+        }
+
+      }// if $response
+
+      else{
+        echo "<script>Swal.fire({
+            icon: 'warning',
+            title: 'Google Recaptcha Error',
+            text: 'Please fill Google Recaptcha'
+          })</script>";
+      }
+
+      }// if(isset($_POST['g-recaptcha-response']))
  }
 ?>
 
@@ -150,7 +163,11 @@ require_once "config.php";
                 password?</a>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block" name="login">Login</button>
+            <div class="text-center my-2">
+              <div class="g-recaptcha text-center" data-sitekey="6LdGougUAAAAAG96eGund5fScrR1fouBZvyLf1RL"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary rounded-pill btn-block" name="login">Login</button>
             <h6 class="mt-3">Not have an Account? <a href="register.php"> Create Account Here</a></h6>
 
           </form>

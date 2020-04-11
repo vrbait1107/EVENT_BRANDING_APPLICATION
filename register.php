@@ -9,247 +9,191 @@
   <!-- Bootstrap css -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-   <!-- Event-Reg css -->
-   <link rel="stylesheet" href="css/event-reg.css">
-   <!-- Animate css -->
+  <!-- Event-Reg css -->
+  <link rel="stylesheet" href="css/event-reg.css">
+  <!-- Animate css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <!-- SweetAlert.js -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <!-- Google Recaptcha -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-  
+
   <title>GIT SHODH 2K20 Registration</title>
   <style>
-  a {
-          text-decoration:none !important;
-        }
+    a {
+      text-decoration: none !important;
+    }
   </style>
-  
+
 </head>
 
 <body>
 
-<!--PHP CODE START -->
+  <!--PHP CODE START -->
 
-<?php
-ob_start();
+  <?php
 session_start();
 require_once "config.php";
 $login= "login.php";
 
- if ($conn) 
- { 
-   
-  
-   if (isset($_POST['submit'])) {
+ 
+if (isset($_POST['submit'])) {
 
-    $userName =   $_POST['userName'];
-    $firstName =  $_POST['firstName'];
-    $lastName =  $_POST['lastName'];
-    $mobileNumber =  $_POST['mobileNumber'];
-    $collegeName =  $_POST['collegeName'];
-    $department = $_POST['department'];
-    $year =  $_POST['year'];
-    $password =  $_POST['password'];
-    $confirm_password =  $_POST['confirm_password'];
-    $token = bin2hex(random_bytes(15));
+    if(isset($_POST['g-recaptcha-response'])) {
 
+    $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
+    $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g-recaptcha-response']);
+    $response = json_decode($verifyResponse);
 
+        if($response->success){
 
-    // To Avoid SQL Injection
-    $userName = mysqli_real_escape_string($conn,$userName);
-    $firstName =  mysqli_real_escape_string($conn,$firstName);
-    $lastName = mysqli_real_escape_string($conn,$lastName);
-    $mobileNumber =  mysqli_real_escape_string($conn,$mobileNumber);
-    $collegeName =  mysqli_real_escape_string($conn,$collegeName);
-    $department = mysqli_real_escape_string($conn,$department);
-    $year =  mysqli_real_escape_string($conn,$year);
-    $password =  mysqli_real_escape_string($conn,$password);
-    $confirm_password = mysqli_real_escape_string($conn,$confirm_password);
+        $userName =   $_POST['userName'];
+        $firstName =  $_POST['firstName'];
+        $lastName =  $_POST['lastName'];
+        $mobileNumber =  $_POST['mobileNumber'];
+        $collegeName =  $_POST['collegeName'];
+        $department = $_POST['department'];
+        $year =  $_POST['year'];
+        $password =  $_POST['password'];
+        $confirm_password =  $_POST['confirm_password'];
+        $token = bin2hex(random_bytes(15));
 
-
-
-
-    // To Avoid Cross Site Scripting using Javascript
-    $userName = htmlentities($userName);
-    $firstName =  htmlentities($firstName);
-    $lastName = htmlentities($lastName);
-    $mobileNumber =  htmlentities($mobileNumber);
-    $collegeName =  htmlentities($collegeName);
-    $department = htmlentities($department);
-    $year =  htmlentities($year);
-    $password = htmlentities($password);
-    $confirm_password = htmlentities($confirm_password);
-    
-    $hashPass = password_hash($password, PASSWORD_BCRYPT);
-    $hashConPass = password_hash($confirm_password, PASSWORD_BCRYPT);
+        // To Avoid SQL Injection
+        $userName = mysqli_real_escape_string($conn,$userName);
+        $firstName =  mysqli_real_escape_string($conn,$firstName);
+        $lastName = mysqli_real_escape_string($conn,$lastName);
+        $mobileNumber =  mysqli_real_escape_string($conn,$mobileNumber);
+        $collegeName =  mysqli_real_escape_string($conn,$collegeName);
+        $department = mysqli_real_escape_string($conn,$department);
+        $year =  mysqli_real_escape_string($conn,$year);
+        $password =  mysqli_real_escape_string($conn,$password);
+        $confirm_password = mysqli_real_escape_string($conn,$confirm_password);
 
 
-    $sql1 ="select* from user_information where user_information.email ='$userName'";
-    $res1= mysqli_query($conn,$sql1);
+        // To Avoid Cross Site Scripting using Javascript
+        $userName = htmlentities($userName);
+        $firstName =  htmlentities($firstName);
+        $lastName = htmlentities($lastName);
+        $mobileNumber =  htmlentities($mobileNumber);
+        $collegeName =  htmlentities($collegeName);
+        $department = htmlentities($department);
+        $year =  htmlentities($year);
+        $password = htmlentities($password);
+        $confirm_password = htmlentities($confirm_password);
+        
+        $hashPass = password_hash($password, PASSWORD_BCRYPT);
+        $hashConPass = password_hash($confirm_password, PASSWORD_BCRYPT);
 
-    if(mysqli_num_rows($res1)>0) {
+        $sql1 ="select* from user_information where user_information.email ='$userName'";
+        $res1= mysqli_query($conn,$sql1);
 
-      echo "<script>Swal.fire({
-        icon: 'warning',
-        title: 'Account is Already Exist',
-        text: 'You are already registerd with GIT Shodh 2K20,Login to Continue',
-        footer: '<a href = $login >Go to the Login Page</a>'
-      })</script>";
 
+              if(mysqli_num_rows($res1)>0) {
+
+              echo "<script>Swal.fire({
+                  icon: 'warning',
+                  title: 'Account is Already Exist',
+                  text: 'You are already registerd with GIT Shodh 2K20,Login to Continue',
+                  footer: '<a href = $login >Go to the Login Page</a>'
+                })</script>";
+
+                }
+
+              else {
+            
+              $sql = "insert into user_information(email, firstName, lastName, 
+              mobileNumber, collegeName, departmentName, academicYear, mainPassword, confirmPass, token) VALUES ('$userName', '$firstName', '$lastName', 
+              '$mobileNumber', '$collegeName', '$department', '$year', '$hashPass', '$hashConPass', '$token')";
+
+              $result = mysqli_query($conn, $sql);
+
+                    if($result){ 
+                  
+                      echo "<script>Swal.fire({
+                          icon: 'success',
+                          title: 'Activate Your Account',
+                          text: 'Check Your Email for acivate your account'
+                        })</script>";
+
+                      // Mail Code
+
+                      date_default_timezone_set('Etc/UTC');
+
+                      require 'PHPMailer/PHPMailerAutoload.php';
+
+                      $mail = new PHPMailer;
+                      $mail->isSMTP();
+                      $mail->SMTPDebug = 0;
+                      $mail->Debugoutput = 'html';
+                      $mail->Host = 'smtp.gmail.com';
+                      $mail->Port = 587;
+                      $mail->SMTPSecure = 'tls';
+                      $mail->SMTPAuth = true;
+                      $mail->Username = "vishalbait02@gmail.com";
+                      $mail->Password = "9921172153";
+                      $mail->setFrom('vishalbait02@gmail.com', 'Vishal Bait');
+                      $mail->addReplyTo('non-reply@gmail.com', 'vishal bait');
+                      $mail->addAddress($userName, $userName);
+                      $mail->Subject = "GIT SHODH 2K20 Activate Your Account";
+
+                      //Read an HTML message body from an external file, convert referenced images to embedded,
+                      //convert HTML into a basic plain-text alternative body
+                      $mail->msgHTML("<!doctype html><html><body><h1> <i><b>$userName</b></i> You are Successfully Registered to GIT SHODH 2K20 System. Please activate your account by clicking below link
+                      http://localhost/EBA/activateEmail.php?token=$token </h1></body></html>");
+                      $mail->AltBody = "$userName You are Successfully Registered to GIT SHODH 2K20 System. Please activate your account by clicking below link
+                      http://localhost/EBA/activateEmail.php?token=$token";
+
+                          if (!$mail->send()) {
+                              echo "Mailer Error: " . $mail->ErrorInfo;
+                          } else {
+                              echo "<h3 class='text-center text-primary'>Check Your Email.</h3>";
+                          }
+
+                                   function save_mail($mail) {
+                                    //You can change 'Sent Mail' to any other folder or tag
+                                    $path = "{imap.gmail.com:993/imap/ssl}[Gmail]/Sent Mail";
+
+                                    //Tell your server to open an IMAP connection using the same username and password as you used for SMTP
+                                    $imapStream = imap_open($path, $mail->Username, $mail->Password);
+
+                                    $result = imap_append($imapStream, $path, $mail->getSentMIMEMessage());
+                                    imap_close($imapStream);
+
+                                    return $result;
+                                }
+
+  // Mail Code End
+                    } 
+
+                    else {
+                    echo '<script>Swal.fire({
+                        icon: "error",
+                        title: "Eror",
+                        text: "Something Went Wrong",
+                        footer: "<a href>Go to the Login Page</a>"
+                      })</script>';
+                    }
+
+            }
+
+
+        }// if $response
+
+        else{
+        echo "<script>Swal.fire({
+            icon: 'warning',
+            title: 'Google Recaptcha Error',
+            text: 'Please fill Google Recaptcha'
+          })</script>";
         }
 
-    else {
-    
-    $sql = "insert into user_information(email, firstName, lastName, 
-    mobileNumber, collegeName, departmentName, academicYear, mainPassword, confirmPass, token) VALUES ('$userName', '$firstName', '$lastName', 
-    '$mobileNumber', '$collegeName', '$department', '$year', '$hashPass', '$hashConPass', '$token')";
-
-    $result = mysqli_query($conn, $sql);
-
-    if($result)
-{ 
-  
-    echo "<script>Swal.fire({
-      icon: 'success',
-      title: 'Activate Your Account',
-      text: 'Check Your Email for acivate your account'
-    })</script>";
-
-
-
-  ///////  #############################    Mail Code ################################ //////////
-
-
-/**
- * This example shows settings to use when sending via Google's Gmail servers.
- * The IMAP section shows how to save this message to the 'Sent Mail' folder using IMAP commands.
- */
-
-//SMTP needs accurate times, and the PHP time zone MUST be set
-//This should be done in your php.ini, but this is how to do it if you don't have access to that
-date_default_timezone_set('Etc/UTC');
-
-require 'PHPMailer/PHPMailerAutoload.php';
-
-//Create a new PHPMailer instance
-$mail = new PHPMailer;
-
-//Tell PHPMailer to use SMTP
-$mail->isSMTP();
-
-//Enable SMTP debugging
-// 0 = off (for production use)
-// 1 = client messages
-// 2 = client and server messages
-$mail->SMTPDebug = 0;
-
-//Ask for HTML-friendly debug output
-$mail->Debugoutput = 'html';
-
-//Set the hostname of the mail server
-$mail->Host = 'smtp.gmail.com';
-// use
-// $mail->Host = gethostbyname('smtp.gmail.com');
-// if your network does not support SMTP over IPv6
-
-//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-$mail->Port = 587;
-
-//Set the encryption system to use - ssl (deprecated) or tls
-$mail->SMTPSecure = 'tls';
-
-//Whether to use SMTP authentication
-$mail->SMTPAuth = true;
-
-//Username to use for SMTP authentication - use full email address for gmail
-$mail->Username = "vishalbait02@gmail.com";
-
-//Password to use for SMTP authentication
-$mail->Password = "9921172153";
-
-//Set who the message is to be sent from
-$mail->setFrom('vishalbait02@gmail.com', 'Vishal Bait');
-
-//Set an alternative reply-to address
-$mail->addReplyTo('non-reply@gmail.com', 'vishal bait');
-
-//Set who the message is to be sent to
-$mail->addAddress($userName, $userName);
-
-//Set the subject line
-$mail->Subject = "GIT SHODH 2K20 Activate Your Account";
-
-//Read an HTML message body from an external file, convert referenced images to embedded,
-//convert HTML into a basic plain-text alternative body
-$mail->msgHTML("<!doctype html><html><body><h1> <i><b>$userName</b></i> You are Successfully Registered to GIT SHODH 2K20 System. Please activate your account by clicking below link
-http://localhost/EBA/activateEmail.php?token=$token </h1></body></html>");
-
-//Replace the plain text body with one created manually
-$mail->AltBody = "$userName You are Successfully Registered to GIT SHODH 2K20 System. Please activate your account by clicking below link
-http://localhost/EBA/activateEmail.php?token=$token";
-
-//Attach an image file
-//$mail->addAttachment('images/phpmailer_mini.png');
-
-//send the message, check for errors
-if (!$mail->send()) {
-    echo "Mailer Error: " . $mail->ErrorInfo;
-} else {
-    echo "<h3 class='text-center text-primary'>Check Your Email.</h3>";
-    //Section 2: IMAP
-    //Uncomment these to save your message in the 'Sent Mail' folder.
-    #if (save_mail($mail)) {
-    #    echo "Message saved!";
-    #}
-}
-
-function save_mail($mail) {
-    //You can change 'Sent Mail' to any other folder or tag
-    $path = "{imap.gmail.com:993/imap/ssl}[Gmail]/Sent Mail";
-
-    //Tell your server to open an IMAP connection using the same username and password as you used for SMTP
-    $imapStream = imap_open($path, $mail->Username, $mail->Password);
-
-    $result = imap_append($imapStream, $path, $mail->getSentMIMEMessage());
-    imap_close($imapStream);
-
-    return $result;
-}
-
-
-
-
-  ///////  ****************************    Mail Code *********************** //////////
-   
-
-  
-    } 
-else 
-{
-
-  echo '<script>Swal.fire({
-    icon: "error",
-    title: "Eror",
-    text: "Something Went Wrong",
-    footer: "<a href>Go to the Login Page</a>"
-  })</script>';
-
-}
-
-}
+    }// if(isset($_POST['g-recaptcha-response']))
 
 } // isset bracket
-} //$conn bracket
-
- else 
- {
-   echo "connection failed";
- }
 
 ?>
-
-
-<!-- PHP CODE END  -->
+  <!-- PHP CODE END  -->
 
 
 
@@ -280,7 +224,7 @@ else
   </nav>
 
 
-  
+
 
 
   <div class="container mt-4">
@@ -288,7 +232,7 @@ else
     <h2 class="text-center text-uppercase">git <span class="text-danger">shodh</span> 2K20 Registration</h2>
     <hr>
     <div>
-     <h5 class="my-4 text-center">Already have an Account? <a href="login.php"> Please Login here</a></h5>
+      <h5 class="my-4 text-center">Already have an Account? <a href="login.php"> Please Login here</a></h5>
       <h5 class="text-danger animated heartBeat slow">Note: 1) Following details will be used for your Certificate
         Generation so please provide proper details.</h5>
       <h5 class="text-danger animated heartBeat slow">2) We'll never share your details with anyone else.</h5>
@@ -303,14 +247,14 @@ else
 
         <div class="form-group col-md-6">
           <label for="inputFirstName4">First Name</label>
-          <input type="text" class="form-control" name="firstName" id="inputFirstName4" placeholder="First Name" required>
+          <input type="text" class="form-control" name="firstName" id="inputFirstName4" placeholder="First Name"
+            required>
         </div>
 
         <div class="form-group col-md-6">
           <label for="inputLastName4">Last Name</label>
           <input type="text" class="form-control" name="lastName" id="inputLastName4" placeholder="Last Name" required>
         </div>
-
 
 
         <div class="form-group col-md-6">
@@ -455,7 +399,13 @@ else
           </label>
         </div>
       </div>
-      <input type="submit"  name="submit" class="btn btn-primary" value="Register Here">
+
+      <div class="text-center my-2">
+        <div class="g-recaptcha text-center" data-sitekey="6LdGougUAAAAAG96eGund5fScrR1fouBZvyLf1RL"></div>
+      </div>
+
+      <input type="submit" name="submit" class="btn btn-primary" value="Register Here">
+
     </form>
     <br>
   </div>

@@ -23,6 +23,8 @@ if(isset($_SESSION['Admin'])) {
     <link rel="stylesheet" href="../css/event-reg.css">
     <!--SweetAlert.js-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <!-- Google Recaptcha -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
     <style>
@@ -36,46 +38,42 @@ if(isset($_SESSION['Admin'])) {
 
 <body>
 
-
-
     <!-- PHP CODE START -->
 
     <?php
-// Checking Wether Password Correct or Not
-if(isset($_POST['login'])) {
+        // Checking Wether Password Correct or Not
+        if(isset($_POST['login'])) {
 
-$email = $_POST['email'];
-$password = $_POST['password'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
-$email = mysqli_real_escape_string($conn,$email);
-$password = mysqli_real_escape_string($conn,$password);
+        $email = mysqli_real_escape_string($conn,$email);
+        $password = mysqli_real_escape_string($conn,$password);
 
-$email = htmlentities($email);
-$password = htmlentities($email);
+        $email = htmlentities($email);
+        $password = htmlentities($email);
 
-$sql = "select adminPassword from admin_information where email='$email'";
-$result = mysqli_query($conn,$sql);
-$row = mysqli_fetch_assoc($result);
+        $sql = "select adminPassword from admin_information where email='$email'";
+        $result = mysqli_query($conn,$sql);
+        $row = mysqli_fetch_assoc($result);
 
-$dbPassword = $row['adminPassword'];
+        $dbPassword = $row['adminPassword'];
 
-if(password_verify($password,$dbPassword) && ($email='gitshodhadmin@gmail.com')){
-    $_SESSION['Admin'] = $email;
-    header ("Location:synergyIndex.php");
-   
-}
+        if(password_verify($password,$dbPassword) && ($email='gitshodhadmin@gmail.com')){
+            $_SESSION['Admin'] = $email;
+            header ("Location:synergyIndex.php");
+        }
 
-else {
-   
-   echo "<script>Swal.fire({
-    icon: 'error',
-    title: 'Unable to Login',
-    text: 'Please Check Your Credentials!'
-  })</script>";
+        else {
+        echo "<script>Swal.fire({
+            icon: 'error',
+            title: 'Unable to Login',
+            text: 'Please Check Your Credentials!'
+        })</script>";
+        }
 
-}
-}
-?>
+        }
+    ?>
 
     <!-- PHP CODE END -->
 
@@ -137,9 +135,13 @@ else {
                                 password?</a>
                         </div>
 
+                        <div class="text-center my-2">
+                            <div class="g-recaptcha text-center"
+                                data-sitekey="6LdGougUAAAAAG96eGund5fScrR1fouBZvyLf1RL"></div>
+                        </div>
 
                         <div class="form-group">
-                            <input class="btn btn-primary  rounded-pill btn-block mt-3" type="submit"
+                            <input class="btn btn-primary btn-block rounded-pill mt-3" type="submit"
                                 class="form-control" name="login" id="login" value="Login">
                         </div>
 
