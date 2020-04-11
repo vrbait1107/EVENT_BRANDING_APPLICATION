@@ -133,6 +133,7 @@ $certificateDepartment = $row1['eventDepartment'];
         let c = "<?php  echo $department?>";
         let d = "<?php  echo $event ?>";
         let e = "<?php echo $prize ?>";
+        let f = "<?php echo $validate ?>";
     </script>
 
     <!-- QR Code JS Library-->

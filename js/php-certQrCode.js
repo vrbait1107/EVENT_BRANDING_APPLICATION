@@ -11,6 +11,7 @@ const makeCode = () => {
     Department: c,
     Event: d,
     Prize: e,
+    Certificate_ID: f,
   };
 
   let myJSON = JSON.stringify(certificateData);
