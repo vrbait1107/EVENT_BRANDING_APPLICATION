@@ -3,12 +3,9 @@ require_once "../config.php";
 session_start();
 
 // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
-if(!isset($_SESSION['adminEmail']) && 
-$_SESSION['adminType'] &&
-$_SESSION['adminDepartment'] &&
-$_SESSION['adminEvent']){
-header('Location:adminLogin.php');
-}
+ if(!isset($_SESSION['adminEmail'])) {
+     header("location:adminLogin.php");
+ }
 ?>
 
 <!DOCTYPE html>
