@@ -67,7 +67,7 @@ if(isset($_SESSION['user'])) {
         $password = mysqli_real_escape_string($conn,$password);
 
         $userName = htmlentities($userName);
-        $password = htmlentities($email);
+        $password = htmlentities($password);
         
         $sql = "select mainPassword from user_information where email='$userName' and status='active'";
         $res = mysqli_query($conn,$sql);
