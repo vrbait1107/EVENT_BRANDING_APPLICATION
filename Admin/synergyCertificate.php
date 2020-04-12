@@ -90,18 +90,23 @@ require_once "../config.php";
 
     </section>
 
+    <!--Jquerry-->
     <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript">
 
+    <!-- JS Variables to Convert data into QR Code-->
+    <script type="text/javascript">
         let a = "<?php echo $firstName ?>";
         let b = "<?php  echo $lastName ?>";
         let c = "<?php  echo $department?>";
         let d = "<?php  echo $event ?>";
         let e = "<?php echo $prize ?>";
-
+        let f = "<?php echo $validate ?>";
     </script>
 
+    <!-- QR Code JS Library-->
     <script type="text/javascript" src="../js/qrcode.js"></script>
+
+    <!-- Convert JS Variable data into QR Code takes input above JS Variable-->
     <script type="text/javascript" src="../js/php-certQrCode.js"> </script>
 
 </body>
