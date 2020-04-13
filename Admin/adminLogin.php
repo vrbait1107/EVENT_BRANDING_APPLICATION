@@ -49,10 +49,6 @@ else {
             margin-top: 20px;
         }
 
-        .btn {
-            border-radius: 30px;
-        }
-
         .fa-users {
             border-radius: 100%;
             border: 2px solid #f0ad4e;
@@ -206,26 +202,33 @@ if(isset($_POST['login'])){
 
     <main class="container">
         <div class="row">
-
             <section class="col-md-6 offset-md-3">
 
-                <div class="card shadow p-5">
-                    <h2 class="text-center text-uppercase mb-4 mt-2">Welcome Administrator</h2>
+                <div class="card shadow px-4 py-5">
+                    <h2 class="text-center text-uppercase mb-4 mt-2">GIT
+                        <span class="text-danger">SHODH</span> 2K20 ADMIN LOGIN</h2>
 
                     <form action="" method="post">
-                        <div class="text-center">
+
+                        <div class="text-center mb-3">
                             <span class="text-warning"><i class="fa fa-users fa-5x"></i></span>
                         </div>
-                        <div class="form-group">
-                            <label>Enter Your Email</label>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">Admin Email</label>
+                            </div>
                             <input type="email" class="form-control" name="email" id="email" placeholder="Email"
                                 required>
                         </div>
 
 
-                        <div class="form-group">
-                            <label>Admin Type</label>
-                            <select class="form-control" name="adminType">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">Admin Type</label>
+                            </div>
+                            <select class="custom-select" name="adminType">
+                                <option selected disabled>Choose...</option>
                                 <option value="Administrator">Administrator</option>
                                 <option value="Faculty Coordinator">Faculty Coordinator</option>
                                 <option value="Student Coordinator">Student Coordinator</option>
@@ -233,9 +236,12 @@ if(isset($_POST['login'])){
                         </div>
 
 
-                        <div class="form-group">
-                            <label>Admin Department</label>
-                            <select class="form-control" name="adminDepartment">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">Admin Department</label>
+                            </div>
+                            <select class="custom-select" name="adminDepartment">
+                                <option selected disabled>Choose...</option>
                                 <option value="Not Applicable">Not Applicable</option>
                                 <option value="Electronics & Telecommunication">Electronics & Telecommunication</option>
                                 <option value="Chemical">Chemical</option>
@@ -246,9 +252,12 @@ if(isset($_POST['login'])){
                         </div>
 
 
-                        <div class="form-group">
-                            <label>Admin Event</label>
-                            <select class="form-control" name="adminEvent">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">Admin Event</label>
+                            </div>
+                            <select class="custom-select" name="adminEvent">
+                                <option selected disabled>Choose...</option>
                                 <option value="Not Applicable">Not Applicable</option>
                                 <option value="EXTC Paper Presentation">EXTC Paper Presentation</option>
                                 <option value="EXTC Poster Presentation">EXTC Poster Presentation</option>
@@ -273,8 +282,10 @@ if(isset($_POST['login'])){
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label>Password</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">Admin Password</label>
+                            </div>
                             <input type="password" class="form-control" name="password" id="password"
                                 placeholder="Password" required autocomplete="off">
                         </div>
@@ -289,16 +300,14 @@ if(isset($_POST['login'])){
                                 password?</a>
                         </div>
 
-
-
                         <div class="form-group">
-                            <input class="btn btn-primary btn-block mt-3" type="submit" class="form-control"
-                                name="login" id="login" value="Login">
+                            <input class="btn btn-primary btn-block rounded-pill mt-3" type="submit"
+                                class="form-control" name="login" id="login" value="Login">
                         </div>
                     </form>
+
                 </div>
             </section>
-
         </div>
     </main>
 
