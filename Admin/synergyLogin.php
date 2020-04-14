@@ -47,11 +47,11 @@ if(isset($_SESSION['Admin'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $email = mysqli_real_escape_string($conn,$email);
-        $password = mysqli_real_escape_string($conn,$password);
+            $email = mysqli_real_escape_string($conn,$email);
+            $password = mysqli_real_escape_string($conn,$password);
 
-        $email = htmlentities($email);
-        $password = htmlentities($email);
+            $email = htmlentities($email);
+            $password = htmlentities($password);
 
         $sql = "select adminPassword from admin_information where email='$email'";
         $result = mysqli_query($conn,$sql);
@@ -77,7 +77,7 @@ if(isset($_SESSION['Admin'])) {
 
     <!-- PHP CODE END -->
 
-
+    
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand font-weight-bold" href="#">GIT SHODH/SYNERGY 2K20</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
