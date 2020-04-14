@@ -41,10 +41,20 @@ header("location:login.php");
 if(isset($_POST['changePassword'])){
     
 $email = $_SESSION['user'];
+
 $currentPassword = $_POST['currentPassword'];
 $newPassword = $_POST['newPassword'];
 $conNewPassword = $_POST['conNewPassword'];
 
+// Avoid sql injection
+$currentPassword = mysqli_real_escape_string($conn,$currentPassword);
+$newPassword = mysqli_real_escape_string($conn,$newPassword);
+$conNewPassword = mysqli_real_escape_string($conn,$conNewPassword);
+
+// Avoid cross site scripting
+$currentPassword =htmlentities($currentPassword);
+$newPassword =htmlentities($newPassword);
+$conNewPassword =htmlentities($conNewPassword);
 
 $sql = "select mainPassword from user_information where email = '$email'";
 $result = mysqli_query($conn,$sql);
