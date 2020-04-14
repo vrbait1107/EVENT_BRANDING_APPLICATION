@@ -41,8 +41,6 @@ if(!isset($_SESSION['Admin'])) {
 
 // Inserting Data into synergy_user_information table Database Name is user_registration
 
-
-
     if(isset($_POST['submit'])){
 
     $certificateId = rand();
@@ -52,7 +50,20 @@ if(!isset($_SESSION['Admin'])) {
     $event = $_POST["event"];
     $prize = $_POST["prize"];
 
-    
+    // Avoid SQL Injection
+    $firstName = mysqli_real_eascape_string($conn,$firstName);
+    $lastName = mysqli_real_eascape_string($conn,$lastName);
+    $department = mysqli_real_eascape_string($conn,$department);
+    $event = mysqli_real_eascape_string($conn,$event);
+    $prize = mysqli_real_eascape_string($conn,$prize);
+
+    // Avoid Cross-Site Scripting
+    $firstName = htmlentities($firstName);
+    $lastName = htmlentities($lastName);
+    $department = htmlentities($department);
+    $event = htmlentities($event);
+    $prize = htmlentities($prize);
+
         $sql = "insert INTO synergy_user_information (certificateId, firstName, lastName, departmentName,
         eventName, prize) VALUES ('$certificateId','$firstName','$lastName','$department', '$event','$prize')";
         $result = mysqli_query($conn,$sql);
