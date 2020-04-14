@@ -1,31 +1,53 @@
-const validateForm = () => {
-  let x = document.forms["myForm"]["firstName"].value;
-  if (!isNaN(x)) {
-    alert("Only Characters are allowed");
+//Synergy Certificate Form Validation
+
+const synergyValidateForm = () => {
+  let a = document.forms["myForm"]["firstName"].value;
+  if (!isNaN(a) || a !== "") {
+    Swal.fire({
+      icon: "error",
+      title: "ERROR",
+      text: "Only Characters are allowed or first name cannot be empty",
+    });
     return false;
   }
 
-  let y = document.forms["myForm"]["lastName"].value;
-  if (!isNaN(y)) {
-    alert("Only Characters are allowed");
+  let b = document.forms["myForm"]["lastName"].value;
+  if (!isNaN(b) || b !== "") {
+    Swal.fire({
+      icon: "error",
+      title: "ERROR",
+      text: "Only Characters are allowed or Last Name cannot be empty",
+    });
     return false;
   }
 
-  let z = document.forms["myForm"]["department"].value;
-  if (!isNaN(z)) {
-    alert("Only Characters are allowed");
+  let c = document.forms["myForm"]["department"].value;
+  if (!isNaN(c) || c !== "") {
+    Swal.fire({
+      icon: "error",
+      title: "ERROR",
+      text: "Only Characters are allowed or Department cannot be Empty",
+    });
     return false;
   }
 
-  let a = document.forms["myForm"]["event"].value;
-  if (!isNaN(a)) {
-    alert("Only Characters are allowed");
+  let d = document.forms["myForm"]["event"].value;
+  if (!isNaN(d) || d !== "") {
+    Swal.fire({
+      icon: "error",
+      title: "ERROR",
+      text: "Only Characters are allowed or Event cannot be Empty",
+    });
     return false;
   }
 
-  let b = document.forms["myForm"]["prize"].value;
-  if (!isNaN(b)) {
-    alert("Only Characters are allowed");
+  let e = document.forms["myForm"]["prize"].value;
+  if (!isNaN(e) || encodeURIComponent !== "") {
+    Swal.fire({
+      icon: "error",
+      title: "ERROR",
+      text: "Only Characters are allowed or Event cannot be empty",
+    });
     return false;
   }
 };
@@ -129,31 +151,41 @@ const formValidationRegister = () => {
 const validateFormContact = () => {
   let name = document.getElementById("name").value;
   if (name == "") {
-    alert("Name cannot be empty");
+    Swal.fire({
+      icon: "error",
+      title: "ERROR",
+      text: "Name cannot be empty",
+    });
     return false;
   }
 
   let email = document.getElementById("email").value;
   if (email == "") {
-    alert("Email cannot be empty");
+    Swal.fire({
+      icon: "error",
+      title: "ERROR",
+      text: "Email cannot be empty",
+    });
     return false;
-  } else {
-    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!re.test(email)) {
-      alert("Email format invalid");
-      return false;
-    }
   }
 
   let subject = document.getElementById("subject").value;
   if (subject == "") {
-    alert("Subject cannot be empty");
+    Swal.fire({
+      icon: "error",
+      title: "ERROR",
+      text: "Subject cannot be empty",
+    });
     return false;
   }
 
   let message = document.getElementById("message").value;
   if (message == "") {
-    alert("Message cannot be empty");
+    Swal.fire({
+      icon: "error",
+      title: "ERROR",
+      text: "Message cannot be empty",
+    });
     return false;
   }
 };
