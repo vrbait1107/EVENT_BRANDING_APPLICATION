@@ -228,7 +228,7 @@ if(!isset($_SESSION['adminEmail'])) {
                                 <div class="form-group">
                                     <label>Admin Department</label>
                                     <select class="form-control" name="adminDepartment">
-                                        <option value="Electronics & Telecommunication">Electronics &
+                                        <option value="Electronics and Telecommunication">Electronics and
                                             Telecommunication
                                         </option>
                                         <option value="Chemical">Chemical</option>

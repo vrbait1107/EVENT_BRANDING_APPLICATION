@@ -227,7 +227,7 @@ session_start();
                                     <label>Admin Department</label>
                                     <select class="form-control" name="adminDepartment">
                                         <option value="Not Applicable">Not Applicable</option>
-                                        <option value="Electronics & Telecommunication">Electronics & Telecommunication
+                                        <option value="Electronics and Telecommunication">Electronics and Telecommunication
                                         </option>
                                         <option value="Chemical">Chemical</option>
                                         <option value="Computer">Computer</option>

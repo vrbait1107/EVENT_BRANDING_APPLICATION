@@ -87,14 +87,14 @@ if(isset($_POST['login'])){
             // To Avoid SQL Injection
             $adminUserName=mysqli_real_escape_string($conn,$adminUserName);
             $adminType=mysqli_real_escape_string($conn,$adminType);
-            //$adminDepartment=mysqli_real_escape_string($conn,$adminDepartment);
+            $adminDepartment=mysqli_real_escape_string($conn,$adminDepartment);
             $adminEvent=mysqli_real_escape_string($conn,$adminEvent);
             $adminPassword=mysqli_real_escape_string($conn,$adminPassword);
 
             // To Avoid Cross Site Scripting
             $adminUserName= htmlentities($adminUserName);
             $adminType= htmlentities($adminType);
-            //$adminDepartment=htmlentities($adminDepartment);
+            $adminDepartment=htmlentities($adminDepartment);
             $adminEvent=htmlentities($adminEvent);
             $adminPassword=htmlentities($adminPassword);
 
@@ -243,7 +243,7 @@ if(isset($_POST['login'])){
                             <select class="custom-select" name="adminDepartment">
                                 <option selected disabled>Choose...</option>
                                 <option value="Not Applicable">Not Applicable</option>
-                                <option value="Electronics & Telecommunication">Electronics & Telecommunication</option>
+                                <option value="Electronics and Telecommunication">Electronics and Telecommunication</option>
                                 <option value="Chemical">Chemical</option>
                                 <option value="Computer">Computer</option>
                                 <option value="Mechanical">Mechanical</option>
