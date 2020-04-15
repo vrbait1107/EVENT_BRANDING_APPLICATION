@@ -44,7 +44,7 @@ $certificateDepartment = $row1['eventDepartment'];
 
             <?php
 
-    if($certificateDepartment=== "Electronics & Telecommunication"){
+    if($certificateDepartment=== "Electronics and Telecommunication"){
       echo "background-image: url(cert-images/extc-cert.jpg);";
     }
 
