@@ -1,3 +1,6 @@
+// Check Javascript in strict mode
+
+"use strict";
 let elem = document.getElementById("qrcode");
 let qrcode = new QRCode(elem, {
   width: 100,

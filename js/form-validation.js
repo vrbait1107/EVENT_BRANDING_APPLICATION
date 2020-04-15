@@ -1,6 +1,7 @@
 //Synergy Certificate Form Validation
 
 const synergyValidateForm = () => {
+  "use strict";
   let a = document.forms["myForm"]["firstName"].value;
   if (!isNaN(a) || a !== "") {
     Swal.fire({
@@ -55,6 +56,7 @@ const synergyValidateForm = () => {
 // Register Validate form
 
 const formValidationRegister = () => {
+  "use strict";
   let a = document.forms["myForm"]["firstName"].value;
   let n = document.forms["myForm"]["lastName"].value;
   let b = document.forms["myForm"]["collegeName"].value;
@@ -149,6 +151,7 @@ const formValidationRegister = () => {
 // Contact Form Validation
 
 const validateFormContact = () => {
+  "use strict";
   let name = document.getElementById("name").value;
   if (name == "") {
     Swal.fire({
@@ -192,6 +195,7 @@ const validateFormContact = () => {
 
 // User Validate form
 const formValidationUserProfileForm = () => {
+  "use strict";
   let a = document.forms["userProfileForm"]["firstName"].value;
   let b = document.forms["userProfileForm"]["lastName"].value;
   let c = document.forms["userProfileForm"]["collegeName"].value;
