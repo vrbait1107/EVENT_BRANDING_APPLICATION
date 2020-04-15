@@ -17,6 +17,8 @@ const makeCode = () => {
     Certificate_ID: f,
   };
 
+  Object.freeze(certificateData);
   let myJSON = JSON.stringify(certificateData);
+
   qrcode.makeCode(myJSON);
 };
