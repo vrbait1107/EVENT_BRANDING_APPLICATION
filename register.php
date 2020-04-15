@@ -48,15 +48,15 @@ if (isset($_POST['submit'])) {
 
         if($response->success){
 
-        $userName =   $_POST['userName'];
-        $firstName =  $_POST['firstName'];
-        $lastName =  $_POST['lastName'];
-        $mobileNumber =  $_POST['mobileNumber'];
-        $collegeName =  $_POST['collegeName'];
-        $department = $_POST['department'];
-        $year =  $_POST['year'];
-        $password =  $_POST['password'];
-        $confirm_password =  $_POST['confirm_password'];
+        $userName =   trim($_POST['userName']);
+        $firstName =  trim($_POST['firstName']);
+        $lastName =  trim($_POST['lastName']);
+        $mobileNumber =  trim($_POST['mobileNumber']);
+        $collegeName =  trim($_POST['collegeName']);
+        $department = trim($_POST['department']);
+        $year =  trim($_POST['year']);
+        $password =  trim($_POST['password']);
+        $confirm_password =  trim($_POST['confirm_password']);
         $token = bin2hex(random_bytes(15));
 
         // To Avoid SQL Injection

@@ -49,12 +49,12 @@ $mobileNumber =$row['mobileNumber'];
 
 if(isset($_POST['update'])) {
 
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $mobileNumber = $_POST['mobileNumber'];
-    $collegeName = $_POST['collegeName'];
-    $departmentName = $_POST['departmentName'];
-    $academicYear = $_POST['academicYear'];
+    $firstName = trim($_POST['firstName']);
+    $lastName = trim($_POST['lastName']);
+    $mobileNumber = trim($_POST['mobileNumber']);
+    $collegeName = trim($_POST['collegeName']);
+    $departmentName = trim($_POST['departmentName']);
+    $academicYear = trim($_POST['academicYear']);
 
 
     // Avoid SQL Injection

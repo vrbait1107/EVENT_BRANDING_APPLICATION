@@ -38,11 +38,11 @@ if(!isset($_SESSION['adminEmail'])){
     <?php
 if(isset($_POST['changePassword'])) {
     
-    $password = $_POST['password'];
+    $password = trim($_POST['password']);
     $password = mysqli_real_escape_string($conn, $password);
     $password = htmlentities($password);
 
-    $conPassword = $_POST['conPassword'];
+    $conPassword = trim($_POST['conPassword']);
     $conPassword = mysqli_real_escape_string($conn, $conPassword);
     $conPassword = htmlentities($conPassword);
 

@@ -50,7 +50,7 @@ session_start();
 
 if(isset($_POST["submit"])) {
 
-$validate =   $_POST["validateData"];
+$validate =   trim($_POST["validateData"]);
 
 // Avoid SQL Injection
 $validate = mysqli_real_escape_string($conn, $validate);
@@ -147,7 +147,7 @@ WHERE event_information.certificateId = '$validate'";
 if(isset($_POST["synergySubmit"])) {
 
 
-    $validate =   $_POST["synergyValidateData"];
+    $validate =   trim($_POST["synergyValidateData"]);
 
     // Avoid SQL Injection
     $validate = mysqli_real_escape_string($conn, $validate);

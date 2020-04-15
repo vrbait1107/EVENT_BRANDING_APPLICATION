@@ -37,8 +37,9 @@ require_once "config.php";
 $token =   bin2hex(random_bytes(15));
 
 if(isset($_POST['submit'])){
-$email = $_POST['email'];
-$userType = $_POST['userType'];
+
+$email = trim($_POST['email']);
+$userType = trim($_POST['userType']);
 
     // User Part
     if($userType=== "user"){

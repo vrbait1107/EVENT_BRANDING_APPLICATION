@@ -42,9 +42,9 @@ if(isset($_POST['changePassword'])){
     
 $email = $_SESSION['user'];
 
-$currentPassword = $_POST['currentPassword'];
-$newPassword = $_POST['newPassword'];
-$conNewPassword = $_POST['conNewPassword'];
+$currentPassword = trim($_POST['currentPassword']);
+$newPassword = trim($_POST['newPassword']);
+$conNewPassword = trim($_POST['conNewPassword']);
 
 // Avoid sql injection
 $currentPassword = mysqli_real_escape_string($conn,$currentPassword);

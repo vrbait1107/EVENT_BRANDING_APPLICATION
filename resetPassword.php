@@ -33,9 +33,9 @@ $token = $_GET['token'];
 
     if(isset($_POST['resetPassword'])){
 
-    $userType = $_POST['userType'];
-    $newPassword = $_POST['newPassword'];
-    $confirmNewPassword = $_POST['confirmNewPassword'];
+    $userType = trim($_POST['userType']);
+    $newPassword = trim($_POST['newPassword']);
+    $confirmNewPassword = trim($_POST['confirmNewPassword']);
 
     // Avoid Sql injection
      $userType = mysqli_real_escape_string($conn,$userType);

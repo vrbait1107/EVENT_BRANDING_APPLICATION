@@ -77,11 +77,11 @@ if(isset($_POST['login'])){
     // Checking that username and Password of Admin if Correct Redirect to the index page
     // otherwise give an error retype the password
 
-            $adminUserName= $_POST['email'];
-            $adminType = $_POST['adminType'];
-            $adminDepartment= $_POST['adminDepartment'];
-            $adminEvent= $_POST['adminEvent'];
-            $adminPassword = $_POST['password'];
+            $adminUserName= trim($_POST['email']);
+            $adminType = trim($_POST['adminType']);
+            $adminDepartment= trim($_POST['adminDepartment']);
+            $adminEvent= trim($_POST['adminEvent']);
+            $adminPassword = trim($_POST['password']);
 
 
             // To Avoid SQL Injection

@@ -60,8 +60,8 @@ if(isset($_SESSION['user'])) {
 
       if($response->success){
         
-        $userName =   $_POST["userName"];
-        $password =  $_POST["password"];
+        $userName =   trim($_POST["userName"]);
+        $password =  trim($_POST["password"]);
 
         $userName = mysqli_real_escape_string($conn,$userName);
         $password = mysqli_real_escape_string($conn,$password);

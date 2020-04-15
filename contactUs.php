@@ -2,6 +2,7 @@
 session_start();
 if(!isset($_SESSION['user'])) {
  header("location:login.php");
+  require_once "config.php";
 }
 ?>
 
@@ -40,12 +41,12 @@ if(!isset($_SESSION['user'])) {
 
 if(isset($_POST['submit'])){
 
-            $name = $_POST['name'];
-            $contactEmail = $_POST['email'];
-            $contactSubject = $_POST['subject'];
-            $contactMessage = $_POST['message'];
+            $name = trim($_POST['name']);
+            $contactEmail = trim($_POST['email']);
+            $contactSubject = trim($_POST['subject']);
+            $contactMessage = trim($_POST['message']);
 
-             $name = mysqli_real_escape_string($conn,$name);
+            $name = mysqli_real_escape_string($conn,$name);
             $contactEmail =  mysqli_real_escape_string($conn,$contactEmail);
             $contactSubject = mysqli_real_escape_string($conn,$contactSubject);
             $contactMessage =  mysqli_real_escape_string($conn,$contactMessage);

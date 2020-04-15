@@ -44,8 +44,8 @@ if(isset($_SESSION['Admin'])) {
         // Checking Wether Password Correct or Not
         if(isset($_POST['login'])) {
 
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        $email = trim($_POST['email']);
+        $password = trim($_POST['password']);
 
             $email = mysqli_real_escape_string($conn,$email);
             $password = mysqli_real_escape_string($conn,$password);
