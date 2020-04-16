@@ -42,30 +42,27 @@ $certificateDepartment = $row1['eventDepartment'];
     <style type="text/css">
         .cert {
 
-            <?php
+            <?php if($certificateDepartment==="Electronics and Telecommunication") {
+                echo "background-image: url(cert-images/extc-cert.jpg);";
+            }
 
-    if($certificateDepartment=== "Electronics and Telecommunication"){
-      echo "background-image: url(cert-images/extc-cert.jpg);";
-    }
+            elseif($certificateDepartment==="Chemical") {
+                echo "background-image: url(cert-images/chem-cert.jpg);";
+            }
 
-    elseif($certificateDepartment=== "Chemical") {
-      echo "background-image: url(cert-images/chem-cert.jpg);";
-    }
+            elseif($certificateDepartment==="Civil") {
+                echo "background-image: url(cert-images/civil-cert.jpg);";
+            }
 
-   elseif($certificateDepartment=== "Civil") {
-   echo "background-image: url(cert-images/civil-cert.jpg);";  
-   }
+            elseif($certificateDepartment==="Computer") {
+                echo "background-image: url(cert-images/comp-cert.jpg);";
+            }
 
-   elseif($certificateDepartment=== "Computer") {
-    echo "background-image: url(cert-images/comp-cert.jpg);";  
-   }
+            else {
+                echo "background-image: url(cert-images/mech-cert.jpg);";
+            }
 
-    else {
-      echo "background-image: url(cert-images/mech-cert.jpg);";
-    }
- 
- ?>
-            margin: auto;
+            ?>margin: auto;
             width: 1200px;
             height: 750px;
             background-repeat: no-repeat;
@@ -115,12 +112,17 @@ $certificateDepartment = $row1['eventDepartment'];
             has Participated in <span><?php echo $event ?></span> Event of Shodh 2K20 held <br><br>
             during 07-08 March 2020 at GIT, Lavel & Won <span><?php echo $prize?></span> Prize. </p>
 
-        <span id="qrcode" class="center" style="width:100px; height:100px; margin-top:15px;"></span>
+        <span id="qrcode" class="center" style="width:100px; height:100px; margin-top:10px;"></span>
 
-        <p class="footer-text"><b><span class="validate">Certficate Id: <?php echo $validate ?></span><br>
-                This is computer generated Certificate does not required any signature, to Authenticate this Certificate
-                <br>
-                Go to GIT SHODH Verification System Page.</b></p>
+        <p class="footer-text">
+            <b><span class="validate">Certficate Id: <?php echo $validate ?></span><br>
+                This is computer generated Certificate does not required any signature, Verify certificate at<br>
+                <a target="_blank"
+                    href="http://localhost/EBA/verifyCertificate.php?certificateId=<?php echo $validate ?>">
+                    http://localhost/EBA/verifyCertificate.php?certificateId=<?php echo $validate ?>
+                </a> or Go to Certificate Verification Page.</b>
+        </p>
+
     </section>
 
     <!--Jquerry-->
