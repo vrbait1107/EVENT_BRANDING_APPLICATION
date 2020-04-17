@@ -76,13 +76,24 @@ if($result){
 <body>
 
     <!--Loader-->
+    <!-- MUTLI SPINNER -->
     <div id="loader" class="text-center">
-        <div class="loadingio-spinner-eclipse-ic102dhk1ti">
-            <div class="ldio-z9dqr8ttt3">
-                <div></div>
+        <div class="multi-spinner-container">
+            <div class="multi-spinner">
+                <div class="multi-spinner">
+                    <div class="multi-spinner">
+                        <div class="multi-spinner">
+                            <div class="multi-spinner">
+                                <div class="multi-spinner">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 
     <!--Navbar-->
     <?php include_once "navbar.php"; ?>
