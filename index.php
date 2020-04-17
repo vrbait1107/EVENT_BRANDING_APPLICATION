@@ -46,6 +46,8 @@ if($result){
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!--Font-Awesome CSS-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Loader-->
+    <link rel="stylesheet" href="css/loader.css">
 
 
     <style>
@@ -72,6 +74,15 @@ if($result){
 </head>
 
 <body>
+
+    <!--Loader-->
+    <div id="loader" class="text-center">
+        <div class="loadingio-spinner-eclipse-ic102dhk1ti">
+            <div class="ldio-z9dqr8ttt3">
+                <div></div>
+            </div>
+        </div>
+    </div>
 
     <!--Navbar-->
     <?php include_once "navbar.php"; ?>
@@ -167,6 +178,12 @@ if($result){
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+
+    <script>
+        window.onload = () => {
+            document.getElementById("loader").style.display = "none";
+        };
+    </script>
 
 </body>
 
