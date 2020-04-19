@@ -48,46 +48,32 @@ if (isset($_POST['submit'])) {
 
         if($response->success){
 
-        $userName =   trim($_POST['userName']);
-        $firstName =  trim($_POST['firstName']);
-        $lastName =  trim($_POST['lastName']);
-        $mobileNumber =  trim($_POST['mobileNumber']);
-        $collegeName =  trim($_POST['collegeName']);
-        $department = trim($_POST['department']);
-        $year =  trim($_POST['year']);
-        $password =  trim($_POST['password']);
-        $confirm_password =  trim($_POST['confirm_password']);
+        // To avoid sql injection and cross site scripting also remove white spaces
+        function security($data){
+        global $conn;
+        $data = trim($data);
+        $data = mysqli_real_escape_string($conn,$data);
+        $data = htmlentities($data);
+        return $data;
+        }
+
+        // calling function to perform security task
+        $userName =   security($_POST['userName']);
+        $firstName =  security($_POST['firstName']);
+        $lastName =  security($_POST['lastName']);
+        $mobileNumber =  security($_POST['mobileNumber']);
+        $collegeName =  security($_POST['collegeName']);
+        $department = security($_POST['department']);
+        $year =  security($_POST['year']);
+        $password =  security($_POST['password']);
+        $confirm_password =  security($_POST['confirm_password']);
         $token = bin2hex(random_bytes(15));
 
-        // To Avoid SQL Injection
-        $userName = mysqli_real_escape_string($conn,$userName);
-        $firstName =  mysqli_real_escape_string($conn,$firstName);
-        $lastName = mysqli_real_escape_string($conn,$lastName);
-        $mobileNumber =  mysqli_real_escape_string($conn,$mobileNumber);
-        $collegeName =  mysqli_real_escape_string($conn,$collegeName);
-        $department = mysqli_real_escape_string($conn,$department);
-        $year =  mysqli_real_escape_string($conn,$year);
-        $password =  mysqli_real_escape_string($conn,$password);
-        $confirm_password = mysqli_real_escape_string($conn,$confirm_password);
-
-
-        // To Avoid Cross Site Scripting using Javascript
-        $userName = htmlentities($userName);
-        $firstName =  htmlentities($firstName);
-        $lastName = htmlentities($lastName);
-        $mobileNumber =  htmlentities($mobileNumber);
-        $collegeName =  htmlentities($collegeName);
-        $department = htmlentities($department);
-        $year =  htmlentities($year);
-        $password = htmlentities($password);
-        $confirm_password = htmlentities($confirm_password);
-        
         $hashPass = password_hash($password, PASSWORD_BCRYPT);
         $hashConPass = password_hash($confirm_password, PASSWORD_BCRYPT);
 
         $sql1 ="select* from user_information where user_information.email ='$userName'";
         $res1= mysqli_query($conn,$sql1);
-
 
               if(mysqli_num_rows($res1)>0) {
 

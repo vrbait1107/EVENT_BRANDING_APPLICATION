@@ -49,32 +49,24 @@ $mobileNumber =$row['mobileNumber'];
 
 if(isset($_POST['update'])) {
 
-    $firstName = trim($_POST['firstName']);
-    $lastName = trim($_POST['lastName']);
-    $mobileNumber = trim($_POST['mobileNumber']);
-    $collegeName = trim($_POST['collegeName']);
-    $departmentName = trim($_POST['departmentName']);
-    $academicYear = trim($_POST['academicYear']);
+    // To avoid sql injection and cross site scripting also remove white spaces
+    function security($data){
+    global $conn;
+    $data = trim($data);
+    $data = mysqli_real_escape_string($conn,$data);
+    $data = htmlentities($data);
+    return $data;
+    }
 
+    // calling function to perform security task
+    $firstName = security($_POST['firstName']);
+    $lastName = security($_POST['lastName']);
+    $mobileNumber = security($_POST['mobileNumber']);
+    $collegeName = security($_POST['collegeName']);
+    $departmentName = security($_POST['departmentName']);
+    $academicYear = security($_POST['academicYear']);
 
-    // Avoid SQL Injection
-    $firstName = mysqli_real_escape_string($conn, $firstName);
-    $lastName = mysqli_real_escape_string($conn, $lastName);
-    $mobileNumber = mysqli_real_escape_string($conn, $mobileNumber);
-    $collegeName = mysqli_real_escape_string($conn, $collegeName);
-    $departmentName = mysqli_real_escape_string($conn, $departmentName);
-    $academicYear = mysqli_real_escape_string($conn, $academicYear);
-
-
-      // Avoid Cross Site Scripting
-    $firstName = htmlentities($firstName);
-    $lastName = htmlentities($lastName);
-    $mobileNumber = htmlentities($mobileNumber);
-    $collegeName = htmlentities($collegeName);
-    $departmentName = htmlentities($departmentName);
-    $academicYear = htmlentities($academicYear);
-
-
+    
     $sql = "update user_information set firstName ='$firstName', lastName = '$lastName', 
     mobileNumber = '$mobileNumber', collegeName = '$collegeName', departmentName = '$departmentName',
     academicYear = '$academicYear' where email = '$email'";

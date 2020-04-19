@@ -24,6 +24,9 @@ require_once 'config.php';
 if(isset($_GET['token'])) {
 
 $token = $_GET['token'];
+$token = mysqli_real_escape_string($conn,$token);
+$token = htmlentities($token);
+
 $login = "login.php";
 $sql = "update user_information set status='active' where token = '$token'";
 $result = mysqli_query($conn,$sql);

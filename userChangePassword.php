@@ -42,19 +42,19 @@ if(isset($_POST['changePassword'])){
     
 $email = $_SESSION['user'];
 
-$currentPassword = trim($_POST['currentPassword']);
-$newPassword = trim($_POST['newPassword']);
-$conNewPassword = trim($_POST['conNewPassword']);
+    // To avoid sql injection and cross site scripting also remove white spaces
+    function security($data){
+    global $conn;
+    $data = trim($data);
+    $data = mysqli_real_escape_string($conn,$data);
+    $data = htmlentities($data);
+    return $data;
+    }
 
-// Avoid sql injection
-$currentPassword = mysqli_real_escape_string($conn,$currentPassword);
-$newPassword = mysqli_real_escape_string($conn,$newPassword);
-$conNewPassword = mysqli_real_escape_string($conn,$conNewPassword);
-
-// Avoid cross site scripting
-$currentPassword =htmlentities($currentPassword);
-$newPassword =htmlentities($newPassword);
-$conNewPassword =htmlentities($conNewPassword);
+    // calling function to perform security task
+    $currentPassword = security($_POST['currentPassword']);
+    $newPassword = security($_POST['newPassword']);
+    $conNewPassword = security($_POST['conNewPassword']);
 
 $sql = "select mainPassword from user_information where email = '$email'";
 $result = mysqli_query($conn,$sql);

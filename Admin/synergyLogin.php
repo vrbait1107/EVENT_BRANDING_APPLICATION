@@ -41,17 +41,21 @@ if(isset($_SESSION['Admin'])) {
     <!-- PHP CODE START -->
 
     <?php
-        // Checking Wether Password Correct or Not
+        
         if(isset($_POST['login'])) {
 
-        $email = trim($_POST['email']);
-        $password = trim($_POST['password']);
+        // To avoid sql injection and cross site scripting also remove white spaces
+        function security($data){
+        global $conn;
+        $data = trim($data);
+        $data = mysqli_real_escape_string($conn,$data);
+        $data = htmlentities($data);
+        return $data;
+        }
 
-            $email = mysqli_real_escape_string($conn,$email);
-            $password = mysqli_real_escape_string($conn,$password);
-
-            $email = htmlentities($email);
-            $password = htmlentities($password);
+         // calling function to perform security task
+        $email = security($_POST['email']);
+        $password = security($_POST['password']);
 
         $sql = "select adminPassword from admin_information where email='$email'";
         $result = mysqli_query($conn,$sql);

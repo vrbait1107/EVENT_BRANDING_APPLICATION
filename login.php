@@ -7,9 +7,6 @@ if(isset($_SESSION['user'])) {
 ?>
 
 
-
-
-
 <!doctype html>
 <html lang="en">
 
@@ -59,16 +56,20 @@ if(isset($_SESSION['user'])) {
       $response = json_decode($verifyResponse);
 
       if($response->success){
-        
-        $userName =   trim($_POST["userName"]);
-        $password =  trim($_POST["password"]);
 
-        $userName = mysqli_real_escape_string($conn,$userName);
-        $password = mysqli_real_escape_string($conn,$password);
+        // To avoid sql injection and cross site scripting also remove white spaces
+        function security($data){
+        global $conn;
+        $data = trim($data);
+        $data = mysqli_real_escape_string($conn,$data);
+        $data = htmlentities($data);
+        return $data;
+        }
 
-        $userName = htmlentities($userName);
-        $password = htmlentities($password);
-        
+        // calling function to perform security task
+        $userName = security($_POST["userName"]);
+        $password = security($_POST["password"]);
+
         $sql = "select mainPassword from user_information where email='$userName' and status='active'";
         $res = mysqli_query($conn,$sql);
         $row = mysqli_fetch_assoc($res);

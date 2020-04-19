@@ -73,31 +73,22 @@ if(isset($_POST['login'])){
       $response = json_decode($verifyResponse);
 
             if($response->success){
-      
-    // Checking that username and Password of Admin if Correct Redirect to the index page
-    // otherwise give an error retype the password
 
-            $adminUserName= trim($_POST['email']);
-            $adminType = trim($_POST['adminType']);
-            $adminDepartment= trim($_POST['adminDepartment']);
-            $adminEvent= trim($_POST['adminEvent']);
-            $adminPassword = trim($_POST['password']);
+            // To avoid sql injection and cross site scripting also remove white spaces
+            function security($data){
+            global $conn;
+            $data = trim($data);
+            $data = mysqli_real_escape_string($conn,$data);
+            $data = htmlentities($data);
+            return $data;
+            }
 
-
-            // To Avoid SQL Injection
-            $adminUserName=mysqli_real_escape_string($conn,$adminUserName);
-            $adminType=mysqli_real_escape_string($conn,$adminType);
-            $adminDepartment=mysqli_real_escape_string($conn,$adminDepartment);
-            $adminEvent=mysqli_real_escape_string($conn,$adminEvent);
-            $adminPassword=mysqli_real_escape_string($conn,$adminPassword);
-
-            // To Avoid Cross Site Scripting
-            $adminUserName= htmlentities($adminUserName);
-            $adminType= htmlentities($adminType);
-            $adminDepartment=htmlentities($adminDepartment);
-            $adminEvent=htmlentities($adminEvent);
-            $adminPassword=htmlentities($adminPassword);
-
+            // calling function to perform security task
+            $adminUserName= security($_POST['email']);
+            $adminType = security($_POST['adminType']);
+            $adminDepartment= security($_POST['adminDepartment']);
+            $adminEvent= security($_POST['adminEvent']);
+            $adminPassword = security($_POST['password']);
 
             $sql = "select adminPassword from admin_information where admin_information.email  = '$adminUserName' 
             AND admin_information.adminType ='$adminType' AND admin_information.adminEvent = '$adminEvent' AND

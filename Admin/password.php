@@ -37,16 +37,22 @@ if(!isset($_SESSION['adminEmail'])){
 
     <?php
 if(isset($_POST['changePassword'])) {
-    
-    $password = trim($_POST['password']);
-    $password = mysqli_real_escape_string($conn, $password);
-    $password = htmlentities($password);
 
-    $conPassword = trim($_POST['conPassword']);
-    $conPassword = mysqli_real_escape_string($conn, $conPassword);
-    $conPassword = htmlentities($conPassword);
+        // To avoid sql injection and cross site scripting also remove white spaces
+        function security($data){
+        global $conn;
+        $data = trim($data);
+        $data = mysqli_real_escape_string($conn,$data);
+        $data = htmlentities($data);
+        return $data;
+        }
 
+        // calling function to perform security task
+        $password = security($_POST['password']);
+        $password = security($conn, $password);
+        $password = security($password);
 
+  
             if($password ===  $conPassword)
             {
                 $hashPassword = password_hash($password, PASSWORD_BCRYPT);

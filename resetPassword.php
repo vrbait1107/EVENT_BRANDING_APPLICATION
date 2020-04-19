@@ -33,20 +33,21 @@ $token = $_GET['token'];
 
     if(isset($_POST['resetPassword'])){
 
-    $userType = trim($_POST['userType']);
-    $newPassword = trim($_POST['newPassword']);
-    $confirmNewPassword = trim($_POST['confirmNewPassword']);
+        // To avoid sql injection and cross site scripting also remove white spaces
+        function security($data){
+        global $conn;
+        $data = trim($data);
+        $data = mysqli_real_escape_string($conn,$data);
+        $data = htmlentities($data);
+        return $data;
+        }
 
-    // Avoid Sql injection
-     $userType = mysqli_real_escape_string($conn,$userType);
-    $newPassword = mysqli_real_escape_string($conn,$newPassword);
-    $confirmNewPassword = mysqli_real_escape_string($conn,$confirmNewPassword);
+        // calling function to perform security task
+        $userType = security($_POST['userType']);
+        $newPassword = security($_POST['newPassword']);
+        $confirmNewPassword = security($_POST['confirmNewPassword']);
 
-    // Avoid Sql injection
-     $userType = htmlentities($userType);
-    $newPassword = htmlentities($newPassword);
-    $confirmNewPassword = htmlentities($confirmNewPassword);
-
+   
         if($newPassword=== $confirmNewPassword) {
         $newPassword = password_hash($newPassword,PASSWORD_BCRYPT);
         $confirmNewPassword = password_hash($confirmNewPassword,PASSWORD_BCRYPT);
