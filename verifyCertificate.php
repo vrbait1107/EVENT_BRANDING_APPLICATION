@@ -7,13 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Certificate Verification</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <!-- SweetAlert.js-->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <!-- Font-Awesome css   -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <!-- header Scripts and Links -->
+    <?php include_once "headerScripts.php"; ?>
 
     <style>
         .col-md-8 {

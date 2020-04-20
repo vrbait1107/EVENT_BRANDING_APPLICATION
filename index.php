@@ -38,17 +38,12 @@ if($result){
 
     <title>GIT SHODH 2K20</title>
 
-
     <!--Animate CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <!--Bootstrap CSS-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!--Font-Awesome CSS-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--Loader-->
+     <!-- header Scripts and Links -->
+    <?php include_once "headerScripts.php"; ?>
+     <!--Loader-->
     <link rel="stylesheet" href="css/loader.css">
-
 
     <style>
         h1 {

@@ -34,15 +34,10 @@ else {
 
     <!--Local CSS File -->
     <link rel="stylesheet" href="../css/event-reg.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <!--Font-Awesome CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--SweetAlert.js-->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+     <!-- header Scripts and Links -->
+    <?php include_once "headerScripts.php"; ?>
     <!-- Google Recaptcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
 
     <style>
         .col-md-6 {

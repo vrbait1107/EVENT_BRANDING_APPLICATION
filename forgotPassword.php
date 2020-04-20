@@ -6,13 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password Page</title>
 
-    <!--Bootstrap css -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!--SweetAlert.js -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <!--Font-Awesome CSS-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- header Scripts and Links -->
+    <?php include_once "headerScripts.php"; ?>
 
     <style>
         h3 {
@@ -30,7 +25,7 @@
 
     <!-- PHP Code Start -->
 
-<?php 
+    <?php 
 require_once "config.php";
 
 // Generating Random Password to Send Over Email.
@@ -86,18 +81,18 @@ $userType = trim($_POST['userType']);
 
                 if($result1) {
                 echo "<script>Swal.fire({
-                icon: 'success',
-                title: 'Successful',
-                text: 'Password Reset Link sent to your email, Check Your Mail.'
-                })</script>";
+                        icon: 'success',
+                        title: 'Successful',
+                        text: 'Password Reset Link sent to your email, Check Your Mail.'
+                    })</script>";
                 }
 
                 else{
                 echo "<script>Swal.fire({
-                icon: 'error',
-                title: 'Failed',
-                text: 'We are failed to send email for reset password.'
-                })</script>";
+                        icon: 'error',
+                        title: 'Failed',
+                        text: 'We are failed to send email for reset password.'
+                    })</script>";
 
                 }
 
@@ -107,10 +102,10 @@ $userType = trim($_POST['userType']);
 
         else {
             echo "<script>Swal.fire({
-                icon: 'warning',
-                title: 'Warning',
-                text: 'No Such Email Found'
-            })</script>";
+                    icon: 'warning',
+                    title: 'Warning',
+                    text: 'No Such Email Found'
+                })</script>";
         }
 
     } //if($userType=== "user") bracket
@@ -161,18 +156,18 @@ $userType = trim($_POST['userType']);
 
                 if($result1) {
                 echo "<script>Swal.fire({
-                icon: 'success',
-                title: 'Successful',
-                text: 'Password Reset Link sent to your email, Check Your Mail.'
-                })</script>";
+                        icon: 'success',
+                        title: 'Successful',
+                        text: 'Password Reset Link sent to your email, Check Your Mail.'
+                    })</script>";
                 }
 
                 else{
                 echo "<script>Swal.fire({
-                icon: 'error',
-                title: 'Failed',
-                text: 'We are failed to send email for reset password.'
-                })</script>";
+                        icon: 'error',
+                        title: 'Failed',
+                        text: 'We are failed to send email for reset password.'
+                    })</script>";
 
                 }
 
@@ -182,10 +177,10 @@ $userType = trim($_POST['userType']);
 
         else {
             echo "<script>Swal.fire({
-                icon: 'warning',
-                title: 'Warning',
-                text: 'No Such Email Found'
-            })</script>";
+                    icon: 'warning',
+                    title: 'Warning',
+                    text: 'No Such Email Found'
+                })</script>";
         }
 
     } //elseif($userType=== "user") bracket
@@ -234,7 +229,7 @@ $userType = trim($_POST['userType']);
         </div>
     </main>
 
-     <!-- Footer PHP -->
+    <!-- Footer PHP -->
     <?php include_once "footer.php"; ?>
     <!-- Footer Script -->
     <?php include_once "footerScripts.php"; ?>

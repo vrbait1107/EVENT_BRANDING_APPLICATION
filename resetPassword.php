@@ -9,11 +9,9 @@ require_once 'config.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password</title>
-    <!--Bootstrap-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!-- SweetAlert.js -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <!-- header Scripts and Links -->
+    <?php include_once "headerScripts.php"; ?>
 
     <style>
         h3 {

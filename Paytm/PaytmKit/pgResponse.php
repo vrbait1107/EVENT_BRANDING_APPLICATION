@@ -16,25 +16,23 @@ require_once '../../config.php';
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<!-- header Scripts and Links -->
+	<?php include_once "../../headerScripts.php"; ?>
+
 	<title>Page Response</title>
 
 </head>
 
 <body class="my-5">
 
-<div class="text-center mb-5">
-<a href="../../index.php" class="btn btn-primary">Go to Home Page</a>
-</div>
+	<div class="text-center mb-5">
+		<a href="../../index.php" class="btn btn-primary">Go to Home Page</a>
+	</div>
 
 
 
 
-<?php
+	<?php
 header("Pragma: no-cache");
 header("Cache-Control: no-cache");
 header("Expires: 0");
@@ -69,10 +67,10 @@ $result = mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)>0){
 
 	echo "<script>Swal.fire({
-		icon: 'warning',
-		title: 'Already Registered',
-		text: 'You are Already Registered for $eventName Event'
-	  })</script>";
+			icon: 'warning',
+			title: 'Already Registered',
+			text: 'You are Already Registered for $eventName Event'
+		})</script>";
 }
 
 
@@ -90,9 +88,7 @@ else {
 			$bankTxnId = $_POST['BANKTXNID'];
 			$txnDate = $_POST['TXNDATE'];
 
-			
 		
-
 			$sql = "insert into `event_information`(email, certificateId, event, paymentType,
 			 gatewayName, resMsg, bankName, txnId, txnAmount, orderId, status, 
 			 bankTxnId, txnDate) VALUES ('$userName','$certificateId','$eventName', '$paymentType', 
@@ -107,10 +103,10 @@ else {
 
 
 	echo "<script>Swal.fire({
-		icon: 'success',
-		title: 'Transaction Successful',
-		text: 'Congratulation You are Successfully Registered for $eventName Event'
-	  })</script>";
+			icon: 'success',
+			title: 'Transaction Successful',
+			text: 'Congratulation You are Successfully Registered for $eventName Event'
+		})</script>";
 
 
 	  //Process your transaction here as success transaction.
@@ -120,7 +116,7 @@ else {
 		
 
 
- ///////  #############################    Mail Code ################################ //////////
+ //Mail Code
 
 
 /**
@@ -223,16 +219,7 @@ function save_mail($mail) {
 
     return $result;
 }
-
-
-
-
-  ///////  ****************************    Mail Code *********************** //////////
-   
-
-
-
-
+  //Mail Code 
 
 	}
 
@@ -241,10 +228,10 @@ function save_mail($mail) {
 
 else {
 	echo "<script>Swal.fire({
-		icon: 'error',
-		title: 'Transaction Failed',
-		text: 'Transaction Status is Failed'
-	  })</script>";
+			icon: 'error',
+			title: 'Transaction Failed',
+			text: 'Transaction Status is Failed'
+		})</script>";
 }
 
 
@@ -282,4 +269,5 @@ else {
 ?>
 
 </body>
+
 </html>

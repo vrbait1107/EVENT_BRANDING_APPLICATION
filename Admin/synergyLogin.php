@@ -14,18 +14,12 @@ if(isset($_SESSION['Admin'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SYNERGY 2K20 LOGIN</title>
 
-    <!--Bootstrap.css-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!--Font-Awesome.css-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--Event-Reg.css-->
     <link rel="stylesheet" href="../css/event-reg.css">
-    <!--SweetAlert.js-->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+     <!-- header Scripts and Links -->
+    <?php include_once "headerScripts.php"; ?>
     <!-- Google Recaptcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
 
     <style>
         .fa-users {

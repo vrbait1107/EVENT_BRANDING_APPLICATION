@@ -17,14 +17,12 @@ if(!isset($_SESSION['adminEmail'])){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    
     <title>Change Password</title>
-    <!--Local css -->
-    <link href="css/styles.css" rel="stylesheet" />
-    <!--Font-Awesome.css-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
-        crossorigin="anonymous"></script>
-    <!--SweetAlert.js-->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+     <!-- header Scripts and Links -->
+    <?php include_once "headerScripts.php"; ?>
+
     <style>
         h3 {
             font-family: 'Times New Roman', Times, serif;

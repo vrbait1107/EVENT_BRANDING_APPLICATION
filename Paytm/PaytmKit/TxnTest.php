@@ -5,18 +5,12 @@ require_once '../../config.php';
 $eventName =$_POST['eventName'];
 $eventPrice = $_POST['eventPrice'];
 $userName= $_SESSION['user'];
-
-
 ?>
-
-
-
 
 <?php
 	header("Pragma: no-cache");
 	header("Cache-Control: no-cache");
 	header("Expires: 0");
-
 ?>
 
 
@@ -26,29 +20,28 @@ $userName= $_SESSION['user'];
 <head>
 	<title>Merchant Check Out Page</title>
 	<meta name="GENERATOR" content="Evrsoft First Page">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-	<style>
 
-		
+	<!-- header Scripts and Links -->
+	<?php include_once "headerScripts.php"; ?>
+
+	<style>
 		h3 {
 			font-family: 'Times New Roman', Times, serif;
 			font-weight: bold;
 			background-color: aliceblue;
 		}
 
-		
-		td,th{
-			font-size:18px;
+
+		td,
+		th {
+			font-size: 18px;
 		}
 	</style>
 </head>
 
 <body>
 
-<?php 
+	<?php 
 
 $sql = "select * from event_information where event = '$eventName' and email = '$userName'";
 $result = mysqli_query($conn,$sql);
@@ -57,21 +50,19 @@ $result = mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)>0){
 
 	echo "<script>Swal.fire({
-		icon: 'warning',
-		title: 'Already Registered',
-		text: 'You are Already Registerd for $eventName Event'
-	  })</script>";
+			icon: 'warning',
+			title: 'Already Registered',
+			text: 'You are Already Registerd for $eventName Event'
+		})</script>";
 
 }
 
 ?>
 
-
-	
-	<div class="container">
+	<main class="container">
 		<div class="row">
-			<div class="col"></div>
-			<div class="col-md-6 card shadow text-center  p-5 my-5">
+
+			<section class="col-md-6 offset-md-3 card shadow text-center  p-5 my-5">
 
 				<h3 class="text-center text-uppercase mb-5">Event Payment CheckOut Page</h3>
 
@@ -130,13 +121,13 @@ if(mysqli_num_rows($result)>0){
 						</tbody>
 					</table>
 
-					<input value="CheckOut" type="submit" class="btn btn-primary btn-block rounded-pill mt-5" onclick="">
+					<input value="CheckOut" type="submit" class="btn btn-primary btn-block rounded-pill mt-5"
+						onclick="">
 
 				</form>
-			</div>
-			<div class="col"></div>
+			</section>
 		</div>
-	</div>
+	</main>
 </body>
 
 </html>

@@ -15,14 +15,9 @@ header("location:login.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change Password</title>
 
-    <!-- Bootstrap css-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!--Font-Awesome CSS-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--SweetAlert.js-->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-
+     <!-- header Scripts and Links -->
+    <?php include_once "headerScripts.php"; ?>
+    
     <style>
         h3 {
             font-family: 'Times New Roman', Times, serif;
