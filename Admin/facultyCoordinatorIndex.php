@@ -86,8 +86,31 @@ if(!isset($_SESSION['adminEmail'])) {
         }
         }
         
-        // Inserting data into admin_information is Completed
-        ?>
+        // delete admin_information
+        if(isset($_REQUEST['delete'])){
+        
+        $delete = $_GET['hiddenEmail'];
+        $sql = "delete from admin_information where email = '$delete'";
+        $result = mysqli_query($conn,$sql);
+        
+        if($result) {
+        echo "
+        <script>Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Data Successfully Deleted'
+            })</script>";
+        }
+        else {
+        echo "
+        <script>Swal.fire({
+                icon: 'error',
+                title: 'ERROR',
+                text: 'We are failed to delete data'
+            })</script>";
+        }
+        }
+ ?>
 
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 
@@ -309,36 +332,46 @@ if(!isset($_SESSION['adminEmail'])) {
                                 $departmentAdmin = $_SESSION["adminDepartment"];
 
                     $sql = "select * from admin_information where adminType = 'Student Coordinator' and adminDepartment = '$departmentAdmin'";
-                
                     $result = mysqli_query($conn,$sql);
+?>
 
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Email</th>
+                                            <th>Admin Type</th>
+                                            <th>Admin Department</th>
+                                            <th>Admin Event</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                     echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
-                     echo '<thead>';
-                     echo '<tr>';
-                     echo '<th>Email</th>';
-                     echo '<th>Admin Type</th>';
-                     echo '<th>Admin Department</th>';
-                     echo '<th>Admin Event</th>';
-                     echo '</tr>';
-                     echo '</thead>';
-                     echo '<tbody>';
+                                        <?php
+                                        while($row=mysqli_fetch_assoc($result)) {
+                                        ?>
+                                        <tr class="text-center">
+                                            <td><?php echo $row['email'] ?></td>
+                                            <td><?php echo $row['adminType'] ?></td>
+                                            <td><?php echo $row['adminDepartment'] ?></td>
+                                            <td><?php echo $row['adminEvent'] ?></td>
 
-                    while($row=mysqli_fetch_assoc($result)) {
-                    echo '<tr>';
-                    echo '<td>' . $row['email'] . '</td>';
-                    echo '<td>' . $row['adminType'] . '</td>';
-                    echo '<td>' . $row['adminDepartment'] . '</td>';
-                    echo '<td>' . $row['adminEvent'] . '</td>';
-                    echo '</tr>';
+                                            <td>
+                                                <form action="">
+                                                    <input type="submit" class="btn btn-small btn-danger" value="Delete"
+                                                        name="delete" />
+                                                    <input type="hidden" value="<?php echo $row['email'] ?>"
+                                                        name="hiddenEmail" />
+                                                </form>
+                                            </td>
+                                        </tr>
 
-                    }
+                                        <?php
+                                         }
+                                        ?>
 
-                    echo '</tbody>';
-                    echo '</table>';
-
-                            ?>
-
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
