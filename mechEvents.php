@@ -33,7 +33,7 @@ $result = mysqli_query($conn,$sql);
 
 </head>
 
-<body class="mb-5">
+<body>
 
 <?php include_once "navbar.php";?>
 
@@ -41,7 +41,7 @@ $result = mysqli_query($conn,$sql);
     <?php
                 if(mysqli_num_rows($result)>0) {
 
-echo  '<div class="container mt-5">';
+echo  '<div class="container my-5">';
 echo '<h1 class="text-danger text-uppercase font-weight-bold text-center mb-5 title">WELCOME TO MECHANICAL EVENTS</h1>';
 echo '<div class="row">';
 
@@ -85,24 +85,10 @@ $i++;
     </div>
     </div>
 
-
-
-
-    <!-- #Modals of the Event -->
-
-    
-    <!--*Modals of the Event-->
-
-
-    
-     <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+     <!-- Footer PHP -->
+    <?php include_once "footer.php"; ?>
+    <!-- Footer Script -->
+    <?php include_once "footerScripts.php"; ?>
 
 </body>
 

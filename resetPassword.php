@@ -145,6 +145,8 @@ $token = $_GET['token'];
 
     <!-- Footer PHP -->
     <?php include_once "footer.php"; ?>
+    <!-- Footer Script -->
+    <?php include_once "footerScripts.php"; ?>
 
 
 </body>

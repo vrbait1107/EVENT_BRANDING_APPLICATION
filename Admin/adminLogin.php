@@ -302,6 +302,9 @@ if(isset($_POST['login'])){
         </div>
     </main>
 
+    <!--Footer Scripts-->
+    <?php include_once "../footerScripts.php" ?>
+
 </body>
 
 </html>
