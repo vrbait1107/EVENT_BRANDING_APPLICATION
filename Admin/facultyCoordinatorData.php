@@ -59,8 +59,8 @@ if(!isset($_SESSION['adminEmail'])) {
 
         $sql ="select * FROM user_information INNER JOIN event_information 
         ON user_information.email= event_information.email 
-        WHERE event_information.event IN (SELECT admin_information.adminEvent 
-        FROM admin_information WHERE adminDepartment ='$department')";
+        WHERE event_information.event IN (SELECT events_details_information.eventName 
+        FROM events_details_information WHERE eventDepartment ='$department')";
 
         $result = mysqli_query($conn,$sql);
 
