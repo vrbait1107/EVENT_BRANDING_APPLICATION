@@ -8,6 +8,7 @@ if(!isset($_SESSION['adminEmail'])) {
      header("location:adminLogin.php");
  }
 
+   // Display Data related to Events
    $adminEvent = $_SESSION["adminEvent"];
 
    $sql = "select * from event_information where event = '$adminEvent'";
@@ -133,7 +134,7 @@ if(!isset($_SESSION['adminEmail'])) {
 
 
                 <div class="row">
-                    <!-- Earnings (Monthly) Card Example -->
+                    <!-- Total Participation of the Events -->
                     <section class="col-md-6 mb-4">
                         <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
@@ -151,7 +152,7 @@ if(!isset($_SESSION['adminEmail'])) {
                         </div>
                     </section>
 
-                    <!-- Earnings (Monthly) Card Example -->
+                    <!-- Total Earnings of Events -->
                     <section class="col-md-6 mb-4">
                         <div class="card border-left-success shadow h-100 py-2">
                             <div class="card-body">
