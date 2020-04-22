@@ -21,7 +21,7 @@ if(!isset($_SESSION['adminEmail'])){
     <title>Change Password</title>
 
      <!-- header Scripts and Links -->
-    <?php include_once "headerScripts.php"; ?>
+    <?php include_once "../headerScripts.php"; ?>
 
     <style>
         h3 {

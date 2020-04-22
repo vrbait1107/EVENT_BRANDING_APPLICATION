@@ -19,7 +19,7 @@ if(!isset($_SESSION['adminEmail'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- header Scripts and Links -->
-  <?php include_once "headerScripts.php"; ?>
+  <?php include_once "../headerScripts.php"; ?>
 
   <title>GIT SHODH 2K20</title>
 </head>
