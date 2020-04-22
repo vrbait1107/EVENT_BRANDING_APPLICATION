@@ -6,6 +6,18 @@ session_start();
  if(!isset($_SESSION['adminEmail'])) {
      header("location:adminLogin.php");
  }
+
+  $sqlData ="select * from event_information";
+
+    $resultData = mysqli_query($conn,$sqlData);
+    $rowCount = mysqli_num_rows($resultData);
+   
+    $totalAmount = 0;
+
+    while($rowData = mysqli_fetch_assoc($resultData)){
+     $totalAmount =   $totalAmount + $rowData['txnAmount'];
+    } 
+
 ?>
 
 <!DOCTYPE html>
@@ -218,6 +230,52 @@ session_start();
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
+
+
+                      <!-- Display Data Related to Event held by Department-->
+
+                <div class="row">
+                    <!-- Total Participation of the Events -->
+                    <section class="col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Total Participations</div>
+                                        <div class="h5 mb-0 font-weight-bold"><?php echo $rowCount; ?></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-users fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Total Earnings of Events -->
+                    <section class="col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Total Earnings</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">&#8377;
+                                            <?php echo $totalAmount; ?></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-rupee-sign fa-2x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <hr>
+              
 
                     <!--  ADD Administartor Profile Form  -->
                     <div class="row">
