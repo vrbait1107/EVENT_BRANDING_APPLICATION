@@ -19,30 +19,14 @@ session_start();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Admin Header Scripts -->
-    <?php include_once "includes/adminHeaderScripts.php"; ?>
+  <!-- Admin Header Scripts -->
+  <?php include_once "includes/adminHeaderScripts.php"; ?>
 
   <title>GIT SHODH 2K20</title>
 
-  <style>
-    .btn {
-      margin-bottom: 5px;
-      text-align: center;
-    }
-
-    body {
-      margin-top: 50px;
-    }
-
-    .nav-link {
-      font-size: 20px;
-      font-weight: bold;
-    }
-  </style>
-
 </head>
 
-<body>
+<body class="sb-nav-fixed">
 
   <?php
 
@@ -136,86 +120,93 @@ if(isset($_REQUEST['delete'])) {
 
 ?>
 
+  <!-- Admin Navbar -->
+  <?php
 
-  <main class="container">
-    <div class="row">
-
-      <section class="col-md-6 offset-md-3">
-
-        <div class="text-center mb-3 nav-link">
-          <a href="studentCoordinatorIndex.php" class="text-center btn btn-info text-white">Go to Dashboard</a>
-        </div>
-
-        <div class="card shadow p-5 mb-5">
-
-          <div class="card-header mb-3 text-center">
-            <h5>Edit/Update Participant Details</h5>
-          </div>
+    $adminFileName = "studentCoordinatorIndex.php";
+    $adminFileData = "studentCoordinatorData.php";
+   
+    include_once "includes/adminNavbar.php";
+    ?>
 
 
-          <!-- The Form that is Used for Edit Data -->
+  <div id="layoutSidenav_content">
 
-          <form class="form1" action="" method="post">
+    <main class="container-fluid">
+      <div class="row">
 
-            <div class="form-group">
-              <label for="firstName">First Name</label>
-              <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" value="<?php 
+        <section class="col-md-6 mt-5 offset-md-3">
+
+          <div class="card shadow p-5 mb-5">
+
+            <div class="card-header mb-3 text-center">
+              <h5>Edit/Update Participant Details</h5>
+            </div>
+
+
+            <!-- The Form that is Used for Edit Data -->
+
+            <form class="form1" action="" method="post">
+
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" value="<?php 
           if(isset($row['firstName'])){
             echo $row['firstName'];
             } 
             ?>" required>
-            </div>
+              </div>
 
-            <div class="form-group">
-              <label for="lastName">Last Name</label>
-              <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" value="<?php 
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" value="<?php 
           if(isset($row['lastName'])){
             echo $row['lastName'];
             } 
             ?>" required>
-            </div>
+              </div>
 
-            <div class="form-group">
-              <label>Prize</label>
-              <select class="form-control" name="prize" id="prize">
-                <option value="NONE">None</option>
-                <option value="First">First</option>
-                <option value="Second">Second</option>
-                <option value="Third">Third</option>
-              </select>
-            </div>
+              <div class="form-group">
+                <label>Prize</label>
+                <select class="form-control" name="prize" id="prize">
+                  <option value="NONE">None</option>
+                  <option value="First">First</option>
+                  <option value="Second">Second</option>
+                  <option value="Third">Third</option>
+                </select>
+              </div>
 
-            <div class="form-group">
-              <label>Attendance Status</label>
-              <select class="form-control" name="attendStatus" id="attendStatus">
-                <option value="absent">Absent</option>
-                <option value="present">Present</option>
-              </select>
-            </div>
+              <div class="form-group">
+                <label>Attendance Status</label>
+                <select class="form-control" name="attendStatus" id="attendStatus">
+                  <option value="absent">Absent</option>
+                  <option value="present">Present</option>
+                </select>
+              </div>
 
-            <input type="submit" class="btn btn-primary rounded-pill btn-block" value="Update" name="update">
+              <input type="submit" class="btn btn-primary rounded-pill btn-block" value="Update" name="update">
 
-          </form>
-        </div>
-      </section>
-    </div>
-
-
-    <div class="row">
-      <section class="col-md-12">
-
-        <div class="card mb-4">
-
-          <div class="card-header text-center">
-            <h5><i class="fas fa-table mr-1"></i>
-              Event Participant Details (Event Level)</h5>
+            </form>
           </div>
+        </section>
+      </div>
 
-          <div class="card-body">
-            <div class="table-responsive">
+
+      <div class="row">
+        <section class="col-md-12">
+
+          <div class="card mb-4">
+
+            <div class="card-header text-center">
+              <h5><i class="fas fa-table mr-1"></i>
+                Event Participant Details (Event Level)</h5>
+            </div>
+
+            <div class="card-body">
+              <div class="table-responsive">
 
 
-              <?php
+                <?php
 
                 // Retrive the data from the database in table
                 $event = $_SESSION['adminEvent'];
@@ -231,85 +222,86 @@ if(isset($_REQUEST['delete'])) {
 
           ?>
 
-              <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
-                <thead>
-                  <th class='text-success text-center'>Certificate ID</th>
-                  <th class='text-success text-center'>First Name</th>
-                  <th class='text-success text-center'>Last Name</th>
-                  <th class='text-success text-center'>College Name</th>
-                  <th class='text-success text-center'>Department Name</th>
-                  <th class='text-success text-center'>Academic Year</th>
-                  <th class='text-success text-center'>Event</th>
-                  <th class='text-success text-center'>Prize</th>
-                  <th class='text-success text-center'>Attend Status</th>
-                  <th class='text-success text-center'>Action</th>
-                  <th class='text-success text-center'>TXN Amount</th>
-                  <th class='text-success text-center'>Order Id</th>
-                  <th class='text-success text-center'>TXN ID</th>
-                  <th class='text-success text-center'> Bank TXN Id</th>
-                  <th class='text-success text-center'>TXN Date</th>
-                  <th class='text-success text-center'>TXN Status</th>
+                <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
+                  <thead>
+                    <th class='text-success text-center'>Certificate ID</th>
+                    <th class='text-success text-center'>First Name</th>
+                    <th class='text-success text-center'>Last Name</th>
+                    <th class='text-success text-center'>College Name</th>
+                    <th class='text-success text-center'>Department Name</th>
+                    <th class='text-success text-center'>Academic Year</th>
+                    <th class='text-success text-center'>Event</th>
+                    <th class='text-success text-center'>Prize</th>
+                    <th class='text-success text-center'>Attend Status</th>
+                    <th class='text-success text-center'>Action</th>
+                    <th class='text-success text-center'>TXN Amount</th>
+                    <th class='text-success text-center'>Order Id</th>
+                    <th class='text-success text-center'>TXN ID</th>
+                    <th class='text-success text-center'> Bank TXN Id</th>
+                    <th class='text-success text-center'>TXN Date</th>
+                    <th class='text-success text-center'>TXN Status</th>
 
-                </thead>
+                  </thead>
 
-                <tbody>
+                  <tbody>
 
-                  <?php
+                    <?php
                   while($row = mysqli_fetch_assoc($result)){
                   ?>
 
-                  <tr>
-                    <td class='text-center'> <?php echo $row['certificateId'] ?></td>
-                    <td class='text-center'> <?php echo $row['firstName'] ?></td>
-                    <td class='text-center'> <?php echo $row['lastName'] ?></td>
-                    <td class='text-center'> <?php echo $row['collegeName'] ?></td>
-                    <td class='text-center'> <?php echo $row['departmentName'] ?></td>
-                    <td class='text-center'> <?php echo $row['academicYear']?> </td>
-                    <td class='text-center'> <?php echo $row['event'] ?></td>
-                    <td class='text-center'> <?php echo $row['prize'] ?></td>
-                    <td class='text-center'> <?php echo $row['attendStatus'] ?></td>
+                    <tr>
+                      <td class='text-center'> <?php echo $row['certificateId'] ?></td>
+                      <td class='text-center'> <?php echo $row['firstName'] ?></td>
+                      <td class='text-center'> <?php echo $row['lastName'] ?></td>
+                      <td class='text-center'> <?php echo $row['collegeName'] ?></td>
+                      <td class='text-center'> <?php echo $row['departmentName'] ?></td>
+                      <td class='text-center'> <?php echo $row['academicYear']?> </td>
+                      <td class='text-center'> <?php echo $row['event'] ?></td>
+                      <td class='text-center'> <?php echo $row['prize'] ?></td>
+                      <td class='text-center'> <?php echo $row['attendStatus'] ?></td>
 
 
-                    <td>
-                      <form class="text-center" action="">
-                        <input type="hidden" name="certificateId" value='<?php echo $row ["certificateId"] ?>'>
-                        <input type="submit" class="btn btn-sm btn-primary text-white font-weight-bold" value="EDIT"
-                          name="edit">
-                        <input type="submit" class="btn btn-sm btn-danger text-white font-weight-bold" value="DELETE"
-                          name="delete">
-                      </form>
-                    </td>
+                      <td>
+                        <form class="text-center" action="">
+                          <input type="hidden" name="certificateId" value='<?php echo $row ["certificateId"] ?>'>
+                          <input type="submit" class="btn btn-sm btn-primary text-white font-weight-bold" value="EDIT"
+                            name="edit">
+                          <input type="submit" class="btn btn-sm btn-danger text-white font-weight-bold" value="DELETE"
+                            name="delete">
+                        </form>
+                      </td>
 
-                    <td class='text-center'> <?php echo $row['txnAmount'] ?> </td>
-                    <td class='text-center'> <?php echo $row['orderId'] ?> </td>
-                    <td class='text-center'> <?php echo $row['txnId'] ?> </td>
-                    <td class='text-center'> <?php echo $row['bankTxnId'] ?> </td>
-                    <td class='text-center'> <?php echo $row['txnDate'] ?> </td>
-                    <td class='text-center'> <?php echo $row['status'] ?> </td>
-                  </tr>
+                      <td class='text-center'> <?php echo $row['txnAmount'] ?> </td>
+                      <td class='text-center'> <?php echo $row['orderId'] ?> </td>
+                      <td class='text-center'> <?php echo $row['txnId'] ?> </td>
+                      <td class='text-center'> <?php echo $row['bankTxnId'] ?> </td>
+                      <td class='text-center'> <?php echo $row['txnDate'] ?> </td>
+                      <td class='text-center'> <?php echo $row['status'] ?> </td>
+                    </tr>
 
-                  <?php
+                    <?php
                   }
                   ?>
 
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
 
-              <?php
+                <?php
                   }
                   ?>
 
+              </div>
             </div>
           </div>
-        </div>
-    </div>
+      </div>
 
-    </section>
-    </div>
+      </section>
+  </div>
   </main>
+  </div>
 
-   <!-- Admin Footer Scripts -->
-    <?php include_once "includes/adminFooterScripts.php"; ?>
+  <!-- Admin Footer Scripts -->
+  <?php include_once "includes/adminFooterScripts.php"; ?>
 
 </body>
 

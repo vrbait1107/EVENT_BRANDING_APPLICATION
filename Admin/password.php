@@ -6,6 +6,23 @@ if(!isset($_SESSION['adminEmail'])){
     header('location:adminLogin.php');
 }
 
+if($_SESSION['adminType'] === "Administrator") {
+    $adminFileName = "adminIndex.php";
+    $adminFileData = "adminIndexData.php";
+}
+elseif($_SESSION['adminType'] === "Student Coordinator"){
+    $adminFileName = "studentCoordinatorIndex.php";
+    $adminFileData = "studentCoordinatorData.php";
+} 
+elseif($_SESSION['adminType'] === "Faculty Coordinator"){
+    $adminFileName = "facultyCoordinatorIndex.php";
+    $adminFileData = "facultyCoordinatorData.php";
+}
+else{
+    $adminFileName = "#";
+    $adminFileData = "#";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +48,7 @@ if(!isset($_SESSION['adminEmail'])){
     </style>
 </head>
 
-<body>
+<body class="sb-nav-fixed">
 
     <?php
 if(isset($_POST['changePassword'])) {
@@ -68,7 +85,7 @@ if(isset($_POST['changePassword'])) {
                             })</script>";
                         }
                         else {
-                        echo  echo "<script>Swal.fire({
+                        echo "<script>Swal.fire({
                                 icon: 'error',
                                 title: 'Error',
                                 text: 'We are failed to change Password'
@@ -91,7 +108,13 @@ if(isset($_POST['changePassword'])) {
 
     ?>
 
-    <main class="container">
+
+   <!-- Admin Navbar -->
+  <?php include_once "includes/adminNavbar.php"; ?>
+
+
+<div id="layoutSidenav_content">
+    <main class="container-fluid">
         <div class="row">
             <section class="col-md-6 offset-md-3 mt-5">
 
@@ -126,6 +149,7 @@ if(isset($_POST['changePassword'])) {
             </section>
         </div>
     </main>
+</div>
 
     <!-- Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php"; ?>

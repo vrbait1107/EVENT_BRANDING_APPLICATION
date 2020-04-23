@@ -38,7 +38,7 @@ if(!isset($_SESSION['Admin'])){
     </style>
   </head>
 
-  <body>
+  <body class="sb-nav-fixed">
 
   <?php
 
@@ -71,15 +71,22 @@ if(isset($_REQUEST['delete'])) {
 
 ?>
 
- 
+ <!-- Admin Navbar -->
+  <?php
 
-  <main class="container">
+    $adminFileName = "synergyIndex.php";
+    $adminFileData = "synergyData.php";
+   
+   
+    include_once "includes/adminNavbar.php";
+    ?>
+
+
+  <main class="container-fluid">
       <div class="row">
           <section class="col-12">
 
-<div class="text-center mb-5">
-          <a href="synergyIndex.php" class= "btn btn-primary">Go to Dashboard</a>
-  </div>
+
           <?php
          
         
@@ -129,7 +136,7 @@ echo "</table>";
 }
 
 else {
-  echo "<h4 class='text-center text-danger'>No Data available in Database</h4>";
+  echo "<h4 class='text-center mt-5 text-danger'>No Data available in Database</h4>";
 }
 
 ?>

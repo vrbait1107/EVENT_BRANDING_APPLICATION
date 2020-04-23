@@ -19,46 +19,48 @@ if(!isset($_SESSION['adminEmail'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Admin Header Scripts -->
-    <?php include_once "includes/adminHeaderScripts.php"; ?>
+  <!-- Admin Header Scripts -->
+  <?php include_once "includes/adminHeaderScripts.php"; ?>
 
   <title>GIT SHODH 2K20 Administrator Dashboard</title>
 
-  <style>
-    body {
-      margin-top: 50px;
-      margin-bottom: 50px;
-    }
-  </style>
+
 </head>
 
-<body>
+<body class="sb-nav-fixed">
 
-  <main class="container">
-    <div class="row">
+  <!-- Admin Navbar -->
+  <?php
 
-      <section class="col-md-12">
+    $adminFileName = "adminIndex.php";
+    $adminFileData = "adminIndexData.php";
+   
+    include_once "includes/adminNavbar.php";
+    ?>
 
-        <div class="text-center mb-3">
-          <a href="adminIndex.php" class="btn btn-primary rounded-Pill">Go to Dashboard</a>
-        </div>
+  <div id="layoutSidenav_content">
 
-        <div class="text-center mb-3">
-          <a href="../Paytm/PaytmKit/TxnStatus.php" class="btn btn-primary rounded-pill">Click Here for More Banking
-            Details</a>
-        </div>
+    <main class="container-fluid">
+      <div class="row">
 
+        <section class="col-md-12">
 
-        <div class="card mb-4">
-          <div class="card-header text-center">
-            <h5><i class="fas fa-table mr-1"></i>
-              Event Participant Details (College Level)</h5>
+          <div class="text-center my-3">
+            <a href="../Paytm/PaytmKit/TxnStatus.php" class="btn btn-primary rounded-pill">Click Here for More Banking
+              Details</a>
           </div>
 
-          <div class="card-body">
-            <div class="table-responsive">
 
-              <?php
+          <div class="card mb-4">
+            <div class="card-header text-center">
+              <h5><i class="fas fa-table mr-1"></i>
+                Event Participant Details (College Level)</h5>
+            </div>
+
+            <div class="card-body">
+              <div class="table-responsive">
+
+                <?php
 
 //  Retriving all the Information From the Database
 
@@ -71,70 +73,71 @@ if(mysqli_num_rows($result)>0) {
 
         ?>
 
-              <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
+                <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
 
-                <thead>
-                  <th class='text-success text-center'>Certificate ID</th>
-                  <th class='text-success text-center'>First Name</th>
-                  <th class='text-success text-center'>Last Name</th>
-                  <th class='text-success text-center'>College Name</th>
-                  <th class='text-success text-center'>Department Name</th>
-                  <th class='text-success text-center'>Academic Year</th>
-                  <th class='text-success text-center'>Event</th>
-                  <th class='text-success text-center'>Prize</th>
-                  <th class='text-success text-center'>TXN Amount</th>
-                  <th class='text-success text-center'>Order Id</th>
-                  <th class='text-success text-center'>TXN ID</th>
-                  <th class='text-success text-center'> Bank TXN Id</th>
-                  <th class='text-success text-center'>TXN Date</th>
-                  <th class='text-success text-center'>TXN Status</th>
-                </thead>
+                  <thead>
+                    <th class='text-success text-center'>Certificate ID</th>
+                    <th class='text-success text-center'>First Name</th>
+                    <th class='text-success text-center'>Last Name</th>
+                    <th class='text-success text-center'>College Name</th>
+                    <th class='text-success text-center'>Department Name</th>
+                    <th class='text-success text-center'>Academic Year</th>
+                    <th class='text-success text-center'>Event</th>
+                    <th class='text-success text-center'>Prize</th>
+                    <th class='text-success text-center'>TXN Amount</th>
+                    <th class='text-success text-center'>Order Id</th>
+                    <th class='text-success text-center'>TXN ID</th>
+                    <th class='text-success text-center'> Bank TXN Id</th>
+                    <th class='text-success text-center'>TXN Date</th>
+                    <th class='text-success text-center'>TXN Status</th>
+                  </thead>
 
-                <tbody>
+                  <tbody>
 
-                  <?php
+                    <?php
           while($row =mysqli_fetch_assoc($result)){ 
           ?>
 
-                  <tr>
-                    <td class='text-center'> <?php echo $row['certificateId']?> </td>
-                    <td class='text-center'> <?php echo $row['firstName'] ?></td>
-                    <td class='text-center'> <?php echo $row['lastName'] ?></td>
-                    <td class='text-center'> <?php echo $row['collegeName'] ?> </td>
-                    <td class='text-center'> <?php echo $row['departmentName'] ?></td>
-                    <td class='text-center'> <?php echo $row['academicYear'] ?></td>
-                    <td class='text-center'> <?php echo $row['event'] ?></td>
-                    <td class='text-center'> <?php echo $row['prize'] ?> </td>
-                    <td class='text-center'> <?php echo $row['txnAmount'] ?> </td>
-                    <td class='text-center'> <?php echo $row['orderId'] ?> </td>
-                    <td class='text-center'> <?php echo $row['txnId'] ?> </td>
-                    <td class='text-center'> <?php echo $row['bankTxnId'] ?> </td>
-                    <td class='text-center'> <?php echo $row['txnDate'] ?> </td>
-                    <td class='text-center'> <?php echo $row['status'] ?> </td>
-                  </tr>
+                    <tr>
+                      <td class='text-center'> <?php echo $row['certificateId']?> </td>
+                      <td class='text-center'> <?php echo $row['firstName'] ?></td>
+                      <td class='text-center'> <?php echo $row['lastName'] ?></td>
+                      <td class='text-center'> <?php echo $row['collegeName'] ?> </td>
+                      <td class='text-center'> <?php echo $row['departmentName'] ?></td>
+                      <td class='text-center'> <?php echo $row['academicYear'] ?></td>
+                      <td class='text-center'> <?php echo $row['event'] ?></td>
+                      <td class='text-center'> <?php echo $row['prize'] ?> </td>
+                      <td class='text-center'> <?php echo $row['txnAmount'] ?> </td>
+                      <td class='text-center'> <?php echo $row['orderId'] ?> </td>
+                      <td class='text-center'> <?php echo $row['txnId'] ?> </td>
+                      <td class='text-center'> <?php echo $row['bankTxnId'] ?> </td>
+                      <td class='text-center'> <?php echo $row['txnDate'] ?> </td>
+                      <td class='text-center'> <?php echo $row['status'] ?> </td>
+                    </tr>
 
-                  <?php 
+                    <?php 
             }
             ?>
 
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
 
-              <?php
+                <?php
         }
         ?>
 
+              </div>
             </div>
           </div>
-        </div>
-    </div>
+      </div>
 
-    </section>
-    </div>
+      </section>
+  </div>
   </main>
+  </div>
 
-   <!-- Admin Footer Scripts -->
-    <?php include_once "includes/adminFooterScripts.php"; ?>
+  <!-- Admin Footer Scripts -->
+  <?php include_once "includes/adminFooterScripts.php"; ?>
 
 </body>
 
