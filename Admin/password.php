@@ -20,7 +20,7 @@ if(!isset($_SESSION['adminEmail'])){
     
     <title>Change Password</title>
 
-     <!-- Header Scripts -->
+     <!-- Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php"; ?>
 
     <style>
@@ -127,8 +127,8 @@ if(isset($_POST['changePassword'])) {
         </div>
     </main>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
+    <!-- Admin Footer Scripts -->
+    <?php include_once "includes/adminFooterScripts.php"; ?>
 
 </body>
 

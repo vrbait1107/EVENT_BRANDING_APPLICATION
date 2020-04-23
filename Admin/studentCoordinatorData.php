@@ -19,7 +19,7 @@ session_start();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Header Scripts -->
+    <!-- Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php"; ?>
 
   <title>GIT SHODH 2K20</title>
@@ -308,10 +308,8 @@ if(isset($_REQUEST['delete'])) {
     </div>
   </main>
 
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-  <script src="assets/demo/datatables-demo.js"></script>
+   <!-- Admin Footer Scripts -->
+    <?php include_once "includes/adminFooterScripts.php"; ?>
 
 </body>
 

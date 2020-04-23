@@ -32,7 +32,7 @@ if(!isset($_SESSION['adminEmail'])) {
 
     <title>Dashboard-Student Coordinator</title>
 
-     <!-- Header Scripts -->
+     <!-- Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php"; ?>
 
 </head>
@@ -117,10 +117,8 @@ if(!isset($_SESSION['adminEmail'])) {
     </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+    <!-- Admin Footer Scripts -->
+    <?php include_once "includes/adminFooterScripts.php"; ?>
 
 </body>
 

@@ -18,7 +18,7 @@ if(!isset($_SESSION['Admin'])) {
     <meta name="author" content="" />
     <title>SYNERGY ADMIN</title>
 
-    <!-- Header Scripts -->
+    <!-- Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php"; ?>
 
 </head>
@@ -232,12 +232,9 @@ if(!isset($_SESSION['Admin'])) {
 
     <!--JS Validation-->
     <script src="../js/form-validation.js"></script>
-    <!--Bootstrap js-->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <!--Script-->
-    <script src="js/scripts.js"></script>
-    <!--Datatable Bootstrap.js-->
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <!-- Admin Footer Scripts -->
+    <?php include_once "includes/adminFooterScripts.php"; ?>
+
 </body>
 
 </html>

@@ -39,7 +39,7 @@ if(!isset($_SESSION['adminEmail'])) {
     <meta name="author" content="" />
     <title>Dashboard-Faculty Coordinator</title>
 
-    <!-- Header Scripts -->
+    <!-- Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php"; ?>
 
 </head>
@@ -358,14 +358,8 @@ if(!isset($_SESSION['adminEmail'])) {
     </div>
 
 
-    <!--Script Tag-->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="js/datatables-demo.js"></script>
+    <!-- Admin Footer Scripts -->
+    <?php include_once "includes/adminFooterScripts.php"; ?>
 
 </body>
 
