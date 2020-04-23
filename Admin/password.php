@@ -20,8 +20,8 @@ if(!isset($_SESSION['adminEmail'])){
     
     <title>Change Password</title>
 
-     <!-- header Scripts and Links -->
-    <?php include_once "../headerScripts.php"; ?>
+     <!-- Header Scripts -->
+    <?php include_once "includes/adminHeaderScripts.php"; ?>
 
     <style>
         h3 {

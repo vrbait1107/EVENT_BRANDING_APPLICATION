@@ -39,16 +39,8 @@ if(!isset($_SESSION['adminEmail'])) {
     <meta name="author" content="" />
     <title>Dashboard-Faculty Coordinator</title>
 
-    <!--Local StyleSheet-->
-    <link href="css/styles.css" rel="stylesheet" />
-    <!--Bootstrap Datatables-->
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
-        crossorigin="anonymous" />
-    <!--Font-Awesome-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
-        crossorigin="anonymous"></script>
-    <!--SweetAlert.js-->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <!-- Header Scripts -->
+    <?php include_once "includes/adminHeaderScripts.php"; ?>
 
 </head>
 
@@ -129,7 +121,7 @@ if(!isset($_SESSION['adminEmail'])) {
  ?>
 
 
-  <!-- Admin Navbar -->
+    <!-- Admin Navbar -->
     <?php
 
     $adminFileName = "facultyCoordinatorIndex.php";
@@ -140,164 +132,164 @@ if(!isset($_SESSION['adminEmail'])) {
 
 
 
-        <div id="layoutSidenav_content">
+    <div id="layoutSidenav_content">
 
-            <main class="container-fluid">
-                <h1 class="mt-4 text-center">Dashboard for Faculty Coordinator
-                    <?php echo $_SESSION["adminDepartment"];?> </h1>
+        <main class="container-fluid">
+            <h1 class="mt-4 text-center">Dashboard for Faculty Coordinator
+                <?php echo $_SESSION["adminDepartment"];?> </h1>
 
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Dashboard</li>
-                </ol>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
 
 
-                <!-- Display Data Related to Event held by Department-->
+            <!-- Display Data Related to Event held by Department-->
 
-                <div class="row">
-                    <!-- Total Participation of the Events -->
-                    <section class="col-md-6 mb-4">
-                        <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            Total Participations</div>
-                                        <div class="h5 mb-0 font-weight-bold"><?php echo $rowCount; ?></div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-users fa-2x text-gray-300"></i>
-                                    </div>
+            <div class="row">
+                <!-- Total Participation of the Events -->
+                <section class="col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Total Participations</div>
+                                    <div class="h5 mb-0 font-weight-bold"><?php echo $rowCount; ?></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-users fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </div>
+                </section>
 
-                    <!-- Total Earnings of Events -->
-                    <section class="col-md-6 mb-4">
-                        <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            Total Earnings</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">&#8377;
-                                            <?php echo $totalAmount; ?></div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-rupee-sign fa-2x"></i>
-                                    </div>
+                <!-- Total Earnings of Events -->
+                <section class="col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Total Earnings</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">&#8377;
+                                        <?php echo $totalAmount; ?></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-rupee-sign fa-2x"></i>
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </div>
+                </section>
 
-                </div>
+            </div>
 
-                <hr>
-                
-                <!--  ADD Administartor Profile Form  -->
-                <div class="row">
+            <hr>
 
-                    <section class="col-md-6 offset-md-3">
+            <!--  ADD Administartor Profile Form  -->
+            <div class="row">
 
-                        <h5 class="text-danger text-center mb-3">Note: Faculty Coordinators Can Add Only Student
-                            Coordinators</h5>
+                <section class="col-md-6 offset-md-3">
 
-                        <h3 class="text-white text-center bg-info mb-4 p-2"> ADD ADMINISTRATOR PROFILE </h3>
+                    <h5 class="text-danger text-center mb-3">Note: Faculty Coordinators Can Add Only Student
+                        Coordinators</h5>
 
-                        <form action="" method="post">
-                            <div class="form-group">
-                                <label>Enter Your Email</label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Email"
-                                    required>
-                            </div>
+                    <h3 class="text-white text-center bg-info mb-4 p-2"> ADD ADMINISTRATOR PROFILE </h3>
 
-
-                            <div class="form-group">
-                                <label>Admin Type</label>
-                                <select class="form-control" name="adminType">
-                                    <option value="Student Coordinator">Student Coordinator</option>
-                                </select>
-                            </div>
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label>Enter Your Email</label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email"
+                                required>
+                        </div>
 
 
-                            <div class="form-group">
-                                <label>Admin Department</label>
-                                <select class="form-control" name="adminDepartment">
-                                    <option value="Electronics and Telecommunication">Electronics and
-                                        Telecommunication
-                                    </option>
-                                    <option value="Chemical">Chemical</option>
-                                    <option value="Computer">Computer</option>
-                                    <option value="Mechanical">Mechanical</option>
-                                    <option value="Civil">Civil</option>
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label>Admin Type</label>
+                            <select class="form-control" name="adminType">
+                                <option value="Student Coordinator">Student Coordinator</option>
+                            </select>
+                        </div>
 
 
-                            <div class="form-group">
-                                <label>Admin Event</label>
-                                <select class="form-control" name="adminEvent">
-                                    <option value="EXTC Paper Presentation">EXTC Paper Presentation</option>
-                                    <option value="EXTC Poster Presentation">EXTC Poster Presentation</option>
-                                    <option value="EXTC Project Presentation">EXTC Project Presentation</option>
-                                    <option value="Tech Boss">Tech Boss</option>
-                                    <option value="Fun Tech">Fun Tech</option>
-                                    <option value="School Event">School Event</option>
-                                    <option value="Logo Contest">Logo Contest</option>
-                                    <option value="Calci War">Calci War</option>
-                                    <option value="Chemical Paper Presentation">Chemical Paper Presentation
-                                    </option>
-                                    <option value="Chemical Poster Presentation">Chemical Poster Presentation
-                                    </option>
-                                    <option value="Chemical Project Presentation">Chemical Project Presentation
-                                    </option>
-                                    <option value="Computer Paper Presentation">Computer Paper Presentation
-                                    </option>
-                                    <option value="Computer Poster Presentation">Computer Poster Presentation
-                                    </option>
-                                    <option value="Computer Project Presentation">Computer Project Presentation
-                                    </option>
-                                    <option value="Mechanical Paper Presentation">Mechanical Paper Presentation
-                                    </option>
-                                    <option value="Mechanical Poster Presentation">Mechanical Poster
-                                        Presentation
-                                    </option>
-                                    <option value="Mechanical Project Presentation">Mechanical Project
-                                        Presentation
-                                    </option>
-                                    <option value="Civil Paper Presentation">Civil Paper Presentation</option>
-                                    <option value="Civil Poster Presentation">Civil Poster Presentation</option>
-                                    <option value="Civil Project Presentation">Civil Project Presentation
-                                    </option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" class="form-control" name="password" id="password"
-                                    placeholder="Password" required autocomplete="off">
-                            </div>
+                        <div class="form-group">
+                            <label>Admin Department</label>
+                            <select class="form-control" name="adminDepartment">
+                                <option value="Electronics and Telecommunication">Electronics and
+                                    Telecommunication
+                                </option>
+                                <option value="Chemical">Chemical</option>
+                                <option value="Computer">Computer</option>
+                                <option value="Mechanical">Mechanical</option>
+                                <option value="Civil">Civil</option>
+                            </select>
+                        </div>
 
 
-                            <div class="form-group">
-                                <input class="btn btn-primary btn-block rounded-pill mb-5" type="submit"
-                                    class="form-control" name="addAdmin" id="addAdmin" value="ADD PROFILE">
-                            </div>
-                        </form>
-                    </section>
-                </div>
+                        <div class="form-group">
+                            <label>Admin Event</label>
+                            <select class="form-control" name="adminEvent">
+                                <option value="EXTC Paper Presentation">EXTC Paper Presentation</option>
+                                <option value="EXTC Poster Presentation">EXTC Poster Presentation</option>
+                                <option value="EXTC Project Presentation">EXTC Project Presentation</option>
+                                <option value="Tech Boss">Tech Boss</option>
+                                <option value="Fun Tech">Fun Tech</option>
+                                <option value="School Event">School Event</option>
+                                <option value="Logo Contest">Logo Contest</option>
+                                <option value="Calci War">Calci War</option>
+                                <option value="Chemical Paper Presentation">Chemical Paper Presentation
+                                </option>
+                                <option value="Chemical Poster Presentation">Chemical Poster Presentation
+                                </option>
+                                <option value="Chemical Project Presentation">Chemical Project Presentation
+                                </option>
+                                <option value="Computer Paper Presentation">Computer Paper Presentation
+                                </option>
+                                <option value="Computer Poster Presentation">Computer Poster Presentation
+                                </option>
+                                <option value="Computer Project Presentation">Computer Project Presentation
+                                </option>
+                                <option value="Mechanical Paper Presentation">Mechanical Paper Presentation
+                                </option>
+                                <option value="Mechanical Poster Presentation">Mechanical Poster
+                                    Presentation
+                                </option>
+                                <option value="Mechanical Project Presentation">Mechanical Project
+                                    Presentation
+                                </option>
+                                <option value="Civil Paper Presentation">Civil Paper Presentation</option>
+                                <option value="Civil Poster Presentation">Civil Poster Presentation</option>
+                                <option value="Civil Project Presentation">Civil Project Presentation
+                                </option>
+                            </select>
+                        </div>
 
-             
-                <!-- Display Student Coordinator Admin Department Wise -->
-
-                <div class="card mb-4">
-                    <div class="card-header"><i class="fas fa-table mr-1"></i>Administrator Details</div>
-                    <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" id="password"
+                                placeholder="Password" required autocomplete="off">
+                        </div>
 
 
-                            <?php  
+                        <div class="form-group">
+                            <input class="btn btn-primary btn-block rounded-pill mb-5" type="submit"
+                                class="form-control" name="addAdmin" id="addAdmin" value="ADD PROFILE">
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+
+            <!-- Display Student Coordinator Admin Department Wise -->
+
+            <div class="card mb-4">
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Administrator Details</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+
+
+                        <?php  
 
                     // Fetching All Details From user_information Table 
                     $departmentAdmin = $_SESSION["adminDepartment"];
@@ -306,63 +298,63 @@ if(!isset($_SESSION['adminEmail'])) {
                     $result = mysqli_query($conn,$sql);
                     ?>
 
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th>Email</th>
-                                        <th>Admin Type</th>
-                                        <th>Admin Department</th>
-                                        <th>Admin Event</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>Email</th>
+                                    <th>Admin Type</th>
+                                    <th>Admin Department</th>
+                                    <th>Admin Event</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                                    <?php
+                                <?php
                                         while($row=mysqli_fetch_assoc($result)) {
                                         ?>
-                                    <tr class="text-center">
-                                        <td><?php echo $row['email'] ?></td>
-                                        <td><?php echo $row['adminType'] ?></td>
-                                        <td><?php echo $row['adminDepartment'] ?></td>
-                                        <td><?php echo $row['adminEvent'] ?></td>
+                                <tr class="text-center">
+                                    <td><?php echo $row['email'] ?></td>
+                                    <td><?php echo $row['adminType'] ?></td>
+                                    <td><?php echo $row['adminDepartment'] ?></td>
+                                    <td><?php echo $row['adminEvent'] ?></td>
 
-                                        <td>
-                                            <form action="">
-                                                <input type="submit" class="btn btn-small btn-danger" value="Delete"
-                                                    name="delete" />
-                                                <input type="hidden" value="<?php echo $row['email'] ?>"
-                                                    name="hiddenEmail" />
-                                            </form>
-                                        </td>
-                                    </tr>
+                                    <td>
+                                        <form action="">
+                                            <input type="submit" class="btn btn-small btn-danger" value="Delete"
+                                                name="delete" />
+                                            <input type="hidden" value="<?php echo $row['email'] ?>"
+                                                name="hiddenEmail" />
+                                        </form>
+                                    </td>
+                                </tr>
 
-                                    <?php
+                                <?php
                                          }
                                         ?>
 
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </main>
+            </div>
+        </main>
 
 
 
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; GIT SHODH 2020</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; GIT SHODH 2020</div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
                     </div>
                 </div>
-            </footer>
-        </div>
+            </div>
+        </footer>
+    </div>
     </div>
 
 
@@ -376,4 +368,5 @@ if(!isset($_SESSION['adminEmail'])) {
     <script src="js/datatables-demo.js"></script>
 
 </body>
+
 </html>

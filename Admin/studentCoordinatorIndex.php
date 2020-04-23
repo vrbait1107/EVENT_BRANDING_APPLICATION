@@ -32,9 +32,9 @@ if(!isset($_SESSION['adminEmail'])) {
 
     <title>Dashboard-Student Coordinator</title>
 
-    <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
-        crossorigin="anonymous"></script>
+     <!-- Header Scripts -->
+    <?php include_once "includes/adminHeaderScripts.php"; ?>
+
 </head>
 
 

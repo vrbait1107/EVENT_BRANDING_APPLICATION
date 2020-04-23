@@ -1,8 +1,6 @@
 <?php 
 require_once "../config.php";
 session_start();
-ob_start();
-
 
 // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
 if(!isset($_SESSION['Admin'])){
@@ -18,7 +16,8 @@ if(!isset($_SESSION['Admin'])){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-   <?php include "../headerScripts.php"; ?>
+    <!-- Header Scripts -->
+    <?php include_once "includes/adminHeaderScripts.php"; ?>
 
     <title>GIT SYNERGY 2K20</title>
 
