@@ -11,6 +11,8 @@ if(!isset($_SESSION['adminEmail'])) {
 
     $department = $_SESSION["adminDepartment"];
  
+    // display participation count and total revenue
+
     $sqlData ="select * from event_information
     WHERE event IN (SELECT events_details_information.eventName 
     FROM events_details_information WHERE eventDepartment ='$department')";
@@ -23,6 +25,14 @@ if(!isset($_SESSION['adminEmail'])) {
     while($rowData = mysqli_fetch_assoc($resultData)){
      $totalAmount =   $totalAmount + $rowData['txnAmount'];
     } 
+
+
+    // display admin information count
+    $sqlDataAdmin ="select * from admin_information
+    WHERE adminType='Student Coordinator' and adminDepartment = '$department'";
+
+    $resultDataAdmin = mysqli_query($conn,$sqlDataAdmin);
+    $rowCountAdmin = mysqli_num_rows($resultDataAdmin);
 
 ?>
 
@@ -108,6 +118,27 @@ if(!isset($_SESSION['adminEmail'])) {
                         </div>
                     </div>
                 </section>
+
+
+                 <!-- Total student admin -->
+                <section class="col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Total Student Coordinator</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <?php echo $rowCountAdmin; ?></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-users fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
             </div>
         </main>
 
