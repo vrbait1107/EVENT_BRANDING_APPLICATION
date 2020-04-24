@@ -21,15 +21,6 @@ if(!isset($_SESSION['user'])) {
      <!-- header Scripts and Links -->
     <?php include_once "headerScripts.php"; ?>
 
-    <style>
-        h3 {
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: bold;
-
-        }
-    </style>
-
-
 </head>
 
 <body>
@@ -43,7 +34,7 @@ if(!isset($_SESSION['user'])) {
 
             <section class="col-md-6 my-5">
                 <div class="card shadow animated zoomIn slow p-5 mt-5">
-                    <h3 class="text-center text-uppercase text-primary mb-4">GIT <i><span
+                    <h3 class="text-center font-time text-uppercase text-primary mb-4">GIT <i><span
                                 class="text-danger">SHODH</span></i> Certificate </h3>
 
                     <form action="verifyCertificate.php" method="post">
@@ -63,7 +54,7 @@ if(!isset($_SESSION['user'])) {
 
             <section class="col-md-6 my-5">
                 <div class="card shadow animated zoomIn slow mt-5 p-5">
-                    <h3 class="text-center text-uppercase text-secondary mb-4">GIT <i><span
+                    <h3 class="text-center font-time text-uppercase text-secondary mb-4">GIT <i><span
                                 class="text-danger">SYNERGY</span></i> Certificate </h3>
 
                     <form action="verifyCertificate.php" method="post">

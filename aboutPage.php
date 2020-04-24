@@ -20,11 +20,6 @@ if(!isset($_SESSION['user'])) {
      <!-- header Scripts and Links -->
     <?php include_once "headerScripts.php"; ?>
 
-    <style>
-        h1 {
-            font-family: 'Times New Roman', Times, serif;
-        }
-    </style>
 </head>
 
 <body>
@@ -39,7 +34,7 @@ if(!isset($_SESSION['user'])) {
             <section class="col-md-10 offset-md-1">
                 <div class="card shadow animated zoomIn slow p-5 my-5 text-justify">
 
-                    <h1 class="text-white p-1 text-center text-uppercase font-weight-bold bg-info">An OverView</h1>
+                    <h1 class="text-white p-1 text-center text-uppercase font-time bg-info">An OverView</h1>
                     <hr>
                     <p>SHODH, GIT Lavel is the annual science and technology festival of the Gharda Institute of
                         Technology Lavel.

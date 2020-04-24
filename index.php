@@ -46,24 +46,13 @@ if($result){
     <link rel="stylesheet" href="css/loader.css">
 
     <style>
-        h1 {
-            font-family: sans-sarif;
-            font-weight: bold;
-        }
-
-        .col-md-12 .card {
-            background-color: aliceblue;
-        }
-
+       
         .container-fluid {
             background: #24C6DC;
             background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);
             background: linear-gradient(to right, #514A9D, #24C6DC);
         }
 
-        .card-header {
-            background-color: #3475;
-        }
     </style>
 
 </head>
@@ -96,23 +85,23 @@ if($result){
 
     <main class="container">
 
-        <section class="font-weight-bold my-4  animated flip">
-            <h1 class="text-center">Welocome To GIT Shodh 2K20</h1>
-            <h4 class="text-center text-danger">Registration are Open.!!!</h4>
+        <section class="my-4  animated flip">
+            <h1 class="text-center font-time">Welocome To GIT Shodh 2K20</h1>
+            <h4 class="text-center font-time text-danger">Registration are Open.!!!</h4>
         </section>
         <hr>
 
         <div class="row">
             <section class="col-md-12">
-                <div class="card shadow p-3 my-5">
+                <div class="card shadow bg-aliceblue p-3 my-5">
 
                     <i>
-                        <h1 class="text-center  text-danger">Gharda Institute of Technology, Lavel</h1>
+                        <h1 class="text-center text-danger font-time">Gharda Institute of Technology, Lavel</h1>
                     </i>
                     <i>
-                        <h1 class="text-center text-danger">SHODH 2K20</h1>
+                        <h1 class="text-center text-danger font-time">SHODH 2K20</h1>
                     </i>
-                    <h1 class="text-center animated flip"> National Level Techfest</h1>
+                    <h1 class="text-center animated flip font-time"> National Level Techfest</h1>
 
                 </div>
             </section>
@@ -159,13 +148,13 @@ if($result){
         <div class="row">
             <section class="col-md-6 my-5 offset-md-3 text-center">
 
-                <div class="card-header">
-                    <h1 class="text-uppercase text-white">Visitor
+                <div class="card-header bg-lightblack">
+                    <h1 class="text-uppercase font-time text-white">Visitor
                         Counter</h1>
                 </div>
 
                 <div class="card-body">
-                    <p class="display-3 text-white font-weight-bold"><?php echo $totaVisitors ?> </p>
+                    <p class="display-3 text-white font-time"><?php echo $totaVisitors ?> </p>
                 </div>
 
             </section>

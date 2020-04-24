@@ -18,13 +18,6 @@ header("location:login.php");
      <!-- header Scripts and Links -->
     <?php include_once "headerScripts.php"; ?>
     
-    <style>
-        h3 {
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: bold;
-        }
-    </style>
-
 </head>
 
 
@@ -120,7 +113,7 @@ $dbPassword = $row['mainPassword'];
         <div class="row">
             <section class="col-md-6 my-5 offset-md-3">
                 <div class="card shadow p-5">
-                    <h3 class="text-center text-uppercase">
+                    <h3 class="text-center font-time font-weight-bold text-uppercase">
                         Change Password
                     </h3>
                     <hr>

@@ -20,12 +20,6 @@ $result = mysqli_query($conn,$sql);
 
      <!-- header Scripts and Links -->
     <?php include_once "headerScripts.php"; ?>
-    
-<style>
-    .title {
-        font-family:sans-sarif;
-    }
-</style>
 
 </head>
 
@@ -38,7 +32,7 @@ $result = mysqli_query($conn,$sql);
                 if(mysqli_num_rows($result)>0) {
 
 echo  '<div class="container my-5">';
-echo '<h1 class="text-danger text-uppercase font-weight-bold text-center mb-5 title">WELCOME TO CHEMICAL EVENTS</h1>';
+echo '<h1 class="text-danger text-center mb-5 font-sans">WELCOME TO CHEMICAL EVENTS</h1>';
 echo '<div class="row">';
 
    

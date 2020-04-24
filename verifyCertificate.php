@@ -10,19 +10,6 @@
     <!-- header Scripts and Links -->
     <?php include_once "headerScripts.php"; ?>
 
-    <style>
-        .col-md-8 {
-            font-family: 'Times New Roman', Times, serif;
-            color: blue;
-            margin-top: 50px;
-            margin-bottom: 50px;
-        }
-
-        span {
-            color: orange;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -31,15 +18,15 @@
     <?php include_once "navbar.php" ?>
 
 
-    <main class="container">
+    <main class="container font-time text-warning">
         <div class="row">
 
-            <section class="col-md-8 offset-md-2 text-center">
+            <section class="col-md-8 my-5 offset-md-2 text-center">
 
-                <?php
+    <?php
 
-        require_once "config.php";
-        session_start();
+    require_once "config.php";
+    session_start();
 
   // GIT SHODH Certificate SYSTEM
 

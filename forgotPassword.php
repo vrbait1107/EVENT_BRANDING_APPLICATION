@@ -9,12 +9,6 @@
     <!-- header Scripts and Links -->
     <?php include_once "headerScripts.php"; ?>
 
-    <style>
-        h3 {
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: bold;
-        }
-    </style>
 </head>
 
 <body>
@@ -201,7 +195,7 @@ $userType = trim($_POST['userType']);
                 <div class="card shadow p-5">
 
 
-                    <h3 class="text-center text-uppercase text-primary mb-3">Password Recovery</h3>
+                    <h3 class="text-center text-uppercase font-time text-primary mb-3">Password Recovery</h3>
                     <hr>
 
                     <form action="" method="POST">

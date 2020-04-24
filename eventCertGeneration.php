@@ -18,14 +18,6 @@ session_start();
     <!-- header Scripts and Links -->
     <?php include_once "headerScripts.php"; ?>
 
-
-    <style>
-        h2 {
-            font-family: sans sarif;
-            font-weight: bold;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -40,7 +32,7 @@ session_start();
             <section class="col-md-6 offset-md-3">
                 <div class="card shadow animated zoomIn slow p-5 my-5">
 
-                    <h2 class="text-center mb-4">GIT <span class="text-danger font-weight-bold">
+                    <h2 class="text-center font-time font-weight-bold mb-4">GIT <span class="text-danger font-weight-bold">
                             SHODH </span>CERTIFICATE</h2>
 
                     <?php

@@ -1,0 +1,21 @@
+.font-time {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+}
+
+.font-sans {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.bg-aliceblue {
+  background-color: aliceblue;
+}
+
+.text-blue {
+  color: blue;
+}
+
+.bg-lightblack {
+  background-color: #3475;
+}

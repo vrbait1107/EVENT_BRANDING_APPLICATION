@@ -13,12 +13,6 @@ require_once 'config.php';
     <!-- header Scripts and Links -->
     <?php include_once "headerScripts.php"; ?>
 
-    <style>
-        h3 {
-            font-family: 'Times New Roman', Times, serif;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -104,7 +98,7 @@ $token = $_GET['token'];
         <div class="row">
             <section class="col-md-6 my-5 offset-md-3">
                 <div class="card shadow p-5">
-                    <h3 class="text-center text-uppercase">
+                    <h3 class="text-center font-time text-uppercase">
                         Reset Password
                     </h3>
                     <hr>

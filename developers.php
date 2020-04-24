@@ -23,13 +23,6 @@ if(!isset($_SESSION['user'])) {
     <!--AOS Animation-->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <style>
-        .devInfo {
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: bold;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -38,7 +31,7 @@ if(!isset($_SESSION['user'])) {
     <?php include_once "navbar.php"; ?>
 
     <main class="container">
-        <h1 class="text-center text-uppercase text-white mt-5 bg-info devInfo p-2  mb-5">Developer</h1>
+        <h1 class="text-center text-uppercase text-white mt-5 bg-info font-time p-2  mb-5">Developer</h1>
         <div class="row">
 
 
@@ -49,7 +42,7 @@ if(!isset($_SESSION['user'])) {
 
                         <figcaption>
                             <div class="text-center my-3">
-                                <h4 class="devInfo mb-4">VISHAL BAIT</h4>
+                                <h4 class="font-time mb-4">VISHAL BAIT</h4>
                                 <h5>Web Designer, Database, Back-End & Front-End Developer </h5>
 
                                 <div class="mt-3">
@@ -71,8 +64,8 @@ if(!isset($_SESSION['user'])) {
                 </div>
 
                 <div class="text-center mt-5" data-aos="fade-up">
-                    <h4 class="devInfo mb-2 text-primary">VISHAL BAIT</h4>
-                    <h5 class="devInfo">Web Designer, Database, Back-End & Front-End Developer </h5>
+                    <h4 class="font-time mb-2 text-primary">VISHAL BAIT</h4>
+                    <h5 class="font-time">Web Designer, Database, Back-End & Front-End Developer </h5>
                 </div>
             </section>
 
@@ -85,7 +78,7 @@ if(!isset($_SESSION['user'])) {
 
                         <figcaption>
                             <div class="text-center my-3">
-                                <h4 class="devInfo mb-4">SURAJ MOHITE</h4>
+                                <h4 class="font-time mb-4">SURAJ MOHITE</h4>
                                 <h5>Front-End Developer </h5>
 
                                 <div class="mt-3">
@@ -103,8 +96,8 @@ if(!isset($_SESSION['user'])) {
                 </div>
 
                 <div class="text-center mt-5" data-aos="fade-up">
-                    <h4 class="devInfo mb-2 text-primary">SURAJ MOHITE</h4>
-                    <h5 class="devInfo">Front-End Developer </h5>
+                    <h4 class="font-time mb-2 text-primary">SURAJ MOHITE</h4>
+                    <h5 class="font-time">Front-End Developer </h5>
                 </div>
 
 
@@ -119,7 +112,7 @@ if(!isset($_SESSION['user'])) {
                         <figcaption>
 
                             <div class="text-center my-3" data-aos="fade-up">
-                                <h4 class="devInfo mb-4">ONKAR MOKASHI</h4>
+                                <h4 class="font-time mb-4">ONKAR MOKASHI</h4>
                                 <h5>Back-End Developer and Android Application Developer </h5>
                             </div>
 
@@ -137,8 +130,8 @@ if(!isset($_SESSION['user'])) {
                 </div>
 
                 <div class="text-center mt-5" data-aos="fade-up">
-                    <h4 class="devInfo mb-2 text-primary">ONKAR MOKASHI</h4>
-                    <h5 class="devInfo">Back-End Developer and Android Application Developer </h5>
+                    <h4 class="font-time mb-2 text-primary">ONKAR MOKASHI</h4>
+                    <h5 class="font-time">Back-End Developer and Android Application Developer </h5>
                 </div>
 
             </section>
