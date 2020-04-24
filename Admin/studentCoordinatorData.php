@@ -125,6 +125,7 @@ if(isset($_REQUEST['delete'])) {
 
     $adminFileName = "studentCoordinatorIndex.php";
     $adminFileData = "studentCoordinatorData.php";
+    $adminManage = "#";
    
     include_once "includes/adminNavbar.php";
     ?>

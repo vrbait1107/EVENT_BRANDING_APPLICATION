@@ -84,7 +84,8 @@ if(!isset($_SESSION['Admin'])) {
 
     $adminFileName = "synergyIndex.php";
     $adminFileData = "synergyData.php";
-     $_SESSION['adminType'] = 'Synergy Administrator';
+    $adminManage = "#";
+    $_SESSION['adminType'] = 'Synergy Administrator';
    
     include_once "includes/adminNavbar.php";
     ?>
