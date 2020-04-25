@@ -1,13 +1,13 @@
 <?php 
-require_once "../config.php";
-session_start();
 
+    require_once "../config.php";
+    session_start();
 
 // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
 
-if(!isset($_SESSION['adminEmail'])) {
-     header("location:adminLogin.php");
- }
+    if(!isset($_SESSION['adminEmail'])) {
+        header("location:adminLogin.php");
+    }
 
     $department = $_SESSION["adminDepartment"];
  
@@ -93,7 +93,7 @@ if(!isset($_SESSION['adminEmail'])) {
                                     <div class="h5 mb-0 font-weight-bold"><?php echo $rowCount; ?></div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-users fa-2x text-gray-300"></i>
+                                    <i class="fas fa-users fa-3x text-warning"></i>
                                 </div>
                             </div>
                         </div>
@@ -106,13 +106,13 @@ if(!isset($_SESSION['adminEmail'])) {
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         Total Earnings</div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">&#8377;
                                         <?php echo $totalAmount; ?></div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-rupee-sign fa-2x"></i>
+                                    <i class="fas fa-rupee-sign text-warning fa-3x"></i>
                                 </div>
                             </div>
                         </div>
@@ -120,19 +120,19 @@ if(!isset($_SESSION['adminEmail'])) {
                 </section>
 
 
-                 <!-- Total student admin -->
+                <!-- Total student admin -->
                 <section class="col-md-6 mb-4">
                     <div class="card border-left-success shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                         Total Student Coordinator</div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                                         <?php echo $rowCountAdmin; ?></div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-users fa-2x"></i>
+                                    <img src="https://img.icons8.com/wired/50/000000/admin-settings-male.png" />
                                 </div>
                             </div>
                         </div>
@@ -155,9 +155,8 @@ if(!isset($_SESSION['adminEmail'])) {
                 </div>
             </div>
         </footer>
+
     </div>
-
-
 
     <!-- Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php"; ?>
