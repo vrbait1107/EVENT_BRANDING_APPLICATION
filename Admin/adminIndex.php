@@ -7,7 +7,9 @@ session_start();
      header("location:adminLogin.php");
  }
 
-  $sqlData ="select * from event_information";
+
+    // Display Participation count & total revenue
+    $sqlData ="select * from event_information";
 
     $resultData = mysqli_query($conn,$sqlData);
     $rowCount = mysqli_num_rows($resultData);
@@ -17,6 +19,22 @@ session_start();
     while($rowData = mysqli_fetch_assoc($resultData)){
      $totalAmount =   $totalAmount + $rowData['txnAmount'];
     } 
+
+     // display admin information count (Student Coordinator)
+    
+    $sqlDataAdmin ="select * from admin_information
+    WHERE adminType='Student Coordinator'";
+
+    $resultDataAdmin = mysqli_query($conn,$sqlDataAdmin);
+    $rowCountAdmin = mysqli_num_rows($resultDataAdmin);
+
+     // display admin information count (Faculty Coordinator)
+    $sqlDataAdmin2 ="select * from admin_information
+    WHERE adminType='Faculty Coordinator'";
+
+    $resultDataAdmin2 = mysqli_query($conn,$sqlDataAdmin2);
+    $rowCountAdmin2 = mysqli_num_rows($resultDataAdmin2);
+
 
 ?>
 
@@ -52,7 +70,7 @@ session_start();
 
         <main class="container-fluid">
 
-            <h1 class="mt-4 ">Dashboard for Administartor</h1>
+            <h1 class="mt-4 ">Dashboard for Administrator</h1>
 
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Dashboard</li>
@@ -74,7 +92,7 @@ session_start();
                                     <div class="h5 mb-0 font-weight-bold"><?php echo $rowCount; ?></div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-users fa-2x text-gray-300"></i>
+                                    <i class="fas fa-users fa-3x text-warning"></i>
                                 </div>
                             </div>
                         </div>
@@ -87,18 +105,58 @@ session_start();
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         Total Earnings</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">&#8377;
+                                    <div class="h5 mb-0 font-weight-bold">&#8377;
                                         <?php echo $totalAmount; ?></div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-rupee-sign fa-2x"></i>
+                                    <i class="fas fa-rupee-sign text-warning fa-3x"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
+
+
+                 <!-- Total Faculty Admministartor Count -->
+                <section class="col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                        Total Faculty Coordinator</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <?php echo $rowCountAdmin2; ?></div>
+                                </div>
+                                <div class="col-auto">
+                                    <img src="https://img.icons8.com/wired/50/000000/admin-settings-male.png"/>                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                                <!-- Total Admin Count for Student Coordinator -->
+                <section class="col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                        Total Student Coordinator</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <?php echo $rowCountAdmin; ?></div>
+                                </div>
+                                <div class="col-auto">
+                                     <img src="https://img.icons8.com/wired/50/000000/admin-settings-male.png"/>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
             </div>
         </main>
 

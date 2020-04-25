@@ -34,6 +34,7 @@ if(!isset($_SESSION['adminEmail'])) {
 
     $adminFileName = "adminIndex.php";
     $adminFileData = "adminIndexData.php";
+    $adminManage = "adminManage.php";
    
     include_once "includes/adminNavbar.php";
     ?>
