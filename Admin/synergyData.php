@@ -80,13 +80,13 @@ if(isset($_REQUEST['delete'])) {
     include_once "includes/adminNavbar.php";
     ?>
 
+  <div id="layoutSidenav_content">
+    <main class="container-fluid">
+      <div class="row">
+        <section class="col-12">
 
-  <main class="container-fluid">
-    <div class="row">
-      <section class="col-12">
 
-
-        <?php
+          <?php
          
         $sql ='select * FROM synergy_user_information';
         $result = mysqli_query($conn,$sql);
@@ -94,59 +94,59 @@ if(isset($_REQUEST['delete'])) {
         if(mysqli_num_rows($result)>0) {
         ?>
 
-        <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
-          <thead>
-            <th class='text-success text-center'>Certificate ID</th>
-            <th class='text-success text-center'>First Name</th>
-            <th class='text-success text-center'>Last Name</th>
-            <th class='text-success text-center'>Department Name</th>
-            <th class='text-success text-center'>Event</th>
-            <th class='text-success text-center'>Prize</th>
-            <th class='text-success text-center'>Action</th>
-          </thead>
+          <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
+            <thead>
+              <th class='text-success text-center'>Certificate ID</th>
+              <th class='text-success text-center'>First Name</th>
+              <th class='text-success text-center'>Last Name</th>
+              <th class='text-success text-center'>Department Name</th>
+              <th class='text-success text-center'>Event</th>
+              <th class='text-success text-center'>Prize</th>
+              <th class='text-success text-center'>Action</th>
+            </thead>
 
-          <tbody>
+            <tbody>
 
-            <?php
+              <?php
 
             while($row =mysqli_fetch_assoc($result)){
 
               ?>
 
-            <tr>
+              <tr>
 
-              <td class='text-center'><?php echo $row['certificateId']; ?></td>
-              <td class='text-center'><?php echo $row['firstName']; ?></td>
-              <td class='text-center'><?php echo $row['lastName']; ?></td>
-              <td class='text-center'><?php echo $row['departmentName']; ?></td>
-              <td class='text-center'><?php echo $row['eventName']; ?></td>
-              <td class='text-center'><?php echo $row['prize']; ?> </td>
+                <td class='text-center'><?php echo $row['certificateId']; ?></td>
+                <td class='text-center'><?php echo $row['firstName']; ?></td>
+                <td class='text-center'><?php echo $row['lastName']; ?></td>
+                <td class='text-center'><?php echo $row['departmentName']; ?></td>
+                <td class='text-center'><?php echo $row['eventName']; ?></td>
+                <td class='text-center'><?php echo $row['prize']; ?> </td>
 
-              <td>
-                <form action="synergyCertificate.php" class="text-center" method="post">
-                  <input type="hidden" name="certificateId" value='<?php echo $row ["certificateId"]; ?>'>
-                  <input type="submit" class="btn btn-sm btn-primary text-white text-center" value="VIEW CERTIFICATE"
-                    name="view">
-                </form>
+                <td>
+                  <form action="synergyCertificate.php" class="text-center" method="post">
+                    <input type="hidden" name="certificateId" value='<?php echo $row ["certificateId"]; ?>'>
+                    <input type="submit" class="btn btn-sm btn-primary text-white text-center" value="VIEW CERTIFICATE"
+                      name="view">
+                  </form>
 
-                <form action="" class="text-center" method="post">
-                  <input type="hidden" name="certificateId" value='<?php echo $row ["certificateId"]; ?>'>
-                  <input type="submit" class="btn btn-sm btn-danger text-white text-center" value="DELETE CERTIFICATE"
-                    name="delete">
-                </form>
-              </td>
+                  <form action="" class="text-center" method="post">
+                    <input type="hidden" name="certificateId" value='<?php echo $row ["certificateId"]; ?>'>
+                    <input type="submit" class="btn btn-sm btn-danger text-white text-center" value="DELETE CERTIFICATE"
+                      name="delete">
+                  </form>
+                </td>
 
-            </tr>
+              </tr>
 
-            <?php
+              <?php
             }
 
             ?>
 
-          </tbody>
-        </table>
+            </tbody>
+          </table>
 
-        <?php
+          <?php
          }
 
         else {
@@ -155,9 +155,14 @@ if(isset($_REQUEST['delete'])) {
 
         ?>
 
-      </section>
-    </div>
-  </main>
+        </section>
+      </div>
+    </main>
+
+    <!--Admin Footer-->
+    <?php include_once "includes/adminFooter.php";?>
+
+  </div>
 
   <!-- Admin Footer Scripts -->
   <?php include_once "includes/adminFooterScripts.php"; ?>

@@ -294,11 +294,12 @@ if(isset($_REQUEST['delete'])) {
               </div>
             </div>
           </div>
-      </div>
+        </section>
 
-      </section>
-  </div>
-  </main>
+      </div>
+    </main>
+    <!--Admin Footer-->
+    <?php include_once "includes/adminFooter.php";?>
   </div>
 
   <!-- Admin Footer Scripts -->

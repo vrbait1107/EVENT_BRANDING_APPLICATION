@@ -53,6 +53,7 @@ if(!isset($_SESSION['adminEmail'])) {
 
 
           <div class="card mb-4">
+
             <div class="card-header text-center">
               <h5><i class="fas fa-table mr-1"></i>
                 Event Participant Details (College Level)</h5>
@@ -63,16 +64,16 @@ if(!isset($_SESSION['adminEmail'])) {
 
                 <?php
 
-//  Retriving all the Information From the Database
+                  //  Retriving all the Information From the Database
 
-$sql ="select * FROM user_information INNER JOIN event_information ON 
-user_information.email= event_information.email ORDER By firstName ASC";
+                  $sql ="select * FROM user_information INNER JOIN event_information ON 
+                  user_information.email= event_information.email ORDER By firstName ASC";
 
-$result = mysqli_query($conn,$sql);
+                  $result = mysqli_query($conn,$sql);
 
-if(mysqli_num_rows($result)>0) {
+                  if(mysqli_num_rows($result)>0) {
 
-        ?>
+                ?>
 
                 <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
 
@@ -130,11 +131,14 @@ if(mysqli_num_rows($result)>0) {
               </div>
             </div>
           </div>
-      </div>
+        </section>
 
-      </section>
-  </div>
-  </main>
+
+      </div>
+    </main>
+
+    <!--Admin Footer-->
+    <?php include_once "includes/adminFooter.php";?>
   </div>
 
   <!-- Admin Footer Scripts -->

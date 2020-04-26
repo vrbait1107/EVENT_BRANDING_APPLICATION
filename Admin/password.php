@@ -31,7 +31,7 @@ elseif($_SESSION['adminType'] === "Synergy Administrator"){
 else{
     $adminFileName = "#";
     $adminFileData = "#";
-    $adminManage = "#"
+    $adminManage = "#";
 }
 
 ?>
@@ -160,6 +160,9 @@ if(isset($_POST['changePassword'])) {
             </section>
         </div>
     </main>
+
+     <!--Admin Footer-->
+    <?php include_once "includes/adminFooter.php";?>
 </div>
 
     <!-- Admin Footer Scripts -->

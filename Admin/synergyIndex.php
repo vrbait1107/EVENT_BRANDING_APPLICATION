@@ -171,6 +171,9 @@ if(!isset($_SESSION['Admin'])) {
                 <!--  ADD Administartor Profile Form Complete -->
             </div>
         </main>
+    <!--Admin Footer-->
+    <?php include_once "includes/adminFooter.php";?>
+
     </div>
 
     <!--Jquery-->

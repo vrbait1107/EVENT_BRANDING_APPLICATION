@@ -133,11 +133,12 @@ if(!isset($_SESSION['adminEmail'])) {
               </div>
             </div>
           </div>
-      </div>
+        </section>
 
-      </section>
-  </div>
-  </main>
+      </div>
+    </main>
+    <!--Admin Footer-->
+    <?php include_once "includes/adminFooter.php";?>
 
   </div>
 
