@@ -8,3 +8,6 @@
         crossorigin="anonymous"></script>
     <!--SweetAlert.js-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <!--common StyleSheet-->
+    <link href="../css/common.css" rel="stylesheet" >
