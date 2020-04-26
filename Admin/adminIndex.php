@@ -2,10 +2,10 @@
 require_once "../config.php";
 session_start();
 
-// Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
- if(!isset($_SESSION['adminEmail'])) {
-     header("location:adminLogin.php");
- }
+    // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
+    if(!isset($_SESSION['adminEmail'])) {
+        header("location:adminLogin.php");
+    }
 
 
     // Display Participation count & total revenue
@@ -35,7 +35,22 @@ session_start();
     $resultDataAdmin2 = mysqli_query($conn,$sqlDataAdmin2);
     $rowCountAdmin2 = mysqli_num_rows($resultDataAdmin2);
 
+    
+    // Participation Count Department Wise
 
+    function count1 ($department) {
+
+        global $conn;
+
+        $sql = "select * from event_information where event in 
+        (select eventName from events_details_information where eventDepartment = '$department')";
+
+        $result = mysqli_query($conn, $sql);
+
+        $row = mysqli_num_rows($result);
+
+        return $row;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -70,14 +85,12 @@ session_start();
 
         <main class="container-fluid">
 
-            <h1 class="mt-4 ">Dashboard for Administrator</h1>
+            <h2 class="mt-4 font-time text-uppercase">Dashboard for Administrator</h2>
 
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
 
-
-            <!-- Display Data Related to Event held by Department-->
 
             <div class="row">
 
@@ -119,7 +132,7 @@ session_start();
                 </section>
 
 
-                 <!-- Total Faculty Admministartor Count -->
+                <!-- Total Faculty Admministartor Count -->
                 <section class="col-md-6 mb-4">
                     <div class="card border-left-success shadow h-100 py-2">
                         <div class="card-body">
@@ -131,14 +144,14 @@ session_start();
                                         <?php echo $rowCountAdmin2; ?></div>
                                 </div>
                                 <div class="col-auto">
-                                    <img src="https://img.icons8.com/wired/50/000000/admin-settings-male.png"/>                                </div>
+                                    <img src="https://img.icons8.com/wired/50/000000/admin-settings-male.png" /> </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
 
-                                <!-- Total Admin Count for Student Coordinator -->
+                <!-- Total Admin Count for Student Coordinator -->
                 <section class="col-md-6 mb-4">
                     <div class="card border-left-success shadow h-100 py-2">
                         <div class="card-body">
@@ -150,14 +163,76 @@ session_start();
                                         <?php echo $rowCountAdmin; ?></div>
                                 </div>
                                 <div class="col-auto">
-                                     <img src="https://img.icons8.com/wired/50/000000/admin-settings-male.png"/>  
+                                    <img src="https://img.icons8.com/wired/50/000000/admin-settings-male.png" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-
             </div>
+
+            <hr>
+
+            <!-- Collaspe Bar for Display Data-->
+
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                <h4 class="text-center text-uppercase my-4 font-time">Participation Count Department
+                                    Wise</h4>
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        data-parent="#accordionExample">
+
+
+                        <div class="row">
+
+                            <?php
+                    
+                                    $departmentArray =["Electronics and Telecommunication", "Chemical", "Computer", "Civil", "Mechanical"];
+                                    for($i= 0; $i < 5; $i++) {
+                    
+                                ?>
+
+                            <!-- Total Admin Count for Student Coordinator -->
+                            <section class="col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Total Participation <br>
+                                                    <span class="text-danger"> <?php echo  $departmentArray[$i]; ?>
+                                                    </span>
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo count1 ($departmentArray[$i]);?>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-users fa-3x text-warning"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <?php
+                                }
+                                ?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </main>
 
         <footer class="py-4 bg-light mt-auto">
