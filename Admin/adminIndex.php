@@ -20,7 +20,7 @@ session_start();
      $totalAmount =   $totalAmount + $rowData['txnAmount'];
     } 
 
-     // display admin information count (Student Coordinator)
+     // display admin information count (Student Coordinator) for college
     
     $sqlDataAdmin ="select * from admin_information
     WHERE adminType='Student Coordinator'";
@@ -28,7 +28,8 @@ session_start();
     $resultDataAdmin = mysqli_query($conn,$sqlDataAdmin);
     $rowCountAdmin = mysqli_num_rows($resultDataAdmin);
 
-     // display admin information count (Faculty Coordinator)
+
+     // display admin information count (Faculty Coordinator) for college
     $sqlDataAdmin2 ="select * from admin_information
     WHERE adminType='Faculty Coordinator'";
 
@@ -46,10 +47,26 @@ session_start();
         (select eventName from events_details_information where eventDepartment = '$department')";
 
         $result = mysqli_query($conn, $sql);
-
         $row = mysqli_num_rows($result);
-
         return $row;
+    }
+
+
+     // Display   total revenue departmet wise
+    function countRevenue($department) {
+    global $conn;
+    $sql = "select * from event_information where event in 
+        (select eventName from events_details_information where eventDepartment = '$department')";
+
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_num_rows($result);
+    $totalAmount = 0;
+
+    while($row = mysqli_fetch_assoc($result)){
+     $totalAmount =   $totalAmount + $row['txnAmount'];
+    } 
+
+    return $totalAmount;
     }
 ?>
 
@@ -182,8 +199,8 @@ session_start();
                         <h2 class="mb-0">
                             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
                                 aria-expanded="true" aria-controls="collapseOne">
-                                <h4 class="text-center text-uppercase my-4 font-time">Participation Count Department
-                                    Wise</h4>
+                                <h5 class="text-center text-uppercase my-4 font-time">Participation Count and Revenue Department
+                                    Wise</h5>
                             </button>
                         </h2>
                     </div>
@@ -201,7 +218,7 @@ session_start();
                     
                                 ?>
 
-                            <!-- Total Admin Count for Student Coordinator -->
+                            <!-- Total Participation Count Department Wise -->
                             <section class="col-md-6 mb-4">
                                 <div class="card border-left-success shadow h-100 py-2">
                                     <div class="card-body">
@@ -223,6 +240,32 @@ session_start();
                                     </div>
                                 </div>
                             </section>
+
+
+
+
+                               <!-- Total Revenue Department Wise -->
+                            <section class="col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Total Revenue <br>
+                                                    <span class="text-danger"> <?php echo  $departmentArray[$i]; ?>
+                                                    </span>
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                   &#8377; <?php echo countRevenue($departmentArray[$i]);?>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                 <i class="fas fa-rupee-sign text-warning fa-3x"></i>                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
 
                             <?php
                                 }
