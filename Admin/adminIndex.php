@@ -56,6 +56,23 @@ session_start();
     }
 
 
+   // Student Administrator Count Department Wise
+
+    function countAdmin ($department) {
+
+    global $conn;
+
+    $sql ="select * from admin_information
+    WHERE adminType='Student Coordinator' and adminDepartment = '$department'";
+
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_num_rows($result);
+
+    return $row;
+
+    }
+
+
      // Display   total revenue departmet wise
     function countRevenue($department) {
     global $conn;
@@ -199,15 +216,18 @@ session_start();
             <div class="accordion" id="accordionExample">
                 <div class="card">
 
+                    <!--Collaspe One-->
+
                     <div class="card-header" id="headingOne">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                <h5 class="text-center text-uppercase my-4 font-time">Participation Count and Revenue Department
-                                    Wise</h5>
-                            </button>
-                        </h2>
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                            <h5 class="text-center text-uppercase my-2 font-time">Participation Count and Revenue
+                                Department
+                                Wise</h5>
+                        </button>
                     </div>
+
+                    <!--Collaspe One Target-->
 
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                         data-parent="#accordionExample">
@@ -248,7 +268,7 @@ session_start();
 
 
 
-                               <!-- Total Revenue Department Wise -->
+                            <!-- Total Revenue Department Wise -->
                             <section class="col-md-6 mb-4">
                                 <div class="card border-left-success shadow h-100 py-2">
                                     <div class="card-body">
@@ -260,11 +280,11 @@ session_start();
                                                     </span>
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                   &#8377; <?php echo countRevenue($departmentArray[$i]);?>
+                                                    &#8377; <?php echo countRevenue($departmentArray[$i]);?>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
-                                                 <i class="fas fa-rupee-sign text-warning fa-3x"></i>                                            </div>
+                                                <i class="fas fa-rupee-sign text-warning fa-3x"></i> </div>
                                         </div>
                                     </div>
                                 </div>
@@ -277,6 +297,61 @@ session_start();
 
                         </div>
                     </div>
+
+                    <!--Collaspe Two-->
+
+                    <div class="card-header" id="headingTwo">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                            aria-expanded="true" aria-controls="collapseTwo">
+                            <h5 class="text-center text-uppercase my-2 font-time">Student Coordinator Count Department
+                                Wise</h5>
+                        </button>
+                    </div>
+
+                    <!--Collaspe Two Target-->
+
+                    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+                        data-parent="#accordionExample">
+
+
+                        <div class="row">
+
+                            <?php
+                    
+                                    $departmentArray =["Electronics and Telecommunication", "Chemical", "Computer", "Civil", "Mechanical"];
+                                    for($i= 0; $i < 5; $i++) {
+                    
+                                ?>
+
+                            <!-- Total Participation Count Department Wise -->
+                            <section class="col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Total Participation <br>
+                                                    <span class="text-danger"> <?php echo  $departmentArray[$i]; ?>
+                                                    </span>
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo countAdmin ($departmentArray[$i]);?>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-users fa-3x text-warning"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <?php
+                                }
+                                ?>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
