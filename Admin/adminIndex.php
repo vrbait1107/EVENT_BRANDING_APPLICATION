@@ -330,7 +330,7 @@ session_start();
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    Total Participation <br>
+                                                    Total Student Coordinator <br>
                                                     <span class="text-danger"> <?php echo  $departmentArray[$i]; ?>
                                                     </span>
                                                 </div>
@@ -339,7 +339,8 @@ session_start();
                                                 </div>
                                             </div>
                                             <div class="col-auto">
-                                                <i class="fas fa-users fa-3x text-warning"></i>
+                                                <img
+                                                    src="https://img.icons8.com/wired/50/000000/admin-settings-male.png" />
                                             </div>
                                         </div>
                                     </div>
