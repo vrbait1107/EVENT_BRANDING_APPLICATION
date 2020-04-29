@@ -37,6 +37,52 @@
     $resultDataAdmin = mysqli_query($conn,$sqlDataAdmin);
     $rowCountAdmin = mysqli_num_rows($resultDataAdmin);
 
+     
+
+    //Extracting Event Name from Database in Array to Show Event Details.
+
+     $sqlData1 ="select eventName from events_details_information
+     WHERE eventDepartment ='$department'";
+
+    $resultData1 = mysqli_query($conn,$sqlData1);
+
+    $events = array();
+
+    while( $rowData1 = mysqli_fetch_array($resultData1)){
+    array_push($events, $rowData1['eventName']) ;
+    }
+
+     // Participation Count Department Wise
+
+    function count1 ($event) {
+
+        global $conn;
+
+        $sql = "select * from event_information where event = '$event'";
+
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_num_rows($result);
+        return $row;
+    }
+
+
+     // Display   total revenue departmet wise
+    function countRevenue($event) {
+    global $conn;
+
+    $sql = "select * from event_information where event = '$event'";
+
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_num_rows($result);
+    $totalAmount = 0;
+
+    while($row = mysqli_fetch_assoc($result)){
+     $totalAmount =   $totalAmount + $row['txnAmount'];
+    } 
+
+    return $totalAmount;
+    }
+
 ?>
 
 
@@ -74,8 +120,8 @@
     <div id="layoutSidenav_content">
 
         <main class="container-fluid">
-            <h1 class="mt-4 text-center">Dashboard for Faculty Coordinator
-                <?php echo $_SESSION["adminDepartment"];?> </h1>
+            <h2 class="mt-4 text-center font-time text-uppercase">Dashboard for Faculty Coordinator <br />
+                <span class="text-danger"><?php echo $_SESSION["adminDepartment"];?></span> </h2>
 
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Dashboard</li>
@@ -102,6 +148,7 @@
                         </div>
                     </div>
                 </section>
+
 
                 <!-- Total Earnings of Events -->
                 <section class="col-md-6 mb-4">
@@ -141,13 +188,101 @@
                         </div>
                     </div>
                 </section>
-
             </div>
+
+
+            <!-- Collaspe Bar for Display Data-->
+
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+
+                    <!--Collaspe One-->
+
+                    <div class="card-header" id="headingOne">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                            <h5 class="text-center text-uppercase my-2 font-time">Participation Count and Revenue
+                                Event
+                                Wise</h5>
+                        </button>
+                    </div>
+
+                    <!--Collaspe One Target-->
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        data-parent="#accordionExample">
+
+
+                        <div class="row">
+
+                            <?php
+
+                for($i =0; $i < sizeof($events); $i++){
+
+                ?>
+
+                            <!-- Total student Participant Event -->
+
+                            <section class="col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Total Student Participants <br />
+                                                    <span class="text-danger"><?php echo $events[$i]; ?></span>
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <?php echo count1($events[$i]) ?></div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-users fa-3x text-warning"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+
+                            <!-- Total Event Revenue Events Wise -->
+
+                            <section class="col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div
+                                                    class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                                    Total Event Revenue <br />
+                                                    <span class="text-danger"><?php echo $events[$i]; ?></span>
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    &#8377; <?php echo countRevenue($events[$i]) ?></div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-rupee-sign text-warning fa-3x"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <?php
+
+                            }
+
+                            ?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </main>
 
 
         <!--Admin Footer-->
-    <?php include_once "includes/adminFooter.php";?>
+        <?php include_once "includes/adminFooter.php";?>
 
     </div>
 
