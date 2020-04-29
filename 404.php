@@ -6,7 +6,7 @@
     <title>Error Page</title>
 
      <!-- header Scripts and Links -->
-    <?php include_once "headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php"; ?>
     
 </head>
 <body>

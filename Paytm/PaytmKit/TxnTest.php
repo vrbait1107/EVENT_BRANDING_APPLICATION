@@ -22,7 +22,7 @@ $userName= $_SESSION['user'];
 	<meta name="GENERATOR" content="Evrsoft First Page">
 
 	<!-- header Scripts and Links -->
-	<?php include_once "headerScripts.php"; ?>
+	<?php include_once "includes/headerScripts.php"; ?>
 
 	<style>
 		h3 {

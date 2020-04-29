@@ -19,7 +19,7 @@ if(!isset($_SESSION['user'])) {
     <!--  Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <!-- header Scripts and Links -->
-    <?php include_once "headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php"; ?>
 
 </head>
 
@@ -27,7 +27,7 @@ if(!isset($_SESSION['user'])) {
 
     <!--NAVBAR-->
 
-    <?php include_once "navbar.php"; ?>
+    <?php include_once "includes/navbar.php"; ?>
 
 
     <main class="container text-uppercase">
@@ -106,9 +106,9 @@ if(!isset($_SESSION['user'])) {
     </script>
 
     <!-- Footer PHP -->
-    <?php include_once "footer.php"; ?>
+    <?php include_once "includes/footer.php"; ?>
     <!-- Footer Script -->
-    <?php include_once "footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php"; ?>
 
 
 </body>

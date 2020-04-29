@@ -16,7 +16,7 @@ if(isset($_SESSION['user'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
    <!-- header Scripts and Links -->
-  <?php include_once "headerScripts.php"; ?>
+  <?php include_once "includes/headerScripts.php"; ?>
   <!--Local css-->
   <link rel="stylesheet" href="css/event-reg.css">
   <!-- Google Recaptcha -->
@@ -177,7 +177,7 @@ if(isset($_SESSION['user'])) {
 
 
     <!-- Footer Script -->
-    <?php include_once "footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php"; ?>
 
 </body>
 

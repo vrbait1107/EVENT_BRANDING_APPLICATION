@@ -17,7 +17,7 @@ require_once '../../config.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- header Scripts and Links -->
-	<?php include_once "../../headerScripts.php"; ?>
+	<?php include_once "../../includes/headerScripts.php"; ?>
 
 	<title>Page Response</title>
 

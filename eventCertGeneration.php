@@ -16,7 +16,7 @@ session_start();
     <!-- Animate css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <!-- header Scripts and Links -->
-    <?php include_once "headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php"; ?>
 
 </head>
 
@@ -24,7 +24,7 @@ session_start();
 
 
     <!-- Navbar-->
-    <?php include_once 'navbar.php'; ?>
+    <?php include_once 'includes/navbar.php'; ?>
 
     <main class="container">
         <div class="row">
@@ -76,9 +76,9 @@ echo "</table>";
     </main>
 
     <!-- Footer PHP -->
-    <?php include_once "footer.php"; ?>
+    <?php include_once "includes/footer.php"; ?>
     <!-- Footer Script -->
-    <?php include_once "footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php"; ?>
 
 </body>
 

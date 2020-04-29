@@ -32,7 +32,7 @@ $mobileNumber =$row['mobileNumber'];
     <title>User Profile</title>
 
      <!-- header Scripts and Links -->
-    <?php include_once "headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php"; ?>
     
 </head>
 
@@ -80,7 +80,7 @@ if(isset($_POST['update'])) {
 ?>
 
     <!-- Navbar PHP -->
-    <?php include_once "navbar.php"; ?>
+    <?php include_once "includes/navbar.php"; ?>
 
 
     <main class="container">
@@ -145,9 +145,9 @@ if(isset($_POST['update'])) {
     </main>
 
     <!-- Footer PHP -->
-    <?php include_once "footer.php" ?>
+    <?php include_once "includes/footer.php" ?>
     <!-- Footer Script -->
-     <?php include_once "footerScripts.php"; ?>
+     <?php include_once "includes/footerScripts.php"; ?>
     <!-- Form Validation -->
     <script src="js/form-validation.js"></script>
 

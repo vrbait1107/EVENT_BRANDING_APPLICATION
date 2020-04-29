@@ -8,14 +8,14 @@
     <title>Certificate Verification</title>
 
     <!-- header Scripts and Links -->
-    <?php include_once "headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php"; ?>
 
 </head>
 
 <body>
 
     <!--Navbar.php-->
-    <?php include_once "navbar.php" ?>
+    <?php include_once "includes/navbar.php" ?>
 
 
     <main class="container font-time text-warning">
@@ -286,9 +286,9 @@ if(isset($_POST["synergySubmit"])) {
 
 
     <!--Footer.PHP-->
-    <?php include_once 'footer.php'; ?>
+    <?php include_once 'includes/footer.php'; ?>
     <!-- Footer Script -->
-    <?php include_once "footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php"; ?>
 
 </body>
 

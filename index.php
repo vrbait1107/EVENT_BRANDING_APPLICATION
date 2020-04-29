@@ -41,7 +41,7 @@ if($result){
     <!--Animate CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
      <!-- header Scripts and Links -->
-    <?php include_once "headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php"; ?>
      <!--Loader-->
     <link rel="stylesheet" href="css/loader.css">
 
@@ -80,7 +80,7 @@ if($result){
 
 
     <!--Navbar-->
-    <?php include_once "navbar.php"; ?>
+    <?php include_once "includes/navbar.php"; ?>
 
 
     <main class="container">
@@ -162,9 +162,9 @@ if($result){
     </div>
 
     <!-- Footer PHP -->
-    <?php include_once "footer.php"; ?>
+    <?php include_once "includes/footer.php"; ?>
     <!-- Footer Script -->
-    <?php include_once "footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php"; ?>
 
     <script>
         window.onload = () => {

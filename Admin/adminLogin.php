@@ -35,7 +35,7 @@ else {
     <!--Local CSS File -->
     <link rel="stylesheet" href="../css/event-reg.css">
      <!-- header Scripts and Links -->
-    <?php include_once "../headerScripts.php"; ?>
+    <?php include_once "../includes/headerScripts.php"; ?>
     <!-- Google Recaptcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -298,7 +298,7 @@ if(isset($_POST['login'])){
     </main>
 
     <!--Footer Scripts-->
-    <?php include_once "../footerScripts.php" ?>
+    <?php include_once "../includes/footerScripts.php" ?>
 
 </body>
 

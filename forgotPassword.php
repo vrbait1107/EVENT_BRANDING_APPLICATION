@@ -7,14 +7,14 @@
     <title>Forgot Password Page</title>
 
     <!-- header Scripts and Links -->
-    <?php include_once "headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php"; ?>
 
 </head>
 
 <body>
 
     <!-- Navbar PHP -->
-    <?php include_once "navbar.php"; ?>
+    <?php include_once "includes/navbar.php"; ?>
 
 
     <!-- PHP Code Start -->
@@ -224,9 +224,9 @@ $userType = trim($_POST['userType']);
     </main>
 
     <!-- Footer PHP -->
-    <?php include_once "footer.php"; ?>
+    <?php include_once "includes/footer.php"; ?>
     <!-- Footer Script -->
-    <?php include_once "footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php"; ?>
 
 </body>
 

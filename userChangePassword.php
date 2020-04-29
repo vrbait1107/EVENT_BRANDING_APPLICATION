@@ -16,7 +16,7 @@ header("location:login.php");
     <title>Change Password</title>
 
      <!-- header Scripts and Links -->
-    <?php include_once "headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php"; ?>
     
 </head>
 
@@ -106,7 +106,7 @@ $dbPassword = $row['mainPassword'];
 ?>
 
     <!-- Navbar PHP -->
-    <?php include_once "navbar.php"; ?>
+    <?php include_once "includes/navbar.php"; ?>
 
 
     <main class="container">
@@ -148,9 +148,9 @@ $dbPassword = $row['mainPassword'];
     </main>
 
     <!-- Footer PHP -->
-    <?php include_once "footer.php"; ?>
+    <?php include_once "includes/footer.php"; ?>
     <!-- Footer Script -->
-    <?php include_once "footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php"; ?>
 
 </body>
 

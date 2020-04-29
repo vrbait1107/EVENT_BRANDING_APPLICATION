@@ -19,13 +19,13 @@ $result = mysqli_query($conn,$sql);
     <title>Event Registration</title>
 
      <!-- header Scripts and Links -->
-    <?php include_once "headerScripts.php"; ?>    
+    <?php include_once "includes/headerScripts.php"; ?>    
     
 </head>
 
 <body>
 
-<?php include_once "navbar.php";?>
+<?php include_once "includes/navbar.php";?>
 
 
     <?php
@@ -76,9 +76,9 @@ $i++;
     </div>
 
      <!-- Footer PHP -->
-    <?php include_once "footer.php"; ?>
+    <?php include_once "includes/footer.php"; ?>
     <!-- Footer Script -->
-    <?php include_once "footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php"; ?>
 
 </body>
 

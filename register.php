@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
    <!-- header Scripts and Links -->
-  <?php include_once "headerScripts.php"; ?>
+  <?php include_once "includes/headerScripts.php"; ?>
   <!-- Event-Reg css -->
   <link rel="stylesheet" href="css/event-reg.css">
   <!-- Animate css -->
@@ -394,7 +394,7 @@ if (isset($_POST['submit'])) {
   </div>
 
   <!-- Footer Script -->
-  <?php include_once "footerScripts.php"; ?>
+  <?php include_once "includes/footerScripts.php"; ?>
   <!-- Form Validation -->
   <script src="js/form-validation.js"></script>
 
