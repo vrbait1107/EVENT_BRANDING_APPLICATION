@@ -20,7 +20,7 @@
     <!-- PHP Code Start -->
 
     <?php 
-require_once "config.php";
+     require_once "config.php";
 
 // Generating Random Password to Send Over Email.
 $token =   bin2hex(random_bytes(15));
@@ -195,7 +195,12 @@ $userType = trim($_POST['userType']);
                 <div class="card shadow p-5">
 
 
-                    <h3 class="text-center text-uppercase font-time text-primary mb-3">Password Recovery</h3>
+                    <h3 class="text-center text-uppercase font-time text-primary mb-3">Forgot Your Password?</h3>
+
+                    <p class="text-center">We get it, stuff happens. Just enter your email address below and we'll send
+                        you a link to reset
+                        your password!</p>
+
                     <hr>
 
                     <form action="" method="POST">
