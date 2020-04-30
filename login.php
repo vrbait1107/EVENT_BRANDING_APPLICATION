@@ -162,7 +162,7 @@ if(isset($_SESSION['user'])) {
             </div>
 
              <div class="form-group">
-              <a href="#" class="text-danger font-weight-bold" name="activateDisableEmail">Activate your
+              <a href="activateDisableAccount.php" class="text-danger font-weight-bold" name="activateDisableEmail">Activate your
                 Disable Account</a>
             </div>
 
