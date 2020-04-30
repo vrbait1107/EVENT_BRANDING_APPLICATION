@@ -161,6 +161,11 @@ if(isset($_SESSION['user'])) {
                 password?</a>
             </div>
 
+             <div class="form-group">
+              <a href="#" class="text-danger font-weight-bold" name="activateDisableEmail">Activate your
+                Disable Account</a>
+            </div>
+
             <div class="text-center my-2">
               <div class="g-recaptcha text-center" data-sitekey="6LdGougUAAAAAG96eGund5fScrR1fouBZvyLf1RL"></div>
             </div>
