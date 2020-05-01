@@ -52,8 +52,8 @@ $userType = trim($_POST['userType']);
     $mail->SMTPAuth = true;
     $mail->Username = "vishalbait02@gmail.com";
     $mail->Password = "9921172153";
-    $mail->setFrom('vishalbait02@gmail.com', 'Vishal Bait');
-    $mail->addReplyTo('non-reply@gmail.com', 'vishal bait');
+    $mail->setFrom('vishalbait02@gmail.com', 'GIT SHODH 2K20');
+    $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
     $mail->addAddress($email, $email);
     $mail->Subject = "GIT SHODH 2K20 PASSWORD RESET";
 

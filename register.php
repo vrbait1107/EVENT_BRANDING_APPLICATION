@@ -115,8 +115,8 @@ if (isset($_POST['submit'])) {
                       $mail->SMTPAuth = true;
                       $mail->Username = "vishalbait02@gmail.com";
                       $mail->Password = "9921172153";
-                      $mail->setFrom('vishalbait02@gmail.com', 'Vishal Bait');
-                      $mail->addReplyTo('non-reply@gmail.com', 'vishal bait');
+                      $mail->setFrom('vishalbait02@gmail.com', 'GIT SHODH 2K20');
+                      $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
                       $mail->addAddress($userName, $userName);
                       $mail->Subject = "GIT SHODH 2K20 Activate Your Account";
 
@@ -132,19 +132,6 @@ if (isset($_POST['submit'])) {
                           } else {
                               echo "<h3 class='text-center text-primary'>Check Your Email.</h3>";
                           }
-
-                                   function save_mail($mail) {
-                                    //You can change 'Sent Mail' to any other folder or tag
-                                    $path = "{imap.gmail.com:993/imap/ssl}[Gmail]/Sent Mail";
-
-                                    //Tell your server to open an IMAP connection using the same username and password as you used for SMTP
-                                    $imapStream = imap_open($path, $mail->Username, $mail->Password);
-
-                                    $result = imap_append($imapStream, $path, $mail->getSentMIMEMessage());
-                                    imap_close($imapStream);
-
-                                    return $result;
-                                }
 
   // Mail Code End
                     } 

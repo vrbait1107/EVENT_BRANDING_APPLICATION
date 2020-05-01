@@ -59,11 +59,10 @@ require_once "config.php";
                     $mail->SMTPAuth = true;
                     $mail->Username = "vishalbait02@gmail.com";
                     $mail->Password = "9921172153";
-                    $mail->setFrom("vishalbait02@gmail.com", "vishalbait02@gmail.com");
+                    $mail->setFrom("vishalbait02@gmail.com", "GIT SHODH 2K20");
                     $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
 
                     $mail->addAddress("$email", "$email");
-
 
                     $mail->Subject = "GIT SHODH 2K20 Reactivate Your Account";
 
@@ -78,25 +77,12 @@ require_once "config.php";
                     if (!$mail->send()) {
                     echo "Mailer Error: " . $mail->ErrorInfo;
                     } else {
-                    echo "
-                    <script>Swal.fire({
+                    echo " <script>Swal.fire({
                             icon: 'success',
                             title: 'Success',
                             text: 'Email Sent'
-                        })</script>";         }
-
-                    function save_mail($mail) {
-                    //You can change 'Sent Mail' to any other folder or tag
-                    $path = "{imap.gmail.com:993/imap/ssl}[Gmail]/Sent Mail";
-
-                    //Tell your server to open an IMAP connection using the same username and password as you used for SMTP
-                    $imapStream = imap_open($path, $mail->Username, $mail->Password);
-
-                    $result = imap_append($imapStream, $path, $mail->getSentMIMEMessage());
-                    imap_close($imapStream);
-
-                    return $result;
-                    }
+                        })</script>";        
+                     }
 
                     }
 
