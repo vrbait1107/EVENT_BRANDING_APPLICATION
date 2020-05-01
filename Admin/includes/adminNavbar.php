@@ -47,7 +47,7 @@
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">Core</div>
 
-                    <a class="nav-link" href= "<?php echo $adminFileName; ?>">
+                    <a class="nav-link" href="<?php echo $adminFileName; ?>">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Dashboard
                     </a>
@@ -86,17 +86,25 @@
                     <div class="sb-sidenav-menu-heading">Addons</div>
 
                     <a class="nav-link" href="<?php echo $adminFileData; ?>">
+
                         <div class="sb-nav-link-icon">
                             <i class="fas fa-table"></i>
                         </div>
                         Tables
                     </a>
 
-                      <a class="nav-link" href="<?php echo $adminManage ?>">
+                    <a class="nav-link" href="<?php echo $adminManage ?>">
                         <div class="sb-nav-link-icon">
                             <i class="fas fa-table"></i>
                         </div>
                         Add/Manage Admin
+                    </a>
+
+                    <a class="nav-link" href="sendMails.php">
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        Send Emails to Users
                     </a>
 
                 </div>
