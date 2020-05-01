@@ -38,21 +38,20 @@ if(!isset($_SESSION['user'])) {
 
 if(isset($_POST['submit'])){
 
-            $name = trim($_POST['name']);
-            $contactEmail = trim($_POST['email']);
-            $contactSubject = trim($_POST['subject']);
-            $contactMessage = trim($_POST['message']);
 
-            $name = mysqli_real_escape_string($conn,$name);
-            $contactEmail =  mysqli_real_escape_string($conn,$contactEmail);
-            $contactSubject = mysqli_real_escape_string($conn,$contactSubject);
-            $contactMessage =  mysqli_real_escape_string($conn,$contactMessage);
+     // To avoid sql injection and cross site scripting also remove white spaces
+            function security($data){
+            global $conn;
+            $data = trim($data);
+            $data = mysqli_real_escape_string($conn,$data);
+            $data = htmlentities($data);
+            return $data;
+            }
 
-            $name = htmlentities($name);
-            $contactEmail =  htmlentities($contactEmail);
-            $contactSubject = htmlentities($contactSubject);
-            $contactMessage =  htmlentities($contactMessage);
-
+            $name = security($_POST['name']);
+            $contactEmail = security($_POST['email']);
+            $contactSubject = security($_POST['subject']);
+            $contactMessage = security($_POST['message']);
 
              if(isset($_POST['g-recaptcha-response'])) {
 
@@ -88,12 +87,12 @@ if(isset($_POST['submit'])){
             if (!$mail->send()) {
             echo "Mailer Error: " . $mail->ErrorInfo;
             } else {
-            echo "
-            <script>Swal.fire({
+            echo "<script>Swal.fire({
                     icon: 'Success',
                     title: 'Success',
                     text: 'Email Sent'
-                })</script>";         }
+                   })</script>";         
+            }
 
              function save_mail($mail) {
             //You can change 'Sent Mail' to any other folder or tag
