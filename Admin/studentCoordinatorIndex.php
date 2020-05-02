@@ -59,8 +59,9 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <div id="layoutSidenav_content">
 
         <main class="container-fluid">
-            <h1 class="mt-4 text-center">Dashboard for Student Coordinator <?php echo $adminEvent;?>
-            </h1>
+            <h2 class="mt-4 font-time text-center">Dashboard for Student Coordinator <br/>
+            <span class="text-danger"><?php echo $adminEvent;?></span>
+            </h2>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
@@ -78,7 +79,7 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
                                     <div class="h5 mb-0 font-weight-bold"><?php echo $rowCount; ?> </div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-users fa-2x text-gray-300"></i>
+                                    <i class="fas fa-users fa-3x text-warning"></i>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +98,7 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
                                         <?php echo $totalAmount; ?></div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-rupee-sign fa-2x"></i>
+                                    <i class="fas fa-rupee-sign fa-3x text-warning"></i>
                                 </div>
                             </div>
                         </div>
