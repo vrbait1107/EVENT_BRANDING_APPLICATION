@@ -210,7 +210,7 @@ if(!isset($_SESSION['adminEmail'])) {
           <h2 class="text-center text-primary font-time">Send Mails to Participants</h2>
           <hr>
 
-          <form action="" method="post">
+          <form action="" method="post" name="sendMailForm" onsubmit= "return sendMailsValidation()">
 
             <div class="form-group">
               <label>Target Audience</label>
@@ -295,6 +295,7 @@ if(!isset($_SESSION['adminEmail'])) {
 
   </div>
 
+  <script src= "../js/form-validation.js"></script>
   <!-- Admin Footer Scripts -->
   <?php include_once "includes/adminFooterScripts.php"; ?>
 
