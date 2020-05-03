@@ -70,17 +70,11 @@
     function countRevenue($event) {
     global $conn;
 
-    $sql = "select * from event_information where event = '$event'";
-
+    $sql = "select SUM(txnAmount) as totalAmount from event_information where event = '$event'";
     $result = mysqli_query($conn, $sql);
-    $row = mysqli_num_rows($result);
-    $totalAmount = 0;
-
-    while($row = mysqli_fetch_assoc($result)){
-     $totalAmount =   $totalAmount + $row['txnAmount'];
-    } 
-
-    return $totalAmount;
+    $row = mysqli_fetch_assoc($result);
+    $totalAmount = $row['totalAmount'];
+    return $totalAmount+ 0;
     }
 
 ?>
