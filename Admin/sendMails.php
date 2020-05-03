@@ -142,9 +142,13 @@ if(!isset($_SESSION['adminEmail'])) {
   $mail->setFrom("vishalbait02@gmail.com", "GIT SHODH 2K20");
   $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
   $mail->addAddress($targetEmails, "GIT SHODH 2K20 Users");
-
   $mail->Subject = $targetSubject;
-  
+
+  // multiple attachment
+  for ($i=0; $i < count($_FILES['file']['tmp_name']) ; $i++) { 
+  $mail->addAttachment($_FILES['file']['tmp_name'][$i], $_FILES['file']['name'][$i]);
+  }
+
   //Read an HTML message body from an external file, convert referenced images to embedded,
   //convert HTML into a basic plain-text alternative body
   $mail->msgHTML("<!doctype html><html><body>$targetMessage</body></html>");
@@ -154,8 +158,7 @@ if(!isset($_SESSION['adminEmail'])) {
   if (!$mail->send()) {
   echo "Mailer Error: " . $mail->ErrorInfo;
   } else {
-  echo "
-  <script>Swal.fire({
+  echo "<script>Swal.fire({
       icon: 'success',
       title: 'Success',
       text: 'Email Sent'
@@ -210,7 +213,7 @@ if(!isset($_SESSION['adminEmail'])) {
           <h2 class="text-center text-primary font-time">Send Mails to Participants</h2>
           <hr>
 
-          <form action="" method="post" name="sendMailForm" onsubmit= "return sendMailsValidation()">
+          <form action="" method="post" name="sendMailForm" onsubmit= "return sendMailsValidation()" enctype = "multipart/form-data">
 
             <div class="form-group">
               <label>Target Audience</label>
@@ -272,6 +275,11 @@ if(!isset($_SESSION['adminEmail'])) {
             <div class="form-group">
               <label for="message">Your message</label>
               <textarea type="text" id="message" name="targetMessage" rows="3" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+            <label>Attachments: </label><br/>
+            <input type="file" multiple= "multiple" name="file[]" accept=".doc,.jpg,.jpeg,.pdf,.docx,.gif" id="file">
             </div>
 
             <div class="text-center my-2">
