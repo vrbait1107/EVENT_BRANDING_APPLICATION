@@ -40,19 +40,24 @@ if($result){
 
     <!--Animate CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-     <!-- header Scripts and Links -->
+    <!-- header Scripts and Links -->
     <?php include_once "includes/headerScripts.php"; ?>
-     <!--Loader-->
+    <!--Loader-->
     <link rel="stylesheet" href="css/loader.css">
 
     <style>
-       
-        .container-fluid {
+        .welcome-section,
+        .visitor-container {
             background: #24C6DC;
             background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);
             background: linear-gradient(to right, #514A9D, #24C6DC);
         }
 
+        .second-section {
+            background: #136a8a;
+            background: -webkit-linear-gradient(to right, #267871, #136a8a);
+            background: linear-gradient(to right, #267871, #136a8a);
+        }
     </style>
 
 </head>
@@ -82,33 +87,17 @@ if($result){
     <!--Navbar-->
     <?php include_once "includes/navbar.php"; ?>
 
-
-    <main class="container">
-
-        <section class="my-4  animated flip">
-            <h1 class="text-center font-time">Welocome To GIT Shodh 2K20</h1>
-            <h4 class="text-center font-time text-danger">Registration are Open.!!!</h4>
-        </section>
-        <hr>
-
-        <div class="row">
-            <section class="col-md-12">
-                <div class="card shadow bg-aliceblue p-3 my-5">
-
-                    <i>
-                        <h1 class="text-center text-danger font-time">Gharda Institute of Technology, Lavel</h1>
-                    </i>
-                    <i>
-                        <h1 class="text-center text-danger font-time">SHODH 2K20</h1>
-                    </i>
-                    <h1 class="text-center animated flip font-time"> National Level Techfest</h1>
-
-                </div>
-            </section>
+    <main class="container-fluid welcome-section">
+        <div class="row mx-auto text-center">
+            <h1 class="p-3 font-time  mx-auto animated flip slow text-white">Welcome to SHODH 2K20 <br> National Level
+                Techfest </h1>
+            <img src="gallery/shodh1.jpg" class="img-fluid" alt="">
         </div>
+    </main>
 
+    <main class="container-fluid p-5 second-section">
         <div class="row">
-            <section class="col-md-12 mb-5">
+            <section class="col-md-7 mt-3 mb-5">
                 <div class="bd-example">
                     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
@@ -141,24 +130,42 @@ if($result){
                     </div>
                 </div>
             </section>
-        </div>
-    </main>
 
-    <div class="container-fluid">
-        <div class="row">
-            <section class="col-md-6 my-5 offset-md-3 text-center">
+            <section class="col-md-5">
+                <h3 class="text-center font-time text-white">ABOUT SHODH 2K20</h3>
+                <p class="text-justify text-white">SHODH, GIT Lavel is the annual science and technology festival of
+                    the Gharda
+                    Institute of Technology
+                    Lavel. Started in
+                    2008 with the aim of providing a platform for the Indian student community to develop and showcase
+                    their technical
+                    prowess.
 
-                <div class="card-header bg-lightblack">
-                    <h1 class="text-uppercase font-time text-white">Visitor
-                        Counter</h1>
-                </div>
+                    Year after year, SHODH explores the various aspects of science and technology and the profound
+                    impacts they have on our
+                    lives. For the last 12 years, SHODH has constantly grown, evolved, and pushed the boundaries of what
+                    a college fest can
+                    be. With something to offer for everyone, SHODH is the ideal destination for all technophiles: young
+                    or old, beginner or
+                    expert, student or professional to witness, learn and experience the wonders of science and
+                    technology.
 
-                <div class="card-body">
-                    <p class="display-3 text-white font-time"><?php echo $totaVisitors ?> </p>
-                </div>
+                    This year marks the 12th Edition of SHODH, GIT Lavel. The fest shall take place from 7th to 8th of
+                    March, 2020 at the
+                    beautiful, green campus of GIT Lavel in Maharashtra, India. Boasting of a huge roster of exciting
+                    and engaging events,
+                    this edition of SHODH promises to be grander, greater and more glorious than ever before.
+
+                    So grab your friends, mark your calendars, and gear up for Kokan’s Largest Science and Technology
+                    Festival.</p>
 
             </section>
         </div>
+    </main>
+
+    <div class="visitor-container p-3">
+        <h3 class="text-uppercase text-center text-white font-time">Total Visitor
+            Count: <?php echo $totaVisitors ?></h3>
     </div>
 
     <!-- Footer PHP -->
