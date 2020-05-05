@@ -10,7 +10,8 @@
                     <li><a class="text-white" href="redirect.php">Get Certificate</a></li>
                     <li><a class="text-white" href="certificateVerfication.php">Verify Certificate</a></li>
                     <li><a class="text-white" href="developers.php">Developers</a></li>
-
+                    <li><a class="text-white" href="gallery.php">Gallery</a></li>
+                    <li><a class="text-white" href="feedbackForm.php">Feedback</a></li>
                 </ul>
             </div>
 

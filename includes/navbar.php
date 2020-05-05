@@ -29,6 +29,9 @@
                 <li class="nav-item">
                     <a class="nav-link text-uppercase" href="developers.php">Developers</a>
                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link text-uppercase" href="feedbackForm.php">Feedback</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link text-uppercase" href="gallery.php">Gallery</a>
                 </li>
