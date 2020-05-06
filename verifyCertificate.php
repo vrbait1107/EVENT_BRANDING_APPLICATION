@@ -25,7 +25,7 @@
 
     <?php
 
-    require_once "config.php";
+    require_once "configNew.php";
     session_start();
 
   // GIT SHODH Certificate SYSTEM
@@ -44,8 +44,8 @@ $sql ="select * FROM user_information INNER JOIN event_information ON
 user_information.email= event_information.email 
 WHERE event_information.certificateId = '$validate'";
 
-    $result = mysqli_query($conn,$sql);
-    $row = mysqli_fetch_assoc($result);
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
     $validateCertificate = $row['certificateId'];
 
 
@@ -136,8 +136,8 @@ if(isset($_POST["synergySubmit"])) {
     $sql ="select * FROM synergy_user_information 
     WHERE certificateId = '$validate'";
     
-        $result = mysqli_query($conn,$sql);
-        $row = mysqli_fetch_assoc($result);
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
         $validateCertificate = $row['certificateId'];
 
        
@@ -215,8 +215,8 @@ if(isset($_POST["synergySubmit"])) {
     WHERE event_information.certificateId = '$validate'";
 
 
-        $result = mysqli_query($conn,$sql);
-        $row = mysqli_fetch_assoc($result);
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
         $validateCertificate = $row['certificateId'];
 
        

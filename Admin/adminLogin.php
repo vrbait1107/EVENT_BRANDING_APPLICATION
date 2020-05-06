@@ -88,11 +88,12 @@ if(isset($_POST['login'])){
             $sql = "select adminPassword from admin_information where admin_information.email  = '$adminUserName' 
             AND admin_information.adminType ='$adminType' AND admin_information.adminEvent = '$adminEvent' AND
             admin_information.adminDepartment = '$adminDepartment'";
-            $result= mysqli_query($conn,$sql);
+
+            $result= $conn->query($sql);
 
                 if($result){
 
-                $row=mysqli_fetch_assoc($result);
+                $row= $result->fetch_assoc();
                 $password= $row['adminPassword'];
 
                     if(password_verify($adminPassword,$password) && ($adminType==="Administrator") && 

@@ -31,7 +31,7 @@
 
   <?php
 session_start();
-require_once "config.php";
+require_once "configNew.php";
 $login= "login.php";
 
  
@@ -70,9 +70,9 @@ if (isset($_POST['submit'])) {
         $hashConPass = password_hash($confirm_password, PASSWORD_BCRYPT);
 
         $sql1 ="select* from user_information where user_information.email ='$userName'";
-        $res1= mysqli_query($conn,$sql1);
+        $res1= $conn->query($sql1);
 
-              if(mysqli_num_rows($res1)>0) {
+              if($res1->num_rows > 0) {
 
               echo "<script>Swal.fire({
                   icon: 'warning',
@@ -89,7 +89,7 @@ if (isset($_POST['submit'])) {
               mobileNumber, collegeName, departmentName, academicYear, mainPassword, confirmPass, token) VALUES ('$userName', '$firstName', '$lastName', 
               '$mobileNumber', '$collegeName', '$department', '$year', '$hashPass', '$hashConPass', '$token')";
 
-              $result = mysqli_query($conn, $sql);
+              $result = $conn->query($sql);
 
                     if($result){ 
                   

@@ -42,7 +42,7 @@ if(isset($_SESSION['user'])) {
   <!-- PHP CODE START -->
   <?php
 
-    require_once "config.php";
+    require_once "configNew.php";
 
     if(isset($_POST["login"])) {
 
@@ -68,8 +68,8 @@ if(isset($_SESSION['user'])) {
         $password = security($_POST["password"]);
 
         $sql = "select mainPassword from user_information where email='$userName' and status='active'";
-        $res = mysqli_query($conn,$sql);
-        $row = mysqli_fetch_assoc($res);
+        $res = $conn->query($sql);
+        $row = $res->fetch_assoc();
         $dbpassword = $row['mainPassword'];
 
         if(password_verify($password,$dbpassword)){

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "config.php";
+require_once "configNew.php";
 if(!isset($_SESSION['user'])) {
 header("location:login.php");
 }
@@ -53,8 +53,8 @@ $email = $_SESSION['user'];
     $conNewPassword = security($_POST['conNewPassword']);
 
 $sql = "select mainPassword from user_information where email = '$email'";
-$result = mysqli_query($conn,$sql);
-$row = mysqli_fetch_assoc($result);
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
 $dbPassword = $row['mainPassword'];
 
     if(password_verify($currentPassword,$dbPassword)) {
@@ -65,7 +65,7 @@ $dbPassword = $row['mainPassword'];
         $conNewPassword= password_hash($conNewPassword, PASSWORD_BCRYPT);
 
         $sql1 = "update user_information set mainPassword= '$newPassword', confirmPass ='$newPassword' where email = '$email'";
-        $result1 = mysqli_query($conn, $sql1);
+        $result1 = $conn->query($sql1);
 
             if($result1) {
        
@@ -131,11 +131,11 @@ if(isset($_POST['changeEmail'])){
 
     $sql = "select * from user_information where email = '$newEmail'";
 
-    $result= mysqli_query($conn,$sql);
+    $result= $conn->query($sql);
 
 
     // Checking Wether Email Already Present in database or not
-    if(mysqli_num_rows($result)){
+    if($result->num_rows){
        echo "<script>Swal.fire({
             icon: 'warning',
             title: 'Email Already Present in Database',
@@ -145,8 +145,8 @@ if(isset($_POST['changeEmail'])){
 
     else {
       $sql = "select * from user_information where email = '$email'";
-      $result = mysqli_query($conn, $sql);
-      $row = mysqli_fetch_assoc($result);
+      $result = $conn->query($sql);
+      $row = $result->fetch_assoc();
       $dbPassword = $row['mainPassword'];
 
       if(password_verify($Password,$dbPassword)){
@@ -154,7 +154,7 @@ if(isset($_POST['changeEmail'])){
            on user_information.email = event_information email set email = '$newEmail'
            where user_information.email = '$email' and evet_information.email = '$email'";
 
-           $result = mysqli_result($conn,$sql);
+           $result = $conn->query($sql);
 
            if($result){
             echo "<script>Swal.fire({
@@ -182,7 +182,7 @@ if(isset($_POST['disable'])){
 
     $email = $_SESSION['user'];
     $sql = "update user_information set status = 'inactive' where email = '$email'";
-    $result = mysqli_query($conn,$sql);
+    $result = $conn->query($sql);
 
     if($result){
         echo "<script>Swal.fire({

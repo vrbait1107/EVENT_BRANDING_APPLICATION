@@ -1,5 +1,5 @@
 <?php 
-require_once "../config.php";
+require_once "../configNew.php";
 session_start();
 if(!isset($_SESSION['Admin'])) {
     header('location:synergyLogin.php');
@@ -42,11 +42,11 @@ if(!isset($_SESSION['Admin'])) {
     $prize = $_POST["prize"];
 
     // Avoid SQL Injection
-    $firstName = mysqli_real_eascape_string($conn,$firstName);
-    $lastName = mysqli_real_eascape_string($conn,$lastName);
-    $department = mysqli_real_eascape_string($conn,$department);
-    $event = mysqli_real_eascape_string($conn,$event);
-    $prize = mysqli_real_eascape_string($conn,$prize);
+    $firstName = $conn->real_eascape_string($firstName);
+    $lastName = $conn->real_eascape_string($lastName);
+    $department = $conn->real_eascape_string($department);
+    $event = $conn->real_eascape_string($event);
+    $prize = $conn->real_eascape_string($prize);
 
     // Avoid Cross-Site Scripting
     $firstName = htmlentities($firstName);
@@ -57,7 +57,7 @@ if(!isset($_SESSION['Admin'])) {
 
         $sql = "insert INTO synergy_user_information (certificateId, firstName, lastName, departmentName,
         eventName, prize) VALUES ('$certificateId','$firstName','$lastName','$department', '$event','$prize')";
-        $result = mysqli_query($conn,$sql);
+        $result = $conn->query($sql);
 
                 if($result){
                 echo "<script>Swal.fire({

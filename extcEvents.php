@@ -1,10 +1,10 @@
 <?php
-require_once 'config.php';
+require_once 'configNew.php';
 
 
 $sql = "SELECT * FROM events_details_information WHERE eventDepartment ='Electronics and Telecommunication'";
 
-$result = mysqli_query($conn,$sql);
+$result = $conn->query($sql);
 
 
 ?>
@@ -29,7 +29,7 @@ $result = mysqli_query($conn,$sql);
 <?php include_once "includes/navbar.php";?>
 
     <?php
-                if(mysqli_num_rows($result)>0) {
+                if($result->num_rows >0) {
 
 echo  '<div class="container mt-5">';
 echo '<h1 class="text-danger text-center mb-5 font-sans">WELCOME TO EXTC EVENTS</h1>';
@@ -38,7 +38,7 @@ echo '<div class="row">';
    
 $i =0;
 
-                    while($row= mysqli_fetch_assoc($result)){
+                    while($row= $result->fetch_assoc()){
 $i++;
                         $eventName = $row["eventName"];
                         $eventImage = $row["eventImage"];

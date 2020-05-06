@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once 'configNew.php';
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +47,7 @@ $token = $_GET['token'];
             if($userType == "User"){
             $sql = "update user_information set mainPassword='$newPassword', confirmPass = '$newPassword' where token = '$token'";
 
-            $result = mysqli_query($conn,$sql);
+            $result = $conn->query($sql);
             if($result){
             echo "<script>Swal.fire({
             icon: 'success',
@@ -61,7 +61,7 @@ $token = $_GET['token'];
             else {
    
             $sql = "update admin_information set adminPassword='$newPassword' where token = '$token'";
-            $result = mysqli_query($conn,$sql);
+            $result = $conn->query($sql);
             if($result){
              echo "<script>Swal.fire({
                 icon: 'success',

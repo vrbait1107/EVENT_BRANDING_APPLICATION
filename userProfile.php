@@ -1,5 +1,5 @@
 <?php 
-require_once "config.php";
+require_once "configNew.php";
 session_start();
 
 if(!isset($_SESSION['user'])){
@@ -9,8 +9,8 @@ if(!isset($_SESSION['user'])){
 $email = $_SESSION['user'];
 
 $sql = "select * from user_information where email = '$email'";
-$result = mysqli_query($conn,$sql);
-$row = mysqli_fetch_assoc($result);
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
 
 
 $firstName= $row['firstName'];
@@ -66,7 +66,7 @@ if(isset($_POST['update'])) {
     mobileNumber = '$mobileNumber', collegeName = '$collegeName', departmentName = '$departmentName',
     academicYear = '$academicYear' where email = '$email'";
 
-    $result = mysqli_query($conn,$sql);
+    $result = $conn->query($sql);
 
     if($result) {
         echo "<script>Swal.fire({

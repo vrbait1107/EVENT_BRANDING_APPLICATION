@@ -4,26 +4,26 @@ if(!isset($_SESSION['user'])) {
  header("location:login.php");
 }
 
-require_once "config.php";
+require_once "configNew.php";
 
 $visitorIpAddress = $_SERVER['REMOTE_ADDR'];
 
 $sql1 = "select * from visitor_counter where ipAddress = '$visitorIpAddress'";
-$result1 = mysqli_query($conn,$sql1);
-$totaVisitor =  mysqli_num_rows($result1);
+$result1 = $conn->query($sql1);
+$totaVisitor =  $result1->num_rows;
 
 if($totaVisitor == 0) {
 $sql2 = "Insert into visitor_counter (ipAddress) values ('$visitorIpAddress')";
-$result2 = mysqli_query($conn,$sql2);
+$result2 = $conn->query($sql2);
 }
 
 
 // Retrive Data from Database
 $sql = "select * from visitor_counter";
-$result = mysqli_query($conn,$sql);
+$result = $conn->query($sql);
 
 if($result){
-    $totaVisitors =  mysqli_num_rows($result);
+    $totaVisitors =  $result->num_rows;
 }
 
 ?>

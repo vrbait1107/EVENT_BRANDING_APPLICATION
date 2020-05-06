@@ -1,5 +1,5 @@
 <?php 
-require_once ('../config.php');
+require_once ('../configNew.php');
 session_start();
 $admin =$_SESSION['adminEmail'];
 if(!isset($_SESSION['adminEmail'])){
@@ -86,7 +86,8 @@ if(isset($_POST['changePassword'])) {
 
                 $sql = "update admin_information SET adminPassword = '$hashPassword'
                  where admin_information.email = '$admin'";
-                $result = mysqli_query($conn,$sql);
+                 
+                $result = $conn->query($sql);
 
                         if($result){
                         echo "<script>Swal.fire({

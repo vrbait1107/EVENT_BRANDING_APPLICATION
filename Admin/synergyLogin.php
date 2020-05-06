@@ -1,5 +1,5 @@
 <?php
-require_once '../config.php';
+require_once '../configNew.php';
 session_start();
 if(isset($_SESSION['Admin'])) {
     header('location:synergyIndex.php');
@@ -42,7 +42,7 @@ if(isset($_SESSION['Admin'])) {
         function security($data){
         global $conn;
         $data = trim($data);
-        $data = mysqli_real_escape_string($conn,$data);
+        $data = $conn->real_escape_string($data);
         $data = htmlentities($data);
         return $data;
         }
@@ -52,8 +52,8 @@ if(isset($_SESSION['Admin'])) {
         $password = security($_POST['password']);
 
         $sql = "select adminPassword from admin_information where email='$email'";
-        $result = mysqli_query($conn,$sql);
-        $row = mysqli_fetch_assoc($result);
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
 
         $dbPassword = $row['adminPassword'];
 

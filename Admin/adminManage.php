@@ -45,9 +45,9 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
        $password= password_hash($password,PASSWORD_BCRYPT);
     
        $sql = "select * from admin_information where admin_information.email = '$email'";
-       $result = mysqli_query($conn,$sql);
+       $result = $conn->query($sql);
     
-       if(mysqli_num_rows($result)>0) {
+       if($result->num_rows >0) {
     
         echo "<script>Swal.fire({
                 icon: 'warning',
@@ -59,7 +59,7 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     
         $sql = "insert into admin_information (email, adminType, adminDepartment, adminEvent, 
         adminPassword) VALUES ('$email','$adminType', '$adminDepartment','$adminEvent', '$password')";
-        $result= mysqli_query($conn,$sql);
+        $result= $conn->query($sql);
     
         if($result) {
             echo "<script>Swal.fire({
@@ -84,7 +84,7 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
          
         $delete = $_GET['hiddenEmail'];
         $sql = "delete from admin_information where email = '$delete'";
-        $result = mysqli_query($conn,$sql);
+        $result = $conn->query($sql);
         
         if($result) {
             echo "<script>Swal.fire({
@@ -198,7 +198,7 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
                                     // Fetching All Details From user_information Table 
 
                                     $sql = 'select * from admin_information where adminType = "Faculty Coordinator"';
-                                    $result = mysqli_query($conn,$sql);
+                                    $result = $conn->query($sql);
                                     ?>
 
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -214,7 +214,7 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
                                 <tbody>
 
                                     <?php
-                                        while($row=mysqli_fetch_assoc($result)) {
+                                        while($row= $result->fetch_assoc()) {
                                         ?>
                                     <tr class="text-center">
                                         <td><?php echo $row['email'] ?></td>

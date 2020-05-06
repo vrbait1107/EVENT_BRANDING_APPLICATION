@@ -1,5 +1,5 @@
 <?php 
-require_once "../config.php";
+require_once "../configNew.php";
 session_start();
 
     // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
@@ -15,12 +15,12 @@ session_start();
     // Display Participation count & total revenue
     $sqlData ="select * from event_information";
 
-    $resultData = mysqli_query($conn,$sqlData);
-    $rowCount = mysqli_num_rows($resultData);
+    $resultData = $conn->query($sqlData);
+    $rowCount = $resultData->num_rows;
    
     $totalAmount = 0;
 
-    while($rowData = mysqli_fetch_assoc($resultData)){
+    while($rowData = $resultData->fetch_assoc()){
      $totalAmount =   $totalAmount + $rowData['txnAmount'];
     } 
 
@@ -29,16 +29,16 @@ session_start();
     $sqlDataAdmin ="select * from admin_information
     WHERE adminType='Student Coordinator'";
 
-    $resultDataAdmin = mysqli_query($conn,$sqlDataAdmin);
-    $rowCountAdmin = mysqli_num_rows($resultDataAdmin);
+    $resultDataAdmin = $conn->query($sqlDataAdmin);
+    $rowCountAdmin = $resultDataAdmin->num_rows;
 
 
      // display admin information count (Faculty Coordinator) for college
     $sqlDataAdmin2 ="select * from admin_information
     WHERE adminType='Faculty Coordinator'";
 
-    $resultDataAdmin2 = mysqli_query($conn,$sqlDataAdmin2);
-    $rowCountAdmin2 = mysqli_num_rows($resultDataAdmin2);
+    $resultDataAdmin2 = $conn->query($sqlDataAdmin2);
+    $rowCountAdmin2 = $resultDataAdmin2->num_rows;
 
     
     // Participation Count Department Wise
@@ -50,8 +50,8 @@ session_start();
         $sql = "select * from event_information where event in 
         (select eventName from events_details_information where eventDepartment = '$department')";
 
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_num_rows($result);
+        $result = $conn->query($sql);
+        $row = $result->num_rows;
         return $row;
     }
 
@@ -65,8 +65,8 @@ session_start();
     $sql ="select * from admin_information
     WHERE adminType='Student Coordinator' and adminDepartment = '$department'";
 
-    $result = mysqli_query($conn,$sql);
-    $row = mysqli_num_rows($result);
+    $result = $conn->query($sql);
+    $row = $result->num_rows;
 
     return $row;
 
@@ -78,8 +78,8 @@ session_start();
     $sql = "select SUM(txnAmount) as totalAmount from event_information where event in 
         (select eventName from events_details_information where eventDepartment = '$department')";
 
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
     $totalAmount = $row['totalAmount'];
     return $totalAmount + 0;
     }

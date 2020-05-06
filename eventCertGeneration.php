@@ -1,5 +1,5 @@
 <?php 
-require_once "config.php";
+require_once "configNew.php";
 session_start();
 ?>
 
@@ -43,9 +43,9 @@ $sql = "select * FROM user_information INNER JOIN event_information ON
 user_information.email= event_information.email 
 WHERE user_information.email = '$email' and attendStatus ='present'";
 
-$result = mysqli_query($conn,$sql);
+$result = $conn->query($sql);
 
-if(mysqli_num_rows($result)>0) {
+if($result->num_rows > 0) {
 
 echo "<table class='table'>";
 echo "<thead>";
@@ -55,7 +55,7 @@ echo "</thead>";
 
 echo "<tbody>";
 
-while($row = mysqli_fetch_assoc($result)){
+while($row = $result->fetch_assoc()){
     echo "<tr>";
     echo "<td class='text-center'>". $row['event']. "</td>";
     $event = $row['event'];

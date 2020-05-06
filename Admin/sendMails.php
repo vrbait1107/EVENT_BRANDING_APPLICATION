@@ -36,7 +36,7 @@ if(!isset($_SESSION['adminEmail'])) {
   <!-- PHP CODE START -->
   <?php
 
-    require_once "../config.php";
+    require_once "../configNew.php";
 
     if(isset($_POST["sendEmails"])) {
 
@@ -63,9 +63,9 @@ if(!isset($_SESSION['adminEmail'])) {
 
        if($targetAudience === "collegeLevel"){
          $sql = "select  distinct email from event_information";
-         $result = mysqli_query($conn,$sql);
+         $result = $conn->query($sql);
 
-         while($row = mysqli_fetch_assoc($result)){
+         while($row = $result->fetch_assoc()){
            $targetEmails = $row['email'];
 
            sendMail($targetEmails, $targetSubject, $targetMessage);
@@ -79,9 +79,9 @@ if(!isset($_SESSION['adminEmail'])) {
 
          $sql = "select distinct email from event_information where event_information.event in
           (select eventName where departmentName = '$targetDepartment'";
-          $result = mysqli_query($conn,$sql);
+          $result = $conn->query($sql);
 
-          while($row = mysqli_fetch_assoc($result)){
+          while($row = $result->fetch_assoc()){
            $targetEmails = $row['email'];
 
            sendMail($targetEmails, $targetSubject, $targetMessage);
@@ -94,9 +94,9 @@ if(!isset($_SESSION['adminEmail'])) {
          $targetEvent = security($_POST['targetEvent']);
 
          $sql = "select distinct email from event_information where event = '$targetEvent'";
-         $result = mysqli_query($conn,$sql);
+         $result = $conn->query($sql);
           
-          while($row = mysqli_fetch_assoc($result)){
+          while($row = $result->fetch_assoc()){
            $targetEmails = $row['email'];
 
            sendMail($targetEmails, $targetSubject, $targetMessage);

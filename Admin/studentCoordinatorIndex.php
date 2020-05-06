@@ -1,5 +1,5 @@
 <?php 
-require_once "../config.php";
+require_once "../configNew.php";
 session_start();
 
 
@@ -16,10 +16,10 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
    $adminEvent = $_SESSION["adminEvent"];
 
    $sql = "select * from event_information where event = '$adminEvent'";
-   $result = mysqli_query($conn, $sql);
-   $row = mysqli_fetch_assoc($result);
+   $result = $conn->query($sql);
+   $row = $result->fetch_assoc();
 
-   $rowCount = mysqli_num_rows($result);
+   $rowCount = $result->num_rows;
    $amount = $row['txnAmount'];
    $totalAmount = $amount * $rowCount;
 ?>

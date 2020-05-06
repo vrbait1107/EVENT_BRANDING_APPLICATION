@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "config.php";
+require_once "configNew.php";
 
 
 ?>
@@ -28,9 +28,9 @@ require_once "config.php";
        $email = $_POST['email'];
 
        $sql = "select * from user_information where email = '$email'";
-       $result = mysqli_query($conn,$sql);
+       $result = $conn->query($sql);
 
-       if(mysqli_num_rows($result) === 0){
+       if($result->num_rows === 0){
             echo "<script>Swal.fire({
                 icon: 'error',
                 title: 'error',
@@ -42,7 +42,7 @@ require_once "config.php";
        $token =  bin2hex(random_bytes(15));
 
        $sql = "update user_information set token = '$token' where email = '$email'";
-       $result = mysqli_query($conn,$sql);
+       $result = $conn->query($sql);
 
                     if($result){
 
@@ -98,7 +98,7 @@ require_once "config.php";
         $token = $_GET['token'];
 
         $sql = "update user_information set status = 'active' where token = '$token'";
-        $result = mysqli_query($conn, $sql);
+        $result = $conn->query($sql);
 
         if($result){
             echo "<script>Swal.fire({

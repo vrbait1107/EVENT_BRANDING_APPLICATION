@@ -20,7 +20,7 @@
     <!-- PHP Code Start -->
 
     <?php 
-     require_once "config.php";
+     require_once "configNew.php";
 
 // Generating Random Password to Send Over Email.
 $token =   bin2hex(random_bytes(15));
@@ -34,9 +34,9 @@ $userType = trim($_POST['userType']);
     if($userType=== "user"){
 
     $sql = "select email from user_information where email = '$email'";
-    $result = mysqli_query($conn,$sql);
+    $result = $conn->query($sql);
 
-    if(mysqli_num_rows($result)===1) {
+    if($result->num_rows ===1) {
 
     // Mail PHP code 
     date_default_timezone_set('Etc/UTC');
@@ -71,7 +71,7 @@ $userType = trim($_POST['userType']);
             else {
     
             $sql = "UPDATE user_information SET token ='$token' WHERE email = '$email'";
-            $result1 = mysqli_query($conn, $sql);
+            $result1 = $conn->query($sql);
 
                 if($result1) {
                 echo "<script>Swal.fire({
@@ -109,9 +109,9 @@ $userType = trim($_POST['userType']);
  elseif($userType=== "admin"){
 
     $sql = "select email from admin_information where email = '$email'";
-    $result = mysqli_query($conn,$sql);
+    $result = $conn->query($sql);
 
-    if(mysqli_num_rows($result)===1) {
+    if($result->num_rows === 1) {
 
     // Mail PHP code 
     date_default_timezone_set('Etc/UTC');

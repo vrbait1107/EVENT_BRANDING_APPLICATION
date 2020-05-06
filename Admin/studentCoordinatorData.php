@@ -1,5 +1,5 @@
 <?php 
-require_once "../config.php";
+require_once "../configNew.php";
 session_start();
 
 
@@ -59,7 +59,7 @@ else {
   attendStatus = '$attendStatus'
   WHERE event_information.certificateId={$_REQUEST['certificateId']}";
 
-  if(mysqli_query($conn,$sql1)){
+  if($conn->query($sql1)){
 
     echo "<script>Swal.fire({
         icon: 'success',
@@ -89,8 +89,8 @@ else {
     user_information.email= event_information.email 
     where certificateId = {$_REQUEST['certificateId']}";
   
-    $result = mysqli_query($conn,$sql);
-    $row=mysqli_fetch_assoc($result);
+    $result = $conn->query($sql);
+    $row= $result->fetch_assoc();
   }
   
 
@@ -101,7 +101,7 @@ if(isset($_REQUEST['delete'])) {
   $sql ="delete  FROM event_information 
   where certificateId = {$_REQUEST['certificateId']}";
 
-  $result = mysqli_query($conn,$sql);
+  $result = $conn->query($sql);
 
   if($result){
     
@@ -221,9 +221,9 @@ if(isset($_REQUEST['delete'])) {
                 user_information.email= event_information.email 
                 where event_information.event ='$event' ORDER By firstName ASC";
 
-                $result = mysqli_query($conn,$sql);
+                $result = $conn->query($sql);
 
-                if(mysqli_num_rows($result)>0) {
+                if($result->num_rows >0) {
 
           ?>
 
@@ -251,7 +251,7 @@ if(isset($_REQUEST['delete'])) {
                   <tbody>
 
                     <?php
-                  while($row = mysqli_fetch_assoc($result)){
+                  while($row = $result->fetch_assoc()){
                   ?>
 
                     <tr>

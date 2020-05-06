@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once 'configNew.php';
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +25,7 @@ $token = htmlentities($token);
 
 $login = "login.php";
 $sql = "update user_information set status='active' where token = '$token'";
-$result = mysqli_query($conn,$sql);
+$result = $conn->query($sql);
 if($result){
      echo "<script>Swal.fire({
         icon: 'success',

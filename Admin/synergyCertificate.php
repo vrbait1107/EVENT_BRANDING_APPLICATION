@@ -1,13 +1,13 @@
 <?php
 
 session_start();
-require_once "../config.php";
+require_once "../configNew.php";
 
         $CertId= $_POST['certificateId'];
         $sql ="select * from synergy_user_information where certificateId = '$CertId'";
         
-        $res= mysqli_query($conn,$sql);
-        $row=mysqli_fetch_assoc($res);
+        $res= $conn->query($sql);
+        $row= $res->fetch_assoc();
         
         $validate =$row['certificateId'];
         $firstName = $row['firstName'];

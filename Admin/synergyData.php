@@ -48,7 +48,7 @@ if(!isset($_SESSION['Admin'])){
 if(isset($_REQUEST['delete'])) {
 
   $sql ="delete  FROM synergy_user_information where certificateId = {$_POST['certificateId']}";
-  $result = mysqli_query($conn,$sql);
+  $result = $conn->query($sql);
 
   if($result){
     
@@ -89,9 +89,9 @@ if(isset($_REQUEST['delete'])) {
           <?php
          
         $sql ='select * FROM synergy_user_information';
-        $result = mysqli_query($conn,$sql);
+        $result = $conn->query($sql);
 
-        if(mysqli_num_rows($result)>0) {
+        if($result->num_rows >0) {
         ?>
 
           <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
@@ -109,7 +109,7 @@ if(isset($_REQUEST['delete'])) {
 
               <?php
 
-            while($row =mysqli_fetch_assoc($result)){
+            while($row = $result->fetch_assoc()){
 
               ?>
 

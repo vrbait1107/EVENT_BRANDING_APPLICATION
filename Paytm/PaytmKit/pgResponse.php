@@ -5,7 +5,7 @@ $eventName = $_SESSION['eventName'];
 $userName= $_SESSION['user'];
 
 
-require_once '../../config.php';
+require_once '../../configNew.php';
 
 ?>
 <!doctype html>
@@ -62,9 +62,9 @@ if($isValidChecksum == "TRUE") {
 
 
 $sql = "select * from event_information where email = '$userName' and event = '$eventName'";
-$result = mysqli_query($conn,$sql);
+$result = $conn->query($sql);
 
-if(mysqli_num_rows($result)>0){
+if($result->num_rows >0){
 
 	echo "<script>Swal.fire({
 			icon: 'warning',
@@ -95,7 +95,7 @@ else {
 			 '$gatewayName', '$resMsg', '$bankName', '$txnId', '$txnAmount', '$orderId', '$status',
 			 '$bankTxnId', '$txnDate')";
 
-	        $result = mysqli_query($conn,$sql);
+	        $result = $conn->query($sql);
 	
 	if(!$result){
 		echo "Unable to Registered";

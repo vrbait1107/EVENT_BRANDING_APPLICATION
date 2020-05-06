@@ -1,5 +1,5 @@
 <?php 
-require_once "../config.php";
+require_once "../configNew.php";
 session_start();
 
 
@@ -76,9 +76,9 @@ session_start();
         WHERE event_information.event IN (SELECT events_details_information.eventName 
         FROM events_details_information WHERE eventDepartment ='$department')";
 
-        $result = mysqli_query($conn,$sql);
+        $result = $conn->query($sql);
 
-        if(mysqli_num_rows($result)>0) {
+        if($result->num_rows >0) {
 
         ?>
 
@@ -103,7 +103,7 @@ session_start();
                   <tbody>
 
                     <?php 
-            while($row =mysqli_fetch_assoc($result)){
+            while($row = $result->fetch_assoc()){
               ?>
 
                     <tr>

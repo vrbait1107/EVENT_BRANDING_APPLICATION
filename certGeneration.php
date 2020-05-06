@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once "config.php";
+require_once "configNew.php";
 
 $buttonEvent= $_POST['event1'];
 $email = $_SESSION['user'];
@@ -9,8 +9,8 @@ $sql ="select * FROM user_information INNER JOIN event_information ON
 user_information.email= event_information.email 
 WHERE user_information.email = '$email' and event_information.event = '$buttonEvent'";
 
-$result= mysqli_query($conn,$sql);
-$row=mysqli_fetch_assoc($result);
+$result= $conn->query($sql);
+$row= $result->fetch_assoc();
 
 
 $firstName = $row['firstName'];
@@ -23,8 +23,8 @@ $event = $row['event'];
 
 // Different Certificate for Every Department 
 $sql1 = "select * from events_details_information where eventName = '$buttonEvent'";
-$result1 = mysqli_query($conn,$sql1);
-$row1 = mysqli_fetch_assoc($result1);
+$result1 = $conn->query($sql1);
+$row1 = $result1->fetch_assoc();
 $certificateDepartment = $row1['eventDepartment'];
 
 ?>

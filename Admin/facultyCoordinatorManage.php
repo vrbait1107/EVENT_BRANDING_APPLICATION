@@ -1,5 +1,5 @@
 <?php 
-require_once "../config.php";
+require_once "../configNew.php";
 session_start();
 
 
@@ -48,9 +48,9 @@ session_start();
            $password= password_hash($password,PASSWORD_BCRYPT);
         
            $sql = "select* from admin_information where admin_information.email = '$email'";
-           $result = mysqli_query($conn,$sql);
+           $result = $conn->query($sql);
         
-           if(mysqli_num_rows($result)>0) {
+           if( $result->num_rows >0) {
         
             echo "<script>Swal.fire({
                     icon: 'warning',
@@ -62,7 +62,7 @@ session_start();
         
             $sql = "insert into admin_information (email, adminType, adminDepartment, adminEvent, 
             adminPassword) VALUES ('$email','$adminType', '$adminDepartment','$adminEvent', '$password')";
-            $result= mysqli_query($conn,$sql);
+            $result= $conn->query($sql);
         
             if($result) {
                 echo "<script>Swal.fire({
@@ -87,7 +87,7 @@ session_start();
         
         $delete = $_GET['hiddenEmail'];
         $sql = "delete from admin_information where email = '$delete'";
-        $result = mysqli_query($conn,$sql);
+        $result = $conn->query($sql);
         
         if($result) {
         echo "
@@ -232,7 +232,7 @@ session_start();
                     $departmentAdmin = $_SESSION["adminDepartment"];
 
                     $sql = "select * from admin_information where adminType = 'Student Coordinator' and adminDepartment = '$departmentAdmin'";
-                    $result = mysqli_query($conn,$sql);
+                    $result = $conn->query($sql);
                     ?>
 
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -248,7 +248,7 @@ session_start();
                             <tbody>
 
                                 <?php
-                                        while($row=mysqli_fetch_assoc($result)) {
+                                        while($row=$result->fetch_assoc()) {
                                         ?>
                                 <tr class="text-center">
                                     <td><?php echo $row['email'] ?></td>
