@@ -27,9 +27,11 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
     <!-- header Scripts and Links -->
     <?php include_once "includes/headerScripts.php"; ?>
+    <!-- Google Recaptcha -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <style>
-        hr{
+        hr {
             border: 1px solid black;
             margin-bottom: 25px;
         }
@@ -43,6 +45,15 @@ $conn = new mysqli($servername, $username, $password, $dbname);
     <?php 
 
     if(isset($_POST['submit'])){
+
+         if(isset($_POST['g-recaptcha-response'])) {
+
+      $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
+      $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g-recaptcha-response']);
+      $response = json_decode($verifyResponse);
+
+      if($response->success){
+
 
     // To avoid sql injection and cross site scripting also remove white spaces
     function security($data){
@@ -74,12 +85,23 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
      if($result){
       echo "<script>Swal.fire({
-        icon: 'success',
-        title: 'Successful',
-        text: 'Your Feedback is Successfully Submitted'
-           })</script>";
+            icon: 'success',
+            title: 'Successful',
+            text: 'Your Feedback is Successfully Submitted'
+        })</script>";
+         }
 
-     }
+      }// if $response
+
+      else{
+        echo "<script>Swal.fire({
+                icon: 'warning',
+                title: 'Google Recaptcha Error',
+                text: 'Please fill Google Recaptcha'
+            })</script>";
+      }
+
+      }// if(isset($_POST['g-recaptcha-response']))
 
     }
 
@@ -97,7 +119,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
                 <h4 class="font-time text-center">Please take few moments to complete this survey</h4>
                 <hr class="text-dark">
 
-                <form action="" method="post">
+                <form action="" method="post" name="feedbackForm" onsubmit="return feedbackForm()">
 
                     <div class="form-group">
                         <label class="font-weight-bold">Have you participated in any event in GIT SHODH before?</label>
@@ -143,12 +165,12 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
                     <div class="form-group">
                         <label class="font-weight-bold">What did you like most about the event?</label>
-                        <textarea name="likeMost" cols="30" rows="3" class="form-control"></textarea>
+                        <textarea name="likeMost" id="likeMost" cols="30" rows="3" class="form-control"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label class="font-weight-bold">What did you like least about the event?</label>
-                        <textarea name="likeLeast" cols="30" rows="3" class="form-control"></textarea>
+                        <textarea name="likeLeast" id="likeLeast" cols="30" rows="3" class="form-control"></textarea>
                     </div>
 
                     <label class="font-weight-bold">Overall Satisfaction</label>
@@ -217,12 +239,16 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
                     <div class="form-group">
                         <label class="font-weight-bold">How can we improve this event?</label>
-                        <textarea name="suggestion" cols="30" rows="3" class="form-control"></textarea>
+                        <textarea name="suggestion" id="suggestion" cols="30" rows="3" class="form-control"></textarea>
                     </div>
 
+                    <div class="text-center my-2">
+                        <div class="g-recaptcha text-center" data-sitekey="6LdGougUAAAAAG96eGund5fScrR1fouBZvyLf1RL">
+                        </div>
+                    </div>
 
                     <input type="submit" name="submit" class="btn text-center btn-primary btn-block rounded-pill"
-                        value="Submit">
+                        value="Submit Feedback">
                 </form>
             </section>
         </div>
@@ -231,6 +257,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
     <!--Footer.PHP-->
     <?php include_once 'includes/footer.php'; ?>
+    <script src="js/form-validation.js"></script>
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
 

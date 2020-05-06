@@ -271,10 +271,10 @@ const formValidationUserProfileForm = () => {
 
 const sendMailsValidation = () => {
   "use strict";
-  let a = document.forms["sendMailForm"]["targetSubject"].value;
-  let b = document.form["sendMailForm"]["targetMessage"].value;
+  let subject = document.forms["sendMailForm"]["targetSubject"].value;
+  let message = document.form["sendMailForm"]["targetMessage"].value;
 
-  if (!isNaN(a) || a !== "") {
+  if (!isNaN(subject) || subject == "") {
     Swal.fire({
       icon: "error",
       title: "ERROR",
@@ -283,11 +283,48 @@ const sendMailsValidation = () => {
     return false;
   }
 
-  if (!isNaN(a) || a !== "") {
+  if (!isNaN(message) || message == "") {
     Swal.fire({
       icon: "error",
       title: "ERROR",
       text: "Only Characters are allowed or Message cannot be empty",
+    });
+    return false;
+  }
+};
+
+// Feedback Validation Form
+
+const feedbackForm = () => {
+  "use strict";
+
+  let likeMost = document.getElementById("likeMost").value;
+  let likeLeast = document.getElementById("likeLeast").value;
+  let suggestion = document.getElementById("suggestion").value;
+
+  if (likeMost == "") {
+    Swal.fire({
+      icon: "error",
+      title: "ERROR",
+      text: "if you don't want to specify anything just put - in input field.",
+    });
+    return false;
+  }
+
+  if (likeLeast == "") {
+    Swal.fire({
+      icon: "error",
+      title: "ERROR",
+      text: "if you don't want to specify anything just put - in input field.",
+    });
+    return false;
+  }
+
+  if (suggestion == "") {
+    Swal.fire({
+      icon: "error",
+      title: "ERROR",
+      text: "if you don't want to specify anything just put - in input field.",
     });
     return false;
   }

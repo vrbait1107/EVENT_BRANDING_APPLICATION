@@ -14,12 +14,11 @@ if(!isset($_SESSION['user'])) {
     <title>Redirect Page</title>
 
      <!-- header Scripts and Links -->
-    <?php include_once "headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php"; ?>
 
     <style>
         body .container-fluid .col-12 .countdown {
             background: url(images/star.jpg);
-
             width: 100%;
             height: 100px;
             color: white;
