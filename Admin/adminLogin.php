@@ -73,7 +73,7 @@ if(isset($_POST['login'])){
             function security($data){
             global $conn;
             $data = trim($data);
-            $data = mysqli_real_escape_string($conn,$data);
+            $data = $conn->real_escape_string($data);
             $data = htmlentities($data);
             return $data;
             }

@@ -6,13 +6,7 @@ if(!isset($_SESSION['user'])){
     header('location:login.php');
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "user_registration";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
+require_once 'configNew.php';
 ?>
 
 
@@ -59,7 +53,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
     function security($data){
     global $conn;
     $data = trim($data);
-    $data = mysqli_real_escape_string($conn,$data);
+    $data = $conn->real_escape_string($data);
     $data = htmlentities($data);
     return $data;
     }

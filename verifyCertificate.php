@@ -35,7 +35,7 @@ if(isset($_POST["submit"])) {
 $validate =   trim($_POST["validateData"]);
 
 // Avoid SQL Injection
-$validate = mysqli_real_escape_string($conn, $validate);
+$validate = $conn->real_escape_string($validate);
 // Avoid Cross Site Scripting
 $validate = htmlentities($validate);
 
@@ -129,7 +129,7 @@ if(isset($_POST["synergySubmit"])) {
     $validate =   trim($_POST["synergyValidateData"]);
 
     // Avoid SQL Injection
-    $validate = mysqli_real_escape_string($conn, $validate);
+    $validate = $conn->real_escape_string($validate);
     // Avoid Cross Site Scripting
     $validate = htmlentities($validate);
 

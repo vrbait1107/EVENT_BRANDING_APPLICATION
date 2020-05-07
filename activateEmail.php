@@ -20,7 +20,7 @@ require_once 'configNew.php';
 if(isset($_GET['token'])) {
 
 $token = $_GET['token'];
-$token = mysqli_real_escape_string($conn,$token);
+$token = $conn->real_escape_string($token);
 $token = htmlentities($token);
 
 $login = "login.php";

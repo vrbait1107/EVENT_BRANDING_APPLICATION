@@ -146,7 +146,7 @@ $userType = trim($_POST['userType']);
             else {
     
             $sql = "UPDATE user_information SET token ='$token' WHERE email = '$email'";
-            $result1 = mysqli_query($conn, $sql);
+            $result1 = $conn->query($sql);
 
                 if($result1) {
                 echo "<script>Swal.fire({
