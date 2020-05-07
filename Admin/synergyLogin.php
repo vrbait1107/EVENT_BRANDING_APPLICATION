@@ -1,9 +1,9 @@
 <?php
-require_once '../configNew.php';
 session_start();
 if(isset($_SESSION['Admin'])) {
     header('location:synergyIndex.php');
 }
+require_once '../config.php';
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +42,7 @@ if(isset($_SESSION['Admin'])) {
         function security($data){
         global $conn;
         $data = trim($data);
-        $data = $conn->real_escape_string($data);
+      //  $data = $conn->real_escape_string($data);
         $data = htmlentities($data);
         return $data;
         }

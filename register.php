@@ -96,7 +96,7 @@ if (isset($_POST['submit'])) {
                       echo "<script>Swal.fire({
                           icon: 'success',
                           title: 'Activate Your Account',
-                          text: 'Check Your Email for acivate your account'
+                          text: 'Check Your Email for activate your account'
                         })</script>";
 
                       // Mail Code

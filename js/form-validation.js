@@ -3,7 +3,7 @@
 const synergyValidateForm = () => {
   "use strict";
   let a = document.forms["myForm"]["firstName"].value;
-  if (!isNaN(a) || a !== "") {
+  if (!isNaN(a) || a == "") {
     Swal.fire({
       icon: "error",
       title: "ERROR",
@@ -13,7 +13,7 @@ const synergyValidateForm = () => {
   }
 
   let b = document.forms["myForm"]["lastName"].value;
-  if (!isNaN(b) || b !== "") {
+  if (!isNaN(b) || b == "") {
     Swal.fire({
       icon: "error",
       title: "ERROR",
@@ -23,7 +23,7 @@ const synergyValidateForm = () => {
   }
 
   let c = document.forms["myForm"]["department"].value;
-  if (!isNaN(c) || c !== "") {
+  if (!isNaN(c) || c == "") {
     Swal.fire({
       icon: "error",
       title: "ERROR",
@@ -33,7 +33,7 @@ const synergyValidateForm = () => {
   }
 
   let d = document.forms["myForm"]["event"].value;
-  if (!isNaN(d) || d !== "") {
+  if (!isNaN(d) || d == "") {
     Swal.fire({
       icon: "error",
       title: "ERROR",
@@ -43,7 +43,7 @@ const synergyValidateForm = () => {
   }
 
   let e = document.forms["myForm"]["prize"].value;
-  if (!isNaN(e) || encodeURIComponent !== "") {
+  if (!isNaN(e) || e == "") {
     Swal.fire({
       icon: "error",
       title: "ERROR",

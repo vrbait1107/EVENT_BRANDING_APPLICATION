@@ -43,7 +43,7 @@ if(isset($_POST['submit'])){
             function security($data){
             global $conn;
             $data = trim($data);
-            $data = $conn->real_escape_string($data);
+            //$data = $conn-> real_escape_string($data);
             $data = htmlentities($data);
             return $data;
             }
@@ -88,7 +88,7 @@ if(isset($_POST['submit'])){
             echo "Mailer Error: " . $mail->ErrorInfo;
             } else {
             echo "<script>Swal.fire({
-                    icon: 'Success',
+                    icon: 'success',
                     title: 'Success',
                     text: 'Email Sent'
                    })</script>";         

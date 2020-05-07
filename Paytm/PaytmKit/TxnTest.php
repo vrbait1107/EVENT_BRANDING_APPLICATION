@@ -22,7 +22,7 @@ $userName= $_SESSION['user'];
 	<meta name="GENERATOR" content="Evrsoft First Page">
 
 	<!-- header Scripts and Links -->
-	<?php include_once "includes/headerScripts.php"; ?>
+	<?php include_once "../../includes/headerScripts.php"; ?>
 
 	<style>
 		h3 {
@@ -44,7 +44,7 @@ $userName= $_SESSION['user'];
 	<?php 
 
 $sql = "select * from event_information where event = '$eventName' and email = '$userName'";
-$result = $conn->($sql);
+$result = $conn->query($sql);
 
 
 if($result->num_rows >0){
