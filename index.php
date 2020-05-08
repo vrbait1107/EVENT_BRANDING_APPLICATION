@@ -1,10 +1,14 @@
 <?php
-session_start();
+
+// Creating Connection to Database
+    require_once "configNew.php";
+
+// Staring Session
+    session_start();
+
 if(!isset($_SESSION['user'])) {
  header("location:login.php");
 }
-
-require_once "configNew.php";
 
 $visitorIpAddress = $_SERVER['REMOTE_ADDR'];
 
@@ -179,6 +183,11 @@ if($result){
         };
     </script>
 
+    <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
+     
 </body>
 
 </html>

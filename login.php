@@ -1,5 +1,11 @@
 <?php
-session_start();
+
+// Creating Connection to Database
+    require_once "configNew.php";
+
+// Staring Session
+    session_start();
+
 if(isset($_SESSION['user'])) {
   header('Location:index.php');
 }
@@ -42,7 +48,6 @@ if(isset($_SESSION['user'])) {
   <!-- PHP CODE START -->
   <?php
 
-    require_once "configNew.php";
 
     if(isset($_POST["login"])) {
 
@@ -184,6 +189,11 @@ if(isset($_SESSION['user'])) {
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
 
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
+     
 </body>
 
 </html>

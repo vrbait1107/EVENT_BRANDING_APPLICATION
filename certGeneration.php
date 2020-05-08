@@ -1,6 +1,10 @@
 <?php 
-session_start();
-require_once "configNew.php";
+
+// Creating Connection to Database
+    require_once "configNew.php";
+
+// Staring Session
+    session_start();
 
 $buttonEvent= $_POST['event1'];
 $email = $_SESSION['user'];
@@ -11,7 +15,6 @@ WHERE user_information.email = '$email' and event_information.event = '$buttonEv
 
 $result= $conn->query($sql);
 $row= $result->fetch_assoc();
-
 
 $firstName = $row['firstName'];
 $lastName = $row['lastName'];
@@ -157,6 +160,10 @@ $certificateDepartment = $row1['eventDepartment'];
         });
     </script>
 
-</body>
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
+</body>
 </html>

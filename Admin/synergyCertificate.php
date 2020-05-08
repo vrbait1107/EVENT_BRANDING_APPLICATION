@@ -1,6 +1,7 @@
 <?php
-
+// Starting Session
 session_start();
+// Starting Database Connection
 require_once "../configNew.php";
 
         $CertId= $_POST['certificateId'];
@@ -108,6 +109,11 @@ require_once "../configNew.php";
 
     <!-- Convert JS Variable data into QR Code takes input above JS Variable-->
     <script type="text/javascript" src="../js/php-certQrCode.js"> </script>
+
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
 </body>
 

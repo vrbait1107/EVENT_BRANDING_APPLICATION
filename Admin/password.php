@@ -1,6 +1,9 @@
 <?php 
-require_once ('../configNew.php');
+// Craeting Database Connection
+require_once '../configNew.php';
+// Starting Session
 session_start();
+
 $admin =$_SESSION['adminEmail'];
 if(!isset($_SESSION['adminEmail'])){
     header('location:adminLogin.php');
@@ -168,6 +171,11 @@ if(isset($_POST['changePassword'])) {
 
     <!-- Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php"; ?>
+
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
 </body>
 

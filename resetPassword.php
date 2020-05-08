@@ -1,5 +1,11 @@
 <?php
-require_once 'configNew.php';
+
+// Creating Connection to Database
+    require_once "configNew.php";
+
+// Staring Session
+    session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -140,6 +146,10 @@ $token = $_GET['token'];
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
 
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
 </body>
 

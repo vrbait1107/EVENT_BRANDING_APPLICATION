@@ -1,12 +1,15 @@
 <?php
 
-session_start();
+// Creating Connection to Database
+    require_once "configNew.php";
+
+// Staring Session
+    session_start();
 
 if(!isset($_SESSION['user'])){
     header('location:login.php');
 }
 
-require_once 'configNew.php';
 ?>
 
 
@@ -254,6 +257,11 @@ require_once 'configNew.php';
     <script src="js/form-validation.js"></script>
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
+
+      <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
 </body>
 

@@ -1,5 +1,7 @@
 <?php 
+// Starting Database Connection
 require_once "../config.php";
+// Starting Session
 session_start();
 
 // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
@@ -166,6 +168,11 @@ if(isset($_REQUEST['delete'])) {
 
   <!-- Admin Footer Scripts -->
   <?php include_once "includes/adminFooterScripts.php"; ?>
+
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
 </body>
 

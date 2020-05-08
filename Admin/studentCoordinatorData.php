@@ -1,5 +1,7 @@
 <?php 
+// Craeting Database Connection
 require_once "../configNew.php";
+// Starting Session
 session_start();
 
 
@@ -309,7 +311,10 @@ if(isset($_REQUEST['delete'])) {
   <!-- Admin Footer Scripts -->
   <?php include_once "includes/adminFooterScripts.php"; ?>
 
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
+     
 </body>
-
-
 </html>

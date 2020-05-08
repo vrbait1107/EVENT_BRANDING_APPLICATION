@@ -1,9 +1,12 @@
 <?php
+// Starting Session
 session_start();
+// Starting DB Connection
+require_once '../config.php';
+
 if(isset($_SESSION['Admin'])) {
     header('location:synergyIndex.php');
 }
-require_once '../config.php';
 ?>
 
 <!DOCTYPE html>
@@ -152,7 +155,11 @@ require_once '../config.php';
     <!-- Footer Script -->
     <?php include_once "../includes/footerScripts.php"; ?>
 
-
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
+     
 </body>
 
 </html>

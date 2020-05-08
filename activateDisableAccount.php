@@ -1,8 +1,9 @@
 <?php
-session_start();
-require_once "configNew.php";
+// Creating Connection to Database
+    require_once "configNew.php";
 
-
+// Staring Session
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -143,6 +144,11 @@ require_once "configNew.php";
     <?php include_once "includes/footer.php"; ?>
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
+
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
 </body>
 

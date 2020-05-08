@@ -1,12 +1,8 @@
 <?php
+// Creating Database Connection
 require_once 'config.php';
-
-
 $sql = "SELECT * FROM events_details_information WHERE eventDepartment ='Civil'";
-
 $result = $conn->query($sql);
-
-
 ?>
 
 
@@ -81,6 +77,11 @@ $i++;
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
 
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
+     
 </body>
 
 </html>

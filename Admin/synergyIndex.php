@@ -1,6 +1,9 @@
 <?php 
+// Starting DB Connnection
 require_once "../configNew.php";
+// Staring Session
 session_start();
+
 if(!isset($_SESSION['Admin'])) {
     header('location:synergyLogin.php');
 }
@@ -239,6 +242,11 @@ if(!isset($_SESSION['Admin'])) {
     <script src="../js/form-validation.js"></script>
     <!-- Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php"; ?>
+
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
 </body>
 

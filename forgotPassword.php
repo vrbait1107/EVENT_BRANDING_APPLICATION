@@ -1,3 +1,13 @@
+<?php
+
+// Creating Connection to Database
+    require_once "configNew.php";
+
+// Staring Session
+    session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,8 +30,7 @@
     <!-- PHP Code Start -->
 
     <?php 
-     require_once "configNew.php";
-
+    
 // Generating Random Password to Send Over Email.
 $token =   bin2hex(random_bytes(15));
 
@@ -232,6 +241,11 @@ $userType = trim($_POST['userType']);
     <?php include_once "includes/footer.php"; ?>
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
+
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
 </body>
 

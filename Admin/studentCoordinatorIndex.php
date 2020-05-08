@@ -1,5 +1,7 @@
 <?php 
+// Starting Database Connection
 require_once "../configNew.php";
+// Starting Session
 session_start();
 
 
@@ -115,6 +117,11 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
     <!-- Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php"; ?>
+
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
 </body>
 

@@ -1,6 +1,11 @@
 <?php
-session_start();
-require_once "configNew.php";
+
+// Creating Connection to Database
+    require_once "configNew.php";
+
+// Staring Session
+    session_start();
+
 if(!isset($_SESSION['user'])) {
 header("location:login.php");
 }
@@ -320,6 +325,11 @@ if(isset($_POST['disable'])){
     <?php include_once "includes/footer.php"; ?>
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
+
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
 </body>
 

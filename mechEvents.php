@@ -1,6 +1,10 @@
 <?php
-require_once 'configNew.php';
 
+// Creating Connection to Database
+    require_once "configNew.php";
+
+// Staring Session
+    session_start();
 
 $sql = "SELECT * FROM events_details_information WHERE eventDepartment ='Mechanical'";
 
@@ -78,6 +82,11 @@ $i++;
     <?php include_once "includes/footer.php"; ?>
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
+
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
 </body>
 

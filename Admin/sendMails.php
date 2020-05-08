@@ -1,5 +1,8 @@
 <?php
+//Starting Session
 session_start();
+// Creating Database Connection
+require_once "../configNew.php";
 
 if(!isset($_SESSION['adminEmail'])) {
   header("location:adminLogin.php");
@@ -35,8 +38,6 @@ if(!isset($_SESSION['adminEmail'])) {
 
   <!-- PHP CODE START -->
   <?php
-
-    require_once "../configNew.php";
 
     if(isset($_POST["sendEmails"])) {
 
@@ -307,7 +308,11 @@ if(!isset($_SESSION['adminEmail'])) {
   <!-- Admin Footer Scripts -->
   <?php include_once "includes/adminFooterScripts.php"; ?>
 
-
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
+     
 </body>
 
 </html>

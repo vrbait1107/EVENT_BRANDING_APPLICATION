@@ -1,5 +1,8 @@
 <?php 
+
+//Starting Database Conection
 require_once "../configNew.php";
+// Starting Session
 session_start();
 
 
@@ -282,9 +285,13 @@ session_start();
 
     </div>
    
-
     <!-- Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php"; ?>
+
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
 </body>
 

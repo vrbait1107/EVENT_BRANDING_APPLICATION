@@ -1,6 +1,8 @@
 <?php 
 
+ // Creating Database Connection
     require_once "../configNew.php";
+//Starting Connection
     session_start();
 
     // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
@@ -282,6 +284,11 @@
 
     <!-- Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php"; ?>
+
+    <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
 </body>
 

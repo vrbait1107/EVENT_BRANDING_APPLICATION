@@ -1,11 +1,14 @@
 <?php
-require_once "../config.php";
 
+//Creating Database Connection
+require_once "../config.php";
+//Starting Session
+session_start();
 
 // Checking That Admin Login or Not if Logged in Redirect
 // to Index.php page otherwise redirect to AdminLogin page
 
-session_start();
+
 
 if(isset($_SESSION['adminEmail']) &&  $_SESSION['adminType'] && $_SESSION['adminDepartment'] && $_SESSION['adminEvent']){
     if($_SESSION['adminType']=='Administrator') {
@@ -300,6 +303,11 @@ if(isset($_POST['login'])){
 
     <!--Footer Scripts-->
     <?php include_once "../includes/footerScripts.php" ?>
+
+    <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
 </body>
 

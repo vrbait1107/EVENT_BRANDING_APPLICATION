@@ -1,3 +1,13 @@
+<?php
+
+// Creating Connection to Database
+    require_once "configNew.php";
+
+// Staring Session
+    session_start();
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -30,11 +40,9 @@
   <!--PHP CODE START -->
 
   <?php
-session_start();
-require_once "configNew.php";
+
 $login= "login.php";
 
- 
 if (isset($_POST['submit'])) {
 
     if(isset($_POST['g-recaptcha-response'])) {
@@ -384,6 +392,11 @@ if (isset($_POST['submit'])) {
   <?php include_once "includes/footerScripts.php"; ?>
   <!-- Form Validation -->
   <script src="js/form-validation.js"></script>
+
+   <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
 </body>
 

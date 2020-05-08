@@ -1,8 +1,13 @@
 <?php
-session_start();
+
+// Creating Connection to Database
+    require_once "configNew.php";
+
+// Staring Session
+    session_start();
+
 if(!isset($_SESSION['user'])) {
  header("location:login.php");
-  require_once "configNew.php";
 }
 ?>
 
@@ -126,7 +131,7 @@ if(isset($_POST['submit'])){
 
             <section class="col-md-8 wow zoomIn slow">
 
-                <form id="contact-form" name="contact-form" action="" method="POST"
+                <form id="contactForm" name="contactForm" action="" method="POST"
                     onsubmit="return validateFormContact()">
 
                     <div class="form-group">
@@ -196,6 +201,11 @@ if(isset($_POST['submit'])){
     <?php include_once "includes/footer.php"; ?>
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
+
+    <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
 
 </body>
 

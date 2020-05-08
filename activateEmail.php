@@ -1,5 +1,6 @@
 <?php
-require_once 'configNew.php';
+// Creating Connection to Database
+    require_once "configNew.php";
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +38,11 @@ if($result){
 }
 
 ?>
+
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
    
 </body>
 </html>

@@ -1,6 +1,10 @@
 <?php 
-require_once "configNew.php";
-session_start();
+
+// Creating Connection to Database
+    require_once "configNew.php";
+
+// Staring Session
+    session_start();
 
 if(!isset($_SESSION['user'])){
     header("location:login.php");
@@ -151,6 +155,11 @@ if(isset($_POST['update'])) {
     <!-- Form Validation -->
     <script src="js/form-validation.js"></script>
 
+     <?php
+    // closing Database Connnection
+     $conn->close(); 
+     ?>
+     
 </body>
 
 </html>
