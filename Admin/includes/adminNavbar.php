@@ -107,6 +107,14 @@
                         Send Emails to Users
                     </a>
 
+                      <a class="nav-link" href="addSponsor.php">
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                       Add/Manage Sponsors
+                    </a>
+
+
                 </div>
             </div>
 
