@@ -1,3 +1,94 @@
+/* font color classes */
+.text-blue {
+  color: blue;
+}
+
+.text-orange {
+  color: orange;
+}
+
+.text-green {
+  color: green;
+}
+
+.text-yellow {
+  color: yellow;
+}
+
+.text-red {
+  color: red;
+}
+
+.text-skyblue {
+  color: skyblue;
+}
+
+.text-pink {
+  color: pink;
+}
+
+.text-orangered {
+  color: orangered;
+}
+
+/* margin-bottom classes */
+.mb-6 {
+  margin-bottom: 96px;
+}
+
+.mb-7 {
+  margin-bottom: 192px;
+}
+
+.mb-8 {
+  margin-bottom: 384px;
+}
+
+.mb-9 {
+  margin-bottom: 768px;
+}
+
+.mb-10 {
+  margin-bottom: 1536px;
+}
+
+/* background color classes */
+.bg-blue {
+  background-color: blue;
+}
+
+.bg-orange {
+  background-color: orange;
+}
+
+.bg-green {
+  background-color: green;
+}
+
+.bg-yellow {
+  background-color: yellow;
+}
+
+.bg-red {
+  background-color: red;
+}
+
+.bg-skyblue {
+  background-color: skyblue;
+}
+
+.bg-pink {
+  background-color: pink;
+}
+
+.bg-orangered {
+  background-color: orangered;
+}
+
+.bg-aliceblue {
+  background-color: aliceblue;
+}
+
 .font-time {
   font-family: "Times New Roman", Times, serif;
   font-weight: bold;
@@ -7,15 +98,4 @@
   font-family: sans-serif;
   font-weight: bold;
 }
-
-.bg-aliceblue {
-  background-color: aliceblue;
-}
-
-.text-blue {
-  color: blue;
-}
-
-.bg-lightblack {
-  background-color: #3475;
-}
+/*# sourceMappingURL=common.css.map */
