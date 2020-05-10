@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACE,UADQ,CACR,EAAE,CAAC;EACD,WAAW,EAAE,+BAA+B;EAC5C,gBAAgB,EAAE,SAAS;EAC3B,WAAW,EAAE,IAAI;CAClB;;AAGH,AAAA,GAAG,CAAC;EACF,WAAW,EAAE,+BAA+B;CAC7C",
+    "sources": [
+        "../scss/event-reg.scss"
+    ],
+    "names": [],
+    "file": "event-reg.css"
+}

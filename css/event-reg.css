@@ -1,17 +1,10 @@
-
-.container h2{
-    font-family: 'Times New Roman', Times, serif;
-    background-color: aliceblue;
-    font-weight: bold;
-
+.container h2 {
+  font-family: "Times New Roman", Times, serif;
+  background-color: aliceblue;
+  font-weight: bold;
 }
 
 nav {
-    font-family: 'Times New Roman', Times, serif;
-    
+  font-family: "Times New Roman", Times, serif;
 }
-
-
-
-
-
+/*# sourceMappingURL=event-reg.css.map */
