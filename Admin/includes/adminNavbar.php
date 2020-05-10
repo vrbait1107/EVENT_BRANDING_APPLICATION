@@ -114,6 +114,12 @@
                        Add/Manage Sponsors
                     </a>
 
+                     <a class="nav-link" href="addEvent.php">
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                       Add/Manage Events
+                    </a>
 
                 </div>
             </div>
