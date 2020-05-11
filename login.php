@@ -1,7 +1,7 @@
 <?php
 
 // Creating Connection to Database
-    require_once "configNew.php";
+    require_once "configPDO.php";
 
 // Staring Session
     session_start();
@@ -63,7 +63,7 @@ if(isset($_SESSION['user'])) {
         function security($data){
         global $conn;
         $data = trim($data);
-        $data = $conn->real_escape_string($data);
+       // $data = $conn->real_escape_string($data);
         $data = htmlentities($data);
         return $data;
         }
@@ -74,7 +74,7 @@ if(isset($_SESSION['user'])) {
 
         $sql = "select mainPassword from user_information where email='$userName' and status='active'";
         $res = $conn->query($sql);
-        $row = $res->fetch_assoc();
+        $row = $res->fetch(PDO::FETCH_ASSOC);
         $dbpassword = $row['mainPassword'];
 
         if(password_verify($password,$dbpassword)){
