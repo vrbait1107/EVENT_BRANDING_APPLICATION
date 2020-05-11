@@ -88,14 +88,14 @@
                     <a class="nav-link" href="<?php echo $adminFileData; ?>">
 
                         <div class="sb-nav-link-icon">
-                            <i class="fas fa-table"></i>
+                            <i class="fas fa-users"></i>
                         </div>
-                        Tables
+                        View/Manage Participants
                     </a>
 
                     <a class="nav-link" href="<?php echo $adminManage ?>">
                         <div class="sb-nav-link-icon">
-                            <i class="fas fa-table"></i>
+                            <img src="https://img.icons8.com/wired/20/000000/admin-settings-male.png"/>
                         </div>
                         Add/Manage Admin
                     </a>
@@ -109,14 +109,14 @@
 
                       <a class="nav-link" href="addSponsor.php">
                         <div class="sb-nav-link-icon">
-                            <i class="fas fa-envelope"></i>
+                           <img src="https://img.icons8.com/dotty/20/000000/crowdfunding.png"/>
                         </div>
                        Add/Manage Sponsors
                     </a>
 
                      <a class="nav-link" href="addEvent.php">
                         <div class="sb-nav-link-icon">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-calendar"></i>
                         </div>
                        Add/Manage Events
                     </a>

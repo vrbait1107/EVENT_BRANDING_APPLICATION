@@ -111,8 +111,8 @@ if(!isset($_SESSION['user'])){
     <main class="container">
         <div class="row">
             <section class="col-md-8 my-5 offset-md-2">
-                <h3 class="font-time text-primary text-center mb-3">GIT SHODH 2K20
-                    FEEDBACK SURVEY</h3>
+                <h2 class="font-time text-primary text-center mb-3">GIT SHODH 2K20
+                    FEEDBACK SURVEY</h2>
                 <h4 class="font-time text-center">Please take few moments to complete this survey</h4>
                 <hr class="text-dark">
 

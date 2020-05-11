@@ -44,6 +44,10 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link text-uppercase" href="news.php">News & Notification</a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link text-uppercase" href="feedbackForm.php">Feedback</a>
             </li>
 

@@ -41,7 +41,7 @@ $result = $conn->query($sql);
                     ?>
 
     <div class="container my-5">
-        <h1 class="text-danger text-center mb-5 font-time">SPONSOR PAGE</h1>
+        <h1 class="text-primary text-center mb-5 font-time">SPONSOR PAGE</h1>
         <div class="row">
 
         <?php
