@@ -24,50 +24,6 @@ require_once "../configNew.php";
 
 <head>
     <title>Synergy Certificate</title>
-
-    <style type="text/css">
-        .cert {
-            margin: auto;
-            background-image: url(../cert-images/synergy2-cert.jpg);
-            width: 1200px;
-            height: 765px;
-            background-repeat: no-repeat;
-            background-size: 1200px 765px;
-        }
-
-        .cert .para {
-            padding-top: 350px !important;
-
-        }
-
-        body p {
-            font-size: 30px;
-            text-align: center;
-        }
-
-        span {
-            color: blue;
-        }
-
-        .footer-text {
-            font-size: 20px;
-        }
-
-        div .center {
-            display: block;
-            margin-left: 46%;
-        }
-
-        .validate {
-            color: red !important;
-        }
-
-        section .center {
-            display: block;
-            margin-left: 46%;
-        }
-    </style>
-
 </head>
 
 <body onload="makeCode()">

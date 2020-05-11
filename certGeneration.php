@@ -32,7 +32,6 @@ $certificateDepartment = $row1['eventDepartment'];
 
 ?>
 
-
 <!DOCTYPE html>
 <html>
 
@@ -41,6 +40,9 @@ $certificateDepartment = $row1['eventDepartment'];
 
     <!-- Certificate CSS-->
     <link rel="stylesheet" href="css/certificate.css">
+    <link rel="stylesheet" href="css/certificateShodh.css">
+    
+    
 
     <style type="text/css">
         .cert {
@@ -65,40 +67,15 @@ $certificateDepartment = $row1['eventDepartment'];
                 echo "background-image: url(cert-images/mech-cert.jpg);";
             }
 
-            ?>margin: auto;
+            ?>
+           margin: auto;
             width: 1200px;
             height: 750px;
             background-repeat: no-repeat;
             background-size: 1200px 750px;
         }
 
-        #qrcode {
-            padding-top: 25px;
-        }
-
-        .validate {
-            color: red !important;
-        }
-
-        span {
-            color: blue;
-        }
-
-        button {
-            margin-left: 45%;
-            background-color: #0275d8;
-            color: white;
-            padding: 5px 15px 5px 15px;
-            font-size: 18px;
-            border-radius: 10px;
-
-        }
-
-        section .center {
-            display: block;
-            margin-left: 46%;
-        }
-    </style>
+           </style>
 
 </head>
 
@@ -110,7 +87,7 @@ $certificateDepartment = $row1['eventDepartment'];
     <section class="cert">
 
         <!--Content of Certificate-->
-        <p> Mr./Ms.<span><?php echo $firstName?></span>&nbsp;<span><?php echo $lastName?></span> of
+        <p class="mainContent"> Mr./Ms.<span><?php echo $firstName?></span>&nbsp;<span><?php echo $lastName?></span> of
             <span><?php echo $department?></span>&nbsp;Department <br><br>
             has Participated in <span><?php echo $event ?></span> Event of Shodh 2K20 held <br><br>
             during 07-08 March 2020 at GIT, Lavel & Won <span><?php echo $prize?></span> Prize. </p>

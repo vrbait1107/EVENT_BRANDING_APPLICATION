@@ -1,0 +1,29 @@
+section {
+  #qrcode {
+    padding-top: 25px;
+  }
+
+  .center {
+    display: block;
+    margin-left: 46%;
+  }
+
+  .validate {
+    color: red !important;
+  }
+
+  span {
+    color: blue;
+  }
+}
+
+body {
+  button {
+    margin-left: 45%;
+    background-color: #0275d8;
+    color: white;
+    padding: 5px 15px 5px 15px;
+    font-size: 18px;
+    border-radius: 10px;
+  }
+}

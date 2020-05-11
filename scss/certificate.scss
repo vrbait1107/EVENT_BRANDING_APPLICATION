@@ -1,24 +1,21 @@
 body {
   background-color: white;
 
-  p {
-    font-size: 30px;
-    text-align: center;
-    padding-top: 290px;
+  section {
+    p {
+      font-size: 30px;
+      text-align: center;
+      padding-top: 290px;
+    }
+
+    .mainContent span {
+      color: blue;
+    }
+
+    .footer-text {
+      font-size: 20px;
+      padding: 0px 0px 0px 0px;
+      padding-top: 35px;
+    }
   }
-}
-
-span {
-  color: blue;
-}
-
-.footer-text {
-  font-size: 20px;
-  padding: 0px 0px 0px 0px;
-  padding-top: 35px;
-}
-
-section .center {
-  display: block;
-  margin-left: 46%;
 }

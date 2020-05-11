@@ -191,7 +191,7 @@ if(isset($_SESSION['user'])) {
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn = null; 
      ?>
      
 </body>

@@ -1,0 +1,35 @@
+.cert {
+  margin: auto;
+  background-image: url(../cert-images/synergy2-cert.jpg);
+  width: 1200px;
+  height: 765px;
+  background-repeat: no-repeat;
+  background-size: 1200px 765px;
+}
+
+.cert .para {
+  padding-top: 350px !important;
+}
+
+.cert span {
+  color: blue;
+}
+
+.cert .footer-text {
+  font-size: 20px;
+}
+
+.cert div .center {
+  display: block;
+  margin-left: 46%;
+}
+
+.cert .validate {
+  color: red !important;
+}
+
+.cert .center {
+  display: block;
+  margin-left: 46%;
+}
+/*# sourceMappingURL=synergyCertificate.css.map */

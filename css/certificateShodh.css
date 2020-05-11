@@ -1,0 +1,26 @@
+section #qrcode {
+  padding-top: 25px;
+}
+
+section .center {
+  display: block;
+  margin-left: 46%;
+}
+
+section .validate {
+  color: red !important;
+}
+
+section span {
+  color: blue;
+}
+
+body button {
+  margin-left: 45%;
+  background-color: #0275d8;
+  color: white;
+  padding: 5px 15px 5px 15px;
+  font-size: 18px;
+  border-radius: 10px;
+}
+/*# sourceMappingURL=certificateShodh.css.map */
