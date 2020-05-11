@@ -75,7 +75,7 @@ if(!isset($_SESSION['user'])){
      $suggestion = security($_POST['suggestion']);
 
 
-     $sql = "INSERT INTO feedback (email, attendBefore, likelyAttend, likelyRecommendFriend, likeMost, likeLeast, overall, location, events, coordinators, eventsPrice, suggestion) VALUES
+     $sql = "INSERT INTO feedback_information (email, attendBefore, likelyAttend, likelyRecommendFriend, likeMost, likeLeast, overall, location, events, coordinators, eventsPrice, suggestion) VALUES
       ('$email', '$attendBefore', '$likelyAttend', '$likelyRecommendFriend', '$likeMost', '$likeLeast', '$overall', '$location','$events', '$coordinators', ' $eventsPrice', '$suggestion' )";
 
       $result = $conn->query($sql);
