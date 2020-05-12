@@ -39,8 +39,14 @@ if(!isset($_SESSION['user'])) {
                     <h3 class="card-title text-success font-time text-center mt-2">EXTC
                         ENGINEERING</h3>
                     <img src="images/EXTC.jpg" class="img-fluid" style="height:300px">
-                    <a href="extcEvents.php" class="font-sans text-center btn btn-primary my-3 rounded-pill">Click
-                        Here to View EXTC events</a>
+
+                    <form action="departmentalEvents.php" method="post">
+                        <input type="submit"
+                            class="font-sans text-center text-uppercase btn btn-block btn-primary my-3 rounded-pill"
+                            value="Click Here to View EXTC events">
+                        <input type="hidden" name="eventDepartmentName" value="Electronics and Telecommunication">
+                    </form>
+
                 </div>
             </section>
 
@@ -49,9 +55,14 @@ if(!isset($_SESSION['user'])) {
                     <h3 class="card-title text-success font-time text-center mt-2">CHEMICAL
                         ENGINEERING</h3>
                     <img src="images/CHEM.jpg" class="w-100" style="height:300px">
-                    <a href="chemEvents.php" class="text-center font-sans btn btn-primary my-3 rounded-pill">Click
-                        Here
-                        to View CHEMICAL events</a>
+
+                    <form action="departmentalEvents.php" method="post">
+                        <input type="submit"
+                            class="font-sans text-center text-uppercase btn btn-block btn-primary my-3 rounded-pill"
+                            value="Click Here to View CHEMICAL events">
+                        <input type="hidden" name="eventDepartmentName" value="Chemical">
+                    </form>
+
                 </div>
             </section>
         </div>
@@ -63,9 +74,14 @@ if(!isset($_SESSION['user'])) {
                     <h3 class="card-title text-success font-time text-center  mt-2">COMPUTER
                         ENGINEERING</h3>
                     <img src="images/COMP.jpg" class="img-fluid" style="height:300px">
-                    <a href="compEvents.php" class="text-center font-sans btn btn-primary my-3 rounded-pill">Click
-                        Here
-                        to View COMPUTER events</a>
+
+                    <form action="departmentalEvents.php" method="post">
+                        <input type="submit"
+                            class="font-sans text-center text-uppercase btn-block btn btn-primary my-3 rounded-pill"
+                            value="Click Here to View COMPUTER events">
+                        <input type="hidden" name="eventDepartmentName" value="Computer">
+                    </form>
+
                 </div>
             </section>
 
@@ -75,9 +91,14 @@ if(!isset($_SESSION['user'])) {
                     <h3 class="card-title font-time text-success text-center mt-2">MECHANICAL
                         ENGINEERING</h3>
                     <img src="images/MECH.jpg" class="img-fluid" style="height:300px">
-                    <a href="mechEvents.php" class="text-center font-sans btn btn-primary my-3 rounded-pill">Click
-                        Here
-                        to View MECHANICAL events</a>
+
+                    <form action="departmentalEvents.php" method="post">
+                        <input type="submit"
+                            class="font-sans btn-block text-uppercase text-center btn btn-primary my-3 rounded-pill"
+                            value="Click Here to View MECHANICAL events">
+                        <input type="hidden" name="eventDepartmentName" value="Mechanical">
+                    </form>
+
                 </div>
             </section>
         </div>
@@ -90,9 +111,14 @@ if(!isset($_SESSION['user'])) {
                     <h3 class="card-title text-success font-time text-center mt-2">CIVIL
                         ENGINEERING</h3>
                     <img src="images/CIVIL.jpg" class="img-fluid" style="height:300px">
-                    <a href="civilEvents.php" class="text-center font-sans btn btn-primary my-3 rounded-pill">Click
-                        Here
-                        to View CIVIL events</a>
+
+                    <form action="departmentalEvents.php" method="post">
+                        <input type="submit"
+                            class="font-sans text-center text-uppercase btn-block btn btn-primary my-3 rounded-pill"
+                            value="Click Here to View CIVIL events">
+                        <input type="hidden" name="eventDepartmentName" value="Civil">
+                    </form>
+
                 </div>
             </section>
         </div>

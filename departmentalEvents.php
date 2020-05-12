@@ -6,7 +6,9 @@
 // Staring Session
     session_start();
 
-$sql = "SELECT * FROM events_details_information WHERE eventDepartment ='Electronics and Telecommunication'";
+$eventDepartmentName = $_POST['eventDepartmentName'];
+
+$sql = "SELECT * FROM events_details_information WHERE eventDepartment ='$eventDepartmentName'";
 
 $result = $conn->query($sql);
 
@@ -34,14 +36,11 @@ $result = $conn->query($sql);
 
     <?php
                 if($result->num_rows >0) {
-
-               
-
     ?>
 
     <div class="container mt-5">
         <h2 class="text-danger text-center text-uppercase mb-5 font-time">
-            <?php echo $row["eventDepartment"]; ?> Events</h2>
+            <?php echo $eventDepartmentName; ?> Events</h2>
 
         <div class="row">
 
