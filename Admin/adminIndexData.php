@@ -1,6 +1,6 @@
 <?php 
 // Creating Database Connection
-require_once "../config.php";
+require_once "../configNew.php";
 // Starting Session
 session_start();
 

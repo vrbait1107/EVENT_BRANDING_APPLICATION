@@ -45,11 +45,11 @@ if(!isset($_SESSION['Admin'])) {
     $prize = $_POST["prize"];
 
     // Avoid SQL Injection
-    $firstName = $conn->real_eascape_string($firstName);
-    $lastName = $conn->real_eascape_string($lastName);
-    $department = $conn->real_eascape_string($department);
-    $event = $conn->real_eascape_string($event);
-    $prize = $conn->real_eascape_string($prize);
+   // $firstName = $conn->real_eascape_string($firstName);
+   // $lastName = $conn->real_eascape_string($lastName);
+   // $department = $conn->real_eascape_string($department);
+   // $event = $conn->real_eascape_string($event);
+    //$prize = $conn->real_eascape_string($prize);
 
     // Avoid Cross-Site Scripting
     $firstName = htmlentities($firstName);

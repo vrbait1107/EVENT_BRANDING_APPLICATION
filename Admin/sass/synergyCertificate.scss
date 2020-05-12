@@ -5,30 +5,35 @@
   height: 765px;
   background-repeat: no-repeat;
   background-size: 1200px 765px;
+}
 
-  .para {
-    padding-top: 350px !important;
-  }
+.para {
+  padding-top: 360px !important;
+  font-size: 25px !important;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-  span {
-    color: blue;
-  }
+span {
+  color: blue;
+}
 
-  .footer-text {
-    font-size: 20px;
-  }
+.footer-text {
+  padding-top: 20px;
+  font-size: 20px;
+  text-align: center;
+}
 
-  div .center {
-    display: block;
-    margin-left: 46%;
-  }
+div .center {
+  display: block;
+  margin-left: 46%;
+}
 
-  .validate {
-    color: red !important;
-  }
+.validate {
+  color: red !important;
+}
 
-  .center {
-    display: block;
-    margin-left: 46%;
-  }
+.center {
+  display: block;
+  margin-left: 46%;
 }

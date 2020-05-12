@@ -24,9 +24,54 @@ require_once "../configNew.php";
 
 <head>
     <title>Synergy Certificate</title>
+    <link rel="stylesheet" href="css/synergyCertificate.css">
+
+    <style>
+        .cert {
+            margin: auto;
+            background-image: url(../cert-images/synergy2-cert.jpg);
+            width: 1200px;
+            height: 765px;
+            background-repeat: no-repeat;
+            background-size: 1200px 765px;
+        }
+
+        .para {
+            padding-top: 360px !important;
+            font-size: 25px !important;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        span {
+            color: blue;
+        }
+
+        .footer-text {
+            padding-top: 20px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        div .center {
+            display: block;
+            margin-left: 46%;
+        }
+
+        .validate {
+            color: red !important;
+        }
+
+        .center {
+            display: block;
+            margin-left: 46%;
+        }
+    </style>
+
 </head>
 
 <body onload="makeCode()">
+
     <section class="cert">
 
         <!-- Content of Certificate -->
@@ -38,14 +83,19 @@ require_once "../configNew.php";
 
         <br>
 
-        <span id="qrcode" class="center" style="width:100px; height:100px;"></span>
 
-        <p class="footer-text"><b><span class="validate">Certficate Id: <?php echo $validate ?></span><br>
+        <div class="text-center mx-auto">
+            <span id="qrcode" class="center" style="width:100px; height:100px;"></span>
+        </div>
+        <p class="footer-text text-center"><b><span class="validate">Certficate Id: <?php echo $validate ?></span><br>
                 This is computer generated Certificate does not required any signature, to Authenticate this Certificate
                 <br>
                 Go to GIT SHODH/SYNERGY Verification System Page.</b></p>
 
     </section>
+
+    </div>
+    </div>
 
     <!--Jquerry-->
     <script type="text/javascript" src="../js/jquery.min.js"></script>
@@ -66,7 +116,7 @@ require_once "../configNew.php";
     <!-- Convert JS Variable data into QR Code takes input above JS Variable-->
     <script type="text/javascript" src="../js/php-certQrCode.js"> </script>
 
-     <?php
+    <?php
     // closing Database Connnection
      $conn->close(); 
      ?>

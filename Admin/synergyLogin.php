@@ -2,7 +2,7 @@
 // Starting Session
 session_start();
 // Starting DB Connection
-require_once '../config.php';
+require_once '../configNew.php';
 
 if(isset($_SESSION['Admin'])) {
     header('location:synergyIndex.php');
