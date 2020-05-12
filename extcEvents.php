@@ -29,8 +29,8 @@ $result = $conn->query($sql);
 
 <body>
 
-<!--Navbar PHP -->
-<?php include_once "includes/navbar.php";?>
+    <!--Navbar PHP -->
+    <?php include_once "includes/navbar.php";?>
 
     <?php
                 if($result->num_rows >0) {
@@ -40,35 +40,80 @@ echo '<h1 class="text-danger text-center mb-5 font-sans">WELCOME TO EXTC EVENTS<
 echo '<div class="row">';
 
    
-$i =0;
-
-                    while($row= $result->fetch_assoc()){
-$i++;
-                        $eventName = $row["eventName"];
-                        $eventImage = $row["eventImage"];
-                        $eventPrice = $row["eventPrice"];
- 
+        $i =0;
+        while($row= $result->fetch_assoc()){
+        $i++;
+                      
 ?>
+
     <div class="col-md-4 mb-5">
         <div class="card shadow text-center">
-            <img src=<?php echo $eventImage ?> class="img-fluid">
-            <h5 class="text-danger my-3">Entry Fee &#x20b9;<?php echo $eventPrice ?></h5>
+            <img src="eventImage/<?php echo $row["eventImage"]; ?>" class="img-fluid">
+            <h5 class="text-danger my-3">Entry Fee &#x20b9;<?php echo  $row["eventPrice"]; ?></h5>
 
             <form method="post" action="Paytm/PaytmKit/TxnTest.php">
-                <input type="hidden" name="eventName" value='<?php echo $eventName; ?>'>
-                <input type="hidden" name="eventPrice" value='<?php echo $eventPrice?>'>
-                <input type="submit" class="btn btn-primary text-uppercase btn-block mb-2 rounded-pill" value="Click here to Register">
+                <input type="hidden" name="eventName" value='<?php echo $row["eventName"]; ?>'>
+                <input type="hidden" name="eventPrice" value='<?php echo $row["eventPrice"];?>'>
+                <input type="submit" class="btn btn-primary text-uppercase btn-block mb-2 rounded-pill"
+                    value="Click here to Register">
             </form>
 
-            <button type ='button' data-toggle="modal" data-target= '#modal<?php echo $i; ?>'
-              class ='btn btn-secondary mb-3 rounded-pill 
+            <button type='button' data-toggle="modal" data-target='#modal<?php echo $i; ?>' class='btn btn-secondary mb-3 rounded-pill 
              text-uppercase'>View Event Information<button>
 
         </div>
     </div>
 
+    <!--modal Events --> 
+    <div class="modal fade" id="modal<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Rules for <?php echo $row['eventName'];?></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 modal1">
+                                <h4
+                                    class="font-weight-bold text-center text-uppercase text-danger animated heartBeat slow">
+                                    Entry Fees: <?php echo $row['eventPrice']; ?></h4>
+
+                                <h4
+                                    class="font-weight-bold text-center text-uppercase text-danger animated heartBeat slow">
+                                    First Prize:<?php echo $row['eventPrize']; ?></h4>
+
+
+                                <h4 class="font-weight-bold font-time text-warning">Event Description</h4>
+                                <p><?php echo $row['eventDescription']; ?></p>
+
+                                <h4 class="font-weight-bold  font-time text-warning">Event Rules</h4>
+                                <p><?php echo $row['eventRules']; ?></p>
+
+                                <h4 class="font-weight-bold font-time text-warning">Co-ordinators:-</h4>
+                                <p><?php echo $row['eventCoordinator']; ?></p>
+
+                            </div>
+
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
-                    
+<!--modal End -->
+
+
 
     <?php
                     }
@@ -80,13 +125,14 @@ $i++;
     </div>
 
 
+<?php
 
+/*
+     <!--Modals of the Event-->
 
-<!--Modals of the Event-->
+    <!--  Paper Modal -->
 
-<!--  Paper Modal -->
-
-<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
@@ -150,7 +196,7 @@ $i++;
                                     <li><strong>Mobile No:- </strong> 9373241085</li>
                                 </ul>
 
-                                
+
                             </div>
 
                             <div class="modal-footer">
@@ -225,7 +271,7 @@ $i++;
                                     <li><strong>Chief-Coordinator:- </strong>Suraj Mohite</li>
                                     <li><strong>Mobile No:- </strong> 9823148308</li>
                                 </ul>
-                                                       
+
                             </div>
 
                             <div class="modal-footer">
@@ -338,7 +384,7 @@ $i++;
                                     <li><strong>Chief-Coordinator:- </strong>Avdhoot Pandharkame</li>
                                     <li><strong>Mobile No:- </strong> 8793940327</li>
                                 </ul>
-                                
+
                             </div>
 
                             <div class="modal-footer">
@@ -414,7 +460,7 @@ $i++;
                                     <li><strong>Chief-Coordinator:- </strong>Samprit Gowd</li>
                                     <li><strong>Mobile No:- </strong> 9623291361</li>
                                 </ul>
-                                
+
                             </div>
 
                             <div class="modal-footer">
@@ -484,7 +530,7 @@ $i++;
                                     <li><strong>Chief-Coordinator:- </strong>Vipul Gandhi</li>
                                     <li><strong>Mobile No:- </strong> 7776825102</li>
                                 </ul>
-                                                         
+
                             </div>
 
                             <div class="modal-footer">
@@ -499,17 +545,20 @@ $i++;
     </div>
 
     <!--modals of the event end-->
+    */
+   ?>
 
-     <!-- Footer PHP -->
+
+    <!-- Footer PHP -->
     <?php include_once "includes/footer.php"; ?>
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
 
-     <?php
+    <?php
     // closing Database Connnection
      $conn->close(); 
      ?>
- 
+
 </body>
 
 </html>

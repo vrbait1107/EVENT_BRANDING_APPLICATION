@@ -48,9 +48,9 @@ else{
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="author" content="Vishal Bait" />
 
-    <title>Add Sponsors</title>
+    <title>Add Events</title>
 
     <!-- Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php"; ?>
@@ -62,9 +62,9 @@ else{
 
     <?php
 
-/*
 
-if(isset($_POST['addSponsor'])){
+
+if(isset($_POST['addEvent'])){
 
             // To avoid sql injection and cross site scripting also remove white spaces
             function security($data){
@@ -75,24 +75,36 @@ if(isset($_POST['addSponsor'])){
             return $data;
             }
 
- $sponsorName= security($_POST['sponsorName']);
- $sponsoredEvent = security($_POST['sponsoredEvent']);
- $sponsoredDepartment = security($_POST['sponsoredDepartment']);
- $sponsorLogo = $_FILES['sponsorLogo'];
+ $eventName = security($_POST['eventName']);
+ $eventPrice = security($_POST['eventPrice']);
+ $eventPrize = security($_POST['eventPrize']);
+ $eventSponsor = security($_POST['eventSponsor']);
+ $eventDepartment = security($_POST['eventDepartment']);
+ $eventDescription = security($_POST['eventDescription']);
+ $eventRules = security($_POST['eventRules']);
+ $eventCoordinator = security($_POST['eventCoordinator']);
+ $eventStartDate = security($_POST['eventStartDate']);
+ $eventEndDate = security($_POST['eventEndDate']);
 
- $sponsorLogoName = $_FILES['sponsorLogo']['name'];
- $sponsorLogoSize = $_FILES['sponsorLogo']['size'];
- $sponsorLogoTmpDir = $_FILES['sponsorLogo']['tmp_name'];
- $sponsorLogoType = $_FILES['sponsorLogo']['type'];
 
- if($sponsorLogoType ==  'image/jpeg' || $sponsorLogoType ==  'image/jpg' || $sponsorLogoType ==  'image/png') {
+ $eventImage = $_FILES['eventImage'];
+ $eventImageName = $_FILES['eventImage']['name'];
+ $eventImageSize = $_FILES['eventImage']['size'];
+ $eventImageTmpDir = $_FILES['eventImage']['tmp_name'];
+ $eventImageType = $_FILES['eventImage']['type'];
+
+ if($eventImageType ==  'image/jpeg' || $eventImageType ==  'image/jpg' || $eventImageType ==  'image/png') {
    
-    if($sponsorLogoSize <= 2097152){
+    if($eventImageSize <= 2097152){
      
-        move_uploaded_file($sponsorLogoTmpDir, "../sponsorLogo/".$sponsorLogoName);
+        move_uploaded_file($eventImageTmpDir, "../eventImage/".$eventImageName);
        
-       $sql = "insert into sponsor_information (sponsorName, sponsorLogo, sponsoredEvent, 
-       sponsoredDepartment) values('$sponsorName', '$sponsorLogoName', '$sponsoredEvent', '$sponsoredDepartment')";
+       
+      $sql=   "INSERT INTO events_details_information( eventImage, eventName, eventPrice, eventPrize, eventSponsor,
+         eventDepartment, eventDescription, eventRules, eventCoordinator, eventStartDate, eventEndDate)
+          VALUES ('$eventImageName','$eventName', '$eventPrice','$eventPrize', '$eventSponsor', '$eventDepartment', 
+          '$eventDescription', '$eventRules', '$eventCoordinator', '$eventStartDate', '$eventEndDate' )";
+
 
        $result =  $conn->query($sql);
 
@@ -100,14 +112,14 @@ if(isset($_POST['addSponsor'])){
                 echo "<script>Swal.fire({
                         icon: 'success',
                         title: 'Success',
-                        text: 'Added Sponsor Successfully'
+                        text: 'Added Event Successfully'
                     })</script>";
             }
             else{
                     echo "<script>Swal.fire({
                             icon: 'error',
                             title: 'Error',
-                            text: 'Failed to Add Sponsor'
+                            text: 'Failed to Add Event'
                         })</script>";
             }
 
@@ -133,7 +145,6 @@ if(isset($_POST['addSponsor'])){
  
 }
 
-*/
 
 ?>
 
@@ -156,8 +167,28 @@ if(isset($_POST['addSponsor'])){
                     <form action="" method="post" class="my-1" enctype="multipart/form-data">
 
                         <div class="form-group">
+                            <label>Event Image</label> <br />
+                            <input type="file" name="eventImage">
+                        </div>
+
+                        <div class="form-group">
                             <label>Event Name</label>
                             <input type="text" name="eventName" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Event Entry Fee</label>
+                            <input type="text" name="eventPrice" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Event Prize</label>
+                            <input type="text" name="eventPrize" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Event Sponsor</label>
+                            <input type="text" name="eventSponsor" class="form-control">
                         </div>
 
                         <div class="form-group">
@@ -173,30 +204,6 @@ if(isset($_POST['addSponsor'])){
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label>Event Sponsor</label>
-                            <input type="text" name="eventSponsor" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Event Prize</label>
-                            <input type="text" name="eventPrize" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Event Start Date</label>
-                            <input type="date" name="eventStartDate" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Event Start Date</label>
-                            <input type="date" name="eventStartDate" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Event Image</label> <br />
-                            <input type="file" name="eventImage">
-                        </div>
 
 
                         <div class="form-group">
@@ -204,6 +211,25 @@ if(isset($_POST['addSponsor'])){
                             <textarea name="eventDescription" cols="30" rows="5" class="form-control"></textarea>
                         </div>
 
+                        <div class="form-group">
+                            <label>Event Rules</label>
+                            <textarea name="eventRules" cols="30" rows="5" class="form-control"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Event Coordinator</label>
+                            <textarea name="eventCoordinator" cols="30" rows="3" class="form-control"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Event Start Date</label>
+                            <input type="date" name="eventStartDate" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Event End Date</label>
+                            <input type="date" name="eventEndDate" class="form-control">
+                        </div>
 
                         <div class="form-group">
                             <input type="submit" value="Add Events" name="addEvent"
