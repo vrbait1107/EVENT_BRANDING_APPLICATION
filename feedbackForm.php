@@ -75,18 +75,37 @@ if(!isset($_SESSION['user'])){
      $suggestion = security($_POST['suggestion']);
 
 
-     $sql = "INSERT INTO feedback_information (email, attendBefore, likelyAttend, likelyRecommendFriend, likeMost, likeLeast, overall, location, events, coordinators, eventsPrice, suggestion) VALUES
+     if($attendBefore !== "" || $likelyAttend !== "" || $likelyRecommendFriend !== "" || $likeMost !== "" || $likeLeast !== "" || $overall !== "" || $location == "" || $events !== "" || $coordinators !== "" || $eventsPrice !== "" || $suggestion !== "") {
+
+    $sql = "INSERT INTO feedback_information (email, attendBefore, likelyAttend, likelyRecommendFriend, likeMost, likeLeast, overall, location, events, coordinators, eventsPrice, suggestion) VALUES
       ('$email', '$attendBefore', '$likelyAttend', '$likelyRecommendFriend', '$likeMost', '$likeLeast', '$overall', '$location','$events', '$coordinators', ' $eventsPrice', '$suggestion' )";
-
       $result = $conn->query($sql);
+      
 
-     if($result){
-      echo "<script>Swal.fire({
+        if($result){
+        echo "<script>Swal.fire({
             icon: 'success',
             title: 'Successful',
             text: 'Your Feedback is Successfully Submitted'
         })</script>";
          }
+
+         else {
+             echo "<script>Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'We are failed to Submit your feedback'
+                })</script>";
+         }
+
+        }
+        else {
+            echo "<script>Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Please fill all the field'
+                })</script>";
+        }
 
       }// if $response
 
@@ -102,6 +121,7 @@ if(!isset($_SESSION['user'])){
 
     }
 
+
     ?>
 
     <!--Navbar.php-->
@@ -116,7 +136,7 @@ if(!isset($_SESSION['user'])){
                 <h4 class="font-time text-center">Please take few moments to complete this survey</h4>
                 <hr class="text-dark">
 
-                <form action="" method="post" name="feedbackForm" onsubmit="return feedbackForm()">
+                <form action="" method="post" name="feedbackForm">
 
                     <div class="form-group">
                         <label class="font-weight-bold">Have you participated in any event in GIT SHODH before?</label>
@@ -162,12 +182,12 @@ if(!isset($_SESSION['user'])){
 
                     <div class="form-group">
                         <label class="font-weight-bold">What did you like most about the event?</label>
-                        <textarea name="likeMost" id="likeMost" cols="30" rows="3" class="form-control"></textarea>
+                        <textarea name="likeMost" id="likeMost" cols="30" rows="3" class="form-control" required></textarea>
                     </div>
 
                     <div class="form-group">
                         <label class="font-weight-bold">What did you like least about the event?</label>
-                        <textarea name="likeLeast" id="likeLeast" cols="30" rows="3" class="form-control"></textarea>
+                        <textarea name="likeLeast" id="likeLeast" cols="30" rows="3" class="form-control" required></textarea>
                     </div>
 
                     <label class="font-weight-bold">Overall Satisfaction</label>
@@ -236,7 +256,7 @@ if(!isset($_SESSION['user'])){
 
                     <div class="form-group">
                         <label class="font-weight-bold">How can we improve this event?</label>
-                        <textarea name="suggestion" id="suggestion" cols="30" rows="3" class="form-control"></textarea>
+                        <textarea name="suggestion" id="suggestion" cols="30" rows="3" class="form-control" required></textarea>
                     </div>
 
                     <div class="text-center my-2">
@@ -244,8 +264,8 @@ if(!isset($_SESSION['user'])){
                         </div>
                     </div>
 
-                    <input type="submit" name="submit" class="btn text-center btn-primary btn-block rounded-pill"
-                        value="Submit Feedback">
+                    <input type="submit" name="submit" id="submit"
+                        class="btn text-center btn-primary btn-block rounded-pill" value="Submit Feedback">
                 </form>
             </section>
         </div>
@@ -254,11 +274,11 @@ if(!isset($_SESSION['user'])){
 
     <!--Footer.PHP-->
     <?php include_once 'includes/footer.php'; ?>
-    <script src="js/form-validation.js"></script>
+
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
 
-      <?php
+    <?php
     // closing Database Connnection
      $conn->close(); 
      ?>

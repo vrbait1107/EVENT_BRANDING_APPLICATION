@@ -1,3 +1,40 @@
+// Feedback Validation Form
+
+const feedbackForm = () => {
+  "use strict";
+
+  let likeMost = document.forms["feedbackForm"]["likeMost"].value;
+  let likeLeast = document.forms["feedbackForm"]["likeLeast"].value;
+  let suggestion = document.forms["feedbackForm"]["suggestion"].value;
+
+  if (likeMost == "") {
+    Swal.fire({
+      icon: "error",
+      title: "ERROR",
+      text: "if you don't want to specify anything just put - in input field.",
+    });
+    return false;
+  }
+
+  if (likeLeast == "") {
+    Swal.fire({
+      icon: "error",
+      title: "ERROR",
+      text: "if you don't want to specify anything just put - in input field.",
+    });
+    return false;
+  }
+
+  if (suggestion == "") {
+    Swal.fire({
+      icon: "error",
+      title: "ERROR",
+      text: "if you don't want to specify anything just put - in input field.",
+    });
+    return false;
+  }
+};
+
 //Synergy Certificate Form Validation
 
 const synergyValidateForm = () => {
@@ -288,43 +325,6 @@ const sendMailsValidation = () => {
       icon: "error",
       title: "ERROR",
       text: "Only Characters are allowed or Message cannot be empty",
-    });
-    return false;
-  }
-};
-
-// Feedback Validation Form
-
-const feedbackForm = () => {
-  "use strict";
-
-  let likeMost = document.getElementById("likeMost").value;
-  let likeLeast = document.getElementById("likeLeast").value;
-  let suggestion = document.getElementById("suggestion").value;
-
-  if (likeMost == "") {
-    Swal.fire({
-      icon: "error",
-      title: "ERROR",
-      text: "if you don't want to specify anything just put - in input field.",
-    });
-    return false;
-  }
-
-  if (likeLeast == "") {
-    Swal.fire({
-      icon: "error",
-      title: "ERROR",
-      text: "if you don't want to specify anything just put - in input field.",
-    });
-    return false;
-  }
-
-  if (suggestion == "") {
-    Swal.fire({
-      icon: "error",
-      title: "ERROR",
-      text: "if you don't want to specify anything just put - in input field.",
     });
     return false;
   }
