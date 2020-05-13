@@ -75,8 +75,6 @@ if(!isset($_SESSION['user'])){
      $suggestion = security($_POST['suggestion']);
 
 
-     if($attendBefore !== "" || $likelyAttend !== "" || $likelyRecommendFriend !== "" || $likeMost !== "" || $likeLeast !== "" || $overall !== "" || $location == "" || $events !== "" || $coordinators !== "" || $eventsPrice !== "" || $suggestion !== "") {
-
     $sql = "INSERT INTO feedback_information (email, attendBefore, likelyAttend, likelyRecommendFriend, likeMost, likeLeast, overall, location, events, coordinators, eventsPrice, suggestion) VALUES
       ('$email', '$attendBefore', '$likelyAttend', '$likelyRecommendFriend', '$likeMost', '$likeLeast', '$overall', '$location','$events', '$coordinators', ' $eventsPrice', '$suggestion' )";
       $result = $conn->query($sql);
@@ -84,10 +82,10 @@ if(!isset($_SESSION['user'])){
 
         if($result){
         echo "<script>Swal.fire({
-            icon: 'success',
-            title: 'Successful',
-            text: 'Your Feedback is Successfully Submitted'
-        })</script>";
+                icon: 'success',
+                title: 'Successful',
+                text: 'Your Feedback is Successfully Submitted'
+            })</script>";
          }
 
          else {
@@ -98,15 +96,7 @@ if(!isset($_SESSION['user'])){
                 })</script>";
          }
 
-        }
-        else {
-            echo "<script>Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Please fill all the field'
-                })</script>";
-        }
-
+       
       }// if $response
 
       else{
@@ -136,14 +126,14 @@ if(!isset($_SESSION['user'])){
                 <h4 class="font-time text-center">Please take few moments to complete this survey</h4>
                 <hr class="text-dark">
 
-                <form action="" method="post" name="feedbackForm">
+                <form action="" method="post" name="feedbackForm" onsubmit="return feedbackForm();">
 
                     <div class="form-group">
                         <label class="font-weight-bold">Have you participated in any event in GIT SHODH before?</label>
                         <br />
-                        <input type="radio" name="attendBefore" value="yes">
+                        <input type="radio" name="attendBefore" id="attendBefore" value="yes">
                         <label>Yes</label> <br />
-                        <input type="radio" name="attendBefore" value="no">
+                        <input type="radio" name="attendBefore" id="attendBefore" value="no">
                         <label>No</label>
                     </div>
 
@@ -182,12 +172,14 @@ if(!isset($_SESSION['user'])){
 
                     <div class="form-group">
                         <label class="font-weight-bold">What did you like most about the event?</label>
-                        <textarea name="likeMost" id="likeMost" cols="30" rows="3" class="form-control" required></textarea>
+                        <textarea name="likeMost" id="likeMost" cols="30" rows="3" class="form-control"
+                            required></textarea>
                     </div>
 
                     <div class="form-group">
                         <label class="font-weight-bold">What did you like least about the event?</label>
-                        <textarea name="likeLeast" id="likeLeast" cols="30" rows="3" class="form-control" required></textarea>
+                        <textarea name="likeLeast" id="likeLeast" cols="30" rows="3" class="form-control"
+                            required></textarea>
                     </div>
 
                     <label class="font-weight-bold">Overall Satisfaction</label>
@@ -256,7 +248,8 @@ if(!isset($_SESSION['user'])){
 
                     <div class="form-group">
                         <label class="font-weight-bold">How can we improve this event?</label>
-                        <textarea name="suggestion" id="suggestion" cols="30" rows="3" class="form-control" required></textarea>
+                        <textarea name="suggestion" id="suggestion" cols="30" rows="3" class="form-control"
+                            required></textarea>
                     </div>
 
                     <div class="text-center my-2">
@@ -275,6 +268,8 @@ if(!isset($_SESSION['user'])){
     <!--Footer.PHP-->
     <?php include_once 'includes/footer.php'; ?>
 
+    <!--Footer.PHP-->
+    <script src="js/form-validation.js"></script>
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
 

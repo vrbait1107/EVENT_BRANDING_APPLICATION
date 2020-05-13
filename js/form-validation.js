@@ -7,6 +7,19 @@ const feedbackForm = () => {
   let likeLeast = document.forms["feedbackForm"]["likeLeast"].value;
   let suggestion = document.forms["feedbackForm"]["suggestion"].value;
 
+  let attendBefore = document.getElementsByName("attendBefore");
+  let attendBeforeValue = false;
+
+  for (var i = 0; i < attendBefore.length; i++) {
+    if (attendBefore[i].checked == true) {
+      attendBeforeValue = true;
+    }
+  }
+  if (!attendBeforeValue) {
+    alert("Please Choose the gender");
+    return false;
+  }
+
   if (likeMost == "") {
     Swal.fire({
       icon: "error",
