@@ -85,50 +85,124 @@
 
                     <div class="sb-sidenav-menu-heading">Addons</div>
 
-                    <a class="nav-link" href="<?php echo $adminFileData; ?>">
 
-                        <div class="sb-nav-link-icon">
-                            <i class="fas fa-users"></i>
+                    <!-- Participants-->
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#participants"
+                        aria-expanded="false" aria-controls="participants">
+                        Participants
+                        <div class="sb-sidenav-collapse-arrow">
+                            <i class="fas fa-angle-down"></i>
                         </div>
-                        View/Manage Participants
                     </a>
 
-                    <a class="nav-link" href="<?php echo $adminManage ?>">
-                        <div class="sb-nav-link-icon">
-                            <img src="https://img.icons8.com/wired/20/000000/admin-settings-male.png"/>
+                    <div class="collapse" id="participants">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="<?php echo $adminFileData; ?>">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                View/Manage Participants
+                            </a>
+                        </nav>
+                    </div>
+
+                    <!-- Admin-->
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#admin"
+                        aria-expanded="false" aria-controls="participants">
+                        Admins
+                        <div class="sb-sidenav-collapse-arrow">
+                            <i class="fas fa-angle-down"></i>
                         </div>
-                        Add/Manage Admin
                     </a>
 
-                    <a class="nav-link" href="sendMails.php">
-                        <div class="sb-nav-link-icon">
-                            <i class="fas fa-envelope"></i>
+                    <div class="collapse" id="admin">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="<?php echo $adminManage ?>">
+                                <div class="sb-nav-link-icon">
+                                    <img src="https://img.icons8.com/wired/20/000000/admin-settings-male.png" />
+                                </div>
+                                Add/Manage Admin
+                            </a>
+                        </nav>
+                    </div>
+
+
+                    <!-- Emails-->
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#emails"
+                        aria-expanded="false" aria-controls="emails">
+                        Emails
+                        <div class="sb-sidenav-collapse-arrow">
+                            <i class="fas fa-angle-down"></i>
                         </div>
-                        Send Emails to Users
                     </a>
 
-                      <a class="nav-link" href="addSponsor.php">
-                        <div class="sb-nav-link-icon">
-                           <img src="https://img.icons8.com/dotty/20/000000/crowdfunding.png"/>
+                    <div class="collapse" id="emails">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="sendMails.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                Send Emails to Users
+                            </a>
+                        </nav>
+                    </div>
+
+
+                    <!-- Sponsor-->
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#sponsors"
+                        aria-expanded="false" aria-controls="emails">
+                        Sponsor
+                        <div class="sb-sidenav-collapse-arrow">
+                            <i class="fas fa-angle-down"></i>
                         </div>
-                       Add/Manage Sponsors
                     </a>
 
-                     <a class="nav-link" href="addEvent.php">
-                        <div class="sb-nav-link-icon">
-                            <i class="fas fa-calendar"></i>
+                    <div class="collapse" id="sponsors">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="addSponsor.php">
+                                <div class="sb-nav-link-icon">
+                                    <img src="https://img.icons8.com/dotty/20/000000/crowdfunding.png" />
+                                </div>
+                                Add/Manage Sponsors
+                            </a>
+
+                            <a class="nav-link" href="manageSponsor.php">
+                                <div class="sb-nav-link-icon">
+                                    <img src="https://img.icons8.com/dotty/20/000000/crowdfunding.png" />
+                                </div>
+                                Manage Sponsors
+                            </a>
+                        </nav>
+                    </div>
+
+
+                    <!-- Events-->
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#events"
+                        aria-expanded="false" aria-controls="events">
+                        Events
+                        <div class="sb-sidenav-collapse-arrow">
+                            <i class="fas fa-angle-down"></i>
                         </div>
-                       Add/Manage Events
                     </a>
+
+                    <div class="collapse" id="events">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="addEvent.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-calendar"></i>
+                                </div>
+                                Add/Manage Events
+                            </a>
+                        </nav>
+                    </div>
 
                 </div>
-            </div>
 
 
-            <div class="sb-sidenav-footer">
-                <div class="small">Logged in as:</div>
-                <?php echo $_SESSION['adminType']; ?>
-            </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    <?php echo $_SESSION['adminType']; ?>
+                </div>
 
         </nav>
     </div>
