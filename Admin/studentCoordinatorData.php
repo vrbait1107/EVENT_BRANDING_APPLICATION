@@ -42,8 +42,12 @@ session_start();
 
   if(isset($_REQUEST['update'])) { // Checking if the Field is Empty or Not
 
-  if(($_REQUEST['firstName'])== "" || ($_REQUEST['lastName'])== "" || ($_REQUEST['certificateId']=="")) {
-  echo "<small>Please Fill All Field </small> <hr>";
+  if(($_REQUEST['firstName'])== "" || ($_REQUEST['lastName'])== "" || ($_REQUEST['certificateId']=="")|| ($_REQUEST['prize']=="") || ($_REQUEST['attendStatus']=="")) {
+   echo "<script>Swal.fire({
+          icon: 'error',
+          title: 'ERROR',
+          text: 'Please fill all the field or select proper Data '
+        })</script>";
 }
 
 else {
@@ -78,8 +82,11 @@ else {
     
   }
 
+ 
+
 }
 
+ unset($_REQUEST['edit']); // unsetting request od edit to vanishing data from the form
   }
 
   // When Edit button is Pressed Retrive the Data in Form to Update Data
@@ -157,8 +164,8 @@ if(isset($_REQUEST['delete'])) {
 
               <div class="form-group">
                 <label for="firstName">First Name</label>
-                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" value="<?php 
-          if(isset($row['firstName'])){
+                <input type="text" class="form-control" name="firstName" id="firstName" value="<?php 
+         if(isset($_REQUEST['edit'])){
             echo $row['firstName'];
             } 
             ?>" required>
@@ -166,8 +173,8 @@ if(isset($_REQUEST['delete'])) {
 
               <div class="form-group">
                 <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" value="<?php 
-          if(isset($row['lastName'])){
+                <input type="text" class="form-control" name="lastName" id="lastName"  value="<?php 
+          if(isset($_REQUEST['edit'])){
             echo $row['lastName'];
             } 
             ?>" required>
@@ -175,7 +182,8 @@ if(isset($_REQUEST['delete'])) {
 
               <div class="form-group">
                 <label>Prize</label>
-                <select class="form-control" name="prize" id="prize">
+                <select class="form-control" name="prize" id="prize" required>
+                  <option disabled selected>Chooes</option>
                   <option value="NONE">None</option>
                   <option value="First">First</option>
                   <option value="Second">Second</option>
@@ -185,7 +193,8 @@ if(isset($_REQUEST['delete'])) {
 
               <div class="form-group">
                 <label>Attendance Status</label>
-                <select class="form-control" name="attendStatus" id="attendStatus">
+                <select class="form-control" name="attendStatus" id="attendStatus" required>
+                  <option disabled selected>Chooes...</option>
                   <option value="absent">Absent</option>
                   <option value="present">Present</option>
                 </select>
@@ -240,7 +249,8 @@ if(isset($_REQUEST['delete'])) {
                     <th class='text-success text-center'>Event</th>
                     <th class='text-success text-center'>Prize</th>
                     <th class='text-success text-center'>Attend Status</th>
-                    <th class='text-success text-center'>Action</th>
+                    <th class='text-success text-center'>Edit</th>
+                    <th class='text-success text-center'>Delete</th>
                     <th class='text-success text-center'>TXN Amount</th>
                     <th class='text-success text-center'>Order Id</th>
                     <th class='text-success text-center'>TXN ID</th>
@@ -271,9 +281,16 @@ if(isset($_REQUEST['delete'])) {
                       <td>
                         <form class="text-center" action="">
                           <input type="hidden" name="certificateId" value='<?php echo $row ["certificateId"] ?>'>
-                          <input type="submit" class="btn btn-sm btn-primary text-white font-weight-bold" value="EDIT"
+                          <input type="submit" class="btn btn-primary text-white" value="Edit"
                             name="edit">
-                          <input type="submit" class="btn btn-sm btn-danger text-white font-weight-bold" value="DELETE"
+                        </form>
+                      </td>
+
+
+                       <td>
+                        <form class="text-center" action="">
+                          <input type="hidden" name="certificateId" value='<?php echo $row ["certificateId"] ?>'>
+                          <input type="submit" class="btn btn-danger text-white" value="Delete"
                             name="delete">
                         </form>
                       </td>
