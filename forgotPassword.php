@@ -42,7 +42,7 @@ $userType = trim($_POST['userType']);
     // User Part
     if($userType=== "user"){
 
-    $sql = "select email from user_information where email = '$email'";
+    $sql = "SELECT email FROM user_information WHERE email = '$email'";
     $result = $conn->query($sql);
 
     if($result->num_rows ===1) {
@@ -66,11 +66,24 @@ $userType = trim($_POST['userType']);
     $mail->addAddress($email, $email);
     $mail->Subject = "GIT SHODH 2K20 PASSWORD RESET";
 
-    $mail->msgHTML("<!doctype html><html><body><h3>$email Please Click below link to reset your password 
-   http://localhost/EBA/resetPassword.php?token=$token </h3></body></html>");
+    $mail->msgHTML("<!doctype html>
+    <html><body> <p>$email You're receiving this e-mail because you requested a password reset
+    for your user account at GIT SHODH 2K20</p>
+    <p>Please go to the following page and choose a new password:</p>
+    <p>http://localhost/EBA/resetPassword.php?token=$token</p>
+    <p>If you didn't request this change, you can disregard this email - we have not yet reset your password.</p>
+    <p>Thanks for using our site!</p>
+    <p>The GIT SHODH Team<p>
+     </body></html>");
 
-    $mail->AltBody = "$email Please Click below link to reset your password 
-   http://localhost/EBA/resetPassword.php?token=$token";
+
+    $mail->AltBody = "$email You're receiving this e-mail because you requested a password reset
+    for your user account at GIT SHODH 2K20 <br/>
+    Please go to the following page and choose a new password: <br/>
+    http://localhost/EBA/resetPassword.php?token=$token<br/>
+    If you didn't request this change, you can disregard this email - we have not yet reset your password. <br/>
+     Thanks for using our site!<br/>
+     The GIT SHODH Team";
 
 
             if (!$mail->send()) {
@@ -117,7 +130,7 @@ $userType = trim($_POST['userType']);
     // Admin Part
  elseif($userType=== "admin"){
 
-    $sql = "select email from admin_information where email = '$email'";
+    $sql = "SELECT email FROM admin_information WHERE email = '$email'";
     $result = $conn->query($sql);
 
     if($result->num_rows === 1) {
@@ -141,11 +154,24 @@ $userType = trim($_POST['userType']);
     $mail->addAddress($email, $email);
     $mail->Subject = "GIT SHODH 2K20 PASSWORD RESET";
 
-    $mail->msgHTML("<!doctype html><html><body><h3>$email Please Click below link to reset your password 
-   http://localhost/EBA/resetPassword.php?token=$token </h3></body></html>");
+     $mail->msgHTML("<!doctype html>
+    <html><body> <p>$email You're receiving this e-mail because you requested a password reset
+    for your user account at GIT SHODH 2K20</p>
+    <p>Please go to the following page and choose a new password:</p>
+    <p>http://localhost/EBA/resetPassword.php?token=$token</p>
+    <p>If you didn't request this change, you can disregard this email - we have not yet reset your password.</p>
+    <p>Thanks for using our site!</p>
+    <p>The GIT SHODH Team<p>
+     </body></html>");
 
-    $mail->AltBody = "$email Please Click below link to reset your password 
-   http://localhost/EBA/resetPassword.php?token=$token";
+
+    $mail->AltBody = "$email You're receiving this e-mail because you requested a password reset
+    for your user account at GIT SHODH 2K20 <br/>
+    Please go to the following page and choose a new password: <br/>
+    http://localhost/EBA/resetPassword.php?token=$token<br/>
+    If you didn't request this change, you can disregard this email - we have not yet reset your password. <br/>
+     Thanks for using our site!<br/>
+     The GIT SHODH Team";
 
 
             if (!$mail->send()) {

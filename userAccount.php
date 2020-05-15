@@ -149,15 +149,15 @@ if(isset($_POST['changeEmail'])){
     }
 
     else {
-      $sql = "select * from user_information where email = '$email'";
+      $sql = "SELECT * FROM user_information WHERE email = '$email'";
       $result = $conn->query($sql);
       $row = $result->fetch_assoc();
       $dbPassword = $row['mainPassword'];
 
       if(password_verify($Password,$dbPassword)){
-          $sql = "Update user_information inner join event_information
-           on user_information.email = event_information email set email = '$newEmail'
-           where user_information.email = '$email' and evet_information.email = '$email'";
+          $sql = "UPDATE user_information INNER JOIN event_information
+           ON user_information.email = event_information email SET email = '$newEmail'
+           WHERE user_information.email = '$email' AND event_information.email = '$email'";
 
            $result = $conn->query($sql);
 
@@ -186,7 +186,7 @@ if(isset($_POST['changeEmail'])){
 if(isset($_POST['disable'])){
 
     $email = $_SESSION['user'];
-    $sql = "update user_information set status = 'inactive' where email = '$email'";
+    $sql = "UPDATE user_information SET status = 'inactive' WHERE email = '$email'";
     $result = $conn->query($sql);
 
     if($result){

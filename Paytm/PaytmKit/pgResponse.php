@@ -89,7 +89,7 @@ else {
 			$txnDate = $_POST['TXNDATE'];
 
 		
-			$sql = "insert into `event_information`(email, certificateId, event, paymentType,
+			$sql = "INSERT INTO `event_information`(email, certificateId, event, paymentType,
 			 gatewayName, resMsg, bankName, txnId, txnAmount, orderId, status, 
 			 bankTxnId, txnDate) VALUES ('$userName','$certificateId','$eventName', '$paymentType', 
 			 '$gatewayName', '$resMsg', '$bankName', '$txnId', '$txnAmount', '$orderId', '$status',
@@ -134,12 +134,31 @@ $mail->setFrom('vishalbait02@gmail.com', 'GIT SHODH 2K20');
 $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
 $mail->addAddress($userName, $userName);
 $mail->Subject = "GIT SHODH 2K20";
+global $orderId;
 
-$mail->msgHTML("<!doctype html><html><body><h1> <i><b>$userName</b></i> You are Successfully Registered for $eventName. For More Details about
- <i><b>$eventName</b></i>, Please Contact Event Coordinator of <i><b>$eventName</b></i></h1></body></html>");
+$mail->msgHTML("<!doctype html><html><body>
+    <h4>Dear $userName,</h4>
+    <p>Thank you for registering to $eventName. Your registration and payment has been received.</p>
+    <p>Your Order Id is $orderId</p>
+    <p>You registered with this email: $userName.</p>
+    <p>For more details about $eventName, Please visit our event information page of GIT SHODH website,
+    You will get all the information about this event
+    also you will get contact details of event coordinator </p>
+    <p>We look forward to seeing you on 15/04/2021</p>
+    <p>Kind Regards,</p>
+    <p>GIT SHODH TEAM</p></body></html>");
 
-$mail->AltBody = "<!doctype html><html><body><h1> <i><b>$userName</b></i> You are Successfully Registered for $eventName. For More Details about
-<i><b>$eventName</b></i>, Please Contact Event Coordinator of <i><b>$eventName</b></i></h1></body></html>";
+$mail->AltBody = "<!doctype html><html><body>Dear $userName, <br/>
+Thank you for registering to $eventName. Your registration and payment has been received.</p>
+	<p>Your Order Id is $orderId <br/>
+	You registered with this email: $userName. <br/>
+	For more details about $eventName, Please visit our event information page of GIT SHODH website,
+    You will get all the information about this event
+	also you will get contact details of event coordinator </br>
+	We look forward to seeing you on 15/04/2021 <br/>
+	Kind Regards, <br/>
+	GIT SHODH TEAM
+	</body></html>";
 
 //Attach an image file
 //$mail->addAttachment('images/phpmailer_mini.png');

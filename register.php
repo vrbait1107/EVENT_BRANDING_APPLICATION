@@ -16,7 +16,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-   <!-- header Scripts and Links -->
+  <!-- header Scripts and Links -->
   <?php include_once "includes/headerScripts.php"; ?>
   <!-- Event-Reg css -->
   <link rel="stylesheet" href="css/event-reg.css">
@@ -126,14 +126,34 @@ if (isset($_POST['submit'])) {
                       $mail->setFrom('vishalbait02@gmail.com', 'GIT SHODH 2K20');
                       $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
                       $mail->addAddress($userName, $userName);
-                      $mail->Subject = "GIT SHODH 2K20 Activate Your Account";
+                      $mail->Subject = "Activate Your GIT SHODH 2K20  Account";
 
                       //Read an HTML message body from an external file, convert referenced images to embedded,
                       //convert HTML into a basic plain-text alternative body
-                      $mail->msgHTML("<!doctype html><html><body><h1> <i><b>$userName</b></i> You are Successfully Registered to GIT SHODH 2K20 System. Please activate your account by clicking below link
-                      http://localhost/EBA/activateEmail.php?token=$token </h1></body></html>");
-                      $mail->AltBody = "$userName You are Successfully Registered to GIT SHODH 2K20 System. Please activate your account by clicking below link
-                      http://localhost/EBA/activateEmail.php?token=$token";
+
+                    
+
+    $mail->msgHTML("<!doctype html>
+    <html>
+    <body>
+    <p>Thank you $userName for creating an account with GIT SHODH 2K20</p>
+    <p>There's just one more step before you can login and participate in a event: you need to activate your GIT SHODH
+        account. To activate your account, click the following link. If that doesn't work, copy and paste the link into
+        your browser's address bar.</p>
+    <p>http://localhost/EBA/activateEmail.php?token=$token</p>
+    <p>If you didn't create an account, you don't need to do anything; you won't receive any more email from us. If you
+        need assistance, please do not reply to this email message. Check the help section of the GIT SHODH website.</p>
+  </body>
+  </html>");
+
+
+  $mail->AltBody = "Thank you $userName for creating an account with GIT SHODH 2K20 <br/>
+  There's just one more step before you can login and participate in a event: you need to activate your GIT SHODH
+  account. To activate your account, click the following link. If that doesn't work, copy and paste the link into
+  your browser's address bar. <br/>
+  http://localhost/EBA/activateEmail.php?token=$token <br/>
+  If you didn't create an account, you don't need to do anything; you won't receive any more email from us. If you
+  need assistance, please do not reply to this email message. Check the help section of the GIT SHODH website.";
 
                           if (!$mail->send()) {
                               echo "Mailer Error: " . $mail->ErrorInfo;
@@ -393,7 +413,7 @@ if (isset($_POST['submit'])) {
   <!-- Form Validation -->
   <script src="js/form-validation.js"></script>
 
-   <?php
+  <?php
     // closing Database Connnection
      $conn->close(); 
      ?>
