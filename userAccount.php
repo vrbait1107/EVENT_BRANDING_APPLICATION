@@ -1,7 +1,7 @@
 <?php
 
 // Creating Connection to Database
-    require_once "configNew.php";
+    require_once "configPDO.php";
 
 // Staring Session
     session_start();
@@ -43,23 +43,26 @@ if(isset($_POST['changePassword'])){
     
 $email = $_SESSION['user'];
 
-    // To avoid sql injection and cross site scripting also remove white spaces
-    function security($data){
-    global $conn;
-    $data = trim($data);
-    $data = $conn->real_escape_string($data);
-    $data = htmlentities($data);
-    return $data;
-    }
+    // triming white space arround string
+    $currentPassword = trim($_POST['currentPassword']);
+    $newPassword = trim($_POST['newPassword']);
+    $conNewPassword = trim($_POST['conNewPassword']);
 
-    // calling function to perform security task
-    $currentPassword = security($_POST['currentPassword']);
-    $newPassword = security($_POST['newPassword']);
-    $conNewPassword = security($_POST['conNewPassword']);
+//Query
+$sql = "SELECT mainPassword FROM user_information WHERE email = :email";
 
-$sql = "select mainPassword from user_information where email = '$email'";
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
+//Preparing Query
+$result= $conn->prepare($sql);
+
+//Binding Values
+$result->bindValue(":email", $email);
+
+//Executing Query
+$result->execute();
+
+//Fetching Value in associative array 
+$row = $result->fetch(PDO::FETCH_ASSOC);
+
 $dbPassword = $row['mainPassword'];
 
     if(password_verify($currentPassword,$dbPassword)) {
@@ -69,9 +72,21 @@ $dbPassword = $row['mainPassword'];
         $newPassword = password_hash($newPassword, PASSWORD_BCRYPT);
         $conNewPassword= password_hash($conNewPassword, PASSWORD_BCRYPT);
 
-        $sql1 = "update user_information set mainPassword= '$newPassword', confirmPass ='$newPassword' where email = '$email'";
-        $result1 = $conn->query($sql1);
+        //Query
+        $sql1 = "UPDATE user_information SET mainPassword= :newPassword1, confirmPass = :newPassword2 WHERE email = :email";
+        
+        //Preparing Query
+        $result1= $conn->prepare($sql1);
 
+        //Binding Values
+        $result1->bindValue(":newPassword1", $newPassword);
+        $result1->bindValue(":newPassword2", $newPassword);
+        $result1->bindValue(":email", $email);
+
+        //Executing Query
+        $result1->execute();
+
+    
             if($result1) {
        
             echo "<script>Swal.fire({
@@ -120,27 +135,26 @@ $dbPassword = $row['mainPassword'];
 
 if(isset($_POST['changeEmail'])){
 
+    // Removing white spaces
+    $newEmail= trim($_POST['newEmail']);
+    $Password = trim($_POST['password']);
 
-    // To avoid sql injection and cross site scripting also remove white spaces
-    function security($data){
-    global $conn;
-    $data = trim($data);
-    $data = $conn->real_escape_string($data);
-    $data = htmlentities($data);
-    return $data;
-    }
-
-    $newEmail= security($_POST['newEmail']);
-    $Password = security($_POST['password']);
     $email = $_SESSION['user'];
 
-    $sql = "select * from user_information where email = '$newEmail'";
+    //Query
+    $sql = "SELECT * FROM user_information WHERE email = :newEmail";
+     
+    //Preparing Query
+    $result= $conn->prepare($sql);
 
-    $result= $conn->query($sql);
+    //Binding Value
+    $result->bindValue(":newEmail", $newEmail);
 
+    //Executing Query
+    $result->execute();
 
     // Checking Wether Email Already Present in database or not
-    if($result->num_rows){
+    if($result->rowCount() > 0){
        echo "<script>Swal.fire({
             icon: 'warning',
             title: 'Email Already Present in Database',
@@ -150,16 +164,38 @@ if(isset($_POST['changeEmail'])){
 
     else {
       $sql = "SELECT * FROM user_information WHERE email = '$email'";
-      $result = $conn->query($sql);
-      $row = $result->fetch_assoc();
+
+      //Preparing Query
+      $result= $conn->prepare($sql);
+
+      //Binding Value
+      $result->bindValue(":email", $email);
+
+      //Executing Query
+      $result->execute();
+
+      //Fetching Values in associative array
+      $row = $result->fetch(PDO::FETCH_ASSOC);
+
       $dbPassword = $row['mainPassword'];
 
       if(password_verify($Password,$dbPassword)){
-          $sql = "UPDATE user_information INNER JOIN event_information
-           ON user_information.email = event_information email SET email = '$newEmail'
-           WHERE user_information.email = '$email' AND event_information.email = '$email'";
 
-           $result = $conn->query($sql);
+         //sql Query
+          $sql = "UPDATE user_information INNER JOIN event_information
+           ON user_information.email = event_information email SET email = :newEmail
+           WHERE user_information.email = :email AND event_information.email = :email";
+
+          //Preparing Query
+          $result= $conn->prepare($sql);
+
+          //Binding Values
+          $result->bindValue(":newEmail", $newEmail);
+          $result->bindValue(":email", $email);
+          $result->bindValue(":email", $email);
+
+          //Executing Query
+          $result->execute();
 
            if($result){
             echo "<script>Swal.fire({
@@ -186,9 +222,20 @@ if(isset($_POST['changeEmail'])){
 if(isset($_POST['disable'])){
 
     $email = $_SESSION['user'];
-    $sql = "UPDATE user_information SET status = 'inactive' WHERE email = '$email'";
-    $result = $conn->query($sql);
 
+    //sql Query
+    $sql = "UPDATE user_information SET status = 'inactive' WHERE email = :email";
+
+    //Preparing Query
+    $result= $conn->prepare($sql);
+
+    //Binding Value
+    $result->bindValue(":inacive", "inactive");
+    $result->bindValue(":email", $email);
+
+    //Executing Query
+    $result->execute();
+    
     if($result){
         echo "<script>Swal.fire({
             icon: 'success',
@@ -328,7 +375,7 @@ if(isset($_POST['disable'])){
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn = null;
      ?>
 
 </body>

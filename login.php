@@ -59,22 +59,24 @@ if(isset($_SESSION['user'])) {
 
       if($response->success){
 
-        // To avoid sql injection and cross site scripting also remove white spaces
-        function security($data){
-        global $conn;
-        $data = trim($data);
-       // $data = $conn->real_escape_string($data);
-        $data = htmlentities($data);
-        return $data;
-        }
+       
+        $userName = $_POST["userName"];
+        $password = $_POST["password"];
 
-        // calling function to perform security task
-        $userName = security($_POST["userName"]);
-        $password = security($_POST["password"]);
+        $sql = "select mainPassword from user_information where email= :userName and status= :active";
 
-        $sql = "select mainPassword from user_information where email='$userName' and status='active'";
-        $res = $conn->query($sql);
-        $row = $res->fetch(PDO::FETCH_ASSOC);
+        // Preparing Query
+        $result = $conn->prepare($sql);
+
+        //Binding Value 
+        $result->bindValue(":userName", $userName);
+        $result->bindValue(":active", "active");
+
+        // Executing Value
+        $result->execute();
+       
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+
         $dbpassword = $row['mainPassword'];
 
         if(password_verify($password,$dbpassword)){

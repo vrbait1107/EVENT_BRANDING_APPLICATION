@@ -1,7 +1,7 @@
 <?php 
 
 // Creating Connection to Database
-    require_once "configNew.php";
+    require_once "configPDO.php";
 
 // Staring Session
     session_start();
@@ -12,10 +12,19 @@ if(!isset($_SESSION['user'])){
 
 $email = $_SESSION['user'];
 
-$sql = "select * from user_information where email = '$email'";
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
+$sql = "select * from user_information where email = :email";
 
+// Preparing Query
+$result= $conn->prepare($sql);
+
+//Binding Value
+$result->bindValue(":email", $email);
+
+//Executing Value
+$result->execute();
+
+//Fetching Value
+$row = $result->fetch(PDO::FETCH_ASSOC);
 
 $firstName= $row['firstName'];
 $lastName = $row['lastName'];
@@ -48,29 +57,32 @@ $mobileNumber =$row['mobileNumber'];
 
 if(isset($_POST['update'])) {
 
-    // To avoid sql injection and cross site scripting also remove white spaces
-    function security($data){
-    global $conn;
-    $data = trim($data);
-    $data = $conn->real_escape_string($data);
-    $data = htmlentities($data);
-    return $data;
-    }
+    $firstName = trim($_POST['firstName']);
+    $lastName = trim($_POST['lastName']);
+    $mobileNumber = trim($_POST['mobileNumber']);
+    $collegeName = trim($_POST['collegeName']);
+    $departmentName = trim($_POST['departmentName']);
+    $academicYear = trim($_POST['academicYear']);
 
-    // calling function to perform security task
-    $firstName = security($_POST['firstName']);
-    $lastName = security($_POST['lastName']);
-    $mobileNumber = security($_POST['mobileNumber']);
-    $collegeName = security($_POST['collegeName']);
-    $departmentName = security($_POST['departmentName']);
-    $academicYear = security($_POST['academicYear']);
+    //Query
+    $sql = "UPDATE user_information SET firstName = :firstName, lastName = :lastName, 
+    mobileNumber = :mobileNumber, collegeName = :collegeName, departmentName = :departmentName,
+    academicYear = :academicYear WHERE email = :email";
 
+    // Preparing query
+    $result = $conn->prepare($sql);
+ 
+    //Binding Values
+    $result->bindValue(":firstName", $firstName);
+    $result->bindValue(":lastName",$lastName);
+    $result->bindValue(":mobileNumber",  $mobileNumber);
+    $result->bindValue(":collegeName", $collegeName);
+    $result->bindValue(":departmentName", $departmentName);
+    $result->bindValue(":academicYear", $academicYear);
+    $result->bindValue(":email", $email);
     
-    $sql = "update user_information set firstName ='$firstName', lastName = '$lastName', 
-    mobileNumber = '$mobileNumber', collegeName = '$collegeName', departmentName = '$departmentName',
-    academicYear = '$academicYear' where email = '$email'";
-
-    $result = $conn->query($sql);
+    //Executing query
+    $result->execute();
 
     if($result) {
         echo "<script>Swal.fire({
@@ -79,6 +91,13 @@ if(isset($_POST['update'])) {
         text: 'Your Data is Successfully Updated'
            })</script>";
 
+    }
+    else{
+         echo "<script>Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'We are failed to update data'
+           })</script>";
     }
 }
 ?>
@@ -157,7 +176,7 @@ if(isset($_POST['update'])) {
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
      
 </body>
