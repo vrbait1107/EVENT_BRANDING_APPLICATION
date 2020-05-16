@@ -1,12 +1,12 @@
-<?php
+    <?php
 
-// Creating Connection to Database
-    require_once "configNew.php";
+   // Creating Connection to Database
+    require_once "configPDO.php";
 
-// Staring Session
+   // Staring Session
     session_start();
 
-?>
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,19 +31,11 @@ $token = $_GET['token'];
 
     if(isset($_POST['resetPassword'])){
 
-        // To avoid sql injection and cross site scripting also remove white spaces
-        function security($data){
-        global $conn;
-        $data = trim($data);
-        $data = $conn->real_escape_string($data);
-        $data = htmlentities($data);
-        return $data;
-        }
-
-        // calling function to perform security task
-        $userType = security($_POST['userType']);
-        $newPassword = security($_POST['newPassword']);
-        $confirmNewPassword = security($_POST['confirmNewPassword']);
+    
+        // triming the white spaces
+        $userType = trim($_POST['userType']);
+        $newPassword = trim($_POST['newPassword']);
+        $confirmNewPassword = trim($_POST['confirmNewPassword']);
 
    
         if($newPassword=== $confirmNewPassword) {
@@ -51,9 +43,21 @@ $token = $_GET['token'];
         $confirmNewPassword = password_hash($confirmNewPassword,PASSWORD_BCRYPT);
 
             if($userType == "User"){
-            $sql = "update user_information set mainPassword='$newPassword', confirmPass = '$newPassword' where token = '$token'";
 
-            $result = $conn->query($sql);
+            // SQL Query
+            $sql = "UPDATE user_information SET mainPassword= :newPassword, confirmPass = :newPassword WHERE token = :token";
+
+            // Preparing Query
+            $result = $conn->prepare($sql);
+
+            // Binding Value
+            $result->bindValue(":newPassword", $newPassword);
+            $result->bindValue(":newPassword", $newPassword);
+            $result->bindValue(":token", $token);
+
+            //Executing Query
+            $result->execute();
+
             if($result){
             echo "<script>Swal.fire({
             icon: 'success',
@@ -66,8 +70,19 @@ $token = $_GET['token'];
 
             else {
    
-            $sql = "update admin_information set adminPassword='$newPassword' where token = '$token'";
+            // SQL Query
+            $sql = "UPDATE admin_information SET adminPassword= :newPassword WHERE token = :token";
+
+            //Preparing Query
             $result = $conn->query($sql);
+
+            //Binding Value
+            $result->bindValue(":newPassword", $newPassword);
+            $result->bindValue(":token", $token);
+
+            //Executing Query
+            $result->execute();
+
             if($result){
              echo "<script>Swal.fire({
                 icon: 'success',
@@ -148,7 +163,7 @@ $token = $_GET['token'];
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>

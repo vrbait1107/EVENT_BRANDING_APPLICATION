@@ -1,7 +1,7 @@
 <?php
 
 // Creating Connection to Database
-    require_once "configNew.php";
+    require_once "configPDO.php";
 
 // Staring Session
     session_start();
@@ -9,10 +9,14 @@
     if(!isset($_SESSION['user'])){
         header("location:login.php");
     }
-
+//query
 $sql = "SELECT * FROM sponsor_information";
 
-$result = $conn->query($sql);
+//Preparing Query
+$result= $conn->prepare($sql);
+
+// No Data to Binded so Executing Query
+$result->execute();
 
 ?>
 
@@ -36,7 +40,7 @@ $result = $conn->query($sql);
 
 
     <?php
-                if($result->num_rows >0) {
+                if($result->rowCount() >0) {
 
                     ?>
 
@@ -46,7 +50,7 @@ $result = $conn->query($sql);
 
         <?php
 
-            while($row= $result->fetch_assoc()){
+            while($row= $result->fetch(PDO::FETCH_ASSOC)){
            
             $sponsorLogo = $row["sponsorLogo"];
             $sponsorName = $row["sponsorName"];
@@ -55,7 +59,7 @@ $result = $conn->query($sql);
 
             <section class="col-md-4 mx-auto mb-5">
                 <div class="card shadow" style="height:150px;">
-                    <img src= "sponsorLogo/<?php echo $sponsorLogo ?>" class="img-fluid w-100 my-auto">
+                    <img src= "sponsorLogo/<?php echo $sponsorLogo; ?>" class="img-fluid w-100 my-auto">
                 </div>
                 <h5 class="text-center text-uppercase btn btn-primary btn-block font-time"><?php echo  $sponsorName; ?></h5>
             </section>
@@ -78,7 +82,7 @@ $result = $conn->query($sql);
 
     <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn = null; 
      ?>
 
 </body>

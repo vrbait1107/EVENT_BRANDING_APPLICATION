@@ -1,14 +1,14 @@
 <?php
 
-// Creating Connection to Database
-    require_once "configNew.php";
+    // Creating Connection to Database
+    require_once "configPDO.php";
 
-// Staring Session
+    // Staring Session
     session_start();
 
-/* if(!isset($_SESSION['user'])){
+if(!isset($_SESSION['user'])){
     header('location:login.php');
-} */
+} 
 
 ?>
 
@@ -39,11 +39,16 @@
 
 
     <?php 
+   
+   // sql Query
+   $sql = "SELECT * FROM news_information";
 
-   $sql = "select * from news_information";
-   $result = $conn->query($sql);
-  
-       
+   //Preparing Query
+   $result = $conn->prepare($sql);
+
+   //Executing Query no need to Bind Values here
+   $result->execute();
+     
     ?>
 
     <!--Navbar.php-->
@@ -75,7 +80,7 @@
 
                         <?php
 
-                        while($row = $result->fetch_assoc()){
+                        while($row = $result->fetch(PDO::FETCH_ASSOC)){
                         ?>
                         <tr>
                             <td><?php echo $row["id"]; ?></td>
@@ -111,7 +116,7 @@
 
     <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>

@@ -1,7 +1,7 @@
 <?php
 
 // Creating Connection to Database
-    require_once "configNew.php";
+    require_once "configPDO.php";
 
 // Staring Session
     session_start();
@@ -12,22 +12,50 @@ if(!isset($_SESSION['user'])) {
 
 $visitorIpAddress = $_SERVER['REMOTE_ADDR'];
 
-$sql1 = "select * from visitor_counter where ipAddress = '$visitorIpAddress'";
-$result1 = $conn->query($sql1);
-$totaVisitor =  $result1->num_rows;
+
+//sql Query
+$sql1 = "SELECT * FROM visitor_counter WHERE ipAddress = :visitorIpAddress";
+
+//Preparing Query
+$result1 = $conn->prepare($sql1);
+
+//Binding Values
+$result1->bindValue("visitorIpAddress", $visitorIpAddress);
+
+//Executing Query
+$result1->execute();
+
+// Total row Count
+$totaVisitor =  $result1->rowCount();
 
 if($totaVisitor == 0) {
-$sql2 = "Insert into visitor_counter (ipAddress) values ('$visitorIpAddress')";
-$result2 = $conn->query($sql2);
+
+// Query if no address found 
+$sql2 = "INSERT INTO visitor_counter (ipAddress) VALUES (:visitorIpAddress)";
+
+//Preparing Query
+$result2= $conn->prepare($sql);
+
+//Binding Values
+$result2->bindValue(":visitorIpAddress", $visitorIpAddress);
+
+//Executing Query
+$result2->execute();
+
 }
 
 
 // Retrive Data from Database
+// Query
 $sql = "select * from visitor_counter";
-$result = $conn->query($sql);
+
+// Preparing Query
+$result = $conn->prepare($sql);
+
+$result->execute();
 
 if($result){
-    $totaVisitors =  $result->num_rows;
+    $totaVisitors =  $result->rowCount();
 }
 
 ?>
@@ -202,7 +230,7 @@ if($result){
 
     <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>

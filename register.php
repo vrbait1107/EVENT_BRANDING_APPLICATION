@@ -1,9 +1,9 @@
 <?php
 
-// Creating Connection to Database
-    require_once "configNew.php";
+    // Creating Connection to Database
+    require_once "configPDO.php";
 
-// Staring Session
+   // Staring Session
     session_start();
 
 ?>
@@ -53,34 +53,35 @@ if (isset($_POST['submit'])) {
 
         if($response->success){
 
-        // To avoid sql injection and cross site scripting also remove white spaces
-        function security($data){
-        global $conn;
-        $data = trim($data);
-        $data = $conn->real_escape_string($data);
-        $data = htmlentities($data);
-        return $data;
-        }
-
-        // calling function to perform security task
-        $userName =   security($_POST['userName']);
-        $firstName =  security($_POST['firstName']);
-        $lastName =  security($_POST['lastName']);
-        $mobileNumber =  security($_POST['mobileNumber']);
-        $collegeName =  security($_POST['collegeName']);
-        $department = security($_POST['department']);
-        $year =  security($_POST['year']);
-        $password =  security($_POST['password']);
-        $confirm_password =  security($_POST['confirm_password']);
+        // Removing White Spaces
+        $userName =   trim($_POST['userName']);
+        $firstName =  trim($_POST['firstName']);
+        $lastName =  trim($_POST['lastName']);
+        $mobileNumber =  trim($_POST['mobileNumber']);
+        $collegeName =  trim($_POST['collegeName']);
+        $department = trim($_POST['department']);
+        $year =  trim($_POST['year']);
+        $password =  trim($_POST['password']);
+        $confirm_password =  trim($_POST['confirm_password']);
         $token = bin2hex(random_bytes(15));
 
         $hashPass = password_hash($password, PASSWORD_BCRYPT);
         $hashConPass = password_hash($confirm_password, PASSWORD_BCRYPT);
 
-        $sql1 ="select* from user_information where user_information.email ='$userName'";
-        $res1= $conn->query($sql1);
+        // Query
+        $sql1 ="select* from user_information where user_information.email =:userName";
 
-              if($res1->num_rows > 0) {
+        //Preparing Query
+        $result1 = $conn->prepare($sql1);
+
+        //Binding Value
+        $result1->bindValue(":userName", $userName);
+
+        //Executing Value
+        $result1->execute();
+
+      
+              if($result1->rowCount() > 0) {
 
               echo "<script>Swal.fire({
                   icon: 'warning',
@@ -92,12 +93,30 @@ if (isset($_POST['submit'])) {
                 }
 
               else {
-            
+              
+              //Query
               $sql = "insert into user_information(email, firstName, lastName, 
-              mobileNumber, collegeName, departmentName, academicYear, mainPassword, confirmPass, token) VALUES ('$userName', '$firstName', '$lastName', 
-              '$mobileNumber', '$collegeName', '$department', '$year', '$hashPass', '$hashConPass', '$token')";
+              mobileNumber, collegeName, departmentName, academicYear, mainPassword, confirmPass, token) 
+              VALUES (:userName, :firstName, :lastName, :mobileNumber, :collegeName, :department, :year, 
+              :hashPass, :hashConPass, :token)";
 
-              $result = $conn->query($sql);
+              // Preparing Query
+              $result = $conn->prepare();
+
+              //Binding Values
+              $result->bindValue(":userName", $userName);
+              $result->bindValue(":firstName", $firstName);
+              $result->bindValue(":lastName", $lastName);
+              $result->bindValue(":mobileNumber", $mobileNumber);
+              $result->bindValue(":collegeName", $collegeName);
+              $result->bindValue(":department", $department);
+              $result->bindValue(":year", $year);
+              $result->bindValue(":hashPass", $hashPass);
+              $result->bindValue(":hashConPass", $hashConPass);
+              $result->bindValue(":token", $token);
+
+              // Executing Query
+              $result->execute();
 
                     if($result){ 
                   
@@ -415,7 +434,7 @@ if (isset($_POST['submit'])) {
 
   <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn = null; 
      ?>
 
 </body>
