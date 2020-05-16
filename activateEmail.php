@@ -1,6 +1,6 @@
 <?php
 // Creating Connection to Database
-    require_once "configNew.php";
+    require_once "configPDO.php";
 ?>
 
 <!DOCTYPE html>
@@ -21,12 +21,22 @@
 if(isset($_GET['token'])) {
 
 $token = $_GET['token'];
-$token = $conn->real_escape_string($token);
-$token = htmlentities($token);
 
 $login = "login.php";
-$sql = "update user_information set status='active' where token = '$token'";
-$result = $conn->query($sql);
+
+//Query
+$sql = "UPDATE user_information SET status= :active WHERE token = :token";
+
+//Preparing Query
+$result= $conn->prepare($sql);
+
+//Binding Values
+$result->bindValue(":active", "active");
+$result->bindValue(":token", $token);
+
+//Executing Query
+$result->execute();
+
 if($result){
      echo "<script>Swal.fire({
         icon: 'success',
@@ -41,7 +51,7 @@ if($result){
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
    
 </body>

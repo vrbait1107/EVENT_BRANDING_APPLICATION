@@ -1,7 +1,7 @@
 <?php
 
 // Creating Connection to Database
-    require_once "configNew.php";
+    require_once "configPDO.php";
 
 // Staring Session
     session_start();
@@ -31,7 +31,7 @@
 
     <?php 
     
-// Generating Random Password to Send Over Email.
+// Generating Random token to Send Over Email.
 $token =   bin2hex(random_bytes(15));
 
 if(isset($_POST['submit'])){
@@ -42,10 +42,19 @@ $userType = trim($_POST['userType']);
     // User Part
     if($userType=== "user"){
 
-    $sql = "SELECT email FROM user_information WHERE email = '$email'";
-    $result = $conn->query($sql);
+    //Query
+    $sql = "SELECT email FROM user_information WHERE email = :email";
 
-    if($result->num_rows ===1) {
+    //Preparing Query
+    $result= $conn->prepare($sql);
+
+    // Binding Value 
+    $result->bindValue(":email", $email);
+
+    //Executing Query
+    $result->execute();
+
+    if($result->rowCount() ===1) {
 
     // Mail PHP code 
     date_default_timezone_set('Etc/UTC');
@@ -91,9 +100,18 @@ $userType = trim($_POST['userType']);
             } 
 
             else {
-    
+            
+            //Update Query
             $sql = "UPDATE user_information SET token ='$token' WHERE email = '$email'";
-            $result1 = $conn->query($sql);
+
+            //Preparing Query
+            $result= $conn->prepare($sql);
+
+            //Binding Value
+            $result->bindValue(":email", $email);
+
+            // Executing Query
+            $result->execute();
 
                 if($result1) {
                 echo "<script>Swal.fire({
@@ -129,11 +147,20 @@ $userType = trim($_POST['userType']);
 
     // Admin Part
  elseif($userType=== "admin"){
+     
+    // Query for admin 
+    $sql = "SELECT email FROM admin_information WHERE email = :email";
 
-    $sql = "SELECT email FROM admin_information WHERE email = '$email'";
-    $result = $conn->query($sql);
+    //Preparing Query
+    $result= $conn->prepare($sql);
 
-    if($result->num_rows === 1) {
+    //Binding Value
+    $result->bindValue(":email", $email);
+
+    //Executing Query
+    $result->execute();
+
+    if($result->rowCount() === 1) {
 
     // Mail PHP code 
     date_default_timezone_set('Etc/UTC');
@@ -179,9 +206,18 @@ $userType = trim($_POST['userType']);
             } 
 
             else {
-    
+            
+            //Update Query
             $sql = "UPDATE user_information SET token ='$token' WHERE email = '$email'";
-            $result1 = $conn->query($sql);
+
+            //Preparing Query
+            $result= $conn->prepare($sql);
+
+            //Binding Value
+            $result->bindValue(":email", $email);
+
+            //Executing Query
+            $result->execute();
 
                 if($result1) {
                 echo "<script>Swal.fire({
@@ -270,7 +306,7 @@ $userType = trim($_POST['userType']);
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>

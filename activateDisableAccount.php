@@ -1,6 +1,6 @@
 <?php
 // Creating Connection to Database
-    require_once "configNew.php";
+    require_once "configPDO.php";
 
 // Staring Session
     session_start();
@@ -19,7 +19,6 @@
 
 </head>
 
-
 <body>
 
     <?php 
@@ -28,10 +27,19 @@
     
        $email = $_POST['email'];
 
-       $sql = "select * from user_information where email = '$email'";
-       $result = $conn->query($sql);
+       // sql Query
+       $sql = "SELECT * FROM user_information WHERE email = '$email'";
 
-       if($result->num_rows === 0){
+       //Preparing query
+       $result = $conn->prepare($sql);
+
+       //Binding Values
+       $result->bindValue(":email", $email);
+
+       //Executing Query
+       $result->execute();
+
+       if($result->rowCount() === 0){
             echo "<script>Swal.fire({
                 icon: 'error',
                 title: 'error',
@@ -42,8 +50,17 @@
 
        $token =  bin2hex(random_bytes(15));
 
-       $sql = "update user_information set token = '$token' where email = '$email'";
-       $result = $conn->query($sql);
+       $sql = "UPDATE user_information SET token = :token WHERE email = :email";
+
+       //Preparing Query
+       $result= $conn->prepare($sql);
+
+       //Binding Values
+       $result->bindValue(":token", $token);
+       $result->(":email", $email);
+       
+       //Executing Query
+       $result->execute();
 
                     if($result){
 
@@ -98,8 +115,17 @@
 
         $token = $_GET['token'];
 
-        $sql = "update user_information set status = 'active' where token = '$token'";
-        $result = $conn->query($sql);
+        $sql = "UPDATE user_information SET status = 'active' WHERE token = '$token'";
+
+        //Preparing Query
+        $result= $conn->prepare($sql);
+        
+        //Binding Values
+        $result->bindValue(":active", "active");
+        $result->bindValue(":token", $token);
+
+        //Executing Query
+        $result->execute();
 
         if($result){
             echo "<script>Swal.fire({
@@ -147,7 +173,7 @@
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>

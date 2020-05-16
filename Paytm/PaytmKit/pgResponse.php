@@ -5,7 +5,7 @@ $eventName = $_SESSION['eventName'];
 $userName= $_SESSION['user'];
 
 
-require_once '../../configNew.php';
+require_once '../../configPDO.php';
 
 ?>
 <!doctype html>
@@ -61,10 +61,19 @@ if($isValidChecksum == "TRUE") {
 			// ##################################   Inserting Data into Database
 
 
-$sql = "select * from event_information where email = '$userName' and event = '$eventName'";
-$result = $conn->query($sql);
+$sql = "SELECT * FROM event_information WHERE email = :userName AND event = :eventName";
 
-if($result->num_rows >0){
+//Preparing Query
+$result= $conn->prepare($sql);
+
+//Binding Values
+$result->bindValue(":userName", $userName);
+$result->bindValue(":eventName", $eventName);
+
+//Executing Query
+$result->execute();
+
+if($result->rowCount() >0){
 
 	echo "<script>Swal.fire({
 			icon: 'warning',
@@ -89,13 +98,36 @@ else {
 			$txnDate = $_POST['TXNDATE'];
 
 		
-			$sql = "INSERT INTO `event_information`(email, certificateId, event, paymentType,
+			$sql = "INSERT INTO event_information (email, certificateId, event, paymentType,
 			 gatewayName, resMsg, bankName, txnId, txnAmount, orderId, status, 
-			 bankTxnId, txnDate) VALUES ('$userName','$certificateId','$eventName', '$paymentType', 
-			 '$gatewayName', '$resMsg', '$bankName', '$txnId', '$txnAmount', '$orderId', '$status',
-			 '$bankTxnId', '$txnDate')";
+			 bankTxnId, txnDate) VALUES (:userName, :certificateId, :eventName, :paymentType, 
+			 :gatewayName, :resMsg, :bankName, :txnId, :txnAmount, :orderId, :status,
+			 bankTxnId, txnDate)";
 
-	        $result = $conn->query($sql);
+
+				//Preparing Query
+				$result = $conn->prepare($sql);
+
+				//Binding Value
+				$result->bindValue(":userName", $userName);
+				$result->bindValue(":certificateId", $certificateId);
+				$result->bindValue(":eventName", $eventName);
+				$result->bindValue(":paymentType", $paymentType);
+				$result->bindValue(":gatewayName", $gatewayName);
+				$result->bindValue(":resMsg", $resMsg);
+				$result->bindValue(":bankName", $bankName);
+				$result->bindValue(":txnId", $txnId);
+				$result->bindValue(":txnAmount", $txnAmount);
+				$result->bindValue(":orderId", $orderId);
+				$result->bindValue(":status", $status);
+				$result->bindValue(":bankTxnId", $bankTxnId);
+				$result->bindValue(":txnDate", $txnDate);
+
+				//Executing Query
+				$result->execute();
+
+				//Executing Query
+	            $result->execute();
 	
 	if(!$result){
 		echo "Unable to Registered";

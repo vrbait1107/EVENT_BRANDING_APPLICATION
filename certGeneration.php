@@ -1,7 +1,7 @@
 <?php 
 
 // Creating Connection to Database
-    require_once "configNew.php";
+    require_once "configPDO.php";
 
 // Staring Session
     session_start();
@@ -11,10 +11,19 @@ $email = $_SESSION['user'];
 
 $sql ="select * FROM user_information INNER JOIN event_information ON 
 user_information.email= event_information.email 
-WHERE user_information.email = '$email' and event_information.event = '$buttonEvent'";
+WHERE user_information.email = :email and event_information.event = :buttonEvent";
 
-$result= $conn->query($sql);
-$row= $result->fetch_assoc();
+//Preparing Query
+$result= $conn->prepare($sql);
+
+//Binding Value
+$result->bindValue(":email", $email);
+$result->bindValue(":buttonEvent", $buttonEvent);
+
+//Executing Query
+$result->execute();
+
+$row= $result->fetch(PDO::FETCH_ASSOC);
 
 $firstName = $row['firstName'];
 $lastName = $row['lastName'];
@@ -25,9 +34,22 @@ $event = $row['event'];
 
 
 // Different Certificate for Every Department 
-$sql1 = "select * from events_details_information where eventName = '$buttonEvent'";
-$result1 = $conn->query($sql1);
-$row1 = $result1->fetch_assoc();
+
+//Query
+$sql1 = "SELECT * from events_details_information where eventName = '$buttonEvent'";
+
+//Preparing Query
+$result1 = $conn->prepare($sql1);
+
+//Binding Values
+$result1->bindValue(":buttonEvent", $buttonEvent);
+
+//Executing Query
+$result1->execute();
+
+//fetching Values in Associative array
+$row1 = $result1->fetch(PDO::FETCH_ASSOC);
+
 $certificateDepartment = $row1['eventDepartment'];
 
 ?>
@@ -139,7 +161,7 @@ $certificateDepartment = $row1['eventDepartment'];
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn = null; 
      ?>
 
 </body>

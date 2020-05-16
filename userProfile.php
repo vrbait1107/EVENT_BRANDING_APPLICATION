@@ -12,7 +12,7 @@ if(!isset($_SESSION['user'])){
 
 $email = $_SESSION['user'];
 
-$sql = "select * from user_information where email = :email";
+$sql = "SELECT * FROM user_information WHERE email = :email";
 
 // Preparing Query
 $result= $conn->prepare($sql);

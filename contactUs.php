@@ -1,7 +1,7 @@
 <?php
 
 // Creating Connection to Database
-    require_once "configNew.php";
+    require_once "configPDO.php";
 
 // Staring Session
     session_start();
@@ -43,20 +43,10 @@ if(!isset($_SESSION['user'])) {
 
 if(isset($_POST['submit'])){
 
-
-     // To avoid sql injection and cross site scripting also remove white spaces
-            function security($data){
-            global $conn;
-            $data = trim($data);
-            //$data = $conn-> real_escape_string($data);
-            $data = htmlentities($data);
-            return $data;
-            }
-
-            $name = security($_POST['name']);
-            $contactEmail = security($_POST['email']);
-            $contactSubject = security($_POST['subject']);
-            $contactMessage = security($_POST['message']);
+            $name = trim($_POST['name']);
+            $contactEmail = trim($_POST['email']);
+            $contactSubject = trim($_POST['subject']);
+            $contactMessage = trim($_POST['message']);
 
              if(isset($_POST['g-recaptcha-response'])) {
 
@@ -204,7 +194,7 @@ if(isset($_POST['submit'])){
 
     <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>

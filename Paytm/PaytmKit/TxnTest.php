@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../../configNew.php';
+require_once '../../configPDO.php';
 
 $eventName =$_POST['eventName'];
 $eventPrice = $_POST['eventPrice'];
@@ -43,11 +43,20 @@ $userName= $_SESSION['user'];
 
 	<?php 
 
-$sql = "select * from event_information where event = '$eventName' and email = '$userName'";
-$result = $conn->query($sql);
+$sql = "SELECT * FROM event_information WHERE event = :eventName AND email = :userName";
+
+//Preparing Query
+$result= $conn->prepare($sql);
+
+//Binding Values
+$result->bindValue(":eventName", $eventName);
+$result->bindValue(":userName", $userName);
+
+//Executing Query
+$result->execute();
 
 
-if($result->num_rows >0){
+if($result->rowCount() >0){
 
 	echo "<script>Swal.fire({
 			icon: 'warning',

@@ -1,7 +1,7 @@
 <?php
 
 // Creating Connection to Database
-    require_once "configNew.php";
+    require_once "configPDO.php";
 
 // Staring Session
     session_start();
@@ -52,33 +52,44 @@ if(!isset($_SESSION['user'])){
       if($response->success){
 
 
-    // To avoid sql injection and cross site scripting also remove white spaces
-    function security($data){
-    global $conn;
-    $data = trim($data);
-    $data = $conn->real_escape_string($data);
-    $data = htmlentities($data);
-    return $data;
-    }
-
-     $email = security($_SESSION['user']);
-     $attendBefore =  security($_POST['attendBefore']);
-     $likelyAttend = security($_POST['likelyAttend']);
-     $likelyRecommendFriend = security($_POST['likelyRecommendFriend']);
-     $likeMost = security($_POST['likeMost']);
-     $likeLeast = security($_POST['likeLeast']);
-     $overall = security($_POST['overall']);
-     $location = security($_POST['location']);
-     $events = security($_POST['events']);
-     $coordinators = security($_POST['coordinators']);
-     $eventsPrice = security($_POST['eventsPrice']);
-     $suggestion = security($_POST['suggestion']);
+     $email = trim($_SESSION['user']);
+     $attendBefore =  trim($_POST['attendBefore']);
+     $likelyAttend = trim($_POST['likelyAttend']);
+     $likelyRecommendFriend = trim($_POST['likelyRecommendFriend']);
+     $likeMost = trim($_POST['likeMost']);
+     $likeLeast = trim($_POST['likeLeast']);
+     $overall = trim($_POST['overall']);
+     $location = trim($_POST['location']);
+     $events = trim($_POST['events']);
+     $coordinators = trim($_POST['coordinators']);
+     $eventsPrice = trim($_POST['eventsPrice']);
+     $suggestion = trim($_POST['suggestion']);
 
 
-    $sql = "INSERT INTO feedback_information (email, attendBefore, likelyAttend, likelyRecommendFriend, likeMost, likeLeast, overall, location, events, coordinators, eventsPrice, suggestion) VALUES
-      ('$email', '$attendBefore', '$likelyAttend', '$likelyRecommendFriend', '$likeMost', '$likeLeast', '$overall', '$location','$events', '$coordinators', ' $eventsPrice', '$suggestion' )";
-      $result = $conn->query($sql);
-      
+    $sql = "INSERT INTO feedback_information (email, attendBefore, likelyAttend, likelyRecommendFriend,
+     likeMost, likeLeast, overall, location, events, coordinators, eventsPrice, suggestion) VALUES
+      (:email, :attendBefore, :likelyAttend, :likelyRecommendFriend, :likeMost, :likeLeast, 
+      :overall, :location, :events, :coordinators, :eventsPrice, :suggestion )";
+
+      //Preparing Query
+      $result= $conn->prepare($sql);
+
+      //Binding Values
+      $result->bindValue(":email",  $email);
+      $result->bindValue(":attendBefore", $attendBefore);
+      $result->bindValue(":likelyAttend", $likelyAttend);
+      $result->bindValue(":likelyRecommendFriend", $likelyRecommendFriend);
+      $result->bindValue(":likeMost", $likeMost);
+      $result->bindValue(":likeLeast", $likeLeast);
+      $result->bindValue(":overall", $overall);
+      $result->bindValue(":location", $location);
+      $result->bindValue(":events", $events);
+      $result->bindValue(":cordinators", $coordinators);
+      $result->bindValue(":eventsPrice", $eventsPrice);
+      $result->bindValue(":suggestion", $suggestion);
+
+      //Executing Query
+      $result->execute();
 
         if($result){
         echo "<script>Swal.fire({
@@ -275,7 +286,7 @@ if(!isset($_SESSION['user'])){
 
     <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>

@@ -1,17 +1,24 @@
 <?php
 
 // Creating Connection to Database
-    require_once "configNew.php";
+    require_once "configPDO.php";
 
 // Staring Session
     session_start();
 
 $eventDepartmentName = $_POST['eventDepartmentName'];
 
-$sql = "SELECT * FROM events_details_information WHERE eventDepartment ='$eventDepartmentName'";
+//Query
+$sql = "SELECT * FROM events_details_information WHERE eventDepartment = :eventDepartmentName";
 
-$result = $conn->query($sql);
+//Preparing Query
+$result= $conn->prepare($sql);
 
+//Binding Value
+$result->bindValue(":eventDepartmentName", $eventDepartmentName);
+
+//Executing Query
+$result->execute();
 
 ?>
 
@@ -35,7 +42,7 @@ $result = $conn->query($sql);
     <?php include_once "includes/navbar.php";?>
 
     <?php
-                if($result->num_rows >0) {
+                if($result->rowCount() >0) {
     ?>
 
     <div class="container mt-5">
@@ -47,7 +54,7 @@ $result = $conn->query($sql);
             <?php
 
         $i =0;
-        while($row= $result->fetch_assoc()){
+        while($row= $result->fetch(PDO::FETCH_ASSSOC)){
         $i++;
 
         ?>
@@ -150,7 +157,7 @@ $result = $conn->query($sql);
 
     <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>

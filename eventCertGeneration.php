@@ -1,6 +1,6 @@
 <?php
 // Creating Connection to Database
-    require_once "configNew.php";
+    require_once "configPDO.php";
 
 // Staring Session
     session_start();
@@ -42,13 +42,23 @@
 
 $email= $_SESSION['user'];
 
+//Query for showing certificate details
 $sql = "select * FROM user_information INNER JOIN event_information ON 
 user_information.email= event_information.email 
-WHERE user_information.email = '$email' and attendStatus ='present'";
+WHERE user_information.email = :email and attendStatus = :present";
 
+//Preapring Query
+$result = $conn->prepare($sql);
+
+//Binding Values
+$result->bindValue(":email", $email);
+$result->bindValue(":present", "present")
 $result = $conn->query($sql);
 
-if($result->num_rows > 0) {
+//Executing Query
+$result->execute();
+
+if($result->rowCount() > 0) {
 
 echo "<table class='table'>";
 echo "<thead>";
@@ -58,12 +68,16 @@ echo "</thead>";
 
 echo "<tbody>";
 
-while($row = $result->fetch_assoc()){
+while($row = $result->fetch(PDO::FETCH_ASSOC)){
     echo "<tr>";
     echo "<td class='text-center'>". $row['event']. "</td>";
     $event = $row['event'];
-    echo "<td><form action ='certGeneration.php' method ='post'><input type='hidden' name='event1' value= '$event' />
-    <input type='submit' class='btn btn btn-primary rounded-pill' name='submit' value='Generate Your Certificate'></form></td>";
+    echo "<td>
+    <form action ='certGeneration.php' method ='post'>
+    <input type='hidden' name='event1' value= '$event' />
+    <input type='submit' class='btn btn btn-primary rounded-pill' name='submit' value='Generate Your Certificate'>
+    </form>
+    </td>";
     echo "</tr>";       
 }
 
@@ -85,7 +99,7 @@ echo "</table>";
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>
