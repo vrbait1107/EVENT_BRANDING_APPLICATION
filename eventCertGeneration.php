@@ -52,8 +52,7 @@ $result = $conn->prepare($sql);
 
 //Binding Values
 $result->bindValue(":email", $email);
-$result->bindValue(":present", "present")
-$result = $conn->query($sql);
+$result->bindValue(":present", "present");
 
 //Executing Query
 $result->execute();

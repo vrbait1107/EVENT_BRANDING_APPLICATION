@@ -54,7 +54,7 @@ $result->execute();
             <?php
 
         $i =0;
-        while($row= $result->fetch(PDO::FETCH_ASSSOC)){
+        while($row= $result->fetch(PDO::FETCH_ASSOC)){
         $i++;
 
         ?>

@@ -62,7 +62,7 @@ if(!isset($_SESSION['user'])){
 
             <?php 
 
-            if($result->num_rows > 0) {
+            if($result->rowCount() > 0) {
             ?>
 
             <section class="col-md-12 mb-5">
