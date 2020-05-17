@@ -1,7 +1,7 @@
 <?php
 
 //Creating Database Connection
-require_once "../configNew.php";
+require_once "../configPDO.php";
 //Starting Session
 session_start();
 
@@ -72,31 +72,33 @@ if(isset($_POST['login'])){
 
             if($response->success){
 
-            // To avoid sql injection and cross site scripting also remove white spaces
-            function security($data){
-            global $conn;
-            $data = trim($data);
-            $data = $conn->real_escape_string($data);
-            $data = htmlentities($data);
-            return $data;
-            }
-
             // calling function to perform security task
-            $adminUserName= security($_POST['email']);
-            $adminType = security($_POST['adminType']);
-            $adminDepartment= security($_POST['adminDepartment']);
-            $adminEvent= security($_POST['adminEvent']);
-            $adminPassword = security($_POST['password']);
+            $adminUserName= trim($_POST['email']);
+            $adminType = trim($_POST['adminType']);
+            $adminDepartment= trim($_POST['adminDepartment']);
+            $adminEvent= trim($_POST['adminEvent']);
+            $adminPassword = trim($_POST['password']);
 
-            $sql = "select adminPassword from admin_information where admin_information.email  = '$adminUserName' 
-            AND admin_information.adminType ='$adminType' AND admin_information.adminEvent = '$adminEvent' AND
-            admin_information.adminDepartment = '$adminDepartment'";
+            $sql = "SELECT adminPassword FROM admin_information WHERE admin_information.email  = :adminUserName 
+            AND admin_information.adminType = :adminType AND admin_information.adminEvent = :adminEvent AND
+            admin_information.adminDepartment = :adminDepartment";
 
-            $result= $conn->query($sql);
+
+            //Preparing Query
+            $result= $conn->prepare($sql);
+
+            //Binding Values
+            $result->bindValue(":adminUserName", $adminUserName);
+            $result->bindValue(":adminType", $adminType);
+            $result->bindValue(":adminEvent", $adminEvent);
+            $result->bindValue(":adminDepartment", $adminDepartment);
+
+            //Executing Value
+            $result->execute();
 
                 if($result){
 
-                $row= $result->fetch_assoc();
+                $row= $result->fetch(PDO::FETCH_ASSOC);
                 $password= $row['adminPassword'];
 
                     if(password_verify($adminPassword,$password) && ($adminType==="Administrator") && 
@@ -306,7 +308,7 @@ if(isset($_POST['login'])){
 
     <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>

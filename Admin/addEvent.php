@@ -1,6 +1,6 @@
 <?php 
 // Craeting Database Connection
-require_once '../configNew.php';
+require_once '../configPDO.php';
 // Starting Session
 session_start();
 
@@ -66,25 +66,17 @@ else{
 
 if(isset($_POST['addEvent'])){
 
-            // To avoid sql injection and cross site scripting also remove white spaces
-            function security($data){
-            global $conn;
-            $data = trim($data);
-            $data = $conn->real_escape_string($data);
-            $data = htmlentities($data);
-            return $data;
-            }
-
- $eventName = security($_POST['eventName']);
- $eventPrice = security($_POST['eventPrice']);
- $eventPrize = security($_POST['eventPrize']);
- $eventSponsor = security($_POST['eventSponsor']);
- $eventDepartment = security($_POST['eventDepartment']);
- $eventDescription = security($_POST['eventDescription']);
- $eventRules = security($_POST['eventRules']);
- $eventCoordinator = security($_POST['eventCoordinator']);
- $eventStartDate = security($_POST['eventStartDate']);
- $eventEndDate = security($_POST['eventEndDate']);
+   // Removing White spaces          
+ $eventName = trim($_POST['eventName']);
+ $eventPrice = trim($_POST['eventPrice']);
+ $eventPrize = trim($_POST['eventPrize']);
+ $eventSponsor = trim($_POST['eventSponsor']);
+ $eventDepartment = trim($_POST['eventDepartment']);
+ $eventDescription = trim($_POST['eventDescription']);
+ $eventRules = trim($_POST['eventRules']);
+ $eventCoordinator = trim($_POST['eventCoordinator']);
+ $eventStartDate = trim($_POST['eventStartDate']);
+ $eventEndDate = trim($_POST['eventEndDate']);
 
 
  $eventImage = $_FILES['eventImage'];
@@ -99,15 +91,31 @@ if(isset($_POST['addEvent'])){
      
         move_uploaded_file($eventImageTmpDir, "../eventImage/".$eventImageName);
        
-       
+       // Query
       $sql=   "INSERT INTO events_details_information( eventImage, eventName, eventPrice, eventPrize, eventSponsor,
          eventDepartment, eventDescription, eventRules, eventCoordinator, eventStartDate, eventEndDate)
-          VALUES ('$eventImageName','$eventName', '$eventPrice','$eventPrize', '$eventSponsor', '$eventDepartment', 
-          '$eventDescription', '$eventRules', '$eventCoordinator', '$eventStartDate', '$eventEndDate' )";
+          VALUES (:eventImageName, :eventName, :eventPrice, :eventPrize, :eventSponsor, :eventDepartment, 
+          :eventDescription, :eventRules, :eventCoordinator, :eventStartDate, :eventEndDate)";
 
+       // Preparing Query
+       $result = $conn->prepare($sql);
 
-       $result =  $conn->query($sql);
+       //Binding Values
+       $result->bindValue(":eventImageName", $eventImageName);
+       $result->bindValue(":eventName", $eventName);
+       $result->bindValue(":eventPrice", $eventPrice);
+       $result->bindValue(":eventPrize", $eventPrize);
+       $result->bindValue(":eventSponsor", $eventSponsor);
+       $result->bindValue(":eventDepartment", $eventDepartment);
+       $result->bindValue(":eventDescription", $eventDescription);
+       $result->bindValue(":eventRules", $eventRules);
+       $result->bindValue(":eventCoordinator", $eventCoordinator);
+       $result->bindValue(":eventStartDate", $eventStartDate);
+       $result->bindValue(":eventEndDate", $eventEndDate);
 
+       //Executing Query
+       $result->execute();
+       
             if($result){
                 echo "<script>Swal.fire({
                         icon: 'success',
@@ -251,7 +259,7 @@ if(isset($_POST['addEvent'])){
 
     <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>

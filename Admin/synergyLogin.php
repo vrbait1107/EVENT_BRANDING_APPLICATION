@@ -2,7 +2,7 @@
 // Starting Session
 session_start();
 // Starting DB Connection
-require_once '../configNew.php';
+require_once '../configPDO.php';
 
 if(isset($_SESSION['Admin'])) {
     header('location:synergyIndex.php');
@@ -41,22 +41,23 @@ if(isset($_SESSION['Admin'])) {
         
         if(isset($_POST['login'])) {
 
-        // To avoid sql injection and cross site scripting also remove white spaces
-        function security($data){
-        global $conn;
-        $data = trim($data);
-      //  $data = $conn->real_escape_string($data);
-        $data = htmlentities($data);
-        return $data;
-        }
+         // Removing White Spaces
+        $email = trim($_POST['email']);
+        $password = trim($_POST['password']);
 
-         // calling function to perform security task
-        $email = security($_POST['email']);
-        $password = security($_POST['password']);
+        $sql = "SELECT adminPassword FROM admin_information WHERE email='$email'";
 
-        $sql = "select adminPassword from admin_information where email='$email'";
-        $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
+        //Preparing Query
+        $result = $conn->prepare($sql);
+
+        //Binding Values
+        $result->bindValue(":email", $email);
+
+        //Executing Query
+        $result->execute();
+
+        //Fetching from DB in Associative array
+        $row = $result->fetch(PDO::FETCH_ASSOC);
 
         $dbPassword = $row['adminPassword'];
 
@@ -157,7 +158,7 @@ if(isset($_SESSION['Admin'])) {
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
      
 </body>

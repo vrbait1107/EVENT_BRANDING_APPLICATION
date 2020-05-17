@@ -46,10 +46,18 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
        $password = $_POST['password'];
        $password= password_hash($password,PASSWORD_BCRYPT);
     
-       $sql = "select * from admin_information where admin_information.email = '$email'";
-       $result = $conn->query($sql);
-    
-       if($result->num_rows >0) {
+       $sql = "SELECT * FROM admin_information WHERE admin_information.email = :email";
+
+       //Preparing Query
+       $result = $conn->prepare($sql);
+
+       //Binding Values
+       $result->bindValue(":email", $email);
+
+       //Executing Query
+       $result->execute();
+
+       if($result->rowCount() >0) {
     
         echo "<script>Swal.fire({
                 icon: 'warning',
@@ -59,10 +67,22 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
       }
        else{
     
-        $sql = "insert into admin_information (email, adminType, adminDepartment, adminEvent, 
-        adminPassword) VALUES ('$email','$adminType', '$adminDepartment','$adminEvent', '$password')";
-        $result= $conn->query($sql);
-    
+        $sql = "INSERT INTO admin_information (email, adminType, adminDepartment, adminEvent, 
+        adminPassword) VALUES (:email, :adminType, :adminDepartment, :adminEvent, :password)";
+
+        //Preparing Query
+        $result = $conn->prepare($sql);
+
+        //Binding Value
+        $result->bindValue(":email", $email);
+        $result->bindValue("adminType", $adminType);
+        $result->bindValue("adminDepartment", $adminDepartment);
+        $result->bindValue("adminEvent", $adminEvent);
+        $result->bindValue(":password", $password);
+
+        //Executing Query
+        $result->execute();
+
         if($result) {
             echo "<script>Swal.fire({
                     icon: 'success',
@@ -85,8 +105,18 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     if(isset($_REQUEST['delete'])){
          
         $delete = $_GET['hiddenEmail'];
-        $sql = "delete from admin_information where email = '$delete'";
-        $result = $conn->query($sql);
+
+        //Query
+        $sql = "DELETE FROM admin_information WHERE email = :delete";
+
+        //Preparing Query
+        $result = $conn->prepare($sql);
+
+        //Binding Values
+        $result->bindValue(":delete", $delete);
+
+        //Executing Query
+        $result->execute();
         
         if($result) {
             echo "<script>Swal.fire({
@@ -199,8 +229,16 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
                                     // Fetching All Details From user_information Table 
 
-                                    $sql = 'select * from admin_information where adminType = "Faculty Coordinator"';
-                                    $result = $conn->query($sql);
+                                    $sql = 'SELECT * FROM admin_information WHERE adminType = :facultyCoordinator';
+
+                                    //Preparing Query
+                                    $result = $conn->prepare($sql);
+
+                                    //Binding Values
+                                    $result->bindValue(":facultyCoordinator", "Faculty Coordinator");
+
+                                    //Executing Query
+                                    $result->execute();
                                     ?>
 
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -216,7 +254,7 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
                                 <tbody>
 
                                     <?php
-                                        while($row= $result->fetch_assoc()) {
+                                        while($row= $result->fetch(PDO::FETCH_ASSOC)) {
                                         ?>
                                     <tr class="text-center">
                                         <td><?php echo $row['email'] ?></td>
@@ -255,7 +293,7 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
     <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null;
      ?>
 
 </body>

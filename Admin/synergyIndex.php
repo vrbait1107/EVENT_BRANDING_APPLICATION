@@ -1,6 +1,6 @@
 <?php 
 // Starting DB Connnection
-require_once "../configNew.php";
+require_once "../configPDO.php";
 // Staring Session
 session_start();
 
@@ -38,29 +38,28 @@ if(!isset($_SESSION['Admin'])) {
     if(isset($_POST['submit'])){
 
     $certificateId = rand();
-    $firstName=  $_POST["firstName"];
-    $lastName=  $_POST["lastName"];
-    $department =$_POST["department"];
-    $event = $_POST["event"];
-    $prize = $_POST["prize"];
+    $firstName=  trim($_POST["firstName"]);
+    $lastName= trim($_POST["lastName"]);
+    $department = trim($_POST["department"]);
+    $event = trim($_POST["event"]);
+    $prize = trim($_POST["prize"]);
 
-    // Avoid SQL Injection
-   // $firstName = $conn->real_eascape_string($firstName);
-   // $lastName = $conn->real_eascape_string($lastName);
-   // $department = $conn->real_eascape_string($department);
-   // $event = $conn->real_eascape_string($event);
-    //$prize = $conn->real_eascape_string($prize);
-
-    // Avoid Cross-Site Scripting
-    $firstName = htmlentities($firstName);
-    $lastName = htmlentities($lastName);
-    $department = htmlentities($department);
-    $event = htmlentities($event);
-    $prize = htmlentities($prize);
-
-        $sql = "insert INTO synergy_user_information (certificateId, firstName, lastName, departmentName,
+        $sql = "INSERT INTO synergy_user_information (certificateId, firstName, lastName, departmentName,
         eventName, prize) VALUES ('$certificateId','$firstName','$lastName','$department', '$event','$prize')";
-        $result = $conn->query($sql);
+
+        //Preparing Query
+        $result= $conn->prepare($sql);
+
+        //Binding Value
+        $result->bindValue(":certificateId", $certificateId);
+        $result->bindValue(":firstName", $firstName);
+        $result->bindValue(":lastName", $lastName);
+        $result->bindValue(":department", $department);
+        $result->bindValue(":event", $event);
+        $result->bindValue(":prize", $prize);
+
+        //Executing Query
+        $result->execute();
 
                 if($result){
                 echo "<script>Swal.fire({
@@ -245,7 +244,7 @@ if(!isset($_SESSION['Admin'])) {
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>

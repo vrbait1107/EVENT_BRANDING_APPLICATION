@@ -1,6 +1,6 @@
 <?php 
 // Craeting Database Connection
-require_once '../configNew.php';
+require_once '../configPDO.php';
 // Starting Session
 session_start();
 
@@ -61,24 +61,23 @@ else{
     <?php
 if(isset($_POST['addNews'])) {
 
-        // To avoid sql injection and cross site scripting also remove white spaces
-        function security($data){
-        global $conn;
-        $data = trim($data);
-        $data = $conn->real_escape_string($data);
-        $data = htmlentities($data);
-        return $data;
-        }
-
-        // calling function to perform security task
+        // Removing White Spaces
         $newsTitle = security($_POST['newsTitle']);
         $newsDescription = security($_POST['newsDescription']);
         
+               // Query
+               $sql = "INSERT INTO news_information (newsTitle, newsDescription, postedDate) VALUES (:newsTitle, :newsDescription, :now");
+                
+               //Preparing Query
+               $result= $conn->prepare($sql);
 
-        
-               $sql = "INSERT INTO news_information (newsTitle, newsDescription, postedDate) VALUES ('$newsTitle', ' $newsDescription', now())";
-                 
-                $result = $conn->query($sql);
+               //Binding Values
+               $result->bindValue(":newsTitle", $newsTitle);
+               $result->bindValue("::newsDescription", $newsDescription);
+               $result->bindValue(":now", "now()");
+                
+               //Executing Query
+                $result->execute();
 
                         if($result){
                         echo "<script>Swal.fire({
@@ -148,7 +147,7 @@ if(isset($_POST['addNews'])) {
 
     <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>

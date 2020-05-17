@@ -1,7 +1,7 @@
 <?php 
 
 // Creating Database Connection
-require_once "../configNew.php";
+require_once "../configPDO.php";
 //Starting Session
 session_start();
 
@@ -16,32 +16,45 @@ session_start();
 
 
     // Display Participation count & total revenue
-    $sqlData ="select * from event_information";
+    $sqlData ="SELECT * FROM event_information";
 
-    $resultData = $conn->query($sqlData);
-    $rowCount = $resultData->num_rows;
+    $resultData = $conn->prepare($sqlData);
+
+    $resultData->execute();
+     
+    $rowCount = $resultData->rowCount();
    
     $totalAmount = 0;
 
-    while($rowData = $resultData->fetch_assoc()){
+    while($rowData = $resultData->fetch(PDO::FETCH_ASSOC)){
      $totalAmount =   $totalAmount + $rowData['txnAmount'];
     } 
 
      // display admin information count (Student Coordinator) for college
     
-    $sqlDataAdmin ="select * from admin_information
-    WHERE adminType='Student Coordinator'";
+    $sqlDataAdmin ="SELECT * FROM admin_information
+    WHERE adminType= :studentCoordinator";
 
-    $resultDataAdmin = $conn->query($sqlDataAdmin);
-    $rowCountAdmin = $resultDataAdmin->num_rows;
+    $resultDataAdmin = $conn->prepare($sqlDataAdmin);
+
+    $resultDataAdmin->bindValue(":studentCoordinator", "Student Coordinator");
+
+    $resultDataAdmin->execute();
+
+    $rowCountAdmin = $resultDataAdmin->rowCount();
 
 
      // display admin information count (Faculty Coordinator) for college
-    $sqlDataAdmin2 ="select * from admin_information
-    WHERE adminType='Faculty Coordinator'";
+    $sqlDataAdmin2 ="SELECT * FROM admin_information
+    WHERE adminType= :facultyCoordinator";
 
-    $resultDataAdmin2 = $conn->query($sqlDataAdmin2);
-    $rowCountAdmin2 = $resultDataAdmin2->num_rows;
+    $resultDataAdmin2 = $conn->prepare($sqlDataAdmin2);
+
+    $resultDataAdmin2->bindValue(":facultyCoordinator", "Faculty Coordinator");
+
+    $resultDataAdmin2->execute();
+
+    $rowCountAdmin2 = $resultDataAdmin2->rowCount();
 
     
     // Participation Count Department Wise
@@ -50,11 +63,17 @@ session_start();
 
         global $conn;
 
-        $sql = "select * from event_information where event in 
-        (select eventName from events_details_information where eventDepartment = '$department')";
+        $sql = "SELECT * FROM event_information WHERE event IN 
+        (SELECT eventName FROM events_details_information WHERE eventDepartment = :department)";
 
-        $result = $conn->query($sql);
-        $row = $result->num_rows;
+        $result= $conn->prepare($sql);
+
+        $result->bindValue(":department", $department);
+
+        $result->execute();
+
+        $row = $result->rowCount();
+
         return $row;
     }
 
@@ -65,24 +84,36 @@ session_start();
 
     global $conn;
 
-    $sql ="select * from admin_information
-    WHERE adminType='Student Coordinator' and adminDepartment = '$department'";
+    $sql ="SELECT * FROM admin_information
+    WHERE adminType= :studentCoordinator AND adminDepartment = :department";
 
-    $result = $conn->query($sql);
-    $row = $result->num_rows;
+        $result= $conn->prepare($sql);
 
-    return $row;
+        $result->bindValue(":studentCoordinator", "Student Coordinator");
+        $result->bindValue(":department", $department);
+
+        $result->execute();
+
+        $row = $result->rowCount();
+        
+        return $row;
 
     }
 
      // Display   total revenue departmet wise
     function countRevenue($department) {
     global $conn;
-    $sql = "select SUM(txnAmount) as totalAmount from event_information where event in 
-        (select eventName from events_details_information where eventDepartment = '$department')";
+    $sql = "SELECT SUM(txnAmount) AS totalAmount FROM event_information WHERE event IN 
+        (SELECT eventName FROM events_details_information WHERE eventDepartment = :department)";
 
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
+    $result = $conn->prepare($sql);
+
+    $result->bindValue(":department", $department);
+
+    $result->execute();
+ 
+    $row = $result->fetch(PDO::FETCH_ASSOC);
+
     $totalAmount = $row['totalAmount'];
     return $totalAmount + 0;
     }
@@ -364,7 +395,7 @@ session_start();
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>

@@ -1,6 +1,6 @@
 <?php 
 // Craeting Database Connection
-require_once '../configNew.php';
+require_once '../configPDO.php';
 // Starting Session
 session_start();
 
@@ -64,18 +64,10 @@ else{
 
 if(isset($_POST['addSponsor'])){
 
-            // To avoid sql injection and cross site scripting also remove white spaces
-            function security($data){
-            global $conn;
-            $data = trim($data);
-            $data = $conn->real_escape_string($data);
-            $data = htmlentities($data);
-            return $data;
-            }
 
- $sponsorName= security($_POST['sponsorName']);
- $sponsoredEvent = security($_POST['sponsoredEvent']);
- $sponsoredDepartment = security($_POST['sponsoredDepartment']);
+ $sponsorName= trim($_POST['sponsorName']);
+ $sponsoredEvent = trim($_POST['sponsoredEvent']);
+ $sponsoredDepartment = trim($_POST['sponsoredDepartment']);
  $sponsorLogo = $_FILES['sponsorLogo'];
 
  $sponsorLogoName = $_FILES['sponsorLogo']['name'];
@@ -89,10 +81,21 @@ if(isset($_POST['addSponsor'])){
      
         move_uploaded_file($sponsorLogoTmpDir, "../sponsorLogo/".$sponsorLogoName);
        
-       $sql = "insert into sponsor_information (sponsorName, sponsorLogo, sponsoredEvent, 
-       sponsoredDepartment) values('$sponsorName', '$sponsorLogoName', '$sponsoredEvent', '$sponsoredDepartment')";
+        //Query
+       $sql = "INSERT INTO sponsor_information (sponsorName, sponsorLogo, sponsoredEvent, 
+       sponsoredDepartment) VALUES(:sponsorName, :sponsorLogoName, :sponsoredEvent, :sponsoredDepartment)";
+       
+        //Preparing Query
+       $result = $conn->prepare($sql);
 
-       $result =  $conn->query($sql);
+       //Binding Value
+       $result->bindValue(":sponsorName", $sponsorName);
+       $result->bindValue(":sponsorLogoName", $sponsorLogoName);
+       $result->bindValue(":sponsoredEvent", $sponsoredEvent);
+       $result->bindValue(":sponsoredDepartment", $sponsoredDepartment);
+       
+       //Executing Query
+       $result->execute();
 
             if($result){
                 echo "<script>Swal.fire({
@@ -187,7 +190,7 @@ if(isset($_POST['addSponsor'])){
 
     <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn-= null; 
      ?>
 
 </body>
