@@ -1,7 +1,8 @@
 <?php 
 
 //Starting Database Conection
-require_once "../configNew.php";
+require_once "../configPDO.php";
+
 // Starting Session
 session_start();
 
@@ -50,10 +51,18 @@ session_start();
            $password = $_POST['password'];
            $password= password_hash($password,PASSWORD_BCRYPT);
         
-           $sql = "select* from admin_information where admin_information.email = '$email'";
-           $result = $conn->query($sql);
-        
-           if( $result->num_rows >0) {
+           $sql = "SELECT* FROM admin_information WHERE admin_information.email = '$email'";
+
+           //Preparing Query
+           $result = $conn->prepare($sql);
+
+           //Binding Values
+           $result->bindValue(":email", $email);
+
+           //Executing Value
+           $result->execute();
+    
+           if( $result->rowCount() >0) {
         
             echo "<script>Swal.fire({
                     icon: 'warning',
@@ -63,9 +72,21 @@ session_start();
           }
            else{
         
-            $sql = "insert into admin_information (email, adminType, adminDepartment, adminEvent, 
-            adminPassword) VALUES ('$email','$adminType', '$adminDepartment','$adminEvent', '$password')";
-            $result= $conn->query($sql);
+            $sql = "INSERT INTO admin_information (email, adminType, adminDepartment, adminEvent, 
+            adminPassword) VALUES (:email, :adminType, :adminDepartment, :adminEvent, :password)";
+
+            //Preparing Query
+            $result= $conn->prepare($sql);
+
+            //Binding Values
+            $result->bindValue(":email", $email);
+            $result->bindValue(":adminType", $adminType);
+            $result->bindValue(":adminDepartment", $adminDepartment);
+            $result->bindValue(":adminEvent", $adminEvent);
+            $result->bindValue(":password", $password);
+
+            //Executing Query
+            $result->execute();
         
             if($result) {
                 echo "<script>Swal.fire({
@@ -89,8 +110,16 @@ session_start();
         if(isset($_REQUEST['delete'])){
         
         $delete = $_GET['hiddenEmail'];
-        $sql = "delete from admin_information where email = '$delete'";
-        $result = $conn->query($sql);
+        $sql = "DELETE FROM admin_information WHERE email = :delete";
+
+        //Preparing Query
+        $result = $conn->prepare($sql);
+
+        //Binding Values
+        $result->bindValue(":delete", $delete);
+
+        //Executing Value
+        $result->execute();
         
         if($result) {
         echo "
@@ -234,8 +263,18 @@ session_start();
                     // Fetching All Details From user_information Table 
                     $departmentAdmin = $_SESSION["adminDepartment"];
 
-                    $sql = "select * from admin_information where adminType = 'Student Coordinator' and adminDepartment = '$departmentAdmin'";
-                    $result = $conn->query($sql);
+                    $sql = "SELECT * FROM admin_information WHERE adminType = :studentCoordinator AND 
+                    adminDepartment = :departmentAdmin";
+
+                    // Preparing Query
+                    $result = $conn->prepare($sql);
+
+                    //Binding Values
+                    $result->bindValue(":studentCoordinator", "Student Coordinator");
+                    $result->bindValue(":departmentAdmin",  $departmentAdmin);
+
+                    // Executing Query
+                    $result->execute();
                     ?>
 
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -251,7 +290,7 @@ session_start();
                             <tbody>
 
                                 <?php
-                                        while($row=$result->fetch_assoc()) {
+                                        while($row=$result->fetch(PDO::FETCH_ASSOC)) {
                                         ?>
                                 <tr class="text-center">
                                     <td><?php echo $row['email'] ?></td>
@@ -290,7 +329,7 @@ session_start();
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn = null; 
      ?>
 
 </body>

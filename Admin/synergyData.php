@@ -1,6 +1,6 @@
 <?php 
 // Starting Database Connection
-require_once "../configNew.php";
+require_once "../configPDO.php";
 // Starting Session
 session_start();
 
@@ -48,10 +48,21 @@ if(!isset($_SESSION['Admin'])){
 // SQL Querry for Delete the Data
 
 if(isset($_REQUEST['delete'])) {
+  
 
-  $sql ="delete  FROM synergy_user_information where certificateId = {$_POST['certificateId']}";
-  $result = $conn->query($sql);
+  //Query
+  $id = $_POST['certificateId'];
 
+  $sql ="DELETE  FROM synergy_user_information WHERE certificateId = {:id}";
+
+  //Preparing Query
+  $result = $conn->prepare($sql);
+
+  //Binding Value
+  $result->bindValue(":id", $id);
+
+ //Executing Value
+ $result->execute();
   if($result){
     
       echo "<script>Swal.fire({
@@ -90,10 +101,15 @@ if(isset($_REQUEST['delete'])) {
 
           <?php
          
-        $sql ='select * FROM synergy_user_information';
-        $result = $conn->query($sql);
+        $sql ='SELECT * FROM synergy_user_information';
 
-        if($result->num_rows >0) {
+        //Preparing Query
+        $result= $conn->prepare($sql);
+
+        //Executing Value
+        $result->execute();
+
+        if($result->rowCount() >0) {
         ?>
 
           <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
@@ -111,7 +127,7 @@ if(isset($_REQUEST['delete'])) {
 
               <?php
 
-            while($row = $result->fetch_assoc()){
+            while($row = $result->fetch(PDO::FETCH_ASSOC)){
 
               ?>
 
@@ -171,7 +187,7 @@ if(isset($_REQUEST['delete'])) {
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn = null; 
      ?>
 
 </body>

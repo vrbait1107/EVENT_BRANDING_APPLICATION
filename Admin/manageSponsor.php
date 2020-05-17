@@ -1,6 +1,6 @@
 <?php 
 // Craeting Database Connection
-require_once '../configNew.php';
+require_once '../configPDO.php';
 // Starting Session
 session_start();
 
@@ -66,15 +66,7 @@ else{
 // update sponsor information
 if(isset($_POST['update'])){
 
-            // To avoid sql injection and cross site scripting also remove white spaces
-            function security($data){
-            global $conn;
-            $data = trim($data);
-            $data = $conn->real_escape_string($data);
-            $data = htmlentities($data);
-            return $data;
-            }
-
+           
  $sponsorName= security($_POST['sponsorName']);
  $sponsoredEvent = security($_POST['sponsoredEvent']);
  $sponsoredDepartment = security($_POST['sponsoredDepartment']);
@@ -90,11 +82,25 @@ if(isset($_POST['update'])){
     if($sponsorLogoSize <= 2097152){
      
         move_uploaded_file($sponsorLogoTmpDir, "../sponsorLogo/".$sponsorLogoName);
+
+        $hidden = $_REQUEST['hiddenId'];
        
        $sqlUpdate = "UPDATE sponsor_information SET sponsorName = '$sponsorName', sponsorLogo = '$sponsorLogoName' , sponsoredEvent = '$sponsoredEvent', 
-       sponsoredDepartment = '$sponsoredDepartment' where id = {$_REQUEST['hiddenId']}"; 
+       sponsoredDepartment = '$sponsoredDepartment' where id = {:hidden}"; 
 
-       $resultUpdate =  $conn->query($sqlUpdate);
+
+         //Preparing Query
+       $resultUpdate = $conn->prepare($sql);
+
+       //Binding Value
+       $resultUpdate->bindValue(":sponsorName", $sponsorName);
+       $resultUpdate->bindValue(":sponsorLogoName", $sponsorLogoName);
+       $resultUpdate->bindValue(":sponsoredEvent", $sponsoredEvent);
+       $resultUpdate->bindValue(":sponsoredDepartment", $sponsoredDepartment);
+       $resultUpdate->bindValue(":hidden", $hidden);
+       
+       //Executing Query
+       $resultUpdate->execute();
 
             if($resultUpdate){
                 echo "<script>Swal.fire({
@@ -134,15 +140,26 @@ if(isset($_POST['update'])){
 }
 
 // query for retriving data into tables
-$sql = "select * from sponsor_information";
-$result = $conn->query($sql);
+$sql = "SELECT * FROM sponsor_information";
+
+$result = $conn->prepare($sql);
+$result->execute();
 
 // delete sponsor from table 
 
 if(isset($_REQUEST['delete'])){
+
    $hiddenId = $_REQUEST['hiddenId'];
-   $sqlDelete = "delete from sponsor_information where id = '$hiddenId'";
-   $resultDelete = $conn->query($sqlDelete);
+   $sqlDelete = "DELETE FROM sponsor_information WHERE id = '$hiddenId'";
+
+   //Preparing Query
+   $resultDelete = $conn->prepare($sqlDelete);
+
+   //Binding Value 
+   $resultDelete->bindValue(":hiddenId", $hiddenId);
+
+   //Executing Query
+   $resultDelete->execute();
 
    if($resultDelete) {
        echo "<script>Swal.fire({
@@ -167,9 +184,18 @@ if(isset($_REQUEST['edit'])) {
 
 $hiddenId = $_REQUEST['hiddenId'];
 
-$sqlEdit = "select * from sponsor_information where id = '$hiddenId'";
-$resultEdit = $conn->query($sqlEdit);
-$rowEdit = $resultEdit->fetch_assoc();
+$sqlEdit = "SELECT * FROM sponsor_information WHERE id = '$hiddenId'";
+
+//Preparing Query
+$resultEdit = $conn->prepare($sqlEdit);
+
+//Binding Value 
+$resultEdit->bindvalue(":hiddenId,", $hiddenId);
+
+//Executing Query
+$resultEdit->execute();
+
+$rowEdit = $resultEdit->fetch(PDO::FETCH_ASSOC);
 
  $sponsorName = $rowEdit["sponsorName"];
  $sponsoredDepartment = $rowEdit["sponsoredDepartment"];
@@ -238,7 +264,7 @@ $rowEdit = $resultEdit->fetch_assoc();
 
                     <?php
 
-                    if($result->num_rows > 0 ) {
+                    if($result->rowCount() > 0 ) {
 
                         ?>
 
@@ -254,7 +280,7 @@ $rowEdit = $resultEdit->fetch_assoc();
                         <tbody>
 
                             <?php
-                                          while($row = $result->fetch_assoc()){
+                                          while($row = $result->fetch(PDO::FETCH_ASSOC)){
                                           ?>
 
                             <tr>
@@ -304,7 +330,7 @@ $rowEdit = $resultEdit->fetch_assoc();
 
     <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>

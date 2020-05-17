@@ -1,6 +1,6 @@
 <?php 
 // Craeting Database Connection
-require_once '../configNew.php';
+require_once '../configPDO.php';
 // Starting Session
 session_start();
 
@@ -66,20 +66,11 @@ else{
 
     <?php
 if(isset($_POST['changePassword'])) {
-
-        // To avoid sql injection and cross site scripting also remove white spaces
-        function security($data){
-        global $conn;
-        $data = trim($data);
-        $data = $conn->real_escape_string($data);
-        $data = htmlentities($data);
-        return $data;
-        }
-
-        // calling function to perform security task
-        $password = security($_POST['password']);
-        $password = security($conn, $password);
-        $password = security($password);
+        
+        // Removing White Spaces
+        $password = trim($_POST['password']);
+        $password = trim($password);
+        $password = trim($password);
 
   
             if($password ===  $conPassword)
@@ -87,10 +78,20 @@ if(isset($_POST['changePassword'])) {
                 $hashPassword = password_hash($password, PASSWORD_BCRYPT);
                 $hashConPassword = password_hash($conPassword, PASSWORD_BCRYPT);
 
-                $sql = "update admin_information SET adminPassword = '$hashPassword'
-                 where admin_information.email = '$admin'";
+                $sql = "UPDATE admin_information SET adminPassword = :hashPassword
+                 where admin_information.email = :admin";
+
+                 //Preparing Query
+                 $result = $conn->prepare($sql);
+
+                 //Binding Value
+                 $result->bindValue(":hashPassword", $hashPassword);
+                 $result->bindValue(":email", $email);
+                
+                 //Executing Query
+                 $result->execute();
                  
-                $result = $conn->query($sql);
+               
 
                         if($result){
                         echo "<script>Swal.fire({
@@ -174,7 +175,7 @@ if(isset($_POST['changePassword'])) {
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>

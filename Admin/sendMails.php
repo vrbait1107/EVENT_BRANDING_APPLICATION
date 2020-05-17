@@ -2,7 +2,7 @@
 //Starting Session
 session_start();
 // Creating Database Connection
-require_once "../configNew.php";
+require_once "../configPDO.php";
 
 if(!isset($_SESSION['adminEmail'])) {
   header("location:adminLogin.php");
@@ -49,24 +49,21 @@ if(!isset($_SESSION['adminEmail'])) {
 
       if($response->success){
 
-       // To avoid sql injection and cross site scripting also remove white spaces
-            function security($data){
-            global $conn;
-            $data = trim($data);
-            $data = $conn->real_escape_string($data);
-            $data = htmlentities($data);
-            return $data;
-            }
-
-       $targetAudience = security($_POST['targetAudience']);
-       $targetSubject = security($_POST['targetSubject']);
-       $targetMessage = security($_POST['targetMessage']);
+       $targetAudience = trim($_POST['targetAudience']);
+       $targetSubject = trim($_POST['targetSubject']);
+       $targetMessage = trim($_POST['targetMessage']);
 
        if($targetAudience === "collegeLevel"){
-         $sql = "select  distinct email from event_information";
-         $result = $conn->query($sql);
 
-         while($row = $result->fetch_assoc()){
+         $sql = "SELECT DISTINCT  email FROM event_information";
+
+         //Preparing Query
+         $result = $conn->prepare($sql);
+
+         //Executing Query
+         $result->execute();
+
+         while($row = $result->fetch(PDO::FETCH_ASSOC)){
            $targetEmails = $row['email'];
 
            sendMail($targetEmails, $targetSubject, $targetMessage);
@@ -75,14 +72,23 @@ if(!isset($_SESSION['adminEmail'])) {
 
        elseif($targetAudience=== "departmentLevel"){
 
-          $targetDepartment = security($_POST['targetDepartment']);
-          $targetEvent = security($_POST['targetEvent']);
+          $targetDepartment = trim($_POST['targetDepartment']);
+          $targetEvent = trim($_POST['targetEvent']);
 
-         $sql = "select distinct email from event_information where event_information.event in
-          (select eventName where departmentName = '$targetDepartment'";
-          $result = $conn->query($sql);
+          //Query
+          $sql = "SELECT DISTINCT email FROM event_information WHERE event_information.event IN
+          (SELECT eventName FROM event_details_information WHERE departmentName = :targetDepartment";
 
-          while($row = $result->fetch_assoc()){
+          //Preparing Query
+          $result = $conn->prepare($sql);
+
+          //Binding Values
+          $result->bindValue(":targetDepartment", $targetDepartment);
+
+          //Executing Query
+          $result->execute();
+
+          while($row = $result->fetch(PDO::FETCH_ASSOC)){
            $targetEmails = $row['email'];
 
            sendMail($targetEmails, $targetSubject, $targetMessage);
@@ -91,15 +97,23 @@ if(!isset($_SESSION['adminEmail'])) {
 
        elseif($targetAudience === "eventLevel"){
 
-         $targetDepartment = security($_POST['targetDepartment']);
-         $targetEvent = security($_POST['targetEvent']);
+         $targetDepartment = trim($_POST['targetDepartment']);
+         $targetEvent = trim($_POST['targetEvent']);
 
-         $sql = "select distinct email from event_information where event = '$targetEvent'";
-         $result = $conn->query($sql);
+         $sql = "SELECT distinct email FROM event_information WHERE event = :targetEvent";
+
+         //Preparing Query
+         $result = $conn->prepare($sql);
+
+         //Binding Values
+         $result->bindValue(":targetEvent", $targetEvent);
+
+         //Executing Query
+         $result->execute();
           
-          while($row = $result->fetch_assoc()){
-           $targetEmails = $row['email'];
+          while($row = $result->fetch(PDO::FETCH_ASSOC)){
 
+           $targetEmails = $row['email'];
            sendMail($targetEmails, $targetSubject, $targetMessage);
          }
 
@@ -310,7 +324,7 @@ if(!isset($_SESSION['adminEmail'])) {
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn = null; 
      ?>
      
 </body>

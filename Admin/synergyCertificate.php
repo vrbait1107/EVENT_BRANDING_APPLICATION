@@ -2,13 +2,22 @@
 // Starting Session
 session_start();
 // Starting Database Connection
-require_once "../configNew.php";
+require_once "../configPDO.php";
 
         $CertId= $_POST['certificateId'];
-        $sql ="select * from synergy_user_information where certificateId = '$CertId'";
-        
-        $res= $conn->query($sql);
-        $row= $res->fetch_assoc();
+
+        $sql ="SELECT * FROM synergy_user_information WHERE certificateId = :CertId";
+
+        //Preparing Query
+        $result= $conn->prepare($sql);
+
+        //Binding Value 
+        $result->bindValue(":certId", $CertId);
+
+        //Executing the Query
+        $result->execute();
+
+        $row= $result->fetch(PDO::FETCH_ASSOC);
         
         $validate =$row['certificateId'];
         $firstName = $row['firstName'];
@@ -118,7 +127,7 @@ require_once "../configNew.php";
 
     <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn-= null; 
      ?>
 
 </body>

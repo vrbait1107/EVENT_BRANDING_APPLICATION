@@ -1,6 +1,6 @@
 <?php 
 // Craeting Database Connection
-require_once "../configNew.php";
+require_once "../configPDO.php";
 // Starting Session
 session_start();
 
@@ -52,20 +52,35 @@ session_start();
 
 else {
 
-  $firstName= $_POST['firstName'];
-  $lastName= $_POST['lastName'];
-  $prize = $_POST['prize'];
-  $attendStatus = $_POST['attendStatus'];
+  $firstName= trim($_POST['firstName']);
+  $lastName= trim($_POST['lastName']);
+  $prize = trim($_POST['prize']);
+  $attendStatus = trim($_POST['attendStatus']);
+  $reqCertId = $_REQUEST['certificateId'];
   
+  //Query
   $sql1 = "update user_information INNER JOIN event_information 
   ON user_information.email= event_information.email
-  SET user_information.firstName ='$firstName',
-  user_information.lastName ='$lastName', 
-  event_information.prize = '$prize',
-  attendStatus = '$attendStatus'
-  WHERE event_information.certificateId={$_REQUEST['certificateId']}";
+  SET user_information.firstName = :firstName,
+  user_information.lastName = :lastName, 
+  event_information.prize = :prize,
+  attendStatus = :attendStatus
+  WHERE event_information.certificateId={:reqCertId}";
 
-  if($conn->query($sql1)){
+  //Preparing Query
+  $result1 = $conn->prepare($sql1);
+
+  //Binding Values
+  $result1->bindValue(":firstName", $firstName);
+  $result1->bindValue(":lastName", $lastName);
+  $result1->bindValue(":prize", $prize);
+  $result1->bindValue(":attendStatus", $attendStatus);
+  $result1->bindValue(":reqCertId", $reqCertId);
+
+  //Executing Query
+  $result1->execute();
+  
+  if($result1){
 
     echo "<script>Swal.fire({
         icon: 'success',
@@ -94,12 +109,22 @@ else {
 
   if(isset($_REQUEST['edit'])) {
 
-    $sql ="select * FROM user_information INNER JOIN event_information ON 
+    $reqCertId = $_REQUEST['certificateId'];
+
+    $sql ="SELECT * FROM user_information INNER JOIN event_information ON 
     user_information.email= event_information.email 
-    where certificateId = {$_REQUEST['certificateId']}";
+    where certificateId = {:reqCertId}";
+
+    //Preparing Query
+    $result = $conn->prepare($sql);
+
+    //Binding Values
+    $result->bindValue(":reqCertId", $reqCertId);
+
+    //Executing Query
+    $result->execute();
   
-    $result = $conn->query($sql);
-    $row= $result->fetch_assoc();
+    $row= $result->fetch(PDO::FETCH_ASSOC);
   }
   
 
@@ -107,11 +132,20 @@ else {
 
 if(isset($_REQUEST['delete'])) {
 
-  $sql ="delete  FROM event_information 
-  where certificateId = {$_REQUEST['certificateId']}";
+  $reqCertId = $_REQUEST['certificateId'];
 
-  $result = $conn->query($sql);
+  $sql ="DELETE  FROM event_information 
+  where certificateId = {:reqCertId}";
 
+  //Preparing Query
+  $result= $conn->prepare($sql);
+
+  //Binding Values
+  $result->bindValue(":reqCertId", $reqCertId);
+
+  //Executing Query
+  $result->execute();
+  
   if($result){
     
     echo "<script>Swal.fire({
@@ -227,14 +261,20 @@ if(isset($_REQUEST['delete'])) {
                 // Retrive the data from the database in table
                 $event = $_SESSION['adminEvent'];
         
-
-                $sql ="select * FROM user_information INNER JOIN event_information ON 
+                $sql ="SELECT * FROM user_information INNER JOIN event_information ON 
                 user_information.email= event_information.email 
-                where event_information.event ='$event' ORDER By firstName ASC";
+                WHERE event_information.event = :event ORDER By firstName ASC";
 
-                $result = $conn->query($sql);
+                //Preparing Query
+                $result = $conn->prepare($sql);
 
-                if($result->num_rows >0) {
+                //Binding Value
+                $result->bindValue(":event", $event);
+
+                //Executing Value 
+                $result->execute();
+
+                if($result->rowCount() >0) {
 
           ?>
 
@@ -263,7 +303,7 @@ if(isset($_REQUEST['delete'])) {
                   <tbody>
 
                     <?php
-                  while($row = $result->fetch_assoc()){
+                  while($row = $result->fetch(PDO::FETCH_ASSOC)){
                   ?>
 
                     <tr>
@@ -330,7 +370,7 @@ if(isset($_REQUEST['delete'])) {
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
      
 </body>

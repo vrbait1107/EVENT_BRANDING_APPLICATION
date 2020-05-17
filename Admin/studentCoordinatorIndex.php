@@ -1,6 +1,6 @@
 <?php 
 // Starting Database Connection
-require_once "../configNew.php";
+require_once "../configPDO.php";
 // Starting Session
 session_start();
 
@@ -17,11 +17,20 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
    // Display Data related to Events
    $adminEvent = $_SESSION["adminEvent"];
 
-   $sql = "select * from event_information where event = '$adminEvent'";
-   $result = $conn->query($sql);
-   $row = $result->fetch_assoc();
+   $sql = "SELECT * FROM event_information WHERE event = :adminEvent";
 
-   $rowCount = $result->num_rows;
+   //Preparing Query
+   $result = $conn->prepare($sql);
+
+   //Binding Value 
+   $result->bindValue(":adminEvent", $adminEvent);
+
+   //Executing Query
+   $result->execute();
+
+   $row = $result->fetch(PDO::FETCH_ASSOC);
+
+   $rowCount = $result->rowCount();
    $amount = $row['txnAmount'];
    $totalAmount = $amount * $rowCount;
 ?>
@@ -120,7 +129,7 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn= null; 
      ?>
 
 </body>
