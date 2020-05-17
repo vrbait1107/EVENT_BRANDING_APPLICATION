@@ -62,8 +62,8 @@ else{
 if(isset($_POST['addNews'])) {
 
         // Removing White Spaces
-        $newsTitle = security($_POST['newsTitle']);
-        $newsDescription = security($_POST['newsDescription']);
+        $newsTitle = trim($_POST['newsTitle']);
+        $newsDescription = trim($_POST['newsDescription']);
         
                // Query
                $sql = "INSERT INTO news_information (newsTitle, newsDescription, postedDate) VALUES (:newsTitle, :newsDescription, :now");

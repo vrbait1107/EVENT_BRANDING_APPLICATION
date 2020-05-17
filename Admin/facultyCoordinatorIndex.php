@@ -1,7 +1,7 @@
 <?php 
 
  // Creating Database Connection
-    require_once "../configNew.php";
+    require_once "../configPDO.php";
 //Starting Connection
     session_start();
 
@@ -18,39 +18,58 @@
  
     // display participation count and total revenue
 
-    $sqlData ="select * from event_information
+    $sqlData ="SELECT * FROM event_information
     WHERE event IN (SELECT events_details_information.eventName 
     FROM events_details_information WHERE eventDepartment ='$department')";
 
-    $resultData = $conn->query($sqlData);
-    $rowCount = $resultData->num_rows;
+    //Preparing Query
+    $resultData = $conn->prepare($sqlData);
+
+    //Binding values
+    $resultData->bindValue(":department", $department);
+
+    //Executing Query
+    $resultData->execute();
+
+    $rowCount = $resultData->rowCount();
    
     $totalAmount = 0;
 
-    while($rowData = $resultData->fetch_assoc()){
+    while($rowData = $resultData->fetch(PDO::FETCH_ASSOC)){
      $totalAmount =   $totalAmount + $rowData['txnAmount'];
     } 
 
 
     // display admin information count
-    $sqlDataAdmin ="select * from admin_information
-    WHERE adminType='Student Coordinator' and adminDepartment = '$department'";
+    $sqlDataAdmin ="SELECT * FROM admin_information
+    WHERE adminType = :studentCoordinator AND adminDepartment = :department";
 
-    $resultDataAdmin = $conn->query($sqlDataAdmin);
-    $rowCountAdmin = $resultDataAdmin->num_rows;
+    //Preparing Query
+    $resultDataAdmin = $conn->prepare($sqlDataAdmin);
 
-     
+    //Binding Value
+    $resultDataAdmin->bindValue(":studentCoordinator", "Student Coordinator");
+    $resultDataAdmin->bindValue(":department", $department);
+
+    $rowCountAdmin = $resultDataAdmin->rowCount();
 
     //Extracting Event Name from Database in Array to Show Event Details.
 
-     $sqlData1 ="select eventName from events_details_information
-     WHERE eventDepartment ='$department'";
+     $sqlData1 ="SELECT eventName from events_details_information
+     WHERE eventDepartment = :department";
 
-    $resultData1 = $conn->query($sqlData1);
+     //Preparing Query
+     $resultData1 = $conn->prepare($sqlData1);
+
+     //Binding Values
+     $resultData1->bindValue(":department", $department);
+
+     //Executing Query
+     $resultData1->execute();
 
     $events = array();
 
-    while( $rowData1 = $resultData1->fetch_array()){
+    while( $rowData1 = $resultData1->fetch(PDO::FETCH_ASSOC)){
     array_push($events, $rowData1['eventName']) ;
     }
 
@@ -60,21 +79,40 @@
 
         global $conn;
 
-        $sql = "select * from event_information where event = '$event'";
+        $sql = "SELECT * FROM event_information WHERE event = '$event'";
 
-        $result = $conn->query($sql);
-        $row = $result->num_rows;
+        //Preparing Query
+        $result = $conn->prepare($sql);
+
+        //Binding Values
+        $result->bindValue(":event", $event);
+
+        //Executing Value
+        $result->execute();
+
+        $row = $result->rowCount();
+
         return $row;
     }
 
 
      // Display   total revenue departmet wise
     function countRevenue($event) {
+
     global $conn;
 
-    $sql = "select SUM(txnAmount) as totalAmount from event_information where event = '$event'";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
+    $sql = "SELECT SUM(txnAmount) AS totalAmount FROM event_information WHERE event = :event";
+
+    //Preparing Query
+    $result = $conn->prepare($sql);
+
+    //Binding Values
+    $result->bindValue(":event", $event);
+
+    //Executing Value
+    $result->execute();
+
+    $row = $result->fetch(PDO::FETCH_ASSOC);
     $totalAmount = $row['totalAmount'];
     return $totalAmount+ 0;
     }
@@ -287,7 +325,7 @@
 
     <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn = null; 
      ?>
 
 </body>

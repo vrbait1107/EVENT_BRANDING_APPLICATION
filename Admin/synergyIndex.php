@@ -45,7 +45,7 @@ if(!isset($_SESSION['Admin'])) {
     $prize = trim($_POST["prize"]);
 
         $sql = "INSERT INTO synergy_user_information (certificateId, firstName, lastName, departmentName,
-        eventName, prize) VALUES ('$certificateId','$firstName','$lastName','$department', '$event','$prize')";
+        eventName, prize) VALUES ( :certificateId, :firstName, :lastName, :department, :event, :prize)";
 
         //Preparing Query
         $result= $conn->prepare($sql);

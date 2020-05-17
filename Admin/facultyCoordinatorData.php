@@ -1,6 +1,6 @@
 <?php 
 // Creating Database Connection
-require_once "../configNew.php";
+require_once "../configPDO.php";
 // Session Start
 session_start();
 
@@ -73,14 +73,21 @@ session_start();
                 
         //Retriving Data From the Database to Show Data in Table
 
-        $sql ="select * FROM user_information INNER JOIN event_information 
+        $sql ="SELECT * FROM user_information INNER JOIN event_information 
         ON user_information.email= event_information.email 
         WHERE event_information.event IN (SELECT events_details_information.eventName 
-        FROM events_details_information WHERE eventDepartment ='$department')";
+        FROM events_details_information WHERE eventDepartment = :department)";
 
-        $result = $conn->query($sql);
+        //Preparing Query
+        $result = $conn->prepare($sql);
 
-        if($result->num_rows >0) {
+        //Binding Value
+        $result->bindValue(":department", $department);
+
+        //Executing Query
+        $result->execute();
+
+        if($result->rowCount() >0) {
 
         ?>
 
@@ -105,7 +112,7 @@ session_start();
                   <tbody>
 
                     <?php 
-            while($row = $result->fetch_assoc()){
+            while($row = $result->fetch(PDO::FETCH_ASSOC)){
               ?>
 
                     <tr>
@@ -154,7 +161,7 @@ session_start();
 
      <?php
     // closing Database Connnection
-     $conn->close(); 
+     $conn = null; 
      ?>
 
 </body>
