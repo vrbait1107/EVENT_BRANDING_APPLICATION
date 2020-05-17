@@ -84,7 +84,7 @@ if(!isset($_SESSION['user'])){
       $result->bindValue(":overall", $overall);
       $result->bindValue(":location", $location);
       $result->bindValue(":events", $events);
-      $result->bindValue(":cordinators", $coordinators);
+      $result->bindValue(":coordinators", $coordinators);
       $result->bindValue(":eventsPrice", $eventsPrice);
       $result->bindValue(":suggestion", $suggestion);
 

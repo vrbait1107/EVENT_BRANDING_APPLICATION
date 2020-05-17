@@ -54,7 +54,7 @@ $userType = trim($_POST['userType']);
     //Executing Query
     $result->execute();
 
-    if($result->rowCount() ===1) {
+    if($result->rowCount() === 1) {
 
     // Mail PHP code 
     date_default_timezone_set('Etc/UTC');
@@ -102,18 +102,19 @@ $userType = trim($_POST['userType']);
             else {
             
             //Update Query
-            $sql = "UPDATE user_information SET token ='$token' WHERE email = '$email'";
+            $sql = "UPDATE user_information SET token = :token WHERE email = :email";
 
             //Preparing Query
             $result= $conn->prepare($sql);
 
             //Binding Value
+             $result->bindValue(":token", $token);
             $result->bindValue(":email", $email);
 
             // Executing Query
             $result->execute();
 
-                if($result1) {
+                if($result) {
                 echo "<script>Swal.fire({
                         icon: 'success',
                         title: 'Successful',
@@ -208,7 +209,7 @@ $userType = trim($_POST['userType']);
             else {
             
             //Update Query
-            $sql = "UPDATE user_information SET token ='$token' WHERE email = '$email'";
+            $sql = "UPDATE user_information SET token = :token WHERE email = :email";
 
             //Preparing Query
             $result= $conn->prepare($sql);

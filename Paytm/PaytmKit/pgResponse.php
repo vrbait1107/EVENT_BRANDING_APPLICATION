@@ -102,7 +102,7 @@ else {
 			 gatewayName, resMsg, bankName, txnId, txnAmount, orderId, status, 
 			 bankTxnId, txnDate) VALUES (:userName, :certificateId, :eventName, :paymentType, 
 			 :gatewayName, :resMsg, :bankName, :txnId, :txnAmount, :orderId, :status,
-			 bankTxnId, txnDate)";
+			 :bankTxnId, :txnDate)";
 
 
 				//Preparing Query

@@ -163,7 +163,7 @@ if(isset($_POST['changeEmail'])){
     }
 
     else {
-      $sql = "SELECT * FROM user_information WHERE email = '$email'";
+      $sql = "SELECT * FROM user_information WHERE email = :email";
 
       //Preparing Query
       $result= $conn->prepare($sql);
@@ -224,13 +224,13 @@ if(isset($_POST['disable'])){
     $email = $_SESSION['user'];
 
     //sql Query
-    $sql = "UPDATE user_information SET status = 'inactive' WHERE email = :email";
+    $sql = "UPDATE user_information SET status = :inactive WHERE email = :email";
 
     //Preparing Query
     $result= $conn->prepare($sql);
 
     //Binding Value
-    $result->bindValue(":inacive", "inactive");
+    $result->bindValue(":inactive", "inactive");
     $result->bindValue(":email", $email);
 
     //Executing Query

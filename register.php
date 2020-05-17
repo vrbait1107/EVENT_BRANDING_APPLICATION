@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
         $hashConPass = password_hash($confirm_password, PASSWORD_BCRYPT);
 
         // Query
-        $sql1 ="select* from user_information where user_information.email =:userName";
+        $sql1 ="SELECT * FROM user_information WHERE user_information.email = :userName";
 
         //Preparing Query
         $result1 = $conn->prepare($sql1);
@@ -95,13 +95,13 @@ if (isset($_POST['submit'])) {
               else {
               
               //Query
-              $sql = "insert into user_information(email, firstName, lastName, 
+              $sql = "INSERT INTO user_information(email, firstName, lastName, 
               mobileNumber, collegeName, departmentName, academicYear, mainPassword, confirmPass, token) 
               VALUES (:userName, :firstName, :lastName, :mobileNumber, :collegeName, :department, :year, 
               :hashPass, :hashConPass, :token)";
 
               // Preparing Query
-              $result = $conn->prepare();
+              $result = $conn->prepare($sql);
 
               //Binding Values
               $result->bindValue(":userName", $userName);

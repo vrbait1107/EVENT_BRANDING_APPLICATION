@@ -28,7 +28,7 @@
        $email = $_POST['email'];
 
        // sql Query
-       $sql = "SELECT * FROM user_information WHERE email = '$email'";
+       $sql = "SELECT * FROM user_information WHERE email = :email";
 
        //Preparing query
        $result = $conn->prepare($sql);
@@ -57,7 +57,7 @@
 
        //Binding Values
        $result->bindValue(":token", $token);
-       $result->(":email", $email);
+       $result->bindValue(":email", $email);
        
        //Executing Query
        $result->execute();
@@ -115,7 +115,7 @@
 
         $token = $_GET['token'];
 
-        $sql = "UPDATE user_information SET status = 'active' WHERE token = '$token'";
+        $sql = "UPDATE user_information SET status = :active WHERE token = :token";
 
         //Preparing Query
         $result= $conn->prepare($sql);
