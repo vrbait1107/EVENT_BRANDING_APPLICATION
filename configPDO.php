@@ -8,7 +8,7 @@ Paradigm is Object Oriented Programming
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname="user_registration";
+$dbname="shodh_information";
 
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
