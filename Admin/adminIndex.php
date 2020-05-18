@@ -16,11 +16,11 @@ session_start();
 
 
     // Display Participation count & total revenue
-    $sqlData ="SELECT * FROM event_information";
+    $sqlData ="select * from event_information";
 
-    $resultData = $conn->prepare($sqlData);
+    $resultData = $conn->query($sqlData);
 
-    $resultData->execute();
+   // $resultData->execute();
      
     $rowCount = $resultData->rowCount();
    

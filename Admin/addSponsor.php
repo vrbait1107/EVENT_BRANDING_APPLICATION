@@ -1,6 +1,7 @@
 <?php 
 // Craeting Database Connection
 require_once '../configPDO.php';
+
 // Starting Session
 session_start();
 
@@ -24,7 +25,7 @@ elseif($_SESSION['adminType'] === "Student Coordinator"){
 elseif($_SESSION['adminType'] === "Faculty Coordinator"){
     $adminFileName = "facultyCoordinatorIndex.php";
     $adminFileData = "facultyCoordinatorData.php";
-    $adminManage = "facultyCoordinatorManage";
+    $adminManage = "facultyCoordinatorManage.php";
 
 }
 elseif($_SESSION['adminType'] === "Synergy Administrator"){
@@ -60,10 +61,9 @@ else{
 <body class="sb-nav-fixed">
 
 
-<?php
+    <?php
 
 if(isset($_POST['addSponsor'])){
-
 
  $sponsorName= trim($_POST['sponsorName']);
  $sponsoredEvent = trim($_POST['sponsoredEvent']);
@@ -99,36 +99,36 @@ if(isset($_POST['addSponsor'])){
 
             if($result){
                 echo "<script>Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: 'Added Sponsor Successfully'
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Added Sponsor Successfully'
                     })</script>";
             }
             else{
                     echo "<script>Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Failed to Add Sponsor'
-                    })</script>";
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Failed to Add Sponsor'
+                        })</script>";
             }
 
     }
     else{
       echo "<script>Swal.fire({
-      icon: 'error',
-      title: 'Image size exeeded',
-      text: 'Please Upload File less than 2MB'
-      })</script>";
+            icon: 'error',
+            title: 'Image size exeeded',
+            text: 'Please Upload File less than 2MB'
+        })</script>";
     }
 
 
  }
  else{
       echo "<script>Swal.fire({
-      icon: 'error',
-      title: 'Image Format Not Supported',
-      text: 'Supported Types are jpg,jpeg,png'
-      })</script>";
+            icon: 'error',
+            title: 'Image Format Not Supported',
+            text: 'Supported Types are jpg,jpeg,png'
+        })</script>";
  }
  
  
@@ -137,20 +137,18 @@ if(isset($_POST['addSponsor'])){
 ?>
 
     <!-- Admin Navbar -->
- <?php include_once "includes/adminNavbar.php"; ?>
+    <?php include_once "includes/adminNavbar.php"; ?>
 
 
     <div id="layoutSidenav_content">
-        <main class="container mt-5">
+
+        <main class="container">
             <div class="row">
 
                 <h1 class="font-time mt-3 mb-3">Add Sponsors</h1>
 
                 <section class="col-md-12">
 
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Add Sponsors</li>
-                    </ol>
 
                     <form action="" method="post" class="my-3" enctype="multipart/form-data">
 
@@ -179,7 +177,9 @@ if(isset($_POST['addSponsor'])){
                     </form>
 
                 </section>
+
             </div>
+
         </main>
         <!--Admin Footer-->
         <?php include_once "includes/adminFooter.php";?>

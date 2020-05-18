@@ -55,7 +55,7 @@ if(!isset($_SESSION['adminEmail'])) {
 
        if($targetAudience === "collegeLevel"){
 
-         $sql = "SELECT DISTINCT  email FROM event_information";
+         $sql = "SELECT DISTINCT email FROM event_information";
 
          //Preparing Query
          $result = $conn->prepare($sql);
@@ -77,7 +77,7 @@ if(!isset($_SESSION['adminEmail'])) {
 
           //Query
           $sql = "SELECT DISTINCT email FROM event_information WHERE event_information.event IN
-          (SELECT eventName FROM event_details_information WHERE departmentName = :targetDepartment";
+          (SELECT eventName FROM events_details_information WHERE departmentName = :targetDepartment";
 
           //Preparing Query
           $result = $conn->prepare($sql);
@@ -202,7 +202,7 @@ if(!isset($_SESSION['adminEmail'])) {
   elseif($_SESSION['adminType'] === "Faculty Coordinator"){
   $adminFileName = "facultyCoordinatorIndex.php";
   $adminFileData = "facultyCoordinatorData.php";
-  $adminManage = "facultyCoordinatorManage";
+  $adminManage = "facultyCoordinatorManage.php";
   
   }
   elseif($_SESSION['adminType'] === "Synergy Administrator"){

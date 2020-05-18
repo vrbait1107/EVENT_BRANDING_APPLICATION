@@ -24,7 +24,7 @@ elseif($_SESSION['adminType'] === "Student Coordinator"){
 elseif($_SESSION['adminType'] === "Faculty Coordinator"){
     $adminFileName = "facultyCoordinatorIndex.php";
     $adminFileData = "facultyCoordinatorData.php";
-    $adminManage = "facultyCoordinatorManage";
+    $adminManage = "facultyCoordinatorManage.php";
 
 }
 elseif($_SESSION['adminType'] === "Synergy Administrator"){
@@ -67,9 +67,9 @@ else{
 if(isset($_POST['update'])){
 
            
- $sponsorName= security($_POST['sponsorName']);
- $sponsoredEvent = security($_POST['sponsoredEvent']);
- $sponsoredDepartment = security($_POST['sponsoredDepartment']);
+ $sponsorName= trim($_POST['sponsorName']);
+ $sponsoredEvent = trim($_POST['sponsoredEvent']);
+ $sponsoredDepartment = trim($_POST['sponsoredDepartment']);
  $sponsorLogo = $_FILES['sponsorLogo'];
 
  $sponsorLogoName = $_FILES['sponsorLogo']['name'];
@@ -85,12 +85,12 @@ if(isset($_POST['update'])){
 
         $hidden = $_REQUEST['hiddenId'];
        
-       $sqlUpdate = "UPDATE sponsor_information SET sponsorName = '$sponsorName', sponsorLogo = '$sponsorLogoName' , sponsoredEvent = '$sponsoredEvent', 
-       sponsoredDepartment = '$sponsoredDepartment' where id = {:hidden}"; 
+       $sqlUpdate = "UPDATE sponsor_information SET sponsorName = :sponsorName, sponsorLogo = :sponsorLogoName , sponsoredEvent = :sponsoredEvent, 
+       sponsoredDepartment = :sponsoredDepartment where id = :hidden"; 
 
 
          //Preparing Query
-       $resultUpdate = $conn->prepare($sql);
+       $resultUpdate = $conn->prepare($sqlUpdate);
 
        //Binding Value
        $resultUpdate->bindValue(":sponsorName", $sponsorName);
@@ -150,7 +150,7 @@ $result->execute();
 if(isset($_REQUEST['delete'])){
 
    $hiddenId = $_REQUEST['hiddenId'];
-   $sqlDelete = "DELETE FROM sponsor_information WHERE id = '$hiddenId'";
+   $sqlDelete = "DELETE FROM sponsor_information WHERE id = :hiddenId";
 
    //Preparing Query
    $resultDelete = $conn->prepare($sqlDelete);
@@ -184,7 +184,7 @@ if(isset($_REQUEST['edit'])) {
 
 $hiddenId = $_REQUEST['hiddenId'];
 
-$sqlEdit = "SELECT * FROM sponsor_information WHERE id = '$hiddenId'";
+$sqlEdit = "SELECT * FROM sponsor_information WHERE id = :hiddenId";
 
 //Preparing Query
 $resultEdit = $conn->prepare($sqlEdit);

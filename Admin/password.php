@@ -23,7 +23,7 @@ elseif($_SESSION['adminType'] === "Student Coordinator"){
 elseif($_SESSION['adminType'] === "Faculty Coordinator"){
     $adminFileName = "facultyCoordinatorIndex.php";
     $adminFileData = "facultyCoordinatorData.php";
-    $adminManage = "facultyCoordinatorManage";
+    $adminManage = "facultyCoordinatorManage.php";
 
 }
 elseif($_SESSION['adminType'] === "Synergy Administrator"){
