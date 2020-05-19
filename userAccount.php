@@ -182,16 +182,13 @@ if(isset($_POST['changeEmail'])){
       if(password_verify($Password,$dbPassword)){
 
          //sql Query
-          $sql = "UPDATE user_information INNER JOIN event_information
-           ON user_information.email = event_information email SET email = :newEmail
-           WHERE user_information.email = :email AND event_information.email = :email";
+          $sql = "UPDATE user_information SET email = :newEmail WHERE email = :email";
 
           //Preparing Query
-          $result= $conn->prepare($sql);
+          $result= $conn->prepare($sql); 
 
           //Binding Values
           $result->bindValue(":newEmail", $newEmail);
-          $result->bindValue(":email", $email);
           $result->bindValue(":email", $email);
 
           //Executing Query
