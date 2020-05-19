@@ -32,6 +32,7 @@ $collegeName =$row['collegeName'];
 $departmentName =$row['departmentName'];
 $academicYear =$row['academicYear'];
 $mobileNumber =$row['mobileNumber'];
+$dbprofileImage =$row['profileImage'];
 
 ?>
 
@@ -44,9 +45,9 @@ $mobileNumber =$row['mobileNumber'];
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>User Profile</title>
 
-     <!-- header Scripts and Links -->
+    <!-- header Scripts and Links -->
     <?php include_once "includes/headerScripts.php"; ?>
-    
+
 </head>
 
 <body>
@@ -64,10 +65,24 @@ if(isset($_POST['update'])) {
     $departmentName = trim($_POST['departmentName']);
     $academicYear = trim($_POST['academicYear']);
 
+    $profileImage = $_FILES['profileImage'];
+
+    $profileImageName = $_FILES['profileImage']['name'];
+    $profileImageSize = $_FILES['profileImage']['size'];
+    $profileImageTmpDir = $_FILES['profileImage']['tmp_name'];
+    $profileImageType = $_FILES['profileImage']['type'];
+
+    if($profileImageType ==  'image/jpeg' || $profileImageType ==  'image/jpg' || $profileImageType ==  'image/png') {
+   
+    if($profileImageSize <= 2097152){
+     
+        move_uploaded_file($profileImageTmpDir, "profileImage/".$profileImageName);
+       
+
     //Query
     $sql = "UPDATE user_information SET firstName = :firstName, lastName = :lastName, 
     mobileNumber = :mobileNumber, collegeName = :collegeName, departmentName = :departmentName,
-    academicYear = :academicYear WHERE email = :email";
+    academicYear = :academicYear, profileImage = :profileImageName WHERE email = :email";
 
     // Preparing query
     $result = $conn->prepare($sql);
@@ -79,6 +94,7 @@ if(isset($_POST['update'])) {
     $result->bindValue(":collegeName", $collegeName);
     $result->bindValue(":departmentName", $departmentName);
     $result->bindValue(":academicYear", $academicYear);
+    $result->bindValue(":profileImageName", $profileImageName);
     $result->bindValue(":email", $email);
     
     //Executing query
@@ -86,19 +102,40 @@ if(isset($_POST['update'])) {
 
     if($result) {
         echo "<script>Swal.fire({
-        icon: 'success',
-        title: 'Successful',
-        text: 'Your Data is Successfully Updated'
-           })</script>";
+                icon: 'success',
+                title: 'Successful',
+                text: 'Your Data is Successfully Updated'
+            })</script>";
 
     }
     else{
          echo "<script>Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'We are failed to update data'
-           })</script>";
+                icon: 'error',
+                title: 'Error',
+                text: 'We are failed to update data'
+            })</script>";
     }
+
+
+    }
+
+    else{
+    echo "<script>Swal.fire({
+            icon: 'error',
+            title: 'Image size exeeded',
+            text: 'Please Upload File less than 2MB'
+            })</script>";
+        }
+    
+    }
+    else{
+    echo "<script>Swal.fire({
+            icon: 'error',
+            title: 'Image Format Not Supported',
+            text: 'Supported Types are jpg,jpeg,png'
+            })</script>";
+    }
+
 }
 ?>
 
@@ -121,7 +158,17 @@ if(isset($_POST['update'])) {
                     <hr>
 
                     <form action="" method="post" name="userProfileForm"
-                        onsubmit="return formValidationUserProfileForm()">
+                        onsubmit="return formValidationUserProfileForm()"  enctype="multipart/form-data">
+
+                        <div class="text-center">
+                            <img src="profileImage/<?php echo $dbprofileImage; ?>" class="img-fluid rounded-circle mb-3"
+                                style="height:150px">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Change Profile Image</label>
+                            <input type="file" class="form-control-file" name="profileImage">
+                        </div>
 
                         <div class="form-group">
                             <label>First Name</label>
@@ -170,15 +217,15 @@ if(isset($_POST['update'])) {
     <!-- Footer PHP -->
     <?php include_once "includes/footer.php" ?>
     <!-- Footer Script -->
-     <?php include_once "includes/footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php"; ?>
     <!-- Form Validation -->
     <script src="js/form-validation.js"></script>
 
-     <?php
+    <?php
     // closing Database Connnection
      $conn= null; 
      ?>
-     
+
 </body>
 
 </html>
