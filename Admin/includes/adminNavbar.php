@@ -196,6 +196,27 @@
                         </nav>
                     </div>
 
+
+                    <!--Gallery Images-->
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#galleryImage"
+                        aria-expanded="false" aria-controls="galleryImage">
+                        Gallery Images
+                        <div class="sb-sidenav-collapse-arrow">
+                            <i class="fas fa-angle-down"></i>
+                        </div>
+                    </a>
+
+                    <div class="collapse" id="galleryImage">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="addGalleryImage.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-images"></i>
+                                </div>
+                                Add/Manage Gallery Images
+                            </a>
+                        </nav>
+                    </div>
+
                 </div>
 
 

@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php 
+// Creating Connection 
+require_once 'configPDO.php';
+// starting session
+session_start();
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,12 +36,20 @@
 
             <?php
 
-    for($i=1; $i< 21; $i++ ){
+            $sql = "SELECT * FROM gallery_information";
+
+            //Preparing Query
+            $result = $conn->prepare($sql);
+
+            //Executing Value
+            $result->execute();
+
+    while($row = $result->fetch(PDO::FETCH_ASSOC)){
 
         ?>
             <section class="col-md-4 mb-5">
-                <a href="gallery/slide<?php echo $i; ?>.jpg">
-                    <img src="gallery/slide<?php echo $i; ?>.jpg" class="img-fluid w-100" alt="images"
+                <a href="gallery/<?php echo $row['galleryImage']; ?>">
+                    <img src="gallery/<?php echo $row['galleryImage']; ?>" class="img-fluid w-100" alt="images"
                         style="height:280px">
                 </a>
             </section>
@@ -64,6 +79,11 @@
             });
         });
     </script>
+
+    <?php 
+    // Closing Database Connection 
+    $conn = null;
+    ?>
 
 </body>
 

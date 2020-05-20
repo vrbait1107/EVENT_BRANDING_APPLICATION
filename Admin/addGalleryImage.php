@@ -49,7 +49,7 @@ else{
     <meta name="description" content="" />
     <meta name="author" content="Vishal Bait" />
 
-    <title>Add News</title>
+    <title>Add Gallery Images </title>
 
     <!-- Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php"; ?>
@@ -59,43 +59,63 @@ else{
 <body class="sb-nav-fixed">
 
     <?php
-if(isset($_POST['addNews'])) {
 
-        // Removing White Spaces
-        $newsTitle = trim($_POST['newsTitle']);
-        $newsDescription = trim($_POST['newsDescription']);
-        
-               // Query
-                $sql = "INSERT INTO news_information (newsTitle, newsDescription, postedDate) VALUES (:newsTitle, :newsDescription, :now)";
-                
-               //Preparing Query
-               $result= $conn->prepare($sql);
+    if(isset($_POST["addGalleryImage"])) {
+     $galleryImage = $_FILES["galleryImage"];
 
-               //Binding Values
-               $result->bindValue(":newsTitle", $newsTitle);
-               $result->bindValue("::newsDescription", $newsDescription);
-               $result->bindValue(":now", "now()");
-                
-               //Executing Query
-                $result->execute();
+     $galleryImageName = $_FILES["galleryImage"]['name'];
+     $galleryImageSize = $_FILES["galleryImage"]['size'];
+     $galleryImageType = $_FILES["galleryImage"]['type'];
+     $galleryImageTmpDir = $_FILES["galleryImage"]["tmp_name"];
 
-                        if($result){
-                        echo "<script>Swal.fire({
-                                icon: 'success',
-                                title: 'Successful',
-                                text: 'News Added Successfully'
-                            })</script>";
-                        }
-                        else {
-                        echo "<script>Swal.fire({
-                                icon: 'error',
-                                title: 'Error',
-                                text: 'We are failed to Add News'
-                            })</script>";
-                        }
+     if($galleryImageType ==  'image/jpeg' || $galleryImageType ==  'image/jpg' || $galleryImageType ==  'image/png') {
+   
+    if($galleryImageSize <= 2097152){
+
+    
+        move_uploaded_file($galleryImageTmpDir, "../gallery/".$galleryImageName);
+
+        $sql = "INSERT INTO gallery_information (galleryImage) VALUES (:galleryImageName)";
+
+        //Preparing Query
+        $result = $conn->prepare($sql);
+
+        //Binding Values 
+        $result->bindValue(":galleryImageName", $galleryImageName);
+
+        // Executing Result
+        $result->execute();
 
 
-} 
+        if($result){
+            echo "<script>Swal.fire({
+            icon: 'success',
+            title: 'Successful',
+            text: 'Image Successfully added to gallery'
+        })</script>";
+        }
+
+     }
+
+     else{
+      echo "<script>Swal.fire({
+            icon: 'error',
+            title: 'Image size exeeded',
+            text: 'Please Upload File less than 2MB'
+        })</script>";
+    }
+
+
+ }
+ else{
+      echo "<script>Swal.fire({
+            icon: 'error',
+            title: 'Image Format Not Supported',
+            text: 'Supported Types are jpg,jpeg,png'
+        })</script>";
+ }
+
+    }
 
     ?>
 
@@ -107,29 +127,26 @@ if(isset($_POST['addNews'])) {
     <div id="layoutSidenav_content">
         <main class="container-fluid">
 
-            <h1 class="font-time mt-3 mb-1">Add News/Notification</h1> <br />
+            <h1 class="font-time mt-3 mb-1">Add Gallery Images</h1> <br />
 
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Add News/Notification</li>
+                <li class="breadcrumb-item active">Add Gallery Images</li>
             </ol>
 
             <div class="row">
                 <section class="col-md-6 offset-md-3">
 
 
-                    <form action="" method="post">
+                    <form action="" method="post" enctype="multipart/form-data">
+
                         <div class="form-group">
-                            <label>Title</label>
-                            <input type="text" name="newsTitle" id="" class="form-control">
+                            <label for="galleryImage">Add Gallery Images</label>
+                            <input multiple="multiple" type="file" class="form-control-file"  name="galleryImage"
+                                id="galleryImage">
                         </div>
 
                         <div class="form-group">
-                            <label>Description</label>
-                            <textarea name="newsDescription" class="form-control" cols="30" rows="10"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="submit" value="Add News" name="addNews"
+                            <input type="submit" value="Add Gallery Images" name="addGalleryImage"
                                 class="btn btn-primary btn-block rounded-pill">
                         </div>
 
