@@ -229,8 +229,30 @@
                         </nav>
                     </div>
 
-                </div>
 
+                      <!-- Newsletter Emails-->
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#newsletter"
+                        aria-expanded="false" aria-controls="newsletter">
+                        Newsletter
+                        <div class="sb-sidenav-collapse-arrow">
+                            <i class="fas fa-angle-down"></i>
+                        </div>
+                    </a>
+
+                    <div class="collapse" id="newsletter">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="sendNewsletter.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                Send Newsletter
+                            </a>
+                        </nav>
+                    </div>
+
+
+
+                </div>
 
                 <div class="sb-sidenav-footer">
                     <div class="small">Logged in as:</div>
