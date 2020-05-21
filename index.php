@@ -10,9 +10,8 @@ if(!isset($_SESSION['user'])) {
  header("location:login.php");
 }
 
+
 $visitorIpAddress = $_SERVER['REMOTE_ADDR'];
-
-
 //sql Query
 $sql1 = "SELECT * FROM visitor_counter WHERE ipAddress = :visitorIpAddress";
 
@@ -45,6 +44,7 @@ $result2->execute();
 }
 
 
+try{
 // Retrive Data from Database
 // Query
 $sql = "SELECT * FROM visitor_counter";
@@ -56,6 +56,11 @@ $result->execute();
 
 if($result){
     $totaVisitors =  $result->rowCount();
+}
+
+}
+catch(PDOException $e){
+    echo "Error".$e->getMessage();
 }
 
 ?>
