@@ -163,7 +163,7 @@
                                 <div class="sb-nav-link-icon">
                                     <img src="https://img.icons8.com/dotty/20/000000/crowdfunding.png" />
                                 </div>
-                                Add/Manage Sponsors
+                                Add Sponsors
                             </a>
 
                             <a class="nav-link" href="manageSponsor.php">
@@ -212,7 +212,19 @@
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-images"></i>
                                 </div>
-                                Add/Manage Gallery Images
+                                Add Gallery Images
+                            </a>
+                        </nav>
+                    </div>
+
+
+                     <div class="collapse" id="galleryImage">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="manageGalleryImage.php">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-images"></i>
+                                </div>
+                                Manage Gallery Images
                             </a>
                         </nav>
                     </div>
