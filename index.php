@@ -47,7 +47,7 @@ $result2->execute();
 
 // Retrive Data from Database
 // Query
-$sql = "select * from visitor_counter";
+$sql = "SELECT * FROM visitor_counter";
 
 // Preparing Query
 $result = $conn->prepare($sql);
@@ -78,8 +78,7 @@ if($result){
     <link rel="stylesheet" href="css/loader.css">
 
     <style>
-        .welcome-section,
-        .visitor-container {
+        .welcome-section {
             background: #24C6DC;
             background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);
             background: linear-gradient(to right, #514A9D, #24C6DC);
@@ -95,6 +94,44 @@ if($result){
 </head>
 
 <body>
+
+    <?php 
+
+    if(isset($_POST['subscribe'])){
+      $email =  $_POST['email'];
+
+      //Query
+      $sql = "INSERT INTO newsletter_information (email, subscribe) VALUES (:email, :Yes)";
+
+      //Prepare Query
+      $result = $conn->prepare($sql);
+
+      //Binding Value 
+      $result->bindValue(":email", $email);
+      $result->bindValue(":Yes", "Yes");
+
+      //Executing Value
+      $result->execute();
+
+      if($result){
+           echo "<script>Swal.fire({
+            icon: 'success',
+            title: 'success',
+            text: 'You are successfully Subscribed to Our Newsletter'
+            })</script>";
+      }
+
+      else{
+        echo "<script>Swal.fire({
+            icon: 'error',
+            title: 'error',
+            text: 'You are failed Subscribe to Our Newsletter'
+            })</script>";
+      }
+
+    }
+
+    ?>
 
     <!--Loader-->
     <!-- MUTLI SPINNER -->
@@ -195,8 +232,31 @@ if($result){
         </div>
     </main>
 
+    <!--Newsletter Section-->
+    <div class="container">
+        <div class="row">
+            <section class="col-md-6 offset-md-3 py-5">
+                <h2 class="text-center text-uppercase font-time  mb-4">Subscribe to our newsletter</h2>
+
+                <form action="" method="post">
+                    <div class="input-group">
+                        <input type="email" name="email" class="form-control" placeholder="Enter Email">
+                        <div class="input-group-append">
+                            <input type="submit" class="btn btn-danger" value="Subscribe Now" name="subscribe">
+                        </div>
+                    </div>
+                </form>
+
+            </section>
+        </div>
+    </div>
+
+
+    <hr>
+
+    <!-- Visitor Counter-->
     <div class="visitor-container p-3">
-        <h3 class="text-uppercase text-center text-white font-time">Total Visitor
+        <h3 class="text-uppercase text-center text-dark font-time">Total Visitor
             Count: <?php echo $totaVisitors ?></h3>
     </div>
 
