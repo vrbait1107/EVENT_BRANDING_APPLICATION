@@ -139,17 +139,24 @@ if(isset($_POST['update'])){
     unset($_REQUEST['edit']); // unsetting request of edit
 }
 
+
+
+
 // query for retriving data into tables
 $sql = "SELECT * FROM sponsor_information";
 
 $result = $conn->prepare($sql);
 $result->execute();
 
-// delete sponsor from table 
 
+
+
+// DELETE SPONSOR DATA
 if(isset($_REQUEST['delete'])){
 
    $hiddenId = $_REQUEST['hiddenId'];
+   $hiddenImage = $_REQUEST['hiddenImage'];
+
    $sqlDelete = "DELETE FROM sponsor_information WHERE id = :hiddenId";
 
    //Preparing Query
@@ -167,6 +174,10 @@ if(isset($_REQUEST['delete'])){
             title: 'Success',
             text: 'Sponsor data deleted successfully'
         })</script>";
+
+          $file= '../sponsorLogo/'.$hiddenImage;
+            unlink($file);
+
    }
    else{
        echo "<script>Swal.fire({
@@ -178,8 +189,10 @@ if(isset($_REQUEST['delete'])){
 }
 
 
-// edit and retrive data into table 
 
+
+
+// EDIT & RETRIVE DATA IN TABLES
 if(isset($_REQUEST['edit'])) {
 
 $hiddenId = $_REQUEST['hiddenId'];
@@ -202,6 +215,8 @@ $rowEdit = $resultEdit->fetch(PDO::FETCH_ASSOC);
  $sponsoredEvent = $rowEdit["sponsoredEvent"];
 }
 ?>
+
+
 
     <!-- Admin Navbar -->
     <?php include_once "includes/adminNavbar.php"; ?>
@@ -300,6 +315,7 @@ $rowEdit = $resultEdit->fetch(PDO::FETCH_ASSOC);
                                 <td class='text-center'>
                                     <form action="" >
                                         <input type="hidden" name="hiddenId" value='<?php echo $row["id"] ?>'>
+                                        <input type="hidden" name="hiddenImage" value='<?php echo $row["sponsorLogo"] ?>'>
                                         <input type="submit" name="delete" class="btn sm-btn btn-danger" value="Delete">
                                     </form>
                                 </td>
