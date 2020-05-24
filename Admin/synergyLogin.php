@@ -19,7 +19,7 @@ if(isset($_SESSION['Admin'])) {
 
     <!--Event-Reg.css-->
     <link rel="stylesheet" href="../css/event-reg.css">
-     <!-- header Scripts and Links -->
+    <!-- header Scripts and Links -->
     <?php include_once "../includes/headerScripts.php"; ?>
     <!-- Google Recaptcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -68,10 +68,10 @@ if(isset($_SESSION['Admin'])) {
 
         else {
         echo "<script>Swal.fire({
-            icon: 'error',
-            title: 'Unable to Login',
-            text: 'Please Check Your Credentials!'
-        })</script>";
+                icon: 'error',
+                title: 'Unable to Login',
+                text: 'Please Check Your Credentials!'
+            })</script>";
         }
 
         }
@@ -79,7 +79,7 @@ if(isset($_SESSION['Admin'])) {
 
     <!-- PHP CODE END -->
 
-    
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand font-weight-bold" href="#">GIT SHODH/SYNERGY 2K20</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -126,10 +126,16 @@ if(isset($_SESSION['Admin'])) {
                                 autocomplete="off" required>
                         </div>
 
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control" name="password" id="password"
-                                placeholder="Password" required autocomplete="off">
+                        <label for="Password">Password</label>
+                        <div class="input-group mb-3">
+                            <input type="password" name="password" id="password" class="form-control"
+                                placeholder="Enter Password" aria-label="Enter Password"
+                                aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2"><i class="fa fa-eye"
+                                        aria-hidden="true"></i>
+                                </span>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -156,11 +162,34 @@ if(isset($_SESSION['Admin'])) {
     <!-- Footer Script -->
     <?php include_once "../includes/footerScripts.php"; ?>
 
-     <?php
+
+    <!-- Hiding and Showing Password -->
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#basic-addon2').click(function () {
+                let passwordField = $("#password");
+                let passwordFieldType = passwordField.attr('type');
+
+                if (passwordFieldType == "password") {
+                    passwordField.attr("type", "text");
+                    $(this).html('<i class="fa fa-eye-slash" aria-hidden="true"></i>');
+
+                }
+                else {
+                    passwordField.attr("type", "password");
+                    $(this).html('<i class="fa fa-eye" aria-hidden="true"></i>');
+                }
+            })
+        })
+    </script>
+
+
+    <?php
     // closing Database Connnection
      $conn= null; 
      ?>
-     
+
 </body>
 
 </html>

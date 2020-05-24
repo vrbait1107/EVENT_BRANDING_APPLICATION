@@ -21,7 +21,7 @@ if(isset($_SESSION['user'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-   <!-- header Scripts and Links -->
+  <!-- header Scripts and Links -->
   <?php include_once "includes/headerScripts.php"; ?>
   <!--Local css-->
   <link rel="stylesheet" href="css/event-reg.css">
@@ -158,18 +158,28 @@ if(isset($_SESSION['user'])) {
                 placeholder="Enter Username">
             </div>
 
-            <div class="form-group">
-              <label for="Password">Password</label>
-              <input type="password" name="password" class="form-control" id="Password" placeholder="Enter Password">
+
+            <label for="Password">Password</label>
+            <div class="input-group mb-3">
+              <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password"
+                aria-label="Enter Password" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2"><i class="fa fa-eye" aria-hidden="true"></i>
+                </span>
+              </div>
             </div>
+
 
             <div class="form-group">
               <a href="forgotPassword.php" class="text-danger font-weight-bold" name="forget_password">Forgot your
                 password?</a>
             </div>
 
-             <div class="form-group">
-              <a href="activateDisableAccount.php" class="text-danger font-weight-bold" name="activateDisableEmail">Activate your
+
+            <div class="form-group">
+              <a href="activateDisableAccount.php" class="text-danger font-weight-bold"
+                name="activateDisableEmail">Activate
+                your
                 Disable Account</a>
             </div>
 
@@ -188,14 +198,36 @@ if(isset($_SESSION['user'])) {
   </main>
 
 
-    <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php"; ?>
+  <!-- Footer Script -->
+  <?php include_once "includes/footerScripts.php"; ?>
 
-     <?php
+  <!-- Hiding and Showing Password -->
+  <script type="text/javascript">
+
+    $(document).ready(function () {
+      $('#basic-addon2').click(function () {
+        let passwordField = $("#password");
+        let passwordFieldType = passwordField.attr('type');
+
+        if (passwordFieldType == "password") {
+          passwordField.attr("type", "text");
+          $(this).html('<i class="fa fa-eye-slash" aria-hidden="true"></i>');
+
+
+        }
+        else {
+          passwordField.attr("type", "password");
+          $(this).html('<i class="fa fa-eye" aria-hidden="true"></i>');
+        }
+      })
+    })
+  </script>
+
+  <?php
     // closing Database Connnection
      $conn = null; 
      ?>
-     
+
 </body>
 
 </html>
