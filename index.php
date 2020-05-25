@@ -100,12 +100,14 @@ catch(PDOException $e){
 
 <body>
 
-    <?php 
 
-    if(isset($_POST['subscribe'])){
-      $email =  $_POST['email'];
+    <?php
 
-      //Query
+extract($_POST);
+
+ if(isset($_POST['email'])){
+
+     //Query
       $sql = "INSERT INTO newsletter_information (email, subscribe) VALUES (:email, :Yes)";
 
       //Prepare Query
@@ -118,25 +120,10 @@ catch(PDOException $e){
       //Executing Value
       $result->execute();
 
-      if($result){
-           echo "<script>Swal.fire({
-            icon: 'success',
-            title: 'success',
-            text: 'You are successfully Subscribed to Our Newsletter'
-            })</script>";
-      }
+ }
 
-      else{
-        echo "<script>Swal.fire({
-            icon: 'error',
-            title: 'error',
-            text: 'You are failed Subscribe to Our Newsletter'
-            })</script>";
-      }
+?>
 
-    }
-
-    ?>
 
     <!--Loader-->
     <!-- MUTLI SPINNER -->
@@ -243,14 +230,14 @@ catch(PDOException $e){
             <section class="col-md-6 offset-md-3 py-5">
                 <h2 class="text-center text-uppercase font-time  mb-4">Subscribe to our newsletter</h2>
 
-                <form action="" method="post">
-                    <div class="input-group">
-                        <input type="email" name="email" class="form-control" placeholder="Enter Email">
-                        <div class="input-group-append">
-                            <input type="submit" class="btn btn-danger" value="Subscribe Now" name="subscribe">
-                        </div>
+
+                <div class="input-group">
+                    <input type="text" id="email" class="form-control" placeholder="Enter Email">
+                    <div class="input-group-append">
+                        <input type="button" class="btn btn-danger" id="submit" value="Subscribe Now">
                     </div>
-                </form>
+                </div>
+
 
             </section>
         </div>
@@ -265,30 +252,28 @@ catch(PDOException $e){
             Count: <?php echo $totaVisitors ?></h3>
     </div>
 
+
+
     <!-- Footer PHP -->
     <?php include_once "includes/footer.php"; ?>
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
 
+    <script src="js/index.js"></script>
+    
     <script>
-        window.onload = () => {
-            document.getElementById("loader").style.display = "none";
-        };
-
-
-        $(document).ready(function () {
-            setTimeout(function () {
-                Swal.fire({
-                    title: "<strong>CANCELLATION NOTICE</strong>",
-                    icon: "info",
-                    width: 800,
-                    padding: "2em",
-                    html:
-                        '<p class="text-justify">Due to the unfortunate outbreak of COVID-19 in India, the administration of GIT, Lavel has decided to cancel this edition of the techfest as a precautionary measure according to Goverment of India  guidelines for the safety of participants.</p> <br/>' +
-                        '<h3 class ="font-time">Thank you for showing interest in GIT SHODH 2K20. <br> Hope to see you at GIT SHODH 2K21 </h3> <br> <h3 class="text-danger font-time"> Stay Safe, Stay Home</h3>'
-                });
-
-            }, 3000);
+      
+        $('#submit').click(function () {
+            let email = $('#email').val();
+            $.ajax({
+                type: "post",
+                data: {
+                    email: email
+                },
+                success: function (response) {
+                    alert(response);
+                }
+            });
         })
 
     </script>

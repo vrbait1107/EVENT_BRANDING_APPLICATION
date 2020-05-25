@@ -213,7 +213,6 @@ if(isset($_SESSION['user'])) {
           passwordField.attr("type", "text");
           $(this).html('<i class="fa fa-eye-slash" aria-hidden="true"></i>');
 
-
         }
         else {
           passwordField.attr("type", "password");
