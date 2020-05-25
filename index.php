@@ -100,31 +100,6 @@ catch(PDOException $e){
 
 <body>
 
-
-    <?php
-
-extract($_POST);
-
- if(isset($_POST['email'])){
-
-     //Query
-      $sql = "INSERT INTO newsletter_information (email, subscribe) VALUES (:email, :Yes)";
-
-      //Prepare Query
-      $result = $conn->prepare($sql);
-
-      //Binding Value 
-      $result->bindValue(":email", $email);
-      $result->bindValue(":Yes", "Yes");
-
-      //Executing Value
-      $result->execute();
-
- }
-
-?>
-
-
     <!--Loader-->
     <!-- MUTLI SPINNER -->
     <div id="loader" class="text-center">
@@ -230,14 +205,15 @@ extract($_POST);
             <section class="col-md-6 offset-md-3 py-5">
                 <h2 class="text-center text-uppercase font-time  mb-4">Subscribe to our newsletter</h2>
 
-
-                <div class="input-group">
-                    <input type="text" id="email" class="form-control" placeholder="Enter Email">
-                    <div class="input-group-append">
-                        <input type="button" class="btn btn-danger" id="submit" value="Subscribe Now">
+                <form id="newsletterForm">
+                    <div class="input-group">
+                        <input type="text" id="email" name="email" class="form-control" placeholder="Enter Email">
+                        <div class="input-group-append">
+                            <input type="button" class="btn btn-danger" id="submit" value="Subscribe Now">
+                        </div>
                     </div>
-                </div>
-
+                     <h5 id="responseMessage" class="mt-3 text-center font-time text-info"></h5>
+                </form>
 
             </section>
         </div>
@@ -252,28 +228,42 @@ extract($_POST);
             Count: <?php echo $totaVisitors ?></h3>
     </div>
 
-
-
     <!-- Footer PHP -->
     <?php include_once "includes/footer.php"; ?>
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
 
     <script src="js/index.js"></script>
-    
+
     <script>
-      
-        $('#submit').click(function () {
-            let email = $('#email').val();
-            $.ajax({
-                type: "post",
-                data: {
-                    email: email
-                },
-                success: function (response) {
-                    alert(response);
-                }
+        $(document).ready(function () {
+
+            $('#submit').click(function () {
+                let email = $('#email').val();
+                $.ajax({
+                    url: "ajaxHandlerPHP/ajaxIndex.php",
+                    type: "post",
+                    data: {
+                        email: email
+                    },
+                    success: function (data) {
+                        $("form").trigger("reset"),
+                        $("#responseMessage").fadeIn().html(data);
+                           
+                           setTimeout(() => {
+                                 $("#responseMessage").fadeOut("slow");
+                           }, 2000);
+
+                    },
+                    error: function () {
+                        $("form").trigger("reset"),
+                         $("#responseMessage").fadeIn().html("Something Went Wrong");  
+                    },
+
+
+                });
             });
+
         })
 
     </script>
