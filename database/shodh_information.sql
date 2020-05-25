@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2020 at 08:29 AM
+-- Generation Time: May 25, 2020 at 05:58 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -42,12 +42,12 @@ CREATE TABLE `admin_information` (
 --
 
 INSERT INTO `admin_information` (`email`, `adminType`, `adminDepartment`, `adminEvent`, `adminPassword`, `token`) VALUES
-('apandharkame6@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Project Presentation', '$2y$10$CRA8ndpq7FrnKoMj8rinL.JTHmMhAGM7RuUxS5aeVhBBgAn1sBVES', NULL),
+('apandharkame6@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Project Presentation', '$2y$10$W8cn6mr31pUcAlT/35LCYOzAwZAciuGQDSdKv8qo8Veus0Rtl0ltW', NULL),
 ('facultychem@gmail.com', 'Faculty Coordinator', 'Chemical', 'Not Applicable', '$2y$10$bh6XlE4eGGI9jmy7ugj7Heqg2pB32fr3wJTxrNE0Zo8yUZO2YXpNa', NULL),
 ('facultycivil@gmail.com', 'Faculty Coordinator', 'Civil', 'Not Applicable', '$2y$10$CCif/fe5WP0BRIgG/Mu/hu3GsXX.6V3aIW.JJCVy8QWlVxyDJWmku', NULL),
 ('facultycomp@gmail.com', 'Faculty Coordinator', 'Computer', 'Not Applicable', '$2y$10$.OSqZd0VjIp47cE2oz9fxeg1se/mAWqbUeigbXUMuVWAV/09dHWX.', NULL),
 ('facultyextc@gmail.com', 'Faculty Coordinator', 'Electronics and Telecommunication', 'Not Applicable', '$2y$10$1qKOPrvYTWsHTKu//4IpDuLF0OCObWkLrDHg3vRS1f4ifA2HiMqlW', NULL),
-('facultymech@gmail.com', 'Faculty Coordinator', 'Mechanical', 'Not Applicable', '$2y$10$c.GeAbSXdvYFMFwHGDD2Zeh3WS89WG9mDX.hnae6o1rhG51OXINg6', NULL),
+('facultymech@gmail.com', 'Faculty Coordinator', 'Mechanical', 'Not Applicable', '$2y$10$x5ebh6kFUt3m/kYL2iA.6uc9hKLHL7DrcVy5TwA2.6j.qyu6E6zmC', NULL),
 ('gandhivipul009@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'Logo Contest', '$2y$10$/TlYJffpcju54IN4zNhbou3qCSKuCX/0xs0TpgztVKGDiExDRPdKe', NULL),
 ('gitshodhadmin@gmail.com', 'Administrator', 'Not Applicable', 'Not Applicable', '$2y$10$KAu/OhZKO4W9c2IqLg0kM.mrkO1Qj9IhrT4A2EMHuopMWdIKXWzy6', NULL),
 ('kolhalpritam@gmail.com', 'Student Coordinator', 'Chemical', 'Chemical Paper Presentation', '$2y$10$9UxYBGY1hdi0RZ0T6d9ZMOiBFKELpUk/.CqxgOmJfJiLbfXBN9n1G', NULL),
@@ -166,6 +166,67 @@ CREATE TABLE `feedback_information` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `gallery_information`
+--
+
+CREATE TABLE `gallery_information` (
+  `id` int(5) NOT NULL,
+  `galleryImage` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `gallery_information`
+--
+
+INSERT INTO `gallery_information` (`id`, `galleryImage`) VALUES
+(3, 'slide1.jpg'),
+(4, 'slide2.jpg'),
+(5, 'slide3.jpg'),
+(6, 'slide4.jpg'),
+(7, 'slide5.jpg'),
+(8, 'slide6.jpg'),
+(9, 'slide7.jpg'),
+(11, 'slide9.jpg'),
+(12, 'slide10.jpg'),
+(13, 'slide11.jpg'),
+(14, 'slide12.jpg'),
+(15, 'slide13.jpg'),
+(16, 'slide14.jpg'),
+(17, 'slide15.jpg'),
+(18, 'slide16.jpg'),
+(19, 'slide17.jpg'),
+(21, 'slide19.jpg'),
+(22, 'slide20.jpg'),
+(23, 'slide21.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `newsletter_information`
+--
+
+CREATE TABLE `newsletter_information` (
+  `id` int(5) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `subscribe` varchar(50) NOT NULL DEFAULT 'No'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `newsletter_information`
+--
+
+INSERT INTO `newsletter_information` (`id`, `email`, `subscribe`) VALUES
+(1, 'vishalbait01@gmail.com', 'Yes'),
+(2, 'surajmohite1994@gmail.com', 'Yes'),
+(3, 'vishalbait02@gmail.com', 'Yes'),
+(31, 'sudeshbait999@gmail.com', 'Yes'),
+(34, 'onkarmokashi555@gmail.com', 'Yes'),
+(35, 'onkarmokashi555@gmail.com', 'Yes'),
+(38, 'vishalbait01@gmail.com', 'Yes');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `news_information`
 --
 
@@ -202,8 +263,8 @@ CREATE TABLE `sponsor_information` (
 --
 
 INSERT INTO `sponsor_information` (`id`, `sponsorName`, `sponsorLogo`, `sponsoredEvent`, `sponsoredDepartment`) VALUES
-(1, 'Gharda Chemicals', 'gharda.png', 'All College', 'All College'),
-(7, 'Microsoft', 'microsoft_PNG10.png', 'All College', 'All College');
+(1, 'Google', 'google.png', 'All College', 'All College'),
+(8, 'Microsoft', 'microsoft_PNG10.png', 'All College', 'All College');
 
 -- --------------------------------------------------------
 
@@ -236,6 +297,7 @@ INSERT INTO `synergy_user_information` (`userId`, `certificateId`, `firstName`, 
 
 CREATE TABLE `user_information` (
   `email` varchar(100) NOT NULL,
+  `profileImage` varchar(100) NOT NULL DEFAULT 'defaultUser.png',
   `firstName` varchar(30) DEFAULT NULL,
   `lastName` varchar(30) DEFAULT NULL,
   `mobileNumber` bigint(20) DEFAULT NULL,
@@ -252,18 +314,18 @@ CREATE TABLE `user_information` (
 -- Dumping data for table `user_information`
 --
 
-INSERT INTO `user_information` (`email`, `firstName`, `lastName`, `mobileNumber`, `collegeName`, `departmentName`, `academicYear`, `mainPassword`, `confirmPass`, `token`, `status`) VALUES
-('akashphapale@gmail.com', 'Akash', 'Phapale', 9921172153, '(742 )Gharda Institute of Technology', 'Chemical', 'Fourth Year', '$2y$10$6oTXJLyEfBwJ3vAx67ksROv5AvPSAJrgqVrBOtw/XTSbg2Tnxm7b2', '$2y$10$h10UTOctSK8AYdosRVJDOeDwCEwzIP278DrfKJcuRudGfp0pXo2NO', '', 'active'),
-('avinash01@gmail.com', 'Avinash', 'Khedekar', 9921172153, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$nXehVwPV.4cdiNoiRfaGvu8tfB4jXqifSi7JT1B48m6XbAN4nnWR.', '$2y$10$VsP6osEiyk.VrR2BchXpee15HoflvvI4haIXsWSKliXHOl406IIbO', '', 'active'),
-('darshangaikwad01@gmail.com', 'Darshan', 'Gaikwad', 9921172153, '(742 )Gharda Institute of Technology', 'Civil', 'Fourth Year', '$2y$10$DA4t7Pjt9MBW/rvYZJfZbuRZOeReTPOdviuJJlLntR4pKUi4b560S', '$2y$10$gXvqLlTvnsmj1si9K4dlt.szSHpGcyNSmbUEKBuJ4H6tC1xbAAG/i', '', 'active'),
-('onkarmokashi555@gmail.com', 'Onkar', 'Mokashi', 9921172153, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$fLQ.sIuTNSGyFLHaB0tEG.NsUeq6j6U/ek2u8VNZsQFLbveQXFYV6', '$2y$10$trmg407piwTp4axhb4ANpufyHeMzqlV9R3gXzMAOAQDa3xzvga7/y', '', 'active'),
-('pritamkolhal01@gmail.com', 'Pritam', 'Kolhal', 9921172153, '(742 )Gharda Institute of Technology', 'Chemical', 'Fourth Year', '$2y$10$t04PFSp4EfqSHUgifPZhEOrFbJtrtN/.xeheMnNCqRWfS7hhXI/sy', '$2y$10$37rpbwi.8GJYLhG4MmUlZuHT8M2Mkq0tz8ZoZldPqGOg775KJifhC', '', 'active'),
-('sudeshbait999@gmail.com', 'Sudesh', 'Bait', 9921172153, '(742 )Gharda Institute of Technology', 'Chemical', 'Fourth Year', '$2y$10$rBB/TWUXNOXkGFq3IY0QBOuLID7jW45WK4ml6zqjoSFY6CcGSVRh6', '$2y$10$lhG5cfRHazdarvedeQZGZOnFd6ObOORy7L11OM3CmiQ06LgIyWdTK', '15983fafb57d001b8eb0df2051449c', 'active'),
-('surajmohite1994@gmail.com', 'Suraj', 'Mohite', 9921172153, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$HPYDQdFwlHWNa9.Yi3xyY.emXh5ADs0TKhtzle/0qp8Pnb1igdyPm', '$2y$10$wVQ0.DJfyTdmIz5DaH5gF.ccnhixY2xItH0emCqgckx3syIPqsS2y', '', 'active'),
-('vickymore123@gmail.com', 'Vicky', 'More', 9921172153, '(742 )Gharda Institute of Technology', 'Chemical', 'Fourth Year', '$2y$10$dgtt.EBUr8k2WJloqwZAWOZa/FqDrAc1lBzpR20oZ2IXjvt/GyaDW', '$2y$10$aDxA783igGBtMxXO.TbJWudsmFAwKigtHuw4PzSBsl2EX6xkdV/Hm', '', 'active'),
-('vipulbole44@gmail.com', 'Vipul', 'Bole', 9921172153, '(742 )Gharda Institute of Technology', 'Chemical', 'Fourth Year', '$2y$10$DlZoBfOF2Y5J1e/I/P.yEeobbMt9nxWFo95Y0iWaeLJajVSQdLCuW', '$2y$10$Nz9pZClTW0Tp.EX6T460yOyxZmhPbZx1L5rTGed8.viGUUFu3UEhq', '', 'active'),
-('vishalbait01@gmail.com', 'Vishal', 'Bait', 9921172153, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$qTvf/cKJJmz1auD4Xut17.O9zqugAfQ3jI.oIIhCbGqmRLOVkNhkK', '$2y$10$qTvf/cKJJmz1auD4Xut17.O9zqugAfQ3jI.oIIhCbGqmRLOVkNhkK', '36f7518e3f58b9bf45c4a24c78cb08', 'active'),
-('vishalbait02@gmail.com', 'Vishal', 'Bait', 7038650873, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$sT70cPAK2Nzwh7jcHdi/A.ve8Nn2OYTruFu.79DIGqg2s/ahvgY6e', '$2y$10$sT70cPAK2Nzwh7jcHdi/A.ve8Nn2OYTruFu.79DIGqg2s/ahvgY6e', '3fc273e8654c67029d1d8828fbb873', 'active');
+INSERT INTO `user_information` (`email`, `profileImage`, `firstName`, `lastName`, `mobileNumber`, `collegeName`, `departmentName`, `academicYear`, `mainPassword`, `confirmPass`, `token`, `status`) VALUES
+('akashphapale@gmail.com', 'defaultUser.png', 'Akash', 'Phapale', 9921172153, '(742 )Gharda Institute of Technology', 'Chemical', 'Fourth Year', '$2y$10$6oTXJLyEfBwJ3vAx67ksROv5AvPSAJrgqVrBOtw/XTSbg2Tnxm7b2', '$2y$10$h10UTOctSK8AYdosRVJDOeDwCEwzIP278DrfKJcuRudGfp0pXo2NO', '', 'active'),
+('avinash01@gmail.com', 'defaultUser.png', 'Avinash', 'Khedekar', 9921172153, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$nXehVwPV.4cdiNoiRfaGvu8tfB4jXqifSi7JT1B48m6XbAN4nnWR.', '$2y$10$VsP6osEiyk.VrR2BchXpee15HoflvvI4haIXsWSKliXHOl406IIbO', '', 'active'),
+('darshangaikwad01@gmail.com', 'defaultUser.png', 'Darshan', 'Gaikwad', 9921172153, '(742 )Gharda Institute of Technology', 'Civil', 'Fourth Year', '$2y$10$DA4t7Pjt9MBW/rvYZJfZbuRZOeReTPOdviuJJlLntR4pKUi4b560S', '$2y$10$gXvqLlTvnsmj1si9K4dlt.szSHpGcyNSmbUEKBuJ4H6tC1xbAAG/i', '', 'active'),
+('onkarmokashi555@gmail.com', 'defaultUser.png', 'Onkar', 'Mokashi', 9921172153, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$fLQ.sIuTNSGyFLHaB0tEG.NsUeq6j6U/ek2u8VNZsQFLbveQXFYV6', '$2y$10$trmg407piwTp4axhb4ANpufyHeMzqlV9R3gXzMAOAQDa3xzvga7/y', '', 'active'),
+('pritamkolhal01@gmail.com', 'defaultUser.png', 'Pritam', 'Kolhal', 9921172153, '(742 )Gharda Institute of Technology', 'Chemical', 'Fourth Year', '$2y$10$t04PFSp4EfqSHUgifPZhEOrFbJtrtN/.xeheMnNCqRWfS7hhXI/sy', '$2y$10$37rpbwi.8GJYLhG4MmUlZuHT8M2Mkq0tz8ZoZldPqGOg775KJifhC', '', 'active'),
+('sudeshbait999@gmail.com', 'defaultUser.png', 'Sudesh', 'Bait', 9921172153, '(742 )Gharda Institute of Technology', 'Chemical', 'Fourth Year', '$2y$10$rBB/TWUXNOXkGFq3IY0QBOuLID7jW45WK4ml6zqjoSFY6CcGSVRh6', '$2y$10$lhG5cfRHazdarvedeQZGZOnFd6ObOORy7L11OM3CmiQ06LgIyWdTK', '15983fafb57d001b8eb0df2051449c', 'active'),
+('surajmohite1994@gmail.com', 'defaultUser.png', 'Suraj', 'Mohite', 9921172153, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$HPYDQdFwlHWNa9.Yi3xyY.emXh5ADs0TKhtzle/0qp8Pnb1igdyPm', '$2y$10$wVQ0.DJfyTdmIz5DaH5gF.ccnhixY2xItH0emCqgckx3syIPqsS2y', '', 'active'),
+('vickymore123@gmail.com', 'defaultUser.png', 'Vicky', 'More', 9921172153, '(742 )Gharda Institute of Technology', 'Chemical', 'Fourth Year', '$2y$10$dgtt.EBUr8k2WJloqwZAWOZa/FqDrAc1lBzpR20oZ2IXjvt/GyaDW', '$2y$10$aDxA783igGBtMxXO.TbJWudsmFAwKigtHuw4PzSBsl2EX6xkdV/Hm', '', 'active'),
+('vipulbole44@gmail.com', 'defaultUser.png', 'Vipul', 'Bole', 9921172153, '(742 )Gharda Institute of Technology', 'Chemical', 'Fourth Year', '$2y$10$DlZoBfOF2Y5J1e/I/P.yEeobbMt9nxWFo95Y0iWaeLJajVSQdLCuW', '$2y$10$Nz9pZClTW0Tp.EX6T460yOyxZmhPbZx1L5rTGed8.viGUUFu3UEhq', '', 'active'),
+('vishalbait01@gmail.com', 'developer1.jpg', 'Vishal', 'Bait', 9921172153, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$qTvf/cKJJmz1auD4Xut17.O9zqugAfQ3jI.oIIhCbGqmRLOVkNhkK', '$2y$10$qTvf/cKJJmz1auD4Xut17.O9zqugAfQ3jI.oIIhCbGqmRLOVkNhkK', '36f7518e3f58b9bf45c4a24c78cb08', 'active'),
+('vishalbait02@gmail.com', 'defaultUser.png', 'Vishal', 'Bait', 7038650873, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$sT70cPAK2Nzwh7jcHdi/A.ve8Nn2OYTruFu.79DIGqg2s/ahvgY6e', '$2y$10$sT70cPAK2Nzwh7jcHdi/A.ve8Nn2OYTruFu.79DIGqg2s/ahvgY6e', '3fc273e8654c67029d1d8828fbb873', 'active');
 
 -- --------------------------------------------------------
 
@@ -314,6 +376,19 @@ ALTER TABLE `feedback_information`
   ADD PRIMARY KEY (`email`);
 
 --
+-- Indexes for table `gallery_information`
+--
+ALTER TABLE `gallery_information`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `newsletter_information`
+--
+ALTER TABLE `newsletter_information`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `email` (`email`);
+
+--
 -- Indexes for table `news_information`
 --
 ALTER TABLE `news_information`
@@ -354,6 +429,18 @@ ALTER TABLE `events_details_information`
   MODIFY `id` int(80) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
+-- AUTO_INCREMENT for table `gallery_information`
+--
+ALTER TABLE `gallery_information`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `newsletter_information`
+--
+ALTER TABLE `newsletter_information`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
 -- AUTO_INCREMENT for table `news_information`
 --
 ALTER TABLE `news_information`
@@ -363,7 +450,7 @@ ALTER TABLE `news_information`
 -- AUTO_INCREMENT for table `sponsor_information`
 --
 ALTER TABLE `sponsor_information`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `synergy_user_information`
@@ -385,7 +472,13 @@ ALTER TABLE `visitor_counter`
 -- Constraints for table `event_information`
 --
 ALTER TABLE `event_information`
-  ADD CONSTRAINT `event_information_ibfk_1` FOREIGN KEY (`email`) REFERENCES `user_information` (`email`);
+  ADD CONSTRAINT `event_information_ibfk_1` FOREIGN KEY (`email`) REFERENCES `user_information` (`email`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `newsletter_information`
+--
+ALTER TABLE `newsletter_information`
+  ADD CONSTRAINT `newsletter_information_ibfk_1` FOREIGN KEY (`email`) REFERENCES `user_information` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
