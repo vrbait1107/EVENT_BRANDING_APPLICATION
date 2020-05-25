@@ -106,9 +106,7 @@ require_once "../configPDO.php";
     </div>
     </div>
 
-    <!--Jquerry-->
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-
+    
     <!-- JS Variables to Convert data into QR Code-->
     <script type="text/javascript">
         let a = "<?php echo $firstName ?>";
@@ -120,7 +118,7 @@ require_once "../configPDO.php";
     </script>
 
     <!-- QR Code JS Library-->
-    <script type="text/javascript" src="../js/qrcode.js"></script>
+    <script type="text/javascript" src="../js/qrcode.min.js"></script>
 
     <!-- Convert JS Variable data into QR Code takes input above JS Variable-->
     <script type="text/javascript" src="../js/php-certQrCode.js"> </script>
