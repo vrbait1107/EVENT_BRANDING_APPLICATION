@@ -37,23 +37,23 @@ if(isset($_POST['email'])){
       $result->execute();
 
       if($result){
-         echo "You are successfully subscribed to newsletter";
+         echo "<span class='text-success'>You are successfully subscribed to newsletter<span>";
       }
       else {
-           echo "You are failed to subscribe newsletter, Please try again";
+           echo "<span class='text-danger>You are failed to subscribe newsletter, Please try again </span>";
       }
 
       }
 
       else {
-           echo "You are already subscribed  to newsletter";
+           echo "<span class='text-warning'>You are already subscribed  to newsletter</span>";
       }
                  
      
      }
 
      else {
-          echo "Please Enter your registered email for this account";
+          echo "<span class='text-danger'>Please Enter your registered email for this account</span>";
      }
 
  }

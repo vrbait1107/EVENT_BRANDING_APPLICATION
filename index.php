@@ -212,7 +212,7 @@ catch(PDOException $e){
                             <input type="button" class="btn btn-danger" id="submit" value="Subscribe Now">
                         </div>
                     </div>
-                     <h5 id="responseMessage" class="mt-3 text-center font-time text-info"></h5>
+                     <h5 id="responseMessage" class="mt-3 text-center font-time"></h5>
                 </form>
 
             </section>
@@ -232,41 +232,9 @@ catch(PDOException $e){
     <?php include_once "includes/footer.php"; ?>
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
-
+     <!-- Index js -->
     <script src="js/index.js"></script>
 
-    <script>
-        $(document).ready(function () {
-
-            $('#submit').click(function () {
-                let email = $('#email').val();
-                $.ajax({
-                    url: "ajaxHandlerPHP/ajaxIndex.php",
-                    type: "post",
-                    data: {
-                        email: email
-                    },
-                    success: function (data) {
-                        $("form").trigger("reset"),
-                        $("#responseMessage").fadeIn().html(data);
-                           
-                           setTimeout(() => {
-                                 $("#responseMessage").fadeOut("slow");
-                           }, 2000);
-
-                    },
-                    error: function () {
-                        $("form").trigger("reset"),
-                         $("#responseMessage").fadeIn().html("Something Went Wrong");  
-                    },
-
-
-                });
-            });
-
-        })
-
-    </script>
 
     <?php
     // closing Database Connnection

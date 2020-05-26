@@ -15,3 +15,28 @@ setTimeout(function () {
       '<h3 class ="font-time">Thank you for showing interest in GIT SHODH 2K20. <br> Hope to see you at GIT SHODH 2K21 </h3> <br> <h3 class="text-danger font-time"> Stay Safe, Stay Home</h3>',
   });
 }, 3000);
+
+// Ajax Request using Jquery
+$(document).ready(function () {
+  $("#submit").click(function () {
+    let email = $("#email").val();
+    $.ajax({
+      url: "ajaxHandlerPHP/ajaxIndex.php",
+      type: "post",
+      data: {
+        email: email,
+      },
+      success: function (data) {
+        $("form").trigger("reset"), $("#responseMessage").fadeIn().html(data);
+
+        setTimeout(() => {
+          $("#responseMessage").fadeOut("slow");
+        }, 2000);
+      },
+      error: function () {
+        $("form").trigger("reset"),
+          $("#responseMessage").fadeIn().html("Something Went Wrong");
+      },
+    });
+  });
+});
