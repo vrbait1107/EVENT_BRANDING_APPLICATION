@@ -4,8 +4,8 @@ require_once "../configPDO.php";
 session_start();
 
 extract($_POST);
-if(isset($_POST['email'])){
 
+if(isset($_POST['email'])){
 
      $sql1 = "SELECT * FROM user_information WHERE email = :email";
      $result1 = $conn->prepare($sql1);
@@ -37,23 +37,40 @@ if(isset($_POST['email'])){
       $result->execute();
 
       if($result){
-         echo "<span class='text-success'>You are successfully subscribed to newsletter<span>";
+        
+          echo "<script>Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'You are successfully subscribed to newsletter'
+                })</script>";
       }
       else {
-           echo "<span class='text-danger>You are failed to subscribe newsletter, Please try again </span>";
+            echo "<script>Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'You are failed to subscribe newsletter, Please try again'
+                })</script>";
       }
 
       }
 
       else {
-           echo "<span class='text-warning'>You are already subscribed  to newsletter</span>";
+            echo "<script>Swal.fire({
+                    icon: 'warning',
+                    title: 'Warning',
+                    text: 'You are already subscribed to newsletter'
+                })</script>";
       }
                  
      
      }
 
      else {
-          echo "<span class='text-danger'>Please Enter your registered email for this account</span>";
+            echo "<script>Swal.fire({
+                    icon: 'warning',
+                    title: 'Warning',
+                    text: 'Please Enter your registered email for this account'
+                })</script>";
      }
 
  }
