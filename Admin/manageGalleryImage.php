@@ -132,8 +132,8 @@ if(isset($_REQUEST['delete'])){
               
 
                 ?>
-
-                <table class="table table-bordered text-center col-md-8 offset-md-2">
+                
+                <table class="table table-bordered text-center col-md-8 offset-md-2" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>id</th>
@@ -169,6 +169,7 @@ if(isset($_REQUEST['delete'])){
 
                     </tbody>
                 </table>
+
 
                 <?php
                 }
