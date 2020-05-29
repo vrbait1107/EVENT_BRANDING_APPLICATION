@@ -46,10 +46,7 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     ?>
 
     <main id="layoutSidenav_content">
-
         <div class="container-fluid">
-
-
             <div class="row">
 
                 <!-- Button trigger modal -->
@@ -62,8 +59,11 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
                 <!--Response Message -->
                 <div id="responseMessage"></div>
 
-                 <!-- Delete Response Message -->
+                <!-- Delete Response Message -->
                 <div id="deleteResponse"></div>
+
+                 <!-- Delete Response Message -->
+                <div id="updateResponse"></div>
 
 
                 <!-- Modal -->
@@ -143,22 +143,96 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
                     </div>
                 </div>
 
-            </div>
 
 
-            <div class="card mb-4">
-                <div class="card-header"><i class="fas fa-table mr-1"></i>Administrator Details</div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <div id="responseAdminData"></div>
+                <!-- Update Modal -->
+                <div class="modal fade" id="updateModal1" tabindex="-1" role="dialog"
+                    aria-labelledby="updateModal1Label" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="updateModal1Label">UPDATE ADMINISTRATOR PROFILE</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+
+
+                                <form>
+
+                                    <div class="form-group">
+                                        <label>Enter Your Email</label>
+                                        <input type="email" class="form-control" name="updateEmail" id="updateEmail"
+                                            placeholder="Email" required>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>Admin Type</label>
+                                        <select class="form-control" name="updateAdminType" id="updateAdminType">
+                                            <option value="Administrator">Administrator</option>
+                                            <option value="Faculty Coordinator">Faculty Coordinator</option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>Admin Department</label>
+                                        <select class="form-control" name="updateAdminDepartment"
+                                            id="updateAdminDepartment">
+                                            <option value="Not Applicable">Not Applicable</option>
+                                            <option value="Electronics and Telecommunication">Electronics and
+                                                Telecommunication
+                                            </option>
+                                            <option value="Chemical">Chemical</option>
+                                            <option value="Computer">Computer</option>
+                                            <option value="Mechanical">Mechanical</option>
+                                            <option value="Civil">Civil</option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>Admin Event</label>
+                                        <select class="form-control" name="updateAdminEvent" id="updateAdminEvent">
+                                            <option value="Not Applicable">Not Applicable</option>
+                                        </select>
+                                    </div>
+
+                                    <input type="hidden" name="hiddenEmail" id="hiddenEmail">
+                                </form>
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" name = "updateData" id ="updateData" 
+                                    class="btn btn-info" onclick= "updateAdminDetails()" data-dismiss="modal">Update changes</button>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
+
+
             </div>
+        </div>
 
-           
 
-            <!--Admin Footer-->
-            <?php include_once "includes/adminFooter.php";?>
+        <div class="card mb-4">
+            <div class="card-header"><i class="fas fa-table mr-1"></i>Administrator Details</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                     <!-- Response of ReadRecord -->
+                    <div id="responseAdminData"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--Admin Footer-->
+        <?php include_once "includes/adminFooter.php";?>
 
     </main>
 
@@ -166,7 +240,7 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <?php include_once "includes/adminFooterScripts.php"; ?>
 
     <!-- addAdmin js  -->
-    <script src="js/addAdmin.js"></script>
+    <script src="js/manageAdmin.js"></script>
 
     <?php
     // closing Database Connnection
