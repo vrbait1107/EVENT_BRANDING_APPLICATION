@@ -40,6 +40,7 @@ session_start();
 
     $adminFileName = "facultyCoordinatorIndex.php";
     $adminFileData = "facultyCoordinatorData.php";
+    $adminManage = "facultyCoordinatorManage.php";
    
     include_once "includes/adminNavbar.php";
     ?>
