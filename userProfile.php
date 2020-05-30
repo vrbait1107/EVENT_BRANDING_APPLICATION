@@ -10,29 +10,6 @@ if(!isset($_SESSION['user'])){
     header("location:login.php");
 }
 
-$email = $_SESSION['user'];
-
-$sql = "SELECT * FROM user_information WHERE email = :email";
-
-// Preparing Query
-$result= $conn->prepare($sql);
-
-//Binding Value
-$result->bindValue(":email", $email);
-
-//Executing Value
-$result->execute();
-
-//Fetching Value
-$row = $result->fetch(PDO::FETCH_ASSOC);
-
-$firstName= $row['firstName'];
-$lastName = $row['lastName'];
-$collegeName =$row['collegeName'];
-$departmentName =$row['departmentName'];
-$academicYear =$row['academicYear'];
-$mobileNumber =$row['mobileNumber'];
-$dbprofileImage =$row['profileImage'];
 
 ?>
 
@@ -52,93 +29,6 @@ $dbprofileImage =$row['profileImage'];
 
 <body>
 
-
-    <!-- Update the Profile Data -->
-    <?php 
-
-if(isset($_POST['update'])) {
-
-    $firstName = trim($_POST['firstName']);
-    $lastName = trim($_POST['lastName']);
-    $mobileNumber = trim($_POST['mobileNumber']);
-    $collegeName = trim($_POST['collegeName']);
-    $departmentName = trim($_POST['departmentName']);
-    $academicYear = trim($_POST['academicYear']);
-
-    $profileImage = $_FILES['profileImage'];
-
-    $profileImageName = $_FILES['profileImage']['name'];
-    $profileImageSize = $_FILES['profileImage']['size'];
-    $profileImageTmpDir = $_FILES['profileImage']['tmp_name'];
-    $profileImageType = $_FILES['profileImage']['type'];
-
-    if($profileImageType ==  'image/jpeg' || $profileImageType ==  'image/jpg' || $profileImageType ==  'image/png') {
-   
-    if($profileImageSize <= 2097152){
-     
-        move_uploaded_file($profileImageTmpDir, "profileImage/".$profileImageName);
-       
-
-    //Query
-    $sql = "UPDATE user_information SET firstName = :firstName, lastName = :lastName, 
-    mobileNumber = :mobileNumber, collegeName = :collegeName, departmentName = :departmentName,
-    academicYear = :academicYear, profileImage = :profileImageName WHERE email = :email";
-
-    // Preparing query
-    $result = $conn->prepare($sql);
- 
-    //Binding Values
-    $result->bindValue(":firstName", $firstName);
-    $result->bindValue(":lastName",$lastName);
-    $result->bindValue(":mobileNumber",  $mobileNumber);
-    $result->bindValue(":collegeName", $collegeName);
-    $result->bindValue(":departmentName", $departmentName);
-    $result->bindValue(":academicYear", $academicYear);
-    $result->bindValue(":profileImageName", $profileImageName);
-    $result->bindValue(":email", $email);
-    
-    //Executing query
-    $result->execute();
-
-    if($result) {
-        echo "<script>Swal.fire({
-                icon: 'success',
-                title: 'Successful',
-                text: 'Your Data is Successfully Updated'
-            })</script>";
-
-    }
-    else{
-         echo "<script>Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'We are failed to update data'
-            })</script>";
-    }
-
-
-    }
-
-    else{
-    echo "<script>Swal.fire({
-            icon: 'error',
-            title: 'Image size exeeded',
-            text: 'Please Upload File less than 2MB'
-            })</script>";
-        }
-    
-    }
-    else{
-    echo "<script>Swal.fire({
-            icon: 'error',
-            title: 'Image Format Not Supported',
-            text: 'Supported Types are jpg,jpeg,png'
-            })</script>";
-    }
-
-}
-?>
-
     <!-- Navbar PHP -->
     <?php include_once "includes/navbar.php"; ?>
 
@@ -157,55 +47,62 @@ if(isset($_POST['update'])) {
 
                     <hr>
 
-                    <form action="" method="post" name="userProfileForm"
-                        onsubmit="return formValidationUserProfileForm()"  enctype="multipart/form-data">
+                    <div id="updateResponse"></div>
+
+                    <!-- Change Profile Image -->
+                    <form method="post" enctype="multipart/form-data" id="changeProfileImageForm">
+                        <div class="form-group">
+                            <label>Change Profile Image</label>
+                            <input type="file" class="form-control-file" accept=".jpg, .jpeg, .png" name="profileImage">
+                            <input type="hidden" name="hiddenImageName" id="hiddenImageName">
+                            <input type="hidden" name="hiddenEmail2" id="hiddenEmail2">
+                            <input type="submit" value="Change Profile Image" class="btn btn-primary mt-3"
+                                id="changeProfileImage">
+                        </div>
+                    </form>
+
+                    <form action="" method="post" name="userProfileForm" id="userProfileForm">
 
                         <div class="text-center">
-                            <img src="profileImage/<?php echo $dbprofileImage; ?>" class="img-fluid rounded-circle mb-3"
+                            <img src="" id="showProfileImage" class="img-fluid rounded-circle mb-3"
                                 style="height:150px">
                         </div>
 
                         <div class="form-group">
-                            <label>Change Profile Image</label>
-                            <input type="file" class="form-control-file" name="profileImage">
-                        </div>
-
-                        <div class="form-group">
                             <label>First Name</label>
-                            <input type="text" class="form-control" name="firstName" value="<?php echo $firstName; ?>">
+                            <input type="text" class="form-control" name="updateFirstName" id="updateFirstName">
                         </div>
 
                         <div class="form-group">
                             <label>Last Name</label>
-                            <input type="text" class="form-control" name="lastName" value=" <?php echo $lastName; ?>">
+                            <input type="text" class="form-control" name="updateLastName" id="updateLastName">
                         </div>
 
                         <div class="form-group">
                             <label>Mobile Number</label>
-                            <input type="text" class="form-control" name="mobileNumber"
-                                value="<?php echo $mobileNumber; ?>">
+                            <input type="text" class="form-control" name="updateMobileNumber" id="updateMobileNumber">
                         </div>
 
 
                         <div class="form-group">
                             <label>Academic Year</label>
-                            <input type="text" class="form-control" name="academicYear"
-                                value="<?php echo $academicYear; ?>">
+                            <input type="text" class="form-control" name="updateAcademicYear" id="updateAcademicYear">
                         </div>
 
                         <div class="form-group">
                             <label>Department Name</label>
-                            <input type="text" class="form-control" name="departmentName"
-                                value="<?php echo $departmentName; ?>">
+                            <input type="text" class="form-control" name="updateDepartmentName"
+                                id="updateDepartmentName">
                         </div>
 
                         <div class="form-group">
                             <label>College Name</label>
-                            <input type="text" class="form-control" name="collegeName"
-                                value="<?php echo $collegeName; ?>">
+                            <input type="text" class="form-control" name="updateCollegeName" id="updateCollegeName">
                         </div>
 
-                        <input type="submit" value="Update" name="update"
+                        <input type="hidden" name="hiddenEmail" id="hiddenEmail">
+
+                        <input type="submit" value="Update" name="updateUserProfile" id="updateUserProfile"
                             class="btn btn-primary btn-block rounded-pill">
 
                     </form>
@@ -218,8 +115,9 @@ if(isset($_POST['update'])) {
     <?php include_once "includes/footer.php" ?>
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
-    <!-- Form Validation -->
-    <script src="js/form-validation.js"></script>
+    <!-- Custom JS -->
+    <script src="js/userProfile.js"></script>
+
 
     <?php
     // closing Database Connnection
