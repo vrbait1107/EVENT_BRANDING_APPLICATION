@@ -62,17 +62,17 @@ $(document).ready(function () {
   $("#changeProfileImageForm").on("submit", function (event) {
     event.preventDefault();
 
-    let hiddenEmail2 = $("#hiddenEmail2").val();
-    let hiddenImageName = $("#hiddenImageName").val();
-    let updateProfileImage = $("#profileImage").val();
+    let imageName = $("updateProfileImage").val();
 
     $.ajax({
       url: "ajaxHandlerPHP/ajaxUserProfile.php",
       type: "post",
-      data: {
-        hiddenEmail2: hiddenEmail2,
-        updateProfileImage: updateProfileImage,
-        hiddenImageName: hiddenImageName,
+      data: new FormData(this),
+      contentType: false,
+      processData: false,
+
+      beforeSend() {
+        $("#updateResponse").html("Image uploading....");
       },
       success(data) {
         $("#updateResponse").html(data);

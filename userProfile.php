@@ -53,7 +53,7 @@ if(!isset($_SESSION['user'])){
                     <form method="post" enctype="multipart/form-data" id="changeProfileImageForm">
                         <div class="form-group">
                             <label>Change Profile Image</label>
-                            <input type="file" class="form-control-file" accept=".jpg, .jpeg, .png" name="profileImage">
+                            <input type="file" id="updateProfileImage" class="form-control-file" accept=".jpg, .jpeg, .png" name="updateProfileImage">
                             <input type="hidden" name="hiddenImageName" id="hiddenImageName">
                             <input type="hidden" name="hiddenEmail2" id="hiddenEmail2">
                             <input type="submit" value="Change Profile Image" class="btn btn-primary mt-3"

@@ -34,21 +34,30 @@ echo $response;
 
 }
 
-
+extract($_FILES);
 
 // ################## Change Profile Image
 
-if(isset($_POST['hiddenImageName'])){
+if(isset($_FILES['updateProfileImage'])){
     
-    $updateProfileImage = $_FILES['updateProfileImage'];
-    $updateProfileImageName = $_FILES['updateProfileImage']['name'];
-    $updateProfileImageSize = $_FILES['updateProfileImage']['size'];
-    $updateProfileImageTmpDir = $_FILES['updateProfileImage']['tmp_name'];
-   
+        $updateProfileImage = $_FILES['updateProfileImage'];
+        $updateProfileImageName = $_FILES['updateProfileImage']['name'];
+        $updateProfileImageSize = $_FILES['updateProfileImage']['size'];
+        $updateProfileImageTmpDir = $_FILES['updateProfileImage']['tmp_name'];
+
+        if( $updateProfileImageName == "") {
+             echo "<script>Swal.fire({
+            icon: 'warning',
+            title: 'Please Select Image',
+            text: 'Image cannot be Empty'
+            })</script>";
+
+        } else{
+    
 
         if($updateProfileImageSize <= 2097152){
 
-        move_uploaded_file($updateProfileImageTmpDir, "profileImage/".$updateProfileImageName);
+        move_uploaded_file($updateProfileImageTmpDir, "C:/xampp2/htdocs/EBA/profileImage/".$updateProfileImageName);
 
           //  Query
           $sql = "UPDATE user_information SET profileImage = :updateProfileImageName WHERE email = :hiddenEmail2";
@@ -67,7 +76,7 @@ if(isset($_POST['hiddenImageName'])){
             text: 'Your Profile Image Successfully Changed'
             })</script>";
 
-             $file= "profileImage/".$hiddenImageName;
+             $file= "C:/xampp2/htdocs/EBA/profileImage/".$hiddenImageName;
              unlink($file);
 
           } else{
@@ -80,7 +89,7 @@ if(isset($_POST['hiddenImageName'])){
 
         }
        
-
+       
         else{
         echo "<script>Swal.fire({
             icon: 'warning',
@@ -88,7 +97,8 @@ if(isset($_POST['hiddenImageName'])){
             text: 'Please Upload File less than 2MB'
             })</script>";
         }
-    
+        
+        }
     
  }
 
