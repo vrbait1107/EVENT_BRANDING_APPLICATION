@@ -159,18 +159,11 @@
 
                     <div class="collapse" id="sponsors">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="addSponsor.php">
-                                <div class="sb-nav-link-icon">
-                                    <img src="https://img.icons8.com/dotty/20/000000/crowdfunding.png" />
-                                </div>
-                                Add Sponsors
-                            </a>
-
                             <a class="nav-link" href="manageSponsor.php">
                                 <div class="sb-nav-link-icon">
                                     <img src="https://img.icons8.com/dotty/20/000000/crowdfunding.png" />
                                 </div>
-                                Manage Sponsors
+                                Add/Manage Sponsors
                             </a>
                         </nav>
                     </div>
