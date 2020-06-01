@@ -63,157 +63,7 @@ else{
     <?php
 
     
-// update sponsor information
-if(isset($_POST['update'])){
 
-           
- $sponsorName= trim($_POST['sponsorName']);
- $sponsoredEvent = trim($_POST['sponsoredEvent']);
- $sponsoredDepartment = trim($_POST['sponsoredDepartment']);
- $sponsorLogo = $_FILES['sponsorLogo'];
-
- $sponsorLogoName = $_FILES['sponsorLogo']['name'];
- $sponsorLogoSize = $_FILES['sponsorLogo']['size'];
- $sponsorLogoTmpDir = $_FILES['sponsorLogo']['tmp_name'];
- $sponsorLogoType = $_FILES['sponsorLogo']['type'];
-
- if($sponsorLogoType ==  'image/jpeg' || $sponsorLogoType ==  'image/jpg' || $sponsorLogoType ==  'image/png') {
-   
-    if($sponsorLogoSize <= 2097152){
-     
-        move_uploaded_file($sponsorLogoTmpDir, "../sponsorLogo/".$sponsorLogoName);
-
-        $hidden = $_REQUEST['hiddenId'];
-       
-       $sqlUpdate = "UPDATE sponsor_information SET sponsorName = :sponsorName, sponsorLogo = :sponsorLogoName , sponsoredEvent = :sponsoredEvent, 
-       sponsoredDepartment = :sponsoredDepartment where id = :hidden"; 
-
-
-         //Preparing Query
-       $resultUpdate = $conn->prepare($sqlUpdate);
-
-       //Binding Value
-       $resultUpdate->bindValue(":sponsorName", $sponsorName);
-       $resultUpdate->bindValue(":sponsorLogoName", $sponsorLogoName);
-       $resultUpdate->bindValue(":sponsoredEvent", $sponsoredEvent);
-       $resultUpdate->bindValue(":sponsoredDepartment", $sponsoredDepartment);
-       $resultUpdate->bindValue(":hidden", $hidden);
-       
-       //Executing Query
-       $resultUpdate->execute();
-
-            if($resultUpdate){
-                echo "<script>Swal.fire({
-                        icon: 'success',
-                        title: 'Success',
-                        text: 'Sponsor Data Update Successfully'
-                    })</script>";
-            }
-            else{
-                    echo "<script>Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'Failed Update Sponsor Data'
-                        })</script>";
-            }
-
-    }
-    else{
-      echo "<script>Swal.fire({
-            icon: 'error',
-            title: 'Image size exeeded',
-            text: 'Please Upload File less than 2MB'
-        })</script>";
-    }
-
-
- }
- else{
-      echo "<script>Swal.fire({
-            icon: 'error',
-            title: 'Image Format Not Supported',
-            text: 'Supported Types are jpg,jpeg,png'
-        })</script>";
- }
- 
-    unset($_REQUEST['edit']); // unsetting request of edit
-}
-
-
-
-
-// query for retriving data into tables
-$sql = "SELECT * FROM sponsor_information";
-
-$result = $conn->prepare($sql);
-$result->execute();
-
-
-
-
-// DELETE SPONSOR DATA
-if(isset($_REQUEST['delete'])){
-
-   $hiddenId = $_REQUEST['hiddenId'];
-   $hiddenImage = $_REQUEST['hiddenImage'];
-
-   $sqlDelete = "DELETE FROM sponsor_information WHERE id = :hiddenId";
-
-   //Preparing Query
-   $resultDelete = $conn->prepare($sqlDelete);
-
-   //Binding Value 
-   $resultDelete->bindValue(":hiddenId", $hiddenId);
-
-   //Executing Query
-   $resultDelete->execute();
-
-   if($resultDelete) {
-       echo "<script>Swal.fire({
-            icon: 'success',
-            title: 'Success',
-            text: 'Sponsor data deleted successfully'
-        })</script>";
-
-          $file= '../sponsorLogo/'.$hiddenImage;
-            unlink($file);
-
-   }
-   else{
-       echo "<script>Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'We are failed to delete sponsor data'
-        })</script>"; 
-   }
-}
-
-
-
-
-
-// EDIT & RETRIVE DATA IN TABLES
-if(isset($_REQUEST['edit'])) {
-
-$hiddenId = $_REQUEST['hiddenId'];
-
-$sqlEdit = "SELECT * FROM sponsor_information WHERE id = :hiddenId";
-
-//Preparing Query
-$resultEdit = $conn->prepare($sqlEdit);
-
-//Binding Value 
-$resultEdit->bindvalue(":hiddenId,", $hiddenId);
-
-//Executing Query
-$resultEdit->execute();
-
-$rowEdit = $resultEdit->fetch(PDO::FETCH_ASSOC);
-
- $sponsorName = $rowEdit["sponsorName"];
- $sponsoredDepartment = $rowEdit["sponsoredDepartment"];
- $sponsoredEvent = $rowEdit["sponsoredEvent"];
-}
 ?>
 
 
@@ -224,116 +74,133 @@ $rowEdit = $resultEdit->fetch(PDO::FETCH_ASSOC);
 
     <div id="layoutSidenav_content">
         <main class="container mt-3">
+
+            <h1 class="font-time mt-3 mb-3">Add/ Manage Sponsors</h1>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn justify-content-end btn-primary my-2" data-toggle="modal"
+                data-target="#addModal">
+                Click Here to Add Sponsor
+            </button>
+
+            <!-- Delete Response -->
+            <div id="deleteResponse"></div>
+            <!-- Update Response -->
+            <div id="updateResponse"></div>
+            <!-- Add Response -->
+            <div id="addResponse"></div>
+
             <div class="row">
 
-                <h1 class="font-time mt-3 mb-3">Manage Sponsors</h1>
+                <!-- Add Modal -->
+                <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addModalLabel">ADD SPONSOR</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+
+                                <form id="addSponsorForm" method="POST" enctype="multipart/form-data">
+
+                                    <div class="form-group col-md-12">
+                                        <label>Sponsor</label>
+                                        <input type="text" name="sponsorName" id="sponsorName" class="form-control">
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label>Sponsored Event</label>
+                                        <input type="text" name="sponsoredEvent" id="sponsoredEvent"
+                                            class="form-control">
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label>Sponsor Department</label>
+                                        <input type="text" name="sponsoredDepartment" id="sponsoredDepartment"
+                                            class="form-control">
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label>Sponsor Logo</label> <br />
+                                        <input type="file" name="sponsorLogo" id="sponsorLogo"
+                                            accept=".jpg, .jpeg, .png">
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="submit" name="addSponsor" id="addSponsor"
+                                            class="btn btn-primary">Add Sponsor </button>
+
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Update Modal -->
+                <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="updateModalLabel">UPDATE SPONSOR</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+
+                                <form enctype="multipart/form-data">
+
+                                    <div class="form-group col-md-12">
+                                        <label>Sponsor</label>
+                                        <input type="text" name="updateSponsorName" id="updateSponsorName"
+                                            class="form-control">
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label>Sponsored Event</label>
+                                        <input type="text" name="updateSponsoredEvent" id="updateSponsoredEvent"
+                                            class="form-control">
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label>Sponsor Department</label>
+                                        <input type="text" name="updateSponsoredDepartment"
+                                            id="updateSponsoredDepartment" class="form-control">
+                                    </div>
+
+                                    <input type="hidden" name="hiddenId" id="hiddenId">
+
+                                </form>
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" name="updateSponsor" id="updateSponsor" onclick="updateSponsor()"
+                                    data-dismiss="modal" class="btn btn-primary">Update Sponsor</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
 
                 <section class="col-md-12">
 
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Manage Sponsors</li>
-                    </ol>
-
-                    <!--Form for updating Data -->
-
-                    <div class="col-md-6 offset-md-3">
-                        <form action="" method="post" class="my-3" enctype="multipart/form-data">
-
-                            <div class="form-group col-md-12">
-                                <label>Sponsor</label>
-                                <input type="text" name="sponsorName"  class="form-control"
-                               value="<?php
-                                if(isset($_REQUEST['edit'])){
-                                echo $rowEdit['sponsorName'];
-                                } ?>">
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label>Sponsored Event</label>
-                                <input type="text" name="sponsoredEvent" class="form-control"
-                                 value="<?php
-                                if(isset($_REQUEST['edit'])){
-                                echo $rowEdit['sponsoredEvent'];
-                                } ?>">
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label>Sponsor Department</label>
-                                <input type="text" name="sponsoredDepartment" class="form-control"
-                                 value="<?php
-                                if(isset($_REQUEST['edit'])){
-                                echo $rowEdit['sponsoredDepartment'];
-                                } ?>">
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label>Sponsor Logo</label> <br />
-                                <input type="file" name="sponsorLogo">
-                            </div>
-
-                            <input type="submit" name="update" value="Update Sponsor"
-                                class="btn btn-primary btn-block rounded-pill">
-                        </form>
-
-                    </div>
-
-                    <?php
-
-                    if($result->rowCount() > 0 ) {
-
-                        ?>
-
-                    <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
-                        <thead>
-                            <th class='text-success text-center'>id</th>
-                            <th class='text-success text-center'>Sponsor Name</th>
-                            <th class='text-success text-center'>Sponsored Event</th>
-                            <th class='text-success text-center'>Sponsored Department</th>
-                            <th class='text-success text-center'>Action 1</th>
-                            <th class='text-success text-center'>Action 2</th>
-                        </thead>
-                        <tbody>
-
-                            <?php
-                                          while($row = $result->fetch(PDO::FETCH_ASSOC)){
-                                          ?>
-
-                            <tr>
-                                <td class='text-center'> <?php echo $row['id'] ?></td>
-                                <td class='text-center'> <?php echo $row['sponsorName'] ?></td>
-                                <td class='text-center'> <?php echo $row['sponsoredEvent'] ?></td>
-                                <td class='text-center'> <?php echo $row['sponsoredDepartment'] ?></td>
-
-                                <td class='text-center'>
-                                    <form action="">
-                                        <input type="hidden" name="hiddenId" value='<?php echo $row["id"] ?>'>
-                                        <input type="submit" name="edit" class="btn sm-btn btn-primary" value="Edit"
-                                            data-toggle="modal" data-target="#updateSponsor">
-                                    </form>
-                                </td>
-
-                                <td class='text-center'>
-                                    <form action="" >
-                                        <input type="hidden" name="hiddenId" value='<?php echo $row["id"] ?>'>
-                                        <input type="hidden" name="hiddenImage" value='<?php echo $row["sponsorLogo"] ?>'>
-                                        <input type="submit" name="delete" class="btn sm-btn btn-danger" value="Delete">
-                                    </form>
-                                </td>
-
-                            </tr>
-
-                            <?php
-                            }
-                            ?>
-
-
-
-                        </tbody>
-                    </table>
-
-                    <?php
-                    }
-                   ?>
+                    <!-- Reading Record of Sponsor-->
+                    <div class="mt-3" id="readRecordSponsor"></div>
 
                 </section>
         </main>
@@ -343,6 +210,9 @@ $rowEdit = $resultEdit->fetch(PDO::FETCH_ASSOC);
 
     <!-- Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php"; ?>
+
+    <!-- Custom JS Script -->
+    <script src="js/manageSponsor.js"></script>
 
     <?php
     // closing Database Connnection
