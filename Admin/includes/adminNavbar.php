@@ -169,6 +169,28 @@
                     </div>
 
 
+
+                       <!-- News/Notification-->
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#news"
+                        aria-expanded="false" aria-controls="emails">
+                        News/Notification
+                        <div class="sb-sidenav-collapse-arrow">
+                            <i class="fas fa-angle-down"></i>
+                        </div>
+                    </a>
+
+                    <div class="collapse" id="news">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="manageNews.php">
+                                <div class="sb-nav-link-icon">
+                               <i class="far fa-newspaper    "></i>
+                                </div>
+                                Add/Manage News/Notification
+                            </a>
+                        </nav>
+                    </div>
+
+
                     <!-- Events-->
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#events"
                         aria-expanded="false" aria-controls="events">
