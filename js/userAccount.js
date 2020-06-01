@@ -1,0 +1,94 @@
+$(document).ready(function () {
+  // ########### Change Password
+  $("#changePassword").click(function (e) {
+    e.preventDefault();
+    let changePassword = "changePassword";
+    let newPassword = $("#newPassword").val();
+    let conNewPassword = $("#conNewPassword").val();
+    let currentPassword = $("#currentPassword").val();
+
+    $.ajax({
+      url: "ajaxHandlerPHP/ajaxUserAccount.php",
+      type: "post",
+      data: {
+        changePassword: changePassword,
+        newPassword: newPassword,
+        conNewPassword: conNewPassword,
+        currentPassword: currentPassword,
+      },
+      beforeSend() {
+        $("#changeEmailResponse").html("Your Request is Processing");
+      },
+      success(data) {
+        $("#changePasswordResponse").html(data);
+        $("form").trigger("reset");
+      },
+      error() {
+        $("#changePasswordResponse").html("Something Went Wrong");
+      },
+    });
+  });
+
+  //############## Change Email Addresss
+  $("#changeEmail").click(function (e) {
+    e.preventDefault();
+    let changeEmail = "changeEmail";
+    let newEmail = $("#newEmail").val();
+    let password = $("#password").val();
+
+    $.ajax({
+      url: "ajaxHandlerPHP/ajaxUserAccount.php",
+      type: "post",
+      data: {
+        changeEmail: changeEmail,
+        newEmail: newEmail,
+        password: password,
+      },
+      beforeSend() {
+        $("#changeEmailResponse").html("Your Request is Processing");
+      },
+      success(data) {
+        $("#changeEmailResponse").html(data);
+        $("form").trigger("reset");
+      },
+      error() {
+        $("#changeEmailResponse").html("Something Went Wrong");
+      },
+    });
+  });
+
+  // ########### Disable Account
+  $("#disableAccount").click(function () {
+    let disableAccount = "disableAccount";
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Disable My Account!",
+    }).then((result) => {
+      if (result.value) {
+        $.ajax({
+          url: "ajaxHandlerPHP/ajaxUserAccount.php",
+          type: "post",
+          data: {
+            disableAccount: disableAccount,
+          },
+          beforeSend() {
+            $("#disableAccountResponse").html("Your Request Processing");
+          },
+          success(data) {
+            $("#disableAccountResponse").html(data);
+            $("form").trigger("reset");
+          },
+          error() {
+            $("#disableAccountResponse").html("Something Went Wrong");
+          },
+        });
+      }
+    });
+  });
+});

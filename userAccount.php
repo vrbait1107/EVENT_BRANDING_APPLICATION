@@ -34,218 +34,6 @@ header("location:login.php");
 
 <body>
 
-    <!-- PHP Code Start -->
-    <?php
-
-    // Change user Password
-
-if(isset($_POST['changePassword'])){
-    
-$email = $_SESSION['user'];
-
-    // triming white space arround string
-    $currentPassword = trim($_POST['currentPassword']);
-    $newPassword = trim($_POST['newPassword']);
-    $conNewPassword = trim($_POST['conNewPassword']);
-
-//Query
-$sql = "SELECT mainPassword FROM user_information WHERE email = :email";
-
-//Preparing Query
-$result= $conn->prepare($sql);
-
-//Binding Values
-$result->bindValue(":email", $email);
-
-//Executing Query
-$result->execute();
-
-//Fetching Value in associative array 
-$row = $result->fetch(PDO::FETCH_ASSOC);
-
-$dbPassword = $row['mainPassword'];
-
-    if(password_verify($currentPassword,$dbPassword)) {
-       
-        if( $newPassword===  $conNewPassword ) {
-
-        $newPassword = password_hash($newPassword, PASSWORD_BCRYPT);
-        $conNewPassword= password_hash($conNewPassword, PASSWORD_BCRYPT);
-
-        //Query
-        $sql1 = "UPDATE user_information SET mainPassword= :newPassword1, confirmPass = :newPassword2 WHERE email = :email";
-        
-        //Preparing Query
-        $result1= $conn->prepare($sql1);
-
-        //Binding Values
-        $result1->bindValue(":newPassword1", $newPassword);
-        $result1->bindValue(":newPassword2", $newPassword);
-        $result1->bindValue(":email", $email);
-
-        //Executing Query
-        $result1->execute();
-
-    
-            if($result1) {
-       
-            echo "<script>Swal.fire({
-            icon: 'success',
-            title: 'Successful',
-            text: 'Your Password is Successfully Changed'
-            })</script>";
-
-            }
-
-            else {
-        
-            echo "<script>Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'We are failed to change Password'
-                })</script>";
-
-            }
-
-        }
-
-        else {
-      
-       echo "<script>Swal.fire({
-            icon: 'warning',
-            title: 'Field does not match',
-            text: 'New Password and Confirm New Password field are not match'
-        })</script>";
-        }
-
-    }
-
-    else{
-       
-    echo "<script>Swal.fire({
-            icon: 'warning',
-            title: 'Field does not match',
-            text: 'Current Password is not Correct'
-        })</script>";
-    }
-
-}
-
-// Change Email Address
-
-if(isset($_POST['changeEmail'])){
-
-    // Removing white spaces
-    $newEmail= trim($_POST['newEmail']);
-    $Password = trim($_POST['password']);
-
-    $email = $_SESSION['user'];
-
-    //Query
-    $sql = "SELECT * FROM user_information WHERE email = :newEmail";
-     
-    //Preparing Query
-    $result= $conn->prepare($sql);
-
-    //Binding Value
-    $result->bindValue(":newEmail", $newEmail);
-
-    //Executing Query
-    $result->execute();
-
-    // Checking Wether Email Already Present in database or not
-    if($result->rowCount() > 0){
-       echo "<script>Swal.fire({
-            icon: 'warning',
-            title: 'Email Already Present in Database',
-            text: 'Please Enter New Email Address'
-        })</script>";
-    }
-
-    else {
-      $sql = "SELECT * FROM user_information WHERE email = :email";
-
-      //Preparing Query
-      $result= $conn->prepare($sql);
-
-      //Binding Value
-      $result->bindValue(":email", $email);
-
-      //Executing Query
-      $result->execute();
-
-      //Fetching Values in associative array
-      $row = $result->fetch(PDO::FETCH_ASSOC);
-
-      $dbPassword = $row['mainPassword'];
-
-      if(password_verify($Password,$dbPassword)){
-
-         //sql Query
-          $sql = "UPDATE user_information SET email = :newEmail WHERE email = :email";
-
-          //Preparing Query
-          $result= $conn->prepare($sql); 
-
-          //Binding Values
-          $result->bindValue(":newEmail", $newEmail);
-          $result->bindValue(":email", $email);
-
-          //Executing Query
-          $result->execute();
-
-           if($result){
-            echo "<script>Swal.fire({
-            icon: 'success',
-            title: 'Successful',
-            text: 'Your Email Successfully Changed'
-            })</script>";
-           }
-      }
-
-      else {
-          echo "<script>Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Check Your Password to Change your Email please enter valid password '
-            })</script>";
-      }
-
-    }
-}
-
-// Disable Account 
-
-if(isset($_POST['disable'])){
-
-    $email = $_SESSION['user'];
-
-    //sql Query
-    $sql = "UPDATE user_information SET status = :inactive WHERE email = :email";
-
-    //Preparing Query
-    $result= $conn->prepare($sql);
-
-    //Binding Value
-    $result->bindValue(":inactive", "inactive");
-    $result->bindValue(":email", $email);
-
-    //Executing Query
-    $result->execute();
-    
-    if($result){
-        echo "<script>Swal.fire({
-            icon: 'success',
-            title: 'sucess',
-            text: 'Your Account is successfully Disabled'
-            })</script>";
-    }
-}
-
-
-
-?>
-
     <!-- Navbar PHP -->
     <?php include_once "includes/navbar.php"; ?>
 
@@ -281,27 +69,34 @@ if(isset($_POST['disable'])){
                             </h3>
 
                             <hr>
+
                             <form action="" method="post">
+
+                                <!-- Change Password Response -->
+                                <div id="changePasswordResponse"></div>
 
                                 <div class="form-group">
                                     <label>Enter Current Password</label>
-                                    <input type="password" class="form-control" name="currentPassword">
+                                    <input type="password" class="form-control" name="currentPassword"
+                                        id="currentPassword">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Enter New Password</label>
-                                    <input type="password" class="form-control" name="newPassword">
+                                    <input type="password" class="form-control" name="newPassword" id="newPassword">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Confirm New Password</label>
-                                    <input type="password" class="form-control" name="conNewPassword">
+                                    <input type="password" class="form-control" name="conNewPassword"
+                                        id="conNewPassword">
                                 </div>
 
                                 <button type="submit" class="btn btn-danger mt-3 rounded-pill btn-block"
-                                    name="changePassword">
+                                    name="changePassword" id="changePassword">
                                     Change Password
                                 </button>
+
                             </form>
                         </section>
                     </div>
@@ -320,18 +115,22 @@ if(isset($_POST['disable'])){
                             <hr>
 
                             <form action="" method="post">
+
+                                <!-- Change Email Response -->
+                                <div id="changeEmailResponse"></div>
+
                                 <div class="form-group">
                                     <label>Enter a new email address</label>
-                                    <input type="email" name="newEmail" class="form-control">
+                                    <input type="email" name="newEmail" id="newEmail" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Confirm to change email address by entering Password</label>
-                                    <input type="password" name="password" class="form-control">
+                                    <input type="password" name="password" id="password" class="form-control">
                                 </div>
 
                                 <input type="submit" class="btn btn-danger btn-block rounded-pill" name="changeEmail"
-                                    value="Change my email Address">
+                                    id="changeEmail" value="Change my email Address">
 
                             </form>
                         </section>
@@ -347,13 +146,17 @@ if(isset($_POST['disable'])){
                         <p>Disabling your account will not remove your all data, It just temporary disable you account
                             disabling your account can be undone.</p>
 
-                        <p> There is way to restore your account go to activate account Page of GIT SHODH 2K20</p>
+                        <p> There is way to restore your account go to login Page of GIT SHODH 2K20 & Click on Activate
+                            my disable account link</p>
 
-                        <form action="" method="post">
+                        <form>
+
+                            <!-- Disable Account Response -->
+                            <div id="disableAccountResponse"></div>
 
                             <div class="form-group">
-                                <input type="submit" value="Disable Your Account" name="disable"
-                                    class="btn btn-danger btn-block rounded-pill mt-3">
+                                <input type="button" value="Disable Your Account" name="disableAccount"
+                                    id="disableAccount" class="btn btn-danger btn-block rounded-pill mt-3">
                             </div>
                         </form>
 
@@ -369,8 +172,10 @@ if(isset($_POST['disable'])){
     <?php include_once "includes/footer.php"; ?>
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php"; ?>
+    <!-- Custom JS Script -->
+    <script src="js/userAccount.js"></script>
 
-     <?php
+    <?php
     // closing Database Connnection
      $conn = null;
      ?>
