@@ -1,12 +1,12 @@
     <?php
 
-   // Creating Connection to Database
-    require_once "configPDO.php";
+// Creating Connection to Database
+require_once "configPDO.php";
 
-   // Staring Session
-    session_start();
+// Staring Session
+session_start();
 
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,7 @@
     <title>Reset Password</title>
 
     <!-- header Scripts and Links -->
-    <?php include_once "includes/headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php";?>
 
 </head>
 
@@ -25,94 +25,86 @@
 
     <?php
 
-if(isset($_GET['token'])) {
-$token = $_GET['token'];
-    
+if (isset($_GET['token'])) {
+    $token = $_GET['token'];
 
-    if(isset($_POST['resetPassword'])){
+    if (isset($_POST['resetPassword'])) {
 
-    
         // triming the white spaces
         $userType = trim($_POST['userType']);
         $newPassword = trim($_POST['newPassword']);
         $confirmNewPassword = trim($_POST['confirmNewPassword']);
 
-   
-        if($newPassword=== $confirmNewPassword) {
-        $newPassword = password_hash($newPassword,PASSWORD_BCRYPT);
-        $confirmNewPassword = password_hash($confirmNewPassword,PASSWORD_BCRYPT);
+        if ($newPassword === $confirmNewPassword) {
+            $newPassword = password_hash($newPassword, PASSWORD_BCRYPT);
+            $confirmNewPassword = password_hash($confirmNewPassword, PASSWORD_BCRYPT);
 
-            if($userType == "User"){
+            if ($userType == "User") {
 
-            // SQL Query
-            $sql = "UPDATE user_information SET mainPassword= :newPassword, confirmPass = :newPassword WHERE token = :token";
+                // SQL Query
+                $sql = "UPDATE user_information SET mainPassword= :newPassword, confirmPass = :newPassword WHERE token = :token";
 
-            // Preparing Query
-            $result = $conn->prepare($sql);
+                // Preparing Query
+                $result = $conn->prepare($sql);
 
-            // Binding Value
-            $result->bindValue(":newPassword", $newPassword);
-            $result->bindValue(":newPassword", $newPassword);
-            $result->bindValue(":token", $token);
+                // Binding Value
+                $result->bindValue(":newPassword", $newPassword);
+                $result->bindValue(":newPassword", $newPassword);
+                $result->bindValue(":token", $token);
 
-            //Executing Query
-            $result->execute();
+                //Executing Query
+                $result->execute();
 
-            if($result){
-            echo "<script>Swal.fire({
+                if ($result) {
+                    echo "<script>Swal.fire({
             icon: 'success',
             title: 'Successful',
             text: 'Your Password Reset Successful, Please Login to Continue'
             })</script>";
-            }
+                }
 
-            }// if($userType === "user")
+            } else {
 
-            else {
-   
-            // SQL Query
-            $sql = "UPDATE admin_information SET adminPassword= :newPassword WHERE token = :token";
+                // SQL Query
+                $sql = "UPDATE admin_information SET adminPassword= :newPassword WHERE token = :token";
 
-            //Preparing Query
-            $result = $conn->query($sql);
+                //Preparing Query
+                $result = $conn->query($sql);
 
-            //Binding Value
-            $result->bindValue(":newPassword", $newPassword);
-            $result->bindValue(":token", $token);
+                //Binding Value
+                $result->bindValue(":newPassword", $newPassword);
+                $result->bindValue(":token", $token);
 
-            //Executing Query
-            $result->execute();
+                //Executing Query
+                $result->execute();
 
-            if($result){
-             echo "<script>Swal.fire({
+                if ($result) {
+                    echo "<script>Swal.fire({
                 icon: 'success',
                 title: 'Successful',
                 text: 'Your Password Reset Successful, Please Login to Continue'
             })</script>";
 
-            }
+                }
 
             }
 
-        }// new == Confirm
-
-        else {
-        echo "<script>Swal.fire({
+        } else {
+            echo "<script>Swal.fire({
                 icon: 'warning',
                 title: '',
                 text: 'New Password and Confirm Password are not same'
             })</script>";
         }
 
+    }
 
-    }//if(isset($_POST['resetPassword']))
-
-} //if(isset($_GET['token']))
+}
 
 ?>
 
     <!-- Navbar PHP -->
-    <?php include_once "includes/navbar.php"; ?>
+    <?php include_once "includes/navbar.php";?>
 
 
     <main class="container">
@@ -157,14 +149,14 @@ $token = $_GET['token'];
     </main>
 
     <!-- Footer PHP -->
-    <?php include_once "includes/footer.php"; ?>
+    <?php include_once "includes/footer.php";?>
     <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php";?>
 
      <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

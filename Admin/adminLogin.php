@@ -8,23 +8,19 @@ session_start();
 // Checking That Admin Login or Not if Logged in Redirect
 // to Index.php page otherwise redirect to AdminLogin page
 
+if (isset($_SESSION['adminEmail']) && $_SESSION['adminType'] && $_SESSION['adminDepartment'] && $_SESSION['adminEvent']) {
+    if ($_SESSION['adminType'] == 'Administrator') {
+        header('Location:adminIndex.php');
 
+    } elseif ($_SESSION['adminType'] == 'Faculty Coordinator') {
+        header('Location:facultyCoordinatorIndex.php');
 
-if(isset($_SESSION['adminEmail']) &&  $_SESSION['adminType'] && $_SESSION['adminDepartment'] && $_SESSION['adminEvent']){
-    if($_SESSION['adminType']=='Administrator') {
-    header('Location:adminIndex.php');
-}
-elseif ($_SESSION['adminType']=='Faculty Coordinator') {
-    header('Location:facultyCoordinatorIndex.php');
-}
+    } elseif ($_SESSION['adminType'] == 'Student Coordinator') {
+        header('Location:studentCoordinatorIndex.php');
 
-elseif($_SESSION['adminType']=='Student Coordinator') {
-    header('Location:studentCoordinatorIndex.php');
-}
-
-else {
-    header('Location:adminLogin.php');
-}
+    } else {
+        header('Location:adminLogin.php');
+    }
 }
 ?>
 
@@ -38,7 +34,7 @@ else {
     <!--Local CSS File -->
     <link rel="stylesheet" href="../css/event-reg.css">
      <!-- header Scripts and Links -->
-    <?php include_once "../includes/headerScripts.php"; ?>
+    <?php include_once "../includes/headerScripts.php";?>
     <!-- Google Recaptcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -62,30 +58,29 @@ else {
 
     <?php
 
-if(isset($_POST['login'])){
+if (isset($_POST['login'])) {
 
-    if(isset($_POST['g-recaptcha-response'])) {
+    if (isset($_POST['g-recaptcha-response'])) {
 
-      $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
-      $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g-recaptcha-response']);
-      $response = json_decode($verifyResponse);
+        $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
+        $response = json_decode($verifyResponse);
 
-            if($response->success){
+        if ($response->success) {
 
             // calling function to perform security task
-            $adminUserName= trim($_POST['email']);
+            $adminUserName = trim($_POST['email']);
             $adminType = trim($_POST['adminType']);
-            $adminDepartment= trim($_POST['adminDepartment']);
-            $adminEvent= trim($_POST['adminEvent']);
+            $adminDepartment = trim($_POST['adminDepartment']);
+            $adminEvent = trim($_POST['adminEvent']);
             $adminPassword = trim($_POST['password']);
 
-            $sql = "SELECT adminPassword FROM admin_information WHERE admin_information.email  = :adminUserName 
+            $sql = "SELECT adminPassword FROM admin_information WHERE admin_information.email  = :adminUserName
             AND admin_information.adminType = :adminType AND admin_information.adminEvent = :adminEvent AND
             admin_information.adminDepartment = :adminDepartment";
 
-
             //Preparing Query
-            $result= $conn->prepare($sql);
+            $result = $conn->prepare($sql);
 
             //Binding Values
             $result->bindValue(":adminUserName", $adminUserName);
@@ -96,66 +91,62 @@ if(isset($_POST['login'])){
             //Executing Value
             $result->execute();
 
-                if($result){
+            if ($result) {
 
-                $row= $result->fetch(PDO::FETCH_ASSOC);
-                $password= $row['adminPassword'];
+                $row = $result->fetch(PDO::FETCH_ASSOC);
+                $password = $row['adminPassword'];
 
-                    if(password_verify($adminPassword,$password) && ($adminType==="Administrator") && 
-                    ($adminDepartment==="Not Applicable") && ($adminEvent==="Not Applicable")){
-                        $_SESSION['adminEmail'] = $adminUserName;
-                        $_SESSION['adminType'] = $adminType;
-                        $_SESSION['adminDepartment'] = $adminDepartment;
-                        $_SESSION['adminEvent'] = $adminEvent;
-                        header('Location:adminIndex.php');
-                    }
-                    elseif(password_verify($adminPassword,$password) && ($adminType==="Student Coordinator")){
-                        $_SESSION['adminEmail'] = $adminUserName;
-                        $_SESSION['adminType'] = $adminType;
-                        $_SESSION['adminDepartment'] = $adminDepartment;
-                        $_SESSION['adminEvent'] = $adminEvent;
-                        header('Location:studentCoordinatorIndex.php');
-                    }
+                if (password_verify($adminPassword, $password) && ($adminType === "Administrator") &&
+                    ($adminDepartment === "Not Applicable") && ($adminEvent === "Not Applicable")) {
+                    $_SESSION['adminEmail'] = $adminUserName;
+                    $_SESSION['adminType'] = $adminType;
+                    $_SESSION['adminDepartment'] = $adminDepartment;
+                    $_SESSION['adminEvent'] = $adminEvent;
+                    header('Location:adminIndex.php');
 
+                } elseif (password_verify($adminPassword, $password) && ($adminType === "Student Coordinator")) {
+                    $_SESSION['adminEmail'] = $adminUserName;
+                    $_SESSION['adminType'] = $adminType;
+                    $_SESSION['adminDepartment'] = $adminDepartment;
+                    $_SESSION['adminEvent'] = $adminEvent;
+                    header('Location:studentCoordinatorIndex.php');
 
-                    elseif(password_verify($adminPassword,$password) && ($adminType==="Faculty Coordinator")){
-                        $_SESSION['adminEmail'] = $adminUserName;
-                        $_SESSION['adminType'] = $adminType;
-                        $_SESSION['adminDepartment'] = $adminDepartment;
-                        $_SESSION['adminEvent'] = $adminEvent;
-                        header('Location:facultyCoordinatorIndex.php');
-                    }
+                } elseif (password_verify($adminPassword, $password) && ($adminType === "Faculty Coordinator")) {
+                    $_SESSION['adminEmail'] = $adminUserName;
+                    $_SESSION['adminType'] = $adminType;
+                    $_SESSION['adminDepartment'] = $adminDepartment;
+                    $_SESSION['adminEvent'] = $adminEvent;
+                    header('Location:facultyCoordinatorIndex.php');
 
-                    else {
-                        
-                        echo "<script>Swal.fire({
+                } else {
+                    echo "<script>Swal.fire({
                                 icon: 'error',
                                 title: 'Unable to Login',
                                 text: 'Please Check Your Credential or Check Your User Role'
                             })</script>";
-                    }
+                }
 
-                } // if result close bracket
+            } // if result close bracket
 
-                else{
-                    echo "<script>Swal.fire({
+            else {
+                echo "<script>Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
                             text: 'Something Went Wrong'
                         })</script>";
-                    }
+            }
 
-             }// if $response
+        } // if $response
 
-            else{
-                echo "<script>Swal.fire({
+        else {
+            echo "<script>Swal.fire({
                         icon: 'warning',
                         title: 'Google Recaptcha Error',
                         text: 'Please fill Google Recaptcha'
                     })</script>";
-            }
+        }
 
-    }// if(isset($_POST['g-recaptcha-response']))
+    } // if(isset($_POST['g-recaptcha-response']))
 
 } // isset Close bracket
 ?>
@@ -304,12 +295,12 @@ if(isset($_POST['login'])){
     </main>
 
     <!--Footer Scripts-->
-    <?php include_once "../includes/footerScripts.php" ?>
+    <?php include_once "../includes/footerScripts.php"?>
 
     <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

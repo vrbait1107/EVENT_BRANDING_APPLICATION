@@ -1,19 +1,18 @@
-<?php 
+<?php
 // Creating Database Connection
 require_once "../configPDO.php";
 // Starting Session
 session_start();
 
-
 // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
-    if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
+if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
-    if($_SESSION['adminType'] !== "Student Coordinator"){
-           header("location:adminLogin.php");
-   }
-   
+    if ($_SESSION['adminType'] !== "Student Coordinator") {
+        header("location:adminLogin.php");
     }
-      ?>
+
+}
+?>
 
 
 <!doctype html>
@@ -26,7 +25,7 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Admin Header Scripts -->
-  <?php include_once "includes/adminHeaderScripts.php"; ?>
+  <?php include_once "includes/adminHeaderScripts.php";?>
 
   <title>GIT SHODH 2K20</title>
 
@@ -37,12 +36,12 @@ session_start();
   <!-- Admin Navbar -->
   <?php
 
-    $adminFileName = "studentCoordinatorIndex.php";
-    $adminFileData = "studentCoordinatorData.php";
-    $adminManage = "#";
-   
-    include_once "includes/adminNavbar.php";
-    ?>
+$adminFileName = "studentCoordinatorIndex.php";
+$adminFileData = "studentCoordinatorData.php";
+$adminManage = "#";
+
+include_once "includes/adminNavbar.php";
+?>
 
 
   <main id="layoutSidenav_content">
@@ -142,15 +141,15 @@ session_start();
   </main>
 
   <!-- Admin Footer Scripts -->
-  <?php include_once "includes/adminFooterScripts.php"; ?>
+  <?php include_once "includes/adminFooterScripts.php";?>
 
   <!--Custom Js-->
   <script src="js/studentCoordinatorData.js"></script>
 
   <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

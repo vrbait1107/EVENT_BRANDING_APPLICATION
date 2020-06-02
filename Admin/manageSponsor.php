@@ -1,38 +1,36 @@
-<?php 
+<?php
 // Craeting Database Connection
 require_once '../configPDO.php';
 // Starting Session
 session_start();
 
-$admin =$_SESSION['adminEmail'];
+$admin = $_SESSION['adminEmail'];
 
-if(!isset($_SESSION['adminEmail'])){
-  header('location:adminLogin.php');
+if (!isset($_SESSION['adminEmail'])) {
+    header('location:adminLogin.php');
 }
 
-if($_SESSION['adminType'] === "Administrator") {
+if ($_SESSION['adminType'] === "Administrator") {
     $adminFileName = "adminIndex.php";
     $adminFileData = "adminIndexData.php";
     $adminManage = "adminManage.php";
 
-}
-elseif($_SESSION['adminType'] === "Student Coordinator"){
+} elseif ($_SESSION['adminType'] === "Student Coordinator") {
     $adminFileName = "studentCoordinatorIndex.php";
     $adminFileData = "studentCoordinatorData.php";
     $adminManage = "#";
-} 
-elseif($_SESSION['adminType'] === "Faculty Coordinator"){
+
+} elseif ($_SESSION['adminType'] === "Faculty Coordinator") {
     $adminFileName = "facultyCoordinatorIndex.php";
     $adminFileData = "facultyCoordinatorData.php";
     $adminManage = "facultyCoordinatorManage.php";
 
-}
-elseif($_SESSION['adminType'] === "Synergy Administrator"){
+} elseif ($_SESSION['adminType'] === "Synergy Administrator") {
     $adminFileName = "synergyIndex.php";
     $adminFileData = "synergyData.php";
     $adminManage = "#";
-}
-else{
+
+} else {
     $adminFileName = "#";
     $adminFileData = "#";
     $adminManage = "#";
@@ -53,7 +51,7 @@ else{
     <title>Manage Sponsors</title>
 
     <!-- Admin Header Scripts -->
-    <?php include_once "includes/adminHeaderScripts.php"; ?>
+    <?php include_once "includes/adminHeaderScripts.php";?>
 
 </head>
 
@@ -62,14 +60,12 @@ else{
 
     <?php
 
-    
-
 ?>
 
 
 
     <!-- Admin Navbar -->
-    <?php include_once "includes/adminNavbar.php"; ?>
+    <?php include_once "includes/adminNavbar.php";?>
 
 
     <div id="layoutSidenav_content">
@@ -209,15 +205,15 @@ else{
     </div>
 
     <!-- Admin Footer Scripts -->
-    <?php include_once "includes/adminFooterScripts.php"; ?>
+    <?php include_once "includes/adminFooterScripts.php";?>
 
     <!-- Custom JS Script -->
     <script src="js/manageSponsor.js"></script>
 
     <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

@@ -1,37 +1,35 @@
-<?php 
+<?php
 // Craeting Database Connection
 require_once '../configPDO.php';
 // Starting Session
 session_start();
 
-$admin =$_SESSION['adminEmail'];
-if(!isset($_SESSION['adminEmail'])){
+$admin = $_SESSION['adminEmail'];
+if (!isset($_SESSION['adminEmail'])) {
     header('location:adminLogin.php');
 }
 
-if($_SESSION['adminType'] === "Administrator") {
+if ($_SESSION['adminType'] === "Administrator") {
     $adminFileName = "adminIndex.php";
     $adminFileData = "adminIndexData.php";
     $adminManage = "adminManage.php";
 
-}
-elseif($_SESSION['adminType'] === "Student Coordinator"){
+} elseif ($_SESSION['adminType'] === "Student Coordinator") {
     $adminFileName = "studentCoordinatorIndex.php";
     $adminFileData = "studentCoordinatorData.php";
     $adminManage = "#";
-} 
-elseif($_SESSION['adminType'] === "Faculty Coordinator"){
+
+} elseif ($_SESSION['adminType'] === "Faculty Coordinator") {
     $adminFileName = "facultyCoordinatorIndex.php";
     $adminFileData = "facultyCoordinatorData.php";
     $adminManage = "facultyCoordinatorManage.php";
 
-}
-elseif($_SESSION['adminType'] === "Synergy Administrator"){
+} elseif ($_SESSION['adminType'] === "Synergy Administrator") {
     $adminFileName = "synergyIndex.php";
     $adminFileData = "synergyData.php";
     $adminManage = "#";
-}
-else{
+
+} else {
     $adminFileName = "#";
     $adminFileData = "#";
     $adminManage = "#";
@@ -52,7 +50,7 @@ else{
     <title>Manage Gallery Images </title>
 
     <!-- Admin Header Scripts -->
-    <?php include_once "includes/adminHeaderScripts.php"; ?>
+    <?php include_once "includes/adminHeaderScripts.php";?>
 
 </head>
 
@@ -70,34 +68,33 @@ $result->execute();
 
 // Deleting Images
 
-if(isset($_REQUEST['delete'])){
-   $hiddenId = $_REQUEST['hiddenId'];
-   $hiddenImage = $_REQUEST['hiddenImage'];
+if (isset($_REQUEST['delete'])) {
+    $hiddenId = $_REQUEST['hiddenId'];
+    $hiddenImage = $_REQUEST['hiddenImage'];
 
-   $sqlDelete = "DELETE FROM gallery_information WHERE id = :hiddenId";
+    $sqlDelete = "DELETE FROM gallery_information WHERE id = :hiddenId";
 
-   //Preparing Query
-   $resultDelete = $conn->prepare($sqlDelete);
+    //Preparing Query
+    $resultDelete = $conn->prepare($sqlDelete);
 
-   //Binding Value
-   $resultDelete->bindValue(":hiddenId", $hiddenId);
+    //Binding Value
+    $resultDelete->bindValue(":hiddenId", $hiddenId);
 
-   //Executing Query
-   $resultDelete->execute();
+    //Executing Query
+    $resultDelete->execute();
 
-    if($resultDelete) {
+    if ($resultDelete) {
         echo "<script>Swal.fire({
                 icon: 'success',
                 title: 'Successful',
                 text: 'Image is Successfully Deleted'
             })</script>";
 
-            $file= '../gallery/'.$hiddenImage;
-            unlink($file);
+        $file = '../gallery/' . $hiddenImage;
+        unlink($file);
 
-    }
-    else{
-            echo "<script>Swal.fire({
+    } else {
+        echo "<script>Swal.fire({
                 icon: 'error',
                 title: 'Error',
                 text: 'We are failed to delete image'
@@ -112,7 +109,7 @@ if(isset($_REQUEST['delete'])){
 
 
     <!-- Admin Navbar -->
-    <?php include_once "includes/adminNavbar.php"; ?>
+    <?php include_once "includes/adminNavbar.php";?>
 
 
     <div id="layoutSidenav_content">
@@ -128,11 +125,10 @@ if(isset($_REQUEST['delete'])){
 
                 <?php
 
-             if($result->rowCount()> 0) {
-              
+if ($result->rowCount() > 0) {
 
-                ?>
-                
+    ?>
+
                 <table class="table table-bordered text-center col-md-8 offset-md-2" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -146,38 +142,37 @@ if(isset($_REQUEST['delete'])){
                     <tbody>
 
                         <?php
-                        while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                        ?>
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        ?>
 
                         <tr>
-                            <td><?php echo $row['id'];  ?></td>
-                            <td><?php echo $row['galleryImage'];  ?></td>
+                            <td><?php echo $row['id']; ?></td>
+                            <td><?php echo $row['galleryImage']; ?></td>
                             <td class="text-center"><img src="../gallery/<?php echo $row['galleryImage']; ?>"
                                     alt="galleryImage" class="img-fluid" style="height:200px"></td>
                             <td>
                                 <form action="">
-                                    <input type="hidden" name="hiddenId" value="<?php echo $row['id'];?>">
-                                    <input type="hidden" name="hiddenImage" value="<?php echo $row['galleryImage'];?>" >
+                                    <input type="hidden" name="hiddenId" value="<?php echo $row['id']; ?>">
+                                    <input type="hidden" name="hiddenImage" value="<?php echo $row['galleryImage']; ?>" >
                                     <input type="submit" value="Delete" name="delete" class="btn btn-danger">
                             </td>
                             </form>
                         </tr>
 
                         <?php
-                        }
-                        ?>
+}
+    ?>
 
                     </tbody>
                 </table>
 
 
                 <?php
-                }
-                else {
-                    echo "No Image in gallery";
-                }
+} else {
+    echo "No Image in gallery";
+}
 
-                ?>
+?>
 
             </div>
         </main>
@@ -187,12 +182,12 @@ if(isset($_REQUEST['delete'])){
     </div>
 
     <!-- Admin Footer Scripts -->
-    <?php include_once "includes/adminFooterScripts.php"; ?>
+    <?php include_once "includes/adminFooterScripts.php";?>
 
     <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

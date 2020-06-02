@@ -2,8 +2,8 @@
 // Starting Session
 session_start();
 
-if(!isset($_SESSION['user'])) {
- header("location:login.php");
+if (!isset($_SESSION['user'])) {
+    header("location:login.php");
 }
 ?>
 
@@ -20,14 +20,14 @@ if(!isset($_SESSION['user'])) {
     <!-- Animate css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
      <!-- header Scripts and Links -->
-    <?php include_once "includes/headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php";?>
 
 </head>
 
 <body>
 
     <!--Navbar PHP-->
-    <?php include_once "includes/navbar.php"; ?>
+    <?php include_once "includes/navbar.php";?>
 
     <main class="container">
         <div class="row mb-5">
@@ -76,9 +76,9 @@ if(!isset($_SESSION['user'])) {
     </main>
 
      <!-- Footer PHP -->
-    <?php include_once "includes/footer.php"; ?>
+    <?php include_once "includes/footer.php";?>
     <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php";?>
 
 </body>
 

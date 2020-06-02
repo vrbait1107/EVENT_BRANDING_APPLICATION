@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 //Starting Database Conection
 require_once "../configPDO.php";
@@ -6,15 +6,14 @@ require_once "../configPDO.php";
 // Starting Session
 session_start();
 
-
 // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
-    if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
+if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
-    if($_SESSION['adminType'] !== "Faculty Coordinator"){
-           header("location:adminLogin.php");
-   }
-   
+    if ($_SESSION['adminType'] !== "Faculty Coordinator") {
+        header("location:adminLogin.php");
     }
+
+}
 
 ?>
 
@@ -32,7 +31,7 @@ session_start();
     <title>Dashboard-Faculty Coordinator</title>
 
     <!-- Admin Header Scripts -->
-    <?php include_once "includes/adminHeaderScripts.php"; ?>
+    <?php include_once "includes/adminHeaderScripts.php";?>
 
 </head>
 
@@ -41,11 +40,11 @@ session_start();
     <!-- Admin Navbar -->
     <?php
 
-    $adminFileName = "facultyCoordinatorIndex.php";
-    $adminFileData = "facultyCoordinatorData.php";
-    $adminManage =  "facultyCoordinatorManage.php";
-    include_once "includes/adminNavbar.php";
-    ?>
+$adminFileName = "facultyCoordinatorIndex.php";
+$adminFileData = "facultyCoordinatorData.php";
+$adminManage = "facultyCoordinatorManage.php";
+include_once "includes/adminNavbar.php";
+?>
 
 
 
@@ -305,15 +304,15 @@ session_start();
     </main>
 
     <!-- Admin Footer Scripts -->
-    <?php include_once "includes/adminFooterScripts.php"; ?>
+    <?php include_once "includes/adminFooterScripts.php";?>
 
     <!-- Custom js -->
     <script src="js/manageFacultyCoordinator.js"></script>
 
     <?php
-    // closing Database Connnection
-     $conn = null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

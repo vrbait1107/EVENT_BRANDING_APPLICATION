@@ -3,8 +3,8 @@
 //Starting Session
 session_start();
 
-if(!isset($_SESSION['user'])) {
- header("location:login.php");
+if (!isset($_SESSION['user'])) {
+    header("location:login.php");
 }
 ?>
 
@@ -21,7 +21,7 @@ if(!isset($_SESSION['user'])) {
     <!--  Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <!-- header Scripts and Links -->
-    <?php include_once "includes/headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php";?>
 
 </head>
 
@@ -29,7 +29,7 @@ if(!isset($_SESSION['user'])) {
 
     <!--NAVBAR-->
 
-    <?php include_once "includes/navbar.php"; ?>
+    <?php include_once "includes/navbar.php";?>
 
 
     <main class="container text-uppercase">
@@ -124,19 +124,15 @@ if(!isset($_SESSION['user'])) {
         </div>
     </main>
 
-
-
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script>
         new WOW().init();
     </script>
 
     <!-- Footer PHP -->
-    <?php include_once "includes/footer.php"; ?>
+    <?php include_once "includes/footer.php";?>
     <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php";?>
 
 
 </body>

@@ -1,13 +1,13 @@
 <?php
 
 // Creating Connection to Database
-    require_once "configPDO.php";
+require_once "configPDO.php";
 
 // Staring Session
-    session_start();
+session_start();
 
-if(isset($_SESSION['user'])) {
-  header('Location:index.php');
+if (isset($_SESSION['user'])) {
+    header('Location:index.php');
 }
 
 ?>
@@ -22,7 +22,7 @@ if(isset($_SESSION['user'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- header Scripts and Links -->
-  <?php include_once "includes/headerScripts.php"; ?>
+  <?php include_once "includes/headerScripts.php";?>
   <!--Local css-->
   <link rel="stylesheet" href="css/event-reg.css">
   <!-- Google Recaptcha -->
@@ -48,63 +48,57 @@ if(isset($_SESSION['user'])) {
   <!-- PHP CODE START -->
   <?php
 
+if (isset($_POST["login"])) {
 
-    if(isset($_POST["login"])) {
+    if (isset($_POST['g-recaptcha-response'])) {
 
-      if(isset($_POST['g-recaptcha-response'])) {
+        $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
+        $response = json_decode($verifyResponse);
 
-      $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
-      $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g-recaptcha-response']);
-      $response = json_decode($verifyResponse);
+        if ($response->success) {
 
-      if($response->success){
+            $userName = $_POST["userName"];
+            $password = $_POST["password"];
 
-       
-        $userName = $_POST["userName"];
-        $password = $_POST["password"];
+            $sql = "select mainPassword from user_information where email= :userName and status= :active";
 
-        $sql = "select mainPassword from user_information where email= :userName and status= :active";
+            // Preparing Query
+            $result = $conn->prepare($sql);
 
-        // Preparing Query
-        $result = $conn->prepare($sql);
+            //Binding Value
+            $result->bindValue(":userName", $userName);
+            $result->bindValue(":active", "active");
 
-        //Binding Value 
-        $result->bindValue(":userName", $userName);
-        $result->bindValue(":active", "active");
+            // Executing Value
+            $result->execute();
 
-        // Executing Value
-        $result->execute();
-       
-        $row = $result->fetch(PDO::FETCH_ASSOC);
+            $row = $result->fetch(PDO::FETCH_ASSOC);
 
-        $dbpassword = $row['mainPassword'];
+            $dbpassword = $row['mainPassword'];
 
-        if(password_verify($password,$dbpassword)){
-            $_SESSION['user'] = $userName;
-            header ("Location:index.php");
-          
-        }
+            if (password_verify($password, $dbpassword)) {
+                $_SESSION['user'] = $userName;
+                header("Location:index.php");
 
-        else {
-          echo "<script>Swal.fire({
+            } else {
+                echo "<script>Swal.fire({
               icon: 'error',
               title: 'Unable to Login',
               text: 'Please Check Your Credentials'
             })</script>";
-        }
+            }
 
-      }// if $response
-
-      else{
-        echo "<script>Swal.fire({
+        } else {
+            echo "<script>Swal.fire({
             icon: 'warning',
             title: 'Google Recaptcha Error',
             text: 'Please fill Google Recaptcha'
           })</script>";
-      }
+        }
 
-      }// if(isset($_POST['g-recaptcha-response']))
- }
+    }
+}
 ?>
 
 
@@ -199,7 +193,7 @@ if(isset($_SESSION['user'])) {
 
 
   <!-- Footer Script -->
-  <?php include_once "includes/footerScripts.php"; ?>
+  <?php include_once "includes/footerScripts.php";?>
 
   <!-- Hiding and Showing Password -->
   <script type="text/javascript">
@@ -223,9 +217,9 @@ if(isset($_SESSION['user'])) {
   </script>
 
   <?php
-    // closing Database Connnection
-     $conn = null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

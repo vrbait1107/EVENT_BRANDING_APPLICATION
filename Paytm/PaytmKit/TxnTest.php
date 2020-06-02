@@ -2,15 +2,15 @@
 session_start();
 require_once '../../configPDO.php';
 
-$eventName =$_POST['eventName'];
+$eventName = $_POST['eventName'];
 $eventPrice = $_POST['eventPrice'];
-$userName= $_SESSION['user'];
+$userName = $_SESSION['user'];
 ?>
 
 <?php
-	header("Pragma: no-cache");
-	header("Cache-Control: no-cache");
-	header("Expires: 0");
+header("Pragma: no-cache");
+header("Cache-Control: no-cache");
+header("Expires: 0");
 ?>
 
 
@@ -22,7 +22,7 @@ $userName= $_SESSION['user'];
 	<meta name="GENERATOR" content="Evrsoft First Page">
 
 	<!-- header Scripts and Links -->
-	<?php include_once "../../includes/headerScripts.php"; ?>
+	<?php include_once "../../includes/headerScripts.php";?>
 
 	<style>
 		h3 {
@@ -41,12 +41,12 @@ $userName= $_SESSION['user'];
 
 <body>
 
-	<?php 
+	<?php
 
 $sql = "SELECT * FROM event_information WHERE event = :eventName AND email = :userName";
 
 //Preparing Query
-$result= $conn->prepare($sql);
+$result = $conn->prepare($sql);
 
 //Binding Values
 $result->bindValue(":eventName", $eventName);
@@ -55,10 +55,9 @@ $result->bindValue(":userName", $userName);
 //Executing Query
 $result->execute();
 
+if ($result->rowCount() > 0) {
 
-if($result->rowCount() >0){
-
-	echo "<script>Swal.fire({
+    echo "<script>Swal.fire({
 			icon: 'warning',
 			title: 'Already Registered',
 			text: 'You are Already Registerd for $eventName Event'
@@ -89,16 +88,16 @@ if($result->rowCount() >0){
 							<tr>
 								<td scope="row">1</td>
 								<td><label>Event Name</label></td>
-								<td><?php echo $eventName?>
+								<td><?php echo $eventName ?>
 									<input type="hidden" id="eventName" tabindex="1" maxlength="50" size="20"
-										name="eventName" autocomplete="off" value="<?php echo $eventName?>">
+										name="eventName" autocomplete="off" value="<?php echo $eventName ?>">
 								</td>
 							</tr>
 
 
 							<tr>
 								<input type="hidden" id="ORDER_ID" tabindex="2" maxlength="20" size="20" name="ORDER_ID"
-									autocomplete="off" value="<?php echo  "ORDS" . rand(10000,99999999)?>">
+									autocomplete="off" value="<?php echo "ORDS" . rand(10000, 99999999) ?>">
 							</tr>
 
 
@@ -121,9 +120,9 @@ if($result->rowCount() >0){
 							<tr>
 								<td scope="row">2</td>
 								<td><label>Event Entry Fee</label></td>
-								<td>&#x20b9;<?php echo $eventPrice?>
+								<td>&#x20b9;<?php echo $eventPrice ?>
 									<input type="hidden" title="TXN_AMOUNT" tabindex="6" type="text" name="TXN_AMOUNT"
-										value=<?php echo $eventPrice?>>
+										value=<?php echo $eventPrice ?>>
 								</td>
 							</tr>
 

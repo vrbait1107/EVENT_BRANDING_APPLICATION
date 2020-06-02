@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php 
-// Creating Connection 
+<?php
+// Creating Connection
 require_once 'configPDO.php';
 // starting session
 session_start();
@@ -15,7 +15,7 @@ session_start();
     <title>GIT Gallery</title>
 
     <!-- header Scripts and Links -->
-    <?php include_once "includes/headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php";?>
     <!-- Magnific Popup core CSS file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
         integrity="sha256-PZLhE6wwMbg4AB3d35ZdBF9HD/dI/y4RazA3iRDurss=" crossorigin="anonymous" />
@@ -26,7 +26,7 @@ session_start();
 <body>
 
     <!--Navbar.php-->
-    <?php include_once "includes/navbar.php" ?>
+    <?php include_once "includes/navbar.php"?>
 
     <main class="container">
         <h1 class="text-center font-time text-primary text-uppercase my-5">GIT, Lavel Gallery</h1>
@@ -36,17 +36,17 @@ session_start();
 
             <?php
 
-            $sql = "SELECT * FROM gallery_information";
+$sql = "SELECT * FROM gallery_information";
 
-            //Preparing Query
-            $result = $conn->prepare($sql);
+//Preparing Query
+$result = $conn->prepare($sql);
 
-            //Executing Value
-            $result->execute();
+//Executing Value
+$result->execute();
 
-    while($row = $result->fetch(PDO::FETCH_ASSOC)){
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
-        ?>
+    ?>
             <section class="col-md-4 mb-5">
                 <a href="gallery/<?php echo $row['galleryImage']; ?>">
                     <img src="gallery/<?php echo $row['galleryImage']; ?>" class="img-fluid w-100" alt="images"
@@ -54,15 +54,15 @@ session_start();
                 </a>
             </section>
             <?php
-    }
-    ?>
+}
+?>
 
         </div>
     </main>
 
 
     <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php";?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"
         integrity="sha256-P93G0oq6PBPWTP1IR8Mz/0jHHUpaWL0aBJTKauisG7Q=" crossorigin="anonymous"></script>
@@ -80,10 +80,10 @@ session_start();
         });
     </script>
 
-    <?php 
-    // Closing Database Connection 
-    $conn = null;
-    ?>
+    <?php
+// Closing Database Connection
+$conn = null;
+?>
 
 </body>
 

@@ -1,12 +1,12 @@
 <?php
 
 // Creating Connection to Database
-    require_once "configPDO.php";
+require_once "configPDO.php";
 
 // Staring Session
-    session_start();
+session_start();
 
-if(!isset($_SESSION['user'])){
+if (!isset($_SESSION['user'])) {
     header('location:login.php');
 }
 
@@ -23,7 +23,7 @@ if(!isset($_SESSION['user'])){
     <title>Event Feedback Form</title>
 
     <!-- header Scripts and Links -->
-    <?php include_once "includes/headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php";?>
     <!-- Google Recaptcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -39,94 +39,86 @@ if(!isset($_SESSION['user'])){
 <body>
 
 
-    <?php 
+    <?php
 
-    if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
-         if(isset($_POST['g-recaptcha-response'])) {
+    if (isset($_POST['g-recaptcha-response'])) {
 
-      $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
-      $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g-recaptcha-response']);
-      $response = json_decode($verifyResponse);
+        $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
+        $response = json_decode($verifyResponse);
 
-      if($response->success){
+        if ($response->success) {
 
+            $email = trim($_SESSION['user']);
+            $attendBefore = trim($_POST['attendBefore']);
+            $likelyAttend = trim($_POST['likelyAttend']);
+            $likelyRecommendFriend = trim($_POST['likelyRecommendFriend']);
+            $likeMost = trim($_POST['likeMost']);
+            $likeLeast = trim($_POST['likeLeast']);
+            $overall = trim($_POST['overall']);
+            $location = trim($_POST['location']);
+            $events = trim($_POST['events']);
+            $coordinators = trim($_POST['coordinators']);
+            $eventsPrice = trim($_POST['eventsPrice']);
+            $suggestion = trim($_POST['suggestion']);
 
-     $email = trim($_SESSION['user']);
-     $attendBefore =  trim($_POST['attendBefore']);
-     $likelyAttend = trim($_POST['likelyAttend']);
-     $likelyRecommendFriend = trim($_POST['likelyRecommendFriend']);
-     $likeMost = trim($_POST['likeMost']);
-     $likeLeast = trim($_POST['likeLeast']);
-     $overall = trim($_POST['overall']);
-     $location = trim($_POST['location']);
-     $events = trim($_POST['events']);
-     $coordinators = trim($_POST['coordinators']);
-     $eventsPrice = trim($_POST['eventsPrice']);
-     $suggestion = trim($_POST['suggestion']);
-
-
-    $sql = "INSERT INTO feedback_information (email, attendBefore, likelyAttend, likelyRecommendFriend,
+            $sql = "INSERT INTO feedback_information (email, attendBefore, likelyAttend, likelyRecommendFriend,
      likeMost, likeLeast, overall, location, events, coordinators, eventsPrice, suggestion) VALUES
-      (:email, :attendBefore, :likelyAttend, :likelyRecommendFriend, :likeMost, :likeLeast, 
+      (:email, :attendBefore, :likelyAttend, :likelyRecommendFriend, :likeMost, :likeLeast,
       :overall, :location, :events, :coordinators, :eventsPrice, :suggestion )";
 
-      //Preparing Query
-      $result= $conn->prepare($sql);
+            //Preparing Query
+            $result = $conn->prepare($sql);
 
-      //Binding Values
-      $result->bindValue(":email",  $email);
-      $result->bindValue(":attendBefore", $attendBefore);
-      $result->bindValue(":likelyAttend", $likelyAttend);
-      $result->bindValue(":likelyRecommendFriend", $likelyRecommendFriend);
-      $result->bindValue(":likeMost", $likeMost);
-      $result->bindValue(":likeLeast", $likeLeast);
-      $result->bindValue(":overall", $overall);
-      $result->bindValue(":location", $location);
-      $result->bindValue(":events", $events);
-      $result->bindValue(":coordinators", $coordinators);
-      $result->bindValue(":eventsPrice", $eventsPrice);
-      $result->bindValue(":suggestion", $suggestion);
+            //Binding Values
+            $result->bindValue(":email", $email);
+            $result->bindValue(":attendBefore", $attendBefore);
+            $result->bindValue(":likelyAttend", $likelyAttend);
+            $result->bindValue(":likelyRecommendFriend", $likelyRecommendFriend);
+            $result->bindValue(":likeMost", $likeMost);
+            $result->bindValue(":likeLeast", $likeLeast);
+            $result->bindValue(":overall", $overall);
+            $result->bindValue(":location", $location);
+            $result->bindValue(":events", $events);
+            $result->bindValue(":coordinators", $coordinators);
+            $result->bindValue(":eventsPrice", $eventsPrice);
+            $result->bindValue(":suggestion", $suggestion);
 
-      //Executing Query
-      $result->execute();
+            //Executing Query
+            $result->execute();
 
-        if($result){
-        echo "<script>Swal.fire({
+            if ($result) {
+                echo "<script>Swal.fire({
                 icon: 'success',
                 title: 'Successful',
                 text: 'Your Feedback is Successfully Submitted'
             })</script>";
-         }
 
-         else {
-             echo "<script>Swal.fire({
+            } else {
+                echo "<script>Swal.fire({
                     icon: 'error',
                     title: 'Error',
                     text: 'We are failed to Submit your feedback'
                 })</script>";
-         }
+            }
 
-       
-      }// if $response
-
-      else{
-        echo "<script>Swal.fire({
+        } else {
+            echo "<script>Swal.fire({
                 icon: 'warning',
                 title: 'Google Recaptcha Error',
                 text: 'Please fill Google Recaptcha'
             })</script>";
-      }
-
-      }// if(isset($_POST['g-recaptcha-response']))
+        }
 
     }
+}
 
-
-    ?>
+?>
 
     <!--Navbar.php-->
-    <?php include_once "includes/navbar.php" ?>
+    <?php include_once "includes/navbar.php"?>
 
 
     <main class="container">
@@ -277,17 +269,17 @@ if(!isset($_SESSION['user'])){
 
 
     <!--Footer.PHP-->
-    <?php include_once 'includes/footer.php'; ?>
+    <?php include_once 'includes/footer.php';?>
 
     <!--Footer.PHP-->
     <script src="js/form-validation.js"></script>
     <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php";?>
 
     <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

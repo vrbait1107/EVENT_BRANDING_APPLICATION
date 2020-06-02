@@ -4,7 +4,7 @@ session_start();
 // Starting DB Connection
 require_once '../configPDO.php';
 
-if(isset($_SESSION['Admin'])) {
+if (isset($_SESSION['Admin'])) {
     header('location:synergyIndex.php');
 }
 ?>
@@ -20,7 +20,7 @@ if(isset($_SESSION['Admin'])) {
     <!--Event-Reg.css-->
     <link rel="stylesheet" href="../css/event-reg.css">
     <!-- header Scripts and Links -->
-    <?php include_once "../includes/headerScripts.php"; ?>
+    <?php include_once "../includes/headerScripts.php";?>
     <!-- Google Recaptcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -38,44 +38,42 @@ if(isset($_SESSION['Admin'])) {
     <!-- PHP CODE START -->
 
     <?php
-        
-        if(isset($_POST['login'])) {
 
-         // Removing White Spaces
-        $email = trim($_POST['email']);
-        $password = trim($_POST['password']);
+if (isset($_POST['login'])) {
 
-        $sql = "SELECT adminPassword FROM admin_information WHERE email='$email'";
+    // Removing White Spaces
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
-        //Preparing Query
-        $result = $conn->prepare($sql);
+    $sql = "SELECT adminPassword FROM admin_information WHERE email='$email'";
 
-        //Binding Values
-        $result->bindValue(":email", $email);
+    //Preparing Query
+    $result = $conn->prepare($sql);
 
-        //Executing Query
-        $result->execute();
+    //Binding Values
+    $result->bindValue(":email", $email);
 
-        //Fetching from DB in Associative array
-        $row = $result->fetch(PDO::FETCH_ASSOC);
+    //Executing Query
+    $result->execute();
 
-        $dbPassword = $row['adminPassword'];
+    //Fetching from DB in Associative array
+    $row = $result->fetch(PDO::FETCH_ASSOC);
 
-        if(password_verify($password,$dbPassword) && ($email='gitshodhadmin@gmail.com')){
-            $_SESSION['Admin'] = $email;
-            header ("Location:synergyIndex.php");
-        }
+    $dbPassword = $row['adminPassword'];
 
-        else {
+    if (password_verify($password, $dbPassword) && ($email = 'gitshodhadmin@gmail.com')) {
+        $_SESSION['Admin'] = $email;
+        header("Location:synergyIndex.php");
+    } else {
         echo "<script>Swal.fire({
                 icon: 'error',
                 title: 'Unable to Login',
                 text: 'Please Check Your Credentials!'
             })</script>";
-        }
+    }
 
-        }
-    ?>
+}
+?>
 
     <!-- PHP CODE END -->
 
@@ -160,7 +158,7 @@ if(isset($_SESSION['Admin'])) {
     </main>
 
     <!-- Footer Script -->
-    <?php include_once "../includes/footerScripts.php"; ?>
+    <?php include_once "../includes/footerScripts.php";?>
 
 
     <!-- Hiding and Showing Password -->
@@ -186,9 +184,9 @@ if(isset($_SESSION['Admin'])) {
 
 
     <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

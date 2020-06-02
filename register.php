@@ -1,10 +1,10 @@
 <?php
 
-    // Creating Connection to Database
-    require_once "configPDO.php";
+// Creating Connection to Database
+require_once "configPDO.php";
 
-   // Staring Session
-    session_start();
+// Staring Session
+session_start();
 
 ?>
 
@@ -17,7 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- header Scripts and Links -->
-  <?php include_once "includes/headerScripts.php"; ?>
+  <?php include_once "includes/headerScripts.php";?>
   <!-- Event-Reg css -->
   <link rel="stylesheet" href="css/event-reg.css">
   <!-- Animate css -->
@@ -41,118 +41,112 @@
 
   <?php
 
-$login= "login.php";
+$login = "login.php";
 
 if (isset($_POST['submit'])) {
 
-    if(isset($_POST['g-recaptcha-response'])) {
+    if (isset($_POST['g-recaptcha-response'])) {
 
-    $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
-    $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g-recaptcha-response']);
-    $response = json_decode($verifyResponse);
+        $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
+        $response = json_decode($verifyResponse);
 
-        if($response->success){
+        if ($response->success) {
 
-        // Removing White Spaces
-        $userName =   trim($_POST['userName']);
-        $firstName =  trim($_POST['firstName']);
-        $lastName =  trim($_POST['lastName']);
-        $mobileNumber =  trim($_POST['mobileNumber']);
-        $collegeName =  trim($_POST['collegeName']);
-        $department = trim($_POST['department']);
-        $year =  trim($_POST['year']);
-        $password =  trim($_POST['password']);
-        $confirm_password =  trim($_POST['confirm_password']);
-        $token = bin2hex(random_bytes(15));
+            // Removing White Spaces
+            $userName = trim($_POST['userName']);
+            $firstName = trim($_POST['firstName']);
+            $lastName = trim($_POST['lastName']);
+            $mobileNumber = trim($_POST['mobileNumber']);
+            $collegeName = trim($_POST['collegeName']);
+            $department = trim($_POST['department']);
+            $year = trim($_POST['year']);
+            $password = trim($_POST['password']);
+            $confirm_password = trim($_POST['confirm_password']);
+            $token = bin2hex(random_bytes(15));
 
-        $hashPass = password_hash($password, PASSWORD_BCRYPT);
-        $hashConPass = password_hash($confirm_password, PASSWORD_BCRYPT);
+            $hashPass = password_hash($password, PASSWORD_BCRYPT);
+            $hashConPass = password_hash($confirm_password, PASSWORD_BCRYPT);
 
-        // Query
-        $sql1 ="SELECT * FROM user_information WHERE user_information.email = :userName";
+            // Query
+            $sql1 = "SELECT * FROM user_information WHERE user_information.email = :userName";
 
-        //Preparing Query
-        $result1 = $conn->prepare($sql1);
+            //Preparing Query
+            $result1 = $conn->prepare($sql1);
 
-        //Binding Value
-        $result1->bindValue(":userName", $userName);
+            //Binding Value
+            $result1->bindValue(":userName", $userName);
 
-        //Executing Value
-        $result1->execute();
+            //Executing Value
+            $result1->execute();
 
-      
-              if($result1->rowCount() > 0) {
-
-              echo "<script>Swal.fire({
+            if ($result1->rowCount() > 0) {
+                echo "<script>Swal.fire({
                   icon: 'warning',
                   title: 'Account is Already Exist',
                   text: 'You are already registerd with GIT Shodh 2K20,Login to Continue',
                   footer: '<a href = $login >Go to the Login Page</a>'
                 })</script>";
 
-                }
+            } else {
 
-              else {
-              
-              //Query
-              $sql = "INSERT INTO user_information(email, firstName, lastName, 
-              mobileNumber, collegeName, departmentName, academicYear, mainPassword, confirmPass, token) 
-              VALUES (:userName, :firstName, :lastName, :mobileNumber, :collegeName, :department, :year, 
+                //Query
+                $sql = "INSERT INTO user_information(email, firstName, lastName,
+              mobileNumber, collegeName, departmentName, academicYear, mainPassword, confirmPass, token)
+              VALUES (:userName, :firstName, :lastName, :mobileNumber, :collegeName, :department, :year,
               :hashPass, :hashConPass, :token)";
 
-              // Preparing Query
-              $result = $conn->prepare($sql);
+                // Preparing Query
+                $result = $conn->prepare($sql);
 
-              //Binding Values
-              $result->bindValue(":userName", $userName);
-              $result->bindValue(":firstName", $firstName);
-              $result->bindValue(":lastName", $lastName);
-              $result->bindValue(":mobileNumber", $mobileNumber);
-              $result->bindValue(":collegeName", $collegeName);
-              $result->bindValue(":department", $department);
-              $result->bindValue(":year", $year);
-              $result->bindValue(":hashPass", $hashPass);
-              $result->bindValue(":hashConPass", $hashConPass);
-              $result->bindValue(":token", $token);
+                //Binding Values
+                $result->bindValue(":userName", $userName);
+                $result->bindValue(":firstName", $firstName);
+                $result->bindValue(":lastName", $lastName);
+                $result->bindValue(":mobileNumber", $mobileNumber);
+                $result->bindValue(":collegeName", $collegeName);
+                $result->bindValue(":department", $department);
+                $result->bindValue(":year", $year);
+                $result->bindValue(":hashPass", $hashPass);
+                $result->bindValue(":hashConPass", $hashConPass);
+                $result->bindValue(":token", $token);
 
-              // Executing Query
-              $result->execute();
+                // Executing Query
+                $result->execute();
 
-                    if($result){ 
-                  
-                      echo "<script>Swal.fire({
+                if ($result) {
+
+                    echo "<script>Swal.fire({
                           icon: 'success',
                           title: 'Activate Your Account',
                           text: 'Check Your Email for activate your account'
                         })</script>";
 
-                      // Mail Code
+                    // Mail Code
 
-                      date_default_timezone_set('Etc/UTC');
+                    date_default_timezone_set('Etc/UTC');
 
-                      require 'PHPMailer/PHPMailerAutoload.php';
+                    require 'PHPMailer/PHPMailerAutoload.php';
 
-                      $mail = new PHPMailer;
-                      $mail->isSMTP();
-                      $mail->SMTPDebug = 0;
-                      $mail->Debugoutput = 'html';
-                      $mail->Host = 'smtp.gmail.com';
-                      $mail->Port = 587;
-                      $mail->SMTPSecure = 'tls';
-                      $mail->SMTPAuth = true;
-                      $mail->Username = "vishalbait02@gmail.com";
-                      $mail->Password = "9921172153";
-                      $mail->setFrom('vishalbait02@gmail.com', 'GIT SHODH 2K20');
-                      $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
-                      $mail->addAddress($userName, $userName);
-                      $mail->Subject = "Activate Your GIT SHODH 2K20  Account";
+                    $mail = new PHPMailer;
+                    $mail->isSMTP();
+                    $mail->SMTPDebug = 0;
+                    $mail->Debugoutput = 'html';
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->Port = 587;
+                    $mail->SMTPSecure = 'tls';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = "vishalbait02@gmail.com";
+                    $mail->Password = "9921172153";
+                    $mail->setFrom('vishalbait02@gmail.com', 'GIT SHODH 2K20');
+                    $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
+                    $mail->addAddress($userName, $userName);
+                    $mail->Subject = "Activate Your GIT SHODH 2K20  Account";
 
-                      //Read an HTML message body from an external file, convert referenced images to embedded,
-                      //convert HTML into a basic plain-text alternative body
+                    //Read an HTML message body from an external file, convert referenced images to embedded,
+                    //convert HTML into a basic plain-text alternative body
 
-                    
-
-    $mail->msgHTML("<!doctype html>
+                    $mail->msgHTML("<!doctype html>
     <html>
     <body>
     <p>Thank you $userName for creating an account with GIT SHODH 2K20</p>
@@ -165,8 +159,7 @@ if (isset($_POST['submit'])) {
   </body>
   </html>");
 
-
-  $mail->AltBody = "Thank you $userName for creating an account with GIT SHODH 2K20 <br/>
+                    $mail->AltBody = "Thank you $userName for creating an account with GIT SHODH 2K20 <br/>
   There's just one more step before you can login and participate in a event: you need to activate your GIT SHODH
   account. To activate your account, click the following link. If that doesn't work, copy and paste the link into
   your browser's address bar. <br/>
@@ -174,38 +167,35 @@ if (isset($_POST['submit'])) {
   If you didn't create an account, you don't need to do anything; you won't receive any more email from us. If you
   need assistance, please do not reply to this email message. Check the help section of the GIT SHODH website.";
 
-                          if (!$mail->send()) {
-                              echo "Mailer Error: " . $mail->ErrorInfo;
-                          } else {
-                              echo "<h3 class='text-center text-primary'>Check Your Email.</h3>";
-                          }
+                    if (!$mail->send()) {
+                        echo "Mailer Error: " . $mail->ErrorInfo;
+                    } else {
+                        echo "<h3 class='text-center text-primary'>Check Your Email.</h3>";
+                    }
 
-  // Mail Code End
-                    } 
-
-                    else {
+                    // Mail Code End
+                } else {
                     echo '<script>Swal.fire({
                         icon: "error",
                         title: "Eror",
                         text: "Something Went Wrong",
                         footer: "<a href>Go to the Login Page</a>"
                       })</script>';
-                    }
+                }
 
             }
 
+        } // if $response
 
-        }// if $response
-
-        else{
-        echo "<script>Swal.fire({
+        else {
+            echo "<script>Swal.fire({
             icon: 'warning',
             title: 'Google Recaptcha Error',
             text: 'Please fill Google Recaptcha'
           })</script>";
         }
 
-    }// if(isset($_POST['g-recaptcha-response']))
+    } // if(isset($_POST['g-recaptcha-response']))
 
 } // isset bracket
 
@@ -428,14 +418,14 @@ if (isset($_POST['submit'])) {
   </div>
 
   <!-- Footer Script -->
-  <?php include_once "includes/footerScripts.php"; ?>
+  <?php include_once "includes/footerScripts.php";?>
   <!-- Form Validation -->
   <script src="js/form-validation.js"></script>
 
   <?php
-    // closing Database Connnection
-     $conn = null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

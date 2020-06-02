@@ -1,37 +1,35 @@
-<?php 
+<?php
 // Craeting Database Connection
 require_once '../configPDO.php';
 // Starting Session
 session_start();
 
-$admin =$_SESSION['adminEmail'];
-if(!isset($_SESSION['adminEmail'])){
+$admin = $_SESSION['adminEmail'];
+if (!isset($_SESSION['adminEmail'])) {
     header('location:adminLogin.php');
 }
 
-if($_SESSION['adminType'] === "Administrator") {
+if ($_SESSION['adminType'] === "Administrator") {
     $adminFileName = "adminIndex.php";
     $adminFileData = "adminIndexData.php";
     $adminManage = "adminManage.php";
 
-}
-elseif($_SESSION['adminType'] === "Student Coordinator"){
+} elseif ($_SESSION['adminType'] === "Student Coordinator") {
     $adminFileName = "studentCoordinatorIndex.php";
     $adminFileData = "studentCoordinatorData.php";
     $adminManage = "#";
-} 
-elseif($_SESSION['adminType'] === "Faculty Coordinator"){
+
+} elseif ($_SESSION['adminType'] === "Faculty Coordinator") {
     $adminFileName = "facultyCoordinatorIndex.php";
     $adminFileData = "facultyCoordinatorData.php";
     $adminManage = "facultyCoordinatorManage.php";
 
-}
-elseif($_SESSION['adminType'] === "Synergy Administrator"){
+} elseif ($_SESSION['adminType'] === "Synergy Administrator") {
     $adminFileName = "synergyIndex.php";
     $adminFileData = "synergyData.php";
     $adminManage = "#";
-}
-else{
+
+} else {
     $adminFileName = "#";
     $adminFileData = "#";
     $adminManage = "#";
@@ -52,7 +50,7 @@ else{
     <title>Add Gallery Images </title>
 
     <!-- Admin Header Scripts -->
-    <?php include_once "includes/adminHeaderScripts.php"; ?>
+    <?php include_once "includes/adminHeaderScripts.php";?>
 
 </head>
 
@@ -60,68 +58,62 @@ else{
 
     <?php
 
-    if(isset($_POST["addGalleryImage"])) {
-     $galleryImage = $_FILES["galleryImage"];
+if (isset($_POST["addGalleryImage"])) {
+    $galleryImage = $_FILES["galleryImage"];
 
-     $galleryImageName = $_FILES["galleryImage"]['name'];
-     $galleryImageSize = $_FILES["galleryImage"]['size'];
-     $galleryImageType = $_FILES["galleryImage"]['type'];
-     $galleryImageTmpDir = $_FILES["galleryImage"]["tmp_name"];
+    $galleryImageName = $_FILES["galleryImage"]['name'];
+    $galleryImageSize = $_FILES["galleryImage"]['size'];
+    $galleryImageType = $_FILES["galleryImage"]['type'];
+    $galleryImageTmpDir = $_FILES["galleryImage"]["tmp_name"];
 
-     if($galleryImageType ==  'image/jpeg' || $galleryImageType ==  'image/jpg' || $galleryImageType ==  'image/png') {
-   
-    if($galleryImageSize <= 2097152){
+    if ($galleryImageType == 'image/jpeg' || $galleryImageType == 'image/jpg' || $galleryImageType == 'image/png') {
 
-    
-        move_uploaded_file($galleryImageTmpDir, "../gallery/".$galleryImageName);
+        if ($galleryImageSize <= 2097152) {
 
-        $sql = "INSERT INTO gallery_information (galleryImage) VALUES (:galleryImageName)";
+            move_uploaded_file($galleryImageTmpDir, "../gallery/" . $galleryImageName);
 
-        //Preparing Query
-        $result = $conn->prepare($sql);
+            $sql = "INSERT INTO gallery_information (galleryImage) VALUES (:galleryImageName)";
 
-        //Binding Values 
-        $result->bindValue(":galleryImageName", $galleryImageName);
+            //Preparing Query
+            $result = $conn->prepare($sql);
 
-        // Executing Result
-        $result->execute();
+            //Binding Values
+            $result->bindValue(":galleryImageName", $galleryImageName);
 
+            // Executing Result
+            $result->execute();
 
-        if($result){
-            echo "<script>Swal.fire({
+            if ($result) {
+                echo "<script>Swal.fire({
             icon: 'success',
             title: 'Successful',
             text: 'Image Successfully added to gallery'
         })</script>";
-        }
+            }
 
-     }
-
-     else{
-      echo "<script>Swal.fire({
+        } else {
+            echo "<script>Swal.fire({
             icon: 'error',
             title: 'Image size exeeded',
             text: 'Please Upload File less than 2MB'
         })</script>";
-    }
+        }
 
-
- }
- else{
-      echo "<script>Swal.fire({
+    } else {
+        echo "<script>Swal.fire({
             icon: 'error',
             title: 'Image Format Not Supported',
             text: 'Supported Types are jpg,jpeg,png'
         })</script>";
- }
-
     }
 
-    ?>
+}
+
+?>
 
 
     <!-- Admin Navbar -->
-    <?php include_once "includes/adminNavbar.php"; ?>
+    <?php include_once "includes/adminNavbar.php";?>
 
 
     <div id="layoutSidenav_content">
@@ -160,12 +152,12 @@ else{
     </div>
 
     <!-- Admin Footer Scripts -->
-    <?php include_once "includes/adminFooterScripts.php"; ?>
+    <?php include_once "includes/adminFooterScripts.php";?>
 
     <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

@@ -4,8 +4,8 @@ session_start();
 // Creating Database Connection
 require_once "../configPDO.php";
 
-if(!isset($_SESSION['adminEmail'])) {
-  header("location:adminLogin.php");
+if (!isset($_SESSION['adminEmail'])) {
+    header("location:adminLogin.php");
 }
 
 ?>
@@ -20,7 +20,7 @@ if(!isset($_SESSION['adminEmail'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Admin Header Scripts -->
-  <?php include_once "includes/adminHeaderScripts.php"; ?>
+  <?php include_once "includes/adminHeaderScripts.php";?>
 
   <!-- Google Recaptcha -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -39,130 +39,126 @@ if(!isset($_SESSION['adminEmail'])) {
   <!-- PHP CODE START -->
   <?php
 
-    if(isset($_POST["sendEmails"])) {
+if (isset($_POST["sendEmails"])) {
 
-      if(isset($_POST['g-recaptcha-response'])) {
+    if (isset($_POST['g-recaptcha-response'])) {
 
-      $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
-      $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g-recaptcha-response']);
-      $response = json_decode($verifyResponse);
+        $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
+        $response = json_decode($verifyResponse);
 
-      if($response->success){
+        if ($response->success) {
 
-       $newletterSubject = trim($_POST['newletterSubject']);
-       $newletterMessage = trim($_POST['newletterMessage']);
+            $newletterSubject = trim($_POST['newletterSubject']);
+            $newletterMessage = trim($_POST['newletterMessage']);
 
-         $sql = "SELECT DISTINCT email FROM newsletter_information";
+            $sql = "SELECT DISTINCT email FROM newsletter_information";
 
-         //Preparing Query
-         $result = $conn->prepare($sql);
+            //Preparing Query
+            $result = $conn->prepare($sql);
 
-         //Executing Query
-         $result->execute();
+            //Executing Query
+            $result->execute();
 
-         while($row = $result->fetch(PDO::FETCH_ASSOC)){
-           $newsletterEmails = $row['email'];
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $newsletterEmails = $row['email'];
 
-           sendMail($newletterEmails, $newletterSubject, $newletterMessage);
-         }
+                sendMail($newletterEmails, $newletterSubject, $newletterMessage);
+            }
 
+        } // if $response
 
-          }// if $response
-
-      else{
-        echo "<script>Swal.fire({
+        else {
+            echo "<script>Swal.fire({
             icon: 'warning',
             title: 'Google Recaptcha Error',
             text: 'Please fill Google Recaptcha'
           })</script>";
-      }
+        }
 
-      }// if(isset($_POST['g-recaptcha-response']))
+    } // if(isset($_POST['g-recaptcha-response']))
 
- }
+}
 
-      
- // Mail code
- 
-  function sendMail($newsletterEmails, $newsletterSubject, $newsletterMessage) {
-  date_default_timezone_set('Etc/UTC');
-  require_once '../PHPMailer/PHPMailerAutoload.php';
-  $mail = new PHPMailer;
-  $mail->isSMTP();
-  $mail->SMTPDebug = 0;
-  $mail->Debugoutput = 'html';
-  $mail->Host = 'smtp.gmail.com';
-  $mail->Port = 587;
-  $mail->SMTPSecure = 'tls';
-  $mail->SMTPAuth = true;
-  $mail->Username = "vishalbait02@gmail.com";
-  $mail->Password = "9921172153";
-  $mail->setFrom("vishalbait02@gmail.com", "GIT SHODH 2K20");
-  $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
-  $mail->addAddress($newsletterEmails, "GIT SHODH 2K20 Users");
-  $mail->Subject = $newsletterSubject;
+// Mail code
 
-  // multiple attachment
-  for ($i=0; $i < count($_FILES['file']['tmp_name']) ; $i++) { 
-  $mail->addAttachment($_FILES['file']['tmp_name'][$i], $_FILES['file']['name'][$i]);
-  }
+function sendMail($newsletterEmails, $newsletterSubject, $newsletterMessage)
+{
+    date_default_timezone_set('Etc/UTC');
+    require_once '../PHPMailer/PHPMailerAutoload.php';
+    $mail = new PHPMailer;
+    $mail->isSMTP();
+    $mail->SMTPDebug = 0;
+    $mail->Debugoutput = 'html';
+    $mail->Host = 'smtp.gmail.com';
+    $mail->Port = 587;
+    $mail->SMTPSecure = 'tls';
+    $mail->SMTPAuth = true;
+    $mail->Username = "vishalbait02@gmail.com";
+    $mail->Password = "9921172153";
+    $mail->setFrom("vishalbait02@gmail.com", "GIT SHODH 2K20");
+    $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
+    $mail->addAddress($newsletterEmails, "GIT SHODH 2K20 Users");
+    $mail->Subject = $newsletterSubject;
 
-  //Read an HTML message body from an external file, convert referenced images to embedded,
-  //convert HTML into a basic plain-text alternative body
-  $mail->msgHTML("<!doctype html><html><body>$newsletterMessage</body></html>");
+    // multiple attachment
+    for ($i = 0; $i < count($_FILES['file']['tmp_name']); $i++) {
+        $mail->addAttachment($_FILES['file']['tmp_name'][$i], $_FILES['file']['name'][$i]);
+    }
 
-  $mail->AltBody = $newsletterMessage;
-  
-  if (!$mail->send()) {
-  echo "Mailer Error: " . $mail->ErrorInfo;
-  } else {
-  echo "<script>Swal.fire({
+    //Read an HTML message body from an external file, convert referenced images to embedded,
+    //convert HTML into a basic plain-text alternative body
+    $mail->msgHTML("<!doctype html><html><body>$newsletterMessage</body></html>");
+
+    $mail->AltBody = $newsletterMessage;
+
+    if (!$mail->send()) {
+        echo "Mailer Error: " . $mail->ErrorInfo;
+    } else {
+        echo "<script>Swal.fire({
       icon: 'success',
       title: 'Success',
       text: 'Email Sent'
     })</script>";
-  }
-  
-  } 
+    }
 
-     
+}
+
 ?>
 
 
   <!--Navbar-->
   <?php
 
-  if($_SESSION['adminType'] === "Administrator") {
-  $adminFileName = "adminIndex.php";
-  $adminFileData = "adminIndexData.php";
-  $adminManage = "adminManage.php";
-  
-  }
-  elseif($_SESSION['adminType'] === "Student Coordinator"){
-  $adminFileName = "studentCoordinatorIndex.php";
-  $adminFileData = "studentCoordinatorData.php";
-  $adminManage = "#";
-  }
-  elseif($_SESSION['adminType'] === "Faculty Coordinator"){
-  $adminFileName = "facultyCoordinatorIndex.php";
-  $adminFileData = "facultyCoordinatorData.php";
-  $adminManage = "facultyCoordinatorManage.php";
-  
-  }
-  elseif($_SESSION['adminType'] === "Synergy Administrator"){
-  $adminFileName = "synergyIndex.php";
-  $adminFileData = "synergyData.php";
-  $adminManage = "#";
-  }
-  else{
-  $adminFileName = "#";
-  $adminFileData = "#";
-  $adminManage = "#";
-  }
+if ($_SESSION['adminType'] === "Administrator") {
+    $adminFileName = "adminIndex.php";
+    $adminFileData = "adminIndexData.php";
+    $adminManage = "adminManage.php";
 
-   include_once "includes/adminNavbar.php"; 
-   
-   ?>
+} elseif ($_SESSION['adminType'] === "Student Coordinator") {
+    $adminFileName = "studentCoordinatorIndex.php";
+    $adminFileData = "studentCoordinatorData.php";
+    $adminManage = "#";
+
+} elseif ($_SESSION['adminType'] === "Faculty Coordinator") {
+    $adminFileName = "facultyCoordinatorIndex.php";
+    $adminFileData = "facultyCoordinatorData.php";
+    $adminManage = "facultyCoordinatorManage.php";
+
+} elseif ($_SESSION['adminType'] === "Synergy Administrator") {
+    $adminFileName = "synergyIndex.php";
+    $adminFileData = "synergyData.php";
+    $adminManage = "#";
+
+} else {
+    $adminFileName = "#";
+    $adminFileData = "#";
+    $adminManage = "#";
+}
+
+include_once "includes/adminNavbar.php";
+
+?>
 
   <div id="layoutSidenav_content">
 
@@ -174,7 +170,7 @@ if(!isset($_SESSION['adminEmail'])) {
 
           <form action="" method="post" name="sendMailForm"  enctype = "multipart/form-data">
 
-          
+
             <div class="form-group">
               <label>Subject</label>
               <input type="text" class="form-control" name="newsletterSubject" required>
@@ -213,13 +209,13 @@ if(!isset($_SESSION['adminEmail'])) {
   </div>
 
   <!-- Admin Footer Scripts -->
-  <?php include_once "includes/adminFooterScripts.php"; ?>
+  <?php include_once "includes/adminFooterScripts.php";?>
 
      <?php
-    // closing Database Connnection
-     $conn = null; 
-     ?>
-     
+// closing Database Connnection
+$conn = null;
+?>
+
 </body>
 
 </html>

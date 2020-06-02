@@ -1,9 +1,9 @@
 <?php
 // Creating Connection to Database
-    require_once "configPDO.php";
+require_once "configPDO.php";
 
 // Staring Session
-    session_start();
+session_start();
 ?>
 
 
@@ -19,7 +19,7 @@
     <!-- Animate css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <!-- header Scripts and Links -->
-    <?php include_once "includes/headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php";?>
 
 </head>
 
@@ -27,7 +27,7 @@
 
 
     <!-- Navbar-->
-    <?php include_once 'includes/navbar.php'; ?>
+    <?php include_once 'includes/navbar.php';?>
 
     <main class="container">
         <div class="row">
@@ -40,11 +40,11 @@
 
                     <?php
 
-$email= $_SESSION['user'];
+$email = $_SESSION['user'];
 
 //Query for showing certificate details
-$sql = "select * FROM user_information INNER JOIN event_information ON 
-user_information.email= event_information.email 
+$sql = "select * FROM user_information INNER JOIN event_information ON
+user_information.email= event_information.email
 WHERE user_information.email = :email and attendStatus = :present";
 
 //Preapring Query
@@ -57,31 +57,31 @@ $result->bindValue(":present", "present");
 //Executing Query
 $result->execute();
 
-if($result->rowCount() > 0) {
+if ($result->rowCount() > 0) {
 
-echo "<table class='table'>";
-echo "<thead>";
-echo "<th class='text-center'>Event</th>";
-echo "<th class='text-center'>Action</th>";
-echo "</thead>";
+    echo "<table class='table'>";
+    echo "<thead>";
+    echo "<th class='text-center'>Event</th>";
+    echo "<th class='text-center'>Action</th>";
+    echo "</thead>";
 
-echo "<tbody>";
+    echo "<tbody>";
 
-while($row = $result->fetch(PDO::FETCH_ASSOC)){
-    echo "<tr>";
-    echo "<td class='text-center'>". $row['event']. "</td>";
-    $event = $row['event'];
-    echo "<td>
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        echo "<tr>";
+        echo "<td class='text-center'>" . $row['event'] . "</td>";
+        $event = $row['event'];
+        echo "<td>
     <form action ='certGeneration.php' method ='post'>
     <input type='hidden' name='event1' value= '$event' />
     <input type='submit' class='btn btn btn-primary rounded-pill' name='submit' value='Generate Your Certificate'>
     </form>
     </td>";
-    echo "</tr>";       
-}
+        echo "</tr>";
+    }
 
-echo "</tbody>";
-echo "</table>";
+    echo "</tbody>";
+    echo "</table>";
 
 }
 ?>
@@ -92,14 +92,14 @@ echo "</table>";
     </main>
 
     <!-- Footer PHP -->
-    <?php include_once "includes/footer.php"; ?>
+    <?php include_once "includes/footer.php";?>
     <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php";?>
 
      <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

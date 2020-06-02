@@ -1,10 +1,10 @@
 <?php
 
 // Creating Connection to Database
-    require_once "configPDO.php";
+require_once "configPDO.php";
 
 // Staring Session
-    session_start();
+session_start();
 
 ?>
 
@@ -17,65 +17,65 @@
     <title>Forgot Password Page</title>
 
     <!-- header Scripts and Links -->
-    <?php include_once "includes/headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php";?>
 
 </head>
 
 <body>
 
     <!-- Navbar PHP -->
-    <?php include_once "includes/navbar.php"; ?>
+    <?php include_once "includes/navbar.php";?>
 
 
     <!-- PHP Code Start -->
 
-    <?php 
-    
+    <?php
+
 // Generating Random token to Send Over Email.
-$token =   bin2hex(random_bytes(15));
+$token = bin2hex(random_bytes(15));
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
-$email = trim($_POST['email']);
-$userType = trim($_POST['userType']);
+    $email = trim($_POST['email']);
+    $userType = trim($_POST['userType']);
 
     // User Part
-    if($userType=== "user"){
+    if ($userType === "user") {
 
-    //Query
-    $sql = "SELECT email FROM user_information WHERE email = :email";
+        //Query
+        $sql = "SELECT email FROM user_information WHERE email = :email";
 
-    //Preparing Query
-    $result= $conn->prepare($sql);
+        //Preparing Query
+        $result = $conn->prepare($sql);
 
-    // Binding Value 
-    $result->bindValue(":email", $email);
+        // Binding Value
+        $result->bindValue(":email", $email);
 
-    //Executing Query
-    $result->execute();
+        //Executing Query
+        $result->execute();
 
-    if($result->rowCount() === 1) {
+        if ($result->rowCount() === 1) {
 
-    // Mail PHP code 
-    date_default_timezone_set('Etc/UTC');
-    require 'PHPMailer/PHPMailerAutoload.php';
+            // Mail PHP code
+            date_default_timezone_set('Etc/UTC');
+            require 'PHPMailer/PHPMailerAutoload.php';
 
-    $mail = new PHPMailer;
-    $mail->isSMTP();
-    $mail->SMTPDebug = 0;
-    $mail->Debugoutput = 'html';
-    $mail->Host = 'smtp.gmail.com';
-    $mail->Port = 587;
-    $mail->SMTPSecure = 'tls';
-    $mail->SMTPAuth = true;
-    $mail->Username = "vishalbait02@gmail.com";
-    $mail->Password = "9921172153";
-    $mail->setFrom('vishalbait02@gmail.com', 'GIT SHODH 2K20');
-    $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
-    $mail->addAddress($email, $email);
-    $mail->Subject = "GIT SHODH 2K20 PASSWORD RESET";
+            $mail = new PHPMailer;
+            $mail->isSMTP();
+            $mail->SMTPDebug = 0;
+            $mail->Debugoutput = 'html';
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Port = 587;
+            $mail->SMTPSecure = 'tls';
+            $mail->SMTPAuth = true;
+            $mail->Username = "vishalbait02@gmail.com";
+            $mail->Password = "9921172153";
+            $mail->setFrom('vishalbait02@gmail.com', 'GIT SHODH 2K20');
+            $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
+            $mail->addAddress($email, $email);
+            $mail->Subject = "GIT SHODH 2K20 PASSWORD RESET";
 
-    $mail->msgHTML("<!doctype html>
+            $mail->msgHTML("<!doctype html>
     <html><body> <p>$email You're receiving this e-mail because you requested a password reset
     for your user account at GIT SHODH 2K20</p>
     <p>Please go to the following page and choose a new password:</p>
@@ -85,8 +85,7 @@ $userType = trim($_POST['userType']);
     <p>The GIT SHODH Team<p>
      </body></html>");
 
-
-    $mail->AltBody = "$email You're receiving this e-mail because you requested a password reset
+            $mail->AltBody = "$email You're receiving this e-mail because you requested a password reset
     for your user account at GIT SHODH 2K20 <br/>
     Please go to the following page and choose a new password: <br/>
     http://localhost/EBA/resetPassword.php?token=$token<br/>
@@ -94,36 +93,32 @@ $userType = trim($_POST['userType']);
      Thanks for using our site!<br/>
      The GIT SHODH Team";
 
-
             if (!$mail->send()) {
-            echo "Mailer Error: " . $mail->ErrorInfo;
-            } 
+                echo "Mailer Error: " . $mail->ErrorInfo;
+            } else {
 
-            else {
-            
-            //Update Query
-            $sql = "UPDATE user_information SET token = :token WHERE email = :email";
+                //Update Query
+                $sql = "UPDATE user_information SET token = :token WHERE email = :email";
 
-            //Preparing Query
-            $result= $conn->prepare($sql);
+                //Preparing Query
+                $result = $conn->prepare($sql);
 
-            //Binding Value
-             $result->bindValue(":token", $token);
-            $result->bindValue(":email", $email);
+                //Binding Value
+                $result->bindValue(":token", $token);
+                $result->bindValue(":email", $email);
 
-            // Executing Query
-            $result->execute();
+                // Executing Query
+                $result->execute();
 
-                if($result) {
-                echo "<script>Swal.fire({
+                if ($result) {
+                    echo "<script>Swal.fire({
                         icon: 'success',
                         title: 'Successful',
                         text: 'Password Reset Link sent to your email, Check Your Mail.'
                     })</script>";
-                }
 
-                else{
-                echo "<script>Swal.fire({
+                } else {
+                    echo "<script>Swal.fire({
                         icon: 'error',
                         title: 'Failed',
                         text: 'We are failed to send email for reset password.'
@@ -145,44 +140,43 @@ $userType = trim($_POST['userType']);
 
     } //if($userType=== "user") bracket
 
-
     // Admin Part
- elseif($userType=== "admin"){
-     
-    // Query for admin 
-    $sql = "SELECT email FROM admin_information WHERE email = :email";
+    elseif ($userType === "admin") {
 
-    //Preparing Query
-    $result= $conn->prepare($sql);
+        // Query for admin
+        $sql = "SELECT email FROM admin_information WHERE email = :email";
 
-    //Binding Value
-    $result->bindValue(":email", $email);
+        //Preparing Query
+        $result = $conn->prepare($sql);
 
-    //Executing Query
-    $result->execute();
+        //Binding Value
+        $result->bindValue(":email", $email);
 
-    if($result->rowCount() === 1) {
+        //Executing Query
+        $result->execute();
 
-    // Mail PHP code 
-    date_default_timezone_set('Etc/UTC');
-    require 'PHPMailer/PHPMailerAutoload.php';
+        if ($result->rowCount() === 1) {
 
-    $mail = new PHPMailer;
-    $mail->isSMTP();
-    $mail->SMTPDebug = 0;
-    $mail->Debugoutput = 'html';
-    $mail->Host = 'smtp.gmail.com';
-    $mail->Port = 587;
-    $mail->SMTPSecure = 'tls';
-    $mail->SMTPAuth = true;
-    $mail->Username = "vishalbait02@gmail.com";
-    $mail->Password = "9921172153";
-    $mail->setFrom('vishalbait02@gmail.com', 'Vishal Bait');
-    $mail->addReplyTo('non-reply@gmail.com', 'vishal bait');
-    $mail->addAddress($email, $email);
-    $mail->Subject = "GIT SHODH 2K20 PASSWORD RESET";
+            // Mail PHP code
+            date_default_timezone_set('Etc/UTC');
+            require 'PHPMailer/PHPMailerAutoload.php';
 
-     $mail->msgHTML("<!doctype html>
+            $mail = new PHPMailer;
+            $mail->isSMTP();
+            $mail->SMTPDebug = 0;
+            $mail->Debugoutput = 'html';
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Port = 587;
+            $mail->SMTPSecure = 'tls';
+            $mail->SMTPAuth = true;
+            $mail->Username = "vishalbait02@gmail.com";
+            $mail->Password = "9921172153";
+            $mail->setFrom('vishalbait02@gmail.com', 'Vishal Bait');
+            $mail->addReplyTo('non-reply@gmail.com', 'vishal bait');
+            $mail->addAddress($email, $email);
+            $mail->Subject = "GIT SHODH 2K20 PASSWORD RESET";
+
+            $mail->msgHTML("<!doctype html>
     <html><body> <p>$email You're receiving this e-mail because you requested a password reset
     for your user account at GIT SHODH 2K20</p>
     <p>Please go to the following page and choose a new password:</p>
@@ -192,8 +186,7 @@ $userType = trim($_POST['userType']);
     <p>The GIT SHODH Team<p>
      </body></html>");
 
-
-    $mail->AltBody = "$email You're receiving this e-mail because you requested a password reset
+            $mail->AltBody = "$email You're receiving this e-mail because you requested a password reset
     for your user account at GIT SHODH 2K20 <br/>
     Please go to the following page and choose a new password: <br/>
     http://localhost/EBA/resetPassword.php?token=$token<br/>
@@ -201,35 +194,31 @@ $userType = trim($_POST['userType']);
      Thanks for using our site!<br/>
      The GIT SHODH Team";
 
-
             if (!$mail->send()) {
-            echo "Mailer Error: " . $mail->ErrorInfo;
-            } 
+                echo "Mailer Error: " . $mail->ErrorInfo;
+            } else {
 
-            else {
-            
-            //Update Query
-            $sql = "UPDATE user_information SET token = :token WHERE email = :email";
+                //Update Query
+                $sql = "UPDATE user_information SET token = :token WHERE email = :email";
 
-            //Preparing Query
-            $result= $conn->prepare($sql);
+                //Preparing Query
+                $result = $conn->prepare($sql);
 
-            //Binding Value
-            $result->bindValue(":email", $email);
+                //Binding Value
+                $result->bindValue(":email", $email);
 
-            //Executing Query
-            $result->execute();
+                //Executing Query
+                $result->execute();
 
-                if($result1) {
-                echo "<script>Swal.fire({
+                if ($result1) {
+                    echo "<script>Swal.fire({
                         icon: 'success',
                         title: 'Successful',
                         text: 'Password Reset Link sent to your email, Check Your Mail.'
                     })</script>";
-                }
 
-                else{
-                echo "<script>Swal.fire({
+                } else {
+                    echo "<script>Swal.fire({
                         icon: 'error',
                         title: 'Failed',
                         text: 'We are failed to send email for reset password.'
@@ -239,9 +228,7 @@ $userType = trim($_POST['userType']);
 
             } //if ($result)
 
-            }
-
-        else {
+        } else {
             echo "<script>Swal.fire({
                     icon: 'warning',
                     title: 'Warning',
@@ -251,9 +238,9 @@ $userType = trim($_POST['userType']);
 
     } //elseif($userType=== "user") bracket
 
-   else {
-    echo "Something Went Wrong";
-   }
+    else {
+        echo "Something Went Wrong";
+    }
 
 }
 
@@ -301,14 +288,14 @@ $userType = trim($_POST['userType']);
     </main>
 
     <!-- Footer PHP -->
-    <?php include_once "includes/footer.php"; ?>
+    <?php include_once "includes/footer.php";?>
     <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php";?>
 
      <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

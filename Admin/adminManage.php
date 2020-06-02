@@ -1,17 +1,17 @@
-<?php 
+<?php
 // Creating Database Connection
 require_once "../configPDO.php";
 // Starting Session
 session_start();
 
 // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
-if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
+if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
-    if($_SESSION['adminType'] !== "Administrator"){
-           header("location:adminLogin.php");
-   }
-   
+    if ($_SESSION['adminType'] !== "Administrator") {
+        header("location:adminLogin.php");
     }
+
+}
 
 ?>
 
@@ -27,7 +27,7 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <title>Administrator</title>
 
     <!-- Admin Header Scripts -->
-    <?php include_once "includes/adminHeaderScripts.php"; ?>
+    <?php include_once "includes/adminHeaderScripts.php";?>
 
 
 </head>
@@ -38,12 +38,12 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <!-- Admin Navbar -->
     <?php
 
-    $adminFileName = "adminIndex.php";
-    $adminFileData = "adminIndexData.php";
-    $adminManage = "adminManage.php";
+$adminFileName = "adminIndex.php";
+$adminFileData = "adminIndexData.php";
+$adminManage = "adminManage.php";
 
-    include_once "includes/adminNavbar.php";
-    ?>
+include_once "includes/adminNavbar.php";
+?>
 
     <main id="layoutSidenav_content">
         <div class="container-fluid">
@@ -208,7 +208,7 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" name = "updateData" id ="updateData" 
+                                <button type="button" name = "updateData" id ="updateData"
                                     class="btn btn-info" onclick= "updateAdminDetails()" data-dismiss="modal">Update changes</button>
                             </div>
 
@@ -237,15 +237,15 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     </main>
 
     <!-- Admin Footer Scripts -->
-    <?php include_once "includes/adminFooterScripts.php"; ?>
+    <?php include_once "includes/adminFooterScripts.php";?>
 
     <!-- addAdmin js  -->
     <script src="js/manageAdmin.js"></script>
 
     <?php
-    // closing Database Connnection
-     $conn= null;
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

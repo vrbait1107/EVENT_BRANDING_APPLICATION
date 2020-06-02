@@ -1,103 +1,103 @@
-<?php 
+<?php
 
- // Creating Database Connection
-    require_once "../configPDO.php";
+// Creating Database Connection
+require_once "../configPDO.php";
 //Starting Connection
-    session_start();
+session_start();
 
-    // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
-    if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
+// Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
+if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
-    if($_SESSION['adminType'] !== "Faculty Coordinator"){
-           header("location:adminLogin.php");
-   }
-   
+    if ($_SESSION['adminType'] !== "Faculty Coordinator") {
+        header("location:adminLogin.php");
     }
 
-    $department = $_SESSION["adminDepartment"];
- 
-    // display participation count and total revenue
+}
 
-    $sqlData ="SELECT * FROM event_information
-    WHERE event IN (SELECT events_details_information.eventName 
+$department = $_SESSION["adminDepartment"];
+
+// display participation count and total revenue
+
+$sqlData = "SELECT * FROM event_information
+    WHERE event IN (SELECT events_details_information.eventName
     FROM events_details_information WHERE eventDepartment ='$department')";
 
-    //Preparing Query
-    $resultData = $conn->prepare($sqlData);
+//Preparing Query
+$resultData = $conn->prepare($sqlData);
 
-    //Binding values
-    $resultData->bindValue(":department", $department);
+//Binding values
+$resultData->bindValue(":department", $department);
 
-    //Executing Query
-    $resultData->execute();
+//Executing Query
+$resultData->execute();
 
-    $rowCount = $resultData->rowCount();
-   
-    $totalAmount = 0;
+$rowCount = $resultData->rowCount();
 
-    while($rowData = $resultData->fetch(PDO::FETCH_ASSOC)){
-     $totalAmount =   $totalAmount + $rowData['txnAmount'];
-    } 
+$totalAmount = 0;
 
+while ($rowData = $resultData->fetch(PDO::FETCH_ASSOC)) {
+    $totalAmount = $totalAmount + $rowData['txnAmount'];
+}
 
-    // display admin information count
-    $sqlDataAdmin ="SELECT * FROM admin_information
+// display admin information count
+$sqlDataAdmin = "SELECT * FROM admin_information
     WHERE adminType = :studentCoordinator AND adminDepartment = :department";
 
-    //Preparing Query
-    $resultDataAdmin = $conn->prepare($sqlDataAdmin);
+//Preparing Query
+$resultDataAdmin = $conn->prepare($sqlDataAdmin);
 
-    //Binding Value
-    $resultDataAdmin->bindValue(":studentCoordinator", "Student Coordinator");
-    $resultDataAdmin->bindValue(":department", $department);
+//Binding Value
+$resultDataAdmin->bindValue(":studentCoordinator", "Student Coordinator");
+$resultDataAdmin->bindValue(":department", $department);
 
-    $rowCountAdmin = $resultDataAdmin->rowCount();
+$rowCountAdmin = $resultDataAdmin->rowCount();
 
-    //Extracting Event Name from Database in Array to Show Event Details.
+//Extracting Event Name from Database in Array to Show Event Details.
 
-     $sqlData1 ="SELECT eventName from events_details_information
+$sqlData1 = "SELECT eventName from events_details_information
      WHERE eventDepartment = :department";
 
-     //Preparing Query
-     $resultData1 = $conn->prepare($sqlData1);
+//Preparing Query
+$resultData1 = $conn->prepare($sqlData1);
 
-     //Binding Values
-     $resultData1->bindValue(":department", $department);
+//Binding Values
+$resultData1->bindValue(":department", $department);
 
-     //Executing Query
-     $resultData1->execute();
+//Executing Query
+$resultData1->execute();
 
-    $events = array();
+$events = array();
 
-    while( $rowData1 = $resultData1->fetch(PDO::FETCH_ASSOC)){
-    array_push($events, $rowData1['eventName']) ;
-    }
+while ($rowData1 = $resultData1->fetch(PDO::FETCH_ASSOC)) {
+    array_push($events, $rowData1['eventName']);
+}
 
-     // Participation Count Department Wise
+// Participation Count Department Wise
 
-    function count1 ($event) {
+function count1($event)
+{
 
-        global $conn;
+    global $conn;
 
-        $sql = "SELECT * FROM event_information WHERE event = '$event'";
+    $sql = "SELECT * FROM event_information WHERE event = '$event'";
 
-        //Preparing Query
-        $result = $conn->prepare($sql);
+    //Preparing Query
+    $result = $conn->prepare($sql);
 
-        //Binding Values
-        $result->bindValue(":event", $event);
+    //Binding Values
+    $result->bindValue(":event", $event);
 
-        //Executing Value
-        $result->execute();
+    //Executing Value
+    $result->execute();
 
-        $row = $result->rowCount();
+    $row = $result->rowCount();
 
-        return $row;
-    }
+    return $row;
+}
 
-
-     // Display   total revenue departmet wise
-    function countRevenue($event) {
+// Display   total revenue departmet wise
+function countRevenue($event)
+{
 
     global $conn;
 
@@ -114,8 +114,8 @@
 
     $row = $result->fetch(PDO::FETCH_ASSOC);
     $totalAmount = $row['totalAmount'];
-    return $totalAmount+ 0;
-    }
+    return $totalAmount + 0;
+}
 
 ?>
 
@@ -133,7 +133,7 @@
     <title>Dashboard-Faculty Coordinator</title>
 
     <!-- Admin Header Scripts -->
-    <?php include_once "includes/adminHeaderScripts.php"; ?>
+    <?php include_once "includes/adminHeaderScripts.php";?>
 
 </head>
 
@@ -142,12 +142,12 @@
     <!-- Admin Navbar -->
     <?php
 
-    $adminFileName = "facultyCoordinatorIndex.php";
-    $adminFileData = "facultyCoordinatorData.php";
-    $adminManage = "facultyCoordinatorManage.php";
-   
-    include_once "includes/adminNavbar.php";
-    ?>
+$adminFileName = "facultyCoordinatorIndex.php";
+$adminFileData = "facultyCoordinatorData.php";
+$adminManage = "facultyCoordinatorManage.php";
+
+include_once "includes/adminNavbar.php";
+?>
 
 
 
@@ -155,7 +155,7 @@
 
         <main class="container-fluid">
             <h2 class="mt-4 text-center font-time text-uppercase">Dashboard for Faculty Coordinator <br />
-                <span class="text-danger"><?php echo $_SESSION["adminDepartment"];?></span> </h2>
+                <span class="text-danger"><?php echo $_SESSION["adminDepartment"]; ?></span> </h2>
 
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Dashboard</li>
@@ -251,9 +251,9 @@
 
                             <?php
 
-                for($i =0; $i < sizeof($events); $i++){
+for ($i = 0; $i < sizeof($events); $i++) {
 
-                ?>
+    ?>
 
                             <!-- Total student Participant Event -->
 
@@ -303,9 +303,9 @@
 
                             <?php
 
-                            }
+}
 
-                            ?>
+?>
 
                         </div>
                     </div>
@@ -321,12 +321,12 @@
     </div>
 
     <!-- Admin Footer Scripts -->
-    <?php include_once "includes/adminFooterScripts.php"; ?>
+    <?php include_once "includes/adminFooterScripts.php";?>
 
     <?php
-    // closing Database Connnection
-     $conn = null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

@@ -9,68 +9,62 @@ session_start();
 
 $email = $_SESSION['user'];
 
-// Extracting Post data 
+// Extracting Post data
 extract($_POST);
 
-// ######################## Change Password 
+// ######################## Change Password
 
-if(isset($_POST['changePassword'])){
-    
-$email = $_SESSION['user'];
+if (isset($_POST['changePassword'])) {
 
+    $email = $_SESSION['user'];
 
 //Query
-$sql = "SELECT mainPassword FROM user_information WHERE email = :email";
+    $sql = "SELECT mainPassword FROM user_information WHERE email = :email";
 
 //Preparing Query
-$result= $conn->prepare($sql);
+    $result = $conn->prepare($sql);
 
 //Binding Values
-$result->bindValue(":email", $email);
+    $result->bindValue(":email", $email);
 
 //Executing Query
-$result->execute();
+    $result->execute();
 
-//Fetching Value in associative array 
-$row = $result->fetch(PDO::FETCH_ASSOC);
+//Fetching Value in associative array
+    $row = $result->fetch(PDO::FETCH_ASSOC);
 
-$dbPassword = $row['mainPassword'];
+    $dbPassword = $row['mainPassword'];
 
-    if(password_verify($currentPassword,$dbPassword)) {
-       
-        if( $newPassword===  $conNewPassword ) {
+    if (password_verify($currentPassword, $dbPassword)) {
 
-        $newPassword = password_hash($newPassword, PASSWORD_BCRYPT);
-        $conNewPassword= password_hash($conNewPassword, PASSWORD_BCRYPT);
+        if ($newPassword === $conNewPassword) {
 
-        //Query
-        $sql1 = "UPDATE user_information SET mainPassword= :newPassword1, confirmPass = :newPassword2 WHERE email = :email";
-        
-        //Preparing Query
-        $result1= $conn->prepare($sql1);
+            $newPassword = password_hash($newPassword, PASSWORD_BCRYPT);
+            $conNewPassword = password_hash($conNewPassword, PASSWORD_BCRYPT);
 
-        //Binding Values
-        $result1->bindValue(":newPassword1", $newPassword);
-        $result1->bindValue(":newPassword2", $newPassword);
-        $result1->bindValue(":email", $email);
+            //Query
+            $sql1 = "UPDATE user_information SET mainPassword= :newPassword1, confirmPass = :newPassword2 WHERE email = :email";
 
-        //Executing Query
-        $result1->execute();
+            //Preparing Query
+            $result1 = $conn->prepare($sql1);
 
-    
-            if($result1) {
-       
-            echo "<script>Swal.fire({
+            //Binding Values
+            $result1->bindValue(":newPassword1", $newPassword);
+            $result1->bindValue(":newPassword2", $newPassword);
+            $result1->bindValue(":email", $email);
+
+            //Executing Query
+            $result1->execute();
+
+            if ($result1) {
+                echo "<script>Swal.fire({
             icon: 'success',
             title: 'Successful',
             text: 'Your Password is Successfully Changed'
             })</script>";
 
-            }
-
-            else {
-        
-            echo "<script>Swal.fire({
+            } else {
+                echo "<script>Swal.fire({
                     icon: 'error',
                     title: 'Error',
                     text: 'We are failed to change Password'
@@ -78,22 +72,16 @@ $dbPassword = $row['mainPassword'];
 
             }
 
-        }
-
-        else {
-      
-       echo "<script>Swal.fire({
+        } else {
+            echo "<script>Swal.fire({
             icon: 'warning',
             title: 'Field does not match',
             text: 'New Password and Confirm New Password field are not match'
         })</script>";
         }
 
-    }
-
-    else{
-       
-    echo "<script>Swal.fire({
+    } else {
+        echo "<script>Swal.fire({
             icon: 'warning',
             title: 'Field does not match',
             text: 'Current Password is not Correct'
@@ -102,18 +90,17 @@ $dbPassword = $row['mainPassword'];
 
 }
 
-
 // ######################  Change Email Address
 
-if(isset($_POST['changeEmail'])){
+if (isset($_POST['changeEmail'])) {
 
-     $email = $_SESSION['user'];
- 
+    $email = $_SESSION['user'];
+
     //Query
     $sql = "SELECT * FROM user_information WHERE email = :newEmail";
-     
+
     //Preparing Query
-    $result= $conn->prepare($sql);
+    $result = $conn->prepare($sql);
 
     //Binding Value
     $result->bindValue(":newEmail", $newEmail);
@@ -122,69 +109,67 @@ if(isset($_POST['changeEmail'])){
     $result->execute();
 
     // Checking Wether Email Already Present in database or not
-    if($result->rowCount() > 0){
-       echo "<script>Swal.fire({
+    if ($result->rowCount() > 0) {
+        echo "<script>Swal.fire({
             icon: 'warning',
             title: 'Email Already Present in Database',
             text: 'Please Enter New Email Address'
         })</script>";
-    }
 
-    else {
-      $sql = "SELECT * FROM user_information WHERE email = :email";
+    } else {
+        $sql = "SELECT * FROM user_information WHERE email = :email";
 
-      //Preparing Query
-      $result= $conn->prepare($sql);
+        //Preparing Query
+        $result = $conn->prepare($sql);
 
-      //Binding Value
-      $result->bindValue(":email", $email);
+        //Binding Value
+        $result->bindValue(":email", $email);
 
-      //Executing Query
-      $result->execute();
+        //Executing Query
+        $result->execute();
 
-      //Fetching Values in associative array
-      $row = $result->fetch(PDO::FETCH_ASSOC);
+        //Fetching Values in associative array
+        $row = $result->fetch(PDO::FETCH_ASSOC);
 
-      $dbPassword = $row['mainPassword'];
+        $dbPassword = $row['mainPassword'];
 
-      if(password_verify($Password,$dbPassword)){
+        if (password_verify($Password, $dbPassword)) {
 
-         //sql Query
-          $sql = "UPDATE user_information SET email = :newEmail WHERE email = :email";
+            //sql Query
+            $sql = "UPDATE user_information SET email = :newEmail WHERE email = :email";
 
-          //Preparing Query
-          $result= $conn->prepare($sql); 
+            //Preparing Query
+            $result = $conn->prepare($sql);
 
-          //Binding Values
-          $result->bindValue(":newEmail", $newEmail);
-          $result->bindValue(":email", $email);
+            //Binding Values
+            $result->bindValue(":newEmail", $newEmail);
+            $result->bindValue(":email", $email);
 
-          //Executing Query
-          $result->execute();
+            //Executing Query
+            $result->execute();
 
-           if($result){
-            echo "<script>Swal.fire({
+            if ($result) {
+                echo "<script>Swal.fire({
             icon: 'success',
             title: 'Successful',
             text: 'Your Email Successfully Changed'
             })</script>";
-           }
-      }
+            }
 
-      else {
-          echo "<script>Swal.fire({
+        } else {
+            echo "<script>Swal.fire({
             icon: 'error',
             title: 'Error',
             text: 'Check Your Password to Change your Email please enter valid password '
             })</script>";
-      }
+        }
 
     }
 }
 
-//##################### Disable Account 
+//##################### Disable Account
 
-if(isset($_POST['disableAccount'])){
+if (isset($_POST['disableAccount'])) {
 
     $email = $_SESSION['user'];
 
@@ -192,7 +177,7 @@ if(isset($_POST['disableAccount'])){
     $sql = "UPDATE user_information SET status = :inactive WHERE email = :email";
 
     //Preparing Query
-    $result= $conn->prepare($sql);
+    $result = $conn->prepare($sql);
 
     //Binding Value
     $result->bindValue(":inactive", "inactive");
@@ -200,8 +185,8 @@ if(isset($_POST['disableAccount'])){
 
     //Executing Query
     $result->execute();
-    
-    if($result){
+
+    if ($result) {
         echo "<script>Swal.fire({
             icon: 'success',
             title: 'sucess',
@@ -210,9 +195,5 @@ if(isset($_POST['disableAccount'])){
     }
 }
 
-
-
 // closing Database Connnection
-     $conn= null; 
-
-?>
+$conn = null;

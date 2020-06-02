@@ -1,38 +1,37 @@
-<?php 
+<?php
 // Starting Database Connection
 require_once "../configPDO.php";
 // Starting Session
 session_start();
 
-
 // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
-if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
+if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
-    if($_SESSION['adminType'] !== "Student Coordinator"){
-           header("location:adminLogin.php");
-   }
-   
+    if ($_SESSION['adminType'] !== "Student Coordinator") {
+        header("location:adminLogin.php");
     }
 
-   // Display Data related to Events
-   $adminEvent = $_SESSION["adminEvent"];
+}
 
-   $sql = "SELECT * FROM event_information WHERE event = :adminEvent";
+// Display Data related to Events
+$adminEvent = $_SESSION["adminEvent"];
 
-   //Preparing Query
-   $result = $conn->prepare($sql);
+$sql = "SELECT * FROM event_information WHERE event = :adminEvent";
 
-   //Binding Value 
-   $result->bindValue(":adminEvent", $adminEvent);
+//Preparing Query
+$result = $conn->prepare($sql);
 
-   //Executing Query
-   $result->execute();
+//Binding Value
+$result->bindValue(":adminEvent", $adminEvent);
 
-   $row = $result->fetch(PDO::FETCH_ASSOC);
+//Executing Query
+$result->execute();
 
-   $rowCount = $result->rowCount();
-   $amount = $row['txnAmount'];
-   $totalAmount = $amount * $rowCount;
+$row = $result->fetch(PDO::FETCH_ASSOC);
+
+$rowCount = $result->rowCount();
+$amount = $row['txnAmount'];
+$totalAmount = $amount * $rowCount;
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +47,7 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <title>Dashboard-Student Coordinator</title>
 
      <!-- Admin Header Scripts -->
-    <?php include_once "includes/adminHeaderScripts.php"; ?>
+    <?php include_once "includes/adminHeaderScripts.php";?>
 
 </head>
 
@@ -59,19 +58,19 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <!-- Admin Navbar -->
     <?php
 
-    $adminFileName = "studentCoordinatorIndex.php";
-    $adminFileData = "studentCoordinatorData.php";
-    $adminManage = "#";
-   
-    include_once "includes/adminNavbar.php";
-    ?>
+$adminFileName = "studentCoordinatorIndex.php";
+$adminFileData = "studentCoordinatorData.php";
+$adminManage = "#";
+
+include_once "includes/adminNavbar.php";
+?>
 
 
     <div id="layoutSidenav_content">
 
         <main class="container-fluid">
             <h2 class="mt-4 font-time text-center">Dashboard for Student Coordinator <br/>
-            <span class="text-danger"><?php echo $adminEvent;?></span>
+            <span class="text-danger"><?php echo $adminEvent; ?></span>
             </h2>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Dashboard</li>
@@ -125,12 +124,12 @@ if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     </div>
 
     <!-- Admin Footer Scripts -->
-    <?php include_once "includes/adminFooterScripts.php"; ?>
+    <?php include_once "includes/adminFooterScripts.php";?>
 
      <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

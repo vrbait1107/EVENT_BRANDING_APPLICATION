@@ -3,8 +3,8 @@
 //Starting Session
 session_start();
 
-if(!isset($_SESSION['user'])) {
- header("location:login.php");
+if (!isset($_SESSION['user'])) {
+    header("location:login.php");
 }
 ?>
 
@@ -19,7 +19,7 @@ if(!isset($_SESSION['user'])) {
 
 
     <!-- header Scripts and Links -->
-    <?php include_once "includes/headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php";?>
     <!--Image Hover-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/imagehover.css/2.0.0/css/imagehover.min.css">
     <!--AOS Animation-->
@@ -30,7 +30,7 @@ if(!isset($_SESSION['user'])) {
 <body>
 
     <!--NAVBAR-->
-    <?php include_once "includes/navbar.php"; ?>
+    <?php include_once "includes/navbar.php";?>
 
     <main class="container">
         <h1 class="text-center text-uppercase text-white mt-5 bg-info font-time p-2  mb-5">Developer</h1>
@@ -140,7 +140,7 @@ if(!isset($_SESSION['user'])) {
         </div>
     </main>
 
-    
+
     <!-- AOS Library-->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -148,9 +148,9 @@ if(!isset($_SESSION['user'])) {
     </script>
 
      <!-- Footer PHP -->
-    <?php include_once "includes/footer.php"; ?>
+    <?php include_once "includes/footer.php";?>
     <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php";?>
 
 </body>
 

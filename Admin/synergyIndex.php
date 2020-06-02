@@ -1,10 +1,10 @@
-<?php 
+<?php
 // Starting DB Connnection
 require_once "../configPDO.php";
 // Staring Session
 session_start();
 
-if(!isset($_SESSION['Admin'])) {
+if (!isset($_SESSION['Admin'])) {
     header('location:synergyLogin.php');
 }
 ?>
@@ -22,11 +22,11 @@ if(!isset($_SESSION['Admin'])) {
     <title>SYNERGY ADMIN</title>
 
     <!-- Admin Header Scripts -->
-    <?php include_once "includes/adminHeaderScripts.php"; ?>
+    <?php include_once "includes/adminHeaderScripts.php";?>
 
 </head>
 
-<body class="sb-nav-fixed" <?php if(isset($_POST['submit'])){
+<body class="sb-nav-fixed" <?php if (isset($_POST['submit'])) {
     echo "onload='savemessages()'";
 }
 ?>>
@@ -35,62 +35,60 @@ if(!isset($_SESSION['Admin'])) {
 
 // Inserting Data into synergy_user_information table Database Name is user_registration
 
-    if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
     $certificateId = rand();
-    $firstName=  trim($_POST["firstName"]);
-    $lastName= trim($_POST["lastName"]);
+    $firstName = trim($_POST["firstName"]);
+    $lastName = trim($_POST["lastName"]);
     $department = trim($_POST["department"]);
     $event = trim($_POST["event"]);
     $prize = trim($_POST["prize"]);
 
-        $sql = "INSERT INTO synergy_user_information (certificateId, firstName, lastName, departmentName,
+    $sql = "INSERT INTO synergy_user_information (certificateId, firstName, lastName, departmentName,
         eventName, prize) VALUES ( :certificateId, :firstName, :lastName, :department, :event, :prize)";
 
-        //Preparing Query
-        $result= $conn->prepare($sql);
+    //Preparing Query
+    $result = $conn->prepare($sql);
 
-        //Binding Value
-        $result->bindValue(":certificateId", $certificateId);
-        $result->bindValue(":firstName", $firstName);
-        $result->bindValue(":lastName", $lastName);
-        $result->bindValue(":department", $department);
-        $result->bindValue(":event", $event);
-        $result->bindValue(":prize", $prize);
+    //Binding Value
+    $result->bindValue(":certificateId", $certificateId);
+    $result->bindValue(":firstName", $firstName);
+    $result->bindValue(":lastName", $lastName);
+    $result->bindValue(":department", $department);
+    $result->bindValue(":event", $event);
+    $result->bindValue(":prize", $prize);
 
-        //Executing Query
-        $result->execute();
+    //Executing Query
+    $result->execute();
 
-                if($result){
-                echo "<script>Swal.fire({
+    if ($result) {
+        echo "<script>Swal.fire({
                     icon: 'success',
                     title: 'Success',
                     text: 'Data Inserted Successfully!'
                 })</script>";
-                }
-
-            else{
-                "<script>Swal.fire({
-                        icon: 'success',
+    } else {
+        echo "<script>Swal.fire({
+                        icon: 'error',
                         title: 'Error',
                         text: 'Something Went Wrong!'
                     })</script>";
-            }
-    
     }
+
+}
 
 ?>
 
     <!-- Admin Navbar -->
     <?php
 
-    $adminFileName = "synergyIndex.php";
-    $adminFileData = "synergyData.php";
-    $adminManage = "#";
-    $_SESSION['adminType'] = 'Synergy Administrator';
-   
-    include_once "includes/adminNavbar.php";
-    ?>
+$adminFileName = "synergyIndex.php";
+$adminFileData = "synergyData.php";
+$adminManage = "#";
+$_SESSION['adminType'] = 'Synergy Administrator';
+
+include_once "includes/adminNavbar.php";
+?>
 
     <div id="layoutSidenav_content">
         <main>
@@ -183,9 +181,9 @@ if(!isset($_SESSION['Admin'])) {
 
     <script type="text/javascript">
         let a = "<?php echo $firstName ?>";
-        let b = "<?php  echo $lastName ?>";
-        let c = "<?php  echo $department?>";
-        let d = "<?php  echo $event ?>";
+        let b = "<?php echo $lastName ?>";
+        let c = "<?php echo $department ?>";
+        let d = "<?php echo $event ?>";
         let e = "<?php echo $prize ?>";
         let f = "<?php echo $certificateId ?>";
     </script>
@@ -240,12 +238,12 @@ if(!isset($_SESSION['Admin'])) {
     <!--JS Validation-->
     <script src="../js/form-validation.js"></script>
     <!-- Admin Footer Scripts -->
-    <?php include_once "includes/adminFooterScripts.php"; ?>
+    <?php include_once "includes/adminFooterScripts.php";?>
 
      <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

@@ -1,10 +1,10 @@
 <?php
 
 // Creating Connection to Database
-    require_once "configPDO.php";
+require_once "configPDO.php";
 
 // Staring Session
-    session_start();
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -17,14 +17,14 @@
     <title>Certificate Verification</title>
 
     <!-- header Scripts and Links -->
-    <?php include_once "includes/headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php";?>
 
 </head>
 
 <body>
 
     <!--Navbar.php-->
-    <?php include_once "includes/navbar.php" ?>
+    <?php include_once "includes/navbar.php"?>
 
 
     <main class="container font-time text-warning">
@@ -36,15 +36,13 @@
 
 // GIT SHODH Certificate SYSTEM
 
-if(isset($_POST["submit"])) {
+if (isset($_POST["submit"])) {
 
-$validate =  $_POST["validateData"];
+    $validate = $_POST["validateData"];
 
-
-$sql ="select * FROM user_information INNER JOIN event_information ON 
-user_information.email= event_information.email 
+    $sql = "select * FROM user_information INNER JOIN event_information ON
+user_information.email= event_information.email
 WHERE event_information.certificateId = :validate";
-
 
     //preparing query
     $result = $conn->prepare($sql);
@@ -60,15 +58,14 @@ WHERE event_information.certificateId = :validate";
 
     $validateCertificate = $row['certificateId'];
 
-
-    if($validateCertificate===$validate) {
+    if ($validateCertificate === $validate) {
 
         $firstName = $row['firstName'];
         $lastName = $row['lastName'];
-        $department= $row['departmentName'];
+        $department = $row['departmentName'];
         $collegeName = $row['collegeName'];
-        $academicYear =$row['academicYear'];
-        $event=$row['event'];
+        $academicYear = $row['academicYear'];
+        $event = $row['event'];
         $prize = $row['prize'];
 
         echo "<div class= 'card shadow p-5'>";
@@ -80,12 +77,10 @@ WHERE event_information.certificateId = :validate";
         echo "<td><h3>$firstName</h3></td>";
         echo "</tr>";
 
-        
         echo "<tr>";
         echo "<td><h3><span>Last Name</span></h3></td>";
         echo "<td><h3>$lastName</h3></td>";
         echo "</tr>";
-
 
         echo "<tr>";
         echo "<td><h3><span>Department Name</span></h3></td>";
@@ -97,18 +92,15 @@ WHERE event_information.certificateId = :validate";
         echo "<td><h3>$academicYear</h3></td>";
         echo "</tr>";
 
-
         echo "<tr>";
         echo "<td><h3><span>College Name</span></h3></td>";
         echo "<td><h3>$collegeName</h3></td>";
         echo "</tr>";
 
-
         echo "<tr>";
         echo "<td><h3><span>Event Name</span></h3></td>";
         echo "<td><h3>$event</h3></td>";
         echo "</tr>";
-
 
         echo "<tr>";
         echo "<td><h3><span>Prize</span></h3></td>";
@@ -118,9 +110,7 @@ WHERE event_information.certificateId = :validate";
         echo "</table>";
         echo "</div>";
 
-    }
-    
-    else {
+    } else {
         echo "<script>Swal.fire({
                 icon: 'error',
                 title: 'Not Valid',
@@ -128,181 +118,158 @@ WHERE event_information.certificateId = :validate";
             })</script>";
 
     }
-    
 
 }
 
-
 // Synergy Verification System Start
 
-if(isset($_POST["synergySubmit"])) {
+if (isset($_POST["synergySubmit"])) {
 
-    $validate =   $_POST["synergyValidateData"];
+    $validate = $_POST["synergyValidateData"];
 
-    $sql ="select * FROM synergy_user_information 
+    $sql = "select * FROM synergy_user_information
     WHERE certificateId = :validate";
 
     //preparing query
-   $result = $conn->prepare($sql);
+    $result = $conn->prepare($sql);
 
-   //binding value to named parameter
-   $result->bindValue(":validate", $validate);
+    //binding value to named parameter
+    $result->bindValue(":validate", $validate);
 
-   //Executing query
-   $result->execute();
-    
-   //Fetching Values
-   $row = $result->fetch(PDO::FETCH_ASSOC);
+    //Executing query
+    $result->execute();
+
+    //Fetching Values
+    $row = $result->fetch(PDO::FETCH_ASSOC);
 
     $validateCertificate = $row['certificateId'];
 
-       
-        if($validateCertificate===$validate) {
-    
-            $firstName = $row['firstName'];
-            $lastName = $row['lastName'];
-            $department= $row['departmentName'];
-            $event=$row['eventName'];
-            $prize = $row['prize'];
-    
-    
-            echo "<div class='card shadow p-5'>";
-            echo "<h2 class='mb-5 card-header'>This Certificate Belongs To </h2>";
+    if ($validateCertificate === $validate) {
 
-    
-            echo "<table class='table table-bordered'>";
-            echo "<tr>";
-            echo "<td><h3><span>First Name</span></h3></td>";
-            echo "<td><h3>$firstName</h3></td>";
-            echo "</tr>";
-    
-            
-    
-            echo "<tr>";
-            echo "<td><h3><span>Last Name</span></h3></td>";
-            echo "<td><h3>$lastName</h3></td>";
-            echo "</tr>";
-    
-    
-            echo "<tr>";
-            echo "<td><h3><span>Department Name</span></h3></td>";
-            echo "<td><h3>$department</h3></td>";
-            echo "</tr>";
-    
-    
-            echo "<tr>";
-            echo "<td><h3><span>Event Name</span></h3></td>";
-            echo "<td><h3>$event</h3></td>";
-            echo "</tr>";
-    
-    
-            echo "<tr>";
-            echo "<td><h3><span>Prize</span></h3></td>";
-            echo "<td><h3>$prize</h3></td>";
-            echo "</tr>";
-    
-            echo "</table>";
-            echo "</div>";
-    
-        }
-        
-        else {
-            echo "<script>Swal.fire({
+        $firstName = $row['firstName'];
+        $lastName = $row['lastName'];
+        $department = $row['departmentName'];
+        $event = $row['eventName'];
+        $prize = $row['prize'];
+
+        echo "<div class='card shadow p-5'>";
+        echo "<h2 class='mb-5 card-header'>This Certificate Belongs To </h2>";
+
+        echo "<table class='table table-bordered'>";
+        echo "<tr>";
+        echo "<td><h3><span>First Name</span></h3></td>";
+        echo "<td><h3>$firstName</h3></td>";
+        echo "</tr>";
+
+        echo "<tr>";
+        echo "<td><h3><span>Last Name</span></h3></td>";
+        echo "<td><h3>$lastName</h3></td>";
+        echo "</tr>";
+
+        echo "<tr>";
+        echo "<td><h3><span>Department Name</span></h3></td>";
+        echo "<td><h3>$department</h3></td>";
+        echo "</tr>";
+
+        echo "<tr>";
+        echo "<td><h3><span>Event Name</span></h3></td>";
+        echo "<td><h3>$event</h3></td>";
+        echo "</tr>";
+
+        echo "<tr>";
+        echo "<td><h3><span>Prize</span></h3></td>";
+        echo "<td><h3>$prize</h3></td>";
+        echo "</tr>";
+
+        echo "</table>";
+        echo "</div>";
+
+    } else {
+        echo "<script>Swal.fire({
                     icon: 'error',
                     title: 'Not Valid',
                     text: 'This Ticate is not generated by GIT SHODH/SYNERGY System'
-                })</script>"; 
-                   }
-        
+                })</script>";
     }
 
+}
 
 // Shodh certificateion url
 
-    if(isset($_GET["certificateId"])) {
+if (isset($_GET["certificateId"])) {
 
-    $validate =   $_GET["certificateId"];
+    $validate = $_GET["certificateId"];
 
     // Avoid Cross Site Scripting
     $validate = htmlentities($validate);
 
-   $sql ="select * FROM user_information INNER JOIN event_information ON 
-   user_information.email= event_information.email 
+    $sql = "select * FROM user_information INNER JOIN event_information ON
+   user_information.email= event_information.email
     WHERE event_information.certificateId = :validate";
 
     // Preparing query
-   $result= $conn->prepare($sql);
+    $result = $conn->prepare($sql);
 
-   //Binding Value
-   $result->bindValue(":validate", $validate);
+    //Binding Value
+    $result->bindValue(":validate", $validate);
 
-   //Executing Value
-   $result->execute();
+    //Executing Value
+    $result->execute();
 
-   // Fetching Values
-   $row = $result->fetch(PDO::FETCH_ASSOC);
+    // Fetching Values
+    $row = $result->fetch(PDO::FETCH_ASSOC);
 
+    $validateCertificate = $row['certificateId'];
 
-   $validateCertificate = $row['certificateId'];
+    if ($validateCertificate === $validate) {
 
-       
-        if($validateCertificate===$validate) {
-    
-            $firstName = $row['firstName'];
-            $lastName = $row['lastName'];
-            $department= $row['departmentName'];
-            $event=$row['event'];
-            $prize = $row['prize'];
-    
-    
-            echo "<div class='card shadow p-5'>";
-            echo "<h2 class='mb-5 card-header'>This Certificate Belongs To </h2>";
+        $firstName = $row['firstName'];
+        $lastName = $row['lastName'];
+        $department = $row['departmentName'];
+        $event = $row['event'];
+        $prize = $row['prize'];
 
-    
-            echo "<table class='table table-bordered'>";
-            echo "<tr>";
-            echo "<td><h3><span>First Name</span></h3></td>";
-            echo "<td><h3>$firstName</h3></td>";
-            echo "</tr>";
-    
-            
-            echo "<tr>";
-            echo "<td><h3><span>Last Name</span></h3></td>";
-            echo "<td><h3>$lastName</h3></td>";
-            echo "</tr>";
-    
-    
-            echo "<tr>";
-            echo "<td><h3><span>Department Name</span></h3></td>";
-            echo "<td><h3>$department</h3></td>";
-            echo "</tr>";
-    
-    
-            echo "<tr>";
-            echo "<td><h3><span>Event Name</span></h3></td>";
-            echo "<td><h3>$event</h3></td>";
-            echo "</tr>";
-    
-    
-            echo "<tr>";
-            echo "<td><h3><span>Prize</span></h3></td>";
-            echo "<td><h3>$prize</h3></td>";
-            echo "</tr>";
-    
-            echo "</table>";
-            echo "</div>";
-    
-        }
-        
-        else {
-            echo "<script>Swal.fire({
+        echo "<div class='card shadow p-5'>";
+        echo "<h2 class='mb-5 card-header'>This Certificate Belongs To </h2>";
+
+        echo "<table class='table table-bordered'>";
+        echo "<tr>";
+        echo "<td><h3><span>First Name</span></h3></td>";
+        echo "<td><h3>$firstName</h3></td>";
+        echo "</tr>";
+
+        echo "<tr>";
+        echo "<td><h3><span>Last Name</span></h3></td>";
+        echo "<td><h3>$lastName</h3></td>";
+        echo "</tr>";
+
+        echo "<tr>";
+        echo "<td><h3><span>Department Name</span></h3></td>";
+        echo "<td><h3>$department</h3></td>";
+        echo "</tr>";
+
+        echo "<tr>";
+        echo "<td><h3><span>Event Name</span></h3></td>";
+        echo "<td><h3>$event</h3></td>";
+        echo "</tr>";
+
+        echo "<tr>";
+        echo "<td><h3><span>Prize</span></h3></td>";
+        echo "<td><h3>$prize</h3></td>";
+        echo "</tr>";
+
+        echo "</table>";
+        echo "</div>";
+
+    } else {
+        echo "<script>Swal.fire({
                     icon: 'error',
                     title: 'Not Valid',
                     text: 'This Certificate is not generated by GIT SHODH/SYNERGY System'
-                })</script>"; 
-            }
-        
-    }    
+                })</script>";
+    }
+
+}
 ?>
 
             </section>
@@ -310,14 +277,14 @@ if(isset($_POST["synergySubmit"])) {
     </main>
 
     <!--Footer.PHP-->
-    <?php include_once 'includes/footer.php'; ?>
+    <?php include_once 'includes/footer.php';?>
     <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php";?>
 
     <?php
-    // closing Database Connnection
-     $conn = null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

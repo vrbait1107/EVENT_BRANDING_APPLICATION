@@ -5,74 +5,64 @@ session_start();
 
 extract($_POST);
 
-if(isset($_POST['email'])){
+if (isset($_POST['email'])) {
 
-     $sql1 = "SELECT * FROM user_information WHERE email = :email";
-     $result1 = $conn->prepare($sql1);
-     $result1->bindValue(":email", $email);
-     $result1->execute();
+    $sql1 = "SELECT * FROM user_information WHERE email = :email";
+    $result1 = $conn->prepare($sql1);
+    $result1->bindValue(":email", $email);
+    $result1->execute();
 
-     if($result1->rowCount() > 0) {
+    if ($result1->rowCount() > 0) {
 
-         
-     $sql2 = "SELECT * FROM newsletter_information WHERE email = :email";
-     $result2 = $conn->prepare($sql2);
-     $result2->bindValue(":email", $email);
-     $result2->execute();
+        $sql2 = "SELECT * FROM newsletter_information WHERE email = :email";
+        $result2 = $conn->prepare($sql2);
+        $result2->bindValue(":email", $email);
+        $result2->execute();
 
-     if($result2->rowCount() < 0) {
+        if ($result2->rowCount() < 0) {
 
-    
-     //Query
-      $sql = "INSERT INTO newsletter_information (email, subscribe) VALUES (:email, :Yes)";
+            //Query
+            $sql = "INSERT INTO newsletter_information (email, subscribe) VALUES (:email, :Yes)";
 
-      //Prepare Query
-      $result = $conn->prepare($sql);
+            //Prepare Query
+            $result = $conn->prepare($sql);
 
-      //Binding Value 
-      $result->bindValue(":email", $email);
-      $result->bindValue(":Yes", "Yes");
+            //Binding Value
+            $result->bindValue(":email", $email);
+            $result->bindValue(":Yes", "Yes");
 
-      //Executing Value
-      $result->execute();
+            //Executing Value
+            $result->execute();
 
-      if($result){
-        
-          echo "<script>Swal.fire({
+            if ($result) {
+
+                echo "<script>Swal.fire({
                     icon: 'success',
                     title: 'Success',
                     text: 'You are successfully subscribed to newsletter'
                 })</script>";
-      }
-      else {
-            echo "<script>Swal.fire({
+            } else {
+                echo "<script>Swal.fire({
                     icon: 'error',
                     title: 'Error',
                     text: 'You are failed to subscribe newsletter, Please try again'
                 })</script>";
-      }
+            }
 
-      }
-
-      else {
+        } else {
             echo "<script>Swal.fire({
                     icon: 'warning',
                     title: 'Warning',
                     text: 'You are already subscribed to newsletter'
                 })</script>";
-      }
-                 
-     
-     }
+        }
 
-     else {
-            echo "<script>Swal.fire({
+    } else {
+        echo "<script>Swal.fire({
                     icon: 'warning',
                     title: 'Warning',
                     text: 'Please Enter your registered email for this account'
                 })</script>";
-     }
+    }
 
- }
-
- ?>
+}

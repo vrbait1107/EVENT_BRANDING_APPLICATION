@@ -1,13 +1,13 @@
 <?php
 
 // Creating Connection to Database
-    require_once "configPDO.php";
+require_once "configPDO.php";
 
 // Staring Session
-    session_start();
+session_start();
 
-if(!isset($_SESSION['user'])) {
- header("location:login.php");
+if (!isset($_SESSION['user'])) {
+    header("location:login.php");
 }
 ?>
 
@@ -23,7 +23,7 @@ if(!isset($_SESSION['user'])) {
     <!--    Animate.css   -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
      <!-- header Scripts and Links -->
-    <?php include_once "includes/headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php";?>
     <!-- contact us css   -->
     <link rel="stylesheet" href="css/contactUs.css">
     <!-- Google Recaptcha -->
@@ -36,25 +36,25 @@ if(!isset($_SESSION['user'])) {
 <body>
 
     <!--Navbar-->
-    <?php include_once "includes/navbar.php"; ?>
+    <?php include_once "includes/navbar.php";?>
 
 
     <?php
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
-            $name = trim($_POST['name']);
-            $contactEmail = trim($_POST['email']);
-            $contactSubject = trim($_POST['subject']);
-            $contactMessage = trim($_POST['message']);
+    $name = trim($_POST['name']);
+    $contactEmail = trim($_POST['email']);
+    $contactSubject = trim($_POST['subject']);
+    $contactMessage = trim($_POST['message']);
 
-             if(isset($_POST['g-recaptcha-response'])) {
+    if (isset($_POST['g-recaptcha-response'])) {
 
-            $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
-            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g-recaptcha-response']);
-            $response = json_decode($verifyResponse);
+        $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
+        $response = json_decode($verifyResponse);
 
-                 if($response->success){
+        if ($response->success) {
 
             date_default_timezone_set('Etc/UTC');
             require 'PHPMailer/PHPMailerAutoload.php';
@@ -80,30 +80,29 @@ if(isset($_POST['submit'])){
             $mail->AltBody = $contactMessage;
 
             if (!$mail->send()) {
-            echo "Mailer Error: " . $mail->ErrorInfo;
+                echo "Mailer Error: " . $mail->ErrorInfo;
+
             } else {
-            echo "<script>Swal.fire({
+                echo "<script>Swal.fire({
                     icon: 'success',
                     title: 'Success',
                     text: 'Email Sent'
-                   })</script>";         
+                   })</script>";
             }
 
+        } // if $response
 
-                }// if $response
-
-        else{
-        echo "<script>Swal.fire({
+        else {
+            echo "<script>Swal.fire({
                 icon: 'warning',
                 title: 'Google Recaptcha Error',
                 text: 'Please fill Google Recaptcha'
             })</script>";
         }
 
-    }// if(isset($_POST['g-recaptcha-response']))
+    } // if(isset($_POST['g-recaptcha-response']))
 
 }
-
 
 ?>
 
@@ -177,7 +176,7 @@ if(isset($_POST['submit'])){
         </div>
     </main>
 
-    
+
     <!-- WOW.js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script>
@@ -188,14 +187,14 @@ if(isset($_POST['submit'])){
     <script src="js/form-validation.js"> </script>
 
     <!-- Footer PHP -->
-    <?php include_once "includes/footer.php"; ?>
+    <?php include_once "includes/footer.php";?>
     <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php";?>
 
     <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

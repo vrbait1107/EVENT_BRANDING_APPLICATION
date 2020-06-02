@@ -1,14 +1,14 @@
 <?php
 
-    // Creating Connection to Database
-    require_once "configPDO.php";
+// Creating Connection to Database
+require_once "configPDO.php";
 
-    // Staring Session
-    session_start();
+// Staring Session
+session_start();
 
-if(!isset($_SESSION['user'])){
+if (!isset($_SESSION['user'])) {
     header('location:login.php');
-} 
+}
 
 ?>
 
@@ -23,7 +23,7 @@ if(!isset($_SESSION['user'])){
     <title>News & Notifications</title>
 
     <!-- header Scripts and Links -->
-    <?php include_once "includes/headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php";?>
 
 
     <style>
@@ -38,21 +38,21 @@ if(!isset($_SESSION['user'])){
 <body>
 
 
-    <?php 
-   
-   // sql Query
-   $sql = "SELECT * FROM news_information";
+    <?php
 
-   //Preparing Query
-   $result = $conn->prepare($sql);
+// sql Query
+$sql = "SELECT * FROM news_information";
 
-   //Executing Query no need to Bind Values here
-   $result->execute();
-     
-    ?>
+//Preparing Query
+$result = $conn->prepare($sql);
+
+//Executing Query no need to Bind Values here
+$result->execute();
+
+?>
 
     <!--Navbar.php-->
-    <?php include_once "includes/navbar.php" ?>
+    <?php include_once "includes/navbar.php"?>
 
 
     <main class="container">
@@ -60,10 +60,10 @@ if(!isset($_SESSION['user'])){
 
         <h1 class="text-center text-primary mx-auto font-time my-5 text-uppercase">News & Notifications</h1>
 
-            <?php 
+            <?php
 
-            if($result->rowCount() > 0) {
-            ?>
+if ($result->rowCount() > 0) {
+    ?>
 
             <section class="col-md-12 mb-5">
                 <table class="table table-bordered border-dark">
@@ -80,8 +80,8 @@ if(!isset($_SESSION['user'])){
 
                         <?php
 
-                        while($row = $result->fetch(PDO::FETCH_ASSOC)){
-                        ?>
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        ?>
                         <tr>
                             <td><?php echo $row["id"]; ?></td>
                             <td class="text-justify"><?php echo $row["newsTitle"]; ?></td>
@@ -91,16 +91,15 @@ if(!isset($_SESSION['user'])){
                         </tr>
 
                         <?php
-                        }
-                        }
-                        else {
-                            echo "<script>Swal.fire({
+}
+} else {
+    echo "<script>Swal.fire({
                             icon: 'warning',
                             title: 'News Unavailable',
                             text: 'No News Available'
                             })</script>";
-                           }
-                        ?>
+}
+?>
                     </tbody>
                 </table>
             </section>
@@ -109,15 +108,15 @@ if(!isset($_SESSION['user'])){
 
 
     <!--Footer.PHP-->
-    <?php include_once 'includes/footer.php'; ?>
+    <?php include_once 'includes/footer.php';?>
     <script src="js/form-validation.js"></script>
     <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php";?>
 
     <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

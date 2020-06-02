@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$eventName =$_POST['eventName'];
+$eventName = $_POST['eventName'];
 
 $_SESSION['eventName'] = $eventName;
 
@@ -9,9 +9,8 @@ header("Pragma: no-cache");
 header("Cache-Control: no-cache");
 header("Expires: 0");
 // following files need to be included
-require_once("./lib/config_paytm.php");
-require_once("./lib/encdec_paytm.php");
-
+require_once "./lib/config_paytm.php";
+require_once "./lib/encdec_paytm.php";
 
 $checkSum = "";
 $paramList = array();
@@ -31,9 +30,7 @@ $paramList["CHANNEL_ID"] = $CHANNEL_ID;
 $paramList["TXN_AMOUNT"] = $TXN_AMOUNT;
 $paramList["WEBSITE"] = PAYTM_MERCHANT_WEBSITE;
 
-
 $paramList["CALLBACK_URL"] = "http://localhost/EBA/Paytm/PaytmKit/pgResponse.php";
-
 
 /*
 $paramList["MSISDN"] = $MSISDN; //Mobile number of customer
@@ -41,10 +38,10 @@ $paramList["EMAIL"] = $EMAIL; //Email ID of customer
 $paramList["VERIFIED_BY"] = "EMAIL"; //
 $paramList["IS_USER_VERIFIED"] = "YES"; //
 
-*/
+ */
 
 //Here checksum string will return by getChecksumFromArray() function.
-$checkSum = getChecksumFromArray($paramList,PAYTM_MERCHANT_KEY);
+$checkSum = getChecksumFromArray($paramList, PAYTM_MERCHANT_KEY);
 
 ?>
 <html>
@@ -57,16 +54,16 @@ $checkSum = getChecksumFromArray($paramList,PAYTM_MERCHANT_KEY);
 		<table border="1">
 			<tbody>
 			<?php
-			foreach($paramList as $name => $value) {
-				echo '<input type="hidden" name="' . $name .'" value="' . $value . '">';
-			}
-			?>
+foreach ($paramList as $name => $value) {
+    echo '<input type="hidden" name="' . $name . '" value="' . $value . '">';
+}
+?>
 			<input type="hidden" name="CHECKSUMHASH" value="<?php echo $checkSum ?>">
 
 			<form action="pgResponse.php" method="post">
 			<input type="hidden" name="eventName" value="<?php echo $eventName ?>">
 		</form>
-			
+
 			</tbody>
 		</table>
 		<script type="text/javascript">

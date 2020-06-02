@@ -1,11 +1,11 @@
-<?php 
+<?php
 // Starting Database Connection
 require_once "../configPDO.php";
 // Starting Session
 session_start();
 
 // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
-if(!isset($_SESSION['Admin'])){
+if (!isset($_SESSION['Admin'])) {
     header('Location:synergyLogin.php');
 }
 ?>
@@ -20,7 +20,7 @@ if(!isset($_SESSION['Admin'])){
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Admin header Scripts -->
-  <?php include_once "includes/adminHeaderScripts.php"; ?>
+  <?php include_once "includes/adminHeaderScripts.php";?>
 
   <title>GIT SYNERGY 2K20</title>
 
@@ -44,42 +44,38 @@ if(!isset($_SESSION['Admin'])){
 
   <?php
 
-
 // SQL Querry for Delete the Data
 
-if(isset($_REQUEST['delete'])) {
-  
+if (isset($_REQUEST['delete'])) {
 
-  //Query
-  $id = $_POST['certificateId'];
+    //Query
+    $id = $_POST['certificateId'];
 
-  $sql ="DELETE  FROM synergy_user_information WHERE certificateId = {:id}";
+    $sql = "DELETE  FROM synergy_user_information WHERE certificateId = {:id}";
 
-  //Preparing Query
-  $result = $conn->prepare($sql);
+    //Preparing Query
+    $result = $conn->prepare($sql);
 
-  //Binding Value
-  $result->bindValue(":id", $id);
+    //Binding Value
+    $result->bindValue(":id", $id);
 
- //Executing Value
- $result->execute();
-  if($result){
-    
-      echo "<script>Swal.fire({
+    //Executing Value
+    $result->execute();
+    if ($result) {
+        echo "<script>Swal.fire({
         icon: 'success',
         title: 'Deleted',
         text: 'Your Data has been Deleted'
       })</script>";
-  }
-    else {
-      echo "<script>Swal.fire({
+    } else {
+        echo "<script>Swal.fire({
           icon: 'error',
           title: 'ERROR',
           text: 'Unable to Delete Data'
         })</script>";
-    
-  }
-  
+
+    }
+
 }
 
 ?>
@@ -87,11 +83,11 @@ if(isset($_REQUEST['delete'])) {
   <!-- Admin Navbar -->
   <?php
 
-    $adminFileName = "synergyIndex.php";
-    $adminFileData = "synergyData.php";
-    $adminManage = "#";
-    include_once "includes/adminNavbar.php";
-    ?>
+$adminFileName = "synergyIndex.php";
+$adminFileData = "synergyData.php";
+$adminManage = "#";
+include_once "includes/adminNavbar.php";
+?>
 
   <div id="layoutSidenav_content">
     <main class="container-fluid">
@@ -100,17 +96,17 @@ if(isset($_REQUEST['delete'])) {
 
 
           <?php
-         
-        $sql ='SELECT * FROM synergy_user_information';
 
-        //Preparing Query
-        $result= $conn->prepare($sql);
+$sql = 'SELECT * FROM synergy_user_information';
 
-        //Executing Value
-        $result->execute();
+//Preparing Query
+$result = $conn->prepare($sql);
 
-        if($result->rowCount() >0) {
-        ?>
+//Executing Value
+$result->execute();
+
+if ($result->rowCount() > 0) {
+    ?>
 
           <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
             <thead>
@@ -127,9 +123,9 @@ if(isset($_REQUEST['delete'])) {
 
               <?php
 
-            while($row = $result->fetch(PDO::FETCH_ASSOC)){
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
-              ?>
+        ?>
 
               <tr>
 
@@ -142,13 +138,13 @@ if(isset($_REQUEST['delete'])) {
 
                 <td>
                   <form action="synergyCertificate.php" class="text-center" method="post">
-                    <input type="hidden" name="certificateId" value='<?php echo $row ["certificateId"]; ?>'>
+                    <input type="hidden" name="certificateId" value='<?php echo $row["certificateId"]; ?>'>
                     <input type="submit" class="btn btn-sm btn-primary text-white text-center" value="VIEW CERTIFICATE"
                       name="view">
                   </form>
 
                   <form action="" class="text-center" method="post">
-                    <input type="hidden" name="certificateId" value='<?php echo $row ["certificateId"]; ?>'>
+                    <input type="hidden" name="certificateId" value='<?php echo $row["certificateId"]; ?>'>
                     <input type="submit" class="btn btn-sm btn-danger text-white text-center" value="DELETE CERTIFICATE"
                       name="delete">
                   </form>
@@ -157,21 +153,19 @@ if(isset($_REQUEST['delete'])) {
               </tr>
 
               <?php
-            }
+}
 
-            ?>
+    ?>
 
             </tbody>
           </table>
 
           <?php
-         }
+} else {
+    echo "<h4 class='text-center mt-5 text-danger'>No Data available in Database</h4>";
+}
 
-        else {
-          echo "<h4 class='text-center mt-5 text-danger'>No Data available in Database</h4>";
-        }
-
-        ?>
+?>
 
         </section>
       </div>
@@ -183,12 +177,12 @@ if(isset($_REQUEST['delete'])) {
   </div>
 
   <!-- Admin Footer Scripts -->
-  <?php include_once "includes/adminFooterScripts.php"; ?>
+  <?php include_once "includes/adminFooterScripts.php";?>
 
      <?php
-    // closing Database Connnection
-     $conn = null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

@@ -1,31 +1,31 @@
 <?php
-	header("Pragma: no-cache");
-	header("Cache-Control: no-cache");
-	header("Expires: 0");
+header("Pragma: no-cache");
+header("Cache-Control: no-cache");
+header("Expires: 0");
 
-	// following files need to be included
-	require_once("./lib/config_paytm.php");
-	require_once("./lib/encdec_paytm.php");
+// following files need to be included
+require_once "./lib/config_paytm.php";
+require_once "./lib/encdec_paytm.php";
 
-	$ORDER_ID = "";
-	$requestParamList = array();
-	$responseParamList = array();
+$ORDER_ID = "";
+$requestParamList = array();
+$responseParamList = array();
 
-	if (isset($_POST["ORDER_ID"]) && $_POST["ORDER_ID"] != "") {
+if (isset($_POST["ORDER_ID"]) && $_POST["ORDER_ID"] != "") {
 
-		// In Test Page, we are taking parameters from POST request. In actual implementation these can be collected from session or DB. 
-		$ORDER_ID = $_POST["ORDER_ID"];
+    // In Test Page, we are taking parameters from POST request. In actual implementation these can be collected from session or DB.
+    $ORDER_ID = $_POST["ORDER_ID"];
 
-		// Create an array having all required parameters for status query.
-		$requestParamList = array("MID" => PAYTM_MERCHANT_MID , "ORDERID" => $ORDER_ID);  
-		
-		$StatusCheckSum = getChecksumFromArray($requestParamList,PAYTM_MERCHANT_KEY);
-		
-		$requestParamList['CHECKSUMHASH'] = $StatusCheckSum;
+    // Create an array having all required parameters for status query.
+    $requestParamList = array("MID" => PAYTM_MERCHANT_MID, "ORDERID" => $ORDER_ID);
 
-		// Call the PG's getTxnStatusNew() function for verifying the transaction status.
-		$responseParamList = getTxnStatusNew($requestParamList);
-	}
+    $StatusCheckSum = getChecksumFromArray($requestParamList, PAYTM_MERCHANT_KEY);
+
+    $requestParamList['CHECKSUMHASH'] = $StatusCheckSum;
+
+    // Call the PG's getTxnStatusNew() function for verifying the transaction status.
+    $responseParamList = getTxnStatusNew($requestParamList);
+}
 
 ?>
 
@@ -37,7 +37,7 @@
 	<meta name="GENERATOR" content="Evrsoft First Page">
 
 	<!-- header Scripts and Links -->
-	<?php include_once "../../includes/headerScripts.php"; ?>
+	<?php include_once "../../includes/headerScripts.php";?>
 
 	<style>
 		h1,
@@ -79,29 +79,28 @@
 					</table>
 					<br /></br />
 					<?php
-		if (isset($responseParamList) && count($responseParamList)>0 )
-		{ 
-		?>
+if (isset($responseParamList) && count($responseParamList) > 0) {
+    ?>
 					<h2 class="text-center text-uppercase">Response of Status Query:</h2>
 					<table style="border: 1px solid nopadding" class="table table-bordered">
 						<tbody>
 							<?php
-					foreach($responseParamList as $paramName => $paramValue) {
-				?>
+foreach ($responseParamList as $paramName => $paramValue) {
+        ?>
 							<tr>
 								<td style="border: 1px solid" class="text-info font-weight-bold">
-									<label><?php echo $paramName?></label></td>
+									<label><?php echo $paramName ?></label></td>
 								<td style="border: 1px solid" class="text-info font-weight-bold">
-									<?php echo $paramValue?></td>
+									<?php echo $paramValue ?></td>
 							</tr>
 							<?php
-					}
-				?>
+}
+    ?>
 						</tbody>
 					</table>
 					<?php
-		}
-		?>
+}
+?>
 				</form>
 			</section>
 		</div>

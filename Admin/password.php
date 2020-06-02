@@ -1,37 +1,33 @@
-<?php 
+<?php
 // Craeting Database Connection
 require_once '../configPDO.php';
 // Starting Session
 session_start();
 
-$admin =$_SESSION['adminEmail'];
-if(!isset($_SESSION['adminEmail'])){
+$admin = $_SESSION['adminEmail'];
+if (!isset($_SESSION['adminEmail'])) {
     header('location:adminLogin.php');
 }
 
-if($_SESSION['adminType'] === "Administrator") {
+if ($_SESSION['adminType'] === "Administrator") {
     $adminFileName = "adminIndex.php";
     $adminFileData = "adminIndexData.php";
     $adminManage = "adminManage.php";
 
-}
-elseif($_SESSION['adminType'] === "Student Coordinator"){
+} elseif ($_SESSION['adminType'] === "Student Coordinator") {
     $adminFileName = "studentCoordinatorIndex.php";
     $adminFileData = "studentCoordinatorData.php";
     $adminManage = "#";
-} 
-elseif($_SESSION['adminType'] === "Faculty Coordinator"){
+} elseif ($_SESSION['adminType'] === "Faculty Coordinator") {
     $adminFileName = "facultyCoordinatorIndex.php";
     $adminFileData = "facultyCoordinatorData.php";
     $adminManage = "facultyCoordinatorManage.php";
 
-}
-elseif($_SESSION['adminType'] === "Synergy Administrator"){
+} elseif ($_SESSION['adminType'] === "Synergy Administrator") {
     $adminFileName = "synergyIndex.php";
     $adminFileData = "synergyData.php";
     $adminManage = "#";
-}
-else{
+} else {
     $adminFileName = "#";
     $adminFileData = "#";
     $adminManage = "#";
@@ -48,11 +44,11 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    
+
     <title>Change Password</title>
 
      <!-- Admin Header Scripts -->
-    <?php include_once "includes/adminHeaderScripts.php"; ?>
+    <?php include_once "includes/adminHeaderScripts.php";?>
 
     <style>
         h3 {
@@ -65,68 +61,61 @@ else{
 <body class="sb-nav-fixed">
 
     <?php
-if(isset($_POST['changePassword'])) {
-        
-        // Removing White Spaces
-        $password = trim($_POST['password']);
-        $password = trim($password);
-        $password = trim($password);
+if (isset($_POST['changePassword'])) {
 
-  
-            if($password ===  $conPassword)
-            {
-                $hashPassword = password_hash($password, PASSWORD_BCRYPT);
-                $hashConPassword = password_hash($conPassword, PASSWORD_BCRYPT);
+    // Removing White Spaces
+    $password = trim($_POST['password']);
+    $password = trim($password);
+    $password = trim($password);
 
-                $sql = "UPDATE admin_information SET adminPassword = :hashPassword
+    if ($password === $conPassword) {
+        $hashPassword = password_hash($password, PASSWORD_BCRYPT);
+        $hashConPassword = password_hash($conPassword, PASSWORD_BCRYPT);
+
+        $sql = "UPDATE admin_information SET adminPassword = :hashPassword
                  where admin_information.email = :admin";
 
-                 //Preparing Query
-                 $result = $conn->prepare($sql);
+        //Preparing Query
+        $result = $conn->prepare($sql);
 
-                 //Binding Value
-                 $result->bindValue(":hashPassword", $hashPassword);
-                 $result->bindValue(":email", $email);
-                
-                 //Executing Query
-                 $result->execute();
-                 
-               
+        //Binding Value
+        $result->bindValue(":hashPassword", $hashPassword);
+        $result->bindValue(":email", $email);
 
-                        if($result){
-                        echo "<script>Swal.fire({
+        //Executing Query
+        $result->execute();
+
+        if ($result) {
+            echo "<script>Swal.fire({
                             icon: 'success',
                             title: 'Successful',
                             text: 'Your Password is Successfully Changed'
                             })</script>";
-                        }
-                        else {
-                        echo "<script>Swal.fire({
+        } else {
+            echo "<script>Swal.fire({
                                 icon: 'error',
                                 title: 'Error',
                                 text: 'We are failed to change Password'
                             })</script>";
-                        }
+        }
 
-     
+    } // if result password
 
-                } // if result password
-
-                else {
-                    echo "<script>Swal.fire({
+    else {
+        echo "<script>Swal.fire({
                             icon: 'warning',
                             title: 'Field does not match',
                             text: 'Password and Confirm New Password field are not match'
                         })</script>";
-                }
-    
+    }
+
 } // isset post change Password bracket
 
-    ?>
+?>
 
 
    <!-- Admin Navbar -->
-  <?php include_once "includes/adminNavbar.php"; ?>
+  <?php include_once "includes/adminNavbar.php";?>
 
 
 <div id="layoutSidenav_content">
@@ -171,12 +160,12 @@ if(isset($_POST['changePassword'])) {
 </div>
 
     <!-- Admin Footer Scripts -->
-    <?php include_once "includes/adminFooterScripts.php"; ?>
+    <?php include_once "includes/adminFooterScripts.php";?>
 
      <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

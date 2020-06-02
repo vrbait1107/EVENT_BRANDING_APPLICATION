@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Creating Database Connection
 require_once "../configPDO.php";
 // Starting Session
@@ -6,15 +6,15 @@ session_start();
 
 // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
 
- // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
-    if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
+// Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
+if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
-    if($_SESSION['adminType'] !== "Administrator"){
-           header("location:adminLogin.php");
-   }
-   
+    if ($_SESSION['adminType'] !== "Administrator") {
+        header("location:adminLogin.php");
     }
-   
+
+}
+
 ?>
 
 
@@ -27,7 +27,7 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Admin Header Scripts -->
-  <?php include_once "includes/adminHeaderScripts.php"; ?>
+  <?php include_once "includes/adminHeaderScripts.php";?>
 
   <title>GIT SHODH 2K20 Administrator Dashboard</title>
 
@@ -39,12 +39,12 @@ session_start();
   <!-- Admin Navbar -->
   <?php
 
-    $adminFileName = "adminIndex.php";
-    $adminFileData = "adminIndexData.php";
-    $adminManage = "adminManage.php";
-   
-    include_once "includes/adminNavbar.php";
-    ?>
+$adminFileName = "adminIndex.php";
+$adminFileData = "adminIndexData.php";
+$adminManage = "adminManage.php";
+
+include_once "includes/adminNavbar.php";
+?>
 
   <div id="layoutSidenav_content">
 
@@ -71,20 +71,20 @@ session_start();
 
                 <?php
 
-                  //  Retriving all the Information From the Database
+//  Retriving all the Information From the Database
 
-                  $sql ="SELECT * FROM user_information INNER JOIN event_information ON 
+$sql = "SELECT * FROM user_information INNER JOIN event_information ON
                   user_information.email= event_information.email ORDER BY firstName ASC";
 
-                  //Preparing Query
-                  $result= $conn->prepare($sql);
+//Preparing Query
+$result = $conn->prepare($sql);
 
-                  //Executing Value
-                  $result->execute();
+//Executing Value
+$result->execute();
 
-                  if($result->rowCount() >0) {
+if ($result->rowCount() > 0) {
 
-                ?>
+    ?>
 
                 <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
 
@@ -108,11 +108,11 @@ session_start();
                   <tbody>
 
                     <?php
-          while($row = $result->fetch(PDO::FETCH_ASSOC)){ 
-          ?>
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        ?>
 
                     <tr>
-                      <td class='text-center'> <?php echo $row['certificateId']?> </td>
+                      <td class='text-center'> <?php echo $row['certificateId'] ?> </td>
                       <td class='text-center'> <?php echo $row['firstName'] ?></td>
                       <td class='text-center'> <?php echo $row['lastName'] ?></td>
                       <td class='text-center'> <?php echo $row['collegeName'] ?> </td>
@@ -128,16 +128,16 @@ session_start();
                       <td class='text-center'> <?php echo $row['status'] ?> </td>
                     </tr>
 
-                    <?php 
-            }
-            ?>
+                    <?php
+}
+    ?>
 
                   </tbody>
                 </table>
 
                 <?php
-        }
-        ?>
+}
+?>
 
               </div>
             </div>
@@ -153,13 +153,13 @@ session_start();
   </div>
 
   <!-- Admin Footer Scripts -->
-  <?php include_once "includes/adminFooterScripts.php"; ?>
+  <?php include_once "includes/adminFooterScripts.php";?>
 
      <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
-     
+// closing Database Connnection
+$conn = null;
+?>
+
 </body>
 
 </html>

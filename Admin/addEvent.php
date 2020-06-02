@@ -1,38 +1,36 @@
-<?php 
+<?php
 // Craeting Database Connection
 require_once '../configPDO.php';
 // Starting Session
 session_start();
 
-$admin =$_SESSION['adminEmail'];
+$admin = $_SESSION['adminEmail'];
 
-if(!isset($_SESSION['adminEmail'])){
-  header('location:adminLogin.php');
+if (!isset($_SESSION['adminEmail'])) {
+    header('location:adminLogin.php');
 }
 
-if($_SESSION['adminType'] === "Administrator") {
+if ($_SESSION['adminType'] === "Administrator") {
     $adminFileName = "adminIndex.php";
     $adminFileData = "adminIndexData.php";
     $adminManage = "adminManage.php";
 
-}
-elseif($_SESSION['adminType'] === "Student Coordinator"){
+} elseif ($_SESSION['adminType'] === "Student Coordinator") {
     $adminFileName = "studentCoordinatorIndex.php";
     $adminFileData = "studentCoordinatorData.php";
     $adminManage = "#";
-} 
-elseif($_SESSION['adminType'] === "Faculty Coordinator"){
+
+} elseif ($_SESSION['adminType'] === "Faculty Coordinator") {
     $adminFileName = "facultyCoordinatorIndex.php";
     $adminFileData = "facultyCoordinatorData.php";
     $adminManage = "facultyCoordinatorManage.php";
 
-}
-elseif($_SESSION['adminType'] === "Synergy Administrator"){
+} elseif ($_SESSION['adminType'] === "Synergy Administrator") {
     $adminFileName = "synergyIndex.php";
     $adminFileData = "synergyData.php";
     $adminManage = "#";
-}
-else{
+
+} else {
     $adminFileName = "#";
     $adminFileData = "#";
     $adminManage = "#";
@@ -53,7 +51,7 @@ else{
     <title>Add Events</title>
 
     <!-- Admin Header Scripts -->
-    <?php include_once "includes/adminHeaderScripts.php"; ?>
+    <?php include_once "includes/adminHeaderScripts.php";?>
 
 </head>
 
@@ -62,102 +60,94 @@ else{
 
     <?php
 
+if (isset($_POST['addEvent'])) {
 
+    // Removing White spaces
+    $eventName = trim($_POST['eventName']);
+    $eventPrice = trim($_POST['eventPrice']);
+    $eventPrize = trim($_POST['eventPrize']);
+    $eventSponsor = trim($_POST['eventSponsor']);
+    $eventDepartment = trim($_POST['eventDepartment']);
+    $eventDescription = trim($_POST['eventDescription']);
+    $eventRules = trim($_POST['eventRules']);
+    $eventCoordinator = trim($_POST['eventCoordinator']);
+    $eventStartDate = trim($_POST['eventStartDate']);
+    $eventEndDate = trim($_POST['eventEndDate']);
 
-if(isset($_POST['addEvent'])){
+    $eventImage = $_FILES['eventImage'];
+    $eventImageName = $_FILES['eventImage']['name'];
+    $eventImageSize = $_FILES['eventImage']['size'];
+    $eventImageTmpDir = $_FILES['eventImage']['tmp_name'];
+    $eventImageType = $_FILES['eventImage']['type'];
 
-   // Removing White spaces          
- $eventName = trim($_POST['eventName']);
- $eventPrice = trim($_POST['eventPrice']);
- $eventPrize = trim($_POST['eventPrize']);
- $eventSponsor = trim($_POST['eventSponsor']);
- $eventDepartment = trim($_POST['eventDepartment']);
- $eventDescription = trim($_POST['eventDescription']);
- $eventRules = trim($_POST['eventRules']);
- $eventCoordinator = trim($_POST['eventCoordinator']);
- $eventStartDate = trim($_POST['eventStartDate']);
- $eventEndDate = trim($_POST['eventEndDate']);
+    if ($eventImageType == 'image/jpeg' || $eventImageType == 'image/jpg' || $eventImageType == 'image/png') {
 
+        if ($eventImageSize <= 2097152) {
 
- $eventImage = $_FILES['eventImage'];
- $eventImageName = $_FILES['eventImage']['name'];
- $eventImageSize = $_FILES['eventImage']['size'];
- $eventImageTmpDir = $_FILES['eventImage']['tmp_name'];
- $eventImageType = $_FILES['eventImage']['type'];
+            move_uploaded_file($eventImageTmpDir, "../eventImage/" . $eventImageName);
 
- if($eventImageType ==  'image/jpeg' || $eventImageType ==  'image/jpg' || $eventImageType ==  'image/png') {
-   
-    if($eventImageSize <= 2097152){
-     
-        move_uploaded_file($eventImageTmpDir, "../eventImage/".$eventImageName);
-       
-       // Query
-      $sql=   "INSERT INTO events_details_information( eventImage, eventName, eventPrice, eventPrize, eventSponsor,
+            // Query
+            $sql = "INSERT INTO events_details_information( eventImage, eventName, eventPrice, eventPrize, eventSponsor,
          eventDepartment, eventDescription, eventRules, eventCoordinator, eventStartDate, eventEndDate)
-          VALUES (:eventImageName, :eventName, :eventPrice, :eventPrize, :eventSponsor, :eventDepartment, 
+          VALUES (:eventImageName, :eventName, :eventPrice, :eventPrize, :eventSponsor, :eventDepartment,
           :eventDescription, :eventRules, :eventCoordinator, :eventStartDate, :eventEndDate)";
 
-       // Preparing Query
-       $result = $conn->prepare($sql);
+            // Preparing Query
+            $result = $conn->prepare($sql);
 
-       //Binding Values
-       $result->bindValue(":eventImageName", $eventImageName);
-       $result->bindValue(":eventName", $eventName);
-       $result->bindValue(":eventPrice", $eventPrice);
-       $result->bindValue(":eventPrize", $eventPrize);
-       $result->bindValue(":eventSponsor", $eventSponsor);
-       $result->bindValue(":eventDepartment", $eventDepartment);
-       $result->bindValue(":eventDescription", $eventDescription);
-       $result->bindValue(":eventRules", $eventRules);
-       $result->bindValue(":eventCoordinator", $eventCoordinator);
-       $result->bindValue(":eventStartDate", $eventStartDate);
-       $result->bindValue(":eventEndDate", $eventEndDate);
+            //Binding Values
+            $result->bindValue(":eventImageName", $eventImageName);
+            $result->bindValue(":eventName", $eventName);
+            $result->bindValue(":eventPrice", $eventPrice);
+            $result->bindValue(":eventPrize", $eventPrize);
+            $result->bindValue(":eventSponsor", $eventSponsor);
+            $result->bindValue(":eventDepartment", $eventDepartment);
+            $result->bindValue(":eventDescription", $eventDescription);
+            $result->bindValue(":eventRules", $eventRules);
+            $result->bindValue(":eventCoordinator", $eventCoordinator);
+            $result->bindValue(":eventStartDate", $eventStartDate);
+            $result->bindValue(":eventEndDate", $eventEndDate);
 
-       //Executing Query
-       $result->execute();
-       
-            if($result){
+            //Executing Query
+            $result->execute();
+
+            if ($result) {
                 echo "<script>Swal.fire({
                         icon: 'success',
                         title: 'Success',
                         text: 'Added Event Successfully'
                     })</script>";
-            }
-            else{
-                    echo "<script>Swal.fire({
+
+            } else {
+                echo "<script>Swal.fire({
                             icon: 'error',
                             title: 'Error',
                             text: 'Failed to Add Event'
                         })</script>";
             }
 
-    }
-    else{
-      echo "<script>Swal.fire({
+        } else {
+            echo "<script>Swal.fire({
             icon: 'error',
             title: 'Image size exeeded',
             text: 'Please Upload File less than 2MB'
         })</script>";
-    }
+        }
 
-
- }
- else{
-      echo "<script>Swal.fire({
+    } else {
+        echo "<script>Swal.fire({
             icon: 'error',
             title: 'Image Format Not Supported',
             text: 'Supported Types are jpg,jpeg,png'
         })</script>";
- }
- 
- 
-}
+    }
 
+}
 
 ?>
 
     <!-- Admin Navbar -->
-    <?php include_once "includes/adminNavbar.php"; ?>
+    <?php include_once "includes/adminNavbar.php";?>
 
 
     <div id="layoutSidenav_content">
@@ -255,12 +245,12 @@ if(isset($_POST['addEvent'])){
     </div>
 
     <!-- Admin Footer Scripts -->
-    <?php include_once "includes/adminFooterScripts.php"; ?>
+    <?php include_once "includes/adminFooterScripts.php";?>
 
     <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

@@ -1,18 +1,17 @@
-<?php 
+<?php
 // Creating Database Connection
 require_once "../configPDO.php";
 // Session Start
 session_start();
 
+// Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
+if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
- // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
-    if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
-
-    if($_SESSION['adminType'] !== "Faculty Coordinator"){
-           header("location:adminLogin.php");
-   }
-   
+    if ($_SESSION['adminType'] !== "Faculty Coordinator") {
+        header("location:adminLogin.php");
     }
+
+}
 
 ?>
 
@@ -26,7 +25,7 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Admin Header Scripts -->
-  <?php include_once "includes/adminHeaderScripts.php"; ?>
+  <?php include_once "includes/adminHeaderScripts.php";?>
 
 
   <title>GIT SHODH 2K20</title>
@@ -38,12 +37,12 @@ session_start();
   <!-- Admin Navbar -->
   <?php
 
-    $adminFileName = "facultyCoordinatorIndex.php";
-    $adminFileData = "facultyCoordinatorData.php";
-    $adminManage = "facultyCoordinatorManage.php";
-   
-    include_once "includes/adminNavbar.php";
-    ?>
+$adminFileName = "facultyCoordinatorIndex.php";
+$adminFileData = "facultyCoordinatorData.php";
+$adminManage = "facultyCoordinatorManage.php";
+
+include_once "includes/adminNavbar.php";
+?>
 
 
   <div id="layoutSidenav_content">
@@ -70,27 +69,27 @@ session_start();
 
                 <?php
 
-        $department = $_SESSION['adminDepartment'];
-                
-        //Retriving Data From the Database to Show Data in Table
+$department = $_SESSION['adminDepartment'];
 
-        $sql ="SELECT * FROM user_information INNER JOIN event_information 
-        ON user_information.email= event_information.email 
-        WHERE event_information.event IN (SELECT events_details_information.eventName 
+//Retriving Data From the Database to Show Data in Table
+
+$sql = "SELECT * FROM user_information INNER JOIN event_information
+        ON user_information.email= event_information.email
+        WHERE event_information.event IN (SELECT events_details_information.eventName
         FROM events_details_information WHERE eventDepartment = :department)";
 
-        //Preparing Query
-        $result = $conn->prepare($sql);
+//Preparing Query
+$result = $conn->prepare($sql);
 
-        //Binding Value
-        $result->bindValue(":department", $department);
+//Binding Value
+$result->bindValue(":department", $department);
 
-        //Executing Query
-        $result->execute();
+//Executing Query
+$result->execute();
 
-        if($result->rowCount() >0) {
+if ($result->rowCount() > 0) {
 
-        ?>
+    ?>
 
                 <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
                   <thead>
@@ -112,9 +111,9 @@ session_start();
 
                   <tbody>
 
-                    <?php 
-            while($row = $result->fetch(PDO::FETCH_ASSOC)){
-              ?>
+                    <?php
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        ?>
 
                     <tr>
                       <td class='text-center'> <?php echo $row['certificateId'] ?></td>
@@ -122,7 +121,7 @@ session_start();
                       <td class='text-center'> <?php echo $row['lastName'] ?></td>
                       <td class='text-center'> <?php echo $row['collegeName'] ?></td>
                       <td class='text-center'> <?php echo $row['departmentName'] ?></td>
-                      <td class='text-center'> <?php echo $row['academicYear']?> </td>
+                      <td class='text-center'> <?php echo $row['academicYear'] ?> </td>
                       <td class='text-center'> <?php echo $row['event'] ?></td>
                       <td class='text-center'> <?php echo $row['prize'] ?></td>
                       <td class='text-center'> <?php echo $row['txnAmount'] ?> </td>
@@ -134,16 +133,16 @@ session_start();
                     </tr>
 
                     <?php
-            }
-            ?>
+}
+    ?>
 
                   </tbody>
 
                 </table>
 
                 <?php
-        }
-        ?>
+}
+?>
 
               </div>
             </div>
@@ -158,12 +157,12 @@ session_start();
   </div>
 
   <!-- Admin Footer Scripts -->
-  <?php include_once "includes/adminFooterScripts.php"; ?>
+  <?php include_once "includes/adminFooterScripts.php";?>
 
      <?php
-    // closing Database Connnection
-     $conn = null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

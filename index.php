@@ -1,15 +1,14 @@
 <?php
 
 // Creating Connection to Database
-    require_once "configPDO.php";
+require_once "configPDO.php";
 
 // Staring Session
-    session_start();
+session_start();
 
-if(!isset($_SESSION['user'])) {
- header("location:login.php");
+if (!isset($_SESSION['user'])) {
+    header("location:login.php");
 }
-
 
 $visitorIpAddress = $_SERVER['REMOTE_ADDR'];
 //sql Query
@@ -25,42 +24,40 @@ $result1->bindValue("visitorIpAddress", $visitorIpAddress);
 $result1->execute();
 
 // Total row Count
-$totaVisitor =  $result1->rowCount();
+$totaVisitor = $result1->rowCount();
 
-if($totaVisitor == 0) {
+if ($totaVisitor == 0) {
 
-// Query if no address found 
-$sql2 = "INSERT INTO visitor_counter (ipAddress) VALUES (:visitorIpAddress)";
+// Query if no address found
+    $sql2 = "INSERT INTO visitor_counter (ipAddress) VALUES (:visitorIpAddress)";
 
 //Preparing Query
-$result2= $conn->prepare($sql);
+    $result2 = $conn->prepare($sql);
 
 //Binding Values
-$result2->bindValue(":visitorIpAddress", $visitorIpAddress);
+    $result2->bindValue(":visitorIpAddress", $visitorIpAddress);
 
 //Executing Query
-$result2->execute();
+    $result2->execute();
 
 }
 
-
-try{
+try {
 // Retrive Data from Database
-// Query
-$sql = "SELECT * FROM visitor_counter";
+    // Query
+    $sql = "SELECT * FROM visitor_counter";
 
 // Preparing Query
-$result = $conn->prepare($sql);
+    $result = $conn->prepare($sql);
 
-$result->execute();
+    $result->execute();
 
-if($result){
-    $totaVisitors =  $result->rowCount();
-}
+    if ($result) {
+        $totaVisitors = $result->rowCount();
+    }
 
-}
-catch(PDOException $e){
-    echo "Error".$e->getMessage();
+} catch (PDOException $e) {
+    echo "Error" . $e->getMessage();
 }
 
 ?>
@@ -78,7 +75,7 @@ catch(PDOException $e){
     <!--Animate CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <!-- header Scripts and Links -->
-    <?php include_once "includes/headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php";?>
     <!--Loader-->
     <link rel="stylesheet" href="css/loader.css">
 
@@ -121,7 +118,7 @@ catch(PDOException $e){
 
 
     <!--Navbar-->
-    <?php include_once "includes/navbar.php"; ?>
+    <?php include_once "includes/navbar.php";?>
 
     <main class="container-fluid welcome-section">
         <div class="row mx-auto text-center">
@@ -229,17 +226,17 @@ catch(PDOException $e){
     </div>
 
     <!-- Footer PHP -->
-    <?php include_once "includes/footer.php"; ?>
+    <?php include_once "includes/footer.php";?>
     <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php";?>
      <!-- Index js -->
     <script src="js/index.js"></script>
 
 
     <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

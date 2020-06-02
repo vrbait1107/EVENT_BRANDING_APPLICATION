@@ -1,109 +1,67 @@
-<?php 
+<?php
 
 // Creating Database Connection
 require_once "../configPDO.php";
 //Starting Session
 session_start();
 
-    // Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
-    if( !isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
+// Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
+if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
-    if($_SESSION['adminType'] !== "Administrator"){
-           header("location:adminLogin.php");
-   }
-   
+    if ($_SESSION['adminType'] !== "Administrator") {
+        header("location:adminLogin.php");
     }
 
+}
 
-    // Display Participation count & total revenue
-    $sqlData ="select * from event_information";
+// Display Participation count & total revenue
+$sqlData = "select * from event_information";
 
-    $resultData = $conn->query($sqlData);
+$resultData = $conn->query($sqlData);
 
-   // $resultData->execute();
-     
-    $rowCount = $resultData->rowCount();
-   
-    $totalAmount = 0;
+// $resultData->execute();
 
-    while($rowData = $resultData->fetch(PDO::FETCH_ASSOC)){
-     $totalAmount =   $totalAmount + $rowData['txnAmount'];
-    } 
+$rowCount = $resultData->rowCount();
 
-     // display admin information count (Student Coordinator) for college
-    
-    $sqlDataAdmin ="SELECT * FROM admin_information
+$totalAmount = 0;
+
+while ($rowData = $resultData->fetch(PDO::FETCH_ASSOC)) {
+    $totalAmount = $totalAmount + $rowData['txnAmount'];
+}
+
+// display admin information count (Student Coordinator) for college
+
+$sqlDataAdmin = "SELECT * FROM admin_information
     WHERE adminType= :studentCoordinator";
 
-    $resultDataAdmin = $conn->prepare($sqlDataAdmin);
+$resultDataAdmin = $conn->prepare($sqlDataAdmin);
 
-    $resultDataAdmin->bindValue(":studentCoordinator", "Student Coordinator");
+$resultDataAdmin->bindValue(":studentCoordinator", "Student Coordinator");
 
-    $resultDataAdmin->execute();
+$resultDataAdmin->execute();
 
-    $rowCountAdmin = $resultDataAdmin->rowCount();
+$rowCountAdmin = $resultDataAdmin->rowCount();
 
-
-     // display admin information count (Faculty Coordinator) for college
-    $sqlDataAdmin2 ="SELECT * FROM admin_information
+// display admin information count (Faculty Coordinator) for college
+$sqlDataAdmin2 = "SELECT * FROM admin_information
     WHERE adminType= :facultyCoordinator";
 
-    $resultDataAdmin2 = $conn->prepare($sqlDataAdmin2);
+$resultDataAdmin2 = $conn->prepare($sqlDataAdmin2);
 
-    $resultDataAdmin2->bindValue(":facultyCoordinator", "Faculty Coordinator");
+$resultDataAdmin2->bindValue(":facultyCoordinator", "Faculty Coordinator");
 
-    $resultDataAdmin2->execute();
+$resultDataAdmin2->execute();
 
-    $rowCountAdmin2 = $resultDataAdmin2->rowCount();
+$rowCountAdmin2 = $resultDataAdmin2->rowCount();
 
-    
-    // Participation Count Department Wise
+// Participation Count Department Wise
 
-    function count1 ($department) {
-
-        global $conn;
-
-        $sql = "SELECT * FROM event_information WHERE event IN 
-        (SELECT eventName FROM events_details_information WHERE eventDepartment = :department)";
-
-        $result= $conn->prepare($sql);
-
-        $result->bindValue(":department", $department);
-
-        $result->execute();
-
-        $row = $result->rowCount();
-
-        return $row;
-    }
-
-
-   // Student Administrator Count Department Wise
-
-    function countAdmin ($department) {
+function count1($department)
+{
 
     global $conn;
 
-    $sql ="SELECT * FROM admin_information
-    WHERE adminType= :studentCoordinator AND adminDepartment = :department";
-
-        $result= $conn->prepare($sql);
-
-        $result->bindValue(":studentCoordinator", "Student Coordinator");
-        $result->bindValue(":department", $department);
-
-        $result->execute();
-
-        $row = $result->rowCount();
-        
-        return $row;
-
-    }
-
-     // Display   total revenue departmet wise
-    function countRevenue($department) {
-    global $conn;
-    $sql = "SELECT SUM(txnAmount) AS totalAmount FROM event_information WHERE event IN 
+    $sql = "SELECT * FROM event_information WHERE event IN
         (SELECT eventName FROM events_details_information WHERE eventDepartment = :department)";
 
     $result = $conn->prepare($sql);
@@ -111,12 +69,53 @@ session_start();
     $result->bindValue(":department", $department);
 
     $result->execute();
- 
+
+    $row = $result->rowCount();
+
+    return $row;
+}
+
+// Student Administrator Count Department Wise
+
+function countAdmin($department)
+{
+
+    global $conn;
+
+    $sql = "SELECT * FROM admin_information
+    WHERE adminType= :studentCoordinator AND adminDepartment = :department";
+
+    $result = $conn->prepare($sql);
+
+    $result->bindValue(":studentCoordinator", "Student Coordinator");
+    $result->bindValue(":department", $department);
+
+    $result->execute();
+
+    $row = $result->rowCount();
+
+    return $row;
+
+}
+
+// Display   total revenue departmet wise
+function countRevenue($department)
+{
+    global $conn;
+    $sql = "SELECT SUM(txnAmount) AS totalAmount FROM event_information WHERE event IN
+        (SELECT eventName FROM events_details_information WHERE eventDepartment = :department)";
+
+    $result = $conn->prepare($sql);
+
+    $result->bindValue(":department", $department);
+
+    $result->execute();
+
     $row = $result->fetch(PDO::FETCH_ASSOC);
 
     $totalAmount = $row['totalAmount'];
     return $totalAmount + 0;
-    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -131,7 +130,7 @@ session_start();
     <title>Administrator</title>
 
     <!-- Admin Header Scripts -->
-    <?php include_once "includes/adminHeaderScripts.php"; ?>
+    <?php include_once "includes/adminHeaderScripts.php";?>
 
 </head>
 
@@ -140,12 +139,12 @@ session_start();
     <!-- Admin Navbar -->
     <?php
 
-    $adminFileName = "adminIndex.php";
-    $adminFileData = "adminIndexData.php";
-    $adminManage = "adminManage.php";
-   
-    include_once "includes/adminNavbar.php";
-    ?>
+$adminFileName = "adminIndex.php";
+$adminFileData = "adminIndexData.php";
+$adminManage = "adminManage.php";
+
+include_once "includes/adminNavbar.php";
+?>
 
     <div id="layoutSidenav_content">
 
@@ -264,11 +263,11 @@ session_start();
                         <div class="row">
 
                             <?php
-                    
-                                    $departmentArray =["Electronics and Telecommunication", "Chemical", "Computer", "Civil", "Mechanical"];
-                                    for($i= 0; $i < 5; $i++) {
-                    
-                                ?>
+
+$departmentArray = ["Electronics and Telecommunication", "Chemical", "Computer", "Civil", "Mechanical"];
+for ($i = 0; $i < 5; $i++) {
+
+    ?>
 
                             <!-- Total Participation Count Department Wise -->
                             <section class="col-md-6 mb-4">
@@ -278,11 +277,11 @@ session_start();
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     Total Participation <br>
-                                                    <span class="text-danger"> <?php echo  $departmentArray[$i]; ?>
+                                                    <span class="text-danger"> <?php echo $departmentArray[$i]; ?>
                                                     </span>
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <?php echo count1 ($departmentArray[$i]);?>
+                                                    <?php echo count1($departmentArray[$i]); ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
@@ -304,11 +303,11 @@ session_start();
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Total Revenue <br>
-                                                    <span class="text-danger"> <?php echo  $departmentArray[$i]; ?>
+                                                    <span class="text-danger"> <?php echo $departmentArray[$i]; ?>
                                                     </span>
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    &#8377; <?php echo countRevenue($departmentArray[$i]);?>
+                                                    &#8377; <?php echo countRevenue($departmentArray[$i]); ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
@@ -320,8 +319,8 @@ session_start();
 
 
                             <?php
-                                }
-                                ?>
+}
+?>
 
                         </div>
                     </div>
@@ -345,11 +344,11 @@ session_start();
                         <div class="row">
 
                             <?php
-                    
-                                    $departmentArray =["Electronics and Telecommunication", "Chemical", "Computer", "Civil", "Mechanical"];
-                                    for($i= 0; $i < 5; $i++) {
-                    
-                                ?>
+
+$departmentArray = ["Electronics and Telecommunication", "Chemical", "Computer", "Civil", "Mechanical"];
+for ($i = 0; $i < 5; $i++) {
+
+    ?>
 
                             <!-- Total Participation Count Department Wise -->
                             <section class="col-md-6 mb-4">
@@ -359,11 +358,11 @@ session_start();
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     Total Student Coordinator <br>
-                                                    <span class="text-danger"> <?php echo  $departmentArray[$i]; ?>
+                                                    <span class="text-danger"> <?php echo $departmentArray[$i]; ?>
                                                     </span>
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <?php echo countAdmin ($departmentArray[$i]);?>
+                                                    <?php echo countAdmin($departmentArray[$i]); ?>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
@@ -375,8 +374,8 @@ session_start();
                                 </div>
                             </section>
                             <?php
-                                }
-                                ?>
+}
+?>
 
                         </div>
                     </div>
@@ -387,16 +386,16 @@ session_start();
         </main>
 
         <!--Admin Footer-->
-        <?php include_once "includes/adminFooter.php"; ?>
+        <?php include_once "includes/adminFooter.php";?>
     </div>
 
     <!-- Admin Footer Scripts -->
-    <?php include_once "includes/adminFooterScripts.php"; ?>
+    <?php include_once "includes/adminFooterScripts.php";?>
 
      <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

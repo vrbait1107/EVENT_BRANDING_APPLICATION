@@ -1,15 +1,14 @@
-<?php 
+<?php
 
 // Creating Connection to Database
-    require_once "configPDO.php";
+require_once "configPDO.php";
 
 // Staring Session
-    session_start();
+session_start();
 
-if(!isset($_SESSION['user'])){
+if (!isset($_SESSION['user'])) {
     header("location:login.php");
 }
-
 
 ?>
 
@@ -23,14 +22,14 @@ if(!isset($_SESSION['user'])){
     <title>User Profile</title>
 
     <!-- header Scripts and Links -->
-    <?php include_once "includes/headerScripts.php"; ?>
+    <?php include_once "includes/headerScripts.php";?>
 
 </head>
 
 <body>
 
     <!-- Navbar PHP -->
-    <?php include_once "includes/navbar.php"; ?>
+    <?php include_once "includes/navbar.php";?>
 
 
     <main class="container">
@@ -112,17 +111,17 @@ if(!isset($_SESSION['user'])){
     </main>
 
     <!-- Footer PHP -->
-    <?php include_once "includes/footer.php" ?>
+    <?php include_once "includes/footer.php"?>
     <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php"; ?>
+    <?php include_once "includes/footerScripts.php";?>
     <!-- Custom JS -->
     <script src="js/userProfile.js"></script>
 
 
     <?php
-    // closing Database Connnection
-     $conn= null; 
-     ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

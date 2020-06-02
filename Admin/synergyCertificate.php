@@ -4,27 +4,27 @@ session_start();
 // Starting Database Connection
 require_once "../configPDO.php";
 
-        $CertId= $_POST['certificateId'];
+$CertId = $_POST['certificateId'];
 
-        $sql ="SELECT * FROM synergy_user_information WHERE certificateId = :CertId";
+$sql = "SELECT * FROM synergy_user_information WHERE certificateId = :CertId";
 
-        //Preparing Query
-        $result= $conn->prepare($sql);
+//Preparing Query
+$result = $conn->prepare($sql);
 
-        //Binding Value 
-        $result->bindValue(":certId", $CertId);
+//Binding Value
+$result->bindValue(":certId", $CertId);
 
-        //Executing the Query
-        $result->execute();
+//Executing the Query
+$result->execute();
 
-        $row= $result->fetch(PDO::FETCH_ASSOC);
-        
-        $validate =$row['certificateId'];
-        $firstName = $row['firstName'];
-        $lastName = $row['lastName'];
-        $department= $row['departmentName'];
-        $event = $row['eventName'];
-        $prize = $row['prize'];
+$row = $result->fetch(PDO::FETCH_ASSOC);
+
+$validate = $row['certificateId'];
+$firstName = $row['firstName'];
+$lastName = $row['lastName'];
+$department = $row['departmentName'];
+$event = $row['eventName'];
+$prize = $row['prize'];
 ?>
 
 
@@ -85,10 +85,10 @@ require_once "../configPDO.php";
 
         <!-- Content of Certificate -->
 
-        <p class="para"> Mr./Ms.<span><?php echo $firstName?></span>&nbsp;<span><?php echo $lastName?></span> of
-            <span><?php echo $department?></span>&nbsp;Department <br><br>
+        <p class="para"> Mr./Ms.<span><?php echo $firstName ?></span>&nbsp;<span><?php echo $lastName ?></span> of
+            <span><?php echo $department ?></span>&nbsp;Department <br><br>
             has Participated in <span><?php echo $event ?></span> Event of Synergy 2K20 held <br><br>
-            during 14-15 March 2020 at GIT, Lavel & Won <span><?php echo $prize?></span> Prize. </p>
+            during 14-15 March 2020 at GIT, Lavel & Won <span><?php echo $prize ?></span> Prize. </p>
 
         <br>
 
@@ -106,13 +106,13 @@ require_once "../configPDO.php";
     </div>
     </div>
 
-    
+
     <!-- JS Variables to Convert data into QR Code-->
     <script type="text/javascript">
         let a = "<?php echo $firstName ?>";
-        let b = "<?php  echo $lastName ?>";
-        let c = "<?php  echo $department?>";
-        let d = "<?php  echo $event ?>";
+        let b = "<?php echo $lastName ?>";
+        let c = "<?php echo $department ?>";
+        let d = "<?php echo $event ?>";
         let e = "<?php echo $prize ?>";
         let f = "<?php echo $validate ?>";
     </script>
@@ -124,9 +124,9 @@ require_once "../configPDO.php";
     <script type="text/javascript" src="../js/php-certQrCode.js"> </script>
 
     <?php
-    // closing Database Connnection
-     $conn-= null; 
-     ?>
+// closing Database Connnection
+$conn -= null;
+?>
 
 </body>
 
