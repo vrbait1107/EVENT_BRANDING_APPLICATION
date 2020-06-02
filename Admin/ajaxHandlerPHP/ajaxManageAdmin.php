@@ -1,131 +1,118 @@
-<?php 
+<?php
 // Creating Database Connection
 require_once "../../configPDO.php";
 
-    
-    extract($_POST);
+extract($_POST);
 
+// //########## Update Admin Details
 
+if (isset($_POST['hiddenEmail'])) {
 
-    // //########## Update Admin Details
-
-     if(isset($_POST['hiddenEmail'])) {
-
-        //Query
-        $sql = "UPDATE admin_information SET email = :email, adminType = :adminType,
+    //Query
+    $sql = "UPDATE admin_information SET email = :email, adminType = :adminType,
          adminDepartment = :adminDepartment,  adminEvent = :adminEvent WHERE email = :hiddenEmail";
 
-         //Preparing Query
-         $result = $conn->prepare($sql);
+    //Preparing Query
+    $result = $conn->prepare($sql);
 
-         //Binding Values
-         $result->bindValue(":email", $updateEmail);
-         $result->bindValue(":adminType", $updateAdminType);
-         $result->bindValue(":adminDepartment",  $updateAdminDepartment);
-         $result->bindValue(":adminEvent", $updateAdminEvent);
-         $result->bindValue(":hiddenEmail", $hiddenEmail);
+    //Binding Values
+    $result->bindValue(":email", $updateEmail);
+    $result->bindValue(":adminType", $updateAdminType);
+    $result->bindValue(":adminDepartment", $updateAdminDepartment);
+    $result->bindValue(":adminEvent", $updateAdminEvent);
+    $result->bindValue(":hiddenEmail", $hiddenEmail);
 
-         // Executing the Query
-         $result->execute();
+    // Executing the Query
+    $result->execute();
 
-         if($result){
-               echo "<script>Swal.fire({
+    if ($result) {
+        echo "<script>Swal.fire({
                     icon: 'success',
                     title: 'Success',
                     text: 'Admin Profile Successfully Updated'
                 })</script>";
-         }
-         else {
-                echo "<script>Swal.fire({
+    } else {
+        echo "<script>Swal.fire({
                     icon: 'Error',
                     title: 'Error',
                     text: 'We failed to Update Admin Profile'
                 })</script>";
-         }
-
     }
 
+}
 
-    // ######### Retriving Admin Details into forms
+// ######### Retriving Admin Details into forms
 
-    if(isset($_POST['editEmail']) && isset($_POST['editEmail']) !== ""){
+if (isset($_POST['editEmail']) && isset($_POST['editEmail']) !== "") {
 
-        //Query
-        $sql = "SELECT * FROM admin_information WHERE email = :editEmail";
-        //Preparing Query
-        $result = $conn->prepare($sql);
-        //Binding Value
-        $result->bindValue(":editEmail", $editEmail);
-        //Executing Query
-        $result->execute();
+    //Query
+    $sql = "SELECT * FROM admin_information WHERE email = :editEmail";
+    //Preparing Query
+    $result = $conn->prepare($sql);
+    //Binding Value
+    $result->bindValue(":editEmail", $editEmail);
+    //Executing Query
+    $result->execute();
 
-        if($result->rowCount() > 0 ) {
-          $row = $result->fetch(PDO::FETCH_ASSOC);
-          echo json_encode($row);
-        }
-        else{
-            echo "No Data Found";
-        }
-
-
+    if ($result->rowCount() > 0) {
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+        echo json_encode($row);
+    } else {
+        echo "No Data Found";
     }
-   
 
+}
 
-    // ########### Deleting User
+// ########### Deleting User
 
-    if(isset($_POST['deleteEmail'])){
+if (isset($_POST['deleteEmail'])) {
 
-        //Query
-        $sql = "DELETE FROM admin_information WHERE email = :deleteEmail";
+    //Query
+    $sql = "DELETE FROM admin_information WHERE email = :deleteEmail";
 
-        //Preparing Query
-        $result = $conn->prepare($sql);
+    //Preparing Query
+    $result = $conn->prepare($sql);
 
-        //Binding Values
-        $result->bindValue(":deleteEmail", $deleteEmail);
+    //Binding Values
+    $result->bindValue(":deleteEmail", $deleteEmail);
 
-        //Executing Query
-        $result->execute();
-        
-        if($result) {
-            echo "<script>Swal.fire({
+    //Executing Query
+    $result->execute();
+
+    if ($result) {
+        echo "<script>Swal.fire({
                     icon: 'success',
                     title: 'Success',
                     text: 'Data Successfully Deleted'
                 })</script>";
-        }
-        else {
-            echo "<script>Swal.fire({
+    } else {
+        echo "<script>Swal.fire({
                     icon: 'error',
                     title: 'ERROR',
                     text: 'We are failed to delete data'
                 })</script>";
-        }
-
     }
 
+}
 
+// ############## Reading Records
+if (isset($_POST["readRecord"])) {
 
-    // ############## Reading Records
-    if(isset($_POST["readRecord"])){
+    $sql = 'SELECT * FROM admin_information WHERE adminType = :facultyCoordinator';
 
-        $sql = 'SELECT * FROM admin_information WHERE adminType = :facultyCoordinator';
+    //Preparing Query
+    $result = $conn->prepare($sql);
 
-         //Preparing Query
-        $result = $conn->prepare($sql);
+    //Binding Values
+    $result->bindValue(":facultyCoordinator", "Faculty Coordinator");
 
-        //Binding Values
-        $result->bindValue(":facultyCoordinator", "Faculty Coordinator");
+    //Executing Query
+    $result->execute();
 
-        //Executing Query
-        $result->execute();
-    
-
-         $data =   '<table class="table table-striped table id="dataTable" width="100%" cellspacing="0">
+    $data = '<table class="table table-striped table id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr class="text-center">
-                       
+
                         <th>Email</th>
                         <th>Admin Type</th>
                         <th>Admin Department</th>
@@ -137,104 +124,90 @@ require_once "../../configPDO.php";
 
             <tbody>';
 
-                   
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
-                     while($row= $result->fetch(PDO::FETCH_ASSOC)) {
+        $mail = $row['email'];
 
-                        $mail = $row['email'];
-         
-                 $data .=   '<tr class="text-center">
-                            <td>' .$row['email'] . '</td>
-                            <td>' .$row['adminType'] . '</td>
+        $data .= '<tr class="text-center">
+                            <td>' . $row['email'] . '</td>
+                            <td>' . $row['adminType'] . '</td>
                             <td>' . $row['adminDepartment'] . '</td>
                             <td>' . $row['adminEvent'] . '</td>
                             <td>
                             <button class="btn btn-primary" onclick= ' . "getAdminDetails('$mail')" . '> Edit </button>
                              </td>
                             <td>
-                            <button class="btn btn-danger" onclick= ' . "deleteUser('$mail')" . ' >Delete</button> 
+                            <button class="btn btn-danger" onclick= ' . "deleteUser('$mail')" . ' >Delete</button>
                             </td>
 
                             </tr>';
-                     }
+    }
 
-                 $data .=  '</tbody>
+    $data .= '</tbody>
                             </table>';
-                           
-                           
 
-                 echo $data;
+    echo $data;
 
-                    }
-
+}
 
 // ############# Adding Admin to Database
 
-if(isset($_POST['email'])){
+if (isset($_POST['email'])) {
 
-$password= password_hash($password,PASSWORD_BCRYPT);
+    $password = password_hash($password, PASSWORD_BCRYPT);
 
-$sql = "SELECT * FROM admin_information WHERE admin_information.email = :email";
+    $sql = "SELECT * FROM admin_information WHERE admin_information.email = :email";
 
 //Preparing Query
-$result = $conn->prepare($sql);
+    $result = $conn->prepare($sql);
 
 //Binding Values
-$result->bindValue(":email", $email);
+    $result->bindValue(":email", $email);
 
 //Executing Query
-$result->execute();
+    $result->execute();
 
-if($result->rowCount() >0) {
-
-echo "
-<script>Swal.fire({
+    if ($result->rowCount() > 0) {
+        echo "<script>Swal.fire({
         icon: 'warning',
         title: 'Unable to Insert Data',
         text: 'Admin Profile Already Exist'
     })</script>";
 
-}
-else{
+    } else {
 
-$sql = "INSERT INTO admin_information (email, adminType, adminDepartment, adminEvent,
+        $sql = "INSERT INTO admin_information (email, adminType, adminDepartment, adminEvent,
 adminPassword) VALUES (:email, :adminType, :adminDepartment, :adminEvent, :password)";
 
 //Preparing Query
-$result = $conn->prepare($sql);
+        $result = $conn->prepare($sql);
 
 //Binding Value
-$result->bindValue(":email", $email);
-$result->bindValue("adminType", $adminType);
-$result->bindValue("adminDepartment", $adminDepartment);
-$result->bindValue("adminEvent", $adminEvent);
-$result->bindValue(":password", $password);
+        $result->bindValue(":email", $email);
+        $result->bindValue("adminType", $adminType);
+        $result->bindValue("adminDepartment", $adminDepartment);
+        $result->bindValue("adminEvent", $adminEvent);
+        $result->bindValue(":password", $password);
 
 //Executing Query
-$result->execute();
+        $result->execute();
 
-if($result) {
+        if ($result) {
 
-echo "
-<script>Swal.fire({
+            echo "<script>Swal.fire({
         icon: 'success',
         title: 'Success',
         text: 'Successfully Inserted Admin Profile'
     })</script>";
 
-
-}
-else {
-echo "
-<script>Swal.fire({
+        } else {
+            echo "<script>Swal.fire({
         icon: 'error',
         title: 'ERROR',
         text: 'Something Went Wrong'
     })</script>";
 
-}
+        }
 
+    }
 }
-}
-
-?>
