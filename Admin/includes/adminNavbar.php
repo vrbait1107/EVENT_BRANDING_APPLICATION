@@ -202,7 +202,7 @@
 
                     <div class="collapse" id="events">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="addEvent.php">
+                            <a class="nav-link" href="manageEvent.php">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-calendar"></i>
                                 </div>
