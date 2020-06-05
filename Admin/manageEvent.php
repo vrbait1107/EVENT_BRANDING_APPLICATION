@@ -48,7 +48,7 @@ if ($_SESSION['adminType'] === "Administrator") {
     <meta name="description" content="" />
     <meta name="author" content="Vishal Bait" />
 
-    <title>Add Events</title>
+    <title>Add/Manage Events</title>
 
     <!-- Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
@@ -58,194 +58,256 @@ if ($_SESSION['adminType'] === "Administrator") {
 <body class="sb-nav-fixed">
 
 
-    <?php
-
-if (isset($_POST['addEvent'])) {
-
-    // Removing White spaces
-    $eventName = trim($_POST['eventName']);
-    $eventPrice = trim($_POST['eventPrice']);
-    $eventPrize = trim($_POST['eventPrize']);
-    $eventSponsor = trim($_POST['eventSponsor']);
-    $eventDepartment = trim($_POST['eventDepartment']);
-    $eventDescription = trim($_POST['eventDescription']);
-    $eventRules = trim($_POST['eventRules']);
-    $eventCoordinator = trim($_POST['eventCoordinator']);
-    $eventStartDate = trim($_POST['eventStartDate']);
-    $eventEndDate = trim($_POST['eventEndDate']);
-
-    $eventImage = $_FILES['eventImage'];
-    $eventImageName = $_FILES['eventImage']['name'];
-    $eventImageSize = $_FILES['eventImage']['size'];
-    $eventImageTmpDir = $_FILES['eventImage']['tmp_name'];
-    $eventImageType = $_FILES['eventImage']['type'];
-
-    if ($eventImageType == 'image/jpeg' || $eventImageType == 'image/jpg' || $eventImageType == 'image/png') {
-
-        if ($eventImageSize <= 2097152) {
-
-            move_uploaded_file($eventImageTmpDir, "../eventImage/" . $eventImageName);
-
-            // Query
-            $sql = "INSERT INTO events_details_information( eventImage, eventName, eventPrice, eventPrize, eventSponsor,
-         eventDepartment, eventDescription, eventRules, eventCoordinator, eventStartDate, eventEndDate)
-          VALUES (:eventImageName, :eventName, :eventPrice, :eventPrize, :eventSponsor, :eventDepartment,
-          :eventDescription, :eventRules, :eventCoordinator, :eventStartDate, :eventEndDate)";
-
-            // Preparing Query
-            $result = $conn->prepare($sql);
-
-            //Binding Values
-            $result->bindValue(":eventImageName", $eventImageName);
-            $result->bindValue(":eventName", $eventName);
-            $result->bindValue(":eventPrice", $eventPrice);
-            $result->bindValue(":eventPrize", $eventPrize);
-            $result->bindValue(":eventSponsor", $eventSponsor);
-            $result->bindValue(":eventDepartment", $eventDepartment);
-            $result->bindValue(":eventDescription", $eventDescription);
-            $result->bindValue(":eventRules", $eventRules);
-            $result->bindValue(":eventCoordinator", $eventCoordinator);
-            $result->bindValue(":eventStartDate", $eventStartDate);
-            $result->bindValue(":eventEndDate", $eventEndDate);
-
-            //Executing Query
-            $result->execute();
-
-            if ($result) {
-                echo "<script>Swal.fire({
-                        icon: 'success',
-                        title: 'Success',
-                        text: 'Added Event Successfully'
-                    })</script>";
-
-            } else {
-                echo "<script>Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'Failed to Add Event'
-                        })</script>";
-            }
-
-        } else {
-            echo "<script>Swal.fire({
-            icon: 'error',
-            title: 'Image size exeeded',
-            text: 'Please Upload File less than 2MB'
-        })</script>";
-        }
-
-    } else {
-        echo "<script>Swal.fire({
-            icon: 'error',
-            title: 'Image Format Not Supported',
-            text: 'Supported Types are jpg,jpeg,png'
-        })</script>";
-    }
-
-}
-
-?>
-
     <!-- Admin Navbar -->
     <?php include_once "includes/adminNavbar.php";?>
 
 
-    <div id="layoutSidenav_content">
-        <main class="container mt-3">
-            <h1 class="font-time mt-3 mb-1">Add Events</h1> <br />
-
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Add Events</li>
-            </ol>
-
+    <main id="layoutSidenav_content">
+        <div class="container-fluid mt-3">
+            <h1 class="font-time mb-1">Add/Manage Events</h1> <br />
             <div class="row">
 
-                <section class="col-md-6 offset-md-3">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn justify-content-end btn-primary my-2" data-toggle="modal"
+                    data-target="#addModal">
+                    Click Here to Add Event Details
+                </button>
 
-                    <form action="" method="post" class="my-1" enctype="multipart/form-data">
+                <!-- Add Response Message -->
+                <div id="addResponse"></div>
 
-                        <div class="form-group">
-                            <label>Event Image</label> <br />
-                            <input type="file" name="eventImage">
+                <!-- Delete Response Message -->
+                <div id="deleteResponse"></div>
+
+                <!-- Update Response Message -->
+                <div id="updateResponse"></div>
+
+
+                <!-- Add Event Modal -->
+                <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addModalLabel">ADD EVENTS</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+
+                                <form action="" method="post" id="addEventForm" class="my-1"
+                                    enctype="multipart/form-data">
+
+                                    <div class="form-group">
+                                        <label>Event Image</label> <br />
+                                        <input type="file" name="eventImage" id="eventImage" accept=".jpg, .jpeg, .png">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event Name</label>
+                                        <input type="text" name="eventName" id="eventName" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event Entry Fee</label>
+                                        <input type="text" name="eventPrice" id="eventPrice" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event Prize</label>
+                                        <input type="text" name="eventPrize" id="eventPrize" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event Sponsor</label>
+                                        <input type="text" name="eventSponsor" id="eventSponsor" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event Department</label>
+                                        <select name="eventDepartment" class="form-control" id="eventDepartment">
+                                            <option selected disabled>Chooes...</option>
+                                            <option value="Electronics and Telecommunication">Electronics and
+                                                Telecommunication
+                                            </option>
+                                            <option value="Chemical">Chemical</option>
+                                            <option value="Computer">Computer</option>
+                                            <option value="Civil">Civil</option>
+                                            <option value="Mechanical">Mechanical</option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>Event Description</label>
+                                        <textarea name="eventDescription" cols="30" rows="5" id="eventDescription"
+                                            class="form-control"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event Rules</label>
+                                        <textarea name="eventRules" cols="30" rows="5" id="eventRules"
+                                            class="form-control"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event Coordinator</label>
+                                        <textarea name="eventCoordinator" cols="30" rows="3" id="eventCoordinator"
+                                            class="form-control"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event Start Date</label>
+                                        <input type="date" name="eventStartDate" id="eventStartDate"
+                                            class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event End Date</label>
+                                        <input type="date" name="eventEndDate" id="eventEndDate" class="form-control">
+                                    </div>
+
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+
+                                        <button type="submit" class="btn btn-primary" id="addEvent" name="addEvent">Add
+                                            Event</button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="form-group">
-                            <label>Event Name</label>
-                            <input type="text" name="eventName" class="form-control">
+
+
+
+                <!-- Update Event Modal -->
+                <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="updateModalLabel">UPDATE EVENTS</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+
+                                <form action="" method="post" id="updateEventForm" class="my-1">
+
+                                    <div class="form-group">
+                                        <label>Event Name</label>
+                                        <input type="text" name="updateEventName" id="updateEventName"
+                                            class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event Entry Fee</label>
+                                        <input type="text" name="updateEventPrice" id="updateEventPrice"
+                                            class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event Prize</label>
+                                        <input type="text" name="updateEventPrize" id="updateEventPrize"
+                                            class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event Sponsor</label>
+                                        <input type="text" name="updateEventSponsor" id="updateEventSponsor"
+                                            class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event Department</label>
+                                        <select name="updateEventDepartment" class="form-control"
+                                            id="updateEventDepartment">
+                                            <option selected disabled>Chooes...</option>
+                                            <option value="Electronics and Telecommunication">Electronics and
+                                                Telecommunication
+                                            </option>
+                                            <option value="Chemical">Chemical</option>
+                                            <option value="Computer">Computer</option>
+                                            <option value="Civil">Civil</option>
+                                            <option value="Mechanical">Mechanical</option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>Event Description</label>
+                                        <textarea name="updateEventDescription" cols="30" rows="5"
+                                            id="updateEventDescription" class="form-control"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event Rules</label>
+                                        <textarea name="updateEventRules" cols="30" rows="5" id="updateEventRules"
+                                            class="form-control"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event Coordinator</label>
+                                        <textarea name="updateEventCoordinator" cols="30" rows="3"
+                                            id="updateEventCoordinator" class="form-control"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event Start Date</label>
+                                        <input type="date" name="updateEventStartDate" id="updateEventStartDate"
+                                            class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Event End Date</label>
+                                        <input type="date" name="updateEventEndDate" id="updateEventEndDate"
+                                            class="form-control">
+                                    </div>
+
+                                    <div id="hiddenId"></div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="submit" name="updateAdmin" id="updateAdmin" data-dismiss="modal"
+                                            onclick="updateEvent()" class="btn btn-primary">Update Event</button>
+                                    </div>
+
+                                </form>
+
+                            </div>
                         </div>
-
-                        <div class="form-group">
-                            <label>Event Entry Fee</label>
-                            <input type="text" name="eventPrice" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Event Prize</label>
-                            <input type="text" name="eventPrize" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Event Sponsor</label>
-                            <input type="text" name="eventSponsor" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Event Department</label>
-                            <select name="eventDepartment" class="form-control">
-                                <option selected disabled>Chooes...</option>
-                                <option value="Electronics and Telecommunication">Electronics and Telecommunication
-                                </option>
-                                <option value="Chemical">Chemical</option>
-                                <option value="Computer">Computer</option>
-                                <option value="Civil">Civil</option>
-                                <option value="Mechanical">Mechanical</option>
-                            </select>
-                        </div>
+                    </div>
+                </div>
 
 
+                <div class="table-responsive">
+                    <!--Response Message -->
+                    <div id="responseMessage"></div>
+                </div>
 
-                        <div class="form-group">
-                            <label>Event Description</label>
-                            <textarea name="eventDescription" cols="30" rows="5" class="form-control"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Event Rules</label>
-                            <textarea name="eventRules" cols="30" rows="5" class="form-control"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Event Coordinator</label>
-                            <textarea name="eventCoordinator" cols="30" rows="3" class="form-control"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Event Start Date</label>
-                            <input type="date" name="eventStartDate" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Event End Date</label>
-                            <input type="date" name="eventEndDate" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="submit" value="Add Events" name="addEvent"
-                                class="btn btn-primary btn-block rounded-pill">
-                        </div>
-
-                    </form>
-
-
-                </section>
             </div>
-        </main>
+        </div>
         <!--Admin Footer-->
         <?php include_once "includes/adminFooter.php";?>
-    </div>
+    </main>
 
     <!-- Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php";?>
+
+    <!-- Custom JS Script -->
+    <script src="js/manageEvent.js"></script>
 
     <?php
 // closing Database Connnection
