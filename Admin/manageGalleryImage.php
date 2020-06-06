@@ -1,5 +1,5 @@
 <?php
-// Craeting Database Connection
+// Creating Database Connection
 require_once '../configPDO.php';
 // Starting Session
 session_start();
@@ -47,7 +47,7 @@ if ($_SESSION['adminType'] === "Administrator") {
     <meta name="description" content="" />
     <meta name="author" content="Vishal Bait" />
 
-    <title>Manage Gallery Images </title>
+    <title>Add/Manage Gallery Images </title>
 
     <!-- Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
@@ -55,57 +55,6 @@ if ($_SESSION['adminType'] === "Administrator") {
 </head>
 
 <body class="sb-nav-fixed">
-
-    <?php
-// Displaying All Gallery Images into Table
-$sql = "SELECT * FROM gallery_information";
-
-//Preparing Query
-$result = $conn->prepare($sql);
-
-// Executing Query
-$result->execute();
-
-// Deleting Images
-
-if (isset($_REQUEST['delete'])) {
-    $hiddenId = $_REQUEST['hiddenId'];
-    $hiddenImage = $_REQUEST['hiddenImage'];
-
-    $sqlDelete = "DELETE FROM gallery_information WHERE id = :hiddenId";
-
-    //Preparing Query
-    $resultDelete = $conn->prepare($sqlDelete);
-
-    //Binding Value
-    $resultDelete->bindValue(":hiddenId", $hiddenId);
-
-    //Executing Query
-    $resultDelete->execute();
-
-    if ($resultDelete) {
-        echo "<script>Swal.fire({
-                icon: 'success',
-                title: 'Successful',
-                text: 'Image is Successfully Deleted'
-            })</script>";
-
-        $file = '../gallery/' . $hiddenImage;
-        unlink($file);
-
-    } else {
-        echo "<script>Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'We are failed to delete image'
-            })</script>";
-    }
-
-    unset($_REQUEST['delete']);
-
-}
-
-?>
 
 
     <!-- Admin Navbar -->
@@ -115,64 +64,30 @@ if (isset($_REQUEST['delete'])) {
     <div id="layoutSidenav_content">
         <main class="container-fluid">
 
-            <h1 class="font-time mt-3 mb-1">Manage Gallery Images</h1> <br />
-
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Manage Gallery Images</li>
-            </ol>
+            <h1 class="font-time mt-3 mb-1">Add/Manage Gallery Images</h1> <br />
 
             <div class="row">
 
-                <?php
-
-if ($result->rowCount() > 0) {
-
-    ?>
-
-                <table class="table table-bordered text-center col-md-8 offset-md-2" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>Image Name</th>
-                            <th>Image</th>
-                            <th>Delete Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        <?php
-while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        ?>
-
-                        <tr>
-                            <td><?php echo $row['id']; ?></td>
-                            <td><?php echo $row['galleryImage']; ?></td>
-                            <td class="text-center"><img src="../gallery/<?php echo $row['galleryImage']; ?>"
-                                    alt="galleryImage" class="img-fluid" style="height:200px"></td>
-                            <td>
-                                <form action="">
-                                    <input type="hidden" name="hiddenId" value="<?php echo $row['id']; ?>">
-                                    <input type="hidden" name="hiddenImage" value="<?php echo $row['galleryImage']; ?>" >
-                                    <input type="submit" value="Delete" name="delete" class="btn btn-danger">
-                            </td>
-                            </form>
-                        </tr>
-
-                        <?php
-}
-    ?>
-
-                    </tbody>
-                </table>
+                <!-- Delete Response -->
+                <div id="deleteResponse"></div>
+                <section class="col-md-6 offset-md-3">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="galleryImages">Insert Gallery Images</label> <br />
+                            <input type="file" multiple accept=".jpg, .jpeg, .png" name="galleryImages"
+                                id="galleryImages">
+                            <br />
+                            <input type="button" value="Insert" class="btn mt-3 btn-primary rounded-pill btn-block">
+                        </div>
+                    </form>
+                </section>
 
 
-                <?php
-} else {
-    echo "No Image in gallery";
-}
+                <div class="table-responsive">
+                    <!-- reading record -->
+                    <div id="responseMessage"></div>
+                </div>
 
-?>
 
             </div>
         </main>
@@ -183,6 +98,8 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
     <!-- Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php";?>
+
+    <script src="js/manageGalleryImage.js"></script>
 
     <?php
 // closing Database Connnection
