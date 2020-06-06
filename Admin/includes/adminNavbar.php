@@ -221,17 +221,6 @@
                         </div>
                     </a>
 
-                    <div class="collapse" id="galleryImage">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="addGalleryImage.php">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-images"></i>
-                                </div>
-                                Add Gallery Images
-                            </a>
-                        </nav>
-                    </div>
-
 
                      <div class="collapse" id="galleryImage">
                         <nav class="sb-sidenav-menu-nested nav">
@@ -239,7 +228,7 @@
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-images"></i>
                                 </div>
-                                Manage Gallery Images
+                                Add/Manage Gallery Images
                             </a>
                         </nav>
                     </div>
