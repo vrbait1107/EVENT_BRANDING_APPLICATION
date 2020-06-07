@@ -126,38 +126,11 @@ function sendMail($newsletterEmails, $newsletterSubject, $newsletterMessage)
 
 ?>
 
-
-  <!--Navbar-->
-  <?php
-
-if ($_SESSION['adminType'] === "Administrator") {
-    $adminFileName = "adminIndex.php";
-    $adminFileData = "adminIndexData.php";
-    $adminManage = "adminManage.php";
-
-} elseif ($_SESSION['adminType'] === "Student Coordinator") {
-    $adminFileName = "studentCoordinatorIndex.php";
-    $adminFileData = "studentCoordinatorData.php";
-    $adminManage = "#";
-
-} elseif ($_SESSION['adminType'] === "Faculty Coordinator") {
-    $adminFileName = "facultyCoordinatorIndex.php";
-    $adminFileData = "facultyCoordinatorData.php";
-    $adminManage = "facultyCoordinatorManage.php";
-
-} elseif ($_SESSION['adminType'] === "Synergy Administrator") {
-    $adminFileName = "synergyIndex.php";
-    $adminFileData = "synergyData.php";
-    $adminManage = "#";
-
-} else {
-    $adminFileName = "#";
-    $adminFileData = "#";
-    $adminManage = "#";
-}
-
+<?php
+// Include Common Anchor
+include_once "includes/commonAnchor.php";
+//Including Admin Navbar
 include_once "includes/adminNavbar.php";
-
 ?>
 
   <div id="layoutSidenav_content">
