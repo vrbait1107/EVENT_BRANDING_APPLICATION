@@ -15,7 +15,7 @@ if (isset($_POST["readRecord"])) {
 
     if ($result->rowCount() > 0) {
 
-        $data = '<table class= "table table-striped table-bordered" id= "dataTable" width= "100%" cellspacing="0">
+        $data = '<table class= "table table-striped table-bordered" class="display" id= "dataTable" width= "100%" cellspacing="0">
                         <thead class="text-center">
                             <th >id</th>
                             <th >Sponsor Name</th>

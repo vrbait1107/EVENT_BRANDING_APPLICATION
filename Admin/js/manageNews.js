@@ -10,6 +10,11 @@ $(document).ready(function () {
       },
       success(data) {
         $("#recordResponse").html(data);
+        $("#dataTable").DataTable({
+          dom: "Bfrtip",
+          buttons: ["copyHtml5", "excelHtml5", "csvHtml5", "pdfHtml5"],
+          destroy: true, //use for reinitialize datatable
+        });
       },
       error() {
         $("#recordResponse").html("Something Went Wrong");

@@ -109,7 +109,7 @@ if (isset($_POST["readRecord"])) {
     //Executing Query
     $result->execute();
 
-    $data = '<table class="table table-striped table id="dataTable" width="100%" cellspacing="0">
+    $data = '<table class="table table-striped"  id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr class="text-center">
 

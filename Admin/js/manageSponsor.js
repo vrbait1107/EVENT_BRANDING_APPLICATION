@@ -13,6 +13,8 @@ $(document).ready(function () {
       success(data) {
         $("#readRecordSponsor").html(data);
         $("#dataTable").DataTable({
+          dom: "Bfrtip",
+          buttons: ["copyHtml5", "excelHtml5", "csvHtml5", "pdfHtml5"],
           destroy: true, //use for reinitialize datatable
         });
       },
@@ -37,6 +39,7 @@ $(document).ready(function () {
       processData: false,
       success(data) {
         $("#addResponse").html(data);
+        $("#addSponsorForm").trigger("reset");
         readRecordSponsor();
       },
       error() {

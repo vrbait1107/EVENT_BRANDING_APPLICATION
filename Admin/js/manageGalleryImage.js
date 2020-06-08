@@ -13,6 +13,8 @@ $(document).ready(function () {
       success: function (data) {
         $("#responseMessage").html(data);
         $("#dataTable").DataTable({
+          dom: "Bfrtip",
+          buttons: ["copyHtml5", "excelHtml5", "csvHtml5", "pdfHtml5"],
           destroy: true, //use for reinitialize datatable
         });
       },

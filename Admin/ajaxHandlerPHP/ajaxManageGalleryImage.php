@@ -47,7 +47,7 @@ if (isset($_POST['readRecord'])) {
 
     if ($result->rowCount() > 0) {
 
-        $data = '<table class="table table-bordered text-center" id="dataTable" width="100%"
+        $data = '<table class="table table-bordered text-center" id="dataTable" class="display" width="100%"
                     cellspacing="0">
                     <thead>
                         <tr>
