@@ -1,24 +1,36 @@
  <?php
 
 require_once "../../configPDO.php";
+
 extract($_POST);
 
-// if (count($_FILES['galleryImages']["name"]) > 0) {
+if (isset($_FILES['galleryImages'])) {
 
-//     for ($count = 0; $count < count($_FILES['galleryImages']["name"]); $count++) {
-//         $fileName = $_FILES['galleryImages']['name'][$count];
-//         $tmpName = $_FILES['galleryImages']['tmp_name'][$count];
-//         if (move_uploaded_file($tmpName, "C:/xampp2/htdocs/EBA/gallery/" . $fileName)) {
-//             $sql = "INSERT INTO gallery_information (galleryImage) VALUES (:fileName)";
-//             $result = $conn->prepare($sql);
-//             $result->bindValue(":fileName", $fileName);
-//             $result->execute();
-//             if ($result) {
-//                 echo '<script>alert("success");<script>';
-//             }
-//         }
-//     }
-// }
+    if (is_array($_FILES)) {
+
+        foreach ($_FILES['galleryImages']["name"] as $name => $value) {
+
+            $sql = "INSERT INTO gallery_information (galleryImage) VALUES (:galleryImages)";
+            $result = $conn->prepare($sql);
+            $result->bindValue(":galleryImages", $value);
+            $result->execute();
+
+            $source = $_FILES['galleryImages']["tmp_name"][$name];
+
+            move_uploaded_file($source, "C:/xampp2/htdocs/EBA/gallery/" . $value);
+
+        }
+        if ($result) {
+            echo "<script>Swal.fire({
+                icon: 'success',
+                title: 'Successful',
+                text: 'Images is Successfully Uploaded'
+            })</script>";
+
+        }
+    }
+
+}
 
 // ########################## Reading Record
 

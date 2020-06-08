@@ -46,14 +46,17 @@ include_once "includes/commonAnchor.php";
 
                 <!-- Delete Response -->
                 <div id="deleteResponse"></div>
+
                 <section class="col-md-6 offset-md-3">
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form id="galleryForm" action="" method="post" enctype="multipart/form-data">
+                        <!-- Add Response -->
+                        <div id="addResponse" class="my-3"></div>
                         <div class="form-group">
                             <label for="galleryImages">Insert Gallery Images</label> <br />
-                            <input type="file" multiple accept=".jpg, .jpeg, .png" name="galleryImages"
+                            <input type="file" multiple accept=".jpg, .jpeg, .png" name="galleryImages[]"
                                 id="galleryImages">
                             <br />
-                            <input type="button" value="Insert" class="btn mt-3 btn-primary rounded-pill btn-block">
+                            <input type="submit" value="Insert" class="btn mt-3 btn-primary rounded-pill btn-block">
                         </div>
                     </form>
                 </section>

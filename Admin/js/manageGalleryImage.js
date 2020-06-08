@@ -26,27 +26,21 @@ $(document).ready(function () {
 
   //################## ADDING IMAGES
 
-  $("#galleryImages").change(function () {
-    var formData = new FormData();
-    var files = $("#galleryImages")[0].files;
-
-    if (files.length > 10) {
-      alert("You can not select more than 10 files");
-    } else {
-      for (let i = 0; i < files.length; i++) {
-        var name = document.getElementById("galleryImages").files[i].name;
-        formData.append(
-          "file[]",
-          document.getElementById("galleryImages").files[i]
-        );
-      }
-    }
+  $("#galleryForm").on("submit", function (e) {
+    e.preventDefault();
     $.ajax({
       url: "ajaxHandlerPHP/ajaxManageGalleryImage.php",
       type: "post",
-      data: formData,
+      data: new FormData(this),
+      contentType: false,
+      processData: false,
+      beforeSend() {
+        $("#addResponse").html("Uploading Images...");
+      },
       success: function (data) {
         $("#addResponse").html(data);
+        $("#galleryForm").trigger("reset");
+        readrecordGallery();
       },
       error: function () {
         $("#addResponse").fadeIn().html("Something Went Wrong");
@@ -81,7 +75,7 @@ const deleteGalleryDetails = (id) => {
           $("#dataTable").DataTable({
             destroy: true, //use for reinitialize datatable
           });
-          readrecordParticipant();
+          readrecordGallery();
         },
         error: function () {
           $("#responseMessage").fadeIn().html("Something Went Wrong");
