@@ -86,7 +86,7 @@ if ($result->rowCount() > 0) {
 
     ?>
 
-                <table class='table table-bordered' id='dataTable' class="display" width='100%' cellspacing='0'>
+                <table class='table table-bordered' id='dataTableParticipants' class="display" width='100%' cellspacing='0'>
 
                   <thead>
                     <th class='text-success text-center'>Certificate ID</th>

@@ -91,7 +91,7 @@ if ($result->rowCount() > 0) {
 
     ?>
 
-                <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
+                <table class='table table-bordered' id='dataTableParticipants' width='100%' cellspacing='0'>
                   <thead>
                     <th class='text-success text-center'>Certificate ID</th>
                     <th class='text-success text-center'>First Name</th>
