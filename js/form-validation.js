@@ -112,11 +112,12 @@ const formValidationRegister = () => {
   let b = document.forms["myForm"]["collegeName"].value;
   let c = document.forms["myForm"]["department"].value;
   let d = document.forms["myForm"]["year"].value;
+  let e = document.forms["myForm"]["email"].value;
   let x = document.forms["myForm"]["mobileNumber"].value;
   let y = document.forms["myForm"]["password"].value;
   let z = document.forms["myForm"]["confirm_password"].value;
 
-  if (!isNaN(a)) {
+  if (!isNaN(a) || a === "") {
     Swal.fire({
       icon: "error",
       title: "ERROR",
@@ -125,7 +126,16 @@ const formValidationRegister = () => {
     return false;
   }
 
-  if (!isNaN(n)) {
+  if (e === "") {
+    Swal.fire({
+      icon: "error",
+      title: "ERROR",
+      text: "Please Provide Proper Email",
+    });
+    return false;
+  }
+
+  if (!isNaN(n) || n === "") {
     Swal.fire({
       icon: "error",
       title: "ERROR",
@@ -134,7 +144,7 @@ const formValidationRegister = () => {
     return false;
   }
 
-  if (!isNaN(b)) {
+  if (!isNaN(b) || b === "") {
     Swal.fire({
       icon: "error",
       title: "ERROR",
@@ -143,7 +153,7 @@ const formValidationRegister = () => {
     return false;
   }
 
-  if (!isNaN(c)) {
+  if (!isNaN(c) || c === "") {
     Swal.fire({
       icon: "error",
       title: "ERROR",
@@ -152,7 +162,7 @@ const formValidationRegister = () => {
     return false;
   }
 
-  if (!isNaN(d)) {
+  if (!isNaN(d) || d === "") {
     Swal.fire({
       icon: "error",
       title: "ERROR",
@@ -161,7 +171,7 @@ const formValidationRegister = () => {
     return false;
   }
 
-  if (isNaN(x)) {
+  if (isNaN(x) === "") {
     Swal.fire({
       icon: "error",
       title: "ERROR",
