@@ -256,7 +256,7 @@ if (isset($_POST['submit'])) {
 
           <div id="firstStep" class="my-5">
 
-            <h4 class="text-primary text-uppercase font-time  text-center">Personal Details</h4>
+            <h4 class="text-uppercase font-time  breadcrumb">Personal Details</h4>
 
             <div class="form-group">
               <label for="userName">Enter Your Username</label>
@@ -285,7 +285,7 @@ if (isset($_POST['submit'])) {
 
           <div id="secondStep" class="my-5">
 
-            <h4 class="text-primary text-uppercase text-center font-time">College Details</h4>
+            <h4 class="text-uppercase font-time breadcrumb">College Details</h4>
 
             <div class="form-group">
               <label for="collegeName">Enter Your College Name</label>
@@ -408,7 +408,7 @@ if (isset($_POST['submit'])) {
 
           <div id="thirdStep" class="my-5">
 
-            <h4 class="text-primary text-uppercase text-center font-time">Password Details</h4>
+            <h4 class="text-uppercase font-time breadcrumb">Password Details</h4>
 
             <div class="form-group">
               <label for="password">Password</label>
@@ -473,9 +473,9 @@ if (isset($_POST['submit'])) {
   </script>
 
   <?php
-  // closing Database Connnection
-  $conn = null;
-  ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 
