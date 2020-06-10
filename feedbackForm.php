@@ -39,84 +39,6 @@ if (!isset($_SESSION['user'])) {
 <body>
 
 
-    <?php
-
-if (isset($_POST['submit'])) {
-
-    if (isset($_POST['g-recaptcha-response'])) {
-
-        $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
-        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
-        $response = json_decode($verifyResponse);
-
-        if ($response->success) {
-
-            $email = trim($_SESSION['user']);
-            $attendBefore = trim($_POST['attendBefore']);
-            $likelyAttend = trim($_POST['likelyAttend']);
-            $likelyRecommendFriend = trim($_POST['likelyRecommendFriend']);
-            $likeMost = trim($_POST['likeMost']);
-            $likeLeast = trim($_POST['likeLeast']);
-            $overall = trim($_POST['overall']);
-            $location = trim($_POST['location']);
-            $events = trim($_POST['events']);
-            $coordinators = trim($_POST['coordinators']);
-            $eventsPrice = trim($_POST['eventsPrice']);
-            $suggestion = trim($_POST['suggestion']);
-
-            $sql = "INSERT INTO feedback_information (email, attendBefore, likelyAttend, likelyRecommendFriend,
-     likeMost, likeLeast, overall, location, events, coordinators, eventsPrice, suggestion) VALUES
-      (:email, :attendBefore, :likelyAttend, :likelyRecommendFriend, :likeMost, :likeLeast,
-      :overall, :location, :events, :coordinators, :eventsPrice, :suggestion )";
-
-            //Preparing Query
-            $result = $conn->prepare($sql);
-
-            //Binding Values
-            $result->bindValue(":email", $email);
-            $result->bindValue(":attendBefore", $attendBefore);
-            $result->bindValue(":likelyAttend", $likelyAttend);
-            $result->bindValue(":likelyRecommendFriend", $likelyRecommendFriend);
-            $result->bindValue(":likeMost", $likeMost);
-            $result->bindValue(":likeLeast", $likeLeast);
-            $result->bindValue(":overall", $overall);
-            $result->bindValue(":location", $location);
-            $result->bindValue(":events", $events);
-            $result->bindValue(":coordinators", $coordinators);
-            $result->bindValue(":eventsPrice", $eventsPrice);
-            $result->bindValue(":suggestion", $suggestion);
-
-            //Executing Query
-            $result->execute();
-
-            if ($result) {
-                echo "<script>Swal.fire({
-                icon: 'success',
-                title: 'Successful',
-                text: 'Your Feedback is Successfully Submitted'
-            })</script>";
-
-            } else {
-                echo "<script>Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'We are failed to Submit your feedback'
-                })</script>";
-            }
-
-        } else {
-            echo "<script>Swal.fire({
-                icon: 'warning',
-                title: 'Google Recaptcha Error',
-                text: 'Please fill Google Recaptcha'
-            })</script>";
-        }
-
-    }
-}
-
-?>
-
     <!--Navbar.php-->
     <?php include_once "includes/navbar.php"?>
 
@@ -129,10 +51,14 @@ if (isset($_POST['submit'])) {
                 <h4 class="font-time text-center">Please take few moments to complete this survey</h4>
                 <hr class="text-dark">
 
-                <form action="" method="post" name="feedbackForm" onsubmit="return feedbackForm();">
+                <form action="" method="post" name="feedbackForm" id="feedbackForm">
+
+                    <!-- Response Message -->
+                    <div id="responseMessage"></div>
 
                     <div class="form-group">
-                        <label class="font-weight-bold">Have you participated in any event in GIT SHODH before?</label>
+                        <label class="font-weight-bold">Q.1 Have you participated in any event in GIT SHODH
+                            before?</label>
                         <br />
                         <input type="radio" name="attendBefore" id="attendBefore" value="yes">
                         <label>Yes</label> <br />
@@ -142,50 +68,49 @@ if (isset($_POST['submit'])) {
 
 
                     <div class="form-group">
-                        <label class="font-weight-bold">How likely are you to attend one of our events in the
+                        <label class="font-weight-bold">Q.2 How likely are you to attend one of our events in the
                             future?</label>
                         <br />
-                        <input type="radio" name="likelyAttend" value="1">
+                        <input type="radio" name="likelyAttend" id="likelyAttend" value="1">
                         <label class="mr-5">1</label>
-                        <input type="radio" name="likelyAttend" value="2">
+                        <input type="radio" name="likelyAttend" id="likelyAttend" value="2">
                         <label class="mr-5">2</label>
-                        <input type="radio" name="likelyAttend" value="3">
+                        <input type="radio" name="likelyAttend" id="likelyAttend" value="3">
                         <label class="mr-5">3</label>
-                        <input type="radio" name="likelyAttend" value="4">
+                        <input type="radio" name="likelyAttend" id="likelyAttend" value="4">
                         <label class="mr-5">4</label>
-                        <input type="radio" name="likelyAttend" value="5">
+                        <input type="radio" name="likelyAttend" id="likelyAttend" value="5">
                         <label class="mr-5">5</label>
                     </div>
 
 
                     <div class="form-group">
-                        <label class="font-weight-bold">How likely are you to recommend our events to a friend?</label>
+                        <label class="font-weight-bold">Q.3 How likely are you to recommend our events to a
+                            friend?</label>
                         <br />
-                        <input type="radio" name="likelyRecommendFriend" value="1">
+                        <input type="radio" name="likelyRecommendFriend" id="likelyRecommendFriend" value="1">
                         <label class="mr-5">1</label>
-                        <input type="radio" name="likelyRecommendFriend" value="2">
+                        <input type="radio" name="likelyRecommendFriend" id="likelyRecommendFriend" value="2">
                         <label class="mr-5">2</label>
-                        <input type="radio" name="likelyRecommendFriend" value="3">
+                        <input type="radio" name="likelyRecommendFriend" id="likelyRecommendFriend" value="3">
                         <label class="mr-5">3</label>
-                        <input type="radio" name="likelyRecommendFriend" value="4">
+                        <input type="radio" name="likelyRecommendFriend" id="likelyRecommendFriend" value="4">
                         <label class="mr-5">4</label>
-                        <input type="radio" name="likelyRecommendFriend" value="5">
+                        <input type="radio" name="likelyRecommendFriend" id="likelyRecommendFriend" value="5">
                         <label class="mr-5">5</label>
                     </div>
 
                     <div class="form-group">
-                        <label class="font-weight-bold">What did you like most about the event?</label>
-                        <textarea name="likeMost" id="likeMost" cols="30" rows="3" class="form-control"
-                            required></textarea>
+                        <label class="font-weight-bold">Q.4 What did you like most about the event?</label>
+                        <textarea name="likeMost" id="likeMost" cols="30" rows="3" class="form-control"></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label class="font-weight-bold">What did you like least about the event?</label>
-                        <textarea name="likeLeast" id="likeLeast" cols="30" rows="3" class="form-control"
-                            required></textarea>
+                        <label class="font-weight-bold">Q.5 What did you like least about the event?</label>
+                        <textarea name="likeLeast" id="likeLeast" cols="30" rows="3" class="form-control"></textarea>
                     </div>
 
-                    <label class="font-weight-bold">Overall Satisfaction</label>
+                    <label class="font-weight-bold">Q.6 Overall Satisfaction</label>
 
                     <table class="table table-bordered">
                         <thead class="text-center">
@@ -202,47 +127,50 @@ if (isset($_POST['submit'])) {
                         <tbody class="text-center">
                             <tr>
                                 <td>Overall Satisfaction</td>
-                                <td><input type="radio" name="overall" value="Very Satisfied"></td>
-                                <td><input type="radio" name="overall" value="Satisfied"></td>
-                                <td><input type="radio" name="overall" value="Neutral"></td>
-                                <td><input type="radio" name="overall" value="Unsatisfied"></td>
-                                <td><input type="radio" name="overall" value="Very Unsatisfied"></td>
+                                <td><input type="radio" name="overall" id="overall" value="Very Satisfied"></td>
+                                <td><input type="radio" name="overall" id="overall" value="Satisfied"></td>
+                                <td><input type="radio" name="overall" id="overall" value="Neutral"></td>
+                                <td><input type="radio" name="overall" id="overall" value="Unsatisfied"></td>
+                                <td><input type="radio" name="overall" id="overall" value="Very Unsatisfied"></td>
                             </tr>
 
                             <tr>
                                 <td>Location</td>
-                                <td><input type="radio" name="location" value="Very Satisfied"></td>
-                                <td><input type="radio" name="location" value="Satisfied"></td>
-                                <td><input type="radio" name="location" value="Neutral"></td>
-                                <td><input type="radio" name="location" value="Unsatisfied"></td>
-                                <td><input type="radio" name="location" value="Very Unsatisfied"></td>
+                                <td><input type="radio" name="location" id="location" value="Very Satisfied"></td>
+                                <td><input type="radio" name="location" id="location" value="Satisfied"></td>
+                                <td><input type="radio" name="location" id="location" value="Neutral"></td>
+                                <td><input type="radio" name="location" id="location" value="Unsatisfied"></td>
+                                <td><input type="radio" name="location" id="location" value="Very Unsatisfied"></td>
                             </tr>
 
                             <tr>
                                 <td>Events</td>
-                                <td><input type="radio" name="events" value="Very Satisfied"></td>
-                                <td><input type="radio" name="events" value="Satisfied"></td>
-                                <td><input type="radio" name="events" value="Neutral"></td>
-                                <td><input type="radio" name="events" value="Unsatisfied"></td>
-                                <td><input type="radio" name="events" value="Very Unsatisfied"></td>
+                                <td><input type="radio" name="events" id="events" value="Very Satisfied"></td>
+                                <td><input type="radio" name="events" id="events" value="Satisfied"></td>
+                                <td><input type="radio" name="events" id="events" value="Neutral"></td>
+                                <td><input type="radio" name="events" id="events" value="Unsatisfied"></td>
+                                <td><input type="radio" name="events" id="events" value="Very Unsatisfied"></td>
                             </tr>
 
                             <tr>
                                 <td>Events Coordinators</td>
-                                <td><input type="radio" name="coordinators" value="Very Satisfied"></td>
-                                <td><input type="radio" name="coordinators" value="Satisfied"></td>
-                                <td><input type="radio" name="coordinators" value="Neutral"></td>
-                                <td><input type="radio" name="coordinators" value="Unsatisfied"></td>
-                                <td><input type="radio" name="coordinators" value="Very Unsatisfied"></td>
+                                <td><input type="radio" name="coordinators" id="coordinators" value="Very Satisfied">
+                                </td>
+                                <td><input type="radio" name="coordinators" id="coordinators" value="Satisfied"></td>
+                                <td><input type="radio" name="coordinators" id="coordinators" value="Neutral"></td>
+                                <td><input type="radio" name="coordinators" id="coordinators" value="Unsatisfied"></td>
+                                <td><input type="radio" name="coordinators" id="coordinators" value="Very Unsatisfied">
+                                </td>
                             </tr>
 
                             <tr>
                                 <td>Event Price</td>
-                                <td><input type="radio" name="eventsPrice" value="Very Satisfied"></td>
-                                <td><input type="radio" name="eventsPrice" value="Satisfied"></td>
-                                <td><input type="radio" name="eventsPrice" value="Neutral"></td>
-                                <td><input type="radio" name="eventsPrice" value="Unsatisfied"></td>
-                                <td><input type="radio" name="eventsPrice" value="Very Unsatisfied"></td>
+                                <td><input type="radio" name="eventsPrice" id="eventsPrice" value="Very Satisfied"></td>
+                                <td><input type="radio" name="eventsPrice" id="eventsPrice" value="Satisfied"></td>
+                                <td><input type="radio" name="eventsPrice" id="eventsPrice" value="Neutral"></td>
+                                <td><input type="radio" name="eventsPrice" id="eventsPrice" value="Unsatisfied"></td>
+                                <td><input type="radio" name="eventsPrice" id="eventsPrice" value="Very Unsatisfied">
+                                </td>
                             </tr>
 
                         </tbody>
@@ -250,9 +178,8 @@ if (isset($_POST['submit'])) {
 
 
                     <div class="form-group">
-                        <label class="font-weight-bold">How can we improve this event?</label>
-                        <textarea name="suggestion" id="suggestion" cols="30" rows="3" class="form-control"
-                            required></textarea>
+                        <label class="font-weight-bold">Q.7 How can we improve this event?</label>
+                        <textarea name="suggestion" id="suggestion" cols="30" rows="3" class="form-control"></textarea>
                     </div>
 
                     <div class="text-center my-2">
@@ -271,10 +198,10 @@ if (isset($_POST['submit'])) {
     <!--Footer.PHP-->
     <?php include_once 'includes/footer.php';?>
 
-    <!--Footer.PHP-->
-    <script src="js/form-validation.js"></script>
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php";?>
+    <!-- Custom JS Script -->
+    <script src="js/feedbackForm.js"></script>
 
     <?php
 // closing Database Connnection
