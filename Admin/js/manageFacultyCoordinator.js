@@ -35,6 +35,51 @@ $(document).ready(function () {
     let adminEvent = $("#adminEvent").val();
     let adminPassword = $("#adminPassword").val();
 
+    if (!isNaN(email) || email === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Only Characters are allowed or Email cannot be empty",
+      });
+      return false;
+    }
+
+    if (!isNaN(adminType) || adminType === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Please Select Proper Admin Type",
+      });
+      return false;
+    }
+
+    if (!isNaN(adminDepartment) || adminDepartment === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Please Select Proper Admin Department",
+      });
+      return false;
+    }
+
+    if (!isNaN(adminEvent) || adminEvent === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Please Select Proper Admin Event",
+      });
+      return false;
+    }
+
+    if (adminPassword === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Please Select Proper Admin Event",
+      });
+      return false;
+    }
+
     $.ajax({
       url: "ajaxHandlerPHP/ajaxManageFacultyCoordinator.php",
       type: "post",
@@ -124,6 +169,42 @@ const updateAdminDetails = () => {
   let updateAdminDepartment = $("#updateAdminDepartment").val();
   let updateAdminEvent = $("#updateAdminEvent").val();
   let hiddenEmail = $("#hiddenEmail").val();
+
+  if (!isNaN(updateEmail) || updateEmail === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Only Characters are allowed or Email cannot be empty",
+    });
+    return false;
+  }
+
+  if (!isNaN(updateAdminType) || updateAdminType === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Please Select Proper Admin Type",
+    });
+    return false;
+  }
+
+  if (!isNaN(updateAdminDepartment) || updateAdminDepartment === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Please Select Proper Admin Department",
+    });
+    return false;
+  }
+
+  if (!isNaN(updateAdminEvent) || updateAdminEvent === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Please Select Proper Admin Event",
+    });
+    return false;
+  }
 
   $.ajax({
     url: "ajaxHandlerPHP/ajaxManageFacultyCoordinator.php",

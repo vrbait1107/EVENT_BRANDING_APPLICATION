@@ -1,7 +1,7 @@
 let readrecordParticipant;
 
 $(document).ready(function () {
-  // ##############  Reading Record
+  // ##############  READING RECORDS
   readrecordParticipant = () => {
     let readRecord = "readRecord";
 
@@ -42,7 +42,7 @@ $(document).ready(function () {
   readrecordParticipant();
 });
 
-//################ Delete Participant Data
+//################ DELETE PARTICIPANT DATA
 const deleteParticipantDetails = (id) => {
   let deleteCertificateId = id;
 
@@ -103,13 +103,49 @@ const getParticipantDetails = (id) => {
   $("#updateModal").modal("show");
 };
 
-//############### Update Participant Data
+//############### UPDATE PARTICIPANT DATA
 const updateParticipantDetails = () => {
   let hiddenCertificateId = $("#hiddenCertificateId").val();
   let updateFirstName = $("#updateFirstName").val();
   let updateLastName = $("#updateLastName").val();
   let updatePrize = $("#updatePrize").val();
   let updateAttendStatus = $("#updateAttendStatus").val();
+
+  if (!isNaN(updateFirstName) || updateFirstName === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Only Characters are Allowed or First Name Cannot be Empty",
+    });
+    return false;
+  }
+
+  if (!isNaN(updateLastName) || updateLastName === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Only Characters are Allowed or Last Name Cannot be Empty",
+    });
+    return false;
+  }
+
+  if (!isNaN(updatePrize) || updatePrize === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Only Characters are Allowed or Prize Cannot be Empty",
+    });
+    return false;
+  }
+
+  if (!isNaN(updateAttendStatus) || updateAttendStatus === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Only Characters are Allowed or Prize Cannot be Empty",
+    });
+    return false;
+  }
 
   $.ajax({
     url: "ajaxHandlerPHP/ajaxStudentCoordinatorData.php",

@@ -31,6 +31,33 @@ $(document).ready(function () {
   $("#addSponsorForm").on("submit", function (e) {
     e.preventDefault();
 
+    if ($("#sponsorName").val() === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Sponsor Name Cannot be Empty",
+      });
+      return false;
+    }
+
+    if ($("#sponsoredEvent").val() === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Sponsor Event Cannot be Empty",
+      });
+      return false;
+    }
+
+    if ($("#sponsoredDepartment").val() === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Sponsor Department Cannot be Empty",
+      });
+      return false;
+    }
+
     $.ajax({
       url: "ajaxHandlerPHP/ajaxManageSponsor.php",
       type: "post",
@@ -109,6 +136,33 @@ const updateSponsor = () => {
   let updateSponsorName = $("#updateSponsorName").val();
   let updateSponsoredEvent = $("#updateSponsoredEvent").val();
   let updateSponsoredDepartment = $("#updateSponsoredDepartment").val();
+
+  if (!isNaN(updateSponsorName) || updateSponsorName === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Sponsor Name Cannot be Empty",
+    });
+    return false;
+  }
+
+  if (!isNaN(updateSponsoredEvent) || updateSponsoredEvent === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Sponsor Event Cannot be Empty",
+    });
+    return false;
+  }
+
+  if (!isNaN(updateSponsoredDepartment) || updateSponsoredDepartment === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Sponsor Department Cannot be Empty",
+    });
+    return false;
+  }
 
   $.ajax({
     url: "ajaxHandlerPHP/ajaxManageSponsor.php",

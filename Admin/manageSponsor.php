@@ -35,12 +35,6 @@ include_once "includes/commonAnchor.php";
 <body class="sb-nav-fixed">
 
 
-    <?php
-
-?>
-
-
-
     <!-- Admin Navbar -->
     <?php include_once "includes/adminNavbar.php";?>
 

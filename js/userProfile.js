@@ -31,6 +31,7 @@ $(document).ready(function () {
 
   $("#userProfileForm").on("submit", function (event) {
     event.preventDefault();
+
     let updateFirstName = $("#updateFirstName").val();
     let updateLastName = $("#updateLastName").val();
     let updateMobileNumber = $("#updateMobileNumber").val();
@@ -38,6 +39,60 @@ $(document).ready(function () {
     let updateDepartmentName = $("#updateDepartmentName").val();
     let updateAcademicYear = $("#updateAcademicYear").val();
     let hiddenEmail = $("#hiddenEmail").val();
+
+    if (!isNaN(updateFirstName) || updateFirstName === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Only Characters are allowed or first name cannot be empty",
+      });
+      return false;
+    }
+
+    if (!isNaN(updateLastName) || updateLastName === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Only Characters are allowed or Last Name cannot be empty",
+      });
+      return false;
+    }
+
+    if (mobileNumber === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Mobile Number cannot be empty",
+      });
+      return false;
+    }
+
+    if (!isNaN(updateCollegeName) || updateCollegeName === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Only Characters are allowed or College Name cannot be empty",
+      });
+      return false;
+    }
+
+    if (!isNaN(updateDepartmentName) || updateDepartmentName === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Only Characters are allowed or Department Name cannot be empty",
+      });
+      return false;
+    }
+
+    if (!isNaN(updateAcademicYear) || updateAcademicYear === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Only Characters are allowed or Academic Year cannot be empty",
+      });
+      return false;
+    }
 
     $.ajax({
       url: "ajaxHandlerPHP/ajaxUserProfile.php",

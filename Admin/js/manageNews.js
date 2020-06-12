@@ -31,6 +31,24 @@ $(document).ready(function () {
     let newsTitle = $("#newsTitle").val();
     let newsDescription = $("#newsDescription").val();
 
+    if (!isNaN(newsTitle) || newsTitle === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Only Characters are Allowed or News Title Cannot be Empty",
+      });
+      return false;
+    }
+
+    if (!isNaN(newsDescription) || newsDescription === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Only Characters are Allowed or News Description Cannot be Empty",
+      });
+      return false;
+    }
+
     $.ajax({
       url: "ajaxHandlerPHP/ajaxManageNews.php",
       type: "post",
@@ -110,6 +128,24 @@ const updateNews = () => {
   let updateNewsTitle = $("#updateNewsTitle").val();
   let updateNewsDescription = $("#updateNewsDescription").val();
   let hiddenId = $("#hiddenId").val();
+
+  if (!isNaN(updateNewsTitle) || updateNewsTitle === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Only Characters are Allowed or News Title Cannot be Empty",
+    });
+    return false;
+  }
+
+  if (!isNaN(updateNewsDescription) || updateNewsDescription === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Only Characters are Allowed or News Description Cannot be Empty",
+    });
+    return false;
+  }
 
   $.ajax({
     url: "ajaxHandlerPHP/ajaxManageNews.php",

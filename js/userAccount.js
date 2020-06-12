@@ -7,6 +7,33 @@ $(document).ready(function () {
     let conNewPassword = $("#conNewPassword").val();
     let currentPassword = $("#currentPassword").val();
 
+    if (currentPassword === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Current Password Cannot be Empty",
+      });
+      return false;
+    }
+
+    if (newPassword === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "New Password Cannot be Empty",
+      });
+      return false;
+    }
+
+    if (conNewPassword === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Confirm Password Cannot be Empty",
+      });
+      return false;
+    }
+
     $.ajax({
       url: "ajaxHandlerPHP/ajaxUserAccount.php",
       type: "post",
@@ -35,6 +62,24 @@ $(document).ready(function () {
     let changeEmail = "changeEmail";
     let newEmail = $("#newEmail").val();
     let password = $("#password").val();
+
+    if (newEmail === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "New Email Cannot be Empty",
+      });
+      return false;
+    }
+
+    if (password === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Password Cannot be Empty",
+      });
+      return false;
+    }
 
     $.ajax({
       url: "ajaxHandlerPHP/ajaxUserAccount.php",
