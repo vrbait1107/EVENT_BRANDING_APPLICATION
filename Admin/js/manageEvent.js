@@ -29,6 +29,96 @@ $(document).ready(function () {
   $("#addEventForm").on("submit", function (e) {
     e.preventDefault();
 
+    if ($("#eventName") === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Event Name cannot be Empty",
+      });
+      return false;
+    }
+
+    if ($("#eventPrice") === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Event Fee cannot be Empty",
+      });
+      return false;
+    }
+
+    if ($("#eventPrize") === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Event Prize cannot be Empty",
+      });
+      return false;
+    }
+
+    if ($("#eventSponsor") === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Event Sponsor cannot be Empty",
+      });
+      return false;
+    }
+
+    if ($("#eventDepartment") === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Event Department cannot be Empty",
+      });
+      return false;
+    }
+
+    if ($("#eventDescription") === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Event Description cannot be Empty",
+      });
+      return false;
+    }
+
+    if ($("#eventRules") === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Event Rules cannot be Empty",
+      });
+      return false;
+    }
+
+    if ($("#eventCoordinator") === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Event Coordinator cannot be Empty",
+      });
+      return false;
+    }
+
+    if ($("#eventStartDate") === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Event Start Date cannot be Empty",
+      });
+      return false;
+    }
+
+    if ($("#eventEndDate") === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Event End Date cannot be Empty",
+      });
+      return false;
+    }
+
     $.ajax({
       url: "ajaxHandlerPHP/ajaxManageEvent.php",
       type: "post",
@@ -124,6 +214,96 @@ const updateEvent = () => {
   let updateEventStartDate = $("#updateEventStartDate").val();
   let updateEventEndDate = $("#updateEventEndDate").val();
   let hiddenId = $("#hiddenId").val();
+
+  if (updateEventName === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Event Name cannot be Empty",
+    });
+    return false;
+  }
+
+  if (updateEventPrice === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Event Fee cannot be Empty",
+    });
+    return false;
+  }
+
+  if (updateEventPrize === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Event Prize cannot be Empty",
+    });
+    return false;
+  }
+
+  if (updateEventSponsor === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Event Sponsor cannot be Empty",
+    });
+    return false;
+  }
+
+  if (updateEventDepartment === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Event Department cannot be Empty",
+    });
+    return false;
+  }
+
+  if (updateEventDescription === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Event Description cannot be Empty",
+    });
+    return false;
+  }
+
+  if (updateEventRules === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Event Rules cannot be Empty",
+    });
+    return false;
+  }
+
+  if (updateEventCoordinator === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Event Coordinator cannot be Empty",
+    });
+    return false;
+  }
+
+  if (updateEventStartDate === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Event Start Date cannot be Empty",
+    });
+    return false;
+  }
+
+  if (updateEventEndDate === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Event End Date cannot be Empty",
+    });
+    return false;
+  }
 
   $.ajax({
     url: "ajaxHandlerPHP/ajaxManageEvent.php",
