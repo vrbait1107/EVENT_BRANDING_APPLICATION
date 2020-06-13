@@ -58,7 +58,7 @@ $(document).ready(function () {
       return false;
     }
 
-    if (mobileNumber === "") {
+    if (updateMobileNumber === "") {
       Swal.fire({
         icon: "warning",
         title: "Warning",
