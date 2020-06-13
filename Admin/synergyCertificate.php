@@ -6,7 +6,7 @@ require_once "../configPDO.php";
 
 $CertId = $_POST['certificateId'];
 
-$sql = "SELECT * FROM synergy_user_information WHERE certificateId = :CertId";
+$sql = "SELECT * FROM synergy_user_information WHERE certificateId = :certId";
 
 //Preparing Query
 $result = $conn->prepare($sql);
@@ -103,8 +103,6 @@ $prize = $row['prize'];
 
     </section>
 
-    </div>
-    </div>
 
 
     <!-- JS Variables to Convert data into QR Code-->
@@ -125,7 +123,7 @@ $prize = $row['prize'];
 
     <?php
 // closing Database Connnection
-$conn -= null;
+$conn = null;
 ?>
 
 </body>
