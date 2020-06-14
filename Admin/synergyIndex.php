@@ -26,58 +26,8 @@ if (!isset($_SESSION['Admin'])) {
 
 </head>
 
-<body class="sb-nav-fixed" <?php if (isset($_POST['submit'])) {
-    echo "onload='savemessages()'";
-}
-?>>
+<body class="sb-nav-fixed">
 
-    <?php
-
-// Inserting Data into synergy_user_information table Database Name is user_registration
-
-if (isset($_POST['submit'])) {
-
-    $certificateId = rand();
-    $firstName = trim($_POST["firstName"]);
-    $lastName = trim($_POST["lastName"]);
-    $department = trim($_POST["department"]);
-    $event = trim($_POST["event"]);
-    $prize = trim($_POST["prize"]);
-
-    $sql = "INSERT INTO synergy_user_information (certificateId, firstName, lastName, departmentName,
-        eventName, prize) VALUES ( :certificateId, :firstName, :lastName, :department, :event, :prize)";
-
-    //Preparing Query
-    $result = $conn->prepare($sql);
-
-    //Binding Value
-    $result->bindValue(":certificateId", $certificateId);
-    $result->bindValue(":firstName", $firstName);
-    $result->bindValue(":lastName", $lastName);
-    $result->bindValue(":department", $department);
-    $result->bindValue(":event", $event);
-    $result->bindValue(":prize", $prize);
-
-    //Executing Query
-    $result->execute();
-
-    if ($result) {
-        echo "<script>Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: 'Data Inserted Successfully!'
-                })</script>";
-    } else {
-        echo "<script>Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Something Went Wrong!'
-                    })</script>";
-    }
-
-}
-
-?>
 
     <!-- Admin Navbar -->
     <?php
@@ -105,18 +55,18 @@ include_once "includes/adminNavbar.php";
 
                         <h3 class="text-white text-center bg-info mb-4 p-2"> ADD DATA FOR CERTIFICATE </h3>
 
-                        <form action="" method="post" name="myForm" onsubmit="return synergyValidateForm()">
+                        <form name="synergyForm" id="synergyForm" method="post">
 
                             <div class="form-group">
                                 <label for="firstName">First Name</label>
                                 <input type="text" class="form-control" name="firstName" id="firstName"
-                                    placeholder="Enter your First Name" autocomplete="off" required>
+                                    placeholder="Enter your First Name" autocomplete="off">
                             </div>
 
                             <div class="form-group">
                                 <label for="lastName">Last Name</label>
                                 <input type="text" class="form-control" name="lastName" id="lastName"
-                                    placeholder="Enter your Last Name" autocomplete="off" required>
+                                    placeholder="Enter your Last Name" autocomplete="off">
                             </div>
 
                             <div class="form-group">
@@ -161,6 +111,8 @@ include_once "includes/adminNavbar.php";
                                 </select>
                             </div>
 
+                            <div id="responseMessage"></div>
+
                             <input type="submit" name="submit" value="submit"
                                 class="btn btn-primary rounded-pill btn-block mb-5">
 
@@ -171,76 +123,24 @@ include_once "includes/adminNavbar.php";
                 <!--  ADD Administartor Profile Form Complete -->
             </div>
         </main>
-    <!--Admin Footer-->
-    <?php include_once "includes/adminFooter.php";?>
+        <!--Admin Footer-->
+        <?php include_once "includes/adminFooter.php";?>
 
     </div>
 
-    <!--Jquery-->
+    <!-- Admin Footer Scripts -->
+    <?php include_once "includes/adminFooterScripts.php";?>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-
-    <script type="text/javascript">
-        let a = "<?php echo $firstName ?>";
-        let b = "<?php echo $lastName ?>";
-        let c = "<?php echo $department ?>";
-        let d = "<?php echo $event ?>";
-        let e = "<?php echo $prize ?>";
-        let f = "<?php echo $certificateId ?>";
-    </script>
-
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
     <!-- TODO: Add SDKs for Firebase products that you want to use
         https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
+    <script src="js/synergyIndex.js"></script>
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyCzbLFCUfBHGmmWWye01lWPvOWhDxESjJc",
-            authDomain: "git-shodh-2k20-certificates.firebaseapp.com",
-            databaseURL: "https://git-shodh-2k20-certificates.firebaseio.com",
-            projectId: "git-shodh-2k20-certificates",
-            storageBucket: "git-shodh-2k20-certificates.appspot.com",
-            messagingSenderId: "64170861595",
-            appId: "1:64170861595:web:9eb79e0a9a68e3b6b144be",
-            measurementId: "G-5ZWXWTC1EW"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
 
-        var db = firebase.firestore();
-        var messagesRef = db.collection("Synergy Certificate");
-
-        function savemessages() {
-
-            messagesRef.add({
-                First_Name: a,
-                Last_Name: b,
-                Department: c,
-                Event: d,
-                Prize: e,
-                CertificateId: f
-            })
-                .then(function () {
-                    console.log("Document successfully written!", messagesRef.id);
-                })
-                .catch(function (error) {
-                    console.error("Error writing document: ", error);
-                });
-
-        }
-
-    </script>
-
-    <!--JS Validation-->
-    <script src="../js/form-validation.js"></script>
-    <!-- Admin Footer Scripts -->
-    <?php include_once "includes/adminFooterScripts.php";?>
-
-     <?php
+    <?php
 // closing Database Connnection
 $conn = null;
 ?>
