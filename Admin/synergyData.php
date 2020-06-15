@@ -24,61 +24,10 @@ if (!isset($_SESSION['Admin'])) {
 
   <title>GIT SYNERGY 2K20</title>
 
-  <style>
-    .btn {
-      margin-bottom: 5px;
-      text-align: center;
-    }
-
-    body {
-      margin-top: 50px;
-    }
-
-    .form1 {
-      margin-bottom: 100px;
-    }
-  </style>
 </head>
 
 <body class="sb-nav-fixed">
 
-  <?php
-
-// SQL Querry for Delete the Data
-
-if (isset($_REQUEST['delete'])) {
-
-    //Query
-    $id = $_POST['certificateId'];
-
-    $sql = "DELETE  FROM synergy_user_information WHERE certificateId = {:id}";
-
-    //Preparing Query
-    $result = $conn->prepare($sql);
-
-    //Binding Value
-    $result->bindValue(":id", $id);
-
-    //Executing Value
-    $result->execute();
-    if ($result) {
-        echo "<script>Swal.fire({
-        icon: 'success',
-        title: 'Deleted',
-        text: 'Your Data has been Deleted'
-      })</script>";
-    } else {
-        echo "<script>Swal.fire({
-          icon: 'error',
-          title: 'ERROR',
-          text: 'Unable to Delete Data'
-        })</script>";
-
-    }
-
-}
-
-?>
 
   <!-- Admin Navbar -->
   <?php
@@ -92,80 +41,12 @@ include_once "includes/adminNavbar.php";
   <div id="layoutSidenav_content">
     <main class="container-fluid">
       <div class="row">
-        <section class="col-12">
+        <section class="col-12 mt-5">
 
-
-          <?php
-
-$sql = 'SELECT * FROM synergy_user_information';
-
-//Preparing Query
-$result = $conn->prepare($sql);
-
-//Executing Value
-$result->execute();
-
-if ($result->rowCount() > 0) {
-    ?>
-
-          <table class='table table-bordered' id='dataTable' width='100%' cellspacing='0'>
-            <thead>
-              <th class='text-success text-center'>Certificate ID</th>
-              <th class='text-success text-center'>First Name</th>
-              <th class='text-success text-center'>Last Name</th>
-              <th class='text-success text-center'>Department Name</th>
-              <th class='text-success text-center'>Event</th>
-              <th class='text-success text-center'>Prize</th>
-              <th class='text-success text-center'>Action</th>
-            </thead>
-
-            <tbody>
-
-              <?php
-
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-
-        ?>
-
-              <tr>
-
-                <td class='text-center'><?php echo $row['certificateId']; ?></td>
-                <td class='text-center'><?php echo $row['firstName']; ?></td>
-                <td class='text-center'><?php echo $row['lastName']; ?></td>
-                <td class='text-center'><?php echo $row['departmentName']; ?></td>
-                <td class='text-center'><?php echo $row['eventName']; ?></td>
-                <td class='text-center'><?php echo $row['prize']; ?> </td>
-
-                <td>
-                  <form action="synergyCertificate.php" class="text-center" method="post">
-                    <input type="hidden" name="certificateId" value='<?php echo $row["certificateId"]; ?>'>
-                    <input type="submit" class="btn btn-sm btn-primary text-white text-center" value="VIEW CERTIFICATE"
-                      name="view">
-                  </form>
-
-                  <form action="" class="text-center" method="post">
-                    <input type="hidden" name="certificateId" value='<?php echo $row["certificateId"]; ?>'>
-                    <input type="submit" class="btn btn-sm btn-danger text-white text-center" value="DELETE CERTIFICATE"
-                      name="delete">
-                  </form>
-                </td>
-
-              </tr>
-
-              <?php
-}
-
-    ?>
-
-            </tbody>
-          </table>
-
-          <?php
-} else {
-    echo "<h4 class='text-center mt-5 text-danger'>No Data available in Database</h4>";
-}
-
-?>
+          <!-- Delete Response -->
+          <div id="deleteResponse"></div>
+          <!-- Read Record -->
+          <div id="responseMessage"></div>
 
         </section>
       </div>
@@ -179,7 +60,10 @@ if ($result->rowCount() > 0) {
   <!-- Admin Footer Scripts -->
   <?php include_once "includes/adminFooterScripts.php";?>
 
-     <?php
+  <!-- Custom JS -->
+  <script src="js/synergyData.js"></script>
+
+  <?php
 // closing Database Connnection
 $conn = null;
 ?>

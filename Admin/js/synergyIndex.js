@@ -72,6 +72,7 @@ $(document).ready(function () {
       },
       success(data) {
         $("#responseMessage").html(data);
+        $("#synergyForm").trigger("reset");
       },
       error() {
         $("#responseMessage").html("Something Went Wrong");
