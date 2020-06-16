@@ -17,7 +17,7 @@ if (isset($_FILES['galleryImages'])) {
 
             $source = $_FILES['galleryImages']["tmp_name"][$name];
 
-            move_uploaded_file($source, "C:/xampp2/htdocs/EBA/gallery/" . $value);
+            move_uploaded_file($source, "C:/xampp/htdocs/EBA/gallery/" . $value);
 
         }
         if ($result) {

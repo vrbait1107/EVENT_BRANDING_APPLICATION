@@ -55,7 +55,7 @@ if (isset($_FILES['updateProfileImage'])) {
 
         if ($updateProfileImageSize <= 2097152) {
 
-            move_uploaded_file($updateProfileImageTmpDir, "C:/xampp2/htdocs/EBA/profileImage/" . $updateProfileImageName);
+            move_uploaded_file($updateProfileImageTmpDir, "C:/xampp/htdocs/EBA/profileImage/" . $updateProfileImageName);
 
             //  Query
             $sql = "UPDATE user_information SET profileImage = :updateProfileImageName WHERE email = :hiddenEmail2";

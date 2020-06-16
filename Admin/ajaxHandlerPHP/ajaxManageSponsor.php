@@ -105,7 +105,7 @@ if (isset($_FILES['sponsorLogo'])) {
 
         if ($sponsorLogoSize <= 2097152) {
 
-            move_uploaded_file($sponsorLogoTmpDir, "C:/xampp2/htdocs/EBA/sponsorLogo/" . $sponsorLogoName);
+            move_uploaded_file($sponsorLogoTmpDir, "C:/xampp/htdocs/EBA/sponsorLogo/" . $sponsorLogoName);
 
             //Query
             $sql = "INSERT INTO sponsor_information (sponsorName, sponsorLogo, sponsoredEvent,
