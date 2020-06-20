@@ -74,7 +74,7 @@ if (isset($_FILES['updateProfileImage'])) {
             text: 'Your Profile Image Successfully Changed'
             })</script>";
 
-                $file = "C:/xampp2/htdocs/EBA/profileImage/" . $hiddenImageName;
+                $file = "C:/xampp/htdocs/EBA/profileImage/" . $hiddenImageName;
                 unlink($file);
 
             } else {

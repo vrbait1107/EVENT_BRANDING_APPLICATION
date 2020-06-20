@@ -61,25 +61,36 @@ if (isset($_POST["login"])) {
             $userName = $_POST["userName"];
             $password = $_POST["password"];
 
-            $sql = "select mainPassword from user_information where email= :userName and status= :active";
+            $sql = "SELECT mainPassword, status FROM user_information WHERE email= :userName";
 
             // Preparing Query
             $result = $conn->prepare($sql);
 
             //Binding Value
             $result->bindValue(":userName", $userName);
-            $result->bindValue(":active", "active");
 
             // Executing Value
             $result->execute();
 
             $row = $result->fetch(PDO::FETCH_ASSOC);
 
+            $status = $row['status'];
             $dbpassword = $row['mainPassword'];
 
             if (password_verify($password, $dbpassword)) {
-                $_SESSION['user'] = $userName;
-                header("Location:index.php");
+                if ($status == "active") {
+
+                    $_SESSION['user'] = $userName;
+                    header("Location:index.php");
+
+                } else {
+                    echo "<script>Swal.fire({
+              icon: 'warning',
+              title: 'Activate Account',
+              text: 'Please Activate Your Account'
+            })</script>";
+
+                }
 
             } else {
                 echo "<script>Swal.fire({
