@@ -94,40 +94,15 @@ if (isset($_POST["targetMessage"])) {
     }
 
 } else {
-    echo "Vat lavlis";
+    echo "Something Went Wrong";
 }
 
 // Mail code
 
 function sendMail($targetEmails, $targetSubject, $targetMessage)
 {
-    date_default_timezone_set('Etc/UTC');
-    require_once '../../PHPMailer/PHPMailerAutoload.php';
-    $mail = new PHPMailer;
-    $mail->isSMTP();
-    $mail->SMTPDebug = 0;
-    $mail->Debugoutput = 'html';
-    $mail->Host = 'smtp.gmail.com';
-    $mail->Port = 587;
-    $mail->SMTPSecure = 'tls';
-    $mail->SMTPAuth = true;
-    $mail->Username = "vishalbait02@gmail.com";
-    $mail->Password = "9921172153";
-    $mail->setFrom("vishalbait02@gmail.com", "GIT SHODH 2K20");
-    $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
-    $mail->addAddress($targetEmails, "GIT SHODH 2K20 Users");
-    $mail->Subject = $targetSubject;
-
-    // multiple attachment
-    for ($i = 0; $i < count($_FILES['file']['tmp_name']); $i++) {
-        $mail->addAttachment($_FILES['file']['tmp_name'][$i], $_FILES['file']['name'][$i]);
-    }
-
-    //Read an HTML message body from an external file, convert referenced images to embedded,
-    //convert HTML into a basic plain-text alternative body
-    $mail->msgHTML("<!doctype html><html><body>$targetMessage</body></html>");
-
-    $mail->AltBody = $targetMessage;
+    // ##### Include PHP Mailer Code
+    include_once "../../emailCode/emailSendMails.php";
 
     if (!$mail->send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;

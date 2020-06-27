@@ -47,34 +47,9 @@ if (isset($_POST["newsletterMessage"])) {
 
 function sendMail($newsletterEmails, $newsletterSubject, $newsletterMessage)
 {
-    date_default_timezone_set('Etc/UTC');
-    require_once '../PHPMailer/PHPMailerAutoload.php';
-    $mail = new PHPMailer;
-    $mail->isSMTP();
-    $mail->SMTPDebug = 0;
-    $mail->Debugoutput = 'html';
-    $mail->Host = 'smtp.gmail.com';
-    $mail->Port = 587;
-    $mail->SMTPSecure = 'tls';
-    $mail->SMTPAuth = true;
-    $mail->Username = "vishalbait02@gmail.com";
-    $mail->Password = "9921172153";
-    $mail->setFrom("vishalbait02@gmail.com", "GIT SHODH 2K20");
-    $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
-    $mail->addAddress($newsletterEmails, "GIT SHODH 2K20 Users");
-    $mail->Subject = $newsletterSubject;
-
-    // multiple attachment
-    for ($i = 0; $i < count($_FILES['file']['tmp_name']); $i++) {
-        $mail->addAttachment($_FILES['file']['tmp_name'][$i], $_FILES['file']['name'][$i]);
-    }
-
-    //Read an HTML message body from an external file, convert referenced images to embedded,
-    //convert HTML into a basic plain-text alternative body
-    $mail->msgHTML("<!doctype html><html><body>$newsletterMessage</body></html>");
-
-    $mail->AltBody = $newsletterMessage;
-
+   //##### Include PHP Mailer Code 
+   include_once "../../emailCode/emailSendNewsletter.php";
+   
     if (!$mail->send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;
     } else {
