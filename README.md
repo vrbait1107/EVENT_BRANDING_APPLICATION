@@ -25,32 +25,32 @@ Event Branding Application is mobile Application with Website for collecting reg
 
 1. Administrator (College Level)
 
-- Add/ Delete/ Update Faculty Coordinator
-- View and delete all event registration details and Update it such as Prize.
+- View/Add/Delete/Update Faculty Coordinator
+- View and delete all event registration details.
 - Send Newsletter to all Participant
 - Send Emails to Participant college wise, department wise and Events wise
-- Add/ Delete/Update Events Details Information
-- Add/Delete Gallery Images
-- Add/Delete/ Update Sponsor Information
+- View/Add/Delete/Update Events Details Information
+- View/Add/Delete Gallery Images
+- View/Add/Delete/Update Sponsor Information
 
 2. Faculty Coordinator (Department Level)
 
-- Add/Delete/Update Student Coordinator
-- View and delete department level event registration details and Update it such as Prize.
+- View/Add/Delete/Update Student Coordinator
+- View and delete department level event registration details.
 - Send Newsletter to all Participant
 - Send Emails to Participant college wise, department wise and Events wise
-- Add/ Delete/Update Events Details Information
-- Add/Delete Gallery Images
-- Add/Delete/ Update Sponsor Information
+- View/Add/ Delete/Update Events Details Information
+- View/Add/Delete Gallery Images
+- View/Add/Delete/Update Sponsor Information
 
 3. Student Coordinator (Event Level)
 
 - View and delete event level event registration details and Update it such as Prize.
 - Send Newsletter to all Participant
 - Send Emails to Participant college wise, department wise and Events wise
-- Add/ Delete/Update Events Details Information
-- Add/Delete Gallery Images
-- Add/Delete/ Update Sponsor Information
+- View/Add/ Delete/Update Events Details Information
+- View/Add/Delete Gallery Images
+- View/Add/Delete/ Update Sponsor Information
 
 ## PHP Mailer
 
@@ -101,6 +101,7 @@ Event Branding Application is mobile Application with Website for collecting reg
 - Javascript Libraries: jQuery, SweetAlert.js, Wow.js, QRCode.js
 - CSS Libraries: Animate.css, Font-Awesome.css, AOS Library
 - CSS Framework: Bootstrap 4
+- Other: Ajax
 
 ### Back-End
 
@@ -114,11 +115,11 @@ Event Branding Application is mobile Application with Website for collecting reg
 
 ### Designing Software
 
-- SOFTWARE: CORELDRAW 11
+- Software: CORELDRAW 11
 
 ### Version Control
 
-- SOFTWARE: GIT
+- Software: GIT
 
 ### Payment Gateway
 
