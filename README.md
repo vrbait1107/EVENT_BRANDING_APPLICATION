@@ -23,7 +23,7 @@ Event Branding Application is mobile Application with Website for collecting reg
 
 ### Typical functions supported by Event Branding Application with Website (Administrator Level)
 
-1. Administrator (College Level)
+1. **Administrator (College Level)**
 
 - View/Add/Delete/Update Faculty Coordinator
 - View and delete all event registration details.
@@ -33,7 +33,7 @@ Event Branding Application is mobile Application with Website for collecting reg
 - View/Add/Delete Gallery Images
 - View/Add/Delete/Update Sponsor Information
 
-2. Faculty Coordinator (Department Level)
+2. **Faculty Coordinator (Department Level)**
 
 - View/Add/Delete/Update Student Coordinator
 - View and delete department level event registration details.
@@ -43,7 +43,7 @@ Event Branding Application is mobile Application with Website for collecting reg
 - View/Add/Delete Gallery Images
 - View/Add/Delete/Update Sponsor Information
 
-3. Student Coordinator (Event Level)
+3. **Student Coordinator (Event Level)**
 
 - View and delete event level event registration details and Update it such as Prize.
 - Send Newsletter to all Participant
