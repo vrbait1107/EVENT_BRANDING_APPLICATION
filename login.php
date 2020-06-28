@@ -61,7 +61,7 @@ if (isset($_POST["login"])) {
             $userName = $_POST["userName"];
             $password = $_POST["password"];
 
-            $sql = "SELECT mainPassword, status FROM user_information WHERE email= :userName";
+            $sql = "SELECT password, status FROM user_information WHERE email= :userName";
 
             // Preparing Query
             $result = $conn->prepare($sql);
@@ -75,7 +75,7 @@ if (isset($_POST["login"])) {
             $row = $result->fetch(PDO::FETCH_ASSOC);
 
             $status = $row['status'];
-            $dbpassword = $row['mainPassword'];
+            $dbpassword = $row['password'];
 
             if (password_verify($password, $dbpassword)) {
                 if ($status == "active") {

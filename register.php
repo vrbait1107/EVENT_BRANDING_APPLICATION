@@ -97,9 +97,9 @@ if (isset($_POST['submit'])) {
 
                 //Query
                 $sql = "INSERT INTO user_information(email, firstName, lastName,
-              mobileNumber, collegeName, departmentName, academicYear, mainPassword, confirmPass, token)
+              mobileNumber, collegeName, departmentName, academicYear, password, token)
               VALUES (:userName, :firstName, :lastName, :mobileNumber, :collegeName, :department, :year,
-              :hashPass, :hashConPass, :token)";
+              :hashPass, :token)";
 
                 // Preparing Query
                 $result = $conn->prepare($sql);
@@ -113,7 +113,6 @@ if (isset($_POST['submit'])) {
                 $result->bindValue(":department", $department);
                 $result->bindValue(":year", $year);
                 $result->bindValue(":hashPass", $hashPass);
-                $result->bindValue(":hashConPass", $hashConPass);
                 $result->bindValue(":token", $token);
 
                 // Executing Query
@@ -124,7 +123,8 @@ if (isset($_POST['submit'])) {
                     echo "<script>Swal.fire({
                         icon: 'success',
                         title: 'Activate Your Account',
-                        text: 'Check Your Email for activate your account'
+                        text: 'Check Your Email for activate your account',
+                        footer: '<a href = $login >Go to the Login Page</a>'
                       })</script>";
 
                     // ####  Include PHP MAILER CODE
@@ -141,7 +141,7 @@ if (isset($_POST['submit'])) {
                         icon: "error",
                         title: "Eror",
                         text: "Something Went Wrong",
-                        footer: "<a href>Go to the Login Page</a>"
+                        footer: "<a href = ' . $login . ' >Go to the Login Page</a>"
                       })</script>';
                 }
 

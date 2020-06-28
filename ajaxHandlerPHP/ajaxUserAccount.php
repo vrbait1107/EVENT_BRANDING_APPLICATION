@@ -19,7 +19,7 @@ if (isset($_POST['changePassword'])) {
     $email = $_SESSION['user'];
 
 //Query
-    $sql = "SELECT mainPassword FROM user_information WHERE email = :email";
+    $sql = "SELECT password FROM user_information WHERE email = :email";
 
 //Preparing Query
     $result = $conn->prepare($sql);
@@ -33,7 +33,7 @@ if (isset($_POST['changePassword'])) {
 //Fetching Value in associative array
     $row = $result->fetch(PDO::FETCH_ASSOC);
 
-    $dbPassword = $row['mainPassword'];
+    $dbPassword = $row['password'];
 
     if (password_verify($currentPassword, $dbPassword)) {
 
@@ -43,14 +43,13 @@ if (isset($_POST['changePassword'])) {
             $conNewPassword = password_hash($conNewPassword, PASSWORD_BCRYPT);
 
             //Query
-            $sql1 = "UPDATE user_information SET mainPassword= :newPassword1, confirmPass = :newPassword2 WHERE email = :email";
+            $sql1 = "UPDATE user_information SET password= :newPassword1 WHERE email = :email";
 
             //Preparing Query
             $result1 = $conn->prepare($sql1);
 
             //Binding Values
             $result1->bindValue(":newPassword1", $newPassword);
-            $result1->bindValue(":newPassword2", $newPassword);
             $result1->bindValue(":email", $email);
 
             //Executing Query
@@ -131,7 +130,7 @@ if (isset($_POST['changeEmail'])) {
         //Fetching Values in associative array
         $row = $result->fetch(PDO::FETCH_ASSOC);
 
-        $dbPassword = $row['mainPassword'];
+        $dbPassword = $row['password'];
 
         if (password_verify($Password, $dbPassword)) {
 

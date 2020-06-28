@@ -5,9 +5,9 @@
 
 ## Event Branding Application: Start to End Support (With Different Technology)
 
-1. Event Branding Application (Bootstrap4) [EBA](https://github.com/Vishal1107/EVENT_BRANDING_WEBSITE_FRONT_END)
-2. Event Branding Application (PHP) [EBA](https://github.com/Vishal1107/EVENT_BRANDING_APPLICATION)
-3. Event Branding Application (MERN) [EBA](https://github.com/Vishal1107/MERN_EVENT_BRANDING_APPLICATION)
+1. [Event Branding Application (Bootstrap4)](https://github.com/Vishal1107/EVENT_BRANDING_WEBSITE_FRONT_END)
+2. Current Repository [Event Branding Application (PHP) ](https://github.com/Vishal1107/EVENT_BRANDING_APPLICATION)
+3. [Event Branding Application (MERN)](https://github.com/Vishal1107/MERN_EVENT_BRANDING_APPLICATION)
 
 ## Event Branding Application: Start to End Support (Techfest Website)
 
@@ -62,6 +62,24 @@ Event Branding Application is mobile Application with Website for collecting reg
 
 - This project use PHP Mailer library for email purpose, So you must mention your email username and password in script, for more details and documentation of PHP Mailer library go to https://github.com/PHPMailer/PHPMailer
 - To Use PHP Mailer Library functionality go to emailCode folder and mention your email username and password in PHP Scripts.
+
+## Google Recaptcha
+
+- This Project use google recaptcha v2 Checkbox for security purpose.
+- To use this functionality go to google recaptch Website https://www.google.com/recaptcha/intro/v3.html and Go to console and generate API Keys (data site key and secret Key) and paste data site key and secret key in below files.
+
+1. register.php (Paste Site and Secret Key)
+2. login.php (Paste Site and Secret Key)
+3. contactUs.php (paste Site key)
+4. ajaxHandlerPHP/ajaxContactUs.php (Paste Secret key)
+5. feedbackForm.php (paste Site key)
+6. ajaxHandlerPHP/ajaxFeedbackForm.php (Paste Secret key)
+7. Admin/adminLogin.php (Paste Site and Secret Key)
+8. Admin/synergyLogin.php (Paste Site and Secret Key)
+9. Admin/sendMails.php (Paste Site Key)
+10. Admin/sendNewsletter.php (Paste Site Key)
+11. Admin/ajaxHandlerPHP/ajaxSendMails.php (Paste Secret key)
+12. Admin/ajaxHandlerPHP/ajaxSendNewsletter.php (Paste Secret key)
 
 ## PAYTM Payment Gateway
 

@@ -23,9 +23,6 @@ session_start();
 
 <body>
 
-    <!-- Navbar PHP -->
-    <?php include_once "includes/navbar.php";?>
-
 
     <!-- PHP Code Start -->
 
@@ -208,8 +205,9 @@ if (isset($_POST['submit'])) {
                         <input type="submit" value="Submit" name="submit"
                             class="btn btn-primary mt-3 btn-block rounded-pill">
 
-
                     </form>
+
+                    <h6 class="font-sans mt-3">Go to <a href="login.php">login</a> page</h6>
                 </div>
             </section>
         </div>

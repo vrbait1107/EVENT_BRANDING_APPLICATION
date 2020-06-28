@@ -42,13 +42,12 @@ if (isset($_GET['token'])) {
             if ($userType == "User") {
 
                 // SQL Query
-                $sql = "UPDATE user_information SET mainPassword= :newPassword, confirmPass = :newPassword WHERE token = :token";
+                $sql = "UPDATE user_information SET password= :newPassword WHERE token = :token";
 
                 // Preparing Query
                 $result = $conn->prepare($sql);
 
                 // Binding Value
-                $result->bindValue(":newPassword", $newPassword);
                 $result->bindValue(":newPassword", $newPassword);
                 $result->bindValue(":token", $token);
 
@@ -103,9 +102,6 @@ if (isset($_GET['token'])) {
 
 ?>
 
-    <!-- Navbar PHP -->
-    <?php include_once "includes/navbar.php";?>
-
 
     <main class="container">
         <div class="row">
@@ -141,6 +137,8 @@ if (isset($_GET['token'])) {
                                 name="resetPassword">
                                 Reset Password
                             </button>
+
+                            <h6 class="font-sans mt-3">Go to <a href="login.php">login</a> page</h6>
                         </form>
                     </div>
                 </div>
