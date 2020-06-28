@@ -1,4 +1,4 @@
-## Event Branding Application: Start to End Support (BE Project)
+## Event Branding Application: Start to End Support
 
 1. Website
 2. Android Application

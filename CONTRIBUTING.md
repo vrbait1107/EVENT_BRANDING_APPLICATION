@@ -1,6 +1,6 @@
 # Contributing to Event Branding Application.
 
-## Please feel free to contibuting in this project.
+## Please feel free to contibute in this project.
 
 We want to make contributing to this project as easy as possible, whether it's:
 
@@ -14,9 +14,9 @@ We want to make contributing to this project as easy as possible, whether it's:
 
 We use github to host code, to track issues and feature requests, as well as accept pull requests.
 
-## Report bugs using Github's [issues](https://github.com/Vishal1107/EVENT_BRANDING_APPLICATION/issues)
+## Report bugs using Github's issues
 
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](); it's that easy!
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/Vishal1107/EVENT_BRANDING_APPLICATION/issues); it's that easy!
 
 ## Write bug reports with detail, background, and sample code
 
@@ -35,7 +35,7 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 
 1. Fork the repo and create your branch from `master`.
 2. If you've added code or changed code that should be tested.
-3. If you've changed something or added something, update the documentation in Readme.md as required.
+3. If you've changed something or added something, update the documentation in Readme.md.
 4. Issue that pull request!
 
 ## Any contributions you make will be under the MIT Software License
