@@ -19,9 +19,7 @@ if (isset($_POST["readRecord"])) {
 //Executing Value
     $result->execute();
 
-    if ($result->rowCount() > 0) {
-
-        $data = '<table class= "table table-striped table-bordered" id= "dataTable" width= "100%" cellspacing="0">
+    $data = '<table class= "table table-striped table-bordered" id= "dataTable" width= "100%" cellspacing="0">
                         <thead class="text-center">
                             <th>Sr.No.</th>
                             <th>Event Name</th>
@@ -37,6 +35,9 @@ if (isset($_POST["readRecord"])) {
                             <th >Delete</th>
                         </thead>
                         <tbody>';
+
+    if ($result->rowCount() > 0) {
+
         $number = 1;
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
@@ -51,25 +52,23 @@ if (isset($_POST["readRecord"])) {
              <td>' . $row['eventRules'] . '</td>
             <td>' . $row['eventStartDate'] . '</td>
             <td>' . $row["eventEndDate"] . '</td>
-            <td><button class="btn btn-primary" onclick= "getEventInformation(' . $row['id'] . ')"> Edit </button></td>
-            <td><button class="btn btn-danger" onclick= "deleteEventInformation(' . $row['id'] . ')"> Delete </button></td>
+            <td><button class="btn btn-primary" onclick= "getEventInformation(' . $row['id'] . ')"><i class="fas fa-edit"></i></button></td>
+            <td><button class="btn btn-danger" onclick= "deleteEventInformation(' . $row['id'] . ')"><i class="fa fa-trash-alt"></i></button></td>
              </tr>';
             $number++;
         }
 
-        $data .= '</tbody>
+    } else {
+        $data .= '<tr class="text-center">
+    <td colspan="12">No Records Found</td>
+    </tr>';
+    }
+
+    $data .= '</tbody>
         </table>';
 
-        echo $data;
+    echo $data;
 
-    } else {
-        echo "<script>Swal.fire({
-          icon: 'warning',
-          title: 'Warning',
-          text: 'No data available in database'
-          })</script>";
-
-    }
 }
 
 extract($_FILES);

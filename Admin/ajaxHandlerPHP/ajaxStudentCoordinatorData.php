@@ -137,31 +137,34 @@ if (isset($_POST["readRecord"])) {
 
     $data = '<table class= "table table-bordered" id= "dataTableParticipants" width= "100%" cellspacing="0">
                     <thead>
-                      <th class="text-success text-center">Certificate ID</th>
-                      <th class="text-success text-center">First Name</th>
-                      <th class="text-success text-center">Last Name</th>
-                      <th class="text-success text-center">College Name</th>
-                      <th class="text-success text-center">Department Name</th>
-                      <th class="text-success text-center">Academic Year</th>
-                      <th class="text-success text-center">Event</th>
-                      <th class="text-success text-center">Prize</th>
-                      <th class="text-success text-center">Attend Status</th>
-                      <th class="text-success text-center">Edit Action</th>
-                      <th class="text-success text-center">Delete Action</th>
-                      <th class="text-success text-center">TXN Amount</th>
-                      <th class="text-success text-center">Order Id</th>
-                      <th class="text-success text-center">TXN ID</th>
-                      <th class="text-success text-center"> Bank TXN Id</th>
-                      <th class="text-success text-center">TXN Date</th>
-                      <th class="text-success text-center">TXN Status</th>
-
+                    <tr class="text-success text-center">
+                      <th>Certificate ID</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>College Name</th>
+                      <th>Department Name</th>
+                      <th>Academic Year</th>
+                      <th>Event</th>
+                      <th>Prize</th>
+                      <th>Attend Status</th>
+                      <th>Edit Action</th>
+                      <th>Delete Action</th>
+                      <th>TXN Amount</th>
+                      <th>Order Id</th>
+                      <th>TXN ID</th>
+                      <th> Bank TXN Id</th>
+                      <th>TXN Date</th>
+                      <th>TXN Status</th>
+                    </tr>
                     </thead>
 
                     <tbody>';
 
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    if ($result->rowCount() > 0) {
 
-        $data .= '<tr class= "text-center">
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+
+            $data .= '<tr class= "text-center">
                         <td>' . $row['certificateId'] . '</td>
                         <td>' . $row['firstName'] . '</td>
                         <td>' . $row['lastName'] . '</td>
@@ -171,8 +174,8 @@ if (isset($_POST["readRecord"])) {
                         <td>' . $row['event'] . '</td>
                         <td>' . $row['prize'] . '</td>
                         <td>' . $row['attendStatus'] . '</td>
-                        <td><button class="btn btn-primary" onclick= "getParticipantDetails(' . $row['certificateId'] . ')">Edit</button></td>
-                        <td><button class="btn btn-danger" onclick=  "deleteParticipantDetails(' . $row['certificateId'] . ')">Delete</button></td>
+                        <td><button class="btn btn-primary" onclick= "getParticipantDetails(' . $row['certificateId'] . ')"><i class="fas fa-edit"></i></button></td>
+                        <td><button class="btn btn-danger" onclick=  "deleteParticipantDetails(' . $row['certificateId'] . ')"><i class="fa fa-trash-alt"></i></button></td>
                         <td>' . $row['txnAmount'] . '</td>
                         <td>' . $row['orderId'] . '</td>
                         <td>' . $row['txnId'] . '</td>
@@ -181,6 +184,12 @@ if (isset($_POST["readRecord"])) {
                         <td>' . $row['status'] . '</td>
                       </tr>';
 
+        }
+
+    } else {
+        $data .= '<tr class="text-center">
+    <td colspan="17">No Records Found</td>
+    </tr>';
     }
 
     $data .= '</tbody>

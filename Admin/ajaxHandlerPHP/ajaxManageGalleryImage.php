@@ -45,9 +45,7 @@ if (isset($_POST['readRecord'])) {
 //Executing Query
     $result->execute();
 
-    if ($result->rowCount() > 0) {
-
-        $data = '<table class="table table-bordered text-center" id="dataTable" class="display" width="100%"
+    $data = '<table class="table table-bordered text-center" id="dataTable" class="display" width="100%"
                     cellspacing="0">
                     <thead>
                         <tr>
@@ -59,6 +57,8 @@ if (isset($_POST['readRecord'])) {
                     </thead>
                     <tbody>';
 
+    if ($result->rowCount() > 0) {
+
         $count = 1;
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
@@ -66,20 +66,23 @@ if (isset($_POST['readRecord'])) {
                             <td>' . $count . '</td>
                             <td>' . $row['galleryImage'] . '</td>
 <td><img src= "../gallery/' . $row['galleryImage'] . '" class="img-fluid" style= "height:120px" > </td>
-                            <td><button class="btn btn-danger" onclick="deleteGalleryDetails(' . $row['id'] . ')">Delete</buttton></td>
+                            <td><button class="btn btn-danger" onclick="deleteGalleryDetails(' . $row['id'] . ')"><i class="fa fa-trash-alt"></i></button></td>
                         </tr>';
             $count++;
 
         }
 
-        $data .= '</tbody>
+    } else {
+        $data .= '<tr class="text-center">
+    <td colspan="4">No Records Found</td>
+    </tr>';
+
+    }
+
+    $data .= '</tbody>
                 </table>';
 
-        echo $data;
-
-    } else {
-        echo "No Data avialable in database";
-    }
+    echo $data;
 
 }
 

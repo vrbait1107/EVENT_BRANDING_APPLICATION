@@ -52,9 +52,7 @@ if (isset($_POST["readRecord"])) {
 //Executing Value
     $result->execute();
 
-    if ($result->rowCount() > 0) {
-
-        $data = '<table class= "table table-striped table-bordered" id= "dataTable" width= "100%" cellspacing="0">
+    $data = '<table class= "table table-striped table-bordered" id= "dataTable" width= "100%" cellspacing="0">
                         <thead class="text-center">
                             <th>Sr.No.</th>
                             <th>News Title</th>
@@ -64,7 +62,10 @@ if (isset($_POST["readRecord"])) {
                             <th >Delete</th>
                         </thead>
                         <tbody>';
-        $number = 1;
+    $number = 1;
+
+    if ($result->rowCount() > 0) {
+
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
             $data .= '<tr>
@@ -72,25 +73,24 @@ if (isset($_POST["readRecord"])) {
             <td>' . $row['newsTitle'] . '</td>
             <td>' . $row['newsDescription'] . '</td>
             <td>' . $row["postedDate"] . '</td>
-            <td><button class="btn btn-primary" onclick= "getNewsInformation(' . $row['id'] . ')"> Edit </button></td>
-            <td><button class="btn btn-danger" onclick= "deleteNewsInformation(' . $row['id'] . ')"> Delete </button></td>
+            <td><button class="btn btn-primary" onclick= "getNewsInformation(' . $row['id'] . ')"><i class="fas fa-edit"></i></button></td>
+            <td><button class="btn btn-danger" onclick= "deleteNewsInformation(' . $row['id'] . ')"><i class="fa fa-trash-alt"></i></button></td>
              </tr>';
             $number++;
         }
 
-        $data .= '</tbody>
-        </table>';
-
-        echo $data;
-
     } else {
-        echo "<script>Swal.fire({
-          icon: 'warning',
-          title: 'Warning',
-          text: 'No data available in database'
-          })</script>";
+        $data .= '<tr class="text-center">
+    <td colspan="6">No Records Found</td>
+    </tr>';
 
     }
+
+    $data .= '</tbody>
+        </table>';
+
+    echo $data;
+
 }
 
 //########## DELETE NEWS INFORMATION

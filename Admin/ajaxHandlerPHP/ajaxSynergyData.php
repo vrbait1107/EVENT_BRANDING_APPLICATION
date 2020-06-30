@@ -16,9 +16,7 @@ if (isset($_POST['readRecordData'])) {
     //Executing Value
     $result->execute();
 
-    if ($result->rowCount() > 0) {
-
-        $data = '<table class= "table table-bordered" id= "dataTable" width="100%" cellspacing="0">
+    $data = '<table class= "table table-bordered" id= "dataTable" width="100%" cellspacing="0">
             <thead clas="text-center">
               <th>Certificate ID</th>
               <th>First Name</th>
@@ -26,11 +24,13 @@ if (isset($_POST['readRecordData'])) {
               <th>Department Name</th>
               <th>Event</th>
               <th>Prize</th>
-              <th>View Action</th>
-             <th>Delete Action</th>
+              <th>View</th>
+             <th>Delete</th>
             </thead>
 
              <tbody>';
+
+    if ($result->rowCount() > 0) {
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
@@ -42,6 +42,7 @@ if (isset($_POST['readRecordData'])) {
                 <td>' . $row['eventName'] . '</td>
                 <td>' . $row['prize'] . '</td>
 
+
                   <td>
                   <form action="synergyCertificate.php" class="text-center" method="post">
                     <input type="hidden" name="certificateId" value= ' . $row["certificateId"] . '>
@@ -50,19 +51,21 @@ if (isset($_POST['readRecordData'])) {
                   </form>
                   </td>
 
-                <td> <button class="btn btn-danger" onclick = deleteSynergyData(' . $row["certificateId"] . ')>Delete</button></td>
+                <td> <button class="btn btn-danger" onclick = deleteSynergyData(' . $row["certificateId"] . ')><i class="fa fa-trash"></i></button></td>
               </tr>';
 
         }
 
-        $data .= '</tbody>
+    } else {
+        $data .= '<tr class="text-center">
+        <td colspan="6" class="font-weight-bold">No Records Found</td>
+        </tr>';
+    }
+
+    $data .= '</tbody>
           </table>';
 
-        echo $data;
-
-    } else {
-        echo "<h4 class='text-center mt-5 text-danger'>No Data available in Database</h4>";
-    }
+    echo $data;
 
 }
 

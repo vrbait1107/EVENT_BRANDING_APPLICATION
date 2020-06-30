@@ -87,62 +87,68 @@ $result->bindValue(":department", $department);
 //Executing Query
 $result->execute();
 
-if ($result->rowCount() > 0) {
+?>
 
-    ?>
-
-                <table class='table table-bordered' id='dataTableParticipants' width='100%' cellspacing='0'>
+                <table class='table table-bordered table-striped' id='dataTableParticipants' width='100%' cellspacing='0'>
                   <thead>
-                    <th class='text-success text-center'>Certificate ID</th>
-                    <th class='text-success text-center'>First Name</th>
-                    <th class='text-success text-center'>Last Name</th>
-                    <th class='text-success text-center'>College Name</th>
-                    <th class='text-success text-center'>Department Name</th>
-                    <th class='text-success text-center'>Academic Year</th>
-                    <th class='text-success text-center'>Event</th>
-                    <th class='text-success text-center'>Prize</th>
-                    <th class='text-success text-center'>TXN Amount</th>
-                    <th class='text-success text-center'>Order Id</th>
-                    <th class='text-success text-center'>TXN ID</th>
-                    <th class='text-success text-center'> Bank TXN Id</th>
-                    <th class='text-success text-center'>TXN Date</th>
-                    <th class='text-success text-center'>TXN Status</th>
+                  <tr class='text-success text-center'>
+                    <th >Certificate ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>College Name</th>
+                    <th>Department Name</th>
+                    <th>Academic Year</th>
+                    <th>Event</th>
+                    <th>Prize</th>
+                    <th>TXN Amount</th>
+                    <th>Order Id</th>
+                    <th>TXN ID</th>
+                    <th> Bank TXN Id</th>
+                    <th>TXN Date</th>
+                    <th>TXN Status</th>
+                    </tr>
                   </thead>
 
                   <tbody>
 
                     <?php
-while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+
+if ($result->rowCount() > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         ?>
 
-                    <tr>
-                      <td class='text-center'> <?php echo $row['certificateId'] ?></td>
-                      <td class='text-center'> <?php echo $row['firstName'] ?></td>
-                      <td class='text-center'> <?php echo $row['lastName'] ?></td>
-                      <td class='text-center'> <?php echo $row['collegeName'] ?></td>
-                      <td class='text-center'> <?php echo $row['departmentName'] ?></td>
-                      <td class='text-center'> <?php echo $row['academicYear'] ?> </td>
-                      <td class='text-center'> <?php echo $row['event'] ?></td>
-                      <td class='text-center'> <?php echo $row['prize'] ?></td>
-                      <td class='text-center'> <?php echo $row['txnAmount'] ?> </td>
-                      <td class='text-center'> <?php echo $row['orderId'] ?> </td>
-                      <td class='text-center'> <?php echo $row['txnId'] ?> </td>
-                      <td class='text-center'> <?php echo $row['bankTxnId'] ?> </td>
-                      <td class='text-center'> <?php echo $row['txnDate'] ?> </td>
-                      <td class='text-center'> <?php echo $row['status'] ?> </td>
+                    <tr class='text-center'>
+                      <td > <?php echo $row['certificateId'] ?></td>
+                      <td> <?php echo $row['firstName'] ?></td>
+                      <td> <?php echo $row['lastName'] ?></td>
+                      <td> <?php echo $row['collegeName'] ?></td>
+                      <td> <?php echo $row['departmentName'] ?></td>
+                      <td> <?php echo $row['academicYear'] ?> </td>
+                      <td> <?php echo $row['event'] ?></td>
+                      <td> <?php echo $row['prize'] ?></td>
+                      <td> <?php echo $row['txnAmount'] ?> </td>
+                      <td> <?php echo $row['orderId'] ?> </td>
+                      <td> <?php echo $row['txnId'] ?> </td>
+                      <td> <?php echo $row['bankTxnId'] ?> </td>
+                      <td> <?php echo $row['txnDate'] ?> </td>
+                      <td> <?php echo $row['status'] ?> </td>
                     </tr>
 
                     <?php
+
+    }
+
+} else {
+    echo "<tr>
+  <td colspan='14' class='font-weight-bold text-center'> No Records Found </td>
+  <tr>";
 }
-    ?>
+
+?>
 
                   </tbody>
-
                 </table>
-
-                <?php
-}
-?>
 
               </div>
             </div>

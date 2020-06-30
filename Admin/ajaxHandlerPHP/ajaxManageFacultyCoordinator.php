@@ -129,23 +129,31 @@ if (isset($_POST["readRecord"])) {
 
             <tbody>';
 
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    if ($result->rowCount() > 0) {
 
-        $mail = $row['email'];
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
-        $data .= '<tr class="text-center">
+            $mail = $row['email'];
+
+            $data .= '<tr class="text-center">
                             <td>' . $row['email'] . '</td>
                             <td>' . $row['adminType'] . '</td>
                             <td>' . $row['adminDepartment'] . '</td>
                             <td>' . $row['adminEvent'] . '</td>
                             <td>
-                            <button class="btn btn-primary" onclick= ' . "getAdminDetails('$mail')" . '> Edit </button>
+                            <button class="btn btn-primary" onclick= ' . "getAdminDetails('$mail')" . '><i class="fas fa-edit"></i></button>
                              </td>
                             <td>
-                            <button class="btn btn-danger" onclick= ' . "deleteFacultyAdmin('$mail')" . ' >Delete</button>
+                            <button class="btn btn-danger" onclick= ' . "deleteFacultyAdmin('$mail')" . ' ><i class="fa fa-trash-alt"></i></button>
                             </td>
 
                             </tr>';
+        }
+
+    } else {
+        $data .= '<tr class="text-center">
+    <td colspan="6">No Records Found</td>
+    </tr>';
     }
 
     $data .= '</tbody>

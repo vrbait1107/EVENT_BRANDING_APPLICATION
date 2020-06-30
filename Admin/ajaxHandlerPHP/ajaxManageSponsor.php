@@ -13,9 +13,7 @@ if (isset($_POST["readRecord"])) {
     $result = $conn->prepare($sql);
     $result->execute();
 
-    if ($result->rowCount() > 0) {
-
-        $data = '<table class= "table table-striped table-bordered" class="display" id= "dataTable" width= "100%" cellspacing="0">
+    $data = '<table class= "table table-striped table-bordered" class="display" id= "dataTable" width= "100%" cellspacing="0">
                         <thead class="text-center">
                             <th >id</th>
                             <th >Sponsor Name</th>
@@ -27,6 +25,8 @@ if (isset($_POST["readRecord"])) {
                         </thead>
                         <tbody>';
 
+    if ($result->rowCount() > 0) {
+
         $number = 1;
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -37,22 +37,25 @@ if (isset($_POST["readRecord"])) {
                                 <td>' . $row['sponsoredEvent'] . '</td>
                                 <td>' . $row['sponsoredDepartment'] . '</td>
                                 <td> <img src= "../sponsorLogo/' . $row['sponsorLogo'] . '" class="img-fluid" style = "height:60px"> </td>
-                                <td><button class="btn btn-primary" onclick = "getSponsorInformation(' . $row['id'] . ')"> Edit </button></td>
-                                <td><button class="btn btn-danger" onclick = "deleteSponsorInformation(' . $row['id'] . ')"> Delete </button></td>
+                                <td><button class="btn btn-primary" onclick = "getSponsorInformation(' . $row['id'] . ')"><i class="fas fa-edit"></i></button></td>
+                                <td><button class="btn btn-danger" onclick = "deleteSponsorInformation(' . $row['id'] . ')"><i class="fa fa-trash-alt"></i></button></td>
                                 </tr>';
 
             $number++;
 
         }
 
-        $data .= '</tbody>
+    } else {
+        $data .= '<tr class="text-center">
+    <td colspan="7">No Records Found</td>
+    </tr>';
+
+    }
+
+    $data .= '</tbody>
                   </table>';
 
-        echo $data;
-
-    } else {
-        echo "No Data available in database";
-    }
+    echo $data;
 
 }
 
