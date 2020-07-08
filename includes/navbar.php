@@ -69,7 +69,7 @@
                     <a class="dropdown-item" href="userProfile.php">My Profile</a>
                     <a class="dropdown-item" href="userAccount.php">Account</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="logout.php">Log out</a>
+                    <a class="dropdown-item" id="userLogout" href="#">Log out</a>
                 </div>
             </li>
         </ul>
