@@ -18,3 +18,4 @@
 <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js
 "></script>
 <script src="js/datatables-demo.js"></script>
+<script src="js/adminLogout.js"></script>
