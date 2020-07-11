@@ -68,6 +68,9 @@ if (isset($_POST['submit'])) {
             $year = trim($_POST['year']);
             $password = trim($_POST['password']);
             $confirm_password = trim($_POST['confirm_password']);
+            $tokenDate = date("Y-m-d H:i:s");
+            $tokenDateMain = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($tokenDate)));
+
             $token = bin2hex(random_bytes(15));
 
             $hashPass = password_hash($password, PASSWORD_BCRYPT);
@@ -97,9 +100,9 @@ if (isset($_POST['submit'])) {
 
                 //Query
                 $sql = "INSERT INTO user_information(email, firstName, lastName,
-              mobileNumber, collegeName, departmentName, academicYear, password, token)
+              mobileNumber, collegeName, departmentName, academicYear, password, tokenDate, token)
               VALUES (:userName, :firstName, :lastName, :mobileNumber, :collegeName, :department, :year,
-              :hashPass, :token)";
+              :hashPass, :tokenDateMain, :token )";
 
                 // Preparing Query
                 $result = $conn->prepare($sql);
@@ -113,6 +116,7 @@ if (isset($_POST['submit'])) {
                 $result->bindValue(":department", $department);
                 $result->bindValue(":year", $year);
                 $result->bindValue(":hashPass", $hashPass);
+                $result->bindValue(":tokenDateMain", $tokenDateMain);
                 $result->bindValue(":token", $token);
 
                 // Executing Query
@@ -133,7 +137,7 @@ if (isset($_POST['submit'])) {
                     if (!$mail->send()) {
                         echo "Mailer Error: " . $mail->ErrorInfo;
                     } else {
-                        echo "<h3 class='text-center text-primary'>Check Your Email.</h3>";
+                        echo "<h5 class='text-center alert alert-warning col-md-6 offset-md-3' role='alert' >Check Your Email.</h5>";
                     }
 
                 } else {
@@ -159,6 +163,7 @@ if (isset($_POST['submit'])) {
 
 }
 ?>
+
 
   <!-- PHP CODE END  -->
 

@@ -60,14 +60,18 @@ if (isset($_POST['submit'])) {
                 echo "Mailer Error: " . $mail->ErrorInfo;
             } else {
 
+                $tokenDate = date("Y-m-d H:i:s");
+                $tokenDateMain = date('Y-m-d H:i:s', strtotime('+45 minutes', strtotime($tokenDate)));
+
                 //Update Query
-                $sql = "UPDATE user_information SET token = :token WHERE email = :email";
+                $sql = "UPDATE user_information SET token = :token, tokenDate = :tokenDateMain  WHERE email = :email";
 
                 //Preparing Query
                 $result = $conn->prepare($sql);
 
                 //Binding Value
                 $result->bindValue(":token", $token);
+                $result->bindValue(":tokenDateMain", $tokenDateMain);
                 $result->bindValue(":email", $email);
 
                 // Executing Query
@@ -125,13 +129,18 @@ if (isset($_POST['submit'])) {
                 echo "Mailer Error: " . $mail->ErrorInfo;
             } else {
 
+                $tokenDate = date("Y-m-d H:i:s");
+                $tokenDateMain = date('Y-m-d H:i:s', strtotime('+45 minutes', strtotime($tokenDate)));
+
                 //Update Query
-                $sql = "UPDATE user_information SET token = :token WHERE email = :email";
+                $sql = "UPDATE user_information SET token = :token, tokenDate = :tokenDateMain  WHERE email = :email";
 
                 //Preparing Query
                 $result = $conn->prepare($sql);
 
                 //Binding Value
+                $result->bindValue(":token", $token);
+                $result->bindValue(":tokenDateMain", $tokenDateMain);
                 $result->bindValue(":email", $email);
 
                 //Executing Query

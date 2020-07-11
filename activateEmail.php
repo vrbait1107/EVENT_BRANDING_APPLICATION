@@ -25,26 +25,52 @@ if (isset($_GET['token'])) {
     $login = "login.php";
 
 //Query
-    $sql = "UPDATE user_information SET status= :active WHERE token = :token";
+    $sql = "SELECT * FROM user_information WHERE token = :token";
 
-//Preparing Query
+    //Preparing Query
     $result = $conn->prepare($sql);
 
-//Binding Values
-    $result->bindValue(":active", "active");
+    //Binding Values
     $result->bindValue(":token", $token);
 
-//Executing Query
+    //Executing Query
     $result->execute();
 
-    if ($result) {
-        echo "<script>Swal.fire({
+    $row = $result->fetch(PDO::FETCH_ASSOC);
+
+    $dbtokenDate = $row['tokenDate'];
+
+    $currentDatetime = date("Y-m-d H:i:s");
+
+    $currentDatetimeMain = date('Y-m-d H:i:s', strtotime($currentDatetime));
+
+    if ($dbtokenDate >= $currentDatetimeMain) {
+
+        $sql1 = "UPDATE user_information SET status = :active WHERE token = :token";
+
+        $result1 = $conn->prepare($sql1);
+        $result1->bindValue(":active", "active");
+        $result1->bindValue(":token", $token);
+        $result->execute();
+
+        if ($result1) {
+            echo "<script>Swal.fire({
         icon: 'success',
         title: 'Account is Activated',
         text: 'Your account is successfully activated, Please Login to Continue',
         footer: '<a href = $login >Go to the Login Page</a>'
       })</script>";
+        }
+
+    } else {
+        echo "<script>Swal.fire({
+        icon: 'warning',
+        title: 'Token Time Expire',
+        text: 'Please Register Again',
+        footer: '<a href = $login >Go to the Login Page</a>'
+      })</script>";
     }
+
 }
 
 ?>

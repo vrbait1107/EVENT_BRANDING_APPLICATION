@@ -33,8 +33,10 @@ $mail->msgHTML("<!doctype html>
         account. To activate your account, click the following link. If that doesn't work, copy and paste the link into
         your browser's address bar.</p>
     <p>http://localhost/EBA/activateEmail.php?token=$token</p>
+    <p>This link is valid for 24 Hours only</p>
     <p>If you didn't create an account, you don't need to do anything; you won't receive any more email from us. If you
         need assistance, please do not reply to this email message. Check the help section of the GIT SHODH website.</p>
+
   </body>
   </html>");
 
@@ -43,5 +45,6 @@ $mail->AltBody = "Thank you $userName for creating an account with GIT SHODH 2K2
   account. To activate your account, click the following link. If that doesn't work, copy and paste the link into
   your browser's address bar. <br/>
   http://localhost/EBA/activateEmail.php?token=$token <br/>
+  This link is valid for 24 Hours only <br/>
   If you didn't create an account, you don't need to do anything; you won't receive any more email from us. If you
   need assistance, please do not reply to this email message. Check the help section of the GIT SHODH website.";

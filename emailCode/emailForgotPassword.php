@@ -26,6 +26,7 @@ $mail->msgHTML("<!doctype html>
     for your user account at GIT SHODH 2K20</p>
     <p>Please go to the following page and choose a new password:</p>
     <p>http://localhost/EBA/resetPassword.php?token=$token</p>
+    <p>This Link is valid for 45 Minutes Only </p>
     <p>If you didn't request this change, you can disregard this email - we have not yet reset your password.</p>
     <p>Thanks for using our site!</p>
     <p>The GIT SHODH Team<p>
@@ -35,6 +36,7 @@ $mail->AltBody = "$email You're receiving this e-mail because you requested a pa
     for your user account at GIT SHODH 2K20 <br/>
     Please go to the following page and choose a new password: <br/>
     http://localhost/EBA/resetPassword.php?token=$token<br/>
+    This Link is valid for 45 Minutes Only <br/>
     If you didn't request this change, you can disregard this email - we have not yet reset your password. <br/>
      Thanks for using our site!<br/>
      The GIT SHODH Team";
