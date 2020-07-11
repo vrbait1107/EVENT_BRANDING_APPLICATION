@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2020 at 05:58 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.2.12
+-- Generation Time: Jul 11, 2020 at 12:01 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,27 +34,28 @@ CREATE TABLE `admin_information` (
   `adminDepartment` varchar(50) NOT NULL,
   `adminEvent` varchar(50) NOT NULL,
   `adminPassword` varchar(70) NOT NULL,
-  `token` varchar(150) DEFAULT NULL
+  `token` varchar(150) DEFAULT NULL,
+  `tokenDate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin_information`
 --
 
-INSERT INTO `admin_information` (`email`, `adminType`, `adminDepartment`, `adminEvent`, `adminPassword`, `token`) VALUES
-('apandharkame6@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Project Presentation', '$2y$10$W8cn6mr31pUcAlT/35LCYOzAwZAciuGQDSdKv8qo8Veus0Rtl0ltW', NULL),
-('facultychem@gmail.com', 'Faculty Coordinator', 'Chemical', 'Not Applicable', '$2y$10$bh6XlE4eGGI9jmy7ugj7Heqg2pB32fr3wJTxrNE0Zo8yUZO2YXpNa', NULL),
-('facultycivil@gmail.com', 'Faculty Coordinator', 'Civil', 'Not Applicable', '$2y$10$CCif/fe5WP0BRIgG/Mu/hu3GsXX.6V3aIW.JJCVy8QWlVxyDJWmku', NULL),
-('facultycomp@gmail.com', 'Faculty Coordinator', 'Computer', 'Not Applicable', '$2y$10$.OSqZd0VjIp47cE2oz9fxeg1se/mAWqbUeigbXUMuVWAV/09dHWX.', NULL),
-('facultyextc@gmail.com', 'Faculty Coordinator', 'Electronics and Telecommunication', 'Not Applicable', '$2y$10$1qKOPrvYTWsHTKu//4IpDuLF0OCObWkLrDHg3vRS1f4ifA2HiMqlW', NULL),
-('facultymech@gmail.com', 'Faculty Coordinator', 'Mechanical', 'Not Applicable', '$2y$10$x5ebh6kFUt3m/kYL2iA.6uc9hKLHL7DrcVy5TwA2.6j.qyu6E6zmC', NULL),
-('gandhivipul009@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'Logo Contest', '$2y$10$/TlYJffpcju54IN4zNhbou3qCSKuCX/0xs0TpgztVKGDiExDRPdKe', NULL),
-('gitshodhadmin@gmail.com', 'Administrator', 'Not Applicable', 'Not Applicable', '$2y$10$KAu/OhZKO4W9c2IqLg0kM.mrkO1Qj9IhrT4A2EMHuopMWdIKXWzy6', NULL),
-('kolhalpritam@gmail.com', 'Student Coordinator', 'Chemical', 'Chemical Paper Presentation', '$2y$10$9UxYBGY1hdi0RZ0T6d9ZMOiBFKELpUk/.CqxgOmJfJiLbfXBN9n1G', NULL),
-('samgowd98@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'Calci War', '$2y$10$2897b2IQSW1CzrfnFWVbjuOlvgMqPKuNzZDzbvx8b0ETxFVdsV/t6', NULL),
-('surajmohite1994@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Poster Presentation', '$2y$10$U3vpP4s.NIEpcyEcAHJa8OH.QoF3dLB9I4/HoDap.5eGRLhXu9R5i', NULL),
-('techviraj01@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'Tech Boss', '$2y$10$oiSOvzsMo/sonMqYQFEJV.QWDR7epYqmdzlPTTbDW3dthYwcs1yaS', NULL),
-('vishalbait01@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Paper Presentation', '$2y$10$92WwiPtVIruxlqnnl6Dvt.394Wr1Eoe01GboNAiMQEly3gDt2/hgy', NULL);
+INSERT INTO `admin_information` (`email`, `adminType`, `adminDepartment`, `adminEvent`, `adminPassword`, `token`, `tokenDate`) VALUES
+('apandharkame6@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Project Presentation', '$2y$10$tI54SibBp9Y5n//R877jaeqd79ONQpSVjXCxN08KomeHs21lqd.X.', NULL, NULL),
+('facultychem@gmail.com', 'Faculty Coordinator', 'Chemical', 'Not Applicable', '$2y$10$bh6XlE4eGGI9jmy7ugj7Heqg2pB32fr3wJTxrNE0Zo8yUZO2YXpNa', NULL, NULL),
+('facultycivil@gmail.com', 'Faculty Coordinator', 'Civil', 'Not Applicable', '$2y$10$CCif/fe5WP0BRIgG/Mu/hu3GsXX.6V3aIW.JJCVy8QWlVxyDJWmku', NULL, NULL),
+('facultycomp@gmail.com', 'Faculty Coordinator', 'Computer', 'Not Applicable', '$2y$10$.OSqZd0VjIp47cE2oz9fxeg1se/mAWqbUeigbXUMuVWAV/09dHWX.', NULL, NULL),
+('facultyextc@gmail.com', 'Faculty Coordinator', 'Electronics and Telecommunication', 'Not Applicable', '$2y$10$1qKOPrvYTWsHTKu//4IpDuLF0OCObWkLrDHg3vRS1f4ifA2HiMqlW', NULL, NULL),
+('facultymech@gmail.com', 'Faculty Coordinator', 'Mechanical', 'Not Applicable', '$2y$10$x5ebh6kFUt3m/kYL2iA.6uc9hKLHL7DrcVy5TwA2.6j.qyu6E6zmC', NULL, NULL),
+('gandhivipul009@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'Logo Contest', '$2y$10$/TlYJffpcju54IN4zNhbou3qCSKuCX/0xs0TpgztVKGDiExDRPdKe', NULL, NULL),
+('gitshodhadmin@gmail.com', 'Administrator', 'Not Applicable', 'Not Applicable', '$2y$10$KAu/OhZKO4W9c2IqLg0kM.mrkO1Qj9IhrT4A2EMHuopMWdIKXWzy6', NULL, NULL),
+('kolhalpritam@gmail.com', 'Student Coordinator', 'Chemical', 'Chemical Paper Presentation', '$2y$10$9UxYBGY1hdi0RZ0T6d9ZMOiBFKELpUk/.CqxgOmJfJiLbfXBN9n1G', NULL, NULL),
+('samgowd98@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'Calci War', '$2y$10$2897b2IQSW1CzrfnFWVbjuOlvgMqPKuNzZDzbvx8b0ETxFVdsV/t6', NULL, NULL),
+('surajmohite1994@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Poster Presentation', '$2y$10$U3vpP4s.NIEpcyEcAHJa8OH.QoF3dLB9I4/HoDap.5eGRLhXu9R5i', NULL, NULL),
+('techviraj01@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'Tech Boss', '$2y$10$oiSOvzsMo/sonMqYQFEJV.QWDR7epYqmdzlPTTbDW3dthYwcs1yaS', NULL, NULL),
+('vishalbait01@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Paper Presentation', '$2y$10$92WwiPtVIruxlqnnl6Dvt.394Wr1Eoe01GboNAiMQEly3gDt2/hgy', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -82,8 +83,6 @@ CREATE TABLE `events_details_information` (
 --
 
 INSERT INTO `events_details_information` (`id`, `eventImage`, `eventName`, `eventPrice`, `eventPrize`, `eventSponsor`, `eventDepartment`, `eventDescription`, `eventRules`, `eventCoordinator`, `eventStartDate`, `eventEndDate`) VALUES
-(1, 'paper.jpg', 'EXTC Paper Presentation', 150, 1500, 'Gharda Foundation', 'Electronics and Telecommunication', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
-(2, 'poster.jpg', 'EXTC Poster Presentation', 100, 1000, 'Gharda Foundation', 'Electronics and Telecommunication', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
 (3, 'extcProject.jpg', 'EXTC Project Presentation', 200, 2000, 'Gharda Foundation', 'Electronics and Telecommunication', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
 (4, 'calciwar.jpg', 'Calci War', 50, 500, 'Gharda Foundation', 'Electronics and Telecommunication', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
 (5, 'techBoss.jpg', 'Tech Boss', 100, 1000, 'Gharda Foundation', 'Electronics and Telecommunication', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
@@ -101,7 +100,9 @@ INSERT INTO `events_details_information` (`id`, `eventImage`, `eventName`, `even
 (17, 'poster.jpg', 'Mechanical Poster Presentation', 150, 1500, 'Gharda Foundation', 'Mechanical', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
 (18, 'poster.jpg', 'Civil Poster Presentation', 150, 1500, 'Gharda Foundation', 'Civil', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
 (19, 'mechProject.jpg', 'Mechanical Project Presentation', 200, 2000, 'Gharda Foundation', 'Mechanical', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
-(20, 'civilProject.jpg', 'Civil Project Presentation', 200, 2000, 'Gharda Foundation', 'Civil', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16');
+(20, 'civilProject.jpg', 'Civil Project Presentation', 200, 2000, 'Gharda Foundation', 'Civil', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
+(21, 'paper.jpg', 'EXTC Paper Presentation', 150, 1500, 'Gharda Foundation', 'Electronics and Telecommunication', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi optio dolores, reprehenderit doloribus.	Lorem ipsum ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi optio dolores, reprehenderit doloribus.	Lorem ipsum ', 'Vishal Bait 9373241085', '2020-06-05', '2020-06-06'),
+(22, 'poster.jpg', 'EXTC Poster Presentation', 100, 1000, 'Gharda Foundation', 'Electronics and Telecommunication', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi optio dolores, reprehenderit doloribus.	Lorem ipsum ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi optio dolores, reprehenderit doloribus.	Lorem ipsum ', 'Vishal Bait 9373241085', '2020-06-05', '2020-06-05');
 
 -- --------------------------------------------------------
 
@@ -132,15 +133,8 @@ CREATE TABLE `event_information` (
 --
 
 INSERT INTO `event_information` (`email`, `certificateId`, `event`, `paymentType`, `prize`, `gatewayName`, `resMsg`, `bankName`, `txnId`, `txnAmount`, `orderId`, `status`, `bankTxnId`, `txnDate`, `attendStatus`) VALUES
-('vishalbait01@gmail.com', 2866634, 'Tech Boss', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200313111212800110168946501345185', '100.00', 'ORDS45914623', 'TXN_SUCCESS', '53215164', '2020-03-13 21:54:34.000000', 'present'),
-('vishalbait01@gmail.com', 58252360, 'Logo Contest', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200327111212800110168820001394247', '100.00', 'ORDS38164963', 'TXN_SUCCESS', '57113165', '2020-03-27 22:15:05.000000', 'absent'),
-('vishalbait01@gmail.com', 202641305, 'Fun Tech', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200403111212800110168112401403861', '100.00', 'ORDS6484892', 'TXN_SUCCESS', '58536119', '2020-04-03 14:34:43.000000', 'absent'),
-('vishalbait01@gmail.com', 224842292, 'Calci War', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200312111212800110168307301435304', '50.00', 'ORDS47533248', 'TXN_SUCCESS', '52823482', '2020-03-12 10:29:34.000000', 'present'),
-('sudeshbait999@gmail.com', 553605713, 'Tech Boss', 'Online Banking', 'NONE', 'HDFC', 'Txn Success', 'Bank', '20200401111212800110168495701407333', '100.00', 'ORDS67436892', 'TXN_SUCCESS', '777001049227345', '2020-04-01 13:22:44.000000', 'absent'),
-('vishalbait01@gmail.com', 794115762, 'EXTC Project Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200310111212800110168944501334585', '200.00', 'ORDS36589836', 'TXN_SUCCESS', '52325145', '2020-03-10 12:33:32.000000', 'absent'),
-('vishalbait02@gmail.com', 826866071, 'EXTC Paper Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200507111212800110168972701525790', '150.00', 'ORDS82205266', 'TXN_SUCCESS', '62405349', '2020-05-07 10:39:53.000000', 'present'),
-('vishalbait01@gmail.com', 1260018466, 'EXTC Paper Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200312111212800110168303601435297', '150.00', 'ORDS53015126', 'TXN_SUCCESS', '52820420', '2020-03-12 10:13:54.000000', 'absent'),
-('vishalbait01@gmail.com', 2032082992, 'EXTC Poster Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200312111212800110168303701435301', '100.00', 'ORDS47584257', 'TXN_SUCCESS', '52822495', '2020-03-12 10:24:30.000000', 'absent');
+('vishalbait02@gmail.com', 1093415090, 'EXTC Project Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200628111212800110168406901676296', '200.00', 'ORDS24739690', 'TXN_SUCCESS', '62726009', '2020-06-28 22:29:42.000000', 'absent'),
+('vishalbait02@gmail.com', 1636529635, 'Chemical Paper Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200628111212800110168059701676201', '150.00', 'ORDS43447762', 'TXN_SUCCESS', '62726044', '2020-06-28 22:44:35.000000', 'absent');
 
 -- --------------------------------------------------------
 
@@ -162,6 +156,13 @@ CREATE TABLE `feedback_information` (
   `eventsPrice` varchar(50) NOT NULL,
   `suggestion` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feedback_information`
+--
+
+INSERT INTO `feedback_information` (`email`, `attendBefore`, `likelyAttend`, `likelyRecommendFriend`, `likeMost`, `likeLeast`, `overall`, `location`, `events`, `coordinators`, `eventsPrice`, `suggestion`) VALUES
+('vishalbait01@gmail.com', 'yes', '1', '1', 'One ', 'tow', 'Very Satisfied', 'Very Satisfied', 'Very Satisfied', 'Very Satisfied', 'Very Satisfied', '123');
 
 -- --------------------------------------------------------
 
@@ -211,19 +212,6 @@ CREATE TABLE `newsletter_information` (
   `subscribe` varchar(50) NOT NULL DEFAULT 'No'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `newsletter_information`
---
-
-INSERT INTO `newsletter_information` (`id`, `email`, `subscribe`) VALUES
-(1, 'vishalbait01@gmail.com', 'Yes'),
-(2, 'surajmohite1994@gmail.com', 'Yes'),
-(3, 'vishalbait02@gmail.com', 'Yes'),
-(31, 'sudeshbait999@gmail.com', 'Yes'),
-(34, 'onkarmokashi555@gmail.com', 'Yes'),
-(35, 'onkarmokashi555@gmail.com', 'Yes'),
-(38, 'vishalbait01@gmail.com', 'Yes');
-
 -- --------------------------------------------------------
 
 --
@@ -263,8 +251,9 @@ CREATE TABLE `sponsor_information` (
 --
 
 INSERT INTO `sponsor_information` (`id`, `sponsorName`, `sponsorLogo`, `sponsoredEvent`, `sponsoredDepartment`) VALUES
-(1, 'Google', 'google.png', 'All College', 'All College'),
-(8, 'Microsoft', 'microsoft_PNG10.png', 'All College', 'All College');
+(8, 'Microsoft', 'microsoft_PNG10.png', 'All College', 'All College'),
+(9, 'Google', 'google.png', 'All College', 'All College'),
+(10, 'Gharda Chemicals', 'gharda.png', 'All College', 'All College');
 
 -- --------------------------------------------------------
 
@@ -287,7 +276,7 @@ CREATE TABLE `synergy_user_information` (
 --
 
 INSERT INTO `synergy_user_information` (`userId`, `certificateId`, `firstName`, `lastName`, `departmentName`, `eventName`, `prize`) VALUES
-(1, 384302669, 'Vishal', 'Bait', 'Chemical', 'Antakshari', 'Second');
+(3, 793669864, 'Vishal', 'Bait', 'Electronics and Telecommunication', 'Singing Competition', 'None');
 
 -- --------------------------------------------------------
 
@@ -304,9 +293,9 @@ CREATE TABLE `user_information` (
   `collegeName` varchar(60) DEFAULT NULL,
   `departmentName` varchar(60) DEFAULT NULL,
   `academicYear` varchar(30) DEFAULT NULL,
-  `mainPassword` varchar(100) DEFAULT NULL,
-  `confirmPass` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
   `token` varchar(150) NOT NULL,
+  `tokenDate` datetime(6) DEFAULT NULL,
   `status` varchar(60) NOT NULL DEFAULT 'inactive'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -314,18 +303,9 @@ CREATE TABLE `user_information` (
 -- Dumping data for table `user_information`
 --
 
-INSERT INTO `user_information` (`email`, `profileImage`, `firstName`, `lastName`, `mobileNumber`, `collegeName`, `departmentName`, `academicYear`, `mainPassword`, `confirmPass`, `token`, `status`) VALUES
-('akashphapale@gmail.com', 'defaultUser.png', 'Akash', 'Phapale', 9921172153, '(742 )Gharda Institute of Technology', 'Chemical', 'Fourth Year', '$2y$10$6oTXJLyEfBwJ3vAx67ksROv5AvPSAJrgqVrBOtw/XTSbg2Tnxm7b2', '$2y$10$h10UTOctSK8AYdosRVJDOeDwCEwzIP278DrfKJcuRudGfp0pXo2NO', '', 'active'),
-('avinash01@gmail.com', 'defaultUser.png', 'Avinash', 'Khedekar', 9921172153, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$nXehVwPV.4cdiNoiRfaGvu8tfB4jXqifSi7JT1B48m6XbAN4nnWR.', '$2y$10$VsP6osEiyk.VrR2BchXpee15HoflvvI4haIXsWSKliXHOl406IIbO', '', 'active'),
-('darshangaikwad01@gmail.com', 'defaultUser.png', 'Darshan', 'Gaikwad', 9921172153, '(742 )Gharda Institute of Technology', 'Civil', 'Fourth Year', '$2y$10$DA4t7Pjt9MBW/rvYZJfZbuRZOeReTPOdviuJJlLntR4pKUi4b560S', '$2y$10$gXvqLlTvnsmj1si9K4dlt.szSHpGcyNSmbUEKBuJ4H6tC1xbAAG/i', '', 'active'),
-('onkarmokashi555@gmail.com', 'defaultUser.png', 'Onkar', 'Mokashi', 9921172153, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$fLQ.sIuTNSGyFLHaB0tEG.NsUeq6j6U/ek2u8VNZsQFLbveQXFYV6', '$2y$10$trmg407piwTp4axhb4ANpufyHeMzqlV9R3gXzMAOAQDa3xzvga7/y', '', 'active'),
-('pritamkolhal01@gmail.com', 'defaultUser.png', 'Pritam', 'Kolhal', 9921172153, '(742 )Gharda Institute of Technology', 'Chemical', 'Fourth Year', '$2y$10$t04PFSp4EfqSHUgifPZhEOrFbJtrtN/.xeheMnNCqRWfS7hhXI/sy', '$2y$10$37rpbwi.8GJYLhG4MmUlZuHT8M2Mkq0tz8ZoZldPqGOg775KJifhC', '', 'active'),
-('sudeshbait999@gmail.com', 'defaultUser.png', 'Sudesh', 'Bait', 9921172153, '(742 )Gharda Institute of Technology', 'Chemical', 'Fourth Year', '$2y$10$rBB/TWUXNOXkGFq3IY0QBOuLID7jW45WK4ml6zqjoSFY6CcGSVRh6', '$2y$10$lhG5cfRHazdarvedeQZGZOnFd6ObOORy7L11OM3CmiQ06LgIyWdTK', '15983fafb57d001b8eb0df2051449c', 'active'),
-('surajmohite1994@gmail.com', 'defaultUser.png', 'Suraj', 'Mohite', 9921172153, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$HPYDQdFwlHWNa9.Yi3xyY.emXh5ADs0TKhtzle/0qp8Pnb1igdyPm', '$2y$10$wVQ0.DJfyTdmIz5DaH5gF.ccnhixY2xItH0emCqgckx3syIPqsS2y', '', 'active'),
-('vickymore123@gmail.com', 'defaultUser.png', 'Vicky', 'More', 9921172153, '(742 )Gharda Institute of Technology', 'Chemical', 'Fourth Year', '$2y$10$dgtt.EBUr8k2WJloqwZAWOZa/FqDrAc1lBzpR20oZ2IXjvt/GyaDW', '$2y$10$aDxA783igGBtMxXO.TbJWudsmFAwKigtHuw4PzSBsl2EX6xkdV/Hm', '', 'active'),
-('vipulbole44@gmail.com', 'defaultUser.png', 'Vipul', 'Bole', 9921172153, '(742 )Gharda Institute of Technology', 'Chemical', 'Fourth Year', '$2y$10$DlZoBfOF2Y5J1e/I/P.yEeobbMt9nxWFo95Y0iWaeLJajVSQdLCuW', '$2y$10$Nz9pZClTW0Tp.EX6T460yOyxZmhPbZx1L5rTGed8.viGUUFu3UEhq', '', 'active'),
-('vishalbait01@gmail.com', 'developer1.jpg', 'Vishal', 'Bait', 9921172153, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$qTvf/cKJJmz1auD4Xut17.O9zqugAfQ3jI.oIIhCbGqmRLOVkNhkK', '$2y$10$qTvf/cKJJmz1auD4Xut17.O9zqugAfQ3jI.oIIhCbGqmRLOVkNhkK', '36f7518e3f58b9bf45c4a24c78cb08', 'active'),
-('vishalbait02@gmail.com', 'defaultUser.png', 'Vishal', 'Bait', 7038650873, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$sT70cPAK2Nzwh7jcHdi/A.ve8Nn2OYTruFu.79DIGqg2s/ahvgY6e', '$2y$10$sT70cPAK2Nzwh7jcHdi/A.ve8Nn2OYTruFu.79DIGqg2s/ahvgY6e', '3fc273e8654c67029d1d8828fbb873', 'active');
+INSERT INTO `user_information` (`email`, `profileImage`, `firstName`, `lastName`, `mobileNumber`, `collegeName`, `departmentName`, `academicYear`, `password`, `token`, `tokenDate`, `status`) VALUES
+('vishalbait01@gmail.com', 'defaultUser.png', 'Vishal', 'Bait', 1234567890, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$Cbs/nJd6HxTK0njurIll6eSHKaiwQdWgx8EM.CLl.wbIQ1uNZO/YO', 'c2272a1683d3da3ed452caeb7f9a61', '2020-07-11 09:11:29.000000', 'active'),
+('vishalbait02@gmail.com', 'defaultUser.png', 'Vishal', 'Bait', 1234567890, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$KHYedk3t317gxqUBQoH.SONpkuUCBPBZLdB1pAoj1V2VHlDOqEhWK', '1c6c327bee438858afb1426711c288', NULL, 'active');
 
 -- --------------------------------------------------------
 
@@ -426,7 +406,7 @@ ALTER TABLE `visitor_counter`
 -- AUTO_INCREMENT for table `events_details_information`
 --
 ALTER TABLE `events_details_information`
-  MODIFY `id` int(80) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(80) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `gallery_information`
@@ -438,7 +418,7 @@ ALTER TABLE `gallery_information`
 -- AUTO_INCREMENT for table `newsletter_information`
 --
 ALTER TABLE `newsletter_information`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `news_information`
@@ -450,13 +430,13 @@ ALTER TABLE `news_information`
 -- AUTO_INCREMENT for table `sponsor_information`
 --
 ALTER TABLE `sponsor_information`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `synergy_user_information`
 --
 ALTER TABLE `synergy_user_information`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `visitor_counter`
