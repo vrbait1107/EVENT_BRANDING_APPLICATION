@@ -54,28 +54,28 @@ if (isset($_GET['token'])) {
 
                 $row1 = $result1->fetch(PDO::FETCH_ASSOC);
 
-                $dbtokenDate = $row1['tokenDate'];
+                $dbtokenDate = strtotime($row1['tokenDate']);
 
                 $currentDatetime = date("Y-m-d H:i:s");
 
-                $currentDatetimeMain = date('Y-m-d H:i:s', strtotime($currentDatetime));
+                $currentDatetimeMain = strtotime($currentDatetime);
 
                 if ($dbtokenDate >= $currentDatetimeMain) {
 
                     // SQL Query
-                    $sql2 = "UPDATE user_information SET password= :newPassword WHERE token = :token";
+                    $sql = "UPDATE user_information SET password = :newPassword WHERE token = :token";
 
                     // Preparing Query
-                    $result2 = $conn->prepare($sql2);
+                    $result = $conn->prepare($sql);
 
                     // Binding Value
-                    $result2->bindValue(":newPassword", $newPassword);
-                    $result2->bindValue(":token", $token);
+                    $result->bindValue(":newPassword", $newPassword);
+                    $result->bindValue(":token", $token);
 
                     //Executing Query
-                    $result2->execute();
+                    $result->execute();
 
-                    if ($result2) {
+                    if ($result) {
                         echo "<script>Swal.fire({
                         icon: 'success',
                         title: 'Successful',
@@ -114,11 +114,11 @@ if (isset($_GET['token'])) {
 
                 $row2 = $result3->fetch(PDO::FETCH_ASSOC);
 
-                $dbtokenDate = $row2['tokenDate'];
+                $dbtokenDate = strtotime($row2['tokenDate']);
 
                 $currentDatetime = date("Y-m-d H:i:s");
 
-                $currentDatetimeMain = date('Y-m-d H:i:s', strtotime($currentDatetime));
+                $currentDatetimeMain = strtotime($currentDatetime);
 
                 if ($dbtokenDate >= $currentDatetimeMain) {
                     // SQL Query
@@ -159,8 +159,6 @@ if (isset($_GET['token'])) {
             }
 
         } else {
-
-            echo 'alert("hii")';
 
             echo "<script>Swal.fire({
                 icon: 'warning',
@@ -220,7 +218,7 @@ if (isset($_GET['token'])) {
     </main>
 
     <!-- Footer PHP -->
-    <?php include_once "includes/footer.php";?>
+    <!-- <?php include_once "includes/footer.php";?> -->
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php";?>
 

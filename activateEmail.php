@@ -38,11 +38,11 @@ if (isset($_GET['token'])) {
 
     $row = $result->fetch(PDO::FETCH_ASSOC);
 
-    $dbtokenDate = $row['tokenDate'];
+    $dbtokenDate = strtotime($row['tokenDate']);
 
     $currentDatetime = date("Y-m-d H:i:s");
 
-    $currentDatetimeMain = date('Y-m-d H:i:s', strtotime($currentDatetime));
+    $currentDatetimeMain = strtotime($currentDatetime);
 
     if ($dbtokenDate >= $currentDatetimeMain) {
 
