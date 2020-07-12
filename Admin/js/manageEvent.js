@@ -1,6 +1,6 @@
 let readRecordEvent;
 $(document).ready(function () {
-  // Reading Record of Events
+  // --------------------------------------->> Reading Record of Events
   readRecordEvent = () => {
     let readRecord = "readRecord";
     $.ajax({
@@ -25,7 +25,7 @@ $(document).ready(function () {
 
   readRecordEvent();
 
-  // ############### ADDING EVENT INFORMATION
+  // --------------------------------------->> ADDING EVENT INFORMATION
   $("#addEventForm").on("submit", function (e) {
     e.preventDefault();
 
@@ -43,6 +43,24 @@ $(document).ready(function () {
         icon: "warning",
         title: "Warning",
         text: "Event Fee cannot be Empty",
+      });
+      return false;
+    }
+
+    if ($("#promocode") === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Promocode cannot be Empty",
+      });
+      return false;
+    }
+
+    if ($("#discount") === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Warning",
+        text: "Discount cannot be Empty",
       });
       return false;
     }
@@ -137,7 +155,7 @@ $(document).ready(function () {
   });
 });
 
-// ############# DELETING EVENT INFORMATION
+// ---------------------------------------------->> DELETING EVENT INFORMATION
 const deleteEventInformation = (id) => {
   let deleteId = id;
 
@@ -169,7 +187,7 @@ const deleteEventInformation = (id) => {
   });
 };
 
-//################ GET EVENT INFORMATION
+//------------------------------------->> GET EVENT INFORMATION
 
 const getEventInformation = (id) => {
   let editId = id;
@@ -184,6 +202,8 @@ const getEventInformation = (id) => {
       let event = JSON.parse(data);
       $("#updateEventName").val(event.eventName);
       $("#updateEventPrice").val(event.eventPrice);
+      $("#updatePromocode").val(event.promocode);
+      $("#updateDiscount").val(event.discount);
       $("#updateEventPrize").val(event.eventPrize);
       $("#updateEventSponsor").val(event.eventSponsor);
       $("#updateEventDepartment").val(event.eventDepartment);
@@ -205,6 +225,8 @@ const getEventInformation = (id) => {
 const updateEvent = () => {
   let updateEventName = $("#updateEventName").val();
   let updateEventPrice = $("#updateEventPrice").val();
+  let updatePromocode = $("#updatePromocode").val();
+  let updateDiscount = $("#updateDiscount").val();
   let updateEventPrize = $("#updateEventPrize").val();
   let updateEventSponsor = $("#updateEventSponsor").val();
   let updateEventDepartment = $("#updateEventDepartment").val();
@@ -229,6 +251,24 @@ const updateEvent = () => {
       icon: "warning",
       title: "Warning",
       text: "Event Fee cannot be Empty",
+    });
+    return false;
+  }
+
+  if (updateDiscount === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Discount cannot be Empty",
+    });
+    return false;
+  }
+
+  if (updatePromocode === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Warning",
+      text: "Promocode cannot be Empty",
     });
     return false;
   }
@@ -311,6 +351,8 @@ const updateEvent = () => {
     data: {
       updateEventName: updateEventName,
       updateEventPrice: updateEventPrice,
+      updatePromocode: updatePromocode,
+      updateDiscount: updateDiscount,
       updateEventPrize: updateEventPrize,
       updateEventSponsor: updateEventSponsor,
       updateEventDepartment: updateEventDepartment,

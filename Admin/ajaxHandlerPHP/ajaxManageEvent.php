@@ -7,7 +7,7 @@ session_start();
 
 extract($_POST);
 
-//############# READING RECORD OF EVENT INFORMATION
+//-------------------------------->> READING RECORD OF EVENT INFORMATION
 if (isset($_POST["readRecord"])) {
 
 //Query
@@ -24,6 +24,8 @@ if (isset($_POST["readRecord"])) {
                             <th>Sr.No.</th>
                             <th>Event Name</th>
                             <th>Event Fee</th>
+                            <th>Promocode</th>
+                            <th>Discount</th>
                             <th>Event Prize</th>
                             <th>Event Sponsor</th>
                             <th>Event Department</th>
@@ -45,11 +47,13 @@ if (isset($_POST["readRecord"])) {
             <td>' . $number . '</td>
             <td>' . $row['eventName'] . '</td>
             <td>' . $row['eventPrice'] . '</td>
+            <td>' . $row['promocode'] . '</td>
+            <td>' . $row['discount'] . '</td>
             <td>' . $row["eventPrize"] . '</td>
-             <td>' . $row['eventSponsor'] . '</td>
+            <td>' . $row['eventSponsor'] . '</td>
             <td>' . $row['eventDepartment'] . '</td>
             <td>' . $row["eventDescription"] . '</td>
-             <td>' . $row['eventRules'] . '</td>
+            <td>' . $row['eventRules'] . '</td>
             <td>' . $row['eventStartDate'] . '</td>
             <td>' . $row["eventEndDate"] . '</td>
             <td><button class="btn btn-primary" onclick= "getEventInformation(' . $row['id'] . ')"><i class="fas fa-edit"></i></button></td>
@@ -73,7 +77,7 @@ if (isset($_POST["readRecord"])) {
 
 extract($_FILES);
 
-//############## ADD EVENT
+//---------------------------------------->> ADD EVENT
 
 if (isset($_POST['eventName'])) {
 
@@ -96,9 +100,9 @@ if (isset($_POST['eventName'])) {
             move_uploaded_file($eventImageTmpDir, "C:/xampp/htdocs/EBA/eventImage/" . $eventImageName);
 
             // Query
-            $sql = "INSERT INTO events_details_information( eventImage, eventName, eventPrice, eventPrize, eventSponsor,
+            $sql = "INSERT INTO events_details_information( eventImage, eventName, eventPrice, promocode, discount, eventPrize, eventSponsor,
          eventDepartment, eventDescription, eventRules, eventCoordinator, eventStartDate, eventEndDate)
-          VALUES (:eventImageName, :eventName, :eventPrice, :eventPrize, :eventSponsor, :eventDepartment,
+          VALUES (:eventImageName, :eventName, :eventPrice, :promocode, :discount, :eventPrize, :eventSponsor, :eventDepartment,
           :eventDescription, :eventRules, :eventCoordinator, :eventStartDate, :eventEndDate)";
 
             // Preparing Query
@@ -108,6 +112,8 @@ if (isset($_POST['eventName'])) {
             $result->bindValue(":eventImageName", $eventImageName);
             $result->bindValue(":eventName", $eventName);
             $result->bindValue(":eventPrice", $eventPrice);
+            $result->bindValue(":promocode", $promocode);
+            $result->bindValue(":discount", $discount);
             $result->bindValue(":eventPrize", $eventPrize);
             $result->bindValue(":eventSponsor", $eventSponsor);
             $result->bindValue(":eventDepartment", $eventDepartment);
@@ -146,7 +152,7 @@ if (isset($_POST['eventName'])) {
 
 }
 
-//######### DELETING EVENT INFORMATION
+//---------------------------------------->>  DELETING EVENT INFORMATION
 
 if (isset($_POST['deleteId'])) {
     // Query
@@ -178,7 +184,7 @@ if (isset($_POST['deleteId'])) {
     }
 }
 
-//######## GET EVENT INFORMATION
+//---------------------------------------------->> GET EVENT INFORMATION
 
 if (isset($_POST['editId'])) {
     // Query
@@ -201,15 +207,18 @@ if (isset($_POST['editId'])) {
 
 }
 
-// ####################### UPDATE EVENT INFORMATION
+// ------------------------------------->> UPDATE EVENT INFORMATION
 
 if (isset($_POST['hiddenId'])) {
 
 // Query
-    $sql = "UPDATE events_details_information SET eventName = :updateEventName, eventPrice = :updateEventPrice,
-    eventPrize = :updateEventPrize, eventSponsor = updateEventSponsor, eventDepartment = :updateEventDepartment,
-    eventDescription = :updateEventDescription, eventRules = :updateEventRules, eventCoordinator = :updateEventCoordinator,
-    eventStartDate = :updateEventStartDate, updateEventEndDate = :updateEventEndDate WHERE id = :hiddenId";
+    $sql = "UPDATE events_details_information SET eventName = :updateEventName,
+    eventPrice = :updateEventPrice, promocode = :updatePromocode, discount = :updateDiscount,
+    eventPrize = :updateEventPrize, eventSponsor = :updateEventSponsor,
+    eventDepartment = :updateEventDepartment, eventDescription = :updateEventDescription,
+    eventRules = :updateEventRules, eventCoordinator = :updateEventCoordinator,
+    eventStartDate = :updateEventStartDate, eventEndDate = :updateEventEndDate
+    WHERE id = :hiddenId";
 
     //Preparing Query
     $result = $conn->prepare($sql);
@@ -217,8 +226,10 @@ if (isset($_POST['hiddenId'])) {
     // Binding Value
     $result->bindValue(":updateEventName", $updateEventName);
     $result->bindValue(":updateEventPrice", $updateEventPrice);
+    $result->bindValue(":updatePromocode", $updatePromocode);
+    $result->bindValue(":updateDiscount", $updateDiscount);
     $result->bindValue(":updateEventPrize", $updateEventPrize);
-    $result->bindValue("updateEventSponsor", $updateEventSponsor);
+    $result->bindValue(":updateEventSponsor", $updateEventSponsor);
     $result->bindValue(":updateEventDepartment", $updateEventDepartment);
     $result->bindValue(":updateEventDescription", $updateEventDescription);
     $result->bindValue(":updateEventRules", $updateEventRules);
@@ -247,3 +258,6 @@ if (isset($_POST['hiddenId'])) {
     }
 
 }
+
+// Disconnect Connection
+$conn = null;

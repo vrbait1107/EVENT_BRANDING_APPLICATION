@@ -35,7 +35,7 @@ include_once "includes/commonAnchor.php";
 <body class="sb-nav-fixed">
 
     <!-- Include Common Anchor -->
-    <?php include_once "includes/commonAnchor.php"; ?>
+    <?php include_once "includes/commonAnchor.php";?>
 
     <!-- Admin Navbar -->
     <?php include_once "includes/adminNavbar.php";?>
@@ -92,6 +92,18 @@ include_once "includes/commonAnchor.php";
                                     <div class="form-group">
                                         <label>Event Entry Fee</label>
                                         <input type="text" name="eventPrice" id="eventPrice" class="form-control">
+                                    </div>
+
+                                      <div class="form-group">
+                                        <label>Promocode</label>
+                                        <input type="text" name="promocode" id="promocode" class="form-control">
+                                        <small class="text-warning">If You don't want to add promocode Simply type Not Applicable </small>
+                                    </div>
+
+                                      <div class="form-group">
+                                        <label>Event Fee Discount in %</label>
+                                        <input min = "1" max= "100" type="number" name="discount" id="discount" class="form-control">
+                                        <small class="text-warning">If promocode not available type 0 as Discount</small>
                                     </div>
 
                                     <div class="form-group">
@@ -195,6 +207,19 @@ include_once "includes/commonAnchor.php";
                                         <input type="text" name="updateEventPrice" id="updateEventPrice"
                                             class="form-control">
                                     </div>
+
+                                         <div class="form-group">
+                                        <label>Promocode</label>
+                                        <input type="text" name="updatePromocode" id="updatePromocode" class="form-control">
+                                        <small class="text-warning">If You don't want to add promocode Simply type Not Applicable </small>
+                                    </div>
+
+                                      <div class="form-group">
+                                        <label>Event Fee Discount in %</label>
+                                        <input min = "1" max= "100" type="number" name="updateDiscount" id="updateDiscount" class="form-control">
+                                        <small class="text-warning">If promocode not available type 0 as Discount</small>
+                                    </div>
+
 
                                     <div class="form-group">
                                         <label>Event Prize</label>

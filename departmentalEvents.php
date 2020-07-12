@@ -47,6 +47,11 @@ if ($result->rowCount() > 0) {
 
     <div class="container mt-5">
         <h2 class="text-danger text-center text-uppercase mb-5 font-time">
+
+        <!-- Promocode Response -->
+        <div id="responsePromocode"></div>
+
+    
             <?php echo $eventDepartmentName; ?> Events</h2>
 
         <div class="row">
@@ -64,6 +69,16 @@ if ($result->rowCount() > 0) {
                     <img src="eventImage/<?php echo $row["eventImage"]; ?>" class="img-fluid">
                     <h5 class="text-danger my-3">Entry Fee &#x20b9;<?php echo $row["eventPrice"]; ?></h5>
 
+
+                        <div class="input-group my-3 px-2">
+                            <input type="text" class="form-control" id='event<?php echo $row["id"]; ?>' />
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary applyPromocode" id ='<?php echo $row["id"]; ?>'
+                                 type="button">Apply Promocode</button>
+                            </span>
+                        </div>
+
+
                     <form method="post" action="Paytm/PaytmKit/TxnTest.php">
                         <input type="hidden" name="eventName" value='<?php echo $row["eventName"]; ?>'>
                         <input type="hidden" name="eventPrice" value='<?php echo $row["eventPrice"]; ?>'>
@@ -72,7 +87,7 @@ if ($result->rowCount() > 0) {
                     </form>
 
                     <button type='button' data-toggle="modal" data-target='#modal<?php echo $i; ?>' class='btn btn-secondary mb-3 rounded-pill
-             text-uppercase'>View Event Information<button>
+                    text-uppercase'>View Event Information<button>
 
                 </div>
             </div>
@@ -96,7 +111,7 @@ if ($result->rowCount() > 0) {
                                 <div class="row">
                                     <div class="col-md-12 modal1">
                                         <h4
-                                            class="font-weight-bold text-center text-uppercase text-danger animated heartBeat slow">
+                                            class="font-weight-bold text-center text-uppercase text-danger animated heartBeat slow" id="entryFee<?php echo $row["id"]; ?>">
                                             Entry Fees: <?php echo $row['eventPrice']; ?></h4>
 
                                         <h4
@@ -152,6 +167,7 @@ if ($result->rowCount() > 0) {
     <?php include_once "includes/footer.php";?>
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php";?>
+    <script src="js/departmentEvent.js"></script>
 
     <?php
 // closing Database Connnection
