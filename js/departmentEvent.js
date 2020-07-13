@@ -5,6 +5,11 @@ $(document).ready(function () {
     var promocode = $("#event" + eventId).val();
     var apply = "apply";
 
+    if (promocode === "") {
+      alert("Promocode Cannot be Empty");
+      return false;
+    }
+
     $.ajax({
       url: "ajaxHandlerPHP/ajaxdepartmentEvent.php",
       type: "post",
@@ -14,25 +19,28 @@ $(document).ready(function () {
         apply: apply,
       },
       success(data) {
-        console.log(data);
         var discountPrice = parseInt(data);
-        console.log(discountPrice);
-        if (discountPrice) {
-          $("#entryFee" + eventId).val(data);
-          alert("Promocode Applied Successfully");
+
+        if (!isNaN(discountPrice)) {
+          $("#entryFee" + eventId).val(discountPrice);
+          $("#entryFee2" + eventId).html("Entry Fee &#x20b9;" + discountPrice);
+          $("#entryFee2" + eventId).val(discountPrice);
+          $("#entryFee3" + eventId).val(discountPrice);
+          $("#event" + eventId).val(null);
+
+          Swal.fire({
+            icon: "success",
+            title: "Successful",
+            text: "Promocode Applied Successfully",
+          });
         } else {
-          $("#responsePromocode").val(data);
-          alert(data);
+          $("#responsePromocode").html(data);
+          $("#event" + eventId).val(null);
         }
       },
       error(err) {
         alert("Something Went Wrong");
       },
     });
-
-    if (promocode === "") {
-      alert("Promocode Cannot be Empty");
-      return false;
-    }
   });
 });

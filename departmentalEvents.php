@@ -45,13 +45,13 @@ $result->execute();
 if ($result->rowCount() > 0) {
     ?>
 
+  <!-- Promocode Response -->
+        <div id="responsePromocode"></div>
+
     <div class="container mt-5">
         <h2 class="text-danger text-center text-uppercase mb-5 font-time">
 
-        <!-- Promocode Response -->
-        <div id="responsePromocode"></div>
 
-    
             <?php echo $eventDepartmentName; ?> Events</h2>
 
         <div class="row">
@@ -67,7 +67,7 @@ if ($result->rowCount() > 0) {
             <div class="col-md-4 mb-5">
                 <div class="card shadow text-center">
                     <img src="eventImage/<?php echo $row["eventImage"]; ?>" class="img-fluid">
-                    <h5 class="text-danger my-3">Entry Fee &#x20b9;<?php echo $row["eventPrice"]; ?></h5>
+                    <h5 class="text-danger my-3" id = "entryFee2<?php echo $row['id']; ?>">Entry Fee &#x20b9;<?php echo $row["eventPrice"]; ?></h5>
 
 
                         <div class="input-group my-3 px-2">
@@ -81,7 +81,7 @@ if ($result->rowCount() > 0) {
 
                     <form method="post" action="Paytm/PaytmKit/TxnTest.php">
                         <input type="hidden" name="eventName" value='<?php echo $row["eventName"]; ?>'>
-                        <input type="hidden" name="eventPrice" value='<?php echo $row["eventPrice"]; ?>'>
+                        <input type="hidden" name="eventPrice" id = "entryFee3<?php echo $row['id']; ?>" value='<?php echo $row["eventPrice"]; ?>'>
                         <input type="submit" class="btn btn-primary text-uppercase btn-block mb-2 rounded-pill"
                             value="Click here to Register">
                     </form>
@@ -111,7 +111,8 @@ if ($result->rowCount() > 0) {
                                 <div class="row">
                                     <div class="col-md-12 modal1">
                                         <h4
-                                            class="font-weight-bold text-center text-uppercase text-danger animated heartBeat slow" id="entryFee<?php echo $row["id"]; ?>">
+                                            class="font-weight-bold text-center text-uppercase text-danger animated heartBeat slow"
+                                            id= "entryFee<?php echo $row['id']; ?>">
                                             Entry Fees: <?php echo $row['eventPrice']; ?></h4>
 
                                         <h4
