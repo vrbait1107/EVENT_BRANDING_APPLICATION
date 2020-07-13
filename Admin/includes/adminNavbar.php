@@ -170,7 +170,7 @@
 
 
 
-                       <!-- News/Notification-->
+                    <!-- News/Notification-->
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#news"
                         aria-expanded="false" aria-controls="emails">
                         News/Notification
@@ -183,7 +183,7 @@
                         <nav class="sb-sidenav-menu-nested nav">
                             <a class="nav-link" href="manageNews.php">
                                 <div class="sb-nav-link-icon">
-                               <i class="far fa-newspaper    "></i>
+                                    <i class="fas fa-bell"></i>
                                 </div>
                                 Add/Manage News/Notification
                             </a>
@@ -222,7 +222,7 @@
                     </a>
 
 
-                     <div class="collapse" id="galleryImage">
+                    <div class="collapse" id="galleryImage">
                         <nav class="sb-sidenav-menu-nested nav">
                             <a class="nav-link" href="manageGalleryImage.php">
                                 <div class="sb-nav-link-icon">
@@ -234,7 +234,7 @@
                     </div>
 
 
-                      <!-- Newsletter Emails-->
+                    <!-- Newsletter Emails-->
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#newsletter"
                         aria-expanded="false" aria-controls="newsletter">
                         Newsletter
@@ -253,6 +253,28 @@
                             </a>
                         </nav>
                     </div>
+
+
+                    <!-- Feedback-->
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#feedback"
+                        aria-expanded="false" aria-controls="feedback">
+                        Feedback
+                        <div class="sb-sidenav-collapse-arrow">
+                            <i class="fas fa-angle-down"></i>
+                        </div>
+                    </a>
+
+                    <div class="collapse" id="feedback">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="manageFeedback.php">
+                                <div class="sb-nav-link-icon">
+                                    <img src="https://img.icons8.com/wired/20/000000/feedback.png" />
+                                </div>
+                                Manage Feedbacks
+                            </a>
+                        </nav>
+                    </div>
+
 
 
 
