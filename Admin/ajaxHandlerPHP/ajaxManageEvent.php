@@ -52,8 +52,8 @@ if (isset($_POST["readRecord"])) {
             <td>' . $row["eventPrize"] . '</td>
             <td>' . $row['eventSponsor'] . '</td>
             <td>' . $row['eventDepartment'] . '</td>
-            <td>' . $row["eventDescription"] . '</td>
-            <td>' . $row['eventRules'] . '</td>
+            <td>' . substr($row["eventDescription"], 0, 100) . ' .....</td>
+            <td>' . substr($row['eventRules'], 0, 100) . ' .....</td>
             <td>' . $row['eventStartDate'] . '</td>
             <td>' . $row["eventEndDate"] . '</td>
             <td><button class="btn btn-primary" onclick= "getEventInformation(' . $row['id'] . ')"><i class="fas fa-edit"></i></button></td>
