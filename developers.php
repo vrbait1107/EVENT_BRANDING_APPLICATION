@@ -33,7 +33,7 @@ if (!isset($_SESSION['user'])) {
     <?php include_once "includes/navbar.php";?>
 
     <main class="container">
-        <h1 class="text-center text-uppercase text-white mt-5 bg-info font-time p-2  mb-5">Developer</h1>
+        <h3 class="text-center text-uppercase my-5 alert alert-info font-time">Developers</h3>
         <div class="row">
 
 

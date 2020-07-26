@@ -46,7 +46,7 @@ if ($result->rowCount() > 0) {
     ?>
 
     <div class="container my-5">
-        <h1 class="text-primary text-center mb-5 font-time">SPONSOR PAGE</h1>
+        <h3 class="alert alert-info text-center mb-5 font-time">SPONSOR PAGE</h3>
         <div class="row">
 
         <?php
@@ -62,7 +62,7 @@ if ($result->rowCount() > 0) {
                 <div class="card shadow" style="height:150px;">
                     <img src= "sponsorLogo/<?php echo $sponsorLogo; ?>" class="img-fluid w-100 my-auto">
                 </div>
-                <h5 class="text-center text-uppercase btn btn-primary btn-block font-time"><?php echo $sponsorName; ?></h5>
+                <h5 class="text-center text-uppercase alert alert-info text-dark font-time"><?php echo $sponsorName; ?></h5>
             </section>
 
 

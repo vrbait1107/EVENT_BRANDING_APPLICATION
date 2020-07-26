@@ -8,20 +8,18 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mx-auto">
 
             <li>
-                <a class="nav-link text-uppercase" href="index.php">Home</a>
+                <a class="nav-link font-weight-bold text-uppercase" href="index.php">Home</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-uppercase" href="eventPage.php">EVENTS</a>
+                <a class="nav-link text-uppercase font-weight-bold" href="eventPage.php">EVENTS</a>
             </li>
 
-
-
             <li class="nav-item dropdown text-uppercase">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle font-weight-bold" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Certificate
                 </a>
@@ -32,31 +30,31 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-uppercase" href="contactUs.php">Contact Us</a>
+                <a class="nav-link text-uppercase font-weight-bold" href="contactUs.php">Contact Us</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-uppercase" href="developers.php">Developers</a>
+                <a class="nav-link text-uppercase font-weight-bold" href="developers.php">Developers</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-uppercase" href="sponsor.php">Sponsors</a>
+                <a class="nav-link text-uppercase font-weight-bold" href="sponsor.php">Sponsors</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-uppercase" href="news.php">News & Notification</a>
+                <a class="nav-link text-uppercase font-weight-bold" href="news.php">News & Notification</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-uppercase" href="feedbackForm.php">Feedback</a>
+                <a class="nav-link text-uppercase font-weight-bold" href="feedbackForm.php">Feedback</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-uppercase" href="gallery.php">Gallery</a>
+                <a class="nav-link text-uppercase font-weight-bold" href="gallery.php">Gallery</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-uppercase" href="aboutPage.php">About</a>
+                <a class="nav-link text-uppercase font-weight-bold" href="aboutPage.php">About</a>
             </li>
         </ul>
 

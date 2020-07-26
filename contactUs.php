@@ -36,8 +36,8 @@ if (!isset($_SESSION['user'])) {
 
     <main class="mb-5 container">
 
-        <h2 class="font-weight-bold text-center my-4 text-uppercase text-primary animated zoomIn slow">
-            Contact us</h2>
+        <h3 class="text-center my-5 text-uppercase alert alert-info font-time animated zoomIn slow">
+            Contact us</h3>
 
         <h5 class="text-center w-responsive mx-auto mb-3 animated zoomIn slow">Do you have any questions? Please do not
             hesitate to contact us directly. Our team will come back to you within
@@ -111,7 +111,7 @@ if (!isset($_SESSION['user'])) {
         new WOW().init();
     </script>
 
-    
+
 
     <!-- Footer PHP -->
     <?php include_once "includes/footer.php";?>
@@ -122,9 +122,9 @@ if (!isset($_SESSION['user'])) {
     <script src="js/contactUs.js"> </script>
 
     <?php
-    // closing Database Connnection
-    $conn = null;
-    ?>
+// closing Database Connnection
+$conn = null;
+?>
 
 </body>
 

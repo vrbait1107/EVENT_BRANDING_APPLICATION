@@ -34,94 +34,93 @@ if (!isset($_SESSION['user'])) {
 
     <main class="container text-uppercase">
         <div class="row">
-            <section class="col-md-6 my-5">
-                <div class="card p-4 shadow wow zoomIn slow">
-                    <h3 class="card-title text-success font-time text-center mt-2">EXTC
-                        ENGINEERING</h3>
-                    <img src="images/EXTC.jpg" class="img-fluid" style="height:300px">
+
+            <section class="col-md-4 my-5">
+                <div class="wow zoomIn slow">
+
+                    <img src="images/EXTC.jpg" class="img-fluid" style="height:250px">
+                    <h5 class="alert alert-info font-time text-center">EXTC
+                        ENGINEERING</h5>
 
                     <form action="departmentalEvents.php" method="post">
-                        <input type="submit"
-                            class="font-sans text-center text-uppercase btn btn-block btn-primary my-3 rounded-pill"
-                            value="Click Here to View EXTC events">
+                        <input type="submit" class="text-center text-uppercase btn btn-block btn-primary rounded-pill"
+                            value="View Events">
                         <input type="hidden" name="eventDepartmentName" value="Electronics and Telecommunication">
                     </form>
 
                 </div>
             </section>
 
-            <section class="col-md-6 my-5">
-                <div class="card p-4 shadow wow zoomIn slow">
-                    <h3 class="card-title text-success font-time text-center mt-2">CHEMICAL
-                        ENGINEERING</h3>
-                    <img src="images/CHEM.jpg" class="w-100" style="height:300px">
+            <section class="col-md-4 my-5">
+                <div class="wow zoomIn slow">
+
+                    <img src="images/CHEM.jpg" class="w-100" style="height:250px">
+                    <h5 class="alert alert-info font-time text-center">CHEMICAL
+                        ENGINEERING</h5>
 
                     <form action="departmentalEvents.php" method="post">
-                        <input type="submit"
-                            class="font-sans text-center text-uppercase btn btn-block btn-primary my-3 rounded-pill"
-                            value="Click Here to View CHEMICAL events">
+                        <input type="submit" class="text-center text-uppercase btn btn-block btn-primary rounded-pill"
+                            value="View Events">
                         <input type="hidden" name="eventDepartmentName" value="Chemical">
                     </form>
 
                 </div>
             </section>
-        </div>
 
-
-        <div class="row">
-            <section class="col-md-6 my-5">
-                <div class="card p-4 shadow wow zoomIn slow">
-                    <h3 class="card-title text-success font-time text-center  mt-2">COMPUTER
-                        ENGINEERING</h3>
-                    <img src="images/COMP.jpg" class="img-fluid" style="height:300px">
+            <section class="col-md-4 my-5">
+                <div class="wow zoomIn slow">
+                    <img src="images/COMP.jpg" class="img-fluid" style="height:250px">
+                    <h5 class="alert alert-info font-time text-center">COMPUTER
+                        ENGINEERING</h5>
 
                     <form action="departmentalEvents.php" method="post">
-                        <input type="submit"
-                            class="font-sans text-center text-uppercase btn-block btn btn-primary my-3 rounded-pill"
-                            value="Click Here to View COMPUTER events">
+                        <input type="submit" class="text-center text-uppercase btn-block btn btn-primary rounded-pill"
+                            value="View Events">
                         <input type="hidden" name="eventDepartmentName" value="Computer">
                     </form>
 
                 </div>
             </section>
 
+        </div>
 
-            <section class="col-md-6 my-5">
-                <div class="card p-4 shadow wow zoomIn slow">
-                    <h3 class="card-title font-time text-success text-center mt-2">MECHANICAL
-                        ENGINEERING</h3>
-                    <img src="images/MECH.jpg" class="img-fluid" style="height:300px">
+
+        <div class="row">
+
+            <section class="col-md-4 mb-5">
+                <div class="wow zoomIn slow">
+
+                    <img src="images/MECH.jpg" class="img-fluid w-100" style="height:250px">
+
+                    <h5 class="font-time alert alert-info text-center">MECHANICAL
+                        ENGINEERING</h5>
 
                     <form action="departmentalEvents.php" method="post">
-                        <input type="submit"
-                            class="font-sans btn-block text-uppercase text-center btn btn-primary my-3 rounded-pill"
-                            value="Click Here to View MECHANICAL events">
+                        <input type="submit" class="btn-block text-uppercase text-center btn btn-primary rounded-pill"
+                            value="View Events">
                         <input type="hidden" name="eventDepartmentName" value="Mechanical">
                     </form>
 
                 </div>
             </section>
-        </div>
 
+            <section class="col-md-4 mb-5">
+                <div class="wow zoomIn slow">
 
-
-        <div class="row">
-            <section class="col-md-6 my-5">
-                <div class="card p-4 shadow wow zoomIn slow">
-                    <h3 class="card-title text-success font-time text-center mt-2">CIVIL
-                        ENGINEERING</h3>
-                    <img src="images/CIVIL.jpg" class="img-fluid" style="height:300px">
+                    <img src="images/CIVIL.jpg" class="img-fluid" style="height:250px">
+                    <h5 class="alert alert-info font-time text-center">CIVIL
+                        ENGINEERING</h5>
 
                     <form action="departmentalEvents.php" method="post">
-                        <input type="submit"
-                            class="font-sans text-center text-uppercase btn-block btn btn-primary my-3 rounded-pill"
-                            value="Click Here to View CIVIL events">
+                        <input type="submit" class="text-center text-uppercase btn-block btn btn-primary rounded-pill"
+                            value="View Events">
                         <input type="hidden" name="eventDepartmentName" value="Civil">
                     </form>
 
                 </div>
             </section>
         </div>
+
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>

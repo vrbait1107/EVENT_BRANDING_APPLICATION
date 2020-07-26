@@ -29,7 +29,7 @@ session_start();
     <?php include_once "includes/navbar.php"?>
 
     <main class="container">
-        <h1 class="text-center font-time text-primary text-uppercase my-5">GIT, Lavel Gallery</h1>
+        <h3 class="text-center font-time alert alert-info text-uppercase my-5">Gallery</h3>
 
 
         <div class="row mx-auto images">

@@ -56,11 +56,12 @@ $result->execute();
 
 
     <main class="container">
+
+     <h3 class="text-center alert alert-info font-time my-5 text-uppercase">News & Notifications</h3>
+
         <div class="row">
 
-        <h1 class="text-center text-primary mx-auto font-time my-5 text-uppercase">News & Notifications</h1>
-
-            <?php
+                  <?php
 
 if ($result->rowCount() > 0) {
     ?>
