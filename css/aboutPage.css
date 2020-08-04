@@ -1,0 +1,10 @@
+@media only screen and (max-width: 600px) {
+  .container .card {
+    padding: 10px !important;
+  }
+  .container .card h1 {
+    font-size: 30px !important;
+    margin-top: 25px;
+  }
+}
+/*# sourceMappingURL=aboutPage.css.map */

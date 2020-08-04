@@ -50,7 +50,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             <section class="col-md-4 mb-5">
                 <a href="gallery/<?php echo $row['galleryImage']; ?>">
                     <img src="gallery/<?php echo $row['galleryImage']; ?>" class="img-fluid w-100" alt="images"
-                        style="height:280px">
+                        style="min-height:250px">
                 </a>
             </section>
             <?php
@@ -63,6 +63,9 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php";?>
+
+     <!-- Footer-->
+    <?php include_once "includes/footer.php";?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"
         integrity="sha256-P93G0oq6PBPWTP1IR8Mz/0jHHUpaWL0aBJTKauisG7Q=" crossorigin="anonymous"></script>

@@ -12,8 +12,11 @@ if (!isset($_SESSION['user'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vishal Bait">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>About Page</title>
+     <title>About Page</title>
+
+   <link rel="stylesheet" href="css/aboutPage.css">
 
     <!-- Animate CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">

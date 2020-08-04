@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,cAAc,CAAC;EACb,UAAU,EAAE,IAAI;EAChB,WAAW,EAAE,MAAM;CACpB",
+    "sources": [
+        "../scss/sponsor.scss"
+    ],
+    "names": [],
+    "file": "sponsor.css"
+}

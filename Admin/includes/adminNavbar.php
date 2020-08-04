@@ -119,7 +119,7 @@
                         <nav class="sb-sidenav-menu-nested nav">
                             <a class="nav-link" href="<?php echo $adminManage ?>">
                                 <div class="sb-nav-link-icon">
-                                    <img src="https://img.icons8.com/wired/20/000000/admin-settings-male.png" />
+                                    <img src="https://img.icons8.com/wired/20/000000/admin-settings-male.png" alt="admin-settings"/>
                                 </div>
                                 Add/Manage Admin
                             </a>
@@ -275,9 +275,6 @@
                         </nav>
                     </div>
 
-
-
-
                 </div>
 
                 <div class="sb-sidenav-footer">
@@ -287,3 +284,5 @@
 
         </nav>
     </div>
+
+

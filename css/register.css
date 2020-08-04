@@ -1,0 +1,18 @@
+a {
+  text-decoration: none !important;
+}
+
+#secondStep,
+#thirdStep {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  h2 {
+    font-size: 25px;
+  }
+  h5 {
+    font-size: 20px;
+  }
+}
+/*# sourceMappingURL=register.css.map */

@@ -57,41 +57,42 @@ $result->execute();
 
     <main class="container">
 
-     <h3 class="text-center alert alert-info font-time my-5 text-uppercase">News & Notifications</h3>
+        <h3 class="text-center alert alert-info font-time my-5 text-uppercase">News & Notifications</h3>
 
         <div class="row">
 
-                  <?php
+            <?php
 
 if ($result->rowCount() > 0) {
     ?>
 
             <section class="col-md-12 mb-5">
-                <table class="table table-bordered border-dark">
-                    <thead class="text-center">
-                        <tr>
-                            <th>Sr. No</th>
-                            <th>Tile</th>
-                            <th>Description</th>
-                            <th>Posted Date</th>
-                        </tr>
-                    </thead>
+                <div class="table-responsive">
+                    <table class="table table-bordered border-dark">
+                        <thead class="text-center">
+                            <tr>
+                                <th>Sr. No</th>
+                                <th>Tile</th>
+                                <th>Description</th>
+                                <th>Posted Date</th>
+                            </tr>
+                        </thead>
 
-                    <tbody class="text-center">
+                        <tbody class="text-center">
 
-                        <?php
+                            <?php
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         ?>
-                        <tr>
-                            <td><?php echo $row["id"]; ?></td>
-                            <td class="text-justify"><?php echo $row["newsTitle"]; ?></td>
-                            <td class="text-justify"><?php echo $row["newsDescription"]; ?></td>
-                            <td><?php echo $row["postedDate"]; ?></td>
+                            <tr>
+                                <td><?php echo $row["id"]; ?></td>
+                                <td class="text-justify"><?php echo $row["newsTitle"]; ?></td>
+                                <td class="text-justify"><?php echo $row["newsDescription"]; ?></td>
+                                <td><?php echo $row["postedDate"]; ?></td>
 
-                        </tr>
+                            </tr>
 
-                        <?php
+                            <?php
 }
 } else {
     echo "<script>Swal.fire({
@@ -101,8 +102,9 @@ if ($result->rowCount() > 0) {
                             })</script>";
 }
 ?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </section>
         </div>
     </main>

@@ -111,6 +111,8 @@ if (!isset($_SESSION['user'])) {
                         <textarea name="likeLeast" id="likeLeast" cols="30" rows="3" class="form-control"></textarea>
                     </div>
 
+                    <div class="table-responsive">
+
                     <label class="font-weight-bold">Q.6 Overall Satisfaction</label>
 
                     <table class="table table-bordered">
@@ -176,6 +178,7 @@ if (!isset($_SESSION['user'])) {
 
                         </tbody>
                     </table>
+                    </div>
 
 
                     <div class="form-group">

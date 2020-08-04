@@ -1,0 +1,25 @@
+.fa-users {
+  border-radius: 100%;
+  border: 2px solid #f0ad4e;
+  padding: 10px;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .card {
+    padding: 10px !important;
+  }
+  h2 {
+    font-size: 25px;
+  }
+  .fa-users {
+    border-radius: 100%;
+    border: 2px solid #f0ad4e;
+    padding: 10px;
+    font-size: 50px;
+  }
+}
+/*# sourceMappingURL=login.css.map */

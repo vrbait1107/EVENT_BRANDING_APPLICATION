@@ -69,6 +69,8 @@ try {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Vishal Bait">
+
 
     <title>GIT SHODH 2K20</title>
 
@@ -78,43 +80,11 @@ try {
     <?php include_once "includes/headerScripts.php";?>
     <!--Loader-->
     <link rel="stylesheet" href="css/loader.css">
-
-    <style>
-        .welcome-section {
-            background: #24C6DC;
-            background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);
-            background: linear-gradient(to right, #514A9D, #24C6DC);
-        }
-
-        .second-section {
-            background: #136a8a;
-            background: -webkit-linear-gradient(to right, #267871, #136a8a);
-            background: linear-gradient(to right, #267871, #136a8a);
-        }
-    </style>
+    <link rel="stylesheet" href="css/index.css">
 
 </head>
 
 <body>
-
-    <!--Loader-->
-    <!-- MUTLI SPINNER -->
-    <div id="loader" class="text-center">
-        <div class="multi-spinner-container">
-            <div class="multi-spinner">
-                <div class="multi-spinner">
-                    <div class="multi-spinner">
-                        <div class="multi-spinner">
-                            <div class="multi-spinner">
-                                <div class="multi-spinner">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <!--Navbar-->
@@ -124,7 +94,7 @@ try {
         <div class="row mx-auto text-center">
             <h1 class="p-3 font-time  mx-auto animated flip slow text-white">Welcome to SHODH 2K20 <br> National Level
                 Techfest </h1>
-            <img src="gallery/shodh1.jpg" class="img-fluid" alt="">
+            <img src="gallery/shodh1.jpg" class="img-fluid" alt="Shodh1">
         </div>
     </main>
 
@@ -140,13 +110,13 @@ try {
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="images/git1.png" class="d-block w-100 img-fluid" alt="...">
+                                <img src="images/git1.png" class="d-block w-100 img-fluid" alt="git1">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/git2.jpg" class="d-block w-100 img-fluid" alt="...">
+                                <img src="images/git2.jpg" class="d-block w-100 img-fluid" lt="git2">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/git4.jpg" class="d-block w-100 img-fluid" alt="...">
+                                <img src="images/git4.jpg" class="d-block w-100 img-fluid" lt="git4">
 
                             </div>
                         </div>

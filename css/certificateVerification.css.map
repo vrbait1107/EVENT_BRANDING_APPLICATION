@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,cAAc,CAAC;EACb,UAAU,EAAE,IAAI;EAChB,WAAW,EAAE,MAAM;CACpB;;AAED,MAAM,MAAM,MAAM,MAAM,SAAS,EAAE,KAAK;EACtC,AAAA,UAAU,CAAC;IACT,UAAU,EAAE,IAAI;GACjB;EAED,AAAA,EAAE,CAAC;IACD,SAAS,EAAE,IAAI;IACf,UAAU,EAAE,IAAI;GACjB;EAED,AAAA,KAAK,CAAC;IACJ,aAAa,EAAE,IAAI;IACnB,OAAO,EAAE,eAAe;GACzB",
+    "sources": [
+        "../scss/certificateVerification.scss"
+    ],
+    "names": [],
+    "file": "certificateVerification.css"
+}

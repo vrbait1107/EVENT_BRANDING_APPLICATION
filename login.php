@@ -27,20 +27,10 @@ if (isset($_SESSION['user'])) {
   <link rel="stylesheet" href="css/event-reg.css">
   <!-- Google Recaptcha -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <link rel="stylesheet" href="css/login.css">
 
   <title>GIT SHODH 2K20</title>
-
-  <style>
-    .fa-users {
-      border-radius: 100%;
-      border: 2px solid #f0ad4e;
-      padding: 10px;
-    }
-
-    a {
-      text-decoration: none !important;
-    }
-  </style>
+  
 </head>
 
 <body>
@@ -148,7 +138,7 @@ if (isset($_POST["login"])) {
       <section class="col-md-6 offset-md-3">
 
         <div class="card shadow p-5">
-          <h2 class="text-center text-uppercase">GIT <span class="text-danger">SHODH</span> 2K20 LOGIN</h2>
+          <h2 class="text-center text-uppercase font-time alert alert-primary">GIT <span class="text-danger">SHODH</span> 2K20 LOGIN</h2>
           <hr>
 
           <form action="" method="POST">

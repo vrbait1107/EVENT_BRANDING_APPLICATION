@@ -18,26 +18,14 @@ session_start();
 
   <!-- header Scripts and Links -->
   <?php include_once "includes/headerScripts.php";?>
-  <!-- Event-Reg css -->
-  <link rel="stylesheet" href="css/event-reg.css">
   <!-- Animate css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <!-- Google Recaptcha -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <link rel="stylesheet" href="css/register.css">
 
 
   <title>GIT SHODH 2K20 Registration</title>
-  <style>
-    a {
-      text-decoration: none !important;
-    }
-
-    #secondStep,
-    #thirdStep {
-      display: none;
-    }
-  </style>
-
 </head>
 
 <body>
@@ -164,7 +152,6 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-
   <!-- PHP CODE END  -->
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -179,31 +166,28 @@ if (isset($_POST['submit'])) {
       <ul class="navbar-nav">
 
         <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark" href="register.php">SHODH Register</a>
+          <a class="nav-link text-uppercase font-weight-bold text-dark" href="register.php">SHODH Register</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark" href="login.php">SHODH Login</a>
+          <a class="nav-link text-uppercase font-weight-bold text-dark" href="login.php">SHODH Login</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark" href="Admin/adminLogin.php">SHODH Admin Login</a>
+          <a class="nav-link text-uppercase font-weight-bold text-dark" href="Admin/adminLogin.php">SHODH Admin Login</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark" href="Admin/synergyLogin.php">SYNERGY Admin Login</a>
+          <a class="nav-link text-uppercase font-weight-bold text-dark" href="Admin/synergyLogin.php">SYNERGY Admin Login</a>
         </li>
       </ul>
     </div>
   </nav>
 
 
-
-
-
   <main class="container mt-4">
 
-    <h2 class="text-center mx-auto text-uppercase">git <span class="text-danger">shodh</span> 2K20 Registration</h2>
+    <h2 class="text-center mx-auto font-time text-uppercase alert alert-primary">git <span class="text-danger">shodh</span> 2K20 Registration</h2>
 
     <hr>
 

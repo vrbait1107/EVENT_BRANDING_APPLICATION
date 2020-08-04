@@ -40,7 +40,7 @@ if (!isset($_SESSION['user'])) {
             <section class="col-md-4 mb-5">
                 <div class="card shadow p-3" data-aos="zoom-in" data-aos-duration="1500">
                     <figure class="imghvr-zoom-out">
-                        <img src="images/developer1.jpg" class="img-fluid" alt="developer1">
+                        <img src="images/developer1.jpg" class="img-fluid" alt="Vishal Bait">
 
                         <figcaption>
                             <div class="text-center my-3">
@@ -50,14 +50,14 @@ if (!isset($_SESSION['user'])) {
                                 <div class="mt-3">
                                     <h6 class="mb-2">Follow Me on Social Media</h6>
                                     <i class="fa fa-facebook fa-2x ml-2"><a
-                                            href="https://www.facebook.com/vishal.bait.12"></a></i>
+                                            href="https://www.facebook.com/vrbait1107"></a></i>
                                     <i class="fa fa-instagram fa-2x ml-2"><a
-                                            href="https://www.instagram.com/vrb_vishalbait/"></a></i>
+                                            href="https://www.instagram.com/vrbait1107/"></a></i>
                                     <i class="fa fa-twitter fa-2x ml-2"><a
-                                            href="https://twitter.com/VishalBait2"></a></i>
+                                            href="https://twitter.com/vrbait1107"></a></i>
                                     <i class="fa fa-linkedin fa-2x ml-2"><a
-                                            href="https://in.linkedin.com/in/vishal-bait-7abb45129"></a></i>
-                                    <i class="fa fa-github fa-2x ml-2"><a href="https://github.com/Vishal1107"></a></i>
+                                            href="https://in.linkedin.com/in/vrbait1107"></a></i>
+                                    <i class="fa fa-github fa-2x ml-2"><a href="https://github.com/vrbait1107"></a></i>
                                 </div>
                             </div>
 
@@ -76,7 +76,7 @@ if (!isset($_SESSION['user'])) {
                 <div class="card shadow p-3" data-aos="zoom-in" data-aos-duration="1500">
 
                     <figure class="imghvr-zoom-out">
-                        <img src="images/developer2.jpg" class="img-fluid" alt="developer1">
+                        <img src="images/developer2.jpg" class="img-fluid" alt="Suraj Mohite">
 
                         <figcaption>
                             <div class="text-center my-3">
@@ -110,7 +110,7 @@ if (!isset($_SESSION['user'])) {
                 <div class="card shadow p-3" data-aos="zoom-in" data-aos-duration="1500">
 
                     <figure class="imghvr-zoom-out">
-                        <img src="images/developer3.jpg" class="img-fluid" alt="developer3">
+                        <img src="images/developer3.jpg" class="img-fluid" alt="Onkar Mokashi">
                         <figcaption>
 
                             <div class="text-center my-3" data-aos="fade-up">

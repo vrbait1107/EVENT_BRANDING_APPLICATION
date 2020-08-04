@@ -29,6 +29,7 @@ $result->execute();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sponsor information</title>
+    <link rel="stylesheet" href="css/sponsor.css">
 
     <!-- header Scripts and Links -->
     <?php include_once "includes/headerScripts.php";?>
@@ -39,17 +40,16 @@ $result->execute();
 
     <?php include_once "includes/navbar.php";?>
 
+    <main class="container mt-5">
 
-    <?php
+        <h3 class="alert alert-info text-center mb-5 font-time">SPONSOR PAGE</h3>
+        <div class="row" id="mainContainer">
+
+            <?php
 if ($result->rowCount() > 0) {
-
     ?>
 
-    <div class="container my-5">
-        <h3 class="alert alert-info text-center mb-5 font-time">SPONSOR PAGE</h3>
-        <div class="row">
-
-        <?php
+            <?php
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
@@ -60,12 +60,11 @@ if ($result->rowCount() > 0) {
 
             <section class="col-md-4 mx-auto mb-5">
                 <div class="card shadow" style="height:150px;">
-                    <img src= "sponsorLogo/<?php echo $sponsorLogo; ?>" class="img-fluid w-100 my-auto">
+                    <img src="sponsorLogo/<?php echo $sponsorLogo; ?>" class="img-fluid w-100 my-auto">
                 </div>
-                <h5 class="text-center text-uppercase alert alert-info text-dark font-time"><?php echo $sponsorName; ?></h5>
+                <h5 class="text-center text-uppercase alert alert-info text-dark font-time"><?php echo $sponsorName; ?>
+                </h5>
             </section>
-
-
 
             <?php
 }
@@ -74,7 +73,7 @@ if ($result->rowCount() > 0) {
 ?>
 
         </div>
-    </div>
+    </main>
 
     <!-- Footer PHP -->
     <?php include_once "includes/footer.php";?>

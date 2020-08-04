@@ -15,12 +15,14 @@ if (!isset($_SESSION['user'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Certificate Verification</title>
+
 
     <!-- Animate css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
      <!-- header Scripts and Links -->
     <?php include_once "includes/headerScripts.php";?>
+    <link rel="stylesheet" href="css/certificateVerification.css">
+     <title>Certificate Verification</title>
 
 </head>
 
@@ -30,11 +32,11 @@ if (!isset($_SESSION['user'])) {
     <?php include_once "includes/navbar.php";?>
 
     <main class="container">
-        <div class="row mb-5">
+        <div class="row" id="mainContainer">
 
 
-            <section class="col-md-6 my-5">
-                <div class="card shadow animated zoomIn slow p-5 mt-5">
+            <section class="col-md-6">
+                <div class="card shadow animated zoomIn slow p-5">
                     <h3 class="text-center font-time text-uppercase text-primary mb-4">GIT <i><span
                                 class="text-danger">SHODH</span></i> Certificate </h3>
 
@@ -53,8 +55,8 @@ if (!isset($_SESSION['user'])) {
             </section>
 
 
-            <section class="col-md-6 my-5">
-                <div class="card shadow animated zoomIn slow mt-5 p-5">
+            <section class="col-md-6">
+                <div class="card shadow animated zoomIn slow p-5">
                     <h3 class="text-center font-time text-uppercase text-secondary mb-4">GIT <i><span
                                 class="text-danger">SYNERGY</span></i> Certificate </h3>
 

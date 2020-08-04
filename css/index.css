@@ -1,0 +1,29 @@
+.welcome-section {
+  background: #24c6dc;
+  background: -webkit-gradient(linear, left top, right top, from(#514a9d), to(#24c6dc));
+  background: linear-gradient(to right, #514a9d, #24c6dc);
+}
+
+.second-section {
+  background: #136a8a;
+  background: -webkit-gradient(linear, left top, right top, from(#267871), to(#136a8a));
+  background: linear-gradient(to right, #267871, #136a8a);
+}
+
+.carousel-item img {
+  min-height: 400px !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .carousel-item img {
+    min-height: 200px !important;
+  }
+  .second-section {
+    padding: 10px !important;
+    padding-top: 40px !important;
+  }
+  .welcome-section img {
+    min-height: 200px;
+  }
+}
+/*# sourceMappingURL=index.css.map */

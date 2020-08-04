@@ -1,0 +1,30 @@
+.welcome-section {
+  background: #24c6dc;
+  background: -webkit-linear-gradient(to right, #514a9d, #24c6dc);
+  background: linear-gradient(to right, #514a9d, #24c6dc);
+}
+
+.second-section {
+  background: #136a8a;
+  background: -webkit-linear-gradient(to right, #267871, #136a8a);
+  background: linear-gradient(to right, #267871, #136a8a);
+}
+
+.carousel-item img {
+  min-height: 400px !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .carousel-item img {
+    min-height: 200px !important;
+  }
+
+  .second-section {
+    padding: 10px !important;
+    padding-top: 40px !important;
+  }
+
+  .welcome-section img {
+    min-height: 200px;
+  }
+}
