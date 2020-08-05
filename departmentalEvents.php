@@ -6,19 +6,26 @@ require_once "configPDO.php";
 // Staring Session
 session_start();
 
-$eventDepartmentName = $_POST['eventDepartmentName'];
+extract($_POST);
 
+if (isset($_POST["department"])) {
 //Query
-$sql = "SELECT * FROM events_details_information WHERE eventDepartment = :eventDepartmentName";
+    $sql = "SELECT * FROM events_details_information WHERE eventDepartment = :eventDepartmentName";
 
 //Preparing Query
-$result = $conn->prepare($sql);
+    $result = $conn->prepare($sql);
 
 //Binding Value
-$result->bindValue(":eventDepartmentName", $eventDepartmentName);
+    $result->bindValue(":eventDepartmentName", $eventDepartmentName);
 
 //Executing Query
-$result->execute();
+    $result->execute();
+
+    if ($result) {
+        header("Location:departmentalEvents.php");
+
+    }
+}
 
 ?>
 
