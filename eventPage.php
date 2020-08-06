@@ -42,9 +42,10 @@ if (!isset($_SESSION['user'])) {
                     <h5 class="alert alert-info font-time text-center">EXTC
                         ENGINEERING</h5>
 
-                    <form id="extcForm">
+                    <form id="extcForm" action="departmentalEvents.php" method="post" >
                         <input type="submit" class="text-center text-uppercase btn btn-block btn-primary rounded-pill"
                             value="View Events">
+                            <input type="hidden" name="eventDepartmentName" value="Electronics and Telecommunication">
                     </form>
 
                 </div>
@@ -57,9 +58,10 @@ if (!isset($_SESSION['user'])) {
                     <h5 class="alert alert-info font-time text-center">CHEMICAL
                         ENGINEERING</h5>
 
-                    <form id="chemicalForm">
+                    <form id="chemicalForm" action="departmentalEvents.php" method="post">
                         <input type="submit" class="text-center text-uppercase btn btn-block btn-primary rounded-pill"
                             value="View Events">
+                             <input type="hidden" name="eventDepartmentName" value="Chemical">
                     </form>
 
                 </div>
@@ -71,9 +73,10 @@ if (!isset($_SESSION['user'])) {
                     <h5 class="alert alert-info font-time text-center">COMPUTER
                         ENGINEERING</h5>
 
-                    <form id="computerForm">
+                    <form id="computerForm" action="departmentalEvents.php" method="post">
                         <input type="submit" class="text-center text-uppercase btn-block btn btn-primary rounded-pill"
                             value="View Events">
+                             <input type="hidden" name="eventDepartmentName" value="Computer">
                     </form>
 
                 </div>
@@ -92,9 +95,10 @@ if (!isset($_SESSION['user'])) {
                     <h5 class="font-time alert alert-info text-center">MECHANICAL
                         ENGINEERING</h5>
 
-                    <form id="mechanicalForm">
+                    <form id="mechanicalForm" action="departmentalEvents.php" method="post">
                         <input type="submit" class="btn-block text-uppercase text-center btn btn-primary rounded-pill"
                             value="View Events">
+                             <input type="hidden" name="eventDepartmentName" value="Mechanical">
                     </form>
 
                 </div>
@@ -107,9 +111,10 @@ if (!isset($_SESSION['user'])) {
                     <h5 class="alert alert-info font-time text-center">CIVIL
                         ENGINEERING</h5>
 
-                    <form id="civilForm" >
+                    <form id="civilForm" action="departmentalEvents.php" method="post">
                         <input type="submit" class="text-center text-uppercase btn-block btn btn-primary rounded-pill"
                             value="View Events">
+                        <input type="hidden" name="eventDepartmentName" value="Civil">
                     </form>
 
                 </div>

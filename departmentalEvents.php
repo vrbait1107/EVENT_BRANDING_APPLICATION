@@ -6,28 +6,29 @@ require_once "configPDO.php";
 // Staring Session
 session_start();
 
-extract($_POST);
+if (isset($_SESSION["eventDepartmentName"])) {
 
-if (isset($_POST["department"])) {
-//Query
-    $sql = "SELECT * FROM events_details_information WHERE eventDepartment = :eventDepartmentName";
+    if (isset($_POST["eventDepartmentName"])) {
 
-//Preparing Query
-    $result = $conn->prepare($sql);
+        $eventDepartmentName = $_POST["eventDepartmentName"];
 
-//Binding Value
-    $result->bindValue(":eventDepartmentName", $eventDepartmentName);
+        $_SESSION["eventDepartmentName"] = $eventDepartmentName;
 
-//Executing Query
-    $result->execute();
+        $sql = "SELECT * FROM events_details_information WHERE eventDepartment = :eventDepartment";
+        $result = $conn->prepare($sql);
+        $result->bindValue(":eventDepartment", $_SESSION["eventDepartmentName"]);
+        $result->execute();
 
-    if ($result) {
-        header("Location:departmentalEvents.php");
+    } else {
+
+        $sql = "SELECT * FROM events_details_information WHERE eventDepartment = :eventDepartment";
+        $result = $conn->prepare($sql);
+        $result->bindValue(":eventDepartment", $_SESSION["eventDepartmentName"]);
+        $result->execute();
 
     }
-}
 
-?>
+    ?>
 
 
 <!DOCTYPE html>
@@ -50,7 +51,7 @@ if (isset($_POST["department"])) {
 
     <?php
 if ($result->rowCount() > 0) {
-    ?>
+        ?>
 
   <!-- Promocode Response -->
         <div id="responsePromocode"></div>
@@ -59,17 +60,17 @@ if ($result->rowCount() > 0) {
         <h2 class="text-danger text-center text-uppercase mb-5 font-time">
 
 
-            <?php echo $eventDepartmentName; ?> Events</h2>
+            <?php echo $_SESSION["eventDepartmentName"]; ?> Events</h2>
 
         <div class="row">
 
             <?php
 
-    $i = 0;
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        $i++;
+        $i = 0;
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $i++;
 
-        ?>
+            ?>
 
             <div class="col-md-4 mb-5">
                 <div class="card shadow text-center">
@@ -163,8 +164,11 @@ if ($result->rowCount() > 0) {
 
             <?php
 }
-}
+    }
 
+} else {
+    include_once "includes/headerScripts.php";
+}
 ?>
 
         </div>
@@ -176,6 +180,11 @@ if ($result->rowCount() > 0) {
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php";?>
     <script src="js/departmentEvent.js"></script>
+    <script>
+    if (window . history . replaceState) {
+    window . history . replaceState(null, null, window . location . href);
+    }
+    </script>
 
     <?php
 // closing Database Connnection
