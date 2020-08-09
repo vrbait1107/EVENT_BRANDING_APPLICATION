@@ -48,6 +48,11 @@ if (isset($_SESSION['adminEmail']) && $_SESSION['adminType'] && $_SESSION['admin
             border: 2px solid #f0ad4e;
             padding: 10px;
         }
+
+        .font-time{
+            font-family: "Times New Roman";
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -68,7 +73,6 @@ if (isset($_POST['login'])) {
 
         if ($response->success) {
 
-            // calling function to perform security task
             $adminUserName = trim($_POST['email']);
             $adminType = trim($_POST['adminType']);
             $adminDepartment = trim($_POST['adminDepartment']);
@@ -126,9 +130,7 @@ if (isset($_POST['login'])) {
                             })</script>";
                 }
 
-            } // if result close bracket
-
-            else {
+            } else {
                 echo "<script>Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
@@ -136,9 +138,7 @@ if (isset($_POST['login'])) {
                         })</script>";
             }
 
-        } // if $response
-
-        else {
+        } else {
             echo "<script>Swal.fire({
                         icon: 'warning',
                         title: 'Google Recaptcha Error',
@@ -146,9 +146,9 @@ if (isset($_POST['login'])) {
                     })</script>";
         }
 
-    } // if(isset($_POST['g-recaptcha-response']))
+    }
 
-} // isset Close bracket
+}
 ?>
 
     <!-- PHP CODE END   -->
@@ -163,7 +163,7 @@ if (isset($_POST['login'])) {
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav font-weight-bold">
                 <li class="nav-item">
                     <a class="nav-link text-uppercase text-dark" href="../register.php">SHODH Register</a>
                 </li>
@@ -188,8 +188,10 @@ if (isset($_POST['login'])) {
             <section class="col-md-6 offset-md-3">
 
                 <div class="card shadow px-4 py-5">
-                    <h2 class="text-center text-uppercase mb-4 mt-2">GIT
-                        <span class="text-danger">SHODH</span> 2K20 ADMIN LOGIN</h2>
+                    <h2 class="text-center text-uppercase mt-4 font-time">GIT
+                   <span class="text-danger">SHODH</span> 2K20 ADMIN LOGIN</h2>
+
+                   <hr/>
 
                     <form action="" method="post">
 

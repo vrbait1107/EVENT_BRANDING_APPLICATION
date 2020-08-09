@@ -65,7 +65,7 @@ include_once "includes/commonAnchor.php";
                 <!-- Add Event Modal -->
                 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
                     aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="addModalLabel">ADD EVENTS</h5>
@@ -183,7 +183,7 @@ include_once "includes/commonAnchor.php";
                 <!-- Update Event Modal -->
                 <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
                     aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="updateModalLabel">UPDATE EVENTS</h5>
@@ -309,6 +309,15 @@ include_once "includes/commonAnchor.php";
 
     <!-- Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php";?>
+
+     <script>
+        CKEDITOR . replace('eventDescription');
+        CKEDITOR . replace('eventRules');
+        CKEDITOR . replace('eventCoordinator');
+        CKEDITOR . replace('updateEventDescription');
+        CKEDITOR . replace('updateEventRules');
+        CKEDITOR . replace('updateEventCoordinator');
+    </script>
 
     <!-- Custom JS Script -->
     <script src="js/manageEvent.js"></script>

@@ -30,7 +30,7 @@ if (isset($_SESSION['user'])) {
   <link rel="stylesheet" href="css/login.css">
 
   <title>GIT SHODH 2K20</title>
-  
+
 </head>
 
 <body>
@@ -113,7 +113,7 @@ if (isset($_POST["login"])) {
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav font-weight-bold">
         <li class="nav-item">
           <a class="nav-link text-uppercase text-dark" href="register.php">SHODH Register</a>
         </li>
@@ -138,7 +138,7 @@ if (isset($_POST["login"])) {
       <section class="col-md-6 offset-md-3">
 
         <div class="card shadow p-5">
-          <h2 class="text-center text-uppercase font-time alert alert-primary">GIT <span class="text-danger">SHODH</span> 2K20 LOGIN</h2>
+          <h2 class="text-center text-uppercase font-time">GIT <span class="text-danger">SHODH</span> 2K20 LOGIN</h2>
           <hr>
 
           <form action="" method="POST">

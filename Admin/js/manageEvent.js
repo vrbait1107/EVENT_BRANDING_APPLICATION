@@ -137,10 +137,22 @@ $(document).ready(function () {
       return false;
     }
 
+    let dataValue = new FormData(this);
+
+    dataValue.append(
+      "eventDescription",
+      CKEDITOR.instances["eventDescription"].getData()
+    );
+    dataValue.append("eventRules", CKEDITOR.instances["eventRules"].getData());
+    dataValue.append(
+      "eventCoordinator",
+      CKEDITOR.instances["eventCoordinator"].getData()
+    );
+
     $.ajax({
       url: "ajaxHandlerPHP/ajaxManageEvent.php",
       type: "post",
-      data: new FormData(this),
+      data: dataValue,
       contentType: false,
       processData: false,
       success(data) {
@@ -207,9 +219,13 @@ const getEventInformation = (id) => {
       $("#updateEventPrize").val(event.eventPrize);
       $("#updateEventSponsor").val(event.eventSponsor);
       $("#updateEventDepartment").val(event.eventDepartment);
-      $("#updateEventDescription").val(event.eventDescription);
-      $("#updateEventRules").val(event.eventRules);
-      $("#updateEventCoordinator").val(event.eventCoordinator);
+      CKEDITOR.instances["updateEventDescription"].setData(
+        event.eventDescription
+      );
+      CKEDITOR.instances["updateEventRules"].setData(event.eventRules);
+      CKEDITOR.instances["updateEventCoordinator"].setData(
+        event.eventCoordinator
+      );
       $("#updateEventStartDate").val(event.eventStartDate);
       $("#updateEventEndDate").val(event.eventEndDate);
       $("#hiddenId").val(event.id);
@@ -222,6 +238,7 @@ const getEventInformation = (id) => {
   $("#updateModal").modal("show");
 };
 
+//------------------------------------->> UPDATE EVENT INFORMATION
 const updateEvent = () => {
   let updateEventName = $("#updateEventName").val();
   let updateEventPrice = $("#updateEventPrice").val();
@@ -230,9 +247,9 @@ const updateEvent = () => {
   let updateEventPrize = $("#updateEventPrize").val();
   let updateEventSponsor = $("#updateEventSponsor").val();
   let updateEventDepartment = $("#updateEventDepartment").val();
-  let updateEventDescription = $("#updateEventDescription").val();
-  let updateEventRules = $("#updateEventRules").val();
-  let updateEventCoordinator = $("#updateEventCoordinator").val();
+  let updateEventDescription = CKEDITOR.instances.updateEventDescription.getData();
+  let updateEventRules = CKEDITOR.instances.updateEventRules.getData();
+  let updateEventCoordinator = CKEDITOR.instances.updateEventCoordinator.getData();
   let updateEventStartDate = $("#updateEventStartDate").val();
   let updateEventEndDate = $("#updateEventEndDate").val();
   let hiddenId = $("#hiddenId").val();

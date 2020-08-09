@@ -6,29 +6,27 @@ require_once "configPDO.php";
 // Staring Session
 session_start();
 
-if (isset($_SESSION["eventDepartmentName"])) {
+if (isset($_POST["eventDepartmentName"])) {
 
-    if (isset($_POST["eventDepartmentName"])) {
+    $eventDepartmentName = $_POST["eventDepartmentName"];
 
-        $eventDepartmentName = $_POST["eventDepartmentName"];
+    $_SESSION["eventDepartmentName"] = $eventDepartmentName;
 
-        $_SESSION["eventDepartmentName"] = $eventDepartmentName;
+    $sql = "SELECT * FROM events_details_information WHERE eventDepartment = :eventDepartment";
+    $result = $conn->prepare($sql);
+    $result->bindValue(":eventDepartment", $_SESSION["eventDepartmentName"]);
+    $result->execute();
 
-        $sql = "SELECT * FROM events_details_information WHERE eventDepartment = :eventDepartment";
-        $result = $conn->prepare($sql);
-        $result->bindValue(":eventDepartment", $_SESSION["eventDepartmentName"]);
-        $result->execute();
+} else {
 
-    } else {
+    $sql = "SELECT * FROM events_details_information WHERE eventDepartment = :eventDepartment";
+    $result = $conn->prepare($sql);
+    $result->bindValue(":eventDepartment", $_SESSION["eventDepartmentName"]);
+    $result->execute();
 
-        $sql = "SELECT * FROM events_details_information WHERE eventDepartment = :eventDepartment";
-        $result = $conn->prepare($sql);
-        $result->bindValue(":eventDepartment", $_SESSION["eventDepartmentName"]);
-        $result->execute();
+}
 
-    }
-
-    ?>
+?>
 
 
 <!DOCTYPE html>
@@ -51,7 +49,7 @@ if (isset($_SESSION["eventDepartmentName"])) {
 
     <?php
 if ($result->rowCount() > 0) {
-        ?>
+    ?>
 
   <!-- Promocode Response -->
         <div id="responsePromocode"></div>
@@ -66,11 +64,11 @@ if ($result->rowCount() > 0) {
 
             <?php
 
-        $i = 0;
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $i++;
+    $i = 0;
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $i++;
 
-            ?>
+        ?>
 
             <div class="col-md-4 mb-5">
                 <div class="card shadow text-center">
@@ -103,7 +101,7 @@ if ($result->rowCount() > 0) {
             <!--modal Events -->
             <div class="modal fade" id="modal<?php echo $i; ?>" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalCenterTitle">Rules for
@@ -164,11 +162,8 @@ if ($result->rowCount() > 0) {
 
             <?php
 }
-    }
-
-} else {
-    include_once "includes/headerScripts.php";
 }
+
 ?>
 
         </div>

@@ -2,7 +2,7 @@
 // Please Read official documentation on GitHUb Account -> https: //github.com/PHPMailer/PHPMailer
 
 date_default_timezone_set('Etc/UTC');
-require_once '../PHPMailer/PHPMailerAutoload.php';
+require_once '../../PHPMailer/PHPMailerAutoload.php';
 $mail = new PHPMailer;
 $mail->isSMTP();
 $mail->SMTPDebug = 0;

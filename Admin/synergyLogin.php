@@ -30,6 +30,11 @@ if (isset($_SESSION['Admin'])) {
             border: 2px solid #f0ad4e;
             padding: 10px;
         }
+
+        .font-time{
+            font-family: "Times New Roman";
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -85,7 +90,7 @@ if (isset($_POST['login'])) {
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav font-weight-bold">
                 <li class="nav-item">
                     <a class="nav-link text-uppercase text-dark" href="../register.php">SHODH Register</a>
                 </li>
@@ -109,7 +114,7 @@ if (isset($_POST['login'])) {
             <section class="col-md-6 offset-md-3">
                 <div class="card shadow p-5">
 
-                    <h2 class="text-center text-uppercase">GIT <span class="text-danger">SYNERGY</span> 2K20 LOGIN</h2>
+                    <h2 class="text-center font-time text-uppercase">GIT <span class="text-danger">SYNERGY</span> 2K20 LOGIN</h2>
                     <hr>
 
                     <form action="" method="post">

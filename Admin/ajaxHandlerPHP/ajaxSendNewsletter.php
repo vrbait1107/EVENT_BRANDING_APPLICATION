@@ -28,7 +28,7 @@ if (isset($_POST["newsletterMessage"])) {
 
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 $newsletterEmails = $row['email'];
-                sendMail($newletterEmails, $newletterSubject, $newletterMessage);
+                sendMail($newsletterEmails, $newsletterSubject, $newsletterMessage);
             }
 
         } else {
@@ -47,9 +47,9 @@ if (isset($_POST["newsletterMessage"])) {
 
 function sendMail($newsletterEmails, $newsletterSubject, $newsletterMessage)
 {
-   //##### Include PHP Mailer Code 
-   include_once "../../emailCode/emailSendNewsletter.php";
-   
+    //##### Include PHP Mailer Code
+    include_once "../../emailCode/emailSendNewsletter.php";
+
     if (!$mail->send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;
     } else {
