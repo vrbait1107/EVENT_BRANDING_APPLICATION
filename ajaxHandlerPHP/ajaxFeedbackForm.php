@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
             $resultCheck->bindValue(":email", $email);
             $resultCheck->execute();
 
-            if ($resultCheck) {
+            if ($resultCheck->rowCount() > 0) {
                 echo "<script>Swal.fire({
                 icon: 'warning',
                 title: 'Warning',
