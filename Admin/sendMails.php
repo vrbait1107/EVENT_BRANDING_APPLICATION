@@ -154,6 +154,9 @@ include_once "includes/adminNavbar.php";
 
   <!-- Custom JS Script -->
   <script src="js/sendMails.js"></script>
+   <script>
+        CKEDITOR . replace('targetMessage');
+    </script>
 
   <?php
 // closing Database Connnection

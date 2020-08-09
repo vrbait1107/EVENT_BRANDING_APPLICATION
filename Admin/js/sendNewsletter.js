@@ -20,10 +20,17 @@ $(document).ready(function () {
       return false;
     }
 
+    let dataValue = new FormData(this);
+
+    dataValue.append(
+      "newsletterMessage",
+      CKEDITOR.instances["newsletterMessage"].getData()
+    );
+
     $.ajax({
       url: "ajaxHandlerPHP/ajaxSendNewsletter.php",
       type: "post",
-      data: new FormData(this),
+      data: dataValue,
       contentType: false,
       processData: false,
       beforeSend() {
@@ -31,9 +38,9 @@ $(document).ready(function () {
       },
       success(data) {
         $("#responseMessage").html(data);
-        $("#sendNewsletterForm").trigger("reset");
-        $("#sendNewsletterForm").trigger("reset");
         grecaptcha.reset();
+        $("#sendNewsletterForm").trigger("reset");
+        CKEDITOR.instances["newsletterMessage"].setData(null);
       },
       error() {
         $("#responseMessage").html("Something Went Wrong");

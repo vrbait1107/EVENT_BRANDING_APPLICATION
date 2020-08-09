@@ -29,7 +29,7 @@ $(document).ready(function () {
       return false;
     }
 
-    if ($("#subject").val() === "") {
+    if ($("#targetSubject").val() === "") {
       Swal.fire({
         icon: "warning",
         title: "Required",
@@ -38,7 +38,7 @@ $(document).ready(function () {
       return false;
     }
 
-    if ($("#messagge").val() === "") {
+    if ($("#targetMessagge").val() === "") {
       Swal.fire({
         icon: "warning",
         title: "Required",
@@ -47,10 +47,17 @@ $(document).ready(function () {
       return false;
     }
 
+    let dataValue = new FormData(this);
+
+    dataValue.append(
+      "newsletterMessage",
+      CKEDITOR.instances["targetMessage"].getData()
+    );
+
     $.ajax({
       url: "ajaxHandlerPHP/ajaxSendMails.php",
       type: "post",
-      data: new FormData(this),
+      data: dataValue,
       contentType: false,
       processData: false,
       beforeSend() {
@@ -59,7 +66,7 @@ $(document).ready(function () {
       success(data) {
         $("#responseMessage").html(data);
         $("#sendMailForm").trigger("reset");
-        $("#sendMailForm").trigger("reset");
+        CKEDITOR.instances["targetMessage"].setData(null);
         grecaptcha.reset();
       },
       error() {

@@ -101,6 +101,9 @@ include_once "includes/adminNavbar.php";
   <!-- Custom JS -->
   <script src="js/sendNewsletter.js"></script>
 
+   <script>
+        CKEDITOR . replace('newsletterMessage');
+    </script>
   <?php
 // closing Database Connnection
 $conn = null;

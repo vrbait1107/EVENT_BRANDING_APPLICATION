@@ -158,6 +158,9 @@ $(document).ready(function () {
       success(data) {
         $("#addResponse").html(data);
         $("#addEventForm").trigger("reset");
+        CKEDITOR.instances["eventDescription"].setData(null);
+        CKEDITOR.instances["eventRules"].setData(null);
+        CKEDITOR.instances["eventCoordinator"].setData(null);
         readRecordEvent();
       },
       error() {
