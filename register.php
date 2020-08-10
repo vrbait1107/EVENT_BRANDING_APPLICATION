@@ -25,7 +25,7 @@ session_start();
   <link rel="stylesheet" href="css/register.css">
 
 
-  <title>GIT SHODH 2K20 Registration</title>
+  <title>GIT SHODH 2K21 Registration Page</title>
 </head>
 
 <body>
@@ -80,7 +80,7 @@ if (isset($_POST['submit'])) {
                 echo "<script>Swal.fire({
                     icon: 'warning',
                     title: 'Account is Already Exist',
-                    text: 'You are already registerd with GIT Shodh 2K20,Login to Continue',
+                    text: 'You are already registerd with GIT Shodh 2K21,Login to Continue',
                     footer: '<a href = $login >Go to the Login Page</a>'
                   })</script>";
 
@@ -155,45 +155,38 @@ if (isset($_POST['submit'])) {
   <!-- PHP CODE END  -->
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand font-weight-bold" href="#">GIT SHODH/SYNERGY 2K20</a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-
-        <li class="nav-item">
-          <a class="nav-link text-uppercase font-weight-bold text-dark" href="register.php">SHODH Register</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link text-uppercase font-weight-bold text-dark" href="login.php">SHODH Login</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link text-uppercase font-weight-bold text-dark" href="Admin/adminLogin.php">SHODH Admin Login</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link text-uppercase font-weight-bold text-dark" href="Admin/synergyLogin.php">SYNERGY Admin Login</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
+        <a class="navbar-brand font-weight-bold" href="#">GIT SHODH/SYNERGY 2K21</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav font-weight-bold">
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase text-dark" href="register.php">SHODH Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase text-dark" href="login.php">SHODH Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase text-dark" href="Admin/adminLogin.php">SHODH Admin Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase text-dark" href="Admin/synergyLogin.php">SYNERGY Admin Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
   <main class="container mt-4">
 
-    <h2 class="text-center mx-auto font-time text-uppercase alert alert-primary">git <span class="text-danger">shodh</span> 2K20 Registration</h2>
+    <h2 class="text-center mx-auto font-time text-uppercase">git <span class="text-danger">shodh</span> 2K21 Registration</h2>
 
     <hr>
 
     <h5 class="mb-2 font-sans text-center">Already have an Account? <a href="login.php"> Please Login here</a></h5>
     <h5 class="text-danger  text-center font-sans animated heartBeat slow">Note: 1) Following details will be used
-      for your Certificate Generation so please provide proper details.</h5>
+      for your Certificate <br/> Generation so please provide proper details.</h5>
 
     <div class="row">
 

@@ -24,18 +24,16 @@ if (isset($_SESSION['user'])) {
   <!-- header Scripts and Links -->
   <?php include_once "includes/headerScripts.php";?>
   <!--Local css-->
-  <link rel="stylesheet" href="css/event-reg.css">
+   <link rel="stylesheet" href="css/login.css">
   <!-- Google Recaptcha -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <link rel="stylesheet" href="css/login.css">
 
-  <title>GIT SHODH 2K20</title>
+  <title>GIT SHODH 2K21 Login Page</title>
 
 </head>
 
 <body>
 
-  <!-- PHP CODE START -->
   <?php
 
 if (isset($_POST["login"])) {
@@ -102,35 +100,29 @@ if (isset($_POST["login"])) {
 }
 ?>
 
-
-  <!-- PHP CODE END  -->
-
-
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand font-weight-bold" href="#">GIT SHODH/SYNERGY 2K20</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav font-weight-bold">
-        <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark" href="register.php">SHODH Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark" href="login.php">SHODH Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark" href="Admin/adminLogin.php">SHODH Admin Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-uppercase text-dark" href="Admin/synergyLogin.php">SYNERGY Admin Login</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-
+        <a class="navbar-brand font-weight-bold" href="#">GIT SHODH/SYNERGY 2K20</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav font-weight-bold">
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase text-dark" href="register.php">SHODH Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase text-dark" href="login.php">SHODH Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase text-dark" href="Admin/adminLogin.php">SHODH Admin Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase text-dark" href="Admin/synergyLogin.php">SYNERGY Admin Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
 
   <main class="container my-4">

@@ -17,25 +17,13 @@ if (isset($_SESSION['Admin'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SYNERGY 2K20 LOGIN</title>
 
-    <!--Event-Reg.css-->
-    <link rel="stylesheet" href="../css/event-reg.css">
     <!-- header Scripts and Links -->
     <?php include_once "../includes/headerScripts.php";?>
     <!-- Google Recaptcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- Local css -->
+    <link rel="stylesheet" href="css/synergyLogin.css">
 
-    <style>
-        .fa-users {
-            border-radius: 100%;
-            border: 2px solid #f0ad4e;
-            padding: 10px;
-        }
-
-        .font-time{
-            font-family: "Times New Roman";
-            font-weight: bold;
-        }
-    </style>
 </head>
 
 <body>
@@ -46,7 +34,6 @@ if (isset($_SESSION['Admin'])) {
 
 if (isset($_POST['login'])) {
 
-    // Removing White Spaces
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
@@ -80,9 +67,6 @@ if (isset($_POST['login'])) {
 }
 ?>
 
-    <!-- PHP CODE END -->
-
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand font-weight-bold" href="#">GIT SHODH/SYNERGY 2K20</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -114,7 +98,8 @@ if (isset($_POST['login'])) {
             <section class="col-md-6 offset-md-3">
                 <div class="card shadow p-5">
 
-                    <h2 class="text-center font-time text-uppercase">GIT <span class="text-danger">SYNERGY</span> 2K20 LOGIN</h2>
+                    <h2 class="text-center font-time text-uppercase">GIT <span class="text-danger">SYNERGY</span> 2K20
+                        LOGIN</h2>
                     <hr>
 
                     <form action="" method="post">

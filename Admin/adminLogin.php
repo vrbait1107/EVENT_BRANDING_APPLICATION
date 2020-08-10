@@ -28,11 +28,14 @@ if (isset($_SESSION['adminEmail']) && $_SESSION['adminType'] && $_SESSION['admin
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+
+   <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="Vishal Bait" />
     <title>Admin Login Page</title>
 
-    <!--Local CSS File -->
-    <link rel="stylesheet" href="../css/event-reg.css">
      <!-- header Scripts and Links -->
     <?php include_once "../includes/headerScripts.php";?>
     <!-- Google Recaptcha -->
@@ -151,17 +154,12 @@ if (isset($_POST['login'])) {
 }
 ?>
 
-    <!-- PHP CODE END   -->
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-        <a class="navbar-brand font-weight-bold" href="#">GIT SHODH/SYNERGY 2K20</a>
-
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand font-weight-bold" href="#">GIT SHODH/SYNERGY 2K21</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav font-weight-bold">
                 <li class="nav-item">
@@ -181,15 +179,13 @@ if (isset($_POST['login'])) {
     </nav>
 
 
-
-
     <main class="container">
         <div class="row">
             <section class="col-md-6 offset-md-3">
 
                 <div class="card shadow px-4 py-5">
                     <h2 class="text-center text-uppercase mt-4 font-time">GIT
-                   <span class="text-danger">SHODH</span> 2K20 ADMIN LOGIN</h2>
+                   <span class="text-danger">SHODH</span> 2K21 ADMIN LOGIN</h2>
 
                    <hr/>
 
