@@ -146,7 +146,7 @@ if (!isset($_SESSION['user'])) {
                         <p>Disabling your account will not remove your all data, It just temporary disable you account
                             disabling your account can be undone.</p>
 
-                        <p> There is way to restore your account go to login Page of GIT SHODH 2K20 & Click on Activate
+                        <p> There is way to restore your account go to login Page of GIT SHODH 2K21 & Click on Activate
                             my disable account link</p>
 
                         <form>
