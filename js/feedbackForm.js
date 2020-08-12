@@ -94,15 +94,17 @@ $(document).ready(function () {
       return false;
     }
 
-    let attendBefore = $("#attendBefore").val();
-    let likelyAttend = $("#likelyAttend").val();
-    let likelyRecommendFriend = $("#likelyRecommendFriend").val();
+    let attendBefore = $("input[type=radio][name=attendBefore]:checked").val();
+    let likelyAttend = $("input[type=radio][name=likelyAttend]:checked").val();
+    let likelyRecommendFriend = $(
+      "input[type=radio][name=likelyRecommendFriend]:checked"
+    ).val();
     let likeMost = $("#likeMost").val();
     let likeLeast = $("#likeLeast").val();
-    let location = $("#location").val();
-    let events = $("#events").val();
-    let coordinators = $("#coordinators").val();
-    let eventsPrice = $("#eventsPrice").val();
+    let location = $("input[type=radio][name=location]:checked").val();
+    let events = $("input[type=radio][name=events]:checked").val();
+    let coordinators = $("input[type=radio][name=coordinators]:checked").val();
+    let eventsPrice = $("input[type=radio][name=eventsPrice]:checked").val();
     let suggestion = $("#suggestion").val();
     let submit = "submit";
 

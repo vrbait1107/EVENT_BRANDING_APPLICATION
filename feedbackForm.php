@@ -61,9 +61,9 @@ if (!isset($_SESSION['user'])) {
                         <label class="font-weight-bold">Q.1 Have you participated in any event in GIT SHODH
                             before?</label>
                         <br />
-                        <input type="radio" name="attendBefore" id="attendBefore" value="yes">
+                        <input type="radio" name="attendBefore" class="attendBefore" value="yes">
                         <label>Yes</label> <br />
-                        <input type="radio" name="attendBefore" id="attendBefore" value="no">
+                        <input type="radio" name="attendBefore" class="attendBefore" value="no">
                         <label>No</label>
                     </div>
 
@@ -72,15 +72,15 @@ if (!isset($_SESSION['user'])) {
                         <label class="font-weight-bold">Q.2 How likely are you to attend one of our events in the
                             future?</label>
                         <br />
-                        <input type="radio" name="likelyAttend" id="likelyAttend" value="1">
+                        <input type="radio" name="likelyAttend" class="likelyAttend" value="1">
                         <label class="mr-5">1</label>
-                        <input type="radio" name="likelyAttend" id="likelyAttend" value="2">
+                        <input type="radio" name="likelyAttend" class="likelyAttend" value="2">
                         <label class="mr-5">2</label>
-                        <input type="radio" name="likelyAttend" id="likelyAttend" value="3">
+                        <input type="radio" name="likelyAttend" class="likelyAttend" value="3">
                         <label class="mr-5">3</label>
-                        <input type="radio" name="likelyAttend" id="likelyAttend" value="4">
+                        <input type="radio" name="likelyAttend" class="likelyAttend" value="4">
                         <label class="mr-5">4</label>
-                        <input type="radio" name="likelyAttend" id="likelyAttend" value="5">
+                        <input type="radio" name="likelyAttend" class="likelyAttend" value="5">
                         <label class="mr-5">5</label>
                     </div>
 
@@ -89,15 +89,15 @@ if (!isset($_SESSION['user'])) {
                         <label class="font-weight-bold">Q.3 How likely are you to recommend our events to a
                             friend?</label>
                         <br />
-                        <input type="radio" name="likelyRecommendFriend" id="likelyRecommendFriend" value="1">
+                        <input type="radio" name="likelyRecommendFriend" class="likelyRecommendFriend" value="1">
                         <label class="mr-5">1</label>
-                        <input type="radio" name="likelyRecommendFriend" id="likelyRecommendFriend" value="2">
+                        <input type="radio" name="likelyRecommendFriend" class="likelyRecommendFriend" value="2">
                         <label class="mr-5">2</label>
-                        <input type="radio" name="likelyRecommendFriend" id="likelyRecommendFriend" value="3">
+                        <input type="radio" name="likelyRecommendFriend" class="likelyRecommendFriend" value="3">
                         <label class="mr-5">3</label>
-                        <input type="radio" name="likelyRecommendFriend" id="likelyRecommendFriend" value="4">
+                        <input type="radio" name="likelyRecommendFriend" class="likelyRecommendFriend" value="4">
                         <label class="mr-5">4</label>
-                        <input type="radio" name="likelyRecommendFriend" id="likelyRecommendFriend" value="5">
+                        <input type="radio" name="likelyRecommendFriend" class="likelyRecommendFriend" value="5">
                         <label class="mr-5">5</label>
                     </div>
 
@@ -131,40 +131,40 @@ if (!isset($_SESSION['user'])) {
 
                                 <tr>
                                     <td>Location</td>
-                                    <td><input type="radio" name="location" id="location" value="1"></td>
-                                    <td><input type="radio" name="location" id="location" value="2"></td>
-                                    <td><input type="radio" name="location" id="location" value="3"></td>
-                                    <td><input type="radio" name="location" id="location" value="4"></td>
-                                    <td><input type="radio" name="location" id="location" value="5"></td>
+                                    <td><input type="radio" name="location" class="location" value="1"></td>
+                                    <td><input type="radio" name="location" class="location" value="2"></td>
+                                    <td><input type="radio" name="location" class="location" value="3"></td>
+                                    <td><input type="radio" name="location" class="location" value="4"></td>
+                                    <td><input type="radio" name="location" class="location" value="5"></td>
                                 </tr>
 
                                 <tr>
                                     <td>Events</td>
-                                    <td><input type="radio" name="events" id="events" value="1"></td>
-                                    <td><input type="radio" name="events" id="events" value="2"></td>
-                                    <td><input type="radio" name="events" id="events" value="3"></td>
-                                    <td><input type="radio" name="events" id="events" value="4"></td>
-                                    <td><input type="radio" name="events" id="events" value="5"></td>
+                                    <td><input type="radio" name="events" class="events" value="1"></td>
+                                    <td><input type="radio" name="events" class="events" value="2"></td>
+                                    <td><input type="radio" name="events" class="events" value="3"></td>
+                                    <td><input type="radio" name="events" class="events" value="4"></td>
+                                    <td><input type="radio" name="events" class="events" value="5"></td>
                                 </tr>
 
                                 <tr>
                                     <td>Events Coordinators</td>
-                                    <td><input type="radio" name="coordinators" id="coordinators" value="1">
+                                    <td><input type="radio" name="coordinators" class="coordinators" value="1">
                                     </td>
-                                    <td><input type="radio" name="coordinators" id="coordinators" value="2"></td>
-                                    <td><input type="radio" name="coordinators" id="coordinators" value="3"></td>
-                                    <td><input type="radio" name="coordinators" id="coordinators" value="4"></td>
-                                    <td><input type="radio" name="coordinators" id="coordinators" value="5">
+                                    <td><input type="radio" name="coordinators" class="coordinators" value="2"></td>
+                                    <td><input type="radio" name="coordinators" class="coordinators" value="3"></td>
+                                    <td><input type="radio" name="coordinators" class="coordinators" value="4"></td>
+                                    <td><input type="radio" name="coordinators" class="coordinators" value="5">
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>Event Fee</td>
-                                    <td><input type="radio" name="eventsPrice" id="eventsPrice" value="1"></td>
-                                    <td><input type="radio" name="eventsPrice" id="eventsPrice" value="2"></td>
-                                    <td><input type="radio" name="eventsPrice" id="eventsPrice" value="3"></td>
-                                    <td><input type="radio" name="eventsPrice" id="eventsPrice" value="4"></td>
-                                    <td><input type="radio" name="eventsPrice" id="eventsPrice" value="5">
+                                    <td><input type="radio" name="eventsPrice" class="eventsPrice" value="1"></td>
+                                    <td><input type="radio" name="eventsPrice" class="eventsPrice" value="2"></td>
+                                    <td><input type="radio" name="eventsPrice" class="eventsPrice" value="3"></td>
+                                    <td><input type="radio" name="eventsPrice" class="eventsPrice" value="4"></td>
+                                    <td><input type="radio" name="eventsPrice" class="eventsPrice" value="5">
                                     </td>
                                 </tr>
 

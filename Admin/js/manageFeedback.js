@@ -44,7 +44,7 @@ $(document).ready(function () {
 
         if (totalFeedback > 0) {
           $("#totalFeedback").html(
-            `<b class="text-danger" style="font-size: 25px;">Rating:- ${statistics.totalFeedback}</b>`
+            `<b class="text-danger" style="font-size: 25px;">Feedbacks:- ${statistics.totalFeedback}</b>`
           );
           $("#likelyAttendRating").html(
             `<b class="text-danger" style="font-size: 25px;">Rating:- ${statistics.likelyAttendRating}</b>`
