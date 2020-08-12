@@ -105,3 +105,44 @@ if (isset($_POST['viewEmail'])) {
     echo $data;
 
 }
+
+//------------------------------------->> STATISTICS
+
+if (isset($_POST["statistics"])) {
+
+    // ----------------------->> FUNCTION TO CALUATE AVERAGE RATING
+    function feedbackStatistics($conn, $parameter)
+    {
+        $sql1 = "SELECT AVG($parameter) As statistics FROM feedback_information";
+        $result1 = $conn->prepare($sql1);
+        $result1->execute();
+        $row1 = $result1->fetch(PDO::FETCH_ASSOC);
+        $value = $row1["statistics"];
+        return $value;
+    };
+
+    $sql = "SELECT * FROM feedback_information";
+    $result = $conn->prepare($sql);
+    $result->execute();
+
+    if ($result->rowCount() > 0) {
+        $totalFeedback = $result->rowCount();
+
+        $likelyAttendRating = feedbackStatistics($conn, "likelyAttend");
+        $likelyRecommendRating = feedbackStatistics($conn, "likelyRecommendFriend");
+        $eventLocationRating = feedbackStatistics($conn, "location");
+        $eventRating = feedbackStatistics($conn, "events");
+        $eventCoordinatorRating = feedbackStatistics($conn, "coordinators");
+        $eventFeeRating = feedbackStatistics($conn, "eventsPrice");
+
+        $newArray = array("totalFeedback" => $totalFeedback, "likelyAttendRating" => $likelyAttendRating,
+            "likelyRecommendRating" => $likelyRecommendRating, "eventLocationRating" => $eventLocationRating, "eventRating" => $eventRating, "eventCoordinatorRating" => $eventCoordinatorRating,
+            "eventFeeRating" => $eventFeeRating);
+
+        $data = json_encode($newArray);
+
+        echo $data;
+
+    }
+
+}

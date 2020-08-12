@@ -103,87 +103,79 @@ if (!isset($_SESSION['user'])) {
 
                     <div class="form-group">
                         <label class="font-weight-bold">Q.4 What did you like most about the event?</label>
-                        <textarea name="likeMost" id="likeMost" cols="30" rows="3" class="form-control"></textarea>
+                        <textarea name="likeMost" id="likeMost" cols="30" rows=3 class="form-control"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label class="font-weight-bold">Q.5 What did you like least about the event?</label>
-                        <textarea name="likeLeast" id="likeLeast" cols="30" rows="3" class="form-control"></textarea>
+                        <textarea name="likeLeast" id="likeLeast" cols="30" rows=3 class="form-control"></textarea>
                     </div>
 
                     <div class="table-responsive">
 
-                    <label class="font-weight-bold">Q.6 Overall Satisfaction</label>
+                        <label class="font-weight-bold">Q.6 Overall Satisfaction</label>
 
-                    <table class="table table-bordered">
-                        <thead class="text-center">
-                            <tr>
-                                <th>Parameter</th>
-                                <th>Very Satisfied</th>
-                                <th>Satisfied</th>
-                                <th>Neutral</th>
-                                <th>Unsatisfied</th>
-                                <th>Very Unsatisfied</th>
-                            </tr>
-                        </thead>
+                        <table class="table table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Rating: 1</th>
+                                    <th>Rating: 2</th>
+                                    <th>Rating: 3</th>
+                                    <th>Rating: 4</th>
+                                    <th>Rating: 5</th>
+                                </tr>
+                            </thead>
 
-                        <tbody class="text-center">
-                            <tr>
-                                <td>Overall Satisfaction</td>
-                                <td><input type="radio" name="overall" id="overall" value="Very Satisfied"></td>
-                                <td><input type="radio" name="overall" id="overall" value="Satisfied"></td>
-                                <td><input type="radio" name="overall" id="overall" value="Neutral"></td>
-                                <td><input type="radio" name="overall" id="overall" value="Unsatisfied"></td>
-                                <td><input type="radio" name="overall" id="overall" value="Very Unsatisfied"></td>
-                            </tr>
+                            <tbody class="text-center">
 
-                            <tr>
-                                <td>Location</td>
-                                <td><input type="radio" name="location" id="location" value="Very Satisfied"></td>
-                                <td><input type="radio" name="location" id="location" value="Satisfied"></td>
-                                <td><input type="radio" name="location" id="location" value="Neutral"></td>
-                                <td><input type="radio" name="location" id="location" value="Unsatisfied"></td>
-                                <td><input type="radio" name="location" id="location" value="Very Unsatisfied"></td>
-                            </tr>
+                                <tr>
+                                    <td>Location</td>
+                                    <td><input type="radio" name="location" id="location" value="1"></td>
+                                    <td><input type="radio" name="location" id="location" value="2"></td>
+                                    <td><input type="radio" name="location" id="location" value="3"></td>
+                                    <td><input type="radio" name="location" id="location" value="4"></td>
+                                    <td><input type="radio" name="location" id="location" value="5"></td>
+                                </tr>
 
-                            <tr>
-                                <td>Events</td>
-                                <td><input type="radio" name="events" id="events" value="Very Satisfied"></td>
-                                <td><input type="radio" name="events" id="events" value="Satisfied"></td>
-                                <td><input type="radio" name="events" id="events" value="Neutral"></td>
-                                <td><input type="radio" name="events" id="events" value="Unsatisfied"></td>
-                                <td><input type="radio" name="events" id="events" value="Very Unsatisfied"></td>
-                            </tr>
+                                <tr>
+                                    <td>Events</td>
+                                    <td><input type="radio" name="events" id="events" value="1"></td>
+                                    <td><input type="radio" name="events" id="events" value="2"></td>
+                                    <td><input type="radio" name="events" id="events" value="3"></td>
+                                    <td><input type="radio" name="events" id="events" value="4"></td>
+                                    <td><input type="radio" name="events" id="events" value="5"></td>
+                                </tr>
 
-                            <tr>
-                                <td>Events Coordinators</td>
-                                <td><input type="radio" name="coordinators" id="coordinators" value="Very Satisfied">
-                                </td>
-                                <td><input type="radio" name="coordinators" id="coordinators" value="Satisfied"></td>
-                                <td><input type="radio" name="coordinators" id="coordinators" value="Neutral"></td>
-                                <td><input type="radio" name="coordinators" id="coordinators" value="Unsatisfied"></td>
-                                <td><input type="radio" name="coordinators" id="coordinators" value="Very Unsatisfied">
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>Events Coordinators</td>
+                                    <td><input type="radio" name="coordinators" id="coordinators" value="1">
+                                    </td>
+                                    <td><input type="radio" name="coordinators" id="coordinators" value="2"></td>
+                                    <td><input type="radio" name="coordinators" id="coordinators" value="3"></td>
+                                    <td><input type="radio" name="coordinators" id="coordinators" value="4"></td>
+                                    <td><input type="radio" name="coordinators" id="coordinators" value="5">
+                                    </td>
+                                </tr>
 
-                            <tr>
-                                <td>Event Price</td>
-                                <td><input type="radio" name="eventsPrice" id="eventsPrice" value="Very Satisfied"></td>
-                                <td><input type="radio" name="eventsPrice" id="eventsPrice" value="Satisfied"></td>
-                                <td><input type="radio" name="eventsPrice" id="eventsPrice" value="Neutral"></td>
-                                <td><input type="radio" name="eventsPrice" id="eventsPrice" value="Unsatisfied"></td>
-                                <td><input type="radio" name="eventsPrice" id="eventsPrice" value="Very Unsatisfied">
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>Event Fee</td>
+                                    <td><input type="radio" name="eventsPrice" id="eventsPrice" value="1"></td>
+                                    <td><input type="radio" name="eventsPrice" id="eventsPrice" value="2"></td>
+                                    <td><input type="radio" name="eventsPrice" id="eventsPrice" value="3"></td>
+                                    <td><input type="radio" name="eventsPrice" id="eventsPrice" value="4"></td>
+                                    <td><input type="radio" name="eventsPrice" id="eventsPrice" value="5">
+                                    </td>
+                                </tr>
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
                     </div>
 
 
                     <div class="form-group">
                         <label class="font-weight-bold">Q.7 How can we improve this event?</label>
-                        <textarea name="suggestion" id="suggestion" cols="30" rows="3" class="form-control"></textarea>
+                        <textarea name="suggestion" id="suggestion" cols="30" rows=3 class="form-control"></textarea>
                     </div>
 
                     <div class="text-center my-2">

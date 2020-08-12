@@ -1,6 +1,8 @@
 let readRecordFeedback;
+let readStatistics;
 
 $(document).ready(function () {
+  // ----------------->> READING RECORD OF FEEDBACK
   readRecordFeedback = () => {
     let readRecord = "readRecord";
 
@@ -25,6 +27,54 @@ $(document).ready(function () {
   };
 
   readRecordFeedback();
+
+  readStatistics = () => {
+    let statistics = "statistics";
+
+    $.ajax({
+      url: "ajaxHandlerPHP/ajaxManageFeedback.php",
+      type: "post",
+      data: {
+        statistics: statistics,
+      },
+      success(data) {
+        console.log(data);
+        let statistics = JSON.parse(data);
+        let totalFeedback = parseFloat(statistics.totalFeedback);
+
+        if (totalFeedback > 0) {
+          $("#totalFeedback").html(
+            `<b class="text-danger" style="font-size: 25px;">Rating:- ${statistics.totalFeedback}</b>`
+          );
+          $("#likelyAttendRating").html(
+            `<b class="text-danger" style="font-size: 25px;">Rating:- ${statistics.likelyAttendRating}</b>`
+          );
+          $("#likelyRecommendRating").html(
+            `<b class="text-danger" style="font-size: 25px;">Rating:- ${statistics.likelyRecommendRating}</b>`
+          );
+          $("#eventLocationRating").html(
+            `<b class="text-danger" style="font-size: 25px;">Rating:- ${statistics.eventLocationRating}</b>`
+          );
+          $("#eventRating").html(
+            `<b class="text-danger" style="font-size: 25px;">Rating:- ${statistics.eventRating}</b>`
+          );
+          $("#eventCoordinatorRating").html(
+            `<b class="text-danger" style="font-size: 25px;">Rating:- ${statistics.eventCoordinatorRating}</b>`
+          );
+          $("#eventFeeRating").html(
+            `<b class="text-danger" style="font-size: 25px;">Rating:- ${statistics.eventFeeRating}</b>`
+          );
+        } else {
+          $("#statisticsData").html("No Feedback Form submitted");
+        }
+      },
+      error(err) {
+        alert("Something Went Wrong");
+      },
+    });
+  };
+
+  readStatistics();
 });
 
 // --------------------->>  DELETE FEEDBACK INFORMATION
@@ -54,6 +104,7 @@ const deleteFeedbackInformation = (email) => {
             destroy: true, //use for reinitialize datatable
           });
           readRecordFeedback();
+          readStatistics();
         },
         error() {
           $("#deleteResponse").html("Something Went Wrong");
@@ -75,18 +126,17 @@ const viewFeedbackInformation = (email) => {
     success(data) {
       let feedback = JSON.parse(data);
 
-      $("#responseQ1").html("Feedback Answer =>" + feedback.attendBefore);
-      $("#responseQ2").html("Feedback Answer =>" + feedback.likelyAttend);
+      $("#responseQ1").html("Feedback Answer -->" + feedback.attendBefore);
+      $("#responseQ2").html("Feedback Answer -->" + feedback.likelyAttend);
       $("#responseQ3").html(
         "Feedback Answer =>" + feedback.likelyRecommendFriend
       );
-      $("#responseQ4").html("Feedback Answer =>" + feedback.likeMost);
-      $("#responseQ5").html("Feedback Answer =>" + feedback.likeLeast);
-      $("#responseQ61").html("Feedback Answer =>" + feedback.overall);
-      $("#responseQ62").html("Feedback Answer =>" + feedback.location);
-      $("#responseQ63").html("Feedback Answer =>" + feedback.events);
-      $("#responseQ64").html("Feedback Answer =>" + feedback.coordinators);
-      $("#responseQ65").html("Feedback Answer =>" + feedback.eventsPrice);
+      $("#responseQ4").html("Feedback Answer -->" + feedback.likeMost);
+      $("#responseQ5").html("Feedback Answer -->" + feedback.likeLeast);
+      $("#responseQ62").html("Feedback Answer -->" + feedback.location);
+      $("#responseQ63").html("Feedback Answer -->" + feedback.events);
+      $("#responseQ64").html("Feedback Answer -->" + feedback.coordinators);
+      $("#responseQ65").html("Feedback Answer -->" + feedback.eventsPrice);
       $("#responseQ7").html(feedback.suggestion);
       $("#responseDate").html(feedback.feedbackDate);
     },

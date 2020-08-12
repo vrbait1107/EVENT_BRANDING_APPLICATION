@@ -33,9 +33,9 @@ if (isset($_POST['submit'])) {
             } else {
 
                 $sql = "INSERT INTO feedback_information (email, attendBefore, likelyAttend, likelyRecommendFriend,
-     likeMost, likeLeast, overall, location, events, coordinators, eventsPrice, suggestion) VALUES
-      (:email, :attendBefore, :likelyAttend, :likelyRecommendFriend, :likeMost, :likeLeast,
-      :overall, :location, :events, :coordinators, :eventsPrice, :suggestion )";
+     likeMost, likeLeast, location, events, coordinators, eventsPrice, suggestion) VALUES
+      (:email, :attendBefore, :likelyAttend, :likelyRecommendFriend, :likeMost, :likeLeast, :location,
+       :events, :coordinators, :eventsPrice, :suggestion )";
 
                 //Preparing Query
                 $result = $conn->prepare($sql);
@@ -47,7 +47,6 @@ if (isset($_POST['submit'])) {
                 $result->bindValue(":likelyRecommendFriend", $likelyRecommendFriend);
                 $result->bindValue(":likeMost", $likeMost);
                 $result->bindValue(":likeLeast", $likeLeast);
-                $result->bindValue(":overall", $overall);
                 $result->bindValue(":location", $location);
                 $result->bindValue(":events", $events);
                 $result->bindValue(":coordinators", $coordinators);

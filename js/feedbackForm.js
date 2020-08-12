@@ -49,7 +49,7 @@ $(document).ready(function () {
       return false;
     }
 
-    if ($("input[type=radio][name=overall]:checked").length == 0) {
+    if ($("input[type=radio][name=location]:checked").length == 0) {
       Swal.fire({
         icon: "warning",
         title: "Required",
@@ -58,7 +58,7 @@ $(document).ready(function () {
       return false;
     }
 
-    if ($("input[type=radio][name=location]:checked").length == 0) {
+    if ($("input[type=radio][name=events]:checked").length == 0) {
       Swal.fire({
         icon: "warning",
         title: "Required",
@@ -67,7 +67,7 @@ $(document).ready(function () {
       return false;
     }
 
-    if ($("input[type=radio][name=events]:checked").length == 0) {
+    if ($("input[type=radio][name=coordinators]:checked").length == 0) {
       Swal.fire({
         icon: "warning",
         title: "Required",
@@ -76,20 +76,11 @@ $(document).ready(function () {
       return false;
     }
 
-    if ($("input[type=radio][name=coordinators]:checked").length == 0) {
-      Swal.fire({
-        icon: "warning",
-        title: "Required",
-        text: "Please Select Atleast One Option for Question 6 Parameter 4",
-      });
-      return false;
-    }
-
     if ($("input[type=radio][name=eventsPrice]:checked").length == 0) {
       Swal.fire({
         icon: "warning",
         title: "Required",
-        text: "Please Select Atleast One Option for Question 6 Parameter 5",
+        text: "Please Select Atleast One Option for Question 6 Parameter 4",
       });
       return false;
     }
@@ -108,7 +99,6 @@ $(document).ready(function () {
     let likelyRecommendFriend = $("#likelyRecommendFriend").val();
     let likeMost = $("#likeMost").val();
     let likeLeast = $("#likeLeast").val();
-    let overall = $("#overall").val();
     let location = $("#location").val();
     let events = $("#events").val();
     let coordinators = $("#coordinators").val();
@@ -126,7 +116,6 @@ $(document).ready(function () {
         likelyRecommendFriend: likelyRecommendFriend,
         likeMost: likeMost,
         likeLeast: likeLeast,
-        overall: overall,
         location: location,
         events: events,
         coordinators: coordinators,

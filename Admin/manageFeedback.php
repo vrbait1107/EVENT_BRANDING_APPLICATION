@@ -43,6 +43,13 @@ include_once "includes/commonAnchor.php";
         <main class="container-fluid">
 
             <h1 class="font-time mt-3 mb-1">Manage Feedbacks</h1> <br />
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-primary mb-5" data-toggle="modal"
+                data-target="#statisticsModal">
+                View Statistics
+            </button>
+
             <div class="row">
                 <section class="col-md-12">
                     <div id="readRecordFeedback"></div>
@@ -51,7 +58,7 @@ include_once "includes/commonAnchor.php";
         </main>
 
 
-        <!-- Add Modal -->
+        <!-- Feedback Modal -->
         <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -86,15 +93,13 @@ include_once "includes/commonAnchor.php";
                         <hr />
 
                         <h5 class="text-info">Q.6 Overall Satisfaction</h5>
-                        <p>1. Overall Satisfaction</p>
-                        <p id="responseQ61"></p>
                         <p>2. Location</p>
                         <p id="responseQ62"></p>
                         <p>3. Event</p>
                         <p id="responseQ63"></p>
                         <p>4. Event Coordinator</p>
                         <p id="responseQ64"></p>
-                        <p>5. Event Price</p>
+                        <p>5. Event Fee</p>
                         <p id="responseQ65"></p>
                         <hr />
 
@@ -114,6 +119,94 @@ include_once "includes/commonAnchor.php";
                 </div>
             </div>
         </div>
+
+
+        <!-- Statistics Modal -->
+        <div class="modal fade" id="statisticsModal" tabindex="-1" role="dialog" aria-labelledby="statisticsModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="statisticsModalLabel">FEEDBACK INFORMATION STATISTICS</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div id="statisticsData">
+
+                            <div>
+                                <label for="totalFeedback" style="font-size: 20px;">Total Feedback Submitted</label>
+                                <p id="totalFeedback"></p>
+                            </div>
+
+                            <hr />
+
+                            <div>
+                                <label for="likelyAttendRating" style="font-size: 20px;">Average Likely Attend
+                                    Rating</label>
+                                <p id="likelyAttendRating"></p>
+                            </div>
+
+                            <hr />
+
+                            <div>
+                                <label for="likelyRecommendRating" style="font-size: 20px;">Average Recommend
+                                    Rating</label>
+                                <p id="likelyRecommendRating"></p>
+                            </div>
+
+                            <hr />
+
+                            <div>
+                                <label for="eventLocationRating" style="font-size: 20px;">Average Event Location
+                                    Rating</label>
+                                <p id="eventLocationRating"></p>
+                            </div>
+
+                            <hr />
+
+                            <div>
+                                <label for="eventRating" style="font-size: 20px;">Average Event Rating</label>
+                                <p id="eventRating"></p>
+                            </div>
+
+                            <hr />
+
+
+                            <div>
+                                <label for="eventCoordinatorRating" style="font-size: 20px;">Average Event Coordinator
+                                    Rating</label>
+                                <p id="eventCoordinatorRating"></p>
+                            </div>
+
+                            <hr />
+
+                            <div>
+                                <label for="eventFeeRating" style="font-size: 20px;">Average Event Fee Rating</label>
+                                <p id="eventFeeRating"></p>
+                            </div>
+
+                            <hr />
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
 
 
 
