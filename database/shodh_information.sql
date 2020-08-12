@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2020 at 06:20 PM
+-- Generation Time: Aug 12, 2020 at 05:11 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -43,7 +43,7 @@ CREATE TABLE `admin_information` (
 --
 
 INSERT INTO `admin_information` (`email`, `adminType`, `adminDepartment`, `adminEvent`, `adminPassword`, `token`, `tokenDate`) VALUES
-('apandharkame6@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Project Presentation', '$2y$10$tI54SibBp9Y5n//R877jaeqd79ONQpSVjXCxN08KomeHs21lqd.X.', NULL, NULL),
+('apandharkame6@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Project Presentation', '$2y$10$92WwiPtVIruxlqnnl6Dvt.394Wr1Eoe01GboNAiMQEly3gDt2/hgy', NULL, NULL),
 ('facultychem@gmail.com', 'Faculty Coordinator', 'Chemical', 'Not Applicable', '$2y$10$bh6XlE4eGGI9jmy7ugj7Heqg2pB32fr3wJTxrNE0Zo8yUZO2YXpNa', NULL, NULL),
 ('facultycivil@gmail.com', 'Faculty Coordinator', 'Civil', 'Not Applicable', '$2y$10$CCif/fe5WP0BRIgG/Mu/hu3GsXX.6V3aIW.JJCVy8QWlVxyDJWmku', NULL, NULL),
 ('facultycomp@gmail.com', 'Faculty Coordinator', 'Computer', 'Not Applicable', '$2y$10$.OSqZd0VjIp47cE2oz9fxeg1se/mAWqbUeigbXUMuVWAV/09dHWX.', NULL, NULL),
@@ -85,7 +85,7 @@ CREATE TABLE `events_details_information` (
 --
 
 INSERT INTO `events_details_information` (`id`, `eventImage`, `eventName`, `eventPrice`, `promocode`, `discount`, `eventPrize`, `eventSponsor`, `eventDepartment`, `eventDescription`, `eventRules`, `eventCoordinator`, `eventStartDate`, `eventEndDate`) VALUES
-(3, 'extcProject.jpg', 'EXTC Project Presentation', 200, 'techfest123', 10, 2000, 'Gharda Foundation', 'Electronics and Telecommunication', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
+(3, 'extcProject.jpg', 'EXTC Project Presentation', 200, 'techfest123', 10, 2000, 'Gharda Foundation', 'Electronics and Telecommunication', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi optio dolores, reprehenderit doloribus.</p>\n', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi optio dolores, reprehenderit doloribus.</p>\n', '<p><strong>Name:- Vishal Bait</strong></p>\n\n<p><strong>Mobile Number:- 9373241085</strong></p>\n', '2021-04-15', '2021-04-16'),
 (4, 'calciwar.jpg', 'Calci War', 50, 'Not Applicable', 0, 500, 'Gharda Foundation', 'Electronics and Telecommunication', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
 (5, 'techBoss.jpg', 'Tech Boss', 100, 'Not Applicable', 0, 1000, 'Gharda Foundation', 'Electronics and Telecommunication', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
 (6, 'funTech.jpg', 'Fun Tech', 100, 'Not Applicable', 0, 1000, 'Gharda Foundation', 'Electronics and Telecommunication', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
@@ -135,7 +135,7 @@ CREATE TABLE `event_information` (
 --
 
 INSERT INTO `event_information` (`email`, `certificateId`, `event`, `paymentType`, `prize`, `gatewayName`, `resMsg`, `bankName`, `txnId`, `txnAmount`, `orderId`, `status`, `bankTxnId`, `txnDate`, `attendStatus`) VALUES
-('vishalbait02@gmail.com', 1093415090, 'EXTC Project Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200628111212800110168406901676296', '200.00', 'ORDS24739690', 'TXN_SUCCESS', '62726009', '2020-06-28 22:29:42.000000', 'absent'),
+('vishalbait01@gmail.com', 1304984771, 'EXTC Project Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200811111212800110168692401796095', '200.00', 'ORDS91250512', 'TXN_SUCCESS', '63017021', '2020-08-11 15:53:34.000000', 'present'),
 ('vishalbait02@gmail.com', 1636529635, 'Chemical Paper Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200628111212800110168059701676201', '150.00', 'ORDS43447762', 'TXN_SUCCESS', '62726044', '2020-06-28 22:44:35.000000', 'absent');
 
 -- --------------------------------------------------------
@@ -147,11 +147,10 @@ INSERT INTO `event_information` (`email`, `certificateId`, `event`, `paymentType
 CREATE TABLE `feedback_information` (
   `email` varchar(150) NOT NULL,
   `attendBefore` varchar(30) NOT NULL,
-  `likelyAttend` varchar(30) NOT NULL,
+  `likelyAttend` varchar(50) NOT NULL,
   `likelyRecommendFriend` varchar(50) NOT NULL,
   `likeMost` varchar(200) NOT NULL,
   `likeLeast` varchar(200) NOT NULL,
-  `overall` varchar(50) NOT NULL,
   `location` varchar(50) NOT NULL,
   `events` varchar(50) NOT NULL,
   `coordinators` varchar(50) NOT NULL,
@@ -159,6 +158,13 @@ CREATE TABLE `feedback_information` (
   `suggestion` varchar(255) NOT NULL,
   `feedbackDate` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feedback_information`
+--
+
+INSERT INTO `feedback_information` (`email`, `attendBefore`, `likelyAttend`, `likelyRecommendFriend`, `likeMost`, `likeLeast`, `location`, `events`, `coordinators`, `eventsPrice`, `suggestion`, `feedbackDate`) VALUES
+('vishalbait01@gmail.com', 'no', '4', '4', 'Good', 'Good', '2', '3', '2', '5', 'Good', '2020-08-12 20:15:07');
 
 -- --------------------------------------------------------
 
@@ -207,6 +213,13 @@ CREATE TABLE `newsletter_information` (
   `email` varchar(100) NOT NULL,
   `subscribe` varchar(50) NOT NULL DEFAULT 'No'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `newsletter_information`
+--
+
+INSERT INTO `newsletter_information` (`id`, `email`, `subscribe`) VALUES
+(1, 'vishalbait01@gmail.com', 'Yes');
 
 -- --------------------------------------------------------
 
@@ -414,7 +427,7 @@ ALTER TABLE `gallery_information`
 -- AUTO_INCREMENT for table `newsletter_information`
 --
 ALTER TABLE `newsletter_information`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `news_information`
