@@ -59,6 +59,6 @@
         </div>
     </div>
     <div class="text-center">
-        &copy; 2020 GIT SHODH All Rights Reserved.
+        &copy; 2021 GIT SHODH All Rights Reserved.
     </div>
 </footer>

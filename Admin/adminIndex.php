@@ -126,23 +126,22 @@ function countRevenue($department)
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="author" content="Vishal Bait" />
     <title>Administrator</title>
 
     <!-- Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 
 </head>
 
 <body class="sb-nav-fixed">
 
-    <!-- Admin Navbar -->
+    <!-- Admin Navbar & Common Anchor -->
     <?php
-
-$adminFileName = "adminIndex.php";
-$adminFileData = "adminIndexData.php";
-$adminManage = "adminManage.php";
-
+include_once "includes/commonAnchor.php";
 include_once "includes/adminNavbar.php";
 ?>
 
@@ -240,7 +239,7 @@ include_once "includes/adminNavbar.php";
 
             <!-- Collaspe Bar for Display Data-->
 
-            <div class="accordion" id="accordionExample">
+            <div class="accordion mb-5" id="accordionExample">
                 <div class="card">
 
                     <!--Collaspe One-->
@@ -256,15 +255,15 @@ include_once "includes/adminNavbar.php";
 
                     <!--Collaspe One Target-->
 
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                        data-parent="#accordionExample">
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 
 
                         <div class="row">
 
                             <?php
 
-$departmentArray = ["Electronics and Telecommunication", "Chemical", "Computer", "Civil", "Mechanical"];
+$departmentArray = ["Electronics and Telecommunication", "Chemical",
+    "Computer", "Civil", "Mechanical"];
 for ($i = 0; $i < 5; $i++) {
 
     ?>
@@ -291,8 +290,6 @@ for ($i = 0; $i < 5; $i++) {
                                     </div>
                                 </div>
                             </section>
-
-
 
 
                             <!-- Total Revenue Department Wise -->
@@ -337,15 +334,15 @@ for ($i = 0; $i < 5; $i++) {
 
                     <!--Collaspe Two Target-->
 
-                    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
-                        data-parent="#accordionExample">
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 
 
                         <div class="row">
 
                             <?php
 
-$departmentArray = ["Electronics and Telecommunication", "Chemical", "Computer", "Civil", "Mechanical"];
+$departmentArray = ["Electronics and Telecommunication", "Chemical",
+    "Computer", "Civil", "Mechanical"];
 for ($i = 0; $i < 5; $i++) {
 
     ?>
@@ -377,6 +374,38 @@ for ($i = 0; $i < 5; $i++) {
 }
 ?>
 
+
+                        </div>
+                    </div>
+
+
+                    <!--Google Charts Collaspe Three-->
+
+                    <div class="card-header" id="headingThree">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree"
+                            aria-expanded="true" aria-controls="collapseThree">
+                            <h5 class="text-center text-uppercase my-2 font-time">Charts</h5>
+                        </button>
+                    </div>
+
+
+                    <!--Collaspe Three Target-->
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                        data-parent="#accordionExample">
+
+                        <div class="row">
+
+                            <!-- Google Chart -->
+                            <div class="row my-5" style="width: 800px; height: 500px; margin-left: 80px;"
+                                id="revenueChartDepartmentWise">
+                            </div>
+
+                            <!-- Google Chart -->
+                            <div class="row my-5" style="width: 800px; height: 500px; margin-left: 80px;"
+                                id="participantCountChartDepartmentWise">
+                            </div>
+
+
                         </div>
                     </div>
 
@@ -389,13 +418,16 @@ for ($i = 0; $i < 5; $i++) {
         <?php include_once "includes/adminFooter.php";?>
     </div>
 
-    <!-- Admin Footer Scripts -->
-    <?php include_once "includes/adminFooterScripts.php";?>
-
-     <?php
-// closing Database Connnection
+    <?php
+// Admin Footer Scripts
+include_once "includes/adminFooterScripts.php";
+?>
+    <script src="js/adminIndex.js"></script>
+    <?php
+// Closing Database Connnection
 $conn = null;
 ?>
+
 
 </body>
 

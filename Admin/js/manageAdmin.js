@@ -1,7 +1,7 @@
 let readrecordAdmin;
 
 $(document).ready(function () {
-  // ##############  Reading Record
+  // ---------------------------->>  Reading Record
   readrecordAdmin = () => {
     let readRecord = "readRecord";
 
@@ -27,7 +27,7 @@ $(document).ready(function () {
 
   readrecordAdmin();
 
-  // ###############   Add Admin
+  //---------------------------->>   CREATE OPERATION ADMIN
   $("#addAdmin").click(function () {
     let email = $("#email").val();
     let adminType = $("#adminType").val();
@@ -107,7 +107,8 @@ $(document).ready(function () {
   });
 });
 
-// #############   Deleting User
+// ---------------------------->> DELETE OPERATION ADMIN
+
 const deleteUser = (deleteEmail) => {
   console.log(deleteEmail);
 
@@ -139,7 +140,7 @@ const deleteUser = (deleteEmail) => {
   });
 };
 
-// ########### Retiive Admin Details
+// // ---------------------------->> EDIT OPERATION ADMIN
 
 let getAdminDetails = (editEmail) => {
   $("#hiddenEmail").val(editEmail);
@@ -163,7 +164,7 @@ let getAdminDetails = (editEmail) => {
   $("#updateModal1").modal("show");
 };
 
-// ########### Update Admin Details
+// // ---------------------------->> UPDATE OPERATION ADMIN
 
 const updateAdminDetails = () => {
   let updateEmail = $("#updateEmail").val();

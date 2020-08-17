@@ -136,10 +136,10 @@ if (isset($_POST["readRecord"])) {
                             <td>' . $row['adminDepartment'] . '</td>
                             <td>' . $row['adminEvent'] . '</td>
                             <td>
-                            <button class="btn btn-primary" onclick= ' . "getAdminDetails('$mail')" . '><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-outline-primary" onclick= ' . "getAdminDetails('$mail')" . '><i class="fas fa-edit"></i></button>
                              </td>
                             <td>
-                            <button class="btn btn-danger" onclick= ' . "deleteUser('$mail')" . ' ><i class="fa fa-trash-alt"></i></button>
+                            <button class="btn btn-outline-danger" onclick= ' . "deleteUser('$mail')" . ' ><i class="fa fa-trash-alt"></i></button>
                             </td>
 
                             </tr>';
