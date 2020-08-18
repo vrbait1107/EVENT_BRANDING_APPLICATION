@@ -85,6 +85,27 @@
 
                     <div class="sb-sidenav-menu-heading">Addons</div>
 
+                         <!-- Charts-->
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#charts"
+                        aria-expanded="false" aria-controls="charts">
+                        Charts
+                        <div class="sb-sidenav-collapse-arrow">
+                            <i class="fas fa-angle-down"></i>
+                        </div>
+                    </a>
+
+                    <div class="collapse" id="charts">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="<?php echo $adminFileCharts; ?>">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                View Event Statistics
+                            </a>
+                        </nav>
+                    </div>
+
+
 
                     <!-- Participants-->
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#participants"

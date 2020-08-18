@@ -16,54 +16,36 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
 $department = $_SESSION["adminDepartment"];
 
-// display participation count and total revenue
+// DISPLAY PARTICIPATION COUNT & TOTAL REVENUE
 
 $sqlData = "SELECT * FROM event_information
     WHERE event IN (SELECT events_details_information.eventName
     FROM events_details_information WHERE eventDepartment ='$department')";
-
-//Preparing Query
 $resultData = $conn->prepare($sqlData);
-
-//Binding values
 $resultData->bindValue(":department", $department);
-
-//Executing Query
 $resultData->execute();
-
 $rowCount = $resultData->rowCount();
-
 $totalAmount = 0;
 
 while ($rowData = $resultData->fetch(PDO::FETCH_ASSOC)) {
     $totalAmount = $totalAmount + $rowData['txnAmount'];
 }
 
-// display admin information count
+// DISPLAY ADMIN INFORMATION COUNT
+
 $sqlDataAdmin = "SELECT * FROM admin_information
     WHERE adminType = :studentCoordinator AND adminDepartment = :department";
-
-//Preparing Query
 $resultDataAdmin = $conn->prepare($sqlDataAdmin);
-
-//Binding Value
 $resultDataAdmin->bindValue(":studentCoordinator", "Student Coordinator");
 $resultDataAdmin->bindValue(":department", $department);
-
 $rowCountAdmin = $resultDataAdmin->rowCount();
 
-//Extracting Event Name from Database in Array to Show Event Details.
+// EXTRACTING EVENT NAME FROM DBIN ARRAY.
 
 $sqlData1 = "SELECT eventName from events_details_information
      WHERE eventDepartment = :department";
-
-//Preparing Query
 $resultData1 = $conn->prepare($sqlData1);
-
-//Binding Values
 $resultData1->bindValue(":department", $department);
-
-//Executing Query
 $resultData1->execute();
 
 $events = array();
@@ -72,46 +54,27 @@ while ($rowData1 = $resultData1->fetch(PDO::FETCH_ASSOC)) {
     array_push($events, $rowData1['eventName']);
 }
 
-// Participation Count Department Wise
+// PARTICIPANTS COUNT EVENT WISE
 
 function count1($event)
 {
-
     global $conn;
-
     $sql = "SELECT * FROM event_information WHERE event = '$event'";
-
-    //Preparing Query
     $result = $conn->prepare($sql);
-
-    //Binding Values
     $result->bindValue(":event", $event);
-
-    //Executing Value
     $result->execute();
-
     $row = $result->rowCount();
-
     return $row;
 }
 
-// Display   total revenue departmet wise
+// Display  total revenue Event wise
 function countRevenue($event)
 {
-
     global $conn;
-
     $sql = "SELECT SUM(txnAmount) AS totalAmount FROM event_information WHERE event = :event";
-
-    //Preparing Query
     $result = $conn->prepare($sql);
-
-    //Binding Values
     $result->bindValue(":event", $event);
-
-    //Executing Value
     $result->execute();
-
     $row = $result->fetch(PDO::FETCH_ASSOC);
     $totalAmount = $row['totalAmount'];
     return $totalAmount + 0;
@@ -129,7 +92,7 @@ function countRevenue($event)
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="author" content="Vishal Bait" />
     <title>Dashboard-Faculty Coordinator</title>
 
     <!-- Admin Header Scripts -->
@@ -141,11 +104,7 @@ function countRevenue($event)
 
     <!-- Admin Navbar -->
     <?php
-
-$adminFileName = "facultyCoordinatorIndex.php";
-$adminFileData = "facultyCoordinatorData.php";
-$adminManage = "facultyCoordinatorManage.php";
-
+include_once "includes/commonAnchor.php";
 include_once "includes/adminNavbar.php";
 ?>
 
