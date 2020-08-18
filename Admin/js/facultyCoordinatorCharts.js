@@ -11,9 +11,11 @@ $(document).ready(function () {
     success(data) {
       let value = JSON.parse(data);
 
-      //------------------------>> START
-      google.charts.load("current", { packages: ["bar"] });
+      //------------------------>> COLUMN CHART
+
+      google.charts.load("current", { packages: ["bar", "corechart"] });
       google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart2);
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable(value);
@@ -32,7 +34,22 @@ $(document).ready(function () {
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
 
-      //------------------------>> END
+      // --------------------------->> PIE CHART
+
+      function drawChart2() {
+        var data2 = google.visualization.arrayToDataTable(value);
+
+        var options2 = {
+          title: "Technical Festival Event Revenue Department Wise",
+          is3D: true,
+        };
+
+        var chart2 = new google.visualization.PieChart(
+          document.getElementById("revenueChartEventWise2")
+        );
+
+        chart2.draw(data2, options2);
+      }
     },
     error(err) {
       alert("Something Went Wrong");
@@ -49,9 +66,14 @@ $(document).ready(function () {
     },
     success(data) {
       let value = JSON.parse(data);
-      //------------------------>> START
-      google.charts.load("current", { packages: ["bar"] });
+
+      //------------------------>> COLUMN CHART
+
+      google.charts.load("current", {
+        packages: ["bar", "corechart"],
+      });
       google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart2);
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable(value);
@@ -68,6 +90,23 @@ $(document).ready(function () {
         );
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+
+      // --------------------------->> PIE CHART
+
+      function drawChart2() {
+        var data2 = google.visualization.arrayToDataTable(value);
+
+        var options2 = {
+          title: "Technical Festival Event Revenue Department Wise",
+          is3D: true,
+        };
+
+        var chart2 = new google.visualization.PieChart(
+          document.getElementById("participantCountChartEventWise2")
+        );
+
+        chart2.draw(data2, options2);
       }
 
       //------------------------>> END
