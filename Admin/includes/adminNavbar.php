@@ -98,7 +98,7 @@
                         <nav class="sb-sidenav-menu-nested nav">
                             <a class="nav-link" href="<?php echo $adminFileCharts; ?>">
                                 <div class="sb-nav-link-icon">
-                                    <i class="fas fa-users"></i>
+                                    <i class="fas fa-chart-line"></i>
                                 </div>
                                 View Event Statistics
                             </a>

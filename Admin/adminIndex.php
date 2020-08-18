@@ -14,108 +14,80 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
 }
 
-// Display Participation count & total revenue
-$sqlData = "select * from event_information";
+// --------------------------->> DISPLAY PARTICIPANT COUNT & REVENUE
 
+$sqlData = "SELECT * FROM event_information";
 $resultData = $conn->query($sqlData);
-
-// $resultData->execute();
-
+$resultData->execute();
 $rowCount = $resultData->rowCount();
-
 $totalAmount = 0;
 
 while ($rowData = $resultData->fetch(PDO::FETCH_ASSOC)) {
     $totalAmount = $totalAmount + $rowData['txnAmount'];
 }
 
-// display admin information count (Student Coordinator) for college
+//--------------------------->> DISPLAY STUDENT COORDINATOR COUNT FOR COLLEGE
 
 $sqlDataAdmin = "SELECT * FROM admin_information
     WHERE adminType= :studentCoordinator";
-
 $resultDataAdmin = $conn->prepare($sqlDataAdmin);
-
 $resultDataAdmin->bindValue(":studentCoordinator", "Student Coordinator");
-
 $resultDataAdmin->execute();
-
 $rowCountAdmin = $resultDataAdmin->rowCount();
 
-// display admin information count (Faculty Coordinator) for college
+// --------------------------->> DISPLAY FACULTY COORDINATOR COUNT FOR COLLEGE
+
 $sqlDataAdmin2 = "SELECT * FROM admin_information
     WHERE adminType= :facultyCoordinator";
-
 $resultDataAdmin2 = $conn->prepare($sqlDataAdmin2);
-
 $resultDataAdmin2->bindValue(":facultyCoordinator", "Faculty Coordinator");
-
 $resultDataAdmin2->execute();
-
 $rowCountAdmin2 = $resultDataAdmin2->rowCount();
 
-// Participation Count Department Wise
+// --------------------------->> PARTICIPANT COUNT DEPARTMENT WISE
 
 function count1($department)
 {
-
     global $conn;
-
     $sql = "SELECT * FROM event_information WHERE event IN
         (SELECT eventName FROM events_details_information WHERE eventDepartment = :department)";
-
     $result = $conn->prepare($sql);
-
     $result->bindValue(":department", $department);
-
     $result->execute();
-
     $row = $result->rowCount();
-
     return $row;
 }
 
-// Student Administrator Count Department Wise
+// --------------------------->> STUDENT CORDINATOR COUNT DEPARTMENT WISE
 
 function countAdmin($department)
 {
-
     global $conn;
-
     $sql = "SELECT * FROM admin_information
     WHERE adminType= :studentCoordinator AND adminDepartment = :department";
-
     $result = $conn->prepare($sql);
-
     $result->bindValue(":studentCoordinator", "Student Coordinator");
     $result->bindValue(":department", $department);
-
     $result->execute();
-
     $row = $result->rowCount();
-
     return $row;
-
 }
 
-// Display   total revenue departmet wise
+//--------------------------->> DISPLAY TOTAL REVENUE DEPARTMENT WISE
+
 function countRevenue($department)
 {
     global $conn;
     $sql = "SELECT SUM(txnAmount) AS totalAmount FROM event_information WHERE event IN
         (SELECT eventName FROM events_details_information WHERE eventDepartment = :department)";
-
     $result = $conn->prepare($sql);
-
     $result->bindValue(":department", $department);
-
     $result->execute();
-
     $row = $result->fetch(PDO::FETCH_ASSOC);
-
     $totalAmount = $row['totalAmount'];
     return $totalAmount + 0;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -127,13 +99,10 @@ function countRevenue($department)
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="Vishal Bait" />
-    <title>Administrator</title>
+    <title>Administrator Dashboard</title>
 
     <!-- Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
-    <!--Load the AJAX API-->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
 
 </head>
 
@@ -374,41 +343,8 @@ for ($i = 0; $i < 5; $i++) {
 }
 ?>
 
-
                         </div>
                     </div>
-
-
-                    <!--Google Charts Collaspe Three-->
-
-                    <div class="card-header" id="headingThree">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree"
-                            aria-expanded="true" aria-controls="collapseThree">
-                            <h5 class="text-center text-uppercase my-2 font-time">Charts</h5>
-                        </button>
-                    </div>
-
-
-                    <!--Collaspe Three Target-->
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                        data-parent="#accordionExample">
-
-                        <div class="row">
-
-                            <!-- Google Chart -->
-                            <div class="row my-5" style="width: 800px; height: 500px; margin-left: 80px;"
-                                id="revenueChartDepartmentWise">
-                            </div>
-
-                            <!-- Google Chart -->
-                            <div class="row my-5" style="width: 800px; height: 500px; margin-left: 80px;"
-                                id="participantCountChartDepartmentWise">
-                            </div>
-
-
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
@@ -418,16 +354,13 @@ for ($i = 0; $i < 5; $i++) {
         <?php include_once "includes/adminFooter.php";?>
     </div>
 
-    <?php
+<?php
 // Admin Footer Scripts
 include_once "includes/adminFooterScripts.php";
-?>
-    <script src="js/adminIndex.js"></script>
-    <?php
 // Closing Database Connnection
 $conn = null;
-?>
 
+?>
 
 </body>
 

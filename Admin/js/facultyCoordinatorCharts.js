@@ -3,13 +3,14 @@ $(document).ready(function () {
   let chart1 = "chart1";
 
   $.ajax({
-    url: "ajaxHandlerPHP/ajaxAdminCharts.php",
+    url: "ajaxHandlerPHP/ajaxFacultyCoordinatorCharts.php",
     type: "post",
     data: {
       chart: chart,
     },
     success(data) {
       let value = JSON.parse(data);
+
       //------------------------>> START
       google.charts.load("current", { packages: ["bar"] });
       google.charts.setOnLoadCallback(drawChart);
@@ -19,13 +20,13 @@ $(document).ready(function () {
 
         var options = {
           chart: {
-            title: "Technical Festival Event Revenue Department Wise",
+            title: "Technical Festival Event Revenue Event Wise",
             subtitle: "Academic Year 2019-2020",
           },
         };
 
         var chart = new google.charts.Bar(
-          document.getElementById("revenueChartDepartmentWise")
+          document.getElementById("revenueChartEventWise")
         );
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
@@ -41,7 +42,7 @@ $(document).ready(function () {
   //-------------------->> SECOND AJAX
 
   $.ajax({
-    url: "ajaxHandlerPHP/ajaxAdminCharts.php",
+    url: "ajaxHandlerPHP/ajaxFacultyCoordinatorCharts.php",
     type: "post",
     data: {
       chart1: chart1,
@@ -57,13 +58,13 @@ $(document).ready(function () {
 
         var options = {
           chart: {
-            title: "Technical Festival Event Participant Count Department Wise",
+            title: "Technical Festival Event Participant Count Event Wise",
             subtitle: "Academic Year 2019-2020",
           },
         };
 
         var chart = new google.charts.Bar(
-          document.getElementById("participantCountChartDepartmentWise")
+          document.getElementById("participantCountChartEventWise")
         );
 
         chart.draw(data, google.charts.Bar.convertOptions(options));

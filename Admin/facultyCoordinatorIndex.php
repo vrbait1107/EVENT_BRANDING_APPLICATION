@@ -1,11 +1,12 @@
 <?php
 
-// Creating Database Connection
+// ---------------------->> DB CONNECTION
 require_once "../configPDO.php";
-//Starting Connection
+
+// ---------------------->> SESSION
 session_start();
 
-// Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
+// ----------------------->> CHECKING SESSION
 if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
     if ($_SESSION['adminType'] !== "Faculty Coordinator") {
@@ -16,7 +17,7 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
 $department = $_SESSION["adminDepartment"];
 
-// DISPLAY PARTICIPATION COUNT & TOTAL REVENUE
+// ------------------------->>  DISPLAY PARTICIPATION COUNT & TOTAL REVENUE
 
 $sqlData = "SELECT * FROM event_information
     WHERE event IN (SELECT events_details_information.eventName
@@ -31,16 +32,16 @@ while ($rowData = $resultData->fetch(PDO::FETCH_ASSOC)) {
     $totalAmount = $totalAmount + $rowData['txnAmount'];
 }
 
-// DISPLAY ADMIN INFORMATION COUNT
+// ------------------------->>  DISPLAY ADMIN INFORMATION COUNT
 
 $sqlDataAdmin = "SELECT * FROM admin_information
-    WHERE adminType = :studentCoordinator AND adminDepartment = :department";
+WHERE adminType = :studentCoordinator AND adminDepartment = :department";
 $resultDataAdmin = $conn->prepare($sqlDataAdmin);
 $resultDataAdmin->bindValue(":studentCoordinator", "Student Coordinator");
 $resultDataAdmin->bindValue(":department", $department);
 $rowCountAdmin = $resultDataAdmin->rowCount();
 
-// EXTRACTING EVENT NAME FROM DBIN ARRAY.
+// ------------------------->>  EXTRACTING EVENT NAME FROM DB IN ARRAY.
 
 $sqlData1 = "SELECT eventName from events_details_information
      WHERE eventDepartment = :department";
@@ -54,7 +55,7 @@ while ($rowData1 = $resultData1->fetch(PDO::FETCH_ASSOC)) {
     array_push($events, $rowData1['eventName']);
 }
 
-// PARTICIPANTS COUNT EVENT WISE
+// ------------------------->> PARTICIPANTS COUNT EVENT WISE
 
 function count1($event)
 {
@@ -67,7 +68,7 @@ function count1($event)
     return $row;
 }
 
-// Display  total revenue Event wise
+//------------------------->> Display  total revenue Event wise
 function countRevenue($event)
 {
     global $conn;
