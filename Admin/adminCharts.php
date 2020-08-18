@@ -48,14 +48,24 @@ include_once "includes/adminNavbar.php";
             <div class="row">
                 <div class="col-md-12 card">
 
-                    <!-- Google Chart -->
+                    <!-- Google Column Revenue Chart -->
                     <div class="row my-5" style="width: 800px; height: 500px; margin-left: 80px;"
                         id="revenueChartDepartmentWise">
                     </div>
 
-                    <!-- Google Chart -->
+                      <!-- Google Pie Revenue Chart -->
+                    <div class="my-5" style="width: 900px; height: 500px; margin-left: 80px;"
+                    id="revenueChartDepartmentWise2">
+                    </div>
+
+                    <!-- Google Column Participant Count Chart -->
                     <div class="row my-5" style="width: 800px; height: 500px; margin-left: 80px;"
                         id="participantCountChartDepartmentWise">
+                    </div>
+
+                      <!-- Google Pie Participant Count Chart -->
+                    <div class="my-5" style="width: 900px; height: 500px; margin-left: 80px;"
+                    id="participantCountChartDepartmentWise2">
                     </div>
 
 
