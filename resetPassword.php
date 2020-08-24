@@ -1,9 +1,11 @@
     <?php
 
-// Creating Connection to Database
+// ------------------------>> DB CONNECTION
+
 require_once "configPDO.php";
 
-// Staring Session
+// ------------------------>> START CONNECTION
+
 session_start();
 
 ?>
@@ -26,14 +28,16 @@ session_start();
     <?php
 
 if (isset($_GET['token'])) {
-    $token = $_GET['token'];
+
+    $token = htmlspecialchars($_GET['token']);
 
     if (isset($_POST['resetPassword'])) {
 
-        // triming the white spaces
-        $userType = trim($_POST['userType']);
-        $newPassword = trim($_POST['newPassword']);
-        $confirmNewPassword = trim($_POST['confirmNewPassword']);
+        // Avoid XSS Attack
+
+        $userType = htmlspecialchars($_POST['userType']);
+        $newPassword = htmlspecialchars($_POST['newPassword']);
+        $confirmNewPassword = htmlspecialchars($_POST['confirmNewPassword']);
 
         if ($newPassword === $confirmNewPassword) {
             $newPassword = password_hash($newPassword, PASSWORD_BCRYPT);

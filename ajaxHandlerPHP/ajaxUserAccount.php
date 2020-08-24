@@ -1,36 +1,42 @@
 <?php
 
-// ##### Creating Database Connection
+// --------------------------->> DB CONNECTION
 require_once "../configPDO.php";
-//####### Starting Session
+
+// --------------------------->> SESSION START
 session_start();
 
-// ################### User Session Variable
-
-$email = $_SESSION['user'];
-
-// Extracting Post data
+// --------------------------->> EXTRACT DATA
 extract($_POST);
 
-// ######################## Change Password
+// --------------------------->> SESSION VARIABLE
+$email = $_SESSION['user'];
+
+// --------------------------->> CHANGE PASSWORD
 
 if (isset($_POST['changePassword'])) {
 
     $email = $_SESSION['user'];
 
-//Query
+    // Avoid XSS Attack
+
+    $newPassword = htmlspecialchars($_POST["newPassword"]);
+    $conNewPassword = htmlspecialchars($_POST["conNewPassword"]);
+    $currentPassword = htmlspecialchars($_POST["currentPassword"]);
+
+    //Query
     $sql = "SELECT password FROM user_information WHERE email = :email";
 
-//Preparing Query
+    //Preparing Query
     $result = $conn->prepare($sql);
 
-//Binding Values
+    //Binding Values
     $result->bindValue(":email", $email);
 
-//Executing Query
+    //Executing Query
     $result->execute();
 
-//Fetching Value in associative array
+    //Fetching Value in associative array
     $row = $result->fetch(PDO::FETCH_ASSOC);
 
     $dbPassword = $row['password'];
@@ -89,7 +95,7 @@ if (isset($_POST['changePassword'])) {
 
 }
 
-// ######################  Change Email Address
+// --------------------------->>  CHANGE EMAIL ADDRESS
 
 if (isset($_POST['changeEmail'])) {
 
@@ -166,7 +172,7 @@ if (isset($_POST['changeEmail'])) {
     }
 }
 
-//##################### Disable Account
+// --------------------------->> DISABLE ACCOUNT
 
 if (isset($_POST['disableAccount'])) {
 
@@ -194,5 +200,6 @@ if (isset($_POST['disableAccount'])) {
     }
 }
 
-// closing Database Connnection
+// CLOSE DB CONNECTION
+
 $conn = null;

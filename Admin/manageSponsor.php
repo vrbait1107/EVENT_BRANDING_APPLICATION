@@ -1,5 +1,6 @@
 <?php
-// Craeting Database Connection
+// ---------------------------->> DB CONNECTION
+
 require_once '../configPDO.php';
 // Starting Session
 session_start();
@@ -10,7 +11,8 @@ if (!isset($_SESSION['adminEmail'])) {
     header('location:adminLogin.php');
 }
 
-// Include Common Anchor
+// ---------------------------->> COMMON ANCHOR
+
 include_once "includes/commonAnchor.php";
 
 ?>
@@ -23,7 +25,7 @@ include_once "includes/commonAnchor.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="author" content="Vishal Bait" />
 
     <title>Manage Sponsors</title>
 

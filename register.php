@@ -56,6 +56,18 @@ if (isset($_POST['submit'])) {
             $year = trim($_POST['year']);
             $password = trim($_POST['password']);
             $confirm_password = trim($_POST['confirm_password']);
+
+            // Avoid XSS Attack
+            $userName = htmlspecialchars($_POST['userName']);
+            $firstName = htmlspecialchars($_POST['firstName']);
+            $lastName = htmlspecialchars($_POST['lastName']);
+            $mobileNumber = htmlspecialchars($_POST['mobileNumber']);
+            $collegeName = htmlspecialchars($_POST['collegeName']);
+            $department = htmlspecialchars($_POST['department']);
+            $year = htmlspecialchars($_POST['year']);
+            $password = htmlspecialchars($_POST['password']);
+            $confirm_password = htmlspecialchars($_POST['confirm_password']);
+
             $tokenDate = date("Y-m-d H:i:s");
             $tokenDateMain = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($tokenDate)));
 

@@ -1,5 +1,6 @@
 $(document).ready(function () {
-  // ########### Change Password
+  // ---------------->> CHANGE PASSWORD
+
   $("#changePassword").click(function (e) {
     e.preventDefault();
     let changePassword = "changePassword";

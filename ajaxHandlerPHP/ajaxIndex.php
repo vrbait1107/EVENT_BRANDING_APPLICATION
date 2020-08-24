@@ -1,11 +1,20 @@
 <?php
 
+// --------------------------->> DB CONNECTION
+
 require_once "../configPDO.php";
+
+// --------------------------->> SESSION START
+
 session_start();
+
+// --------------------------->> EXTRACT DATA
 
 extract($_POST);
 
 if (isset($_POST['email'])) {
+
+    $email = htmlspecialchars($_POST["email"]);
 
     $sql1 = "SELECT * FROM user_information WHERE email = :email";
     $result1 = $conn->prepare($sql1);
@@ -41,6 +50,7 @@ if (isset($_POST['email'])) {
                     title: 'Success',
                     text: 'You are successfully subscribed to newsletter'
                 })</script>";
+
             } else {
                 echo "<script>Swal.fire({
                     icon: 'error',

@@ -1,10 +1,12 @@
 <?php
 
-// Creating Database Connection
+// --------------------------->> DB CONNECTION
 require_once "../configPDO.php";
-// Starting Session
+
+// --------------------------->> SESSION START
 session_start();
-// Extracting Post data
+
+// --------------------------->> EXTRACT DATA
 extract($_POST);
 
 if (isset($_POST['submit'])) {

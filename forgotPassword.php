@@ -36,6 +36,9 @@ if (isset($_POST['submit'])) {
     $email = trim($_POST['email']);
     $userType = trim($_POST['userType']);
 
+    $email = htmlspecialchars($_POST['email']);
+    $userType = htmlspecialchars($_POST['userType']);
+
     // User Part
     if ($userType === "user") {
 

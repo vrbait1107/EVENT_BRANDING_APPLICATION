@@ -113,7 +113,8 @@ $(document).ready(function () {
     });
   });
 
-  // ############# Change Profile Image
+  // ----------------------->>  CHANGE PROFILE IMAGE
+
   $("#changeProfileImageForm").on("submit", function (event) {
     event.preventDefault();
 

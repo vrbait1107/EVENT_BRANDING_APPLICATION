@@ -49,6 +49,12 @@ if (isset($_POST["login"])) {
             $userName = $_POST["userName"];
             $password = $_POST["password"];
 
+            $userName = trim($_POST["userName"]);
+            $password = trim($_POST["password"]);
+
+            $userName = htmlspecialchars($_POST["userName"]);
+            $password = htmlspecialchars($_POST["password"]);
+
             $sql = "SELECT password, status FROM user_information WHERE email= :userName";
 
             // Preparing Query

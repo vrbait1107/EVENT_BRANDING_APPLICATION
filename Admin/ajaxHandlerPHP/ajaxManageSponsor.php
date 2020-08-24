@@ -4,7 +4,7 @@ require_once "../../configPDO.php";
 
 extract($_POST);
 
-// ############ Reading Record od Sponsor Information
+// -------------------------->> READING OPERATION
 
 if (isset($_POST["readRecord"])) {
 
@@ -59,7 +59,8 @@ if (isset($_POST["readRecord"])) {
 
 }
 
-// ##################### DELETE SPONSOR DATA
+// -------------------------->> DELETE OPERATION
+
 if (isset($_POST['deleteId'])) {
 
     $sql = "DELETE FROM sponsor_information WHERE id = :deleteId";
@@ -88,11 +89,17 @@ if (isset($_POST['deleteId'])) {
     }
 }
 
-// ########## ADD SPONSOR
+// ---------------------- CREATE OPERATION
 
 extract($_FILES);
 
 if (isset($_FILES['sponsorLogo'])) {
+
+    // Avoid XSS Attack
+
+    $sponsorName = htmlspecialchars($_POST['sponsorName']);
+    $sponsoredEvent = htmlspecialchars($_POST["sponsoredEvent"]);
+    $sponsoredDepartment = htmlspecialchars($_POST["sponsoredDepartment"]);
 
     $sponsorLogoName = $_FILES['sponsorLogo']['name'];
     $sponsorLogoSize = $_FILES['sponsorLogo']['size'];
@@ -152,7 +159,7 @@ if (isset($_FILES['sponsorLogo'])) {
 
 }
 
-// ######### EDIT & RETRIVE DATA IN TABLES
+// -------------------------->> EDIT OPERATION
 
 if (isset($_POST['editId'])) {
 
@@ -175,7 +182,7 @@ if (isset($_POST['editId'])) {
 
 }
 
-// ######### UPDATE SPONSOR INFORMATION
+// -------------------------->> UPDATE OPERATION
 
 if (isset($_POST['hiddenId'])) {
 

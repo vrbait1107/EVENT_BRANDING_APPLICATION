@@ -1,15 +1,30 @@
 <?php
 
-// Creating Database Connection
+// --------------------------->> DB CONNECTION
 require_once "../configPDO.php";
-// Starting Session
+
+// --------------------------->> SESSION START
 session_start();
-// Extracting Post data
+
+// --------------------------->> EXTRACT DATA
 extract($_POST);
 
 if (isset($_POST['submit'])) {
 
     if (isset($_POST['captcha'])) {
+
+        // Avoid XSS Attack
+
+        $attendBefore = htmlspecialchars($_POST['attendBefore']);
+        $likelyAttend = htmlspecialchars($_POST['likelyAttend']);
+        $likelyRecommendFriend = htmlspecialchars($_POST['likelyRecommendFriend']);
+        $likeMost = htmlspecialchars($_POST['likeMost']);
+        $likeLeast = htmlspecialchars($_POST['likeLeast']);
+        $location = htmlspecialchars($_POST['location']);
+        $events = htmlspecialchars($_POST['events']);
+        $coordinators = htmlspecialchars($_POST['coordinators']);
+        $eventsPrice = htmlspecialchars($_POST['eventsPrice']);
+        $suggestion = htmlspecialchars($_POST['suggestion']);
 
         $email = $_SESSION['user'];
         $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
@@ -35,7 +50,7 @@ if (isset($_POST['submit'])) {
                 $sql = "INSERT INTO feedback_information (email, attendBefore, likelyAttend, likelyRecommendFriend,
      likeMost, likeLeast, location, events, coordinators, eventsPrice, suggestion) VALUES
       (:email, :attendBefore, :likelyAttend, :likelyRecommendFriend, :likeMost, :likeLeast, :location,
-       :events, :coordinators, :eventsPrice, :suggestion )";
+       :events, :coordinators, :eventsPrice, :suggestion)";
 
                 //Preparing Query
                 $result = $conn->prepare($sql);
@@ -83,5 +98,5 @@ if (isset($_POST['submit'])) {
     }
 }
 
-/// closing Database Connnection
+// --------------------------->> CLOSE DB CONNECTION
 $conn = null;

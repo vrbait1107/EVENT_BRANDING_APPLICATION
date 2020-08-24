@@ -1,13 +1,18 @@
 <?php
 
-// Creating Database Connection
+// ---------------------->> DB CONNNECTION
+
 require_once "../configPDO.php";
-// Starting Session
+
+// ---------------------->> START SESSION
+
 session_start();
-// Extracting Post data
+
+// ---------------------->> EXTRACT POST DATA
+
 extract($_POST);
 
-// ############## Retrive user profile data into form
+// ---------------------->> EDIT OPERATION
 
 if (isset($_POST["getProfileData"])) {
 
@@ -35,7 +40,7 @@ if (isset($_POST["getProfileData"])) {
 
 extract($_FILES);
 
-// ################## Change Profile Image
+// ---------------------->> CHANGE PROFILE IMAGE
 
 if (isset($_FILES['updateProfileImage'])) {
 
@@ -97,9 +102,17 @@ if (isset($_FILES['updateProfileImage'])) {
 
 }
 
-// ################### Update User Profile Data
+// ---------------------->> UPDATE OPERATION
 
 if (isset($_POST["hiddenEmail"])) {
+
+    // Avoid XSS Attack
+    $updateFirstName = htmlspecialchars($_POST["updateFirstName"]);
+    $updateLastName = htmlspecialchars($_POST["updateLastName"]);
+    $updateMobileNumber = htmlspecialchars($_POST["updateMobileNumber"]);
+    $updateCollegeName = htmlspecialchars($_POST["updateCollegeName"]);
+    $updateDepartmentName = htmlspecialchars($_POST["updateDepartmentName"]);
+    $updateAcademicYear = htmlspecialchars($_POST["updateAcademicYear"]);
 
     //Query
     $sql = "UPDATE user_information SET firstName = :updateFirstName, lastName = :updateLastName,
@@ -138,5 +151,6 @@ if (isset($_POST["hiddenEmail"])) {
 
 }
 
-// closing Database Connnection
+//---------------------->> CLOSE DB CONNECTION
+
 $conn = null;

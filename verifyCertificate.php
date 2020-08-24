@@ -39,11 +39,11 @@ session_start();
 
 if (isset($_POST["submit"])) {
 
-    $validate = $_POST["validateData"];
+    $validate = htmlspecialchars($_POST["validateData"]);
 
     $sql = "SELECT * FROM user_information INNER JOIN event_information ON
-user_information.email= event_information.email
-WHERE event_information.certificateId = :validate";
+    user_information.email= event_information.email
+    WHERE event_information.certificateId = :validate";
 
     //Preparing query
     $result = $conn->prepare($sql);
@@ -125,7 +125,7 @@ WHERE event_information.certificateId = :validate";
 
 if (isset($_POST["synergySubmit"])) {
 
-    $validate = $_POST["synergyValidateData"];
+    $validate = htmlspecialchars($_POST["synergyValidateData"]);
 
     $sql = "SELECT * FROM synergy_user_information
     WHERE certificateId = :validate";
@@ -200,7 +200,7 @@ if (isset($_GET["certificateId"])) {
     $validate = $_GET["certificateId"];
 
     // Avoid Cross Site Scripting
-    $validate = htmlentities($validate);
+    $validate = htmlspecialchars($validate);
 
     $sql = "select * FROM user_information INNER JOIN event_information ON
    user_information.email= event_information.email
