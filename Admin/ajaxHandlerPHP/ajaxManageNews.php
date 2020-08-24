@@ -1,15 +1,18 @@
 <?php
-// Creating Database Connection
+// -------------------------------->> DB CONNECTION
 require_once "../../configPDO.php";
 
-// Starting Session
+// -------------------------------->> START SESSION
 session_start();
 
 extract($_POST);
 
-// ############ ADDING NEWS & NOTIFICATION
+// --------------------------------->> CREATE OPERATION
 
 if (isset($_POST["addNews"])) {
+
+    $newsTitle = htmlspecialchars($_POST["newsTitle"]);
+    $newsDescription = htmlspecialchars($_POST["newsDescription"]);
 
     // Query
     $sql = "INSERT INTO news_information (newsTitle, newsDescription, postedDate) VALUES (:newsTitle, :newsDescription, :now1)";
@@ -40,7 +43,9 @@ if (isset($_POST["addNews"])) {
     }
 
 }
-//############# Reading Record
+
+//---------------------------->>  READ OPERATION
+
 if (isset($_POST["readRecord"])) {
 
 //Query
@@ -93,7 +98,7 @@ if (isset($_POST["readRecord"])) {
 
 }
 
-//########## DELETE NEWS INFORMATION
+// // --------------------------------->> DELETE OPERATION
 
 if (isset($_POST['deleteId'])) {
 
@@ -125,7 +130,7 @@ if (isset($_POST['deleteId'])) {
     }
 }
 
-//##############  RETRIVE DATA INTO FORM
+// --------------------------------->> EDIT OPERATION
 
 if (isset($_POST["editId"])) {
 
@@ -147,9 +152,14 @@ if (isset($_POST["editId"])) {
     echo $response;
 }
 
-//####################### UPDATE NEWS INFORMATION
+// --------------------------------->> UPDATE OPERATION
 
 if (isset($_POST["hiddenId"])) {
+
+    $updateNewsTitle = htmlspecialchars($_POST["updateNewsTitle"]);
+    $updateNewsDescription = htmlspecialchars($_POST["updateNewsDescription"]);
+    $hiddenId = htmlspecialchars($_POST["hiddenId"]);
+
     $sql = "UPDATE news_information SET newsTitle= :updateNewsTitle,
     newsDescription = :updateNewsDescription WHERE id = :hiddenId";
 

@@ -77,9 +77,23 @@ if (isset($_POST["readRecord"])) {
 
 extract($_FILES);
 
-//---------------------------------------->> ADD EVENT
+//---------------------------------------->> ADD OPERATION
 
 if (isset($_POST['eventName'])) {
+
+    // Avoid XSS Attack
+    $eventName = htmlspecialchars($_POST['eventName']);
+    $eventPrice = htmlspecialchars($_POST['eventPrice']);
+    $promocode = htmlspecialchars($_POST['promocode']);
+    $discount = htmlspecialchars($_POST['discount']);
+    $eventPrize = htmlspecialchars($_POST['eventPrize']);
+    $eventSponsor = htmlspecialchars($_POST['eventSponsor']);
+    $eventDepartment = htmlspecialchars($_POST['eventDepartment']);
+    $eventDescription = $_POST['eventDescription'];
+    $eventRules = $_POST['eventRules'];
+    $eventCoordinator = $_POST['eventCoordinator'];
+    $eventStartDate = htmlspecialchars($_POST['eventStartDate']);
+    $eventEndDate = htmlspecialchars($_POST['eventEndDate']);
 
     $eventImage = $_FILES['eventImage'];
     $eventImageName = $_FILES['eventImage']['name'];
@@ -211,7 +225,19 @@ if (isset($_POST['editId'])) {
 
 if (isset($_POST['hiddenId'])) {
 
-// Query
+    $updateEventName = htmlspecialchars($_POST["updateEventName"]);
+    $updateEventPrice = htmlspecialchars($_POST["updateEventPrice"]);
+    $updatePromocode = htmlspecialchars($_POST["updatePromocode"]);
+    $updateDiscount = htmlspecialchars($_POST["updateDiscount"]);
+    $updateEventPrize = htmlspecialchars($_POST["updateEventPrize"]);
+    $updateEventSponsor = htmlspecialchars($_POST["updateEventSponsor"]);
+    $updateEventDescription = $_POST["updateEventDescription"];
+    $updateEventRules = $_POST["updateEventRules"];
+    $updateEventCoordinator = $_POST["updateEventCoordinator"];
+    $updateEventStartDate = htmlspecialchars($_POST["updateEventStartDate"]);
+    $updateEventEndDate = htmlspecialchars($_POST["updateEventEndDate"]);
+
+    // Query
     $sql = "UPDATE events_details_information SET eventName = :updateEventName,
     eventPrice = :updateEventPrice, promocode = :updatePromocode, discount = :updateDiscount,
     eventPrize = :updateEventPrize, eventSponsor = :updateEventSponsor,

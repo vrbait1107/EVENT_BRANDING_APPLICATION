@@ -28,6 +28,7 @@ $(document).ready(function () {
   readrecordAdmin();
 
   //---------------------------->>   CREATE OPERATION ADMIN
+
   $("#addAdmin").click(function () {
     let email = $("#email").val();
     let adminType = $("#adminType").val();

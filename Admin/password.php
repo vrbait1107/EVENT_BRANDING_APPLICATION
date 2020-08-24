@@ -22,7 +22,7 @@ include_once "includes/commonAnchor.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="author" content="Vishal Bait" />
 
     <title>Change Password</title>
 
@@ -44,8 +44,11 @@ if (isset($_POST['changePassword'])) {
 
     // Removing White Spaces
     $password = trim($_POST['password']);
-    $password = trim($password);
-    $password = trim($password);
+    $conPassword = trim($_POST['conPassword']);
+
+    // Avoid XSS Attack
+    $password = htmlspecialchars($_POST['password']);
+    $conPassword = htmlspecialchars($_POST['conPassword']);
 
     if ($password === $conPassword) {
         $hashPassword = password_hash($password, PASSWORD_BCRYPT);
@@ -78,9 +81,7 @@ if (isset($_POST['changePassword'])) {
                             })</script>";
         }
 
-    } // if result password
-
-    else {
+    } else {
         echo "<script>Swal.fire({
                             icon: 'warning',
                             title: 'Field does not match',
@@ -88,7 +89,7 @@ if (isset($_POST['changePassword'])) {
                         })</script>";
     }
 
-} // isset post change Password bracket
+}
 
 ?>
 

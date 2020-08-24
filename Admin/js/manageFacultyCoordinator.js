@@ -1,7 +1,7 @@
 let readRecordFacultyAdmin;
 
 $(document).ready(function () {
-  // ##############  Reading Record
+  // ----------------------------------->>  READ OPERATION
   readRecordFacultyAdmin = () => {
     let readRecord = "readRecord";
 
@@ -27,7 +27,8 @@ $(document).ready(function () {
 
   readRecordFacultyAdmin();
 
-  // ###############   Add Admin
+  // ----------------------------------->>  CREATE OPERATION
+
   $("#addFacultyAdmin").click(function () {
     let email = $("#email").val();
     let adminType = $("#adminType").val();
@@ -107,7 +108,8 @@ $(document).ready(function () {
   });
 });
 
-// #############   Deleting Admin
+// ----------------------------------->>  DELETE OPERATION
+
 const deleteFacultyAdmin = (deleteEmail) => {
   Swal.fire({
     title: "Are you sure?",
@@ -137,7 +139,7 @@ const deleteFacultyAdmin = (deleteEmail) => {
   });
 };
 
-// ########### Retiive Admin Details
+// ----------------------------------->>  EDIT OPERATION
 
 let getAdminDetails = (editEmail) => {
   $("#hiddenEmail").val(editEmail);
@@ -161,7 +163,7 @@ let getAdminDetails = (editEmail) => {
   $("#updateModal1").modal("show");
 };
 
-// ########### Update Admin Details
+// ----------------------------------->>  UPDATE OPERATION
 
 const updateAdminDetails = () => {
   let updateEmail = $("#updateEmail").val();

@@ -37,6 +37,9 @@ if (isset($_POST['login'])) {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
+    $email = htmlspecialchars($_POST['email']);
+    $password = htmlspecialchars($_POST['password']);
+
     $sql = "SELECT adminPassword FROM admin_information WHERE email='$email'";
 
     //Preparing Query

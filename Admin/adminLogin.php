@@ -67,6 +67,12 @@ if (isset($_POST['login'])) {
             $adminEvent = trim($_POST['adminEvent']);
             $adminPassword = trim($_POST['password']);
 
+            $adminUserName = htmlspecialchars($_POST['email']);
+            $adminType = htmlspecialchars($_POST['adminType']);
+            $adminDepartment = htmlspecialchars($_POST['adminDepartment']);
+            $adminEvent = htmlspecialchars($_POST['adminEvent']);
+            $adminPassword = htmlspecialchars($_POST['password']);
+
             $sql = "SELECT adminPassword FROM admin_information WHERE admin_information.email  = :adminUserName
             AND admin_information.adminType = :adminType AND admin_information.adminEvent = :adminEvent AND
             admin_information.adminDepartment = :adminDepartment";

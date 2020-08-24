@@ -7,8 +7,14 @@ session_start();
 
 extract($_POST);
 
-//############### Update Participant Data
+//-------------------------------------->>  DELETE OPERATION
+
 if (isset($_POST["hiddenCertificateId"])) {
+
+    $updateFirstName = htmlspecialchars($_POST["updateFirstName"]);
+    $updateLastName = htmlspecialchars($_POST["updateLastName"]);
+    $updatePrize = htmlspecialchars($_POST["updatePrize"]);
+    $updateAttendStatus = htmlspecialchars($_POST["updateAttendStatus"]);
 
     if ($updateFirstName == "" || $updateLastName == "" ||
         $updatePrize == "" || $updateAttendStatus == "") {
@@ -60,7 +66,7 @@ if (isset($_POST["hiddenCertificateId"])) {
 
 }
 
-//############### Retrive Participant Data into Form
+//-------------------------------------->>  EDIT OPERATION
 
 if (isset($_POST["getCertificateId"])) {
 
@@ -85,7 +91,7 @@ if (isset($_POST["getCertificateId"])) {
 
 }
 
-//############### Delete Participant Data
+//-------------------------------------->>  DELETE OPERATION
 
 if (isset($_POST["deleteCertificateId"])) {
 
@@ -117,7 +123,8 @@ if (isset($_POST["deleteCertificateId"])) {
 
 }
 
-// ############## Reading Records
+// -------------------------------------->>  READ OPERATION
+
 if (isset($_POST["readRecord"])) {
 
     $event = $_SESSION['adminEvent'];

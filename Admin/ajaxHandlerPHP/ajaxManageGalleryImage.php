@@ -32,17 +32,17 @@ if (isset($_FILES['galleryImages'])) {
 
 }
 
-// ########################## Reading Record
+// --------------------------------->> READING OPERATION
 
 if (isset($_POST['readRecord'])) {
 
-//Query
+    //Query
     $sql = "SELECT * FROM gallery_information";
 
-//Preparing Query
+    //Preparing Query
     $result = $conn->prepare($sql);
 
-//Executing Query
+    //Executing Query
     $result->execute();
 
     $data = '<table class="table table-bordered text-center" id="dataTable" class="display" width="100%"
@@ -86,7 +86,7 @@ if (isset($_POST['readRecord'])) {
 
 }
 
-// ##################### DELETING GALLERY IMAGES
+// // --------------------------------->> DELETE OPERATION
 
 if (isset($_POST['deleteId'])) {
 

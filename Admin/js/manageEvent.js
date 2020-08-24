@@ -1,6 +1,6 @@
 let readRecordEvent;
 $(document).ready(function () {
-  // --------------------------------------->> Reading Record of Events
+  // --------------------------------------->> READING OPERATION
   readRecordEvent = () => {
     let readRecord = "readRecord";
     $.ajax({
@@ -25,7 +25,8 @@ $(document).ready(function () {
 
   readRecordEvent();
 
-  // --------------------------------------->> ADDING EVENT INFORMATION
+  // --------------------------------------->> CREATE OPERATION
+
   $("#addEventForm").on("submit", function (e) {
     e.preventDefault();
 
@@ -161,6 +162,7 @@ $(document).ready(function () {
         CKEDITOR.instances["eventDescription"].setData(null);
         CKEDITOR.instances["eventRules"].setData(null);
         CKEDITOR.instances["eventCoordinator"].setData(null);
+        $("#addModal").modal("hide");
         readRecordEvent();
       },
       error() {
@@ -171,6 +173,7 @@ $(document).ready(function () {
 });
 
 // ---------------------------------------------->> DELETING EVENT INFORMATION
+
 const deleteEventInformation = (id) => {
   let deleteId = id;
 
@@ -242,6 +245,7 @@ const getEventInformation = (id) => {
 };
 
 //------------------------------------->> UPDATE EVENT INFORMATION
+
 const updateEvent = () => {
   let updateEventName = $("#updateEventName").val();
   let updateEventPrice = $("#updateEventPrice").val();

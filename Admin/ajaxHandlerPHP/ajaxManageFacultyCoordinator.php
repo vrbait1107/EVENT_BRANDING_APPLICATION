@@ -9,9 +9,15 @@ $sessinAdminDepartment = $_SESSION["adminDepartment"];
 
 extract($_POST);
 
-// //########## Update Admin Details
+// ----------------------->>  UPDATE OPERATION
 
 if (isset($_POST['hiddenEmail'])) {
+
+    $updateEmail = htmlspecialchars($_POST["updateEmail"]);
+    $$updateAdminType = htmlspecialchars($_POST["$updateAdminType"]);
+    $updateAdminDepartment = htmlspecialchars($_POST["updateAdminDepartment"]);
+    $updateAdminEvent = htmlspecialchars($_POST["updateAdminEvent"]);
+    $hiddenEmail = htmlspecialchars($_POST["hiddenEmail"]);
 
     //Query
     $sql = "UPDATE admin_information SET email = :email, adminType = :adminType,
@@ -46,16 +52,19 @@ if (isset($_POST['hiddenEmail'])) {
 
 }
 
-// ######### Retriving Admin Details into forms
+// -------------------------->>  EDIT OPERATION
 
 if (isset($_POST['editEmail']) && isset($_POST['editEmail']) !== "") {
 
     //Query
     $sql = "SELECT * FROM admin_information WHERE email = :editEmail";
+
     //Preparing Query
     $result = $conn->prepare($sql);
+
     //Binding Value
     $result->bindValue(":editEmail", $editEmail);
+
     //Executing Query
     $result->execute();
 
@@ -68,7 +77,7 @@ if (isset($_POST['editEmail']) && isset($_POST['editEmail']) !== "") {
 
 }
 
-// ########### Deleting Admin
+// ------------------------>> DELETE OPERATION
 
 if (isset($_POST['deleteEmail'])) {
 
@@ -100,7 +109,8 @@ if (isset($_POST['deleteEmail'])) {
 
 }
 
-// ############## Reading Records
+// --------------------------->>  READ OPERATION
+
 if (isset($_POST["readRecord"])) {
 
     $sql = 'SELECT * FROM admin_information WHERE adminType = :studentCoordinator AND adminDepartment = :sessionAdminDepartment';
@@ -163,21 +173,27 @@ if (isset($_POST["readRecord"])) {
 
 }
 
-// ############# Adding Admin to Database
+// ---------------------------------->>  CREATE OPERATION
 
 if (isset($_POST['email'])) {
 
-    $password = password_hash($password, PASSWORD_BCRYPT);
+    $email = htmlspecialchars($_POST["email"]);
+    $adminType = htmlspecialchars($_POST["adminType"]);
+    $adminDepartment = htmlspecialchars($_POST["adminDepartment"]);
+    $adminEvent = htmlspecialchars($_POST["adminEvent"]);
+    $adminPassword = htmlspecialchars($_POST["adminPassword"]);
+
+    $adminPassword = password_hash($adminPassword, PASSWORD_BCRYPT);
 
     $sql = "SELECT * FROM admin_information WHERE admin_information.email = :email";
 
-//Preparing Query
+    //Preparing Query
     $result = $conn->prepare($sql);
 
-//Binding Values
+    //Binding Values
     $result->bindValue(":email", $email);
 
-//Executing Query
+    //Executing Query
     $result->execute();
 
     if ($result->rowCount() > 0) {
@@ -193,17 +209,17 @@ if (isset($_POST['email'])) {
         $sql = "INSERT INTO admin_information (email, adminType, adminDepartment, adminEvent,
 adminPassword) VALUES (:email, :adminType, :adminDepartment, :adminEvent, :password)";
 
-//Preparing Query
+        //Preparing Query
         $result = $conn->prepare($sql);
 
-//Binding Value
+        //Binding Value
         $result->bindValue(":email", $email);
         $result->bindValue("adminType", $adminType);
         $result->bindValue("adminDepartment", $adminDepartment);
         $result->bindValue("adminEvent", $adminEvent);
         $result->bindValue(":password", $password);
 
-//Executing Query
+        //Executing Query
         $result->execute();
 
         if ($result) {

@@ -1,6 +1,8 @@
 let readRecordSponsor;
 
 $(document).ready(function () {
+  // --------------------------------->> READ OPERATION
+
   readRecordSponsor = () => {
     let readRecord = "readRecord";
 
@@ -26,7 +28,7 @@ $(document).ready(function () {
 
   readRecordSponsor();
 
-  // ----------------------------------------->> ADD SPONSOR INFORMATION
+  // ----------------------------------------->> CREATE OPERATION
 
   $("#addSponsorForm").on("submit", function (e) {
     e.preventDefault();
@@ -76,7 +78,8 @@ $(document).ready(function () {
   });
 });
 
-//----------------------------------------->> RETRIVE DATA INTO FORM
+//----------------------------------------->> EDIT OPERATION
+
 const getSponsorInformation = (id) => {
   let editId = id;
   $.ajax({
@@ -96,7 +99,8 @@ const getSponsorInformation = (id) => {
   $("#updateModal").modal("show");
 };
 
-// ----------------------------------------->> DELETE SPONSOR INFORMATION
+// ----------------------------------------->> DELETE OPERATION
+
 const deleteSponsorInformation = (id) => {
   let deleteId = id;
 
@@ -132,6 +136,7 @@ const deleteSponsorInformation = (id) => {
 };
 
 //----------------------------------------->> UPDATE OPERATION
+
 const updateSponsor = () => {
   let hiddenId = $("#hiddenId").val();
   let updateSponsorName = $("#updateSponsorName").val();

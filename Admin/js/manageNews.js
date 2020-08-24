@@ -1,5 +1,6 @@
 let readRecordNews;
 $(document).ready(function () {
+  // ---------------------->> READ OPERATION
   readRecordNews = () => {
     let readRecord = "readRecord";
     $.ajax({
@@ -24,7 +25,7 @@ $(document).ready(function () {
 
   readRecordNews();
 
-  // ######## ADDING NEWS & NOTIFICATION
+  // ---------------------->> CREATE OPERATION
 
   $("#addNews").click(function () {
     let addNews = "addNews";
@@ -68,7 +69,7 @@ $(document).ready(function () {
   });
 });
 
-// ############ DELETE NEWS INFORMATION
+// // ---------------------->> DELETE  OPERATION
 
 const deleteNewsInformation = (id) => {
   let deleteId = id;
@@ -101,7 +102,7 @@ const deleteNewsInformation = (id) => {
   });
 };
 
-// ######### GET INFORMATION IN FORM
+// // ---------------------->> EDIT OPERATION
 
 const getNewsInformation = (id) => {
   let editId = id;
@@ -123,6 +124,8 @@ const getNewsInformation = (id) => {
 
   $("#updateModal").modal("show");
 };
+
+// ---------------------->> UPDATE OPERATION
 
 const updateNews = () => {
   let updateNewsTitle = $("#updateNewsTitle").val();

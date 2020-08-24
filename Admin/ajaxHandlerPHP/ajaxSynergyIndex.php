@@ -7,10 +7,15 @@ session_start();
 
 extract($_POST);
 
-
 if (isset($_POST['submit'])) {
 
-  
+    $certificateId = htmlspecialchars($_POST["certificateId"]);
+    $firstName = htmlspecialchars($_POST["firstName"]);
+    $lastName = htmlspecialchars($_POST["lastName"]);
+    $departmentName = htmlspecialchars($_POST["departmentName"]);
+    $eventName = htmlspecialchars($_POST["eventName"]);
+    $prize = htmlspecialchars($_POST["prize"]);
+
     $sql = "INSERT INTO synergy_user_information (certificateId, firstName, lastName, departmentName,
         eventName, prize) VALUES ( :certificateId, :firstName, :lastName, :department, :event, :prize)";
 
