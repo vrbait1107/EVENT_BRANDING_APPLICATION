@@ -5,6 +5,9 @@ require_once "../../configPDO.php";
 // Starting Session
 session_start();
 
+//---------------------------->> SECRETS
+require_once "../../config/Secret.php";
+
 extract($_POST);
 extract($_FILES);
 
@@ -12,7 +15,7 @@ if (isset($_POST["targetMessage"])) {
 
     if (isset($_POST['g-recaptcha-response'])) {
 
-        $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
+        $secretKey = $recaptchaSecretKey;
         $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
         $response = json_decode($verifyResponse);
 

@@ -12,10 +12,10 @@ $mail->Port = 587;
 $mail->SMTPSecure = 'tls';
 $mail->SMTPAuth = true;
 //Enter Your Username
-$mail->Username = "vishalbait02@gmail.com";
+$mail->Username = $emailUsername;
 //Enter Your Password
-$mail->Password = "9921172153";
-$mail->setFrom("vishalbait02@gmail.com", "GIT SHODH 2K20");
+$mail->Password = $emailPassword;
+$mail->setFrom($emailSetFrom, "GIT SHODH 2K20");
 $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
 $mail->addAddress($newsletterEmails, "GIT SHODH 2K20 Users");
 $mail->Subject = $newsletterSubject;

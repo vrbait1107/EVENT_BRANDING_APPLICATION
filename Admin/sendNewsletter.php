@@ -1,8 +1,12 @@
 <?php
 //Starting Session
 session_start();
-// Creating Database Connection
+
+// ------------------------->> DB CONFIG
 require_once "../configPDO.php";
+
+//---------------------------->> SECRETS
+require_once "../config/Secret.php";
 
 if (!isset($_SESSION['adminEmail'])) {
     header("location:adminLogin.php");
@@ -72,7 +76,7 @@ include_once "includes/adminNavbar.php";
             </div>
 
             <div class="text-center my-2">
-              <div class="g-recaptcha text-center" data-sitekey="6LdGougUAAAAAG96eGund5fScrR1fouBZvyLf1RL"></div>
+              <div class="g-recaptcha text-center" data-sitekey=<?php echo $recaptchaSiteKey; ?>></div>
             </div>
 
             <!-- Response Message -->

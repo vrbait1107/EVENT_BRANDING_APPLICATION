@@ -4,7 +4,11 @@ session_start();
 $eventName = $_SESSION['eventName'];
 $userName = $_SESSION['user'];
 
+//-------------------->> DB CONFIG
 require_once '../../configPDO.php';
+
+//-------------------->> SECRETS
+require_once "../../config/Secret.php";
 
 ?>
 <!doctype html>
@@ -120,7 +124,9 @@ if ($isValidChecksum == "TRUE") {
             $result->execute();
 
             if ($result) {
-                // ###### PHP Mailer Code
+
+                /* PHP MAILER CODE */
+
                 include_once "../../emailCode/emailEventRegistration.php";
 
                 if (!$mail->send()) {

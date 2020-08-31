@@ -1,7 +1,10 @@
 <?php
 
-// Creating Connection to Database
+// ---------------------->> DB CONFIG
 require_once "configPDO.php";
+
+// ---------------------->> SECRETS
+require_once "./config/Secret.php";
 
 // Staring Session
 session_start();
@@ -56,7 +59,7 @@ if (isset($_POST['submit'])) {
 
         if ($result->rowCount() === 1) {
 
-            // ######## Include PHP Mailer Code
+            /* PHP MAILER CODE */
             include "./emailCode/emailForgotPassword.php";
 
             if (!$mail->send()) {
@@ -125,7 +128,8 @@ if (isset($_POST['submit'])) {
 
         if ($result->rowCount() === 1) {
 
-            // ######## Include PHP Mailer Code
+            /* PHP MAILER CODE */
+
             include "./emailCode/emailForgotPassword.php";
 
             if (!$mail->send()) {

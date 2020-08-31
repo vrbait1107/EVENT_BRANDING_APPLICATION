@@ -1,6 +1,6 @@
 <?php
 
-// --------------------------->> DB CONNECTION
+// --------------------------->> DB CONFIG
 require_once "../configPDO.php";
 
 // --------------------------->> SESSION START
@@ -9,11 +9,14 @@ session_start();
 // --------------------------->> EXTRACT DATA
 extract($_POST);
 
+// --------------------------->> SECRETS
+require_once "../config/Secret.php";
+
 if (isset($_POST['submit'])) {
 
     if (isset($_POST['captcha'])) {
 
-        $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
+        $secretKey = $recaptchaSecretKey;
 
         $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['captcha']);
 
@@ -21,7 +24,8 @@ if (isset($_POST['submit'])) {
 
         if ($response->success) {
 
-            //##### Include PHP Mailer Code
+            /* PHP MAILER CODE */
+
             include_once "../emailCode/emailContactUs.php";
 
             if (!$mail->send()) {

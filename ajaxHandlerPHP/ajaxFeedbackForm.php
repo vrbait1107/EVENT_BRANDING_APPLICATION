@@ -1,7 +1,10 @@
 <?php
 
-// --------------------------->> DB CONNECTION
+// --------------------------->> DB CONFIG
 require_once "../configPDO.php";
+
+//------------------------------>> SECRETS
+require_once "./config/Secret.php";
 
 // --------------------------->> SESSION START
 session_start();
@@ -27,7 +30,7 @@ if (isset($_POST['submit'])) {
         $suggestion = htmlspecialchars($_POST['suggestion']);
 
         $email = $_SESSION['user'];
-        $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
+        $secretKey = $recaptchaSecretKey;
         $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['captcha']);
         $response = json_decode($verifyResponse);
 

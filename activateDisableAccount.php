@@ -1,6 +1,9 @@
 <?php
-// Creating Connection to Database
+//------------------------>> DB CONFIG
 require_once "configPDO.php";
+
+//------------------------>> SECRETS
+require_once "./config/Secret.php";
 
 // Staring Session
 session_start();
@@ -63,7 +66,7 @@ if (isset($_POST['reactivate'])) {
 
         if ($result) {
 
-            // ##### Include PHP Mailer Code
+            /* PHP MAILER CODE */
             include_once "./emailCode/emailDisableAccount.php";
 
             if (!$mail->send()) {

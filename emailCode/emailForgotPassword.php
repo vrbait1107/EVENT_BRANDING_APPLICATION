@@ -13,10 +13,10 @@ $mail->Port = 587;
 $mail->SMTPSecure = 'tls';
 $mail->SMTPAuth = true;
 // Enter Your Email Username
-$mail->Username = "vishalbait02@gmail.com";
+$mail->Username = $emailUsername;
 // Enter Your Email Password
-$mail->Password = "9921172153";
-$mail->setFrom('vishalbait02@gmail.com', 'GIT SHODH 2K20');
+$mail->Password = $emailPassword;
+$mail->setFrom($emailSetFrom, 'GIT SHODH 2K20');
 $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
 $mail->addAddress($email, $email);
 $mail->Subject = "GIT SHODH 2K20 PASSWORD RESET";

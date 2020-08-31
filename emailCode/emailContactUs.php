@@ -13,9 +13,9 @@ $mail->Port = 587;
 $mail->SMTPSecure = 'tls';
 $mail->SMTPAuth = true;
 // Enter Your Email Username
-$mail->Username = "vishalbait02@gmail.com";
+$mail->Username = $emailUsername;
 //Enter Your Email Password
-$mail->Password = "9921172153";
+$mail->Password = $emailPassword;
 $mail->setFrom($email, $name);
 $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
 $mail->addAddress("vishalbait01@gmail.com", "Vishal Bait");

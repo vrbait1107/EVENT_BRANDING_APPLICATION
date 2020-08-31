@@ -1,7 +1,11 @@
 <?php
 
-//Creating Database Connection
+//---------------------------->> DB CONFIG
 require_once "../configPDO.php";
+
+//---------------------------->> SECRETS
+require_once "../config/Secret.php";
+
 //Starting Session
 session_start();
 
@@ -47,15 +51,13 @@ if (isset($_SESSION['adminEmail']) && $_SESSION['adminType'] && $_SESSION['admin
 <body class="mb-5">
 
 
-    <!-- PHP CODE START  -->
-
     <?php
 
 if (isset($_POST['login'])) {
 
     if (isset($_POST['g-recaptcha-response'])) {
 
-        $secretKey = "6LdGougUAAAAAHPUmWu-g9UgB9QbHpHnjyh5PxXg";
+        $secretKey = $recaptchaSecretKey;
         $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
         $response = json_decode($verifyResponse);
 
@@ -248,7 +250,7 @@ if (isset($_POST['login'])) {
 
                         <div class="text-center my-2">
                             <div class="g-recaptcha text-center"
-                                data-sitekey="6LdGougUAAAAAG96eGund5fScrR1fouBZvyLf1RL"></div>
+                                data-sitekey= <?php echo $recaptchaSiteKey; ?>></div>
                         </div>
 
                         <div class="form-group">

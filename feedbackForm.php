@@ -1,7 +1,10 @@
 <?php
 
-// Creating Connection to Database
+//------------------------------>> DATABASE CONFIG
 require_once "configPDO.php";
+
+//------------------------------>> SECRETS
+require_once "./config/Secret.php";
 
 // Staring Session
 session_start();
@@ -179,7 +182,7 @@ if (!isset($_SESSION['user'])) {
                     </div>
 
                     <div class="text-center my-2">
-                        <div class="g-recaptcha text-center" data-sitekey="6LdGougUAAAAAG96eGund5fScrR1fouBZvyLf1RL">
+                        <div class="g-recaptcha text-center" data-sitekey= <?php echo $recaptchaSiteKey; ?>>
                         </div>
                     </div>
 

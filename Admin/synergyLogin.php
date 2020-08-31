@@ -1,8 +1,12 @@
 <?php
 // Starting Session
 session_start();
+
 // Starting DB Connection
 require_once '../configPDO.php';
+
+// SECRETS
+require_once "../config/Secret.php";
 
 if (isset($_SESSION['Admin'])) {
     header('location:synergyIndex.php');
@@ -136,7 +140,7 @@ if (isset($_POST['login'])) {
 
                         <div class="text-center my-2">
                             <div class="g-recaptcha text-center"
-                                data-sitekey="6LdGougUAAAAAG96eGund5fScrR1fouBZvyLf1RL"></div>
+                                data-sitekey= <?php echo $recaptchaSiteKey; ?>></div>
                         </div>
 
                         <div class="form-group">

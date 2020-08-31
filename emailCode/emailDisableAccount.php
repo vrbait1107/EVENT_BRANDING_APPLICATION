@@ -12,9 +12,9 @@ $mail->Host = 'smtp.gmail.com';
 $mail->Port = 587;
 $mail->SMTPSecure = 'tls';
 $mail->SMTPAuth = true;
-$mail->Username = "vishalbait02@gmail.com";
-$mail->Password = "9921172153";
-$mail->setFrom("vishalbait02@gmail.com", "GIT SHODH 2K20");
+$mail->Username = $emailUsername;
+$mail->Password = $emailPassword;
+$mail->setFrom($emailSetFrom, "GIT SHODH 2K20");
 $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
 
 $mail->addAddress("$email", "$email");
