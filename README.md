@@ -61,35 +61,33 @@ Event Branding Application is mobile Application with Website for collecting reg
 ## PHP Mailer
 
 - This project use PHP Mailer library for email purpose, So you must mention your email username and password in script, for more details and documentation of PHP Mailer library go to https://github.com/PHPMailer/PHPMailer
-- To Use PHP Mailer Library functionality go to emailCode folder and mention your email username and password in PHP Scripts.
+- Go to config folder folder
+- Rename demo-Secret.php to Secret.php if not rename before.
+- Open Secret.php file update the below constant values (API Keys)
+  1.  emailUsername – Gmail Username
+  2.  emailPassword - Gmail Password
+  3.  emailSetFrom - Email Set From
 
 ## Google Recaptcha
 
 - This Project use google recaptcha v2 Checkbox for security purpose.
-- To use this functionality go to google recaptch Website https://www.google.com/recaptcha/intro/v3.html and Go to console and generate API Keys (data site key and secret Key) and paste data site key and secret key in below files.
-
-1. register.php (Paste Site and Secret Key)
-2. login.php (Paste Site and Secret Key)
-3. contactUs.php (paste Site key)
-4. ajaxHandlerPHP/ajaxContactUs.php (Paste Secret key)
-5. feedbackForm.php (paste Site key)
-6. ajaxHandlerPHP/ajaxFeedbackForm.php (Paste Secret key)
-7. Admin/adminLogin.php (Paste Site and Secret Key)
-8. Admin/synergyLogin.php (Paste Site and Secret Key)
-9. Admin/sendMails.php (Paste Site Key)
-10. Admin/sendNewsletter.php (Paste Site Key)
-11. Admin/ajaxHandlerPHP/ajaxSendMails.php (Paste Secret key)
-12. Admin/ajaxHandlerPHP/ajaxSendNewsletter.php (Paste Secret key)
+- To use this functionality go to google recaptch Website https://www.google.com/recaptcha/intro/v3.html and Go to console and generate API Keys (data site key and secret Key).
+- Go to config folder folder
+- Rename demo-Secret.php to Secret.php if not rename before.
+- Open Secret.php file update the below constant values (API Keys)
+  1.  recaptchaSiteKey – Site Key Provided by Google Recaptcha Admin
+  2.  recaptchaSecretKey - Secret Key Provided by Google Recaptcha Admin
 
 ## PAYTM Payment Gateway
 
 - This project use Paytm Payment Gateway for online payment purpose go to this page for more details https://business.paytm.com/payment-gateway.
 - To use paytm gateway functionality in this project please create Paytm Business account and generate API keys.
-- Go to Paytm/PaytmKit folder
-- Open config_paytm.php file from the PaytmKit/lib folder and update the below constant values (API Keys)
-  1.  PAYTM_MERCHANT_KEY – Provided by Paytm
-  2.  PAYTM_MERCHANT_MID - Provided by Paytm
-  3.  PAYTM_MERCHANT_WEBSITE - Provided by Paytm
+- Go to config folder folder
+- Rename demo-Secret.php to Secret.php if not rename before.
+- Open Secret.php file update the below constant values (API Keys)
+  1.  merchantKey – Merchant Key Provided by Paytm
+  2.  merchantMid - Merchant Id Provided by Paytm
+  3.  merchantWeb - Merchant Website Provided by Paytm
 - PaytmKit folder is having following files:
 
   1. TxnTest.php – Testing transaction through Paytm gateway.
@@ -108,12 +106,6 @@ Event Branding Application is mobile Application with Website for collecting reg
   (MID, ORDERID, TXNTYPE, REFUNDAMOUNT, TXNID, REFID)
 - To generate checksum, call the following method. This function returns the checksum as a string.
   getRefundChecksumFromArray($arrayList, $key, \$sort=1)
-
-## Firebase
-
-- This Project also use Firebase Database in this project
-- To use firebase database functionality in this project go to https://firebase.google.com/ and generate API Key
-- Go to Admin/js/synergyIndex.js and Change firebaseConfig variable according your need.
 
 ## Technology Used
 
@@ -134,10 +126,10 @@ Event Branding Application is mobile Application with Website for collecting reg
 
 ### Database
 
-1. Database: MYSQL, Firebase(Cloud Firestore)
-2. Query Language: SQL
+- Database: MYSQL
+- Query Language: SQL
 
-### Designing Software
+### Designing Software FOR Certificate Images
 
 - Software: CORELDRAW 11
 
