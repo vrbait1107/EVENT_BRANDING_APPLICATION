@@ -78,39 +78,5 @@ $(document).ready(function () {
         $("#responseMessage").html("Something Went Wrong");
       },
     });
-
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-      apiKey: "AIzaSyCzbLFCUfBHGmmWWye01lWPvOWhDxESjJc",
-      authDomain: "git-shodh-2k20-certificates.firebaseapp.com",
-      databaseURL: "https://git-shodh-2k20-certificates.firebaseio.com",
-      projectId: "git-shodh-2k20-certificates",
-      storageBucket: "git-shodh-2k20-certificates.appspot.com",
-      messagingSenderId: "64170861595",
-      appId: "1:64170861595:web:9eb79e0a9a68e3b6b144be",
-      measurementId: "G-5ZWXWTC1EW",
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-
-    var db = firebase.firestore();
-    var messagesRef = db.collection("Synergy Certificate");
-
-    messagesRef
-      .add({
-        First_Name: firstName,
-        Last_Name: lastName,
-        Department: department,
-        Event: event,
-        Prize: prize,
-        CertificateId: certificateId,
-      })
-      .then(function () {
-        console.log("Document successfully written!", messagesRef.id);
-      })
-      .catch(function (error) {
-        console.error("Error writing document: ", error);
-      });
   });
 });

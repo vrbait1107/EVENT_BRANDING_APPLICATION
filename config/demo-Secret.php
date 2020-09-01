@@ -5,4 +5,6 @@ $emailPassword = "YOUR EMAIL PASSWORD";
 $emailSetFrom = "EMAIL SET FROM";
 $recaptchaSiteKey = "GOOGLE RECAPTCHA SITE KEY";
 $recaptchaSecretKey = "GOOGLE RECAPTCHA SECRET KEY";
-
+$merchantKey = "PAYTM MERCHANT KEY";
+$merchantMid = "PAYTM MERCHANT ID";
+$merchantWeb = "WEBSITE NAME RECEIVED FROM PAYTM";
