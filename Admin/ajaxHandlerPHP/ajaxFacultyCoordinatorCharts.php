@@ -1,6 +1,7 @@
 <?php
-// ----------------------->> DB CONN
-require_once "../../configPDO.php";
+
+//----------------------->> DB CONFIG
+require_once "../../config/configPDO.php";
 
 // ---------------------->> SESSION
 session_start();

@@ -2,10 +2,10 @@
 // Starting Session
 session_start();
 
-// Starting DB Connection
-require_once '../configPDO.php';
+//--------------------->> DB CONFIG
+require_once '../config/configPDO.php';
 
-// SECRETS
+//--------------------->> SECRETS
 require_once "../config/Secret.php";
 
 if (isset($_SESSION['Admin'])) {

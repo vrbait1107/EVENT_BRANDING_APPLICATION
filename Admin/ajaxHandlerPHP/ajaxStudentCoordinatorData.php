@@ -1,8 +1,10 @@
 <?php
-// Creating Database Connection
-require_once "../../configPDO.php";
 
-// Starting Session
+//----------------------->> DB CONFIG
+require_once "../../config/configPDO.php";
+
+//----------------------->> STARTING SESSION
+
 session_start();
 
 extract($_POST);

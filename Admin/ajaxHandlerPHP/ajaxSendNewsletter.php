@@ -1,6 +1,7 @@
 <?php
-//---------------------------->> DB CONFIG
-require_once "../../configPDO.php";
+
+//----------------------->> DB CONFIG
+require_once "../../config/configPDO.php";
 
 // --------------------------->> START SESSION
 session_start();

@@ -1,8 +1,10 @@
 <?php
-// Creating Database Connection
-require_once "../../configPDO.php";
 
-// Start Session
+//----------------------->> DB CONFIG
+require_once "../../config/configPDO.php";
+
+//----------------------->> STARTING SESSION
+
 session_start();
 
 $sessinAdminDepartment = $_SESSION["adminDepartment"];

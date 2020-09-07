@@ -1,6 +1,7 @@
  <?php
 
-require_once "../../configPDO.php";
+//----------------------->> DB CONFIG
+require_once "../../config/configPDO.php";
 
 extract($_POST);
 

@@ -3,8 +3,8 @@
 //Starting Session
 session_start();
 
-// ------------------------------->> DB CONFIG
-require_once "../configPDO.php";
+//--------------------->> DB CONFIG
+require_once '../config/configPDO.php';
 
 //---------------------------->> SECRETS
 require_once "../config/Secret.php";

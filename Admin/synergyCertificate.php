@@ -1,10 +1,11 @@
 <?php
 // Starting Session
 session_start();
-// Starting Database Connection
-require_once "../configPDO.php";
 
-$CertId = $_POST['certificateId'];
+//--------------------->> DB CONFIG
+require_once '../config/configPDO.php';
+
+$CertId = htmlspecialchars($_POST['certificateId']);
 
 $sql = "SELECT * FROM synergy_user_information WHERE certificateId = :certId";
 
