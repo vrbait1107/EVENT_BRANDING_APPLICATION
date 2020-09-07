@@ -1,8 +1,7 @@
 <?php
 
-// --------------------------->> DB CONNECTION
-
-require_once "../configPDO.php";
+// --------------------------->> DB CONFIG
+require_once "../config/configPDO.php";
 
 // --------------------------->> SESSION START
 

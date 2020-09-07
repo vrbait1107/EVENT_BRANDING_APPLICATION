@@ -1,7 +1,7 @@
 <?php
 
-// Creating Connection to Database
-require_once "configPDO.php";
+//------------------------------>> DB CONFIG
+require_once "config/configPDO.php";
 
 // Staring Session
 session_start();
@@ -9,9 +9,9 @@ session_start();
 $buttonEvent = $_POST['event1'];
 $email = $_SESSION['user'];
 
-$sql = "select * FROM user_information INNER JOIN event_information ON
+$sql = "SELECT * FROM user_information INNER JOIN event_information ON
 user_information.email= event_information.email
-WHERE user_information.email = :email and event_information.event = :buttonEvent";
+WHERE user_information.email = :email AND event_information.event = :buttonEvent";
 
 //Preparing Query
 $result = $conn->prepare($sql);

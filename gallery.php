@@ -2,8 +2,9 @@
 <html lang="en">
 
 <?php
-// Creating Connection
-require_once 'configPDO.php';
+//------------------------------>> DB CONFIG
+require_once "config/configPDO.php";
+
 // starting session
 session_start();
 ?>

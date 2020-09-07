@@ -5,7 +5,7 @@ $eventName = $_SESSION['eventName'];
 $userName = $_SESSION['user'];
 
 //-------------------->> DB CONFIG
-require_once '../../configPDO.php';
+require_once '../../config/configPDO.php';
 
 //-------------------->> SECRETS
 require_once "../../config/Secret.php";
