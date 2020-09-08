@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 08, 2020 at 07:48 PM
+-- Generation Time: Sep 08, 2020 at 08:13 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -175,7 +175,26 @@ CREATE TABLE `feedback_information` (
 --
 
 INSERT INTO `feedback_information` (`email`, `attendBefore`, `likelyAttend`, `likelyRecommendFriend`, `likeMost`, `likeLeast`, `location`, `events`, `coordinators`, `eventsPrice`, `suggestion`, `feedbackDate`) VALUES
-('testuser01@gmail.com', 'no', '4', '4', 'Good', 'Good', '2', '3', '2', '5', 'Good', '2020-08-12 20:15:07');
+('testuser01@gmail.com', 'no', '4', '4', 'Good', 'Good', '2', '3', '2', '5', 'Good', '2020-08-12 20:15:07'),
+('testuser02@gmail.com', 'no', '5', '3', 'Good', 'Good', '4', '3', '1', '5', 'Good', '2020-09-08 23:33:11'),
+('testuser03@gmail.com', 'no', '4', '4', 'Good', 'Good', '5', '5', '4', '4', 'Good', '2020-09-08 23:33:11'),
+('testuser04@gmail.com', 'no', '4', '4', 'Good', 'Good', '2', '5', '5', '5', 'Good', '2020-09-08 23:33:11'),
+('testuser05@gmail.com', 'no', '5', '4', 'Good', 'Good', '5', '1', '2', '5', 'Good', '2020-09-08 23:33:11'),
+('testuser06@gmail.com', 'no', '3', '4', 'Good', 'Good', '5', '3', '4', '2', 'Good', '2020-09-08 23:33:11'),
+('testuser07@gmail.com', 'no', '4', '5', 'Good', 'Good', '4', '3', '5', '5', 'Good', '2020-09-08 23:33:11'),
+('testuser08@gmail.com', 'no', '4', '3', 'Good', 'Good', '5', '3', '4', '5', 'Good', '2020-09-08 23:33:11'),
+('testuser09@gmail.com', 'no', '4', '4', 'Good', 'Good', '4', '5', '4', '5', 'Good', '2020-09-08 23:33:11'),
+('testuser10@gmail.com', 'no', '4', '2', 'Good', 'Good', '4', '4', '4', '5', 'Good', '2020-09-08 23:33:11'),
+('testuser11@gmail.com', 'no', '5', '3', 'Good', 'Good', '3', '5', '4', '5', 'Good', '2020-09-08 23:33:11'),
+('testuser12@gmail.com', 'no', '4', '4', 'Good', 'Good', '5', '4', '5', '5', 'Good', '2020-09-08 23:33:11'),
+('testuser13@gmail.com', 'no', '2', '4', 'Good', 'Good', '5', '4', '2', '5', 'Good', '2020-09-08 23:33:11'),
+('testuser14@gmail.com', 'no', '1', '3', 'Good', 'Good', '2', '4', '4', '2', 'Good', '2020-09-08 23:33:11'),
+('testuser15@gmail.com', 'no', '4', '5', 'Good', 'Good', '5', '3', '4', '5', 'Good', '2020-09-08 23:33:11'),
+('testuser16@gmail.com', 'no', '4', '4', 'Good', 'Good', '4', '4', '2', '2', 'Good', '2020-09-08 23:33:11'),
+('testuser17@gmail.com', 'no', '4', '4', 'Good', 'Good', '2', '3', '5', '5', 'Good', '2020-09-08 23:33:11'),
+('testuser18@gmail.com', 'no', '2', '3', 'Good', 'Good', '2', '3', '5', '5', 'Good', '2020-09-08 23:33:11'),
+('testuser19@gmail.com', 'no', '5', '5', 'Good', 'Good', '5', '5', '2', '5', 'Good', '2020-09-08 23:33:11'),
+('testuser20@gmail.com', 'no', '4', '3', 'Good', 'Good', '3', '3', '3', '3', 'Good', '2020-09-08 23:33:11');
 
 -- --------------------------------------------------------
 
