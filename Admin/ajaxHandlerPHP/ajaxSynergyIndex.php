@@ -12,8 +12,8 @@ if (isset($_POST['submit'])) {
     $certificateId = htmlspecialchars($_POST["certificateId"]);
     $firstName = htmlspecialchars($_POST["firstName"]);
     $lastName = htmlspecialchars($_POST["lastName"]);
-    $departmentName = htmlspecialchars($_POST["departmentName"]);
-    $eventName = htmlspecialchars($_POST["eventName"]);
+    $department = htmlspecialchars($_POST["department"]);
+    $event = htmlspecialchars($_POST["event"]);
     $prize = htmlspecialchars($_POST["prize"]);
 
     // Sql Query
