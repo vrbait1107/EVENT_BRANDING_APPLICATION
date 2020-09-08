@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2020 at 05:11 PM
+-- Generation Time: Sep 08, 2020 at 07:48 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -43,19 +43,30 @@ CREATE TABLE `admin_information` (
 --
 
 INSERT INTO `admin_information` (`email`, `adminType`, `adminDepartment`, `adminEvent`, `adminPassword`, `token`, `tokenDate`) VALUES
-('apandharkame6@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Project Presentation', '$2y$10$92WwiPtVIruxlqnnl6Dvt.394Wr1Eoe01GboNAiMQEly3gDt2/hgy', NULL, NULL),
-('facultychem@gmail.com', 'Faculty Coordinator', 'Chemical', 'Not Applicable', '$2y$10$bh6XlE4eGGI9jmy7ugj7Heqg2pB32fr3wJTxrNE0Zo8yUZO2YXpNa', NULL, NULL),
-('facultycivil@gmail.com', 'Faculty Coordinator', 'Civil', 'Not Applicable', '$2y$10$CCif/fe5WP0BRIgG/Mu/hu3GsXX.6V3aIW.JJCVy8QWlVxyDJWmku', NULL, NULL),
-('facultycomp@gmail.com', 'Faculty Coordinator', 'Computer', 'Not Applicable', '$2y$10$.OSqZd0VjIp47cE2oz9fxeg1se/mAWqbUeigbXUMuVWAV/09dHWX.', NULL, NULL),
-('facultyextc@gmail.com', 'Faculty Coordinator', 'Electronics and Telecommunication', 'Not Applicable', '$2y$10$1qKOPrvYTWsHTKu//4IpDuLF0OCObWkLrDHg3vRS1f4ifA2HiMqlW', NULL, NULL),
-('facultymech@gmail.com', 'Faculty Coordinator', 'Mechanical', 'Not Applicable', '$2y$10$x5ebh6kFUt3m/kYL2iA.6uc9hKLHL7DrcVy5TwA2.6j.qyu6E6zmC', NULL, NULL),
-('gandhivipul009@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'Logo Contest', '$2y$10$/TlYJffpcju54IN4zNhbou3qCSKuCX/0xs0TpgztVKGDiExDRPdKe', NULL, NULL),
-('gitshodhadmin@gmail.com', 'Administrator', 'Not Applicable', 'Not Applicable', '$2y$10$KAu/OhZKO4W9c2IqLg0kM.mrkO1Qj9IhrT4A2EMHuopMWdIKXWzy6', NULL, NULL),
-('kolhalpritam@gmail.com', 'Student Coordinator', 'Chemical', 'Chemical Paper Presentation', '$2y$10$9UxYBGY1hdi0RZ0T6d9ZMOiBFKELpUk/.CqxgOmJfJiLbfXBN9n1G', NULL, NULL),
-('samgowd98@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'Calci War', '$2y$10$2897b2IQSW1CzrfnFWVbjuOlvgMqPKuNzZDzbvx8b0ETxFVdsV/t6', NULL, NULL),
-('surajmohite1994@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Poster Presentation', '$2y$10$U3vpP4s.NIEpcyEcAHJa8OH.QoF3dLB9I4/HoDap.5eGRLhXu9R5i', NULL, NULL),
-('techviraj01@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'Tech Boss', '$2y$10$oiSOvzsMo/sonMqYQFEJV.QWDR7epYqmdzlPTTbDW3dthYwcs1yaS', NULL, NULL),
-('vishalbait01@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Paper Presentation', '$2y$10$92WwiPtVIruxlqnnl6Dvt.394Wr1Eoe01GboNAiMQEly3gDt2/hgy', NULL, NULL);
+('facultychem@gmail.com', 'Faculty Coordinator', 'Chemical', 'Not Applicable', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
+('facultycivil@gmail.com', 'Faculty Coordinator', 'Civil', 'Not Applicable', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
+('facultycomp@gmail.com', 'Faculty Coordinator', 'Computer', 'Not Applicable', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
+('facultyextc@gmail.com', 'Faculty Coordinator', 'Electronics and Telecommunication', 'Not Applicable', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
+('facultymech@gmail.com', 'Faculty Coordinator', 'Mechanical', 'Not Applicable', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
+('gitshodhadmin@gmail.com', 'Administrator', 'Not Applicable', 'Not Applicable', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
+('studentchem-paperpresentation@gmail.com', 'Student Coordinator', 'Chemical', 'Chemical Paper Presentation', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
+('studentchem-posterpresentation@gmail.com', 'Student Coordinator', 'Chemical', 'Chemical Poster Presentation', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
+('studentchem-projectpresentation@gmail.com', 'Student Coordinator', 'Chemical', 'Chemical Project Presentation', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
+('studentcivil-paperpresentation@gmail.com', 'Student Coordinator', 'Civil', 'Civil Paper Presentation', '$2y$10$ZzONx3vWZTKa9sQGoLo3O.tfqJGNaYFRrE4tFE3NDo1aNMOrJBWVa', NULL, NULL),
+('studentcivil-posterpresentation@gmail.com', 'Student Coordinator', 'Civil', 'Civil Poster Presentation', '$2y$10$OhQZnIIszIrYmaI4TtJzs.KWt9NmREb/U7h89/BneDHe1Ji/z9vLe', NULL, NULL),
+('studentcivil-projectpresentation@gmail.com', 'Student Coordinator', 'Civil', 'Civil Project Presentation', '$2y$10$pPugWo.JtZjGgCXr3Weh..IQRGjo3220hBFD.iQ0kHpe3ztfau/sG', NULL, NULL),
+('studentcomp-paperpresentation@gmail.com', 'Student Coordinator', 'Computer', 'Computer Paper Presentation', '$2y$10$TULeUABS0H.N0o5MX/yEoOpq/JEoOI5jUI2VyxFcHCO26lVPsWAfu', NULL, NULL),
+('studentcomp-posterpresentation@gmail.com', 'Student Coordinator', 'Computer', 'Computer Poster Presentation', '$2y$10$La84qcQAb8z0gq.CxgBmLuQQyrYcAyCSxNbdOKz7wWhD.J7HTJ7.O', NULL, NULL),
+('studentcomp-projectpresentation@gmail.com', 'Student Coordinator', 'Computer', 'Computer Project Presentation', '$2y$10$PLftWoiFmF9jValTYODD3uM9htSpWKfb0mrKDs8/NwGMsJRe0t0HS', NULL, NULL),
+('studentextc-calciwar@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'Calci War', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
+('studentextc-logocontest@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'Logo Contest', '', NULL, NULL),
+('studentextc-paperpresentation@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Paper Presentation', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
+('studentextc-posterpresentation@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Poster Presentation', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
+('studentextc-projectpresentation@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Project Presentation', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
+('studentextc-techboss@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'Tech Boss', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
+('studentmech-paperpresentation@gmail.com', 'Student Coordinator', 'Mechanical', 'Mechanical Paper Presentation', '$2y$10$p.1X7YmwdlO3Zu3Cj6o1eeU6ZOjKWfB22H1T619peAy/DystfB8ES', NULL, NULL),
+('studentmech-posterpresentation@gmail.com', 'Student Coordinator', 'Mechanical', 'Mechanical Poster Presentation', '$2y$10$dx3U5rFEUxQGDIiK2jb0.uGBWEhy3n7a/jXaSBPL3HoVjrsvLBpA.', NULL, NULL),
+('studentmech-projectpresentation@gmail.com', 'Student Coordinator', 'Mechanical', 'Mechanical Project Presentation', '$2y$10$FTOddthKgQhMm/II/tmSwu9JNE/lVsbAZlxEQM55BBw0IQtMIRu6y', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -135,8 +146,8 @@ CREATE TABLE `event_information` (
 --
 
 INSERT INTO `event_information` (`email`, `certificateId`, `event`, `paymentType`, `prize`, `gatewayName`, `resMsg`, `bankName`, `txnId`, `txnAmount`, `orderId`, `status`, `bankTxnId`, `txnDate`, `attendStatus`) VALUES
-('vishalbait01@gmail.com', 1304984771, 'EXTC Project Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200811111212800110168692401796095', '200.00', 'ORDS91250512', 'TXN_SUCCESS', '63017021', '2020-08-11 15:53:34.000000', 'present'),
-('vishalbait02@gmail.com', 1636529635, 'Chemical Paper Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200628111212800110168059701676201', '150.00', 'ORDS43447762', 'TXN_SUCCESS', '62726044', '2020-06-28 22:44:35.000000', 'absent');
+('testuser01@gmail.com', 1304984771, 'EXTC Project Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200811111212800110168692401796095', '200.00', 'ORDS91250512', 'TXN_SUCCESS', '63017021', '2020-08-11 15:53:34.000000', 'present'),
+('testuser02@gmail.com', 1636529635, 'Chemical Paper Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200628111212800110168059701676201', '150.00', 'ORDS43447762', 'TXN_SUCCESS', '62726044', '2020-06-28 22:44:35.000000', 'absent');
 
 -- --------------------------------------------------------
 
@@ -164,7 +175,7 @@ CREATE TABLE `feedback_information` (
 --
 
 INSERT INTO `feedback_information` (`email`, `attendBefore`, `likelyAttend`, `likelyRecommendFriend`, `likeMost`, `likeLeast`, `location`, `events`, `coordinators`, `eventsPrice`, `suggestion`, `feedbackDate`) VALUES
-('vishalbait01@gmail.com', 'no', '4', '4', 'Good', 'Good', '2', '3', '2', '5', 'Good', '2020-08-12 20:15:07');
+('testuser01@gmail.com', 'no', '4', '4', 'Good', 'Good', '2', '3', '2', '5', 'Good', '2020-08-12 20:15:07');
 
 -- --------------------------------------------------------
 
@@ -219,7 +230,26 @@ CREATE TABLE `newsletter_information` (
 --
 
 INSERT INTO `newsletter_information` (`id`, `email`, `subscribe`) VALUES
-(1, 'vishalbait01@gmail.com', 'Yes');
+(1, 'testuser01@gmail.com', 'Yes'),
+(2, 'testuser02@gmail.com', 'Yes'),
+(3, 'testuser03@gmail.com', 'Yes'),
+(4, 'testuser04@gmail.com', 'Yes'),
+(5, 'testuser05@gmail.com', 'Yes'),
+(6, 'testuser06@gmail.com', 'Yes'),
+(7, 'testuser07@gmail.com', 'Yes'),
+(8, 'testuser08@gmail.com', 'Yes'),
+(9, 'testuser09@gmail.com', 'Yes'),
+(10, 'testuser10@gmail.com', 'Yes'),
+(11, 'testuser11@gmail.com', 'Yes'),
+(12, 'testuser12@gmail.com', 'Yes'),
+(13, 'testuser13@gmail.com', 'Yes'),
+(14, 'testuser14@gmail.com', 'Yes'),
+(15, 'testuser15@gmail.com', 'Yes'),
+(16, 'testuser16@gmail.com', 'Yes'),
+(17, 'testuser17@gmail.com', 'Yes'),
+(18, 'testuser18@gmail.com', 'Yes'),
+(19, 'testuser19@gmail.com', 'Yes'),
+(20, 'testuser20@gmail.com', 'Yes');
 
 -- --------------------------------------------------------
 
@@ -285,7 +315,16 @@ CREATE TABLE `synergy_user_information` (
 --
 
 INSERT INTO `synergy_user_information` (`userId`, `certificateId`, `firstName`, `lastName`, `departmentName`, `eventName`, `prize`) VALUES
-(3, 793669864, 'Vishal', 'Bait', 'Electronics and Telecommunication', 'Singing Competition', 'None');
+(3, 793669864, 'Test', 'User01', 'Electronics and Telecommunication', 'Singing Competition', 'None'),
+(5, 603862888, 'Test', 'User03', 'Chemical', 'Fishpond', 'None'),
+(6, 11494271, 'Test', 'User04', 'Chemical', 'Dance Competition', 'None'),
+(7, 617198528, 'Test', 'User05', 'Civil', 'Debate Competition', 'None'),
+(8, 696777007, 'Test', 'User06', 'Civil', 'Quiz Competition', 'None'),
+(9, 417517694, 'Test', 'User07', 'Mechanical', 'Fashion Show Competition', 'None'),
+(10, 562647614, 'Test', 'User08', 'Mechanical', 'Drama Competition', 'None'),
+(11, 273552090, 'Test', 'User09', 'Computer', 'Group Discussion Competition', 'None'),
+(12, 44422342, 'Test', 'User10', 'Computer', 'Singing Competition', 'None'),
+(13, 441087762, 'Test', 'User02', 'Electronics and Telecommunication', 'Antakshari', 'None');
 
 -- --------------------------------------------------------
 
@@ -313,8 +352,26 @@ CREATE TABLE `user_information` (
 --
 
 INSERT INTO `user_information` (`email`, `profileImage`, `firstName`, `lastName`, `mobileNumber`, `collegeName`, `departmentName`, `academicYear`, `password`, `token`, `tokenDate`, `status`) VALUES
-('vishalbait01@gmail.com', 'defaultUser.png', 'Vishal', 'Bait', 1234567890, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$Cbs/nJd6HxTK0njurIll6eSHKaiwQdWgx8EM.CLl.wbIQ1uNZO/YO', 'c2272a1683d3da3ed452caeb7f9a61', '2020-07-11 09:11:29.000000', 'active'),
-('vishalbait02@gmail.com', 'defaultUser.png', 'Vishal', 'Bait', 1234567890, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$KHYedk3t317gxqUBQoH.SONpkuUCBPBZLdB1pAoj1V2VHlDOqEhWK', '1c6c327bee438858afb1426711c288', NULL, 'active');
+('testuser01@gmail.com', 'defaultUser.png', 'Test', 'User01', 1234567890, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Fourth Year', '$2y$10$Cbs/nJd6HxTK0njurIll6eSHKaiwQdWgx8EM.CLl.wbIQ1uNZO/YO', '0e243e390b3abb2480ddddd3b27368', '2020-07-11 09:11:29.000000', 'active'),
+('testuser02@gmail.com', 'defaultUser.png', 'Test', 'User02', 1234567890, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Third Year', '$2y$10$KHYedk3t317gxqUBQoH.SONpkuUCBPBZLdB1pAoj1V2VHlDOqEhWK', '0e243e390b3abb2480ddddd3b27368', '2020-07-11 09:11:29.000000', 'active'),
+('testuser03@gmail.com', 'defaultUser.png', 'Test', 'User03', 1234567890, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'Second Year', '$2y$10$2jzr3l8sqIi.dcQbIbDGjOXv3rzE8Ig6SqJqO.PBjZIJPQqTc/e0a', '6cf909e91432e055b0eb463548ffe3', '2020-09-09 19:07:23.000000', 'active'),
+('testuser04@gmail.com', 'defaultUser.png', 'Test', 'User04', 1234567890, '(742 )Gharda Institute of Technology', 'Electronics and Telecommunication', 'First Year', '$2y$10$9R5.Gsf0wT/IkhrN.ZVZ9O6ySCqbMIqAi.e7xPXQQ1NMfKt/PmEv2', '0e243e390b3abb2480ddddd3b27368', '2020-09-09 19:08:44.000000', 'active'),
+('testuser05@gmail.com', 'defaultUser.png', 'Test', 'User05', 1234567890, '(742 )Gharda Institute of Technology', 'Chemical', 'Fourth Year', '$2y$10$fDpJdae9ZVl1MGXfMb8TaOe1zpW7s8M1sFkOLrw4iNC/..yQ/TOa6', 'e32b66be00dad88f6d1ec3e08682e5', '2020-09-09 19:13:08.000000', 'active'),
+('testuser06@gmail.com', 'defaultUser.png', 'Test', 'User06', 1234567890, '(742 )Gharda Institute of Technology', 'Chemical', 'Third Year', '$2y$10$DpmJrtaIK9qEx6iFjz5youFHquyXDZ7JcsD9jh4BXPtr68flcCHte', 'a3dbe36861fc48fa3473ed15a6b609', '2020-09-09 19:14:09.000000', 'active'),
+('testuser07@gmail.com', 'defaultUser.png', 'Test', 'User07', 1234567890, '(742 )Gharda Institute of Technology', 'Chemical', 'Second Year', '$2y$10$g3qar2QN/aKMz/uto.7IXOkdpk3znY7Ok/4V4tEL8rT7FpbT4RY9G', 'b4d6094e3273ab386504a15d4a0d00', '2020-09-09 19:15:30.000000', 'active'),
+('testuser08@gmail.com', 'defaultUser.png', 'Test', 'User08', 1234567890, '(742 )Gharda Institute of Technology', 'Chemical', 'First Year', '$2y$10$L00Lwrq0Ot/dKWxUjA9f3OpAkQaMfVxm56wf8R31otgkdIPPf/k4y', '6175c8eb4ea6a6faa8e68ba0520b23', '2020-09-09 19:16:31.000000', 'active'),
+('testuser09@gmail.com', 'defaultUser.png', 'Test', 'User09', 1234567890, '(742 )Gharda Institute of Technology', 'Civil', 'Fourth Year', '$2y$10$Ap4oTF2eN6BGFJC0j.43rO7mDDtf88KE5Eqlq.BYYFkNQUfMVEwz6', '14a0cdacc898f14f107811923b66a2', '2020-09-09 19:17:50.000000', 'active'),
+('testuser10@gmail.com', 'defaultUser.png', 'Test', 'User10', 1234567890, '(742 )Gharda Institute of Technology', 'Civil', 'Third Year', '$2y$10$JAEFdMlsD6LmOJh5gb3Am.t3UJe3voNNJ9MxYCXFOwpWFc9vi4XVy', 'e1d7fa565f9a21e21bdea61fecc494', '2020-09-09 19:19:00.000000', 'active'),
+('testuser11@gmail.com', 'defaultUser.png', 'Test', 'User11', 1234567890, '(742 )Gharda Institute of Technology', 'Civil', 'Second Year', '$2y$10$m4DEvlGZRWzH2jQAOsubsuXTDXaLz/KDOCjkflH5ysHKKVrcmCcUi', '1c453a235cff436e71d57284d13499', '2020-09-09 19:20:30.000000', 'active'),
+('testuser12@gmail.com', 'defaultUser.png', 'Test', 'User12', 1234567890, '(742 )Gharda Institute of Technology', 'Civil', 'First Year', '$2y$10$yKkDv6G5sWd9HbfbZX5syeeZJSBmtIkZrKl7.0LlD7mIYZ9nzCbqS', '7b2155a3f4d96788c54c0929ea7032', '2020-09-09 19:22:28.000000', 'active'),
+('testuser13@gmail.com', 'defaultUser.png', 'Test', 'User13', 1234567890, '(742 )Gharda Institute of Technology', 'Mechanical', 'Fourth Year', '$2y$10$VcWsY0KQwycnRGgQzJdu7e0xRyOZVOzf7Hq5gVs9o38Vg2/Xi0cc.', 'f5d09cb951e40a78e88c4f0c80bff4', '2020-09-09 19:24:18.000000', 'active'),
+('testuser14@gmail.com', 'defaultUser.png', 'Test', 'User14', 1234567890, '(742 )Gharda Institute of Technology', 'Mechanical', 'Third Year', '$2y$10$MSg58lL7VxyXMUMx1ggCq.9OszIyOASyiY/Z1znKYW3XYB9P4Oc56', 'b4e33842e00f628d8bb87a6580ebab', '2020-09-09 19:25:38.000000', 'active'),
+('testuser15@gmail.com', 'defaultUser.png', 'Test', 'User15', 1234567890, '(742 )Gharda Institute of Technology', 'Mechanical', 'Second Year', '$2y$10$cB1PzlX5A019v50JJjFPTuJwQYPlIDEMuXgMUVb3KnQxnuYhh9d1W', '6f3f65358fead04e17c6ebff3f51ef', '2020-09-09 19:27:02.000000', 'active'),
+('testuser16@gmail.com', 'defaultUser.png', 'Test', 'User16', 1234567890, '(742 )Gharda Institute of Technology', 'Mechanical', 'First Year', '$2y$10$F.Betn4XtGt3m2Sx7Oy3XOmDadkxNjok7vRx692MeMlUUTDpi3MUS', 'dd61d602ce541e54d5619de7f11eb9', '2020-09-09 19:29:26.000000', 'active'),
+('testuser17@gmail.com', 'defaultUser.png', 'Test', 'User17', 1234567890, '(742 )Gharda Institute of Technology', 'Computer', 'Fourth Year', '$2y$10$2hHysVOsnaRHYru1B7LaKuo8cmakbLRx2PHdHcgixqvXGDdwkZj4O', 'de74c56b51758b6a51b5154bb0574a', '2020-09-09 19:30:33.000000', 'active'),
+('testuser18@gmail.com', 'defaultUser.png', 'Test', 'User18', 1234567890, '(742 )Gharda Institute of Technology', 'Computer', 'Third Year', '$2y$10$h72I5rUHYxywNDQO3Yv0CO2arTn/ZNI9SeQQhb5GjpoBV5f6oTHTW', '5ee527f356b039cc832922e5bff248', '2020-09-09 19:32:21.000000', 'active'),
+('testuser19@gmail.com', 'defaultUser.png', 'Test', 'User19', 1234567890, '(742 )Gharda Institute of Technology', 'Computer', 'Second Year', '$2y$10$9mVpO1IHknAWkYry/g7sTesSsqGj/8fORb7V1pO0hPNGXMJLqgLMO', 'b1a8704a5d11393b828a9d45f6c9eb', '2020-09-09 19:33:29.000000', 'active'),
+('testuser20@gmail.com', 'defaultUser.png', 'Test', 'User20', 1234567890, '(742 )Gharda Institute of Technology', 'Computer', 'First Year', '$2y$10$WivnFolCiJG7S3gkrnp.nuPQrslbtxy38jWkwWVWqj3gg41ITbd2.', '1e6511254f99e1a571bea6f1bc5be4', '2020-09-09 19:35:17.000000', 'active');
 
 -- --------------------------------------------------------
 
@@ -427,7 +484,7 @@ ALTER TABLE `gallery_information`
 -- AUTO_INCREMENT for table `newsletter_information`
 --
 ALTER TABLE `newsletter_information`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `news_information`
@@ -445,7 +502,7 @@ ALTER TABLE `sponsor_information`
 -- AUTO_INCREMENT for table `synergy_user_information`
 --
 ALTER TABLE `synergy_user_information`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `visitor_counter`
