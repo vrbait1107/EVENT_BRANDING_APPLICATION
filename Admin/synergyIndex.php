@@ -2,9 +2,10 @@
 //--------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-// Staring Session
+// ---------------------->> START SESSION
 session_start();
 
+//------------------------>> CHECKING ADMIN
 if (!isset($_SESSION['Admin'])) {
     header('location:synergyLogin.php');
 }
@@ -22,7 +23,7 @@ if (!isset($_SESSION['Admin'])) {
     <meta name="author" content="" />
     <title>SYNERGY ADMIN</title>
 
-    <!-- Admin Header Scripts -->
+    <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
 
 </head>
@@ -30,14 +31,10 @@ if (!isset($_SESSION['Admin'])) {
 <body class="sb-nav-fixed">
 
 
-    <!-- Admin Navbar -->
+    <!-- Include Admin Navbar & Common Anchor -->
     <?php
-
-$adminFileName = "synergyIndex.php";
-$adminFileData = "synergyData.php";
-$adminManage = "#";
 $_SESSION['adminType'] = 'Synergy Administrator';
-
+include_once "includes/commonAnchor.php";
 include_once "includes/adminNavbar.php";
 ?>
 
@@ -121,30 +118,25 @@ include_once "includes/adminNavbar.php";
                     </section>
                 </div>
 
-                <!--  ADD Administartor Profile Form Complete -->
             </div>
         </main>
-        <!--Admin Footer-->
+
+        <!--Include Admin Footer-->
         <?php include_once "includes/adminFooter.php";?>
 
     </div>
 
-    <!-- Admin Footer Scripts -->
+    <!-- Include Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php";?>
+
+    <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-        https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
+
+     <!-- Javascript -->
     <script src="js/synergyIndex.js"></script>
 
-
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+  <!-- Close Database Connection -->
+  <?php $conn = null;?>
 
 </body>
 

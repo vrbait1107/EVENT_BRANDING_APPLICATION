@@ -3,10 +3,10 @@
 //--------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-// Starting Session
+//--------------------->> START SESSION
 session_start();
 
-// Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
+//--------------------->> DB ADMIN
 if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
     if ($_SESSION['adminType'] !== "Administrator") {
@@ -28,7 +28,7 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <meta name="author" content="" />
     <title>Administrator</title>
 
-    <!-- Admin Header Scripts -->
+    <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
 
 
@@ -36,14 +36,9 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
 <body class="sb-nav-fixed">
 
-
-    <!-- Admin Navbar -->
+    <!-- Include Admin Navbar & Include Common Anchor -->
     <?php
-
-$adminFileName = "adminIndex.php";
-$adminFileData = "adminIndexData.php";
-$adminManage = "adminManage.php";
-
+include_once "includes/commonAnchor.php";
 include_once "includes/adminNavbar.php";
 ?>
 
@@ -233,21 +228,19 @@ include_once "includes/adminNavbar.php";
             </div>
         </div>
 
-        <!--Admin Footer-->
+        <!--Include Admin Footer-->
         <?php include_once "includes/adminFooter.php";?>
 
     </main>
 
-    <!-- Admin Footer Scripts -->
+    <!--  Include Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php";?>
 
-    <!-- addAdmin js  -->
+    <!--  Javascript -->
     <script src="js/manageAdmin.js"></script>
 
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+     <!-- Close Database Connection -->
+    <?php $conn = null;?>
 
 </body>
 

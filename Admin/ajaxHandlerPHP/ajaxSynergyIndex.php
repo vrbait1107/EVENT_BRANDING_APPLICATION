@@ -16,6 +16,7 @@ if (isset($_POST['submit'])) {
     $eventName = htmlspecialchars($_POST["eventName"]);
     $prize = htmlspecialchars($_POST["prize"]);
 
+    // Sql Query
     $sql = "INSERT INTO synergy_user_information (certificateId, firstName, lastName, departmentName,
         eventName, prize) VALUES ( :certificateId, :firstName, :lastName, :department, :event, :prize)";
 
@@ -39,6 +40,7 @@ if (isset($_POST['submit'])) {
                     title: 'Success',
                     text: 'Data Inserted Successfully!'
                 })</script>";
+
     } else {
         echo "<script>Swal.fire({
                         icon: 'error',

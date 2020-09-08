@@ -5,7 +5,6 @@ session_start();
 //--------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-
 //---------------------------->> SECRETS
 require_once "../config/Secret.php";
 
@@ -24,13 +23,11 @@ if (!isset($_SESSION['adminEmail'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Admin Header Scripts -->
+  <!-- First Include Admin Header Scripts then Google Recaptcha -->
   <?php include_once "includes/adminHeaderScripts.php";?>
-
-  <!-- Google Recaptcha -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-  <title>GIT SHODH 2K20</title>
+  <title>GIT SHODH 2K21</title>
 
   <style>
     hr {
@@ -41,10 +38,9 @@ if (!isset($_SESSION['adminEmail'])) {
 
 <body class="sb-nav-fixed">
 
+<!-- Include Admin Navbar & Common Anchor -->
   <?php
-// Include Common Anchor
 include_once "includes/commonAnchor.php";
-//Including Admin Navbar
 include_once "includes/adminNavbar.php";
 ?>
 
@@ -103,16 +99,15 @@ include_once "includes/adminNavbar.php";
   <!-- Admin Footer Scripts -->
   <?php include_once "includes/adminFooterScripts.php";?>
 
-  <!-- Custom JS -->
+  <!-- Javascript -->
   <script src="js/sendNewsletter.js"></script>
 
    <script>
         CKEDITOR . replace('newsletterMessage');
     </script>
-  <?php
-// closing Database Connnection
-$conn = null;
-?>
+
+  <!-- Close Database Connection -->
+  <?php $conn = null;?>
 
 </body>
 

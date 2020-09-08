@@ -3,17 +3,16 @@
 //--------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-// Starting Session
+//--------------------->> START SESSION
 session_start();
 
 $admin = $_SESSION['adminEmail'];
+
+//--------------------->> CHECKING ADMIN
+
 if (!isset($_SESSION['adminEmail'])) {
     header('location:adminLogin.php');
 }
-
-// Include Common Anchor
-include_once "includes/commonAnchor.php";
-
 ?>
 
 <!DOCTYPE html>
@@ -26,10 +25,10 @@ include_once "includes/commonAnchor.php";
     <meta name="description" content="" />
     <meta name="author" content="Vishal Bait" />
 
-    <title>Change Password</title>
-
-     <!-- Admin Header Scripts -->
+      <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
+
+    <title>Change Password</title>
 
     <style>
         h3 {
@@ -96,8 +95,11 @@ if (isset($_POST['changePassword'])) {
 ?>
 
 
-   <!-- Admin Navbar -->
-  <?php include_once "includes/adminNavbar.php";?>
+   <!-- Include Admin Navbar & Common Anchor -->
+  <?php
+include_once "includes/commonAnchor.php";
+include_once "includes/adminNavbar.php";
+?>
 
 
 <div id="layoutSidenav_content">
@@ -137,17 +139,15 @@ if (isset($_POST['changePassword'])) {
         </div>
     </main>
 
-     <!--Admin Footer-->
+     <!-- Include Admin Footer-->
     <?php include_once "includes/adminFooter.php";?>
 </div>
 
-    <!-- Admin Footer Scripts -->
+    <!-- Include  Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php";?>
 
-     <?php
-// closing Database Connnection
-$conn = null;
-?>
+     <!-- Close DB Connection -->
+     <?php $conn = null;?>
 
 </body>
 

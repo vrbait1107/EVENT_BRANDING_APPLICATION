@@ -1,6 +1,6 @@
 let readrecordGallery;
 $(document).ready(function () {
-  // ##############  Reading Record
+  // ---------------------------->> READ OPERATION
   readrecordGallery = () => {
     let readRecord = "readRecord";
 
@@ -26,7 +26,7 @@ $(document).ready(function () {
 
   readrecordGallery();
 
-  //################## ADDING IMAGES
+  // ---------------------------->> CREATE OPERATION
 
   $("#galleryForm").on("submit", function (e) {
     e.preventDefault();
@@ -51,7 +51,7 @@ $(document).ready(function () {
   });
 });
 
-//################ Delete Gallery Data
+// ---------------------------->> DELETE OPERATION
 
 const deleteGalleryDetails = (id) => {
   let deleteId = id;

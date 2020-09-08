@@ -38,6 +38,7 @@ function count1($conn, $event)
 }
 
 //------------------------->> DISPLAY REVENUE DEVENT WISE
+
 function countRevenue($conn, $event)
 {
     $sql = "SELECT SUM(txnAmount) AS totalAmount FROM event_information WHERE event = :event";

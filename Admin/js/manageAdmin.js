@@ -1,7 +1,7 @@
 let readrecordAdmin;
 
 $(document).ready(function () {
-  // ---------------------------->>  Reading Record
+  // ---------------------------->> READ OPERATION
   readrecordAdmin = () => {
     let readRecord = "readRecord";
 
@@ -27,7 +27,7 @@ $(document).ready(function () {
 
   readrecordAdmin();
 
-  //---------------------------->>   CREATE OPERATION ADMIN
+  //---------------------------->>   CREATE OPERATION
 
   $("#addAdmin").click(function () {
     let email = $("#email").val();

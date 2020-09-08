@@ -3,17 +3,15 @@
 //--------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-// Starting Session
+//--------------------->> START SESSION
 session_start();
 
 $admin = $_SESSION['adminEmail'];
 
+//--------------------->> CHECKING ADMIN
 if (!isset($_SESSION['adminEmail'])) {
     header('location:adminLogin.php');
 }
-
-// Include Common Anchor
-include_once "includes/commonAnchor.php";
 
 ?>
 
@@ -29,7 +27,7 @@ include_once "includes/commonAnchor.php";
 
     <title>Manage Feedback</title>
 
-    <!-- Admin Header Scripts -->
+    <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
 
 </head>
@@ -37,8 +35,11 @@ include_once "includes/commonAnchor.php";
 <body class="sb-nav-fixed">
 
 
-    <!-- Admin Navbar -->
-    <?php include_once "includes/adminNavbar.php";?>
+    <!-- Include Admin Navbar & Common Anchor -->
+    <?php
+include_once "includes/adminNavbar.php";
+include_once "includes/commonAnchor.php";
+?>
 
 
     <div id="layoutSidenav_content">
@@ -207,26 +208,18 @@ include_once "includes/commonAnchor.php";
         </div>
 
 
-
-
-
-
-
-
-        <!--Admin Footer-->
+        <!--Include Admin Footer-->
         <?php include_once "includes/adminFooter.php";?>
     </div>
 
-    <!-- Admin Footer Scripts -->
+    <!-- Include Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php";?>
 
-    <!-- Custom Js Script -->
+    <!-- Javascript -->
     <script src="js/manageFeedback.js"></script>
 
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+    <!-- Close Database Connection -->
+    <?php $conn = null;?>
 
 </body>
 

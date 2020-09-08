@@ -47,7 +47,7 @@ if (isset($_POST["newsletterMessage"])) {
 
 }
 
-// Mail code
+// ---------------------------------------->> MAIL CODE
 
 function sendMail($newsletterEmails, $newsletterSubject, $newsletterMessage)
 {

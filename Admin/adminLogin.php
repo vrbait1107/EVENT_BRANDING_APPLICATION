@@ -3,15 +3,13 @@
 //--------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-
 //---------------------------->> SECRETS
 require_once "../config/Secret.php";
 
-//Starting Session
+//---------------------------->> STARTING SESSION
 session_start();
 
-// Checking That Admin Login or Not if Logged in Redirect
-// to Index.php page otherwise redirect to AdminLogin page
+//---------------------------->> CHECKING ADMIN
 
 if (isset($_SESSION['adminEmail']) && $_SESSION['adminType'] && $_SESSION['adminDepartment'] && $_SESSION['adminEvent']) {
     if ($_SESSION['adminType'] == 'Administrator') {
@@ -41,12 +39,11 @@ if (isset($_SESSION['adminEmail']) && $_SESSION['adminType'] && $_SESSION['admin
     <meta name="author" content="Vishal Bait" />
     <title>Admin Login Page</title>
 
-     <!-- header Scripts and Links -->
+     <!-- Include Header Scripts then Google Recaptcha then Css file -->
     <?php include_once "../includes/headerScripts.php";?>
-    <!-- Google Recaptcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <!-- Local css -->
     <link rel="stylesheet" href="css/adminLogin.css">
+
 </head>
 
 <body class="mb-5">
@@ -64,18 +61,21 @@ if (isset($_POST['login'])) {
 
         if ($response->success) {
 
+            // Removing White Spaces
             $adminUserName = trim($_POST['email']);
             $adminType = trim($_POST['adminType']);
             $adminDepartment = trim($_POST['adminDepartment']);
             $adminEvent = trim($_POST['adminEvent']);
             $adminPassword = trim($_POST['password']);
 
+            // Avoid XSS Attack
             $adminUserName = htmlspecialchars($_POST['email']);
             $adminType = htmlspecialchars($_POST['adminType']);
             $adminDepartment = htmlspecialchars($_POST['adminDepartment']);
             $adminEvent = htmlspecialchars($_POST['adminEvent']);
             $adminPassword = htmlspecialchars($_POST['password']);
 
+            // Sql Query
             $sql = "SELECT adminPassword FROM admin_information WHERE admin_information.email  = :adminUserName
             AND admin_information.adminType = :adminType AND admin_information.adminEvent = :adminEvent AND
             admin_information.adminDepartment = :adminDepartment";
@@ -270,13 +270,11 @@ if (isset($_POST['login'])) {
         </div>
     </main>
 
-    <!--Footer Scripts-->
+    <!--Include Footer Scripts-->
     <?php include_once "../includes/footerScripts.php"?>
 
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+    <!--Close DB Connection-->
+    <?php $conn = null;?>
 
 </body>
 

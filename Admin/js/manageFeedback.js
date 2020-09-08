@@ -2,7 +2,7 @@ let readRecordFeedback;
 let readStatistics;
 
 $(document).ready(function () {
-  // ----------------->> READING RECORD OF FEEDBACK
+  // ---------------------------------->> READ OPERATION
   readRecordFeedback = () => {
     let readRecord = "readRecord";
 
@@ -77,7 +77,7 @@ $(document).ready(function () {
   readStatistics();
 });
 
-// --------------------->>  DELETE FEEDBACK INFORMATION
+// --------------------->>  DELETE OPERATION
 
 const deleteFeedbackInformation = (email) => {
   let deleteEmail = email;
@@ -113,6 +113,8 @@ const deleteFeedbackInformation = (email) => {
     }
   });
 };
+
+// ---------------------------->> READ OPERATION
 
 const viewFeedbackInformation = (email) => {
   let viewEmail = email;

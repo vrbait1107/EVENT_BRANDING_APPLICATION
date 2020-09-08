@@ -1,12 +1,12 @@
 <?php
 
-//--------------------->> DB CONFIG
+//--------------------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-// Session Start
+//--------------------------------->> SESSION START
 session_start();
 
-// Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
+//--------------------------------->> CHECKING ADMIN
 if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
     if ($_SESSION['adminType'] !== "Faculty Coordinator") {
@@ -26,23 +26,17 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Admin Header Scripts -->
+  <!-- Include Admin Header Scripts -->
   <?php include_once "includes/adminHeaderScripts.php";?>
 
-
-  <title>GIT SHODH 2K20</title>
+  <title>GIT SHODH 2K21</title>
 </head>
 
 <body class="sb-nav-fixed">
 
-
-  <!-- Admin Navbar -->
+  <!-- Include Admin Navbar -->
   <?php
-
-$adminFileName = "facultyCoordinatorIndex.php";
-$adminFileData = "facultyCoordinatorData.php";
-$adminManage = "facultyCoordinatorManage.php";
-
+include_once "includes/commonAnchor.php";
 include_once "includes/adminNavbar.php";
 ?>
 
@@ -73,7 +67,7 @@ include_once "includes/adminNavbar.php";
 
 $department = $_SESSION['adminDepartment'];
 
-//Retriving Data From the Database to Show Data in Table
+// Sql Query
 
 $sql = "SELECT * FROM user_information INNER JOIN event_information
         ON user_information.email= event_information.email
@@ -115,8 +109,10 @@ $result->execute();
 
                     <?php
 
+// Checking Records Count
 if ($result->rowCount() > 0) {
 
+    // Fetching Data value
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         ?>
 
@@ -159,18 +155,17 @@ if ($result->rowCount() > 0) {
 
       </div>
     </main>
-    <!--Admin Footer-->
+
+    <!--Include Admin Footer-->
     <?php include_once "includes/adminFooter.php";?>
 
   </div>
 
-  <!-- Admin Footer Scripts -->
+  <!-- Include Admin Footer Scripts -->
   <?php include_once "includes/adminFooterScripts.php";?>
 
-     <?php
-// closing Database Connnection
-$conn = null;
-?>
+  <!-- Closing Database Connnection -->
+   <?php $conn = null;?>
 
 </body>
 

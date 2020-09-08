@@ -172,7 +172,7 @@ $(document).ready(function () {
   });
 });
 
-// ---------------------------------------------->> DELETING EVENT INFORMATION
+// ---------------------------------------------->> DELETE OPERATION
 
 const deleteEventInformation = (id) => {
   let deleteId = id;
@@ -205,7 +205,7 @@ const deleteEventInformation = (id) => {
   });
 };
 
-//------------------------------------->> GET EVENT INFORMATION
+//------------------------------------->> EDIT OPERATION
 
 const getEventInformation = (id) => {
   let editId = id;
@@ -244,7 +244,7 @@ const getEventInformation = (id) => {
   $("#updateModal").modal("show");
 };
 
-//------------------------------------->> UPDATE EVENT INFORMATION
+//------------------------------------->> UPDATE OPERATION
 
 const updateEvent = () => {
   let updateEventName = $("#updateEventName").val();

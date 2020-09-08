@@ -7,7 +7,7 @@ session_start();
 
 extract($_POST);
 
-//-------------------------------->> READING RECORD OF EVENT INFORMATION
+//-------------------------------->> READING OPERATION
 if (isset($_POST["readRecord"])) {
 
 //Query
@@ -77,7 +77,7 @@ if (isset($_POST["readRecord"])) {
 
 extract($_FILES);
 
-//---------------------------------------->> ADD OPERATION
+//---------------------------------------->> CREATE OPERATION
 
 if (isset($_POST['eventName'])) {
 
@@ -166,7 +166,7 @@ if (isset($_POST['eventName'])) {
 
 }
 
-//---------------------------------------->>  DELETING EVENT INFORMATION
+//---------------------------------------->>  DELETING OPERATION
 
 if (isset($_POST['deleteId'])) {
     // Query
@@ -198,7 +198,7 @@ if (isset($_POST['deleteId'])) {
     }
 }
 
-//---------------------------------------------->> GET EVENT INFORMATION
+//---------------------------------------------->> EDIT OPERATION
 
 if (isset($_POST['editId'])) {
     // Query
@@ -221,7 +221,7 @@ if (isset($_POST['editId'])) {
 
 }
 
-// ------------------------------------->> UPDATE EVENT INFORMATION
+// ------------------------------------->> UPDATE OPERATION
 
 if (isset($_POST['hiddenId'])) {
 
@@ -285,5 +285,5 @@ if (isset($_POST['hiddenId'])) {
 
 }
 
-// Disconnect Connection
+// Close Database Connection
 $conn = null;

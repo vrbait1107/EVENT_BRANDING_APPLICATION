@@ -1,6 +1,6 @@
 <?php
 
-//Starting Session
+//---------------------------->> START SESSION
 session_start();
 
 //--------------------->> DB CONFIG
@@ -9,6 +9,7 @@ require_once '../config/configPDO.php';
 //---------------------------->> SECRETS
 require_once "../config/Secret.php";
 
+//---------------------------->> CHECKING ADMIN
 if (!isset($_SESSION['adminEmail'])) {
     header("location:adminLogin.php");
 }
@@ -24,13 +25,11 @@ if (!isset($_SESSION['adminEmail'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Admin Header Scripts -->
+  <!-- First Admin Header Scripts then Google Recaptcha -->
   <?php include_once "includes/adminHeaderScripts.php";?>
-
-  <!-- Google Recaptcha -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-  <title>GIT SHODH 2K20</title>
+  <title>GIT SHODH 2K21</title>
 
   <style>
     hr {
@@ -42,14 +41,10 @@ if (!isset($_SESSION['adminEmail'])) {
 <body class="sb-nav-fixed">
 
 
-  <!--Navbar-->
+  <!--Include Navbar & Common Anchor-->
   <?php
-
-// Include Common Anchor
 include_once "includes/commonAnchor.php";
-//Including Admin Navbar
 include_once "includes/adminNavbar.php";
-
 ?>
 
   <div id="layoutSidenav_content">
@@ -149,24 +144,22 @@ include_once "includes/adminNavbar.php";
 
     </main>
 
-    <!--Admin Footer-->
+    <!-- Include Admin Footer-->
     <?php include_once "includes/adminFooter.php";?>
 
   </div>
 
-  <!-- Admin Footer Scripts -->
+  <!-- Include Admin Footer Scripts -->
   <?php include_once "includes/adminFooterScripts.php";?>
 
-  <!-- Custom JS Script -->
+  <!-- Javascript -->
   <script src="js/sendMails.js"></script>
    <script>
         CKEDITOR . replace('targetMessage');
     </script>
 
-  <?php
-// closing Database Connnection
-$conn = null;
-?>
+   <!-- Close Database Connection -->
+  <?php $conn = null;?>
 
 </body>
 

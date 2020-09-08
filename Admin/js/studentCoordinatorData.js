@@ -1,7 +1,7 @@
 let readrecordParticipant;
 
 $(document).ready(function () {
-  // ##############  READING RECORDS
+  // ---------------------------->> READ OPERATION
   readrecordParticipant = () => {
     let readRecord = "readRecord";
 
@@ -42,7 +42,8 @@ $(document).ready(function () {
   readrecordParticipant();
 });
 
-//################ DELETE PARTICIPANT DATA
+// ---------------------------->> DELETE OPERATION
+
 const deleteParticipantDetails = (id) => {
   let deleteCertificateId = id;
 
@@ -77,7 +78,8 @@ const deleteParticipantDetails = (id) => {
   });
 };
 
-//################## Retrieve Participant Data in the Form
+// ---------------------------->> EDIT OPERATION
+
 const getParticipantDetails = (id) => {
   let getCertificateId = id;
 
@@ -103,7 +105,8 @@ const getParticipantDetails = (id) => {
   $("#updateModal").modal("show");
 };
 
-//############### UPDATE PARTICIPANT DATA
+// ---------------------------->> UPDATE OPERATION
+
 const updateParticipantDetails = () => {
   let hiddenCertificateId = $("#hiddenCertificateId").val();
   let updateFirstName = $("#updateFirstName").val();

@@ -1,12 +1,12 @@
 <?php
 
-//--------------------->> DB CONFIG
+// ---------------------------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-//Starting Session
+// ---------------------------------------->> START SESSION
 session_start();
 
-// Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
+// ---------------------------------------->> CHECKING ADMIN
 if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
     if ($_SESSION['adminType'] !== "Administrator") {
@@ -102,14 +102,14 @@ function countRevenue($department)
     <meta name="author" content="Vishal Bait" />
     <title>Administrator Dashboard</title>
 
-    <!-- Admin Header Scripts -->
+    <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
 
 </head>
 
 <body class="sb-nav-fixed">
 
-    <!-- Admin Navbar & Common Anchor -->
+    <!-- Include Admin Navbar & Common Anchor -->
     <?php
 include_once "includes/commonAnchor.php";
 include_once "includes/adminNavbar.php";
@@ -351,16 +351,14 @@ for ($i = 0; $i < 5; $i++) {
 
         </main>
 
-        <!--Admin Footer-->
+        <!-- Include Admin Footer-->
         <?php include_once "includes/adminFooter.php";?>
     </div>
 
+    <!-- First Include Footer Scripts then Close DB Conn -->
 <?php
-// Admin Footer Scripts
 include_once "includes/adminFooterScripts.php";
-// Closing Database Connnection
 $conn = null;
-
 ?>
 
 </body>

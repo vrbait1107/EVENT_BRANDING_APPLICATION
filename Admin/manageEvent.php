@@ -3,7 +3,7 @@
 //--------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-// Starting Session
+//--------------------->> START SESSION
 session_start();
 
 $admin = $_SESSION['adminEmail'];
@@ -11,9 +11,6 @@ $admin = $_SESSION['adminEmail'];
 if (!isset($_SESSION['adminEmail'])) {
     header('location:adminLogin.php');
 }
-
-// Include Common Anchor
-include_once "includes/commonAnchor.php";
 
 ?>
 
@@ -29,19 +26,18 @@ include_once "includes/commonAnchor.php";
 
     <title>Add/Manage Events</title>
 
-    <!-- Admin Header Scripts -->
+    <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
 
 </head>
 
 <body class="sb-nav-fixed">
 
-    <!-- Include Common Anchor -->
-    <?php include_once "includes/commonAnchor.php";?>
-
-    <!-- Admin Navbar -->
-    <?php include_once "includes/adminNavbar.php";?>
-
+    <!-- Include Common Anchor & Admin Navbar -->
+    <?php
+include_once "includes/commonAnchor.php";
+include_once "includes/adminNavbar.php";
+?>
 
     <main id="layoutSidenav_content">
         <div class="container-fluid mt-3">
@@ -305,11 +301,11 @@ include_once "includes/commonAnchor.php";
 
             </div>
         </div>
-        <!--Admin Footer-->
+        <!--Include Admin Footer-->
         <?php include_once "includes/adminFooter.php";?>
     </main>
 
-    <!-- Admin Footer Scripts -->
+    <!-- Include Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php";?>
 
      <script>
@@ -321,13 +317,11 @@ include_once "includes/commonAnchor.php";
         CKEDITOR . replace('updateEventCoordinator');
     </script>
 
-    <!-- Custom JS Script -->
+    <!-- javascript -->
     <script src="js/manageEvent.js"></script>
 
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+    <!-- Close Database Connection -->
+    <?php $conn = null;?>
 
 </body>
 

@@ -1,14 +1,13 @@
 <?php
 
-//--------------------->> DB CONFIG
+// ---------------------------------------->>DB CONFIG
 require_once '../config/configPDO.php';
 
-// Starting Session
+// ---------------------------------------->> START SESSION
 session_start();
 
-// Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
+// ---------------------------------------->> CHECKING ADMIN
 
-// Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
 if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
     if ($_SESSION['adminType'] !== "Administrator") {
@@ -28,7 +27,7 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Admin Header Scripts -->
+  <!-- Include Admin Header Scripts -->
   <?php include_once "includes/adminHeaderScripts.php";?>
 
   <title>GIT SHODH 2K20 Administrator Dashboard</title>
@@ -38,13 +37,9 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
 <body class="sb-nav-fixed">
 
-  <!-- Admin Navbar -->
+  <!-- Include Admin Navbar -->
   <?php
-
-$adminFileName = "adminIndex.php";
-$adminFileData = "adminIndexData.php";
-$adminManage = "adminManage.php";
-
+include_once "includes/commonAnchor.php";
 include_once "includes/adminNavbar.php";
 ?>
 
@@ -73,10 +68,9 @@ include_once "includes/adminNavbar.php";
 
                 <?php
 
-//  Retriving all the Information From the Database
-
+//  Sql Query
 $sql = "SELECT * FROM user_information INNER JOIN event_information ON
-                  user_information.email= event_information.email ORDER BY firstName ASC";
+      user_information.email= event_information.email ORDER BY firstName ASC";
 
 //Preparing Query
 $result = $conn->prepare($sql);
@@ -84,6 +78,7 @@ $result = $conn->prepare($sql);
 //Executing Value
 $result->execute();
 
+// Checking Record Count
 if ($result->rowCount() > 0) {
 
     ?>
@@ -110,7 +105,8 @@ if ($result->rowCount() > 0) {
                   <tbody>
 
                     <?php
-while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+// Fetching Data from Database
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         ?>
 
                     <tr>
@@ -150,17 +146,15 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
       </div>
     </main>
 
-    <!--Admin Footer-->
+    <!--Include Admin Footer-->
     <?php include_once "includes/adminFooter.php";?>
   </div>
 
-  <!-- Admin Footer Scripts -->
+  <!-- Include Admin Footer Scripts -->
   <?php include_once "includes/adminFooterScripts.php";?>
 
-     <?php
-// closing Database Connnection
-$conn = null;
-?>
+  <!-- closing Database Connnection -->
+  <?php $conn = null;?>
 
 </body>
 

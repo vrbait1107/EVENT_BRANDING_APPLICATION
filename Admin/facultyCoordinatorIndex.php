@@ -3,11 +3,10 @@
 //--------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-
 // ---------------------->> SESSION
 session_start();
 
-// ----------------------->> CHECKING SESSION
+// ----------------------->> CHECKING ADMIN
 if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
     if ($_SESSION['adminType'] !== "Faculty Coordinator") {
@@ -104,7 +103,7 @@ function countRevenue($event)
 
 <body class="sb-nav-fixed">
 
-    <!-- Admin Navbar -->
+    <!-- Include Admin Navbar -->
     <?php
 include_once "includes/commonAnchor.php";
 include_once "includes/adminNavbar.php";
@@ -276,18 +275,16 @@ for ($i = 0; $i < sizeof($events); $i++) {
         </main>
 
 
-        <!--Admin Footer-->
+        <!-- Include Admin Footer-->
         <?php include_once "includes/adminFooter.php";?>
 
     </div>
 
-    <!-- Admin Footer Scripts -->
+    <!-- Include Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php";?>
 
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+    <!-- Closing Database Connnection -->
+    <?php $conn = null;?>
 
 </body>
 

@@ -1,5 +1,6 @@
 <?php
-// Starting Session
+
+//---------------------->> START SESSION
 session_start();
 
 //--------------------->> DB CONFIG
@@ -8,6 +9,7 @@ require_once '../config/configPDO.php';
 //--------------------->> SECRETS
 require_once "../config/Secret.php";
 
+//--------------------->> CHECK ADMIN
 if (isset($_SESSION['Admin'])) {
     header('location:synergyIndex.php');
 }
@@ -19,20 +21,16 @@ if (isset($_SESSION['Admin'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYNERGY 2K20 LOGIN</title>
+    <title>SYNERGY 2K21 LOGIN</title>
 
-    <!-- header Scripts and Links -->
+    <!-- Include Header Scripts then Google Recaptcha then CSS -->
     <?php include_once "../includes/headerScripts.php";?>
-    <!-- Google Recaptcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <!-- Local css -->
     <link rel="stylesheet" href="css/synergyLogin.css">
 
 </head>
 
 <body>
-
-    <!-- PHP CODE START -->
 
     <?php
 
@@ -63,6 +61,7 @@ if (isset($_POST['login'])) {
     if (password_verify($password, $dbPassword) && ($email = 'gitshodhadmin@gmail.com')) {
         $_SESSION['Admin'] = $email;
         header("Location:synergyIndex.php");
+
     } else {
         echo "<script>Swal.fire({
                 icon: 'error',
@@ -154,7 +153,7 @@ if (isset($_POST['login'])) {
         </div>
     </main>
 
-    <!-- Footer Script -->
+    <!-- Include Footer Script -->
     <?php include_once "../includes/footerScripts.php";?>
 
 
@@ -180,10 +179,8 @@ if (isset($_POST['login'])) {
     </script>
 
 
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+   <!-- Close Database Connection -->
+   <?php $conn = null;?>
 
 </body>
 

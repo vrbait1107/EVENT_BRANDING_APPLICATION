@@ -5,7 +5,7 @@ require_once "../../config/configPDO.php";
 
 extract($_POST);
 
-// #################### READING RECORD
+// ---------------------------->> READ OPERATION
 
 if (isset($_POST['readRecordData'])) {
 
@@ -70,9 +70,9 @@ if (isset($_POST['readRecordData'])) {
 
 }
 
-// #################### DELETE DATA
+// ---------------------------->> DELETE OPERATION
 
-if (isset($_REQUEST['deleteId'])) {
+if (isset($_POST['deleteId'])) {
 
     $sql = "DELETE  FROM synergy_user_information WHERE certificateId = :deleteId";
 
@@ -84,6 +84,7 @@ if (isset($_REQUEST['deleteId'])) {
 
     //Executing Value
     $result->execute();
+
     if ($result) {
         echo "<script>Swal.fire({
             icon: 'success',

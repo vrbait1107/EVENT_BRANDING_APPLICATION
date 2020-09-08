@@ -1,6 +1,7 @@
 let readRecord;
 
 $(document).ready(function () {
+  // ---------------------------->> READ OPERATION
   readRecord = () => {
     let readRecordData = "readRecord";
 
@@ -26,6 +27,8 @@ $(document).ready(function () {
 
   readRecord();
 });
+
+// ---------------------------->> DELETE OPERATION
 
 const deleteSynergyData = (id) => {
   let deleteId = id;

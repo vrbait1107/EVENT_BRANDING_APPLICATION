@@ -1,13 +1,12 @@
 <?php
 
-//--------------------->> DB CONFIG
+//-------------------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-
-// Starting Session
+// ------------------------------>> START SESSION
 session_start();
 
-// Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
+// ------------------------------>> CHECKING ADMIN
 if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
     if ($_SESSION['adminType'] !== "Faculty Coordinator") {
@@ -31,19 +30,16 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <meta name="author" content="" />
     <title>Dashboard-Faculty Coordinator</title>
 
-    <!-- Admin Header Scripts -->
+    <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
 
 </head>
 
 <body class="sb-nav-fixed">
 
-    <!-- Admin Navbar -->
+    <!-- Include Admin Navbar & Common Anchor -->
     <?php
-
-$adminFileName = "facultyCoordinatorIndex.php";
-$adminFileData = "facultyCoordinatorData.php";
-$adminManage = "facultyCoordinatorManage.php";
+include_once "includes/commonAnchor.php";
 include_once "includes/adminNavbar.php";
 ?>
 
@@ -299,21 +295,19 @@ include_once "includes/adminNavbar.php";
         </div>
 
 
-        <!--Admin Footer-->
+        <!-- Include Admin Footer-->
         <?php include_once "includes/adminFooter.php";?>
 
     </main>
 
-    <!-- Admin Footer Scripts -->
+    <!-- Include Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php";?>
 
-    <!-- Custom js -->
+    <!-- Javascript -->
     <script src="js/manageFacultyCoordinator.js"></script>
 
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+    <!-- Close Database Connection -->
+    <?php $conn = null;?>
 
 </body>
 

@@ -18,6 +18,7 @@ $result->bindValue(":certId", $CertId);
 //Executing the Query
 $result->execute();
 
+// Fetching Data from Database
 $row = $result->fetch(PDO::FETCH_ASSOC);
 
 $validate = $row['certificateId'];
@@ -122,10 +123,8 @@ $prize = $row['prize'];
     <!-- Convert JS Variable data into QR Code takes input above JS Variable-->
     <script type="text/javascript" src="../js/php-certQrCode.js"> </script>
 
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+    <!-- Close Database Connection -->
+  <?php $conn = null;?>
 
 </body>
 

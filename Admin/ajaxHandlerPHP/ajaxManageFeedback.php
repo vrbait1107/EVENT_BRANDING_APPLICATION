@@ -66,7 +66,7 @@ if (isset($_POST["readRecord"])) {
 
 }
 
-//---------------------------------------->> DELETE FEEDBACK INFORMATION
+//---------------------------------------->> DELETE OPERATION
 
 if (isset($_POST['deleteEmail'])) {
 

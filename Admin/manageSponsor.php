@@ -1,21 +1,17 @@
 <?php
 
-//--------------------->> DB CONFIG
+//-------------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-// Starting Session
+//-------------------------->> START SESSION
 session_start();
 
 $admin = $_SESSION['adminEmail'];
 
+//-------------------------->> CHECKING ADMIN
 if (!isset($_SESSION['adminEmail'])) {
     header('location:adminLogin.php');
 }
-
-// ---------------------------->> COMMON ANCHOR
-
-include_once "includes/commonAnchor.php";
-
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +26,7 @@ include_once "includes/commonAnchor.php";
 
     <title>Manage Sponsors</title>
 
-    <!-- Admin Header Scripts -->
+    <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
 
 </head>
@@ -38,8 +34,11 @@ include_once "includes/commonAnchor.php";
 <body class="sb-nav-fixed">
 
 
-    <!-- Admin Navbar -->
-    <?php include_once "includes/adminNavbar.php";?>
+    <!-- Include Admin Navbar & Common Anchor -->
+    <?php
+include_once "includes/commonAnchor.php";
+include_once "includes/adminNavbar.php";
+?>
 
 
     <div id="layoutSidenav_content">
@@ -178,16 +177,14 @@ include_once "includes/commonAnchor.php";
         <?php include_once "includes/adminFooter.php";?>
     </div>
 
-    <!-- Admin Footer Scripts -->
+    <!-- Include Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php";?>
 
-    <!-- Custom JS Script -->
+    <!-- Javascript -->
     <script src="js/manageSponsor.js"></script>
 
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+    <!-- Close DB Connection -->
+    <?php $conn = null;?>
 
 </body>
 

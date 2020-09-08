@@ -6,7 +6,7 @@ require_once '../config/configPDO.php';
 //Starting Session
 session_start();
 
-// Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
+//------------------------->> CHECKING ADMIN
 if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
     if ($_SESSION['adminType'] !== "Administrator") {
@@ -26,19 +26,18 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="Vishal Bait" />
-    <title>Event Statistics Charts for Administrator</title>
 
-    <!-- Admin Header Scripts -->
+    <!-- First Include Admin Header Scripts then Google Charts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
-    <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+    <title>Event Statistics Charts for Administrator</title>
 
 </head>
 
 <body class="sb-nav-fixed">
 
-    <!-- Admin Navbar & Common Anchor -->
+    <!-- Include Admin Navbar & Common Anchor -->
     <?php
 include_once "includes/commonAnchor.php";
 include_once "includes/adminNavbar.php";
@@ -74,20 +73,18 @@ include_once "includes/adminNavbar.php";
             </div>
         </div>
 
-        <!--Admin Footer-->
+        <!--Include Admin Footer-->
         <?php include_once "includes/adminFooter.php";?>
     </main>
 
-    <?php
-// Admin Footer Scripts
-include_once "includes/adminFooterScripts.php";
-?>
+    <!-- Include Admin Footer Scripts -->
+    <?php include_once "includes/adminFooterScripts.php";?>
+
+    <!-- javascript -->
     <script src="js/adminCharts.js"></script>
 
-    <?php
-// Closing Database Connnection
-$conn = null;
-?>
+    <!-- Close DB Connection -->
+    <?php $conn = null;?>
 
 
 </body>

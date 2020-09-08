@@ -1,19 +1,17 @@
 <?php
 
-//--------------------->> DB CONFIG
+//--------------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-// Starting Session
+//--------------------------->> SESSION START
 session_start();
 
 $admin = $_SESSION['adminEmail'];
 
+//--------------------------->> CHECKING ADMIN
 if (!isset($_SESSION['adminEmail'])) {
     header('location:adminLogin.php');
 }
-
-// Include Common Anchor
-include_once "includes/commonAnchor.php";
 
 ?>
 
@@ -29,16 +27,19 @@ include_once "includes/commonAnchor.php";
 
     <title>Manage News</title>
 
-    <!-- Admin Header Scripts -->
+    <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
 
 </head>
 
 <body class="sb-nav-fixed">
 
+    <!-- Include Admin Navbar -->
+    <?php
+include_once "includes/commonAnchor.php";
+include_once "includes/adminNavbar.php";
 
-    <!-- Admin Navbar -->
-    <?php include_once "includes/adminNavbar.php";?>
+?>
 
 
     <div id="layoutSidenav_content">
@@ -157,20 +158,18 @@ include_once "includes/commonAnchor.php";
             </div>
         </main>
 
-        <!--Admin Footer-->
+        <!--Include Admin Footer-->
         <?php include_once "includes/adminFooter.php";?>
     </div>
 
-    <!-- Admin Footer Scripts -->
+    <!-- Include Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php";?>
 
-    <!-- Custom Js Script -->
+    <!-- Javascript -->
     <script src="js/manageNews.js"></script>
 
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+    <!-- Closing Database Connnection -->
+    <?php $conn = null;?>
 
 </body>
 

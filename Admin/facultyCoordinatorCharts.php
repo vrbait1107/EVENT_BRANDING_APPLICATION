@@ -3,7 +3,6 @@
 //--------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-
 // -------------------->> SESSION START
 session_start();
 
@@ -29,17 +28,15 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <meta name="author" content="Vishal Bait" />
     <title>Event Statistics Charts for Faculty Coordinator</title>
 
-    <!-- Admin Header Scripts -->
+    <!-- First Admin Header Scripts then Google Charts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
-    <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
 
 </head>
 
 <body class="sb-nav-fixed">
 
-    <!-- Admin Navbar & Common Anchor -->
+    <!--  Include Admin Navbar & Common Anchor -->
     <?php
 include_once "includes/commonAnchor.php";
 include_once "includes/adminNavbar.php";
@@ -75,20 +72,18 @@ include_once "includes/adminNavbar.php";
             </div>
         </div>
 
-        <!--Admin Footer-->
+        <!--Include Admin Footer-->
         <?php include_once "includes/adminFooter.php";?>
     </main>
 
-    <?php
-// Admin Footer Scripts
-include_once "includes/adminFooterScripts.php";
-?>
+    <!-- Include Admin Footer Scripts -->
+    <?php include_once "includes/adminFooterScripts.php";?>
+
+    <!-- Javascript -->
     <script src="js/facultyCoordinatorCharts.js"></script>
 
-    <?php
-// Closing Database Connnection
-$conn = null;
-?>
+    <!-- Close DB Conn -->
+    <?php $conn = null;?>
 
 
 </body>

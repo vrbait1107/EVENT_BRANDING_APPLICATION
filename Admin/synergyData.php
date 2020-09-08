@@ -3,10 +3,10 @@
 //--------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-// Starting Session
+//--------------------->> START SESSION
 session_start();
 
-// Checking if Admin is Login or Not if Not Login Sending to the Admin Login Page
+//--------------------->> CHECKING ADMIN
 if (!isset($_SESSION['Admin'])) {
     header('Location:synergyLogin.php');
 }
@@ -21,22 +21,19 @@ if (!isset($_SESSION['Admin'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Admin header Scripts -->
+  <!-- Include Admin header Scripts -->
   <?php include_once "includes/adminHeaderScripts.php";?>
 
-  <title>GIT SYNERGY 2K20</title>
+  <title>GIT SYNERGY 2K21</title>
 
 </head>
 
 <body class="sb-nav-fixed">
 
 
-  <!-- Admin Navbar -->
+  <!-- Admin Navbar & Common Anchor-->
   <?php
-
-$adminFileName = "synergyIndex.php";
-$adminFileData = "synergyData.php";
-$adminManage = "#";
+include_once "includes/commonAnchor.php";
 include_once "includes/adminNavbar.php";
 ?>
 
@@ -54,21 +51,19 @@ include_once "includes/adminNavbar.php";
       </div>
     </main>
 
-    <!--Admin Footer-->
+    <!-- Include Admin Footer-->
     <?php include_once "includes/adminFooter.php";?>
 
   </div>
 
-  <!-- Admin Footer Scripts -->
+  <!-- Include Admin Footer Scripts -->
   <?php include_once "includes/adminFooterScripts.php";?>
 
   <!-- Custom JS -->
   <script src="js/synergyData.js"></script>
 
-  <?php
-// closing Database Connnection
-$conn = null;
-?>
+  <!-- Close Database Connection -->
+  <?php $conn = null;?>
 
 </body>
 
