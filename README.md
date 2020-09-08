@@ -100,8 +100,12 @@ Event Branding Application is mobile Application with Website for collecting reg
 
 **For Administrator**
 
-- Emails: Check Emails from admin_information table in sql file also check Roles of Admins (College, Faculty Coordinator and Student Coordiator)
+- Emails: Check Emails from admin_information table in sql file also check Roles of Admins (College, Faculty Coordinator and Student Coordinator)
 - Password: Admin@123 (For All Administrators)
+
+**NOTE:**
+
+- We used PHP Mailer for this project & Above Emails are Fake used for test purpose only so phpmailer library cannot send email to above emails.
 
 ## PAYTM Payment Gateway
 
