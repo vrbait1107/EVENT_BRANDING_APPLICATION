@@ -3,14 +3,16 @@
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
-// Staring Session
+//------------------------------>> START SESSION
 session_start();
 
+//------------------------------>> CHECKING USER
 if (!isset($_SESSION['user'])) {
     header("location:login.php");
 }
 
 $visitorIpAddress = $_SERVER['REMOTE_ADDR'];
+
 //sql Query
 $sql1 = "SELECT * FROM visitor_counter WHERE ipAddress = :visitorIpAddress";
 
@@ -43,11 +45,11 @@ if ($totaVisitor == 0) {
 }
 
 try {
-// Retrive Data from Database
+
     // Query
     $sql = "SELECT * FROM visitor_counter";
 
-// Preparing Query
+    // Preparing Query
     $result = $conn->prepare($sql);
 
     $result->execute();
@@ -66,28 +68,25 @@ try {
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Vishal Bait">
 
-
-    <title>GIT SHODH 2K21</title>
-
-    <!--Animate CSS-->
+    <!--First Inlude Header Scripts, then Animate.css then Loader.css then Index.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <!-- header Scripts and Links -->
     <?php include_once "includes/headerScripts.php";?>
-    <!--Loader-->
     <link rel="stylesheet" href="css/loader.css">
     <link rel="stylesheet" href="css/index.css">
+
+    <title>GIT SHODH 2K21</title>
 
 </head>
 
 <body>
 
 
-    <!--Navbar-->
+    <!--Include User Navbar-->
     <?php include_once "includes/navbar.php";?>
 
     <main class="container-fluid welcome-section">
@@ -166,6 +165,7 @@ try {
         </div>
     </main>
 
+
     <!--Newsletter Section-->
     <div class="container">
         <div class="row">
@@ -195,18 +195,17 @@ try {
             Count: <?php echo $totaVisitors ?></h3>
     </div>
 
-    <!-- Footer PHP -->
-    <?php include_once "includes/footer.php";?>
-    <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php";?>
+    <!-- Include Footer & Footer Scripts PHP -->
+    <?php
+include_once "includes/footer.php";
+include_once "includes/footerScripts.php";
+?>
+
      <!-- Index js -->
     <script src="js/index.js"></script>
 
-
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+    <!-- Close Database Connection -->
+    <?php $conn = null;?>
 
 </body>
 

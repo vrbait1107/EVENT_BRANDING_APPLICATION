@@ -6,9 +6,10 @@ require_once "config/configPDO.php";
 //------------------------------>> SECRETS
 require_once "./config/Secret.php";
 
-// Staring Session
+//------------------------------>> START SESSION
 session_start();
 
+//------------------------------>> CHECKING USER
 if (!isset($_SESSION['user'])) {
     header('location:login.php');
 }
@@ -25,9 +26,8 @@ if (!isset($_SESSION['user'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Event Feedback Form</title>
 
-    <!-- header Scripts and Links -->
+    <!-- First Header Scripts, then Google Recaptcha -->
     <?php include_once "includes/headerScripts.php";?>
-    <!-- Google Recaptcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <style>
@@ -41,10 +41,8 @@ if (!isset($_SESSION['user'])) {
 
 <body>
 
-
-    <!--Navbar.php-->
+    <!--Include User Navbar-->
     <?php include_once "includes/navbar.php"?>
-
 
     <main class="container">
         <div class="row">
@@ -194,18 +192,17 @@ if (!isset($_SESSION['user'])) {
     </main>
 
 
-    <!--Footer.PHP-->
-    <?php include_once 'includes/footer.php';?>
+    <!--Include Footer & Footer Scripts-->
+    <?php
+include_once 'includes/footer.php';
+include_once "includes/footerScripts.php";
+?>
 
-    <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php";?>
-    <!-- Custom JS Script -->
+    <!-- Javascript -->
     <script src="js/feedbackForm.js"></script>
 
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+     <!-- Close Database Connection -->
+    <?php $conn = null;?>
 
 </body>
 

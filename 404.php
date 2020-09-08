@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error Page</title>
 
-     <!-- header Scripts and Links -->
+     <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
 
 </head>

@@ -43,3 +43,6 @@ if (isset($_POST["apply"])) {
     }
 
 }
+
+// --------------------------->> CLOSE DB CONN
+$conn = null;

@@ -11,7 +11,7 @@ require_once "config/configPDO.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activate Email</title>
 
-    <!-- header Scripts and Links -->
+    <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
 
 </head>
@@ -21,17 +21,17 @@ require_once "config/configPDO.php";
 
 if (isset($_GET['token'])) {
 
-    $token = $_GET['token'];
+    $token = htmlspecialchars($_GET['token']);
 
     $login = "login.php";
 
-//Query
+    //Query
     $sql = "SELECT * FROM user_information WHERE token = :token";
 
     //Preparing Query
     $result = $conn->prepare($sql);
 
-    //Binding Values
+    // Binding Values
     $result->bindValue(":token", $token);
 
     //Executing Query
@@ -76,10 +76,8 @@ if (isset($_GET['token'])) {
 
 ?>
 
-     <?php
-// closing Database Connnection
-$conn = null;
-?>
+    <!-- Close Database Connection -->
+     <?php $conn = null;?>
 
 </body>
 </html>

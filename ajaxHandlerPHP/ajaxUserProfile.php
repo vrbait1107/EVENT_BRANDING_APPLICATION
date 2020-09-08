@@ -4,11 +4,9 @@
 require_once "../config/configPDO.php";
 
 // ---------------------->> START SESSION
-
 session_start();
 
 // ---------------------->> EXTRACT POST DATA
-
 extract($_POST);
 
 // ---------------------->> EDIT OPERATION

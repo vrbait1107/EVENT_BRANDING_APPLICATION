@@ -1,11 +1,13 @@
 <?php
 
-//Starting Session
+//---------------------------------->> START SESSION
 session_start();
 
+//---------------------------------->> CHECKING USER
 if (!isset($_SESSION['user'])) {
     header("location:login.php");
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -17,20 +19,16 @@ if (!isset($_SESSION['user'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Event Page</title>
 
-
-    <!--  Animate.css -->
+    <!-- First Animate.css then Header Scripts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <!-- header Scripts and Links -->
     <?php include_once "includes/headerScripts.php";?>
 
 </head>
 
 <body>
 
-    <!--NAVBAR-->
-
+    <!--Include User Navbar-->
     <?php include_once "includes/navbar.php";?>
-
 
     <main class="container text-uppercase">
         <div class="row">
@@ -123,16 +121,21 @@ if (!isset($_SESSION['user'])) {
 
     </main>
 
+    <!-- WOW.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script>
         new WOW().init();
     </script>
 
-    <!-- Footer PHP -->
-    <?php include_once "includes/footer.php";?>
-    <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php";?>
+    <!-- Include Footer & Footer Scripts -->
+    <?php
+include_once "includes/footer.php";
+include_once "includes/footerScripts.php";
+?>
+
+    <!-- Javascript -->
     <script src="js/eventPage.js"></script>
+
 </body>
 
 </html>

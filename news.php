@@ -3,10 +3,10 @@
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
-
-// Staring Session
+// ----------------------------->> START SESSION
 session_start();
 
+//------------------------------>> CHECKING USER
 if (!isset($_SESSION['user'])) {
     header('location:login.php');
 }
@@ -23,9 +23,8 @@ if (!isset($_SESSION['user'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>News & Notifications</title>
 
-    <!-- header Scripts and Links -->
+    <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
-
 
     <style>
         hr {
@@ -38,21 +37,20 @@ if (!isset($_SESSION['user'])) {
 
 <body>
 
-
     <?php
 
-// sql Query
+// Sql Query
 $sql = "SELECT * FROM news_information";
 
 //Preparing Query
 $result = $conn->prepare($sql);
 
-//Executing Query no need to Bind Values here
+//Executing Query
 $result->execute();
 
 ?>
 
-    <!--Navbar.php-->
+    <!--Include User Navbar-->
     <?php include_once "includes/navbar.php"?>
 
 
@@ -64,6 +62,7 @@ $result->execute();
 
             <?php
 
+// Checking Count of Database Records
 if ($result->rowCount() > 0) {
     ?>
 
@@ -83,6 +82,7 @@ if ($result->rowCount() > 0) {
 
                             <?php
 
+    // Fetching Values from Database
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         ?>
                             <tr>
@@ -111,16 +111,17 @@ if ($result->rowCount() > 0) {
     </main>
 
 
-    <!--Footer.PHP-->
-    <?php include_once 'includes/footer.php';?>
-    <script src="js/form-validation.js"></script>
-    <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php";?>
-
+    <!--Include Footer & Footer Scripts-->
     <?php
-// closing Database Connnection
-$conn = null;
+include_once 'includes/footer.php';
+include_once "includes/footerScripts.php";
 ?>
+
+     <!--Include Footer & Footer Scripts-->
+    <script src="js/form-validation.js"></script>
+
+     <!--Close Database Connection-->
+    <?php $conn = null;?>
 
 </body>
 

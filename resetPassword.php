@@ -3,9 +3,7 @@
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
-
 // ------------------------>> START CONNECTION
-
 session_start();
 
 ?>
@@ -18,7 +16,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password</title>
 
-    <!-- header Scripts and Links -->
+    <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
 
 </head>
@@ -34,7 +32,6 @@ if (isset($_GET['token'])) {
     if (isset($_POST['resetPassword'])) {
 
         // Avoid XSS Attack
-
         $userType = htmlspecialchars($_POST['userType']);
         $newPassword = htmlspecialchars($_POST['newPassword']);
         $confirmNewPassword = htmlspecialchars($_POST['confirmNewPassword']);
@@ -43,19 +40,23 @@ if (isset($_GET['token'])) {
             $newPassword = password_hash($newPassword, PASSWORD_BCRYPT);
             $confirmNewPassword = password_hash($confirmNewPassword, PASSWORD_BCRYPT);
 
+            //---------------------------------------->> USER TYPE = USER
+
             if ($userType == "User") {
 
+                // Sql Query
                 $sql1 = "SELECT * FROM user_information WHERE token = :token";
 
-                //Preparing Query
+                // Preparing Query
                 $result1 = $conn->prepare($sql1);
 
-                //Binding Values
+                // Binding Value
                 $result1->bindValue(":token", $token);
 
-                //Executing Query
+                // Executing Query
                 $result1->execute();
 
+                // Fetch Data from Database
                 $row1 = $result1->fetch(PDO::FETCH_ASSOC);
 
                 $dbtokenDate = strtotime($row1['tokenDate']);
@@ -66,17 +67,13 @@ if (isset($_GET['token'])) {
 
                 if ($dbtokenDate >= $currentDatetimeMain) {
 
-                    // SQL Query
                     $sql = "UPDATE user_information SET password = :newPassword WHERE token = :token";
 
-                    // Preparing Query
                     $result = $conn->prepare($sql);
 
-                    // Binding Value
                     $result->bindValue(":newPassword", $newPassword);
                     $result->bindValue(":token", $token);
 
-                    //Executing Query
                     $result->execute();
 
                     if ($result) {
@@ -103,8 +100,11 @@ if (isset($_GET['token'])) {
 
                 }
 
+                //---------------------------------------->> USER TYPE = ADMIN
+
             } else {
 
+                // Sql Query
                 $sql3 = "SELECT * FROM admin_information WHERE token = :token";
 
                 //Preparing Query
@@ -125,6 +125,7 @@ if (isset($_GET['token'])) {
                 $currentDatetimeMain = strtotime($currentDatetime);
 
                 if ($dbtokenDate >= $currentDatetimeMain) {
+
                     // SQL Query
                     $sql4 = "UPDATE admin_information SET adminPassword= :newPassword WHERE token = :token";
 
@@ -221,15 +222,14 @@ if (isset($_GET['token'])) {
         </div>
     </main>
 
-    <!-- Footer PHP -->
-    <!-- <?php include_once "includes/footer.php";?> -->
-    <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php";?>
-
-     <?php
-// closing Database Connnection
-$conn = null;
+    <!-- Include Footer & Footer Scripts -->
+    <?php
+include_once "includes/footer.php";
+include_once "includes/footerScripts.php";
 ?>
+
+    <!-- Close Database Connection -->
+     <?php $conn = null;?>
 
 </body>
 

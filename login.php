@@ -3,13 +3,13 @@
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
-
 //--------------------------->> SECRETS
 require_once "./config/Secret.php";
 
-// Staring Session
+//-------------------------->> START SESSION
 session_start();
 
+//-------------------------->> CHECKING USER
 if (isset($_SESSION['user'])) {
     header('Location:index.php');
 }
@@ -21,15 +21,13 @@ if (isset($_SESSION['user'])) {
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- header Scripts and Links -->
+  <!-- Include Header Scripts, then Login.css then Google Recaptcha -->
   <?php include_once "includes/headerScripts.php";?>
-  <!--Local css-->
-   <link rel="stylesheet" href="css/login.css">
-  <!-- Google Recaptcha -->
+  <link rel="stylesheet" href="css/login.css">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
   <title>GIT SHODH 2K21 Login Page</title>
@@ -75,6 +73,7 @@ if (isset($_POST["login"])) {
             $status = $row['status'];
             $dbpassword = $row['password'];
 
+            // Verify Password
             if (password_verify($password, $dbpassword)) {
                 if ($status == "active") {
 
@@ -110,6 +109,7 @@ if (isset($_POST["login"])) {
 }
 ?>
 
+<!-- External Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand font-weight-bold" href="#">GIT SHODH/SYNERGY 2K21</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -198,7 +198,7 @@ if (isset($_POST["login"])) {
   <!-- Footer Script -->
   <?php include_once "includes/footerScripts.php";?>
 
-  <!-- Hiding and Showing Password -->
+  <!-- Hiding and Showing Password Javascript -->
   <script type="text/javascript">
 
     $(document).ready(function () {
@@ -219,10 +219,8 @@ if (isset($_POST["login"])) {
     })
   </script>
 
-  <?php
-// closing Database Connnection
-$conn = null;
-?>
+<!-- Close Database Connection -->
+  <?php $conn = null; ?>
 
 </body>
 

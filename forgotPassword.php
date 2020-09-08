@@ -6,7 +6,7 @@ require_once "config/configPDO.php";
 // ---------------------->> SECRETS
 require_once "./config/Secret.php";
 
-// Staring Session
+// ---------------------->> START SESSION
 session_start();
 
 ?>
@@ -17,21 +17,18 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password Page</title>
 
-    <!-- header Scripts and Links -->
+    <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
 
+     <title>Forgot Password Page</title>
 </head>
 
 <body>
 
-
-    <!-- PHP Code Start -->
-
     <?php
 
-// Generating Random token to Send Over Email.
+// Generate Random Token
 $token = bin2hex(random_bytes(15));
 
 if (isset($_POST['submit'])) {
@@ -42,7 +39,7 @@ if (isset($_POST['submit'])) {
     $email = htmlspecialchars($_POST['email']);
     $userType = htmlspecialchars($_POST['userType']);
 
-    // User Part
+    // ----------------------------------------------------->> USER TYPE = USER
     if ($userType === "user") {
 
         //Query
@@ -111,7 +108,8 @@ if (isset($_POST['submit'])) {
 
     }
 
-    // Admin Part
+    // ----------------------------------------------------->> USER TYPE = ADMINISTRATOR
+
     elseif ($userType === "admin") {
 
         // Query for admin
@@ -139,13 +137,13 @@ if (isset($_POST['submit'])) {
                 $tokenDate = date("Y-m-d H:i:s");
                 $tokenDateMain = date('Y-m-d H:i:s', strtotime('+45 minutes', strtotime($tokenDate)));
 
-                //Update Query
+                // Update Query
                 $sql = "UPDATE user_information SET token = :token, tokenDate = :tokenDateMain  WHERE email = :email";
 
-                //Preparing Query
+                // Preparing Query
                 $result = $conn->prepare($sql);
 
-                //Binding Value
+                // Binding Value
                 $result->bindValue(":token", $token);
                 $result->bindValue(":tokenDateMain", $tokenDateMain);
                 $result->bindValue(":email", $email);
@@ -187,7 +185,7 @@ if (isset($_POST['submit'])) {
 
 ?>
 
-    <!-- PHP Code Ended -->
+
 
     <main class="container">
         <div class="row my-5">
@@ -229,15 +227,14 @@ if (isset($_POST['submit'])) {
         </div>
     </main>
 
-    <!-- Footer PHP -->
-    <?php include_once "includes/footer.php";?>
-    <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php";?>
-
-     <?php
-// closing Database Connnection
-$conn = null;
+    <!-- Include Footer and Footer Scripts -->
+    <?php
+include_once "includes/footer.php";
+include_once "includes/footerScripts.php";
 ?>
+
+     <!-- Close Database Connection -->
+     <?php $conn = null;?>
 
 </body>
 

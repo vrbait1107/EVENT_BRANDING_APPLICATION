@@ -3,10 +3,10 @@
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
-
-// Staring Session
+// ------------------------------>> START SESSION
 session_start();
 
+// ------------------------------>> CHECKING USER
 if (!isset($_SESSION['user'])) {
     header("location:login.php");
 }
@@ -19,17 +19,18 @@ if (!isset($_SESSION['user'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vishal Bait">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>User Profile</title>
 
-    <!-- header Scripts and Links -->
+    <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
 
 </head>
 
 <body>
 
-    <!-- Navbar PHP -->
+    <!-- Include User Navbar-->
     <?php include_once "includes/navbar.php";?>
 
 
@@ -117,18 +118,17 @@ if (!isset($_SESSION['user'])) {
         </div>
     </main>
 
-    <!-- Footer PHP -->
-    <?php include_once "includes/footer.php"?>
-    <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php";?>
-    <!-- Custom JS -->
+    <!-- Include Footer & Footer Scripts-->
+    <?php
+include_once "includes/footer.php";
+include_once "includes/footerScripts.php";
+?>
+
+    <!-- Javascript -->
     <script src="js/userProfile.js"></script>
 
-
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+    <!-- Close Database Connection -->
+    <?php $conn = null;?>
 
 </body>
 

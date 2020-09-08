@@ -1,9 +1,9 @@
 <?php
-///------------------------------>> DB CONFIG
+
+//------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
-
-// Staring Session
+//------------------------------>> START SESSION
 session_start();
 ?>
 
@@ -17,9 +17,8 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Certificate Generator</title>
 
-    <!-- Animate css-->
+    <!-- First Animate.css then Include Header Scripts-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <!-- header Scripts and Links -->
     <?php include_once "includes/headerScripts.php";?>
 
 </head>
@@ -27,7 +26,7 @@ session_start();
 <body>
 
 
-    <!-- Navbar-->
+    <!--Include User Navbar-->
     <?php include_once 'includes/navbar.php';?>
 
     <main class="container">
@@ -43,7 +42,7 @@ session_start();
 
 $email = $_SESSION['user'];
 
-//Query for showing certificate details
+// Sql Query
 $sql = "select * FROM user_information INNER JOIN event_information ON
 user_information.email= event_information.email
 WHERE user_information.email = :email and attendStatus = :present";
@@ -60,29 +59,29 @@ $result->execute();
 
 if ($result->rowCount() > 0) {
 
-    echo "<table class='table'>";
-    echo "<thead>";
-    echo "<th class='text-center'>Event</th>";
-    echo "<th class='text-center'>Action</th>";
-    echo "</thead>";
+    echo "<table class='table'>
+    <thead>
+    <th class='text-center'>Event</th>
+    <th class='text-center'>Action</th>
+    </thead>
+    <tbody>";
 
-    echo "<tbody>";
-
+    // Fetching Values From Database
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        echo "<tr>";
-        echo "<td class='text-center'>" . $row['event'] . "</td>";
+        echo "<tr>
+        <td class='text-center'>" . $row['event'] . "</td>";
         $event = $row['event'];
         echo "<td>
     <form action ='certGeneration.php' method ='post'>
     <input type='hidden' name='event1' value= '$event' />
     <input type='submit' class='btn btn btn-primary rounded-pill' name='submit' value='Generate Your Certificate'>
     </form>
-    </td>";
-        echo "</tr>";
+    </td>
+    </tr>";
     }
 
-    echo "</tbody>";
-    echo "</table>";
+    echo "</tbody>
+    </table>";
 
 }
 ?>
@@ -92,15 +91,14 @@ if ($result->rowCount() > 0) {
         </div>
     </main>
 
-    <!-- Footer PHP -->
-    <?php include_once "includes/footer.php";?>
-    <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php";?>
-
-     <?php
-// closing Database Connnection
-$conn = null;
+    <!-- Include Footer & Footer Scripts -->
+    <?php
+include_once "includes/footer.php";
+include_once "includes/footerScripts.php";
 ?>
+
+ <!-- Close Database Connection -->
+ <?php $conn = null;?>
 
 </body>
 

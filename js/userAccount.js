@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  // ---------------->> CHANGE PASSWORD
+  // -------------------------->> CHANGE PASSWORD
 
   $("#changePassword").click(function (e) {
     e.preventDefault();
@@ -57,7 +57,8 @@ $(document).ready(function () {
     });
   });
 
-  //############## Change Email Addresss
+  //---------------------------------------->> CHANGE EMAIL
+
   $("#changeEmail").click(function (e) {
     e.preventDefault();
     let changeEmail = "changeEmail";
@@ -103,7 +104,8 @@ $(document).ready(function () {
     });
   });
 
-  // ########### Disable Account
+  // --------------------------------->> DISABLE ACCOUNT
+
   $("#disableAccount").click(function () {
     let disableAccount = "disableAccount";
 

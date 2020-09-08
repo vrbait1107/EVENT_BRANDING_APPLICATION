@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  //---------------------------------->> READ OPERATION
   const getProfileDetails = () => {
     let getProfileData = "getProfileData";
 
@@ -28,6 +29,8 @@ $(document).ready(function () {
   };
 
   getProfileDetails();
+
+  //---------------------------------->> UPDATE OPERATION
 
   $("#userProfileForm").on("submit", function (event) {
     event.preventDefault();

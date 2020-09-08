@@ -3,8 +3,14 @@
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
-// Staring Session
+// ------------------------------>> START SESSION
 session_start();
+
+//------------------------------>> CHECKING USER
+if (!isset($_SESSION['user'])) {
+    header("location:login.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -17,14 +23,14 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Certificate Verification</title>
 
-    <!-- header Scripts and Links -->
+    <!--Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
 
 </head>
 
 <body>
 
-    <!--Navbar.php-->
+    <!--Include User Navbar-->
     <?php include_once "includes/navbar.php"?>
 
 
@@ -35,25 +41,27 @@ session_start();
 
     <?php
 
-// GIT SHODH Certificate SYSTEM
+// ---------------------------------------------------------->> SHODH VERIFICATION SYSTEM
 
 if (isset($_POST["submit"])) {
 
     $validate = htmlspecialchars($_POST["validateData"]);
 
+    // Sql Query
     $sql = "SELECT * FROM user_information INNER JOIN event_information ON
     user_information.email= event_information.email
     WHERE event_information.certificateId = :validate";
 
-    //Preparing query
+    // Preparing Query
     $result = $conn->prepare($sql);
 
-    //Binding Value
+    // Binding Value
     $result->bindValue(":validate", $validate);
 
-    //Executing query
+    // Executing Query
     $result->execute();
 
+    // Fetching Values
     $row = $result->fetch(PDO::FETCH_ASSOC);
 
     $validateCertificate = $row['certificateId'];
@@ -108,7 +116,6 @@ if (isset($_POST["submit"])) {
        <td><h3>$prize</h3></td>
        </tr>
 
-
         </table>
        </div>";
 
@@ -121,25 +128,26 @@ if (isset($_POST["submit"])) {
 
 }
 
-// SYNERGY VERIFICATION SYSTEM
+// ---------------------------------------------------------->>  SYNERGY VERIFICATION SYSTEM
 
 if (isset($_POST["synergySubmit"])) {
 
     $validate = htmlspecialchars($_POST["synergyValidateData"]);
 
+    // Sql Query
     $sql = "SELECT * FROM synergy_user_information
     WHERE certificateId = :validate";
 
-    //preparing query
+    // Preparing Query
     $result = $conn->prepare($sql);
 
-    //binding value to named parameter
+    // Binding Value
     $result->bindValue(":validate", $validate);
 
-    //Executing query
+    // Executing Query
     $result->execute();
 
-    //Fetching Values
+    // Fetching Data from DB
     $row = $result->fetch(PDO::FETCH_ASSOC);
 
     $validateCertificate = $row['certificateId'];
@@ -193,29 +201,28 @@ if (isset($_POST["synergySubmit"])) {
 
 }
 
-// SHODH CERTIFICATION URL
+//---------------------------------------------------------------->> SHODH VERIFICATION URL
 
 if (isset($_GET["certificateId"])) {
 
     $validate = $_GET["certificateId"];
 
-    // Avoid Cross Site Scripting
     $validate = htmlspecialchars($validate);
 
-    $sql = "select * FROM user_information INNER JOIN event_information ON
+    // Sql Query
+    $sql = "SELECT * FROM user_information INNER JOIN event_information ON
    user_information.email= event_information.email
     WHERE event_information.certificateId = :validate";
 
-    // Preparing query
+    // Preparing Query
     $result = $conn->prepare($sql);
 
-    //Binding Value
+    // Binding Values
     $result->bindValue(":validate", $validate);
 
-    //Executing Value
+    // Executing Query
     $result->execute();
 
-    // Fetching Values
     $row = $result->fetch(PDO::FETCH_ASSOC);
 
     $validateCertificate = $row['certificateId'];
@@ -277,10 +284,8 @@ if (isset($_GET["certificateId"])) {
     <!-- Footer Script -->
     <?php include_once "includes/footerScripts.php;"?>
 
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+     <!-- Close Database Connection -->
+    <?php $conn = null;?>
 
 </body>
 

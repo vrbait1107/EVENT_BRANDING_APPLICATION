@@ -3,13 +3,12 @@
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
-
-// Staring Session
+//------------------------------>> START SESSION
 session_start();
 
 if (isset($_POST["eventDepartmentName"])) {
 
-    $eventDepartmentName = $_POST["eventDepartmentName"];
+    $eventDepartmentName = htmlspecialchars($_POST["eventDepartmentName"]);
 
     $_SESSION["eventDepartmentName"] = $eventDepartmentName;
 
@@ -38,17 +37,18 @@ if (isset($_POST["eventDepartmentName"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Registration</title>
 
-    <!-- header Scripts and Links -->
+    <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
 
 </head>
 
 <body>
 
-    <!--Navbar PHP -->
+    <!--Include Navbar-->
     <?php include_once "includes/navbar.php";?>
 
     <?php
+// Checking Record Counts
 if ($result->rowCount() > 0) {
     ?>
 
@@ -58,13 +58,12 @@ if ($result->rowCount() > 0) {
     <div class="container mt-5">
         <h2 class="text-danger text-center text-uppercase mb-5 font-time">
 
-
             <?php echo $_SESSION["eventDepartmentName"]; ?> Events</h2>
 
         <div class="row">
 
             <?php
-
+// Fetching Database Values
     $i = 0;
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         $i++;
@@ -99,7 +98,7 @@ if ($result->rowCount() > 0) {
                 </div>
             </div>
 
-            <!--modal Events -->
+            <!--Modal Events -->
             <div class="modal fade" id="modal<?php echo $i; ?>" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
@@ -159,7 +158,7 @@ if ($result->rowCount() > 0) {
                 </div>
             </div>
 
-            <!--modal End -->
+            <!-- Modal End -->
 
             <?php
 }
@@ -171,10 +170,13 @@ if ($result->rowCount() > 0) {
     </div>
 
 
-    <!-- Footer PHP -->
-    <?php include_once "includes/footer.php";?>
-    <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php";?>
+    <!-- Include Footer & Footer Scripts -->
+    <?php
+include_once "includes/footer.php";
+include_once "includes/footerScripts.php";
+?>
+
+    <!-- Javascript -->
     <script src="js/departmentEvent.js"></script>
     <script>
     if (window . history . replaceState) {
@@ -182,10 +184,8 @@ if ($result->rowCount() > 0) {
     }
     </script>
 
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+    <!-- Close Database Connection -->
+    <?php $conn = null;?>
 
 </body>
 

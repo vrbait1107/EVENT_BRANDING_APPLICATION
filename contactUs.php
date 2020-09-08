@@ -3,13 +3,13 @@
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
-
 //------------------------------>> SECRETS
 require_once "./config/Secret.php";
 
-// Staring Session
+//------------------------------>> STARTING SESSION
 session_start();
 
+//------------------------------>> CHECKING USER
 if (!isset($_SESSION['user'])) {
     header("location:login.php");
 }
@@ -24,18 +24,16 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Contact Us</title>
 
-    <!--    Animate.css   -->
+    <!-- First Animate.css then Include Header Scripts then Google Recaptcha-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <!-- header Scripts and Links -->
     <?php include_once "includes/headerScripts.php";?>
-    <!-- Google Recaptcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>
 
 <body>
 
-    <!--Navbar-->
+    <!--Include Navbar-->
     <?php include_once "includes/navbar.php";?>
 
     <main class="mb-5 container">
@@ -115,20 +113,17 @@ if (!isset($_SESSION['user'])) {
         new WOW().init();
     </script>
 
+    <!--Include Footer & Footer Scripts -->
+    <?php
+include_once "includes/footer.php";
+include_once "includes/footerScripts.php";
+?>
 
-
-    <!-- Footer PHP -->
-    <?php include_once "includes/footer.php";?>
-    <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php";?>
-
-    <!--Custom Script-->
+    <!--Javascript-->
     <script src="js/contactUs.js"> </script>
 
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+    <!-- Close Database Connection -->
+    <?php $conn = null;?>
 
 </body>
 

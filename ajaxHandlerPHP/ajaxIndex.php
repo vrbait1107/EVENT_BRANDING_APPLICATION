@@ -76,3 +76,6 @@ if (isset($_POST['email'])) {
     }
 
 }
+
+// --------------------------->> CLOSE DB CONNECTION
+$conn = null;

@@ -3,21 +3,23 @@
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
-
-// Staring Session
+//------------------------------>> START SESSION
 session_start();
 
+//------------------------------>> CHECKING USER
 if (!isset($_SESSION['user'])) {
     header("location:login.php");
 }
 
-//query
+//------------------------------>> EXTRACT DATA FROM DB
+
+// Sql Query
 $sql = "SELECT * FROM sponsor_information";
 
-//Preparing Query
+// Preparing Query
 $result = $conn->prepare($sql);
 
-// No Data to Binded so Executing Query
+// Executing Query
 $result->execute();
 
 ?>
@@ -32,13 +34,14 @@ $result->execute();
     <title>Sponsor information</title>
     <link rel="stylesheet" href="css/sponsor.css">
 
-    <!-- header Scripts and Links -->
+    <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
 
 </head>
 
 <body>
 
+     <!-- Include User Navbar -->
     <?php include_once "includes/navbar.php";?>
 
     <main class="container mt-5">
@@ -46,12 +49,12 @@ $result->execute();
         <h3 class="alert alert-info text-center mb-5 font-time">SPONSOR PAGE</h3>
         <div class="row" id="mainContainer">
 
-            <?php
+    <?php
+
+//Checking Count
 if ($result->rowCount() > 0) {
-    ?>
 
-            <?php
-
+    // Fetching Data from Database
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
         $sponsorLogo = $row["sponsorLogo"];
@@ -70,21 +73,19 @@ if ($result->rowCount() > 0) {
             <?php
 }
 }
-
 ?>
 
         </div>
     </main>
 
-    <!-- Footer PHP -->
-    <?php include_once "includes/footer.php";?>
-    <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php";?>
-
+    <!-- Include Footer & Footer Scripts -->
     <?php
-// closing Database Connnection
-$conn = null;
+include_once "includes/footer.php";
+include_once "includes/footerScripts.php";
 ?>
+
+    <!-- Close DB Connection -->
+    <?php $conn = null;?>
 
 </body>
 

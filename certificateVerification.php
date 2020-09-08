@@ -1,7 +1,8 @@
 <?php
-// Starting Session
+// ------------------------------------------->> START SESSION
 session_start();
 
+// ------------------------------------------->> CHECKING USER
 if (!isset($_SESSION['user'])) {
     header("location:login.php");
 }
@@ -16,19 +17,17 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-
-    <!-- Animate css-->
+    <!--First Animate.css then Include Header Script then css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-     <!-- header Scripts and Links -->
     <?php include_once "includes/headerScripts.php";?>
     <link rel="stylesheet" href="css/certificateVerification.css">
-     <title>Certificate Verification</title>
+    <title>Certificate Verification</title>
 
 </head>
 
 <body>
 
-    <!--Navbar PHP-->
+    <!-- Include User Navbar -->
     <?php include_once "includes/navbar.php";?>
 
     <main class="container">
@@ -77,10 +76,11 @@ if (!isset($_SESSION['user'])) {
         </div>
     </main>
 
-     <!-- Footer PHP -->
-    <?php include_once "includes/footer.php";?>
-    <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php";?>
+     <!-- Include Footer & Footer Scripts -->
+    <?php
+include_once "includes/footer.php";
+include_once "includes/footerScripts.php";
+?>
 
 </body>
 

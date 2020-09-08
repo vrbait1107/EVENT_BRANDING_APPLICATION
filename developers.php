@@ -1,8 +1,9 @@
 <?php
 
-//Starting Session
+//-------------------------->> START SESSION
 session_start();
 
+//-------------------------->> CHECKING USER
 if (!isset($_SESSION['user'])) {
     header("location:login.php");
 }
@@ -18,18 +19,16 @@ if (!isset($_SESSION['user'])) {
     <title>Developer Page</title>
 
 
-    <!-- header Scripts and Links -->
+    <!-- First Include Header Scripts then ImageHover.css then AOS Animation-->
     <?php include_once "includes/headerScripts.php";?>
-    <!--Image Hover-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/imagehover.css/2.0.0/css/imagehover.min.css">
-    <!--AOS Animation-->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 </head>
 
 <body>
 
-    <!--NAVBAR-->
+    <!--Include User Navbar-->
     <?php include_once "includes/navbar.php";?>
 
     <main class="container">
@@ -147,10 +146,11 @@ if (!isset($_SESSION['user'])) {
         AOS.init();
     </script>
 
-     <!-- Footer PHP -->
-    <?php include_once "includes/footer.php";?>
-    <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php";?>
+     <!-- Include Footer & Footer Script -->
+    <?php
+include_once "includes/footer.php";
+include_once "includes/footerScripts.php";
+?>
 
 </body>
 

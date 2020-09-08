@@ -3,10 +3,10 @@
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
-
-// Staring Session
+//------------------------------>> START SESSION
 session_start();
 
+//------------------------------>> CHECKING USER
 if (!isset($_SESSION['user'])) {
     header("location:login.php");
 }
@@ -21,7 +21,7 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Account</title>
 
-    <!-- header Scripts and Links -->
+    <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
 
     <style>
@@ -35,7 +35,7 @@ if (!isset($_SESSION['user'])) {
 
 <body>
 
-    <!-- Navbar PHP -->
+    <!-- Include User Navbar-->
     <?php include_once "includes/navbar.php";?>
 
 
@@ -61,6 +61,8 @@ if (!isset($_SESSION['user'])) {
                 </ul>
 
                 <div class="tab-content" id="pills-tabContent">
+
+                    <!-- CHANGE PASSWORD -->
                     <div class="tab-pane fade show active" id="pills-password" role="tabpanel"
                         aria-labelledby="pills-password-tab">
 
@@ -102,7 +104,7 @@ if (!isset($_SESSION['user'])) {
                         </section>
                     </div>
 
-
+                    <!-- CHANGE EMAIL -->
                     <div class="tab-pane fade" id="pills-email" role="tabpanel" aria-labelledby="pills-email-tab">
 
                         <section>
@@ -137,7 +139,7 @@ if (!isset($_SESSION['user'])) {
                         </section>
                     </div>
 
-
+                    <!-- DISABLE ACCOUNT -->
                     <div class="tab-pane fade" id="pills-disable" role="tabpanel" aria-labelledby="pills-disable-tab">
 
                         <h3 class="text-center mt-5"><?php echo $_SESSION['user']; ?>, we’re sorry to see you go</h3>
@@ -169,17 +171,17 @@ if (!isset($_SESSION['user'])) {
         </div>
     </main>
 
-    <!-- Footer PHP -->
-    <?php include_once "includes/footer.php";?>
-    <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php";?>
-    <!-- Custom JS Script -->
+    <!-- Include Footer & Footer Scripts PHP -->
+    <?php
+include_once "includes/footer.php";
+include_once "includes/footerScripts.php";
+?>
+
+    <!-- Javascript -->
     <script src="js/userAccount.js"></script>
 
-    <?php
-// closing Database Connnection
-$conn = null;
-?>
+    <!-- Close DB Connection -->
+    <?php $conn = null;?>
 
 </body>
 

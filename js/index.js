@@ -1,9 +1,10 @@
-// Disabling Loader after page load
+// --------------------------------------->> LOADER
 window.onload = () => {
   document.getElementById("loader").style.display = "none";
 };
 
-//Shodh Cancellation Notice Popup
+// ---------------------------------------->> CANCEL NOTICE
+
 setTimeout(function () {
   Swal.fire({
     title: "<strong>CANCELLATION NOTICE</strong>",
@@ -16,7 +17,8 @@ setTimeout(function () {
   });
 }, 3000);
 
-// Ajax Request using Jquery
+// ---------------------------------------->> AJAX REQUEST
+
 $(document).ready(function () {
   $("#submit").click(function () {
     let email = $("#email").val();

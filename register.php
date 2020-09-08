@@ -6,7 +6,7 @@ require_once "config/configPDO.php";
 //--------------------------->> SECRETS
 require_once "./config/Secret.php";
 
-// Staring Session
+// -------------------------->> START SESSION
 session_start();
 
 ?>
@@ -15,25 +15,22 @@ session_start();
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- header Scripts and Links -->
+  <!-- First HeaderScripts, then Animate.css, then Google Recaptcha, then Register.css -->
   <?php include_once "includes/headerScripts.php";?>
-  <!-- Animate css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-  <!-- Google Recaptcha -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <link rel="stylesheet" href="css/register.css">
 
-
   <title>GIT SHODH 2K21 Registration Page</title>
+
 </head>
 
 <body>
 
-  <!--PHP CODE START -->
 
   <?php
 
@@ -71,11 +68,14 @@ if (isset($_POST['submit'])) {
             $password = htmlspecialchars($_POST['password']);
             $confirm_password = htmlspecialchars($_POST['confirm_password']);
 
+            // Set Expiery Time for Token
             $tokenDate = date("Y-m-d H:i:s");
             $tokenDateMain = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($tokenDate)));
 
+            // Token
             $token = bin2hex(random_bytes(15));
 
+            // Hash Password
             $hashPass = password_hash($password, PASSWORD_BCRYPT);
             $hashConPass = password_hash($confirm_password, PASSWORD_BCRYPT);
 
@@ -167,7 +167,6 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-  <!-- PHP CODE END  -->
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand font-weight-bold" href="#">GIT SHODH/SYNERGY 2K21</a>
@@ -209,6 +208,9 @@ if (isset($_POST['submit'])) {
 
         <form action="" method="post" name="myForm" onsubmit="return formValidationRegister()">
 
+
+            <!------------------------------ First Step ----------------------------------->
+
           <div id="firstStep" class="my-5">
 
             <h4 class="text-uppercase font-time  breadcrumb">Personal Details</h4>
@@ -237,6 +239,9 @@ if (isset($_POST['submit'])) {
             <button type="button" class="btn btn-primary" id="firstStepButton">Continue</button>
 
           </div>
+
+
+           <!------------------------------ Second Step ----------------------------------->
 
           <div id="secondStep" class="my-5">
 
@@ -361,6 +366,8 @@ if (isset($_POST['submit'])) {
 
           </div>
 
+          <!------------------------------ Third Step ----------------------------------->
+
           <div id="thirdStep" class="my-5">
 
             <h4 class="text-uppercase font-time breadcrumb">Password Details</h4>
@@ -393,9 +400,10 @@ if (isset($_POST['submit'])) {
     </div>
   </main>
 
-  <!-- Footer Script -->
+  <!-- Include Footer Script -->
   <?php include_once "includes/footerScripts.php";?>
-  <!-- Form Validation -->
+
+  <!-- Form Validation Javascript -->
   <script src="js/form-validation.js"></script>
 
   <script>
@@ -427,10 +435,8 @@ if (isset($_POST['submit'])) {
     })
   </script>
 
-  <?php
-// closing Database Connnection
-$conn = null;
-?>
+  <!-- Close Database Connection -->
+  <?php $conn = null;?>
 
 </body>
 

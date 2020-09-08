@@ -51,5 +51,5 @@ if (isset($_POST['submit'])) {
 
 }
 
-// closing Database Connnection
+// CLOSE DATABASE CONNECTION
 $conn = null;

@@ -3,12 +3,13 @@
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
-// Staring Session
+// ----------------------------->> STARTING SESSION
 session_start();
 
-$buttonEvent = $_POST['event1'];
+$buttonEvent = htmlspecialchars($_POST['event1']);
 $email = $_SESSION['user'];
 
+// Sql Query
 $sql = "SELECT * FROM user_information INNER JOIN event_information ON
 user_information.email= event_information.email
 WHERE user_information.email = :email AND event_information.event = :buttonEvent";
@@ -62,8 +63,6 @@ $certificateDepartment = $row1['eventDepartment'];
     <!-- Certificate CSS-->
     <link rel="stylesheet" href="css/certificate.css">
     <link rel="stylesheet" href="css/certificateShodh.css">
-
-
 
     <style type="text/css">
         .cert {
@@ -123,7 +122,7 @@ if ($certificateDepartment === "Electronics and Telecommunication") {
 
     </section>
 
-    <!--Jquerry-->
+    <!--Jquery-->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
     <!-- JS Variables to Convert data into QR Code-->
@@ -155,10 +154,8 @@ if ($certificateDepartment === "Electronics and Telecommunication") {
         });
     </script>
 
-     <?php
-// closing Database Connnection
-$conn = null;
-?>
+<!-- Close Database Connection -->
+     <?php $conn = null;?>
 
 </body>
 </html>

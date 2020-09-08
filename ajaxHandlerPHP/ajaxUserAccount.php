@@ -3,7 +3,6 @@
 // --------------------------->> DB CONFIG
 require_once "../config/configPDO.php";
 
-
 // --------------------------->> SESSION START
 session_start();
 
@@ -37,7 +36,7 @@ if (isset($_POST['changePassword'])) {
     //Executing Query
     $result->execute();
 
-    //Fetching Value in associative array
+    //Fetching Value from DB
     $row = $result->fetch(PDO::FETCH_ASSOC);
 
     $dbPassword = $row['password'];
@@ -201,6 +200,6 @@ if (isset($_POST['disableAccount'])) {
     }
 }
 
-// CLOSE DB CONNECTION
-
+// --------------------------->> CLOSE DB CONNECTION
 $conn = null;
+

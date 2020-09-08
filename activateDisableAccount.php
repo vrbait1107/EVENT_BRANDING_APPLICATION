@@ -2,11 +2,10 @@
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
-
 //------------------------>> SECRETS
 require_once "./config/Secret.php";
 
-// Staring Session
+//------------------------>> STARTING SESSION
 session_start();
 ?>
 
@@ -18,7 +17,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reactivate User Account</title>
 
-    <!-- header Scripts and Links -->
+    <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
 
 </head>
@@ -29,7 +28,7 @@ session_start();
 
 if (isset($_POST['reactivate'])) {
 
-    $email = $_POST['email'];
+    $email = htmlspecialchars($_POST['email']);
 
     // sql Query
     $sql = "SELECT * FROM user_information WHERE email = :email";
@@ -86,11 +85,11 @@ if (isset($_POST['reactivate'])) {
 
 }
 
-// Activate User Account after Clicking Link
+// -------------------------------->> ACTIVATE USER ACCOUNT
 
 if (isset($_GET['token'])) {
 
-    $token = $_GET['token'];
+    $token = htmlspecialchars($_GET['token']);
 
     $sql = "UPDATE user_information SET status = :active WHERE token = :token";
 
@@ -116,7 +115,7 @@ if (isset($_GET['token'])) {
 ?>
 
 
-    <!-- Navbar PHP -->
+    <!-- Include User Navbar -->
     <?php include_once "includes/navbar.php";?>
 
 
@@ -143,15 +142,13 @@ if (isset($_GET['token'])) {
         </div>
     </main>
 
-    <!-- Footer PHP -->
-    <?php include_once "includes/footer.php";?>
-    <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php";?>
-
-     <?php
-// closing Database Connnection
-$conn = null;
+    <!-- Include Footer & Footer Scripts -->
+    <?php include_once "includes/footer.php";
+include_once "includes/footerScripts.php";
 ?>
+
+     <!-- Close Database Connection -->
+     <?php $conn = null;?>
 
 </body>
 
