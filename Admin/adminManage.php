@@ -122,7 +122,7 @@ include_once "includes/adminNavbar.php";
 
                                     <div class="form-group">
                                         <label>Password</label>
-                                        <input type="password" class="form-control" name="password" id="password"
+                                        <input type="password" class="form-control" name="adminPassword" id="adminPassword"
                                             placeholder="Password" required autocomplete="off">
                                     </div>
 

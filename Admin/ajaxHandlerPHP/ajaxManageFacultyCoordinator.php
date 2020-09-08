@@ -81,7 +81,7 @@ if (isset($_POST['editEmail']) && isset($_POST['editEmail']) !== "") {
 
 // ------------------------>> DELETE OPERATION
 
-if (isset($_POST['deleteEmail'])) {
+if (isset($_POST['deleteEmail']) && isset($_POST['deleteEmail']) !== "") {
 
     //Query
     $sql = "DELETE FROM admin_information WHERE email = :deleteEmail";
@@ -177,15 +177,15 @@ if (isset($_POST["readRecord"])) {
 
 // ---------------------------------->>  CREATE OPERATION
 
-if (isset($_POST['email'])) {
+if (isset($_POST['create'])) {
 
     $email = htmlspecialchars($_POST["email"]);
     $adminType = htmlspecialchars($_POST["adminType"]);
     $adminDepartment = htmlspecialchars($_POST["adminDepartment"]);
     $adminEvent = htmlspecialchars($_POST["adminEvent"]);
-    $adminPassword = htmlspecialchars($_POST["adminPassword"]);
+    $password = htmlspecialchars($_POST["adminPassword"]);
 
-    $adminPassword = password_hash($adminPassword, PASSWORD_BCRYPT);
+    $hashPassword = password_hash($password, PASSWORD_BCRYPT);
 
     $sql = "SELECT * FROM admin_information WHERE admin_information.email = :email";
 
@@ -209,7 +209,7 @@ if (isset($_POST['email'])) {
     } else {
 
         $sql = "INSERT INTO admin_information (email, adminType, adminDepartment, adminEvent,
-adminPassword) VALUES (:email, :adminType, :adminDepartment, :adminEvent, :password)";
+adminPassword) VALUES (:email, :adminType, :adminDepartment, :adminEvent, :hashPassword)";
 
         //Preparing Query
         $result = $conn->prepare($sql);
@@ -219,7 +219,7 @@ adminPassword) VALUES (:email, :adminType, :adminDepartment, :adminEvent, :passw
         $result->bindValue("adminType", $adminType);
         $result->bindValue("adminDepartment", $adminDepartment);
         $result->bindValue("adminEvent", $adminEvent);
-        $result->bindValue(":password", $password);
+        $result->bindValue(":hashPassword", $hashPassword);
 
         //Executing Query
         $result->execute();

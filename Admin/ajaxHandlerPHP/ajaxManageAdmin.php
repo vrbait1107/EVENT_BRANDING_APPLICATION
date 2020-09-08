@@ -7,13 +7,13 @@ extract($_POST);
 
 // ------------------------------------>> UPDATE OPERATION
 
-$updateEmail = htmlspecialchars($_POST["updateEmail"]);
-$updateAdminType = htmlspecialchars($_POST["updateAdminType"]);
-$updateAdminDepartment = htmlspecialchars($_POST["updateAdminDepartment"]);
-$updateAdminEvent = htmlspecialchars($_POST["updateAdminEvent"]);
-$hiddenEmail = htmlspecialchars($_POST["hiddenEmail"]);
-
 if (isset($_POST['hiddenEmail'])) {
+
+    $updateEmail = htmlspecialchars($_POST["updateEmail"]);
+    $updateAdminType = htmlspecialchars($_POST["updateAdminType"]);
+    $updateAdminDepartment = htmlspecialchars($_POST["updateAdminDepartment"]);
+    $updateAdminEvent = htmlspecialchars($_POST["updateAdminEvent"]);
+    $hiddenEmail = htmlspecialchars($_POST["hiddenEmail"]);
 
     //Query
     $sql = "UPDATE admin_information SET email = :email, adminType = :adminType,
@@ -166,15 +166,15 @@ if (isset($_POST["readRecord"])) {
 
 // ------------------------------------>> CREATE OPERATION
 
-if (isset($_POST['email'])) {
+if (isset($_POST['create'])) {
 
     $email = htmlspecialchars($_POST['email']);
     $adminType = htmlspecialchars($_POST['adminType']);
     $adminDepartment = htmlspecialchars($_POST['adminDepartment']);
     $adminEvent = htmlspecialchars($_POST['adminEvent']);
-    $adminPassword = htmlspecialchars($_POST['adminPassword']);
+    $password = htmlspecialchars($_POST['adminPassword']);
 
-    $adminPassword = password_hash($adminPassword, PASSWORD_BCRYPT);
+    $hashPassword = password_hash($password, PASSWORD_BCRYPT);
 
     $sql = "SELECT * FROM admin_information WHERE admin_information.email = :email";
 
@@ -197,7 +197,7 @@ if (isset($_POST['email'])) {
     } else {
 
         $sql = "INSERT INTO admin_information (email, adminType, adminDepartment, adminEvent,
-adminPassword) VALUES (:email, :adminType, :adminDepartment, :adminEvent, :adminPassword)";
+adminPassword) VALUES (:email, :adminType, :adminDepartment, :adminEvent, :hashPassword)";
 
         //Preparing Query
         $result = $conn->prepare($sql);
@@ -207,7 +207,7 @@ adminPassword) VALUES (:email, :adminType, :adminDepartment, :adminEvent, :admin
         $result->bindValue("adminType", $adminType);
         $result->bindValue("adminDepartment", $adminDepartment);
         $result->bindValue("adminEvent", $adminEvent);
-        $result->bindValue(":adminPassword", $adminPassword);
+        $result->bindValue(":hashPassword", $hashPassword);
 
         //Executing Query
         $result->execute();

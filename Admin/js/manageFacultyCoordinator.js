@@ -30,6 +30,7 @@ $(document).ready(function () {
   // ----------------------------------->>  CREATE OPERATION
 
   $("#addFacultyAdmin").click(function () {
+    let create = "create";
     let email = $("#email").val();
     let adminType = $("#adminType").val();
     let adminDepartment = $("#adminDepartment").val();
@@ -85,6 +86,7 @@ $(document).ready(function () {
       url: "ajaxHandlerPHP/ajaxManageFacultyCoordinator.php",
       type: "post",
       data: {
+        create: create,
         email: email,
         adminType: adminType,
         adminDepartment: adminDepartment,
