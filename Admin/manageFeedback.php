@@ -37,8 +37,8 @@ if (!isset($_SESSION['adminEmail'])) {
 
     <!-- Include Admin Navbar & Common Anchor -->
     <?php
-include_once "includes/adminNavbar.php";
 include_once "includes/commonAnchor.php";
+include_once "includes/adminNavbar.php";
 ?>
 
 

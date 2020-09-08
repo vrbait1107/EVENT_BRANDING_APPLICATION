@@ -1,6 +1,6 @@
 # Contributing to Event Branding Application.
 
-## Please feel free to contibute in this project.
+## Please feel free to contribute in this repository as well as other repository of this account.
 
 We want to make contributing to this project as easy as possible, whether it's:
 
@@ -16,7 +16,7 @@ We use github to host code, to track issues and feature requests, as well as acc
 
 ## Report bugs using Github's issues
 
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/Vishal1107/EVENT_BRANDING_APPLICATION/issues); it's that easy!
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/vrbait1107/EVENT_BRANDING_APPLICATION/issues); it's that easy!
 
 ## Write bug reports with detail, background, and sample code
 
@@ -40,11 +40,11 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 
 ## Any contributions you make will be under the MIT Software License
 
-In short, when you submit code changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
+In short, when you submit code changes, your submissions are understood to be under the same [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under its MIT License.
+By contributing, you agree that your contributions will be licensed under its GNU General Public License v3.0.
 
 ## References
 

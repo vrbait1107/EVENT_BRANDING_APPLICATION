@@ -5,9 +5,9 @@
 
 ## Event Branding Application: Start to End Support (With Different Technology)
 
-1. [Event Branding Application (Bootstrap4)](https://github.com/Vishal1107/EVENT_BRANDING_WEBSITE_FRONT_END)
-2. Current Repository [Event Branding Application (PHP) ](https://github.com/Vishal1107/EVENT_BRANDING_APPLICATION)
-3. [Event Branding Application (MERN)](https://github.com/Vishal1107/MERN_EVENT_BRANDING_APPLICATION)
+1. [Event Branding Application (Bootstrap4)](https://github.com/vrbait1107/EVENT_BRANDING_WEBSITE_FRONT_END)
+2. Current Repository [Event Branding Application (PHP) ](https://github.com/vrbait1107/EVENT_BRANDING_APPLICATION)
+3. [Event Branding Application (MERN)](https://github.com/vrbait1107/MERN_EVENT_BRANDING_APPLICATION)
 
 ## Event Branding Application: Start to End Support (Techfest Website)
 
@@ -31,32 +31,41 @@ Event Branding Application is mobile Application with Website for collecting reg
 
 1. **Administrator (College Level)**
 
-- View/Add/Delete/Update Faculty Coordinator
-- View and delete all event registration details.
-- Send Newsletter to all Participant
-- Send Emails to Participant college wise, department wise and Events wise
-- View/Add/Delete/Update Events Details Information
-- View/Add/Delete Gallery Images
-- View/Add/Delete/Update Sponsor Information
+- View Event Revenue, Participant Count Statistics Charts.
+- View registration details.
+- View/Add/Delete/Update Faculty Coordinator.
+- Send Newsletter to all Participant.
+- View/Add/Delete/Update Sponsor Information.
+- Send Emails to Participant college wise, department wise and Events wise.
+- View/Add/Delete/Update Events Details Information.
+- View/Add/Delete Gallery Images.
+- View/Add/Delete/Update News/Notification Information.
+- View/Delete Feedaback Information & View Feedback Statistics.
 
 2. **Faculty Coordinator (Department Level)**
 
-- View/Add/Delete/Update Student Coordinator
-- View and delete department level event registration details.
+- View Event Revenue, Participant Count Statistics Charts.
+- View department level event registration details.
+- View/Add/Delete/Update Student Coordinator.
 - Send Newsletter to all Participant
+- View/Add/Delete/Update Sponsor Information
 - Send Emails to Participant college wise, department wise and Events wise
 - View/Add/ Delete/Update Events Details Information
 - View/Add/Delete Gallery Images
-- View/Add/Delete/Update Sponsor Information
+- View/Add/Delete/Update News/Notification Information
+- View/Delete Feedaback Information & View Feedback Statistics.
 
 3. **Student Coordinator (Event Level)**
 
+- View Event Revenue, Participant Count Statistics Charts
 - View and delete event level event registration details and Update it such as Prize.
 - Send Newsletter to all Participant
+- View/Add/Delete/Update Sponsor Information
 - Send Emails to Participant college wise, department wise and Events wise
 - View/Add/ Delete/Update Events Details Information
 - View/Add/Delete Gallery Images
-- View/Add/Delete/ Update Sponsor Information
+- View/Add/Delete/Update News/Notification Information
+- View/Delete Feedaback Information & View Feedback Statistics.
 
 ## PHP Mailer
 
@@ -77,6 +86,22 @@ Event Branding Application is mobile Application with Website for collecting reg
 - Open Secret.php file update the below constant values (API Keys)
   1.  recaptchaSiteKey – Site Key Provided by Google Recaptcha Admin
   2.  recaptchaSecretKey - Secret Key Provided by Google Recaptcha Admin
+
+## Database
+
+1. We have used Mysql Database for this project.
+2. Sql file available in Database folder.
+3. For login Use below credentials.
+
+**For Normal Users**
+
+- Emails: From testuser01@gmail.com to testuser20@gmail.com
+- Password: User@123 (For above 20 Emails.)
+
+**For Administrator**
+
+- Emails: Check Emails from admin_information table in sql file also check Roles of Admins (College, Faculty Coordinator and Student Coordiator)
+- Password: Admin@123 (For All Administrators)
 
 ## PAYTM Payment Gateway
 
