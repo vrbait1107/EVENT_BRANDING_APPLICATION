@@ -202,4 +202,3 @@ if (isset($_POST['disableAccount'])) {
 
 // --------------------------->> CLOSE DB CONNECTION
 $conn = null;
-

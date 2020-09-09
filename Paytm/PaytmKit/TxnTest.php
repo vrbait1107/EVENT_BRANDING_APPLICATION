@@ -1,18 +1,22 @@
 <?php
+
 session_start();
-require_once '../../configPDO.php';
+
+//------------------------------>> DB CONFIG
+require_once '../../config/configPDO.php';
 
 $eventName = $_POST['eventName'];
 $eventPrice = $_POST['eventPrice'];
 $userName = $_SESSION['user'];
+
 ?>
 
 <?php
 header("Pragma: no-cache");
 header("Cache-Control: no-cache");
 header("Expires: 0");
-?>
 
+?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

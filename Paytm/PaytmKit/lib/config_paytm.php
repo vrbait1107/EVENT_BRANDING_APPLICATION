@@ -1,7 +1,7 @@
 <?php
 
 // ----------------------------->> SECRETS
-require_once "../../../config/Secret.php";
+require_once "../../config/Secret.php";
 
 /*
 - Use PAYTM_ENVIRONMENT as 'PROD' if you wanted to do transaction in production environment else 'TEST' for doing transaction in testing environment.

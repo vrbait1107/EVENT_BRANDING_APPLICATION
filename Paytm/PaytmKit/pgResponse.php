@@ -1,8 +1,9 @@
 <?php
 
 session_start();
-$eventName = $_SESSION['eventName'];
+
 $userName = $_SESSION['user'];
+$eventName = $_SESSION['eventName'];
 
 //-------------------->> DB CONFIG
 require_once '../../config/configPDO.php';
@@ -11,6 +12,10 @@ require_once '../../config/configPDO.php';
 require_once "../../config/Secret.php";
 
 ?>
+
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -19,7 +24,7 @@ require_once "../../config/Secret.php";
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- header Scripts and Links -->
+	<!-- Include Header Scripts -->
 	<?php include_once "../../includes/headerScripts.php";?>
 
 	<title>Page Response</title>
@@ -33,9 +38,8 @@ require_once "../../config/Secret.php";
 	</div>
 
 
-
-
 	<?php
+
 header("Pragma: no-cache");
 header("Cache-Control: no-cache");
 header("Expires: 0");
@@ -131,18 +135,18 @@ if ($isValidChecksum == "TRUE") {
 
                 if (!$mail->send()) {
                     echo "<script>Swal.fire({
-			icon: 'Warning',
-			title: 'Transaction Successful & Email Error',
-            text: 'Congratulation You are Successfully Registered for $eventName Event,
-            But there is issue with sending Email to your account, Please Contact Event Coordinator'
-		})</script>";
+                    icon: 'Warning',
+                    title: 'Transaction Successful & Email Error',
+                    text: 'Congratulation You are Successfully Registered for $eventName Event,
+                    But there is issue with sending Email to your account, Please Contact Event Coordinator'
+                })</script>";
 
                 } else {
                     echo "<script>Swal.fire({
-			icon: 'success',
-			title: 'Transaction Successful',
-			text: 'Congratulation You are Successfully Registered for $eventName Event'
-		})</script>";
+                    icon: 'success',
+                    title: 'Transaction Successful',
+                    text: 'Congratulation You are Successfully Registered for $eventName Event'
+                })</script>";
 
                 }
 
