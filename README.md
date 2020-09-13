@@ -106,6 +106,7 @@ Event Branding Application is mobile Application with Website for collecting reg
 **NOTE:**
 
 - We used PHP Mailer for this project & Above Emails are Fake used for test purpose only so phpmailer library cannot send email to above emails.
+- We use dummy event registration so payment details for all event registration are same, Only Certificate Id's(Primary Key) and Event Fee are different.
 
 ## PAYTM Payment Gateway
 
