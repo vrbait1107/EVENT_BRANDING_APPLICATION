@@ -45,11 +45,11 @@ if (isset($_POST['changePassword'])) {
 
     // Removing White Spaces
     $password = trim($_POST['password']);
-    $conPassword = trim($_POST['conPassword']);
+    $conPassword = trim($_POST['confirmPassword']);
 
     // Avoid XSS Attack
     $password = htmlspecialchars($_POST['password']);
-    $conPassword = htmlspecialchars($_POST['conPassword']);
+    $conPassword = htmlspecialchars($_POST['confirmPassword']);
 
     if ($password === $conPassword) {
         $hashPassword = password_hash($password, PASSWORD_BCRYPT);
@@ -112,17 +112,21 @@ include_once "includes/adminNavbar.php";
                     <h3 class="text-center text-uppercase text-secondary my-2">Change Password</h3>
 
                     <div class="card-body">
-                        <form action="" method="POST">
+                        <form action="" method="POST" id="changePasswordForm">
 
                             <div class="form-group">
                                 <label>New Password</label>
                                 <input class="form-control py-4" id="password" type="password" name="password"
                                     placeholder="Enter New Password" />
+                                     <small class="text-danger">Password should Contain atleast 8 Character, Minimum
+                                            one uppercase letter,
+                                            Minimum one lowercase letter,
+                                            Minimum one number, Minimum one special character. </small>
                             </div>
 
                             <div class="form-group">
                                 <label>Confirm New Password</label>
-                                <input class="form-control py-4" id="conPassword" type="password" name="conPassword"
+                                <input class="form-control py-4" id="confirmPassword" type="password" name="confirmPassword"
                                     placeholder="Confirm New Password" />
                             </div>
 
@@ -145,6 +149,9 @@ include_once "includes/adminNavbar.php";
 
     <!-- Include  Admin Footer Scripts -->
     <?php include_once "includes/adminFooterScripts.php";?>
+
+    <!-- Javascript -->
+    <script src="js/password.js"></script>
 
      <!-- Close DB Connection -->
      <?php $conn = null;?>

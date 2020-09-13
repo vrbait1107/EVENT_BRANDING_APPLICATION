@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
             $department = trim($_POST['department']);
             $year = trim($_POST['year']);
             $password = trim($_POST['password']);
-            $confirm_password = trim($_POST['confirm_password']);
+            $confirm_password = trim($_POST['confirmPassword']);
 
             // Avoid XSS Attack
             $userName = htmlspecialchars($_POST['userName']);
@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
             $department = htmlspecialchars($_POST['department']);
             $year = htmlspecialchars($_POST['year']);
             $password = htmlspecialchars($_POST['password']);
-            $confirm_password = htmlspecialchars($_POST['confirm_password']);
+            $confirm_password = htmlspecialchars($_POST['confirmPassword']);
 
             // Set Expiery Time for Token
             $tokenDate = date("Y-m-d H:i:s");
@@ -134,14 +134,14 @@ if (isset($_POST['submit'])) {
                         footer: '<a href = $login >Go to the Login Page</a>'
                       })</script>";
 
-                    /* PHP MAILER CODE */
-                    include_once "./emailCode/emailRegister.php";
+                    // /* PHP MAILER CODE */
+                    // include_once "./emailCode/emailRegister.php";
 
-                    if (!$mail->send()) {
-                        echo "Mailer Error: " . $mail->ErrorInfo;
-                    } else {
-                        echo "<h5 class='text-center alert alert-warning col-md-6 offset-md-3' role='alert' >Check Your Email.</h5>";
-                    }
+                    // if (!$mail->send()) {
+                    //     echo "Mailer Error: " . $mail->ErrorInfo;
+                    // } else {
+                    //     echo "<h5 class='text-center alert alert-warning col-md-6 offset-md-3' role='alert' >Check Your Email.</h5>";
+                    // }
 
                 } else {
                     echo '<script>Swal.fire({
@@ -195,18 +195,18 @@ if (isset($_POST['submit'])) {
   <main class="container mt-4">
 
     <h2 class="text-center mx-auto font-time text-uppercase">git <span class="text-danger">shodh</span> 2K21 Registration</h2>
+     <h6 class="text-danger  text-center font-sans animated heartBeat slow">Note: 1) Following details will be used
+      for your Certificate Generation so please provide proper details.</h6>
 
     <hr>
 
-    <h5 class="mb-2 font-sans text-center">Already have an Account? <a href="login.php"> Please Login here</a></h5>
-    <h5 class="text-danger  text-center font-sans animated heartBeat slow">Note: 1) Following details will be used
-      for your Certificate <br/> Generation so please provide proper details.</h5>
+    <h5 class="font-sans text-center">Already have an account? <a href="login.php"> Please Login here</a></h5>
 
     <div class="row">
 
       <section class="col-md-6 offset-md-3">
 
-        <form action="" method="post" name="myForm" onsubmit="return formValidationRegister()">
+        <form action="" method="post" id="userRegisterForm">
 
 
             <!------------------------------ First Step ----------------------------------->
@@ -375,12 +375,15 @@ if (isset($_POST['submit'])) {
             <div class="form-group">
               <label for="password">Password</label>
               <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+              <small class="text-danger">Password should Contain atleast 8 Character, Minimum one uppercase letter,
+               Minimum one lowercase letter,
+               minimum one number, Minimum one special character. </small>
             </div>
 
 
             <div class="form-group">
-              <label for="confirm_password">Confirm Password</label>
-              <input type="password" class="form-control" name="confirm_password" id="confirm_password"
+              <label for="confirmPassword">Confirm Password</label>
+              <input type="password" class="form-control" name="confirmPassword" id="confirmPassword"
                 placeholder="Confirm Password">
             </div>
 
@@ -403,8 +406,8 @@ if (isset($_POST['submit'])) {
   <!-- Include Footer Script -->
   <?php include_once "includes/footerScripts.php";?>
 
-  <!-- Form Validation Javascript -->
-  <script src="js/form-validation.js"></script>
+  <!--Javascript -->
+  <script src="js/register.js"></script>
 
   <script>
     $(document).ready(function () {

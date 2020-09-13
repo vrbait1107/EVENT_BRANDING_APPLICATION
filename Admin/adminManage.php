@@ -59,7 +59,7 @@ include_once "includes/adminNavbar.php";
                 <!-- Delete Response Message -->
                 <div id="deleteResponse"></div>
 
-                 <!-- Delete Response Message -->
+                <!-- Delete Response Message -->
                 <div id="updateResponse"></div>
 
 
@@ -92,7 +92,6 @@ include_once "includes/adminNavbar.php";
                                     <div class="form-group">
                                         <label>Admin Type</label>
                                         <select class="form-control" name="adminType" id="adminType">
-                                            <option value="Administrator">Administrator</option>
                                             <option value="Faculty Coordinator">Faculty Coordinator</option>
                                         </select>
                                     </div>
@@ -122,8 +121,12 @@ include_once "includes/adminNavbar.php";
 
                                     <div class="form-group">
                                         <label>Password</label>
-                                        <input type="password" class="form-control" name="adminPassword" id="adminPassword"
-                                            placeholder="Password" required autocomplete="off">
+                                        <input type="password" class="form-control" name="adminPassword"
+                                            id="adminPassword" placeholder="Password" required autocomplete="off">
+                                        <small class="text-danger">Password should Contain atleast 8 Character, Minimum
+                                            one uppercase letter,
+                                            Minimum one lowercase letter,
+                                            Minimum one number, Minimum one special character. </small>
                                     </div>
 
                                 </form>
@@ -205,8 +208,8 @@ include_once "includes/adminNavbar.php";
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" name = "updateData" id ="updateData"
-                                    class="btn btn-info" onclick= "updateAdminDetails()" data-dismiss="modal">Update changes</button>
+                                <button type="button" name="updateData" id="updateData" class="btn btn-info"
+                                    onclick="updateAdminDetails()" data-dismiss="modal">Update changes</button>
                             </div>
 
                         </div>
@@ -222,7 +225,7 @@ include_once "includes/adminNavbar.php";
             <div class="card-header"><i class="fas fa-table mr-1"></i>Administrator Details</div>
             <div class="card-body">
                 <div class="table-responsive">
-                     <!-- Response of ReadRecord -->
+                    <!-- Response of ReadRecord -->
                     <div id="responseAdminData"></div>
                 </div>
             </div>
@@ -239,7 +242,7 @@ include_once "includes/adminNavbar.php";
     <!--  Javascript -->
     <script src="js/manageAdmin.js"></script>
 
-     <!-- Close Database Connection -->
+    <!-- Close Database Connection -->
     <?php $conn = null;?>
 
 </body>

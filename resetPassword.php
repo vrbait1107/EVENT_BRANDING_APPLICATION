@@ -189,11 +189,11 @@ if (isset($_GET['token'])) {
                     <hr>
 
                     <div class="card-body">
-                        <form action="" method="post">
+                        <form action="" method="post" id="resetPasswordForm">
 
                             <div class="form-group">
                                 <label>User Type</label>
-                                <select class="form-control" name="userType">
+                                <select class="form-control" name="userType" id="userType">
                                     <option value="User">Normal User</option>
                                     <option value="Administrator">Administrator</option>
                                 </select>
@@ -201,12 +201,16 @@ if (isset($_GET['token'])) {
 
                             <div class="form-group">
                                 <label>Enter New Password</label>
-                                <input type="password" class="form-control" name="newPassword">
+                                <input type="password" class="form-control" name="newPassword" id="newPassword">
+                                 <small class="text-danger">Password should Contain atleast 8 Character, Minimum
+                                            one uppercase letter,
+                                            Minimum one lowercase letter,
+                                            Minimum one number, Minimum one special character. </small>
                             </div>
 
                             <div class="form-group">
                                 <label>Confirm New Password</label>
-                                <input type="password" class="form-control" name="confirmNewPassword">
+                                <input type="password" class="form-control" name="confirmNewPassword" id="confirmNewPassword">
                             </div>
 
                             <button type="submit" class="btn btn-danger mt-3 rounded-pill btn-block"

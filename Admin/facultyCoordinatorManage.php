@@ -157,8 +157,12 @@ include_once "includes/adminNavbar.php";
 
                                     <div class="form-group">
                                         <label>Password</label>
-                                        <input type="password" class="form-control" name="adminPassword" id="adminPassword"
-                                            placeholder="Password" required autocomplete="off">
+                                        <input type="password" class="form-control" name="adminPassword"
+                                            id="adminPassword" placeholder="Password" required autocomplete="off">
+                                        <small class="text-danger">Password should Contain atleast 8 Character, Minimum
+                                            one uppercase letter,
+                                            Minimum one lowercase letter,
+                                            Minimum one number, Minimum one special character. </small>
                                     </div>
 
                                 </form>

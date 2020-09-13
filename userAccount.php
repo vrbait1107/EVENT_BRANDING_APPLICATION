@@ -87,6 +87,10 @@ if (!isset($_SESSION['user'])) {
                                 <div class="form-group">
                                     <label>Enter New Password</label>
                                     <input type="password" class="form-control" name="newPassword" id="newPassword">
+                                     <small class="text-danger">Password should Contain atleast 8 Character, Minimum
+                                            one uppercase letter,
+                                            Minimum one lowercase letter,
+                                            Minimum one number, Minimum one special character. </small>
                                 </div>
 
                                 <div class="form-group">
