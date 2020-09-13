@@ -16,6 +16,11 @@ if (isset($_POST['submit'])) {
 
     if (isset($_POST['captcha'])) {
 
+        $name = htmlspecialchars($_POST["name"]);
+        $email = htmlspecialchars($_POST["email"]);
+        $subject = htmlspecialchars($_POST["subject"]);
+        $message = htmlspecialchars($_POST["message"]);
+
         $secretKey = $recaptchaSecretKey;
 
         $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['captcha']);

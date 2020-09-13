@@ -5,7 +5,7 @@ $(document).ready(function () {
     let name = $("#name").val();
     let email = $("#email").val();
     let subject = $("#subject").val();
-    let message = $("#message").val();
+    let message = CKEDITOR.instances["message"].getData();
     let submit = "submit";
 
     if (!isNaN(name) || name === "") {

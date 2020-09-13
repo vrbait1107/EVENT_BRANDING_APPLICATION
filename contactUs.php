@@ -24,10 +24,11 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Contact Us</title>
 
-    <!-- First Animate.css then Include Header Scripts then Google Recaptcha-->
+    <!-- First Animate.css then Include Header Scripts then Google Recaptcha then CkEditor-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <?php include_once "includes/headerScripts.php";?>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 
 </head>
 
@@ -98,7 +99,7 @@ if (!isset($_SESSION['user'])) {
                     </li>
 
                     <li><i class="fa fa-envelope mb-2 fa-3x"></i>
-                        <h5 class="text-success">git-india.edu.gmail.com</h5>
+                        <h5 class="text-success">git-india.edu.in</h5>
                     </li>
                 </ul>
             </section>
@@ -111,6 +112,7 @@ if (!isset($_SESSION['user'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script>
         new WOW().init();
+        CKEDITOR.replace("message")
     </script>
 
     <!--Include Footer & Footer Scripts -->
