@@ -39,6 +39,7 @@ WHERE adminType = :studentCoordinator AND adminDepartment = :department";
 $resultDataAdmin = $conn->prepare($sqlDataAdmin);
 $resultDataAdmin->bindValue(":studentCoordinator", "Student Coordinator");
 $resultDataAdmin->bindValue(":department", $department);
+$resultDataAdmin->execute();
 $rowCountAdmin = $resultDataAdmin->rowCount();
 
 // ------------------------->>  EXTRACTING EVENT NAME FROM DB IN ARRAY.
@@ -68,7 +69,8 @@ function count1($event)
     return $row;
 }
 
-//------------------------->> Display  total revenue Event wise
+//------------------------->> DISPLAY TOTAL REVENUE EVENT WISE
+
 function countRevenue($event)
 {
     global $conn;
