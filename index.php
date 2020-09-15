@@ -11,47 +11,29 @@ if (!isset($_SESSION['user'])) {
     header("location:login.php");
 }
 
+//------------------------------>> VISITOR COUNTER
+
 $visitorIpAddress = $_SERVER['REMOTE_ADDR'];
 
-//sql Query
 $sql1 = "SELECT * FROM visitor_counter WHERE ipAddress = :visitorIpAddress";
-
-//Preparing Query
 $result1 = $conn->prepare($sql1);
-
-//Binding Values
 $result1->bindValue("visitorIpAddress", $visitorIpAddress);
-
-//Executing Query
 $result1->execute();
 
 // Total row Count
 $totaVisitor = $result1->rowCount();
 
 if ($totaVisitor == 0) {
-
-// Query if no address found
     $sql2 = "INSERT INTO visitor_counter (ipAddress) VALUES (:visitorIpAddress)";
-
-//Preparing Query
     $result2 = $conn->prepare($sql);
-
-//Binding Values
     $result2->bindValue(":visitorIpAddress", $visitorIpAddress);
-
-//Executing Query
     $result2->execute();
-
 }
 
 try {
 
-    // Query
     $sql = "SELECT * FROM visitor_counter";
-
-    // Preparing Query
     $result = $conn->prepare($sql);
-
     $result->execute();
 
     if ($result) {
@@ -93,7 +75,7 @@ try {
         <div class="row mx-auto text-center">
             <h1 class="p-3 font-time  mx-auto animated flip slow text-white">Welcome to SHODH 2K21 <br> National Level
                 Techfest </h1>
-            <img src="gallery/shodh1.jpg" class="img-fluid" alt="Shodh1">
+            <img src="images/home/shodh1.jpg" class="img-fluid" alt="Shodh1">
         </div>
     </main>
 
@@ -109,13 +91,13 @@ try {
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="images/git1.png" class="d-block w-100 img-fluid" alt="git1">
+                                <img src="images/home/git1.png" class="d-block w-100 img-fluid" alt="git1">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/git2.jpg" class="d-block w-100 img-fluid" lt="git2">
+                                <img src="images/home/git2.jpg" class="d-block w-100 img-fluid" lt="git2">
                             </div>
                             <div class="carousel-item">
-                                <img src="images/git4.jpg" class="d-block w-100 img-fluid" lt="git4">
+                                <img src="images/home/git4.jpg" class="d-block w-100 img-fluid" lt="git4">
 
                             </div>
                         </div>

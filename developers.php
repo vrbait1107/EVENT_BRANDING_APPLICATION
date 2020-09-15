@@ -39,7 +39,7 @@ if (!isset($_SESSION['user'])) {
             <section class="col-md-4 mb-5">
                 <div class="card shadow p-3" data-aos="zoom-in" data-aos-duration="1500">
                     <figure class="imghvr-zoom-out">
-                        <img src="images/developer1.jpg" class="img-fluid" alt="Vishal Bait">
+                        <img src="images/developers/developer1.jpg" class="img-fluid" alt="Vishal Bait">
 
                         <figcaption>
                             <div class="text-center my-3">
@@ -75,7 +75,7 @@ if (!isset($_SESSION['user'])) {
                 <div class="card shadow p-3" data-aos="zoom-in" data-aos-duration="1500">
 
                     <figure class="imghvr-zoom-out">
-                        <img src="images/developer2.jpg" class="img-fluid" alt="Suraj Mohite">
+                        <img src="images/developers/developer2.jpg" class="img-fluid" alt="Suraj Mohite">
 
                         <figcaption>
                             <div class="text-center my-3">
@@ -109,7 +109,7 @@ if (!isset($_SESSION['user'])) {
                 <div class="card shadow p-3" data-aos="zoom-in" data-aos-duration="1500">
 
                     <figure class="imghvr-zoom-out">
-                        <img src="images/developer3.jpg" class="img-fluid" alt="Onkar Mokashi">
+                        <img src="images/developers/developer3.jpg" class="img-fluid" alt="Onkar Mokashi">
                         <figcaption>
 
                             <div class="text-center my-3" data-aos="fade-up">

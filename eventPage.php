@@ -36,7 +36,7 @@ if (!isset($_SESSION['user'])) {
             <section class="col-md-4 my-5">
                 <div class="wow zoomIn slow">
 
-                    <img src="images/EXTC.jpg" class="img-fluid w-100" style="height:250px">
+                    <img src="images/departments/EXTC.jpg" class="img-fluid w-100" style="height:250px">
                     <h5 class="alert alert-info font-time text-center">EXTC
                         ENGINEERING</h5>
 
@@ -52,7 +52,7 @@ if (!isset($_SESSION['user'])) {
             <section class="col-md-4 my-5">
                 <div class="wow zoomIn slow">
 
-                    <img src="images/CHEM.jpg" class="img-fluid w-100" style="height:250px">
+                    <img src="images/departments/CHEM.jpg" class="img-fluid w-100" style="height:250px">
                     <h5 class="alert alert-info font-time text-center">CHEMICAL
                         ENGINEERING</h5>
 
@@ -67,7 +67,7 @@ if (!isset($_SESSION['user'])) {
 
             <section class="col-md-4 my-5">
                 <div class="wow zoomIn slow">
-                    <img src="images/COMP.jpg" class="img-fluid w-100" style="height:250px">
+                    <img src="images/departments/COMP.jpg" class="img-fluid w-100" style="height:250px">
                     <h5 class="alert alert-info font-time text-center">COMPUTER
                         ENGINEERING</h5>
 
@@ -88,7 +88,7 @@ if (!isset($_SESSION['user'])) {
             <section class="col-md-4 mb-5">
                 <div class="wow zoomIn slow">
 
-                    <img src="images/MECH.jpg" class="img-fluid w-100" style="height:250px">
+                    <img src="images/departments/MECH.jpg" class="img-fluid w-100" style="height:250px">
 
                     <h5 class="font-time alert alert-info text-center">MECHANICAL
                         ENGINEERING</h5>
@@ -105,7 +105,7 @@ if (!isset($_SESSION['user'])) {
             <section class="col-md-4 mb-5">
                 <div class="wow zoomIn slow">
 
-                    <img src="images/CIVIL.jpg" class="img-fluid w-100" style="height:250px">
+                    <img src="images/departments/CIVIL.jpg" class="img-fluid w-100" style="height:250px">
                     <h5 class="alert alert-info font-time text-center">CIVIL
                         ENGINEERING</h5>
 

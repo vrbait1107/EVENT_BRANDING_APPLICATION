@@ -63,6 +63,7 @@ if (!isset($_SESSION['user'])) {
                 <div class="tab-content" id="pills-tabContent">
 
                     <!-- CHANGE PASSWORD -->
+
                     <div class="tab-pane fade show active" id="pills-password" role="tabpanel"
                         aria-labelledby="pills-password-tab">
 
@@ -75,7 +76,6 @@ if (!isset($_SESSION['user'])) {
 
                             <form action="" method="post">
 
-                                <!-- Change Password Response -->
                                 <div id="changePasswordResponse"></div>
 
                                 <div class="form-group">
@@ -109,6 +109,7 @@ if (!isset($_SESSION['user'])) {
                     </div>
 
                     <!-- CHANGE EMAIL -->
+
                     <div class="tab-pane fade" id="pills-email" role="tabpanel" aria-labelledby="pills-email-tab">
 
                         <section>
@@ -123,7 +124,6 @@ if (!isset($_SESSION['user'])) {
 
                             <form action="" method="post">
 
-                                <!-- Change Email Response -->
                                 <div id="changeEmailResponse"></div>
 
                                 <div class="form-group">
@@ -144,6 +144,7 @@ if (!isset($_SESSION['user'])) {
                     </div>
 
                     <!-- DISABLE ACCOUNT -->
+
                     <div class="tab-pane fade" id="pills-disable" role="tabpanel" aria-labelledby="pills-disable-tab">
 
                         <h3 class="text-center mt-5"><?php echo $_SESSION['user']; ?>, we’re sorry to see you go</h3>
@@ -157,8 +158,6 @@ if (!isset($_SESSION['user'])) {
                             my disable account link</p>
 
                         <form>
-
-                            <!-- Disable Account Response -->
                             <div id="disableAccountResponse"></div>
 
                             <div class="form-group">

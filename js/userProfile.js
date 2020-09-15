@@ -13,7 +13,7 @@ $(document).ready(function () {
         let profile = JSON.parse(data);
         $("#showProfileImage").attr(
           "src",
-          `profileImage/${profile.profileImage}`
+          `images/profileImage/${profile.profileImage}`
         );
         $("#updateFirstName").val(profile.firstName);
         $("#updateLastName").val(profile.lastName);
