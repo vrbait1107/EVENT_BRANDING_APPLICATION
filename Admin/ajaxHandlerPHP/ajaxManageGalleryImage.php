@@ -5,6 +5,8 @@ require_once "../../config/configPDO.php";
 
 extract($_POST);
 
+// --------------------------------->> CREATE OPERATION
+
 if (isset($_FILES['galleryImages'])) {
 
     if (is_array($_FILES)) {
@@ -18,7 +20,7 @@ if (isset($_FILES['galleryImages'])) {
 
             $source = $_FILES['galleryImages']["tmp_name"][$name];
 
-            move_uploaded_file($source, "C:/xampp/htdocs/EBA/gallery/" . $value);
+            move_uploaded_file($source, "C:/xampp/htdocs/EBA/images/gallery/" . $value);
 
         }
         if ($result) {
@@ -33,7 +35,7 @@ if (isset($_FILES['galleryImages'])) {
 
 }
 
-// --------------------------------->> READING OPERATION
+// --------------------------------->> READ OPERATION
 
 if (isset($_POST['readRecord'])) {
 
@@ -66,7 +68,7 @@ if (isset($_POST['readRecord'])) {
             $data .= '<tr>
                             <td>' . $count . '</td>
                             <td>' . $row['galleryImage'] . '</td>
-<td><img src= "../gallery/' . $row['galleryImage'] . '" class="img-fluid" style= "height:120px" > </td>
+<td><img src= "../images/gallery/' . $row['galleryImage'] . '" class="img-fluid" style= "height:120px" > </td>
                             <td><button class="btn btn-danger" onclick="deleteGalleryDetails(' . $row['id'] . ')"><i class="fa fa-trash-alt"></i></button></td>
                         </tr>';
             $count++;

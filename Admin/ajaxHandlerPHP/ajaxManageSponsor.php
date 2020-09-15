@@ -37,7 +37,7 @@ if (isset($_POST["readRecord"])) {
                                 <td>' . $row['sponsorName'] . '</td>
                                 <td>' . $row['sponsoredEvent'] . '</td>
                                 <td>' . $row['sponsoredDepartment'] . '</td>
-                                <td> <img src= "../sponsorLogo/' . $row['sponsorLogo'] . '" class="img-fluid" style = "height:60px"> </td>
+                                <td> <img src= "../images/sponsorLogo/' . $row['sponsorLogo'] . '" class="img-fluid" style = "height:60px"> </td>
                                 <td><button class="btn btn-primary" onclick = "getSponsorInformation(' . $row['id'] . ')"><i class="fas fa-edit"></i></button></td>
                                 <td><button class="btn btn-danger" onclick = "deleteSponsorInformation(' . $row['id'] . ')"><i class="fa fa-trash-alt"></i></button></td>
                                 </tr>';
@@ -81,6 +81,7 @@ if (isset($_POST['deleteId'])) {
             title: 'Success',
             text: 'Sponsor data deleted successfully'
         })</script>";
+        
     } else {
         echo "<script>Swal.fire({
             icon: 'error',
@@ -116,7 +117,7 @@ if (isset($_FILES['sponsorLogo'])) {
 
         if ($sponsorLogoSize <= 2097152) {
 
-            move_uploaded_file($sponsorLogoTmpDir, "C:/xampp/htdocs/EBA/sponsorLogo/" . $sponsorLogoName);
+            move_uploaded_file($sponsorLogoTmpDir, "C:/xampp/htdocs/EBA/images/sponsorLogo/" . $sponsorLogoName);
 
             //Query
             $sql = "INSERT INTO sponsor_information (sponsorName, sponsorLogo, sponsoredEvent,

@@ -64,7 +64,7 @@ if ($result->rowCount() > 0) {
 
             <section class="col-md-4 mx-auto mb-5">
                 <div class="card shadow" style="height:150px;">
-                    <img src="sponsorLogo/<?php echo $sponsorLogo; ?>" class="img-fluid w-100 my-auto">
+                    <img src="images/sponsorLogo/<?php echo $sponsorLogo; ?>" class="img-fluid w-100 my-auto">
                 </div>
                 <h5 class="text-center text-uppercase alert alert-info text-dark font-time"><?php echo $sponsorName; ?>
                 </h5>

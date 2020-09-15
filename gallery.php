@@ -30,7 +30,6 @@ session_start();
     <main class="container">
         <h3 class="text-center font-time alert alert-info text-uppercase my-5">Gallery</h3>
 
-
         <div class="row mx-auto images">
 
             <?php
@@ -49,7 +48,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
     ?>
             <section class="col-md-4 mb-5">
-                <a href="gallery/<?php echo $row['galleryImage']; ?>">
+                <a href="images/gallery/<?php echo $row['galleryImage']; ?>">
                     <img src="gallery/<?php echo $row['galleryImage']; ?>" class="img-fluid w-100" alt="images"
                         style="min-height:250px">
                 </a>
