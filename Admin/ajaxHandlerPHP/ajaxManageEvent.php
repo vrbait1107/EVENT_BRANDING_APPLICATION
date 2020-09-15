@@ -111,7 +111,7 @@ if (isset($_POST['eventName'])) {
 
         if ($eventImageSize <= 2097152) {
 
-            move_uploaded_file($eventImageTmpDir, "C:/xampp/htdocs/EBA/eventImage/" . $eventImageName);
+            move_uploaded_file($eventImageTmpDir, "C:/xampp/htdocs/EBA/images/eventImage/" . $eventImageName);
 
             // Query
             $sql = "INSERT INTO events_details_information( eventImage, eventName, eventPrice, promocode, discount, eventPrize, eventSponsor,

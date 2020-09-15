@@ -72,7 +72,7 @@ if ($result->rowCount() > 0) {
 
             <div class="col-md-4 mb-5">
                 <div class="card shadow text-center">
-                    <img src="eventImage/<?php echo $row["eventImage"]; ?>" class="img-fluid">
+                    <img src="images/eventImage/<?php echo $row["eventImage"]; ?>" class="img-fluid">
                     <h5 class="text-danger my-3" id = "entryFee2<?php echo $row['id']; ?>">Entry Fee &#x20b9;<?php echo $row["eventPrice"]; ?></h5>
 
 
