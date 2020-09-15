@@ -24,7 +24,7 @@
                     Certificate
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="redirect.php">GET CERTIFICATE</a>
+                    <a class="dropdown-item" href="eventCertGeneration.php">GET CERTIFICATE</a>
                     <a class="dropdown-item" href="certificateVerification.php">Verify Certificate</a>
                 </div>
             </li>

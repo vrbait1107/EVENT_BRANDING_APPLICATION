@@ -7,8 +7,9 @@
                 <ul class="footerList">
                     <li><a class="text-white" href="welcome.php">Home</a></li>
                     <li><a class="text-white" href="eventPage.php">Events</a></li>
-                    <li><a class="text-white" href="redirect.php">Get Certificate</a></li>
+                    <li><a class="text-white" href="eventCertGeneration.php">Get Certificate</a></li>
                     <li><a class="text-white" href="certificateVerfication.php">Verify Certificate</a></li>
+                    <li><a class="text-white" href="sponsor.php">Developers</a></li>
                     <li><a class="text-white" href="developers.php">Developers</a></li>
                     <li><a class="text-white" href="gallery.php">Gallery</a></li>
                     <li><a class="text-white" href="feedbackForm.php">Feedback</a></li>
@@ -59,6 +60,6 @@
         </div>
     </div>
     <div class="text-center">
-        &copy; 2021 GIT SHODH All Rights Reserved.
+        &copy;GIT SHODH 2K21 All Rights Reserved.
     </div>
 </footer>
