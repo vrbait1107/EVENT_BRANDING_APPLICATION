@@ -9,19 +9,17 @@ session_start();
 $buttonEvent = htmlspecialchars($_POST['event1']);
 $email = $_SESSION['user'];
 
-// Sql Query
+// ----------------------------->> EXTRACT ALL INFO. ABOUT USER & HIS/HER PARTICIPATION
+
 $sql = "SELECT * FROM user_information INNER JOIN event_information ON
 user_information.email= event_information.email
 WHERE user_information.email = :email AND event_information.event = :buttonEvent";
 
-//Preparing Query
 $result = $conn->prepare($sql);
 
-//Binding Value
 $result->bindValue(":email", $email);
 $result->bindValue(":buttonEvent", $buttonEvent);
 
-//Executing Query
 $result->execute();
 
 $row = $result->fetch(PDO::FETCH_ASSOC);
@@ -33,21 +31,16 @@ $prize = $row['prize'];
 $validate = $row['certificateId'];
 $event = $row['event'];
 
-// Different Certificate for Every Department
+// ------------------------------------>> DIFF. BACKGROUND FOR DIFFERENT DEPARTMENT
 
-//Query
 $sql1 = "SELECT * from events_details_information where eventName = '$buttonEvent'";
 
-//Preparing Query
 $result1 = $conn->prepare($sql1);
 
-//Binding Values
 $result1->bindValue(":buttonEvent", $buttonEvent);
 
-//Executing Query
 $result1->execute();
 
-//fetching Values in Associative array
 $row1 = $result1->fetch(PDO::FETCH_ASSOC);
 
 $certificateDepartment = $row1['eventDepartment'];
@@ -69,19 +62,19 @@ $certificateDepartment = $row1['eventDepartment'];
 
 <?php
 if ($certificateDepartment === "Electronics and Telecommunication") {
-    echo "background-image: url(cert-images/extc-cert.jpg);";
+    echo "background-image: url(images/cert-images/extc-cert.jpg);";
 
 } elseif ($certificateDepartment === "Chemical") {
-    echo "background-image: url(cert-images/chem-cert.jpg);";
+    echo "background-image: url(images/cert-images/chem-cert.jpg);";
 
 } elseif ($certificateDepartment === "Civil") {
-    echo "background-image: url(cert-images/civil-cert.jpg);";
+    echo "background-image: url(images/cert-images/civil-cert.jpg);";
 
 } elseif ($certificateDepartment === "Computer") {
-    echo "background-image: url(cert-images/comp-cert.jpg);";
+    echo "background-image: url(images/cert-images/comp-cert.jpg);";
 
 } else {
-    echo "background-image: url(cert-images/mech-cert.jpg);";
+    echo "background-image: url(images/cert-images/mech-cert.jpg);";
 }
 
 ?>
@@ -154,7 +147,7 @@ if ($certificateDepartment === "Electronics and Telecommunication") {
         });
     </script>
 
-<!-- Close Database Connection -->
+    <!-- Close Database Connection -->
      <?php $conn = null;?>
 
 </body>

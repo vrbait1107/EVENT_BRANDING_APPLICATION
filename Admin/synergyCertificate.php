@@ -1,9 +1,12 @@
 <?php
-// Starting Session
+
+// -------------------------->>START SESSION
 session_start();
 
-//--------------------->> DB CONFIG
+//-------------------------->> DB CONFIG
 require_once '../config/configPDO.php';
+
+//-------------------------->> EXTRACT USER & HIS/HER PARTICIPATION DETAILS FROM DB
 
 $CertId = htmlspecialchars($_POST['certificateId']);
 
@@ -40,7 +43,7 @@ $prize = $row['prize'];
     <style>
         .cert {
             margin: auto;
-            background-image: url(../cert-images/synergy2-cert.jpg);
+            background-image: url(../images/cert-images/synergy2-cert.jpg);
             width: 1200px;
             height: 765px;
             background-repeat: no-repeat;
