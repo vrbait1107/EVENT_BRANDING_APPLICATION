@@ -2,6 +2,6 @@
   position: fixed;
   width: 100%;
   height: 100vh;
-  background: #ffffff url("../images/loader.gif") no-repeat center;
+  background: #ffffff url("../images/home/loader.gif") no-repeat center;
   z-index: 999999;
 }
