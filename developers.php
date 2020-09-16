@@ -48,15 +48,15 @@ if (!isset($_SESSION['user'])) {
 
                                 <div class="mt-3">
                                     <h6 class="mb-2">Follow Me on Social Media</h6>
-                                    <i class="fa fa-facebook fa-2x ml-2"><a
+                                    <i class="fab fa-facebook fa-2x ml-2"><a
                                             href="https://www.facebook.com/vrbait1107"></a></i>
-                                    <i class="fa fa-instagram fa-2x ml-2"><a
+                                    <i class="fab fa-instagram fa-2x ml-2"><a
                                             href="https://www.instagram.com/vrbait1107/"></a></i>
-                                    <i class="fa fa-twitter fa-2x ml-2"><a
+                                    <i class="fab fa-twitter fa-2x ml-2"><a
                                             href="https://twitter.com/vrbait1107"></a></i>
-                                    <i class="fa fa-linkedin fa-2x ml-2"><a
+                                    <i class="fab fa-linkedin fa-2x ml-2"><a
                                             href="https://in.linkedin.com/in/vrbait1107"></a></i>
-                                    <i class="fa fa-github fa-2x ml-2"><a href="https://github.com/vrbait1107"></a></i>
+                                    <i class="fab fa-github fa-2x ml-2"><a href="https://github.com/vrbait1107"></a></i>
                                 </div>
                             </div>
 
@@ -84,11 +84,11 @@ if (!isset($_SESSION['user'])) {
 
                                 <div class="mt-3">
                                     <h6 class="mb-2">Follow Me on Social Media</h6>
-                                    <i class="fa fa-facebook fa-2x ml-2"><a href="#"></a></i>
-                                    <i class="fa fa-instagram fa-2x ml-2"><a href="#"></a></i>
-                                    <i class="fa fa-twitter fa-2x ml-2"><a href="#"></a></i>
-                                    <i class="fa fa-linkedin fa-2x ml-2"><a href="#"></a></i>
-                                    <i class="fa fa-github fa-2x ml-2"><a href="#"></a></i>
+                                    <i class="fab fa-facebook fa-2x ml-2"><a href="#"></a></i>
+                                    <i class="fab fa-instagram fa-2x ml-2"><a href="#"></a></i>
+                                    <i class="fab fa-twitter fa-2x ml-2"><a href="#"></a></i>
+                                    <i class="fab fa-linkedin fa-2x ml-2"><a href="#"></a></i>
+                                    <i class="fab fa-github fa-2x ml-2"><a href="#"></a></i>
                                 </div>
                             </div>
 
@@ -119,11 +119,11 @@ if (!isset($_SESSION['user'])) {
 
                             <div class="mt-3 text-center">
                                 <h6 class="mb-2">Follow Me on Social Media</h6>
-                                <i class="fa fa-facebook fa-2x ml-2"><a href="#"></a></i>
-                                <i class="fa fa-instagram fa-2x ml-2"><a href="#"></a></i>
-                                <i class="fa fa-twitter fa-2x ml-2"><a href="#"></a></i>
-                                <i class="fa fa-linkedin fa-2x ml-2"><a href="#"></a></i>
-                                <i class="fa fa-github fa-2x ml-2"><a href="#"></a></i>
+                                <i class="fab fa-facebook fa-2x ml-2"><a href="#"></a></i>
+                                <i class="fab fa-instagram fa-2x ml-2"><a href="#"></a></i>
+                                <i class="fab fa-twitter fa-2x ml-2"><a href="#"></a></i>
+                                <i class="fab fa-linkedin fa-2x ml-2"><a href="#"></a></i>
+                                <i class="fab fa-github fa-2x ml-2"><a href="#"></a></i>
                             </div>
 
                         </figcaption>

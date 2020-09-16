@@ -49,7 +49,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     ?>
             <section class="col-md-4 mb-5">
                 <a href="images/gallery/<?php echo $row['galleryImage']; ?>">
-                    <img src="gallery/<?php echo $row['galleryImage']; ?>" class="img-fluid w-100" alt="images"
+                    <img src="images/gallery/<?php echo $row['galleryImage']; ?>" class="img-fluid w-100" alt="images"
                         style="min-height:250px">
                 </a>
             </section>

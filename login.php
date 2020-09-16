@@ -220,7 +220,7 @@ if (isset($_POST["login"])) {
   </script>
 
 <!-- Close Database Connection -->
-  <?php $conn = null; ?>
+  <?php $conn = null;?>
 
 </body>
 
