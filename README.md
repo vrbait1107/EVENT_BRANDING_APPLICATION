@@ -144,8 +144,8 @@ Event Branding Application is mobile Application with Website for collecting reg
 - Markup Language : HTML
 - Stylesheet Language: CSS
 - Scripting Language: Javascript
-- Javascript Libraries: jQuery, SweetAlert.js, Wow.js, QRCode.js
-- CSS Libraries: Animate.css, Font-Awesome.css, AOS Library
+- Javascript Libraries: jQuery, SweetAlert.js, QRCode.js
+- CSS Libraries: Font-Awesome.css, AOS Animation Library.
 - CSS Framework: Bootstrap 4
 - Other: Ajax
 

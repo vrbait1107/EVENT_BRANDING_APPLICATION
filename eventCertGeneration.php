@@ -17,8 +17,8 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Certificate Generator</title>
 
-    <!-- First Animate.css then Include Header Scripts-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <!-- First AOS Animation then Include Header Scripts-->
+     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <?php include_once "includes/headerScripts.php";?>
 
 </head>
@@ -33,7 +33,7 @@ session_start();
         <div class="row">
 
             <section class="col-md-6 offset-md-3">
-                <div class="card shadow animated zoomIn slow p-5 my-5">
+                <div class="card shadow p-5 my-5" data-aos="zoom-in" data-aos-duration="1500">
 
                     <h2 class="text-center font-time font-weight-bold mb-4">GIT <span class="text-danger font-weight-bold">
                             SHODH </span>CERTIFICATE</h2>
@@ -96,6 +96,10 @@ if ($result->rowCount() > 0) {
 include_once "includes/footer.php";
 include_once "includes/footerScripts.php";
 ?>
+
+ <!-- AOS Library -->
+ <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+ <script>AOS.init();</script>
 
  <!-- Close Database Connection -->
  <?php $conn = null;?>

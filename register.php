@@ -19,7 +19,7 @@ session_start();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- First HeaderScripts, then Animate.css, then Google Recaptcha, then Register.css -->
+  <!-- First HeaderScripts, then AOS Animation, then Google Recaptcha, then Register.css -->
   <?php include_once "includes/headerScripts.php";?>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -134,14 +134,14 @@ if (isset($_POST['submit'])) {
                         footer: '<a href = $login >Go to the Login Page</a>'
                       })</script>";
 
-                    // /* PHP MAILER CODE */
-                    // include_once "./emailCode/emailRegister.php";
+                    /* PHP MAILER CODE */
+                    include_once "./emailCode/emailRegister.php";
 
-                    // if (!$mail->send()) {
-                    //     echo "Mailer Error: " . $mail->ErrorInfo;
-                    // } else {
-                    //     echo "<h5 class='text-center alert alert-warning col-md-6 offset-md-3' role='alert' >Check Your Email.</h5>";
-                    // }
+                    if (!$mail->send()) {
+                        echo "Mailer Error: " . $mail->ErrorInfo;
+                    } else {
+                        echo "<h5 class='text-center alert alert-warning col-md-6 offset-md-3' role='alert' >Check Your Email.</h5>";
+                    }
 
                 } else {
                     echo '<script>Swal.fire({
@@ -195,7 +195,7 @@ if (isset($_POST['submit'])) {
   <main class="container mt-4">
 
     <h2 class="text-center mx-auto font-time text-uppercase">git <span class="text-danger">shodh</span> 2K21 Registration</h2>
-     <h6 class="text-danger  text-center font-sans animated heartBeat slow">Note: 1) Following details will be used
+     <h6 class="text-danger  text-center font-sans">Note: 1) Following details will be used
       for your Certificate Generation so please provide proper details.</h6>
 
     <hr>

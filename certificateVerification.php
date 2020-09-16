@@ -17,8 +17,8 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!--First Animate.css then Include Header Script then css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <!--First AOS Animation then Include Header Script then css -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <?php include_once "includes/headerScripts.php";?>
     <link rel="stylesheet" href="css/certificateVerification.css">
     <title>Certificate Verification</title>
@@ -35,7 +35,7 @@ if (!isset($_SESSION['user'])) {
 
 
             <section class="col-md-6">
-                <div class="card shadow animated zoomIn slow p-5">
+                <div class="card shadow p-5" data-aos="zoom-in" data-aos-duration="1500">
                     <h3 class="text-center font-time text-uppercase text-primary mb-4">GIT <i><span
                                 class="text-danger">SHODH</span></i> Certificate </h3>
 
@@ -55,7 +55,7 @@ if (!isset($_SESSION['user'])) {
 
 
             <section class="col-md-6">
-                <div class="card shadow animated zoomIn slow p-5">
+                <div class="card shadow p-5" data-aos="zoom-in" data-aos-duration="1500">
                     <h3 class="text-center font-time text-uppercase text-secondary mb-4">GIT <i><span
                                 class="text-danger">SYNERGY</span></i> Certificate </h3>
 
@@ -81,6 +81,10 @@ if (!isset($_SESSION['user'])) {
 include_once "includes/footer.php";
 include_once "includes/footerScripts.php";
 ?>
+
+<!-- AOS Library -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
 
 </body>
 
