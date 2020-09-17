@@ -46,7 +46,7 @@ $totalAmount = $amount * $rowCount;
     <meta name="description" content="" />
     <meta name="author" content="Vishal Bait" />
 
-    <title>Dashboard-Student Coordinator</title>
+    <title>GIT SHODH 2K20 | STUDENT COORDINATOR DASHBOARD</title>
 
      <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>

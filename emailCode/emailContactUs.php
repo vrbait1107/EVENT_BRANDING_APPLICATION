@@ -18,7 +18,7 @@ $mail->Username = $emailUsername;
 $mail->Password = $emailPassword;
 $mail->setFrom($email, $name);
 $mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
-$mail->addAddress("vishalbait01@gmail.com", "Vishal Bait");
+$mail->addAddress($emailUsername, "GIT SHODH 2K20");
 $mail->Subject = $subject;
 $mail->msgHTML("<!doctype html><html><body>$message</body></html>");
 $mail->AltBody = $message;

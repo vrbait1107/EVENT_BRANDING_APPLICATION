@@ -15,7 +15,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Certificate Generator</title>
+    <title>GIT SHODH 2K20 | EVENT CERTIFICATES</title>
 
     <!-- First AOS Animation then Include Header Scripts-->
      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">

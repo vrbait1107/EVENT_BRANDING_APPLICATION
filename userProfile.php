@@ -21,7 +21,7 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Vishal Bait">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>User Profile</title>
+    <title>GIT SHODH 2K20 | USER PROFILE</title>
 
     <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>

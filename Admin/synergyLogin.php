@@ -21,7 +21,7 @@ if (isset($_SESSION['Admin'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYNERGY 2K21 LOGIN</title>
+    <title>SYNERGY 2K20 | LOGIN</title>
 
     <!-- Include Header Scripts then Google Recaptcha then CSS -->
     <?php include_once "../includes/headerScripts.php";?>
@@ -74,7 +74,7 @@ if (isset($_POST['login'])) {
 ?>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand font-weight-bold" href="#">GIT SHODH/SYNERGY 2K21</a>
+        <a class="navbar-brand font-weight-bold" href="#">GIT SHODH 2K20</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -104,7 +104,7 @@ if (isset($_POST['login'])) {
             <section class="col-md-6 offset-md-3">
                 <div class="card shadow p-5">
 
-                    <h2 class="text-center font-time text-uppercase">GIT <span class="text-danger">SYNERGY</span> 2K21
+                    <h2 class="text-center font-time text-uppercase">GIT <span class="text-danger">SYNERGY</span> 2K20
                         LOGIN</h2>
                     <hr>
 

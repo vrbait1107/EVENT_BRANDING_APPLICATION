@@ -15,7 +15,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reactivate User Account</title>
+    <title>GIT SHODH 2K20 | REACTIVATE USER ACCOUNT</title>
 
     <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>

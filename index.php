@@ -61,7 +61,7 @@ try {
     <link rel="stylesheet" href="css/loader.css">
     <link rel="stylesheet" href="css/index.css">
 
-    <title>GIT SHODH 2K21</title>
+    <title>GIT SHODH 2K20 | HOME</title>
 
 </head>
 
@@ -76,7 +76,7 @@ try {
 
     <main class="container-fluid welcome-section">
         <div class="row mx-auto text-center">
-            <h1 class="p-3 font-time  mx-auto animated flip slow text-white">Welcome to SHODH 2K21 <br> National Level
+            <h1 class="p-3 font-time  mx-auto animated flip slow text-white">Welcome to SHODH 2K20 <br> National Level
                 Techfest </h1>
             <img src="images/home/shodh1.jpg" class="img-fluid" alt="Shodh1">
         </div>
@@ -119,7 +119,7 @@ try {
             </section>
 
             <section class="col-md-5">
-                <h3 class="text-center font-time text-white">ABOUT SHODH 2K21</h3>
+                <h3 class="text-center font-time text-white">ABOUT SHODH 2K20</h3>
                 <p class="text-justify text-white">SHODH, GIT Lavel is the annual science and technology festival of
                     the Gharda
                     Institute of Technology

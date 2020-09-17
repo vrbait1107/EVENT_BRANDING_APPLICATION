@@ -60,6 +60,6 @@
         </div>
     </div>
     <div class="text-center">
-        &copy;GIT SHODH 2K21 All Rights Reserved.
+        &copy;GIT SHODH 2K20 All Rights Reserved.
     </div>
 </footer>

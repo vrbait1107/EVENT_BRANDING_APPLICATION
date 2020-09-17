@@ -44,7 +44,7 @@ include_once "includes/adminNavbar.php";
     <div id="layoutSidenav_content">
         <main class="container mt-3">
 
-            <h1 class="font-time mt-3 mb-3">Add/ Manage Sponsors</h1>
+            <h1 class="font-time mt-3 mb-3">GIT SHODH 2K20 | ADMINISTARTOR MANAGE SPONSORS</h1>
 
             <!-- Button trigger modal -->
             <button type="button" class="btn justify-content-end btn-primary my-2" data-toggle="modal"

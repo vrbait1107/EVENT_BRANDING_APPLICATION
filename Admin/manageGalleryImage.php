@@ -25,7 +25,7 @@ if (!isset($_SESSION['adminEmail'])) {
     <meta name="description" content="" />
     <meta name="author" content="Vishal Bait" />
 
-    <title>Add/Manage Gallery Images </title>
+    <title>GIT SHODH 2K20 | ADMINISTARTOR MANAGE GALLERY</title>
 
     <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>

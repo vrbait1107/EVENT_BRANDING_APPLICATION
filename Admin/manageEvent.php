@@ -24,12 +24,12 @@ if (!isset($_SESSION['adminEmail'])) {
     <meta name="description" content="" />
     <meta name="author" content="Vishal Bait" />
 
-    <title>Add/Manage Events</title>
+    <title></title>
 
     <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
 
-</head>
+</head>GIT SHODH 2K20 | ADMINISTARTOR MANAGE EVENTS DETAILS
 
 <body class="sb-nav-fixed">
 

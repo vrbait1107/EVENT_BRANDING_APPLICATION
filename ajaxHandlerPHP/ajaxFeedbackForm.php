@@ -4,7 +4,7 @@
 require_once "../config/configPDO.php";
 
 //------------------------------>> SECRETS
-require_once "./config/Secret.php";
+require_once "../config/Secret.php";
 
 // --------------------------->> SESSION START
 session_start();

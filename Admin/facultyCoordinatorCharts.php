@@ -26,7 +26,7 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="Vishal Bait" />
-    <title>Event Statistics Charts for Faculty Coordinator</title>
+    <title>GIT SHODH 2K20 | FACULTY COORDINATOR EVENT STATISTICS CHARTS</title>
 
     <!-- First Admin Header Scripts then Google Charts -->
     <?php include_once "includes/adminHeaderScripts.php";?>

@@ -51,7 +51,7 @@ $certificateDepartment = $row1['eventDepartment'];
 <html>
 
 <head>
-    <title>Certificate</title>
+    <title>GIT SHODH 2K20 | CERTIFICATE</title>
 
     <!-- Certificate CSS-->
     <link rel="stylesheet" href="css/certificate.css">

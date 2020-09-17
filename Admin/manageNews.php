@@ -45,7 +45,7 @@ include_once "includes/adminNavbar.php";
     <div id="layoutSidenav_content">
         <main class="container-fluid">
 
-            <h1 class="font-time mt-3 mb-1">Add/Manage News/Notification</h1> <br />
+            <h1 class="font-time mt-3 mb-1">GIT SHODH 2K20 | ADMINISTARTOR MANAGE NEWS</h1> <br />
 
             <div class="row">
 

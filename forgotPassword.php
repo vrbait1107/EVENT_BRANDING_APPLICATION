@@ -21,7 +21,7 @@ session_start();
     <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
 
-     <title>Forgot Password Page</title>
+     <title>GIT SHODH 2K20 | FORGOT PASSWORD</title>
 </head>
 
 <body>

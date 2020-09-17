@@ -37,7 +37,7 @@ if (isset($_SESSION['adminEmail']) && $_SESSION['adminType'] && $_SESSION['admin
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="Vishal Bait" />
-    <title>Admin Login Page</title>
+    <title>GIT SHODH 2K20 | ADMINISTRATOR PANEL</title>
 
      <!-- Include Header Scripts then Google Recaptcha then Css file -->
     <?php include_once "../includes/headerScripts.php";?>
@@ -149,7 +149,7 @@ if (isset($_POST['login'])) {
 ?>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand font-weight-bold" href="#">GIT SHODH/SYNERGY 2K21</a>
+        <a class="navbar-brand font-weight-bold" href="#">GIT SHODH 2K20</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -179,7 +179,7 @@ if (isset($_POST['login'])) {
 
                 <div class="card shadow px-4 py-2">
                     <h2 class="text-center text-uppercase mt-4 font-time">GIT
-                   <span class="text-danger">SHODH</span> 2K21 ADMIN LOGIN</h2>
+                   <span class="text-danger">SHODH</span> 2K20 ADMIN LOGIN</h2>
 
                    <hr/>
 

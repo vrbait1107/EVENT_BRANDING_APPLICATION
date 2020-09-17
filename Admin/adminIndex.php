@@ -100,7 +100,7 @@ function countRevenue($department)
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="Vishal Bait" />
-    <title>Administrator Dashboard</title>
+    <title>GIT SHODH 2K20 | SHODH ADMINISTRATOR DASHBOARD</title>
 
     <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
@@ -119,7 +119,7 @@ include_once "includes/adminNavbar.php";
 
         <main class="container-fluid">
 
-            <h2 class="mt-4 font-time text-uppercase">Dashboard for Administrator</h2>
+            <h2 class="mt-4 font-time text-uppercase">Dashboard for Shodh Administrator</h2>
 
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Dashboard</li>

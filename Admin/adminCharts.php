@@ -31,7 +31,7 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <?php include_once "includes/adminHeaderScripts.php";?>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <title>Event Statistics Charts for Administrator</title>
+    <title>GIT SHODH 2K20 | SHODH ADMINISTRATOR EVENT STATISTICS CHARTS</title>
 
 </head>
 

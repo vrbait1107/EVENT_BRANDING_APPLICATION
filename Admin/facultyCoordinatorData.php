@@ -29,7 +29,7 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
   <!-- Include Admin Header Scripts -->
   <?php include_once "includes/adminHeaderScripts.php";?>
 
-  <title>GIT SHODH 2K21</title>
+  <title>GIT SHODH 2K20 | SHODH ADMINISTRATOR EVENT PARTICIPANT DETAILS</title>
 </head>
 
 <body class="sb-nav-fixed">

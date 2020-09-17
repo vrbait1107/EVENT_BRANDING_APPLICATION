@@ -96,7 +96,7 @@ function countRevenue($event)
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="Vishal Bait" />
-    <title>Dashboard-Faculty Coordinator</title>
+    <title>GIT SHODH 2K20 | FACULTY COORDINATOR DASHBOARD</title>
 
     <!-- Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>

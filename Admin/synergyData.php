@@ -24,7 +24,7 @@ if (!isset($_SESSION['Admin'])) {
   <!-- Include Admin header Scripts -->
   <?php include_once "includes/adminHeaderScripts.php";?>
 
-  <title>GIT SYNERGY 2K21</title>
+  <title>GIT SHODH 2K20 | SYNERGY ADMINISTRATOR EVENT PARTICIPANT DETAILS</title>
 
 </head>
 

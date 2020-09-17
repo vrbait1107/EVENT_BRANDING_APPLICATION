@@ -27,7 +27,7 @@ if (!isset($_SESSION['adminEmail'])) {
   <?php include_once "includes/adminHeaderScripts.php";?>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-  <title>GIT SHODH 2K21</title>
+  <title>GIT SHODH 2K20 | SEND NEWSLETTER</title>
 
   <style>
     hr {

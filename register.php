@@ -25,7 +25,7 @@ session_start();
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <link rel="stylesheet" href="css/register.css">
 
-  <title>GIT SHODH 2K21 Registration Page</title>
+  <title>GIT SHODH 2K20 REGISTRATION</title>
 
 </head>
 
@@ -169,7 +169,7 @@ if (isset($_POST['submit'])) {
 
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand font-weight-bold" href="#">GIT SHODH/SYNERGY 2K21</a>
+        <a class="navbar-brand font-weight-bold" href="#">GIT SHODH 2K20</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -194,7 +194,7 @@ if (isset($_POST['submit'])) {
 
   <main class="container mt-4">
 
-    <h2 class="text-center mx-auto font-time text-uppercase">git <span class="text-danger">shodh</span> 2K21 Registration</h2>
+    <h2 class="text-center mx-auto font-time text-uppercase">git <span class="text-danger">shodh</span> 2K20 Registration</h2>
      <h6 class="text-danger  text-center font-sans">Note: 1) Following details will be used
       for your Certificate Generation so please provide proper details.</h6>
 

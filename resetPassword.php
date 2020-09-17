@@ -14,7 +14,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset Password</title>
+    <title>GIT SHODH 2K20 | RESET PASSOWRD</title>
 
     <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>

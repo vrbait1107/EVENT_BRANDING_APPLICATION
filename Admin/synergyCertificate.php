@@ -37,7 +37,7 @@ $prize = $row['prize'];
 <html>
 
 <head>
-    <title>Synergy Certificate</title>
+    <title>GIT SHODH 2K20 | SYNERGY CERTIFICATE</title>
     <link rel="stylesheet" href="css/synergyCertificate.css">
 
     <style>

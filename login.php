@@ -30,7 +30,7 @@ if (isset($_SESSION['user'])) {
   <link rel="stylesheet" href="css/login.css">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-  <title>GIT SHODH 2K21 Login Page</title>
+  <title>GIT SHODH 2K20 | LOGIN</title>
 
 </head>
 
@@ -111,7 +111,7 @@ if (isset($_POST["login"])) {
 
 <!-- External Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand font-weight-bold" href="#">GIT SHODH/SYNERGY 2K21</a>
+        <a class="navbar-brand font-weight-bold" href="#">GIT SHODH 2K20</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -140,7 +140,7 @@ if (isset($_POST["login"])) {
       <section class="col-md-6 offset-md-3">
 
         <div class="card shadow p-5">
-          <h2 class="text-center text-uppercase font-time">GIT <span class="text-danger">SHODH</span> 2K21 LOGIN</h2>
+          <h2 class="text-center text-uppercase font-time">GIT <span class="text-danger">SHODH</span> 2K20 LOGIN</h2>
           <hr>
 
           <form action="" method="POST">

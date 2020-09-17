@@ -28,7 +28,7 @@ if (!isset($_SESSION['adminEmail'])) {
       <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
 
-    <title>Change Password</title>
+    <title>GIT SHODH 2K20 | ADMINISTARTOR CHANGE PASSWORD</title>
 
     <style>
         h3 {

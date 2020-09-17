@@ -21,7 +21,7 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Vishal Bait">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Certificate Verification</title>
+    <title>GIT SHODH 2K20 | CERTIFICATE VERIFICATION</title>
 
     <!--Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
@@ -282,7 +282,7 @@ if (isset($_GET["certificateId"])) {
     </main>
 
     <!-- Footer Script -->
-    <?php include_once "includes/footerScripts.php;"?>
+    <?php include_once "includes/footerScripts.php";?>
 
      <!-- Close Database Connection -->
     <?php $conn = null;?>

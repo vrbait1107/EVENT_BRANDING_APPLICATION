@@ -9,7 +9,7 @@ require_once "config/configPDO.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Activate Email</title>
+    <title>GIT SHODH 2K20 | ACTIVATE ACCOUNT</title>
 
     <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
@@ -52,7 +52,7 @@ if (isset($_GET['token'])) {
         $result1 = $conn->prepare($sql1);
         $result1->bindValue(":active", "active");
         $result1->bindValue(":token", $token);
-        $result->execute();
+        $result1->execute();
 
         if ($result1) {
             echo "<script>Swal.fire({
