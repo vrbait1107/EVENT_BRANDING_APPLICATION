@@ -1,3 +1,8 @@
+<?php
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "config/techfestName.php";
+?>
+
 <footer class="p-5 text-white bg-dark">
     <div class="container">
         <div class="row">
@@ -5,7 +10,7 @@
             <div class="col-md-4">
                 <h5 class="mb-3 text-uppercase">Pages</h5>
                 <ul class="footerList">
-                    <li><a class="text-white" href="welcome.php">Home</a></li>
+                    <li><a class="text-white" href="index.php">Home</a></li>
                     <li><a class="text-white" href="eventPage.php">Events</a></li>
                     <li><a class="text-white" href="eventCertGeneration.php">Get Certificate</a></li>
                     <li><a class="text-white" href="certificateVerfication.php">Verify Certificate</a></li>
@@ -60,6 +65,6 @@
         </div>
     </div>
     <div class="text-center">
-        &copy;GIT SHODH 2K20 All Rights Reserved.
+        &copy;<?php echo $techfestName ?> All Rights Reserved.
     </div>
 </footer>

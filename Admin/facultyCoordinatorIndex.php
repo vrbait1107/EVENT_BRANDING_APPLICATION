@@ -1,12 +1,14 @@
 <?php
+//------------------------------->> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "../config/techfestName.php";
 
-//--------------------->> DB CONFIG
+//------------------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-// ---------------------->> SESSION
+// ------------------------------>> SESSION
 session_start();
 
-// ----------------------->> CHECKING ADMIN
+// ------------------------------>> CHECKING ADMIN
 if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
     if ($_SESSION['adminType'] !== "Faculty Coordinator") {
@@ -96,7 +98,7 @@ function countRevenue($event)
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="Vishal Bait" />
-    <title>GIT SHODH 2K20 | FACULTY COORDINATOR DASHBOARD</title>
+    <title><?php echo $techfestName ?> | FACULTY COORDINATOR DASHBOARD</title>
 
     <!-- Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>

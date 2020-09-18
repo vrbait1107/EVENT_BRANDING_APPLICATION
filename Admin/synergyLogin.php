@@ -1,15 +1,17 @@
 <?php
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "../config/techfestName.php";
 
-//---------------------->> START SESSION
+//------------------------------>> START SESSION
 session_start();
 
-//--------------------->> DB CONFIG
+//------------------------------>> DB CONFIG
 require_once '../config/configPDO.php';
 
-//--------------------->> SECRETS
+//------------------------------>> SECRETS
 require_once "../config/Secret.php";
 
-//--------------------->> CHECK ADMIN
+//------------------------------>> CHECK ADMIN
 if (isset($_SESSION['Admin'])) {
     header('location:synergyIndex.php');
 }
@@ -21,7 +23,7 @@ if (isset($_SESSION['Admin'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYNERGY 2K20 | LOGIN</title>
+    <title><?php echo $culturalFestName ?> | LOGIN</title>
 
     <!-- Include Header Scripts then Google Recaptcha then CSS -->
     <?php include_once "../includes/headerScripts.php";?>
@@ -74,7 +76,7 @@ if (isset($_POST['login'])) {
 ?>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand font-weight-bold" href="#">GIT SHODH 2K20</a>
+        <a class="navbar-brand font-weight-bold" href="#"><?php echo $culturalFestName ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -104,8 +106,7 @@ if (isset($_POST['login'])) {
             <section class="col-md-6 offset-md-3">
                 <div class="card shadow p-5">
 
-                    <h2 class="text-center font-time text-uppercase">GIT <span class="text-danger">SYNERGY</span> 2K20
-                        LOGIN</h2>
+                    <h2 class="text-center font-time text-uppercase"><?php echo $culturalFestName ?> LOGIN</h2>
                     <hr>
 
                     <form action="" method="post">

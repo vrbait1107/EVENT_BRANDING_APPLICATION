@@ -1,4 +1,8 @@
 <?php
+
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "config/techfestName.php";
+
 // Please Read official documentation on GitHUb Account -> https: //github.com/PHPMailer/PHPMailer
 
 date_default_timezone_set('Etc/UTC');
@@ -16,14 +20,14 @@ $mail->SMTPAuth = true;
 $mail->Username = $emailUsername;
 // Enter Your Email Password
 $mail->Password = $emailPassword;
-$mail->setFrom($emailSetFrom, 'GIT SHODH 2K20');
-$mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
+$mail->setFrom($emailSetFrom, $techestName);
+$mail->addReplyTo('non-reply@gmail.com', $techestName);
 $mail->addAddress($email, $email);
-$mail->Subject = "GIT SHODH 2K20 PASSWORD RESET";
+$mail->Subject = "$techestName PASSWORD RESET";
 
 $mail->msgHTML("<!doctype html>
     <html><body> <p>$email You're receiving this e-mail because you requested a password reset
-    for your user account at GIT SHODH 2K20</p>
+    for your user account at $techestName</p>
     <p>Please go to the following page and choose a new password:</p>
     <p>http://localhost/EBA/resetPassword.php?token=$token</p>
     <p>This Link is valid for 45 Minutes Only </p>
@@ -33,7 +37,7 @@ $mail->msgHTML("<!doctype html>
      </body></html>");
 
 $mail->AltBody = "$email You're receiving this e-mail because you requested a password reset
-    for your user account at GIT SHODH 2K20 <br/>
+    for your user account at $techestName <br/>
     Please go to the following page and choose a new password: <br/>
     http://localhost/EBA/resetPassword.php?token=$token<br/>
     This Link is valid for 45 Minutes Only <br/>

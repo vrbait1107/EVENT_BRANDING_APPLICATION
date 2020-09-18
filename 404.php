@@ -1,9 +1,15 @@
+<?php
+
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "config/techfestName.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIT SHODH 2K20 | 404 PAGE</title>
+    <title><?php $techfestName?> | 404 PAGE</title>
 
      <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>

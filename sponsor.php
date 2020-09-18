@@ -1,5 +1,8 @@
 <?php
 
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "config/techfestName.php";
+
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
@@ -31,7 +34,7 @@ $result->execute();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIT SHODH 2K20 | SPONSORS</title>
+    <title><?php echo $techfestName ?> | SPONSORS</title>
     <link rel="stylesheet" href="css/sponsor.css">
 
     <!-- Include Header Scripts -->

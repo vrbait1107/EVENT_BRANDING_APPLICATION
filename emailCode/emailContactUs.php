@@ -1,6 +1,9 @@
 <?php
-// Please Read official documentation on GitHUb Account -> https: //github.com/PHPMailer/PHPMailer
 
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "../config/techfestName.php";
+
+// Please Read official documentation on GitHUb Account -> https: //github.com/PHPMailer/PHPMailer
 date_default_timezone_set('Etc/UTC');
 require '../PHPMailer/PHPMailerAutoload.php';
 
@@ -17,8 +20,8 @@ $mail->Username = $emailUsername;
 //Enter Your Email Password
 $mail->Password = $emailPassword;
 $mail->setFrom($email, $name);
-$mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
-$mail->addAddress($emailUsername, "GIT SHODH 2K20");
+$mail->addReplyTo('non-reply@gmail.com', $techfestName);
+$mail->addAddress($emailUsername, $techfestName);
 $mail->Subject = $subject;
 $mail->msgHTML("<!doctype html><html><body>$message</body></html>");
 $mail->AltBody = $message;

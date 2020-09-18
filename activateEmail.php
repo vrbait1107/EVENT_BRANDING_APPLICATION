@@ -1,5 +1,8 @@
 <?php
 
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "config/techfestName.php";
+
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 ?>
@@ -9,7 +12,7 @@ require_once "config/configPDO.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIT SHODH 2K20 | ACTIVATE ACCOUNT</title>
+    <title><?php $techfestName?> | ACTIVATE ACCOUNT</title>
 
     <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>

@@ -1,4 +1,8 @@
 <?php
+
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "config/techfestName.php";
+
 // Please Read official documentation on GitHUb Account -> https: //github.com/PHPMailer/PHPMailer
 
 date_default_timezone_set('Etc/UTC');
@@ -17,10 +21,10 @@ $mail->SMTPAuth = true;
 $mail->Username = $emailUsername;
 // Enter Your Email Password
 $mail->Password = $emailPassword;
-$mail->setFrom($emailSetFrom, 'GIT SHODH 2K20');
-$mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
+$mail->setFrom($emailSetFrom, $techfestName);
+$mail->addReplyTo('non-reply@gmail.com', $techfestName);
 $mail->addAddress($userName, $userName);
-$mail->Subject = "Activate Your GIT SHODH 2K20  Account";
+$mail->Subject = "Activate Your $techfestName Account";
 
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
@@ -28,7 +32,7 @@ $mail->Subject = "Activate Your GIT SHODH 2K20  Account";
 $mail->msgHTML("<!doctype html>
     <html>
     <body>
-    <p>Thank you $userName for creating an account with GIT SHODH 2K20</p>
+    <p>Thank you $userName for creating an account with $techfestName</p>
     <p>There's just one more step before you can login and participate in a event: you need to activate your GIT SHODH
         account. To activate your account, click the following link. If that doesn't work, copy and paste the link into
         your browser's address bar.</p>
@@ -40,7 +44,7 @@ $mail->msgHTML("<!doctype html>
   </body>
   </html>");
 
-$mail->AltBody = "Thank you $userName for creating an account with GIT SHODH 2K20 <br/>
+$mail->AltBody = "Thank you $userName for creating an account with $techfestName <br/>
   There's just one more step before you can login and participate in a event: you need to activate your GIT SHODH
   account. To activate your account, click the following link. If that doesn't work, copy and paste the link into
   your browser's address bar. <br/>

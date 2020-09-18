@@ -1,4 +1,6 @@
 <?php
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "../config/techfestName.php";
 
 //--------------------->> DB CONFIG
 require_once '../config/configPDO.php';
@@ -25,13 +27,13 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
-    <meta name="author" content="Vishal Bait" />
+    <meta name="author" content="" />
 
     <!-- First Include Admin Header Scripts then Google Charts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <title>GIT SHODH 2K20 | SHODH ADMINISTRATOR EVENT STATISTICS CHARTS</title>
+    <title><?php echo $techfestName ?> | SHODH ADMINISTRATOR EVENT STATISTICS CHARTS</title>
 
 </head>
 

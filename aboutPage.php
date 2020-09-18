@@ -1,4 +1,6 @@
 <?php
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "config/techfestName.php";
 
 //----------------------------->> START SESSION
 session_start();
@@ -18,7 +20,7 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Vishal Bait">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GIT SHODH 2K20 | ABOUT</title>
+    <title><?php $techfestName?> | ABOUT</title>
 
     <!-- First AOS Animation then Include Header Scripts then CSS file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">

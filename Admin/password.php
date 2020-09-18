@@ -1,4 +1,6 @@
 <?php
+//----------------------------------------->> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "../config/techfestName.php";
 
 //--------------------->> DB CONFIG
 require_once '../config/configPDO.php';
@@ -23,12 +25,12 @@ if (!isset($_SESSION['adminEmail'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
-    <meta name="author" content="Vishal Bait" />
+    <meta name="author" content="" />
 
       <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
 
-    <title>GIT SHODH 2K20 | ADMINISTARTOR CHANGE PASSWORD</title>
+    <title><?php echo $techfestName ?> | ADMINISTARTOR CHANGE PASSWORD</title>
 
     <style>
         h3 {

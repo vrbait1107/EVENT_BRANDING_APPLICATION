@@ -1,4 +1,6 @@
 <?php
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "../config/techfestName.php";
 
 // -------------------------->>START SESSION
 session_start();
@@ -37,7 +39,7 @@ $prize = $row['prize'];
 <html>
 
 <head>
-    <title>GIT SHODH 2K20 | SYNERGY CERTIFICATE</title>
+    <title><?php echo $culturalFestName ?>  | SYNERGY CERTIFICATE</title>
     <link rel="stylesheet" href="css/synergyCertificate.css">
 
     <style>
@@ -92,8 +94,9 @@ $prize = $row['prize'];
 
         <p class="para"> Mr./Ms.<span><?php echo $firstName ?></span>&nbsp;<span><?php echo $lastName ?></span> of
             <span><?php echo $department ?></span>&nbsp;Department <br><br>
-            has Participated in <span><?php echo $event ?></span> Event of Synergy 2K20 held <br><br>
-            during 14-15 March 2020 at GIT, Lavel & Won <span><?php echo $prize ?></span> Prize. </p>
+            has Participated in <span><?php echo $event ?></span> Event of <?php echo $culturalFestName ?>
+            held <br><br>
+            during <?php echo $culturalFestDate ?> at GIT, Lavel & Won <span><?php echo $prize ?></span> Prize. </p>
 
         <br>
 

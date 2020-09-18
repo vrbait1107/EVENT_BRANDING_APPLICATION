@@ -1,5 +1,8 @@
 <?php
 
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "config/techfestName.php";
+
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
@@ -24,7 +27,7 @@ if (!isset($_SESSION['user'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GIT SHODH 2K20 | EVENT FEEDBACK</title>
+    <title><?php echo $techfestName ?> | EVENT FEEDBACK</title>
 
     <!-- First Header Scripts, then Google Recaptcha -->
     <?php include_once "includes/headerScripts.php";?>
@@ -47,7 +50,7 @@ if (!isset($_SESSION['user'])) {
     <main class="container">
         <div class="row">
             <section class="col-md-8 my-5 offset-md-2">
-                <h3 class="font-time alert alert-info text-center mb-5">GIT SHODH 2K20
+                <h3 class="font-time alert alert-info text-center mb-5"><?php echo $techfestName ?>
                     FEEDBACK SURVEY</h3>
 
                 <h4 class="font-time text-center">Please take few moments to complete this survey</h4>

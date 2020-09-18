@@ -1,12 +1,14 @@
 <?php
+//----------------------------------------->> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "../config/techfestName.php";
 
-//--------------------->> DB CONFIG
+//----------------------------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-//--------------------->> START SESSION
+//------------------------------------------>> START SESSION
 session_start();
 
-//--------------------->> DB ADMIN
+//------------------------------------------>> DB ADMIN
 if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
     if ($_SESSION['adminType'] !== "Administrator") {
@@ -26,7 +28,7 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>GIT SHODH 2K20 | SHODH ADMINISTRATOR MANAGE ADMIN</title>
+    <title><?php echo $techfestName ?> | SHODH ADMINISTRATOR MANAGE ADMIN</title>
 
     <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>

@@ -1,4 +1,6 @@
 <?php
+//--------------------->> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "../config/techfestName.php";
 
 //--------------------->> DB CONFIG
 require_once '../config/configPDO.php';
@@ -24,12 +26,12 @@ if (!isset($_SESSION['adminEmail'])) {
     <meta name="description" content="" />
     <meta name="author" content="Vishal Bait" />
 
-    <title></title>
+    <title><?php echo $techfestName ?> | ADMINISTARTOR MANAGE EVENTS DETAILS</title>
 
     <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
 
-</head>GIT SHODH 2K20 | ADMINISTARTOR MANAGE EVENTS DETAILS
+</head>
 
 <body class="sb-nav-fixed">
 

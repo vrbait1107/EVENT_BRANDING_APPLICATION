@@ -1,5 +1,8 @@
 <?php
 
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "config/techfestName.php";
+
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
@@ -21,7 +24,7 @@ session_start();
     <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
 
-     <title>GIT SHODH 2K20 | FORGOT PASSWORD</title>
+     <title><?php echo $techfestName ?> | FORGOT PASSWORD</title>
 </head>
 
 <body>

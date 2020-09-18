@@ -1,4 +1,8 @@
 <?php
+
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "config/techfestName.php";
+
 // Please Read official documentation on GitHUb Account -> https: //github.com/PHPMailer/PHPMailer
 
 date_default_timezone_set('Etc/UTC');
@@ -14,17 +18,17 @@ $mail->SMTPSecure = 'tls';
 $mail->SMTPAuth = true;
 $mail->Username = $emailUsername;
 $mail->Password = $emailPassword;
-$mail->setFrom($emailSetFrom, "GIT SHODH 2K20");
-$mail->addReplyTo('non-reply@gmail.com', 'GIT SHODH 2K20');
+$mail->setFrom($emailSetFrom, $techfestName);
+$mail->addReplyTo('non-reply@gmail.com', $techfestName);
 
 $mail->addAddress("$email", "$email");
 
-$mail->Subject = "GIT SHODH 2K20 Reactivate Your Account";
+$mail->Subject = "$techfestName Reactivate Your Account";
 
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
-$mail->msgHTML("<!doctype html><html><body> $email We are happy to see you again in GIT SHODH 2K20,
+$mail->msgHTML("<!doctype html><html><body> $email We are happy to see you again in $techfestName,
                     To reactivate account please click on this link http://localhost/EBA/activateDisableAccount.php?token=$token </body></html>");
 
-$mail->AltBody = "$email We are happy to see you again in GIT SHODH 2K20,
+$mail->AltBody = "$email We are happy to see you again in $techfestName,
                     To reactivate account please click on this link http://localhost/EBA/activateDisableAccount.php?token=$token";

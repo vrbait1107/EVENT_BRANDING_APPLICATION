@@ -1,4 +1,6 @@
 <?php
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "../config/techfestName.php";
 
 //----------------------------->> DB CONFIG
 require_once '../config/configPDO.php';
@@ -15,8 +17,9 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
 }
 
-// Display Data related to Events
 $adminEvent = $_SESSION["adminEvent"];
+
+//-------------------------------->> DISPLAY EVENT DETAILS
 
 $sql = "SELECT * FROM event_information WHERE event = :adminEvent";
 
@@ -44,9 +47,9 @@ $totalAmount = $amount * $rowCount;
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
-    <meta name="author" content="Vishal Bait" />
+    <meta name="author" content="" />
 
-    <title>GIT SHODH 2K20 | STUDENT COORDINATOR DASHBOARD</title>
+    <title><?php echo $techfestName ?> | STUDENT COORDINATOR DASHBOARD</title>
 
      <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>

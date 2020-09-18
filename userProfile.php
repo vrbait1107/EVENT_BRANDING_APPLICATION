@@ -1,5 +1,8 @@
 <?php
 
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "config/techfestName.php";
+
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
@@ -19,9 +22,9 @@ if (!isset($_SESSION['user'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Vishal Bait">
+    <meta name="author" content="">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GIT SHODH 2K20 | USER PROFILE</title>
+    <title><?php echo $techfestName ?> | USER PROFILE</title>
 
     <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>

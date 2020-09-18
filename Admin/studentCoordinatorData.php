@@ -1,12 +1,14 @@
 <?php
+//----------------------------->> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "../config/techfestName.php";
 
-//--------------------->> DB CONFIG
+//---------------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-//--------------------->> START SESSION
+//---------------------------->> START SESSION
 session_start();
 
-//--------------------->> CHECKING ADMIN
+//---------------------------->> CHECKING ADMIN
 if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
     if ($_SESSION['adminType'] !== "Student Coordinator") {
@@ -29,7 +31,7 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
   <!-- Include Admin Header Scripts -->
   <?php include_once "includes/adminHeaderScripts.php";?>
 
-  <title>GIT SHODH 2K20 | STUDENT COORDINATOR EVENT PARTICIPANT DETAILS</title>
+  <title><?php echo $techfestName ?> | STUDENT COORDINATOR EVENT PARTICIPANT DETAILS</title>
 
 </head>
 
@@ -148,7 +150,7 @@ include_once "includes/adminNavbar.php";
 
   <!-- Close Database Connection -->
   <?php $conn = null;?>
-  
+
 </body>
 
 </html>

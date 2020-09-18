@@ -1,5 +1,8 @@
 <?php
 
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "config/techfestName.php";
+
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
@@ -51,7 +54,7 @@ $certificateDepartment = $row1['eventDepartment'];
 <html>
 
 <head>
-    <title>GIT SHODH 2K20 | CERTIFICATE</title>
+    <title><?php echo $techfestName ?> | CERTIFICATE</title>
 
     <!-- Certificate CSS-->
     <link rel="stylesheet" href="css/certificate.css">
@@ -99,8 +102,8 @@ if ($certificateDepartment === "Electronics and Telecommunication") {
         <!--Content of Certificate-->
         <p class="mainContent"> Mr./Ms.<span><?php echo $firstName ?></span>&nbsp;<span><?php echo $lastName ?></span> of
             <span><?php echo $department ?></span>&nbsp;Department <br><br>
-            has Participated in <span><?php echo $event ?></span> Event of Shodh 2K20 held <br><br>
-            during 07-08 March 2020 at GIT, Lavel & Won <span><?php echo $prize ?></span> Prize. </p>
+            has Participated in <span><?php echo $event ?></span> Event of <?php echo $techfestName ?> held <br><br>
+            during <?php echo $techfestDate ?> at GIT, Lavel & Won <span><?php echo $prize ?></span> Prize. </p>
 
         <span id="qrcode" class="center" style="width:100px; height:100px; margin-top:10px;"></span>
 

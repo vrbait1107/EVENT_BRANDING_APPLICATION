@@ -1,4 +1,6 @@
 <?php
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "../config/techfestName.php";
 
 // ---------------------------------------->> DB CONFIG
 require_once '../config/configPDO.php';
@@ -99,8 +101,8 @@ function countRevenue($department)
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
-    <meta name="author" content="Vishal Bait" />
-    <title>GIT SHODH 2K20 | SHODH ADMINISTRATOR DASHBOARD</title>
+    <meta name="author" content="" />
+    <title><?php echo $techfestName ?> | SHODH ADMINISTRATOR DASHBOARD</title>
 
     <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>

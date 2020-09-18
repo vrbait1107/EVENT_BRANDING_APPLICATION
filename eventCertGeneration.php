@@ -1,4 +1,6 @@
 <?php
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "config/techfestName.php";
 
 //------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
@@ -15,7 +17,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GIT SHODH 2K20 | EVENT CERTIFICATES</title>
+    <title><?php echo $techfestName ?> | EVENT CERTIFICATES</title>
 
     <!-- First AOS Animation then Include Header Scripts-->
      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">

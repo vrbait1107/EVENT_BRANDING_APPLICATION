@@ -1,5 +1,8 @@
 <?php
 
+//-------------------------------->> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "../config/techfestName.php";
+
 //-------------------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
@@ -28,7 +31,7 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>GIT SHODH 2K20 | FACULTY COORDINATOR MANAGE ADMIN</title>
+    <title><?php echo $techfestName?> | FACULTY COORDINATOR MANAGE ADMIN</title>
 
     <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
@@ -95,7 +98,6 @@ include_once "includes/adminNavbar.php";
                                     <div class="form-group">
                                         <label>Admin Type</label>
                                         <select class="form-control" name="adminType" id="adminType">
-                                            <option value="Faculty Coordinator">Faculty Coordinator</option>
                                             <option value="Student Coordinator">Student Coordinator</option>
                                         </select>
                                     </div>
@@ -104,7 +106,6 @@ include_once "includes/adminNavbar.php";
                                     <div class="form-group">
                                         <label>Admin Department</label>
                                         <select class="form-control" name="adminDepartment" id="adminDepartment">
-                                            <option value="Not Applicable">Not Applicable</option>
                                             <option value="Electronics and Telecommunication">Electronics and
                                                 Telecommunication
                                             </option>
@@ -208,7 +209,6 @@ include_once "includes/adminNavbar.php";
                                     <div class="form-group">
                                         <label>Admin Type</label>
                                         <select class="form-control" name="updateAdminType" id="updateAdminType">
-                                            <option value="Faculty Coordinator">Faculty Coordinator</option>
                                             <option value="Student Coordinator">Student Coordinator</option>
                                         </select>
                                     </div>
@@ -218,7 +218,6 @@ include_once "includes/adminNavbar.php";
                                         <label>Admin Department</label>
                                         <select class="form-control" name="updateAdminDepartment"
                                             id="updateAdminDepartment">
-                                            <option value="Not Applicable">Not Applicable</option>
                                             <option value="Electronics and Telecommunication">Electronics and
                                                 Telecommunication
                                             </option>

@@ -1,8 +1,11 @@
 <?php
-// ------------------------------------------->> START SESSION
+//-------------------------------------->> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "config/techfestName.php";
+
+// ------------------------------------->> START SESSION
 session_start();
 
-// ------------------------------------------->> CHECKING USER
+// ------------------------------------->> CHECKING USER
 if (!isset($_SESSION['user'])) {
     header("location:login.php");
 }
@@ -21,7 +24,7 @@ if (!isset($_SESSION['user'])) {
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <?php include_once "includes/headerScripts.php";?>
     <link rel="stylesheet" href="css/certificateVerification.css">
-    <title>GIT SHODH 2K20 | VERIFY CERTIFICATE</title>
+    <title><?php echo $techfestName ?> | VERIFY CERTIFICATE</title>
 
 </head>
 

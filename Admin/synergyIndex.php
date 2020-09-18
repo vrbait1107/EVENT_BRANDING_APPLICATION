@@ -1,4 +1,7 @@
 <?php
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "../config/techfestName.php";
+
 //--------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
@@ -21,7 +24,7 @@ if (!isset($_SESSION['Admin'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>GIT SHODH 2K20 | SYNERGY ADMINISTRATOR DASHBOARD</title>
+    <title><?php echo $culturalFestName ?> | SYNERGY ADMINISTRATOR DASHBOARD</title>
 
     <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>

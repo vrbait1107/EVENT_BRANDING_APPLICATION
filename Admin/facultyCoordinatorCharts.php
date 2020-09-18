@@ -1,12 +1,14 @@
 <?php
+//------------------------------->> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "../config/techfestName.php";
 
-//--------------------->> DB CONFIG
+//------------------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-// -------------------->> SESSION START
+// ------------------------------>> SESSION START
 session_start();
 
-// -------------------->> CHECKING SESSION
+// ------------------------------>> CHECKING SESSION
 if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
     if ($_SESSION['adminType'] !== "Faculty Coordinator") {
@@ -26,7 +28,7 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="Vishal Bait" />
-    <title>GIT SHODH 2K20 | FACULTY COORDINATOR EVENT STATISTICS CHARTS</title>
+    <title><?php echo $techfestName ?> | FACULTY COORDINATOR EVENT STATISTICS CHARTS</title>
 
     <!-- First Admin Header Scripts then Google Charts -->
     <?php include_once "includes/adminHeaderScripts.php";?>

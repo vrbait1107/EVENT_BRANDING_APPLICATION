@@ -1,4 +1,6 @@
 <?php
+//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+require_once "config/techfestName.php";
 
 //-------------------------->> START SESSION
 session_start();
@@ -16,7 +18,7 @@ if (!isset($_SESSION['user'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GIT SHODH 2K20 | DEVELOPERS</title>
+    <title><?php echo $techfestName ?> | DEVELOPERS</title>
 
 
     <!-- First Include Header Scripts then ImageHover.css then AOS Animation-->
