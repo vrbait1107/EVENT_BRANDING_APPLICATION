@@ -47,22 +47,34 @@ $(document).ready(function () {
             `<b class="text-danger" style="font-size: 25px;">Feedbacks:- ${statistics.totalFeedback}</b>`
           );
           $("#likelyAttendRating").html(
-            `<b class="text-danger" style="font-size: 25px;">Rating:- ${statistics.likelyAttendRating}</b>`
+            `<b class="text-danger" style="font-size: 25px;">Rating:- ${parseFloat(
+              statistics.likelyAttendRating
+            ).toFixed(2)}</b>`
           );
           $("#likelyRecommendRating").html(
-            `<b class="text-danger" style="font-size: 25px;">Rating:- ${statistics.likelyRecommendRating}</b>`
+            `<b class="text-danger" style="font-size: 25px;">Rating:- ${parseFloat(
+              statistics.likelyRecommendRating
+            ).toFixed(2)}</b>`
           );
           $("#eventLocationRating").html(
-            `<b class="text-danger" style="font-size: 25px;">Rating:- ${statistics.eventLocationRating}</b>`
+            `<b class="text-danger" style="font-size: 25px;">Rating:- ${parseFloat(
+              statistics.eventLocationRating
+            ).toFixed(2)}</b>`
           );
           $("#eventRating").html(
-            `<b class="text-danger" style="font-size: 25px;">Rating:- ${statistics.eventRating}</b>`
+            `<b class="text-danger" style="font-size: 25px;">Rating:- ${parseFloat(
+              statistics.eventRating
+            ).toFixed(2)}</b>`
           );
           $("#eventCoordinatorRating").html(
-            `<b class="text-danger" style="font-size: 25px;">Rating:- ${statistics.eventCoordinatorRating}</b>`
+            `<b class="text-danger" style="font-size: 25px;">Rating:- ${parseFloat(
+              statistics.eventCoordinatorRating
+            ).toFixed(2)}</b>`
           );
           $("#eventFeeRating").html(
-            `<b class="text-danger" style="font-size: 25px;">Rating:- ${statistics.eventFeeRating}</b>`
+            `<b class="text-danger" style="font-size: 25px;">Rating:- ${parseFloat(
+              statistics.eventFeeRating
+            ).toFixed(2)}</b>`
           );
         } else {
           $("#statisticsData").html("No Feedback Form submitted");

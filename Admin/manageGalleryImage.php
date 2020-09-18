@@ -46,7 +46,7 @@ include_once "includes/adminNavbar.php";
     <div id="layoutSidenav_content">
         <main class="container-fluid">
 
-            <h1 class="font-time mt-3 mb-1">Add/Manage Gallery Images</h1> <br />
+            <h1 class="font-time mt-3 mb-1">MANAGE GALLERY IMAGES</h1> <br />
 
             <div class="row">
 
