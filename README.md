@@ -7,16 +7,15 @@
 
 1. [Event Branding Application (Bootstrap4)](https://github.com/vrbait1107/EVENT_BRANDING_WEBSITE_FRONT_END)
 2. Current Repository [Event Branding Application (PHP) ](https://github.com/vrbait1107/EVENT_BRANDING_APPLICATION)
-3. [Event Branding Application (MERN)](https://github.com/vrbait1107/MERN_EVENT_BRANDING_APPLICATION)
+3. [Event Branding Application (MERN)](https://github.com/vrbait1107/MERN_EBA) Under Development
 
 ## Event Branding Application: Start to End Support (Techfest Website)
 
 Event Branding Application project is a mobile based application and website that supports User registration, Event registration, Event payment and checkouts, Event Certificate generation, Event certificate verification,
 event feedback system and Administrator panel for events such as technical festival. It helps program attendees, organizers, the authors and the reviewers in their respective activities.
 
-Development of Event Branding Application is an attempt to address the problems of managing registration forms. The main goal of this Website & Application is to give working solution to store, manage and consolidate the registration data.
+Development of Event Branding Application is an attempt to address the problems of managing user registration, event registration & payment details also managing users certificates and verifying their certificates & users feedbacks. The main goal of this Website & Application is to give working solution to managing entire technical festival from start to end.
 
-Event Branding Application is mobile Application with Website for collecting registration forms automatically.
 
 ### Typical functions supported by Event Branding Application with Website (User Level)
 
@@ -137,6 +136,15 @@ Event Branding Application is mobile Application with Website for collecting reg
 - To generate checksum, call the following method. This function returns the checksum as a string.
   getRefundChecksumFromArray($arrayList, $key, \$sort=1)
 
+## License
+
+Event Branding Application is [GNU GPL v3.0 licensed](./LICENSE).
+
+
+## Contributing Guide
+- Read our [Contributing Guide](./CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to Event Branding Application.
+- Please feel free to contribute in this project as well as other project in this account.
+
 ## Technology Used
 
 ### Front-End
@@ -151,7 +159,7 @@ Event Branding Application is mobile Application with Website for collecting reg
 
 ### Back-End
 
-- Language: PHP
+- Language: PHP (PDO PHP with Prepared Statements)
 - PHP Libraries: PHP Mailer
 
 ### Database
@@ -159,13 +167,13 @@ Event Branding Application is mobile Application with Website for collecting reg
 - Database: MYSQL
 - Query Language: SQL
 
-### Designing Software FOR Certificate Images
+### Designing Software for Certificate Images
 
 - Software: CORELDRAW 11
 
 ### Version Control
 
-- Software: GIT
+- Software: Git
 
 ### Payment Gateway
 
