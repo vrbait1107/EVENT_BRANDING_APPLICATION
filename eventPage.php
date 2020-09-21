@@ -32,86 +32,100 @@ if (!isset($_SESSION['user'])) {
     <!--Include User Navbar-->
     <?php include_once "includes/navbar.php";?>
 
-    <main class="container text-uppercase">
-        <div class="row">
+    <main class="container mt-5 text-uppercase">
 
-            <section class="col-md-4 my-5">
+        <section class="row mb-5">
+            <div class="col-md-4">
+                <img src="images/departments/EXTC.jpg" class="img-fluid w-100" data-aos="fade-right"
+                    data-aos-duration="1500" style="max-height:250px">
+            </div>
+            <div class="col-md-8 text-center">
+                <h3 class="font-time font-weight-bold text-uppercase mt-2">EXTC
+                    ENGINEERING</h3>
+                <hr>
 
-                    <img src="images/departments/EXTC.jpg" class="img-fluid w-100" style="height:250px">
-                    <h5 class="alert alert-info font-time text-center">EXTC
-                        ENGINEERING</h5>
+                <form id="extcForm" action="departmentalEvents.php" method="post">
+                    <input type="submit" class="text-center text-uppercase btn  btn-outline-dark rounded-pill"
+                        value="View Events">
+                    <input type="hidden" name="eventDepartmentName" value="Electronics and Telecommunication">
+                </form>
 
-                    <form id="extcForm" action="departmentalEvents.php" method="post" >
-                        <input type="submit" class="text-center text-uppercase btn btn-block btn-primary rounded-pill"
-                            value="View Events">
-                            <input type="hidden" name="eventDepartmentName" value="Electronics and Telecommunication">
-                    </form>
+            </div>
+        </section>
 
-            </section>
+        <section class="row mb-5">
+            <div class="col-md-4">
+                <img src="images/departments/CHEM.jpg" class="img-fluid w-100" data-aos="fade-right"
+                    data-aos-duration="1500" style="max-height:250px">
+            </div>
+            <div class="col-md-8 text-center">
+                <h3 class="font-time font-weight-bold text-uppercase mt-2">CHEMICAL
+                    ENGINEERING</h3>
+                <hr>
 
-            <section class="col-md-4 my-5">
-
-                    <img src="images/departments/CHEM.jpg" class="img-fluid w-100" style="height:250px">
-                    <h5 class="alert alert-info font-time text-center">CHEMICAL
-                        ENGINEERING</h5>
-
-                    <form id="chemicalForm" action="departmentalEvents.php" method="post">
-                        <input type="submit" class="text-center text-uppercase btn btn-block btn-primary rounded-pill"
-                            value="View Events">
-                             <input type="hidden" name="eventDepartmentName" value="Chemical">
-                    </form>
-
-            </section>
-
-            <section class="col-md-4 my-5">
-
-                    <img src="images/departments/COMP.jpg" class="img-fluid w-100" style="height:250px">
-                    <h5 class="alert alert-info font-time text-center">COMPUTER
-                        ENGINEERING</h5>
-
-                    <form id="computerForm" action="departmentalEvents.php" method="post">
-                        <input type="submit" class="text-center text-uppercase btn-block btn btn-primary rounded-pill"
-                            value="View Events">
-                             <input type="hidden" name="eventDepartmentName" value="Computer">
-                    </form>
-
-            </section>
-
-        </div>
+                <form id="chemicalForm" action="departmentalEvents.php" method="post">
+                    <input type="submit" class="text-center text-uppercase btn btn-outline-dark rounded-pill"
+                        value="View Events">
+                    <input type="hidden" name="eventDepartmentName" value="Chemical">
+                </form>
+            </div>
+        </section>
 
 
-        <div class="row">
+        <section class="row mb-5">
+            <div class="col-md-4">
+                <img src="images/departments/COMP.jpg" class="img-fluid w-100" data-aos="fade-right"
+                    data-aos-duration="1500" style="max-height:250px">
+            </div>
+            <div class="col-md-8 text-center">
+                <h3 class="font-time font-weight-bold text-uppercase mt-2">COMPUTER
+                    ENGINEERING</h3>
+                <hr>
 
-            <section class="col-md-4 mb-5">
+                <form id="computerForm" action="departmentalEvents.php" method="post">
+                    <input type="submit" class="text-center btn btn-outline-dark rounded-pill"
+                        value="View Events">
+                    <input type="hidden" name="eventDepartmentName" value="Computer">
+                </form>
+            </div>
+        </section>
 
-                    <img src="images/departments/MECH.jpg" class="img-fluid w-100" style="height:250px">
+        <section class="row mb-5">
+            <div class="col-md-4">
+                <img src="images/departments/MECH.jpg" class="img-fluid w-100" data-aos="fade-right"
+                    data-aos-duration="1500" style="max-height:250px">
+            </div>
+            <div class="col-md-8 text-center">
+                <h3 class="font-time font-weight-bold text-uppercase mt-2">MECHANICAL
+                    ENGINEERING</h3>
+                <hr>
 
-                    <h5 class="font-time alert alert-info text-center">MECHANICAL
-                        ENGINEERING</h5>
+                <form id="mechanicalForm" action="departmentalEvents.php" method="post">
+                    <input type="submit" class="text-center btn btn-outline-dark rounded-pill"
+                        value="View Events">
+                    <input type="hidden" name="eventDepartmentName" value="Mechanical">
+                </form>
+            </div>
+        </section>
 
-                    <form id="mechanicalForm" action="departmentalEvents.php" method="post">
-                        <input type="submit" class="btn-block text-uppercase text-center btn btn-primary rounded-pill"
-                            value="View Events">
-                             <input type="hidden" name="eventDepartmentName" value="Mechanical">
-                    </form>
 
-            </section>
+        <section class="row mb-5">
+            <div class="col-md-4">
+                <img src="images/departments/CIVIL.jpg" class="img-fluid w-100" data-aos="fade-right"
+                    data-aos-duration="1500" style="max-height:250px">
+            </div>
+            <div class="col-md-8 text-center">
+                <h3 class="font-time font-weight-bold text-uppercase mt-2">CIVIL
+                    ENGINEERING</h3>
+                <hr>
 
-            <section class="col-md-4 mb-5">
-
-                    <img src="images/departments/CIVIL.jpg" class="img-fluid w-100" style="height:250px">
-                    <h5 class="alert alert-info font-time text-center">CIVIL
-                        ENGINEERING</h5>
-
-                    <form id="civilForm" action="departmentalEvents.php" method="post">
-                        <input type="submit" class="text-center text-uppercase btn-block btn btn-primary rounded-pill"
-                            value="View Events">
-                        <input type="hidden" name="eventDepartmentName" value="Civil">
-                    </form>
-
-            </section>
-
-        </div>
+                <form id="civilForm" action="departmentalEvents.php" method="post">
+                    <input type="submit" class="text-center btn btn-outline-dark rounded-pill"
+                        value="View Events">
+                    <input type="hidden" name="eventDepartmentName" value="Civil">
+                </form>
+            </div>
+        </section>
 
     </main>
 
