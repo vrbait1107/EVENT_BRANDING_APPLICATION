@@ -9,7 +9,13 @@ require_once "config/configPDO.php";
 // ----------------------------->> STARTING SESSION
 session_start();
 
-$buttonEvent = htmlspecialchars($_POST['event1']);
+if (isset($_POST['event1'])) {
+    $_SESSION["buttonEvent"] = htmlspecialchars($_POST['event1']);
+    $buttonEvent = $_SESSION["buttonEvent"];
+} else {
+    $buttonEvent = $_SESSION["buttonEvent"];
+}
+
 $email = $_SESSION['user'];
 
 // ----------------------------->> EXTRACT ALL INFO. ABOUT USER & HIS/HER PARTICIPATION
@@ -149,6 +155,13 @@ if ($certificateDepartment === "Electronics and Telecommunication") {
             window.print();
         });
     </script>
+
+     <script>
+    if (window . history . replaceState) {
+    window . history . replaceState(null, null, window . location . href);
+    }
+    </script>
+
 
     <!-- Close Database Connection -->
      <?php $conn = null;?>

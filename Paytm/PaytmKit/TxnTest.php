@@ -9,6 +9,24 @@ $eventName = $_POST['eventName'];
 $eventPrice = $_POST['eventPrice'];
 $userName = $_SESSION['user'];
 
+$sql = "SELECT * FROM event_information WHERE event = :eventName AND email = :userName";
+
+//Preparing Query
+$result = $conn->prepare($sql);
+
+//Binding Values
+$result->bindValue(":eventName", $eventName);
+$result->bindValue(":userName", $userName);
+
+//Executing Query
+$result->execute();
+
+if ($result->rowCount() > 0) {
+    echo "<script>alert('You are Already Registerd for $eventName Event')</script>";
+    exit;
+
+}
+
 ?>
 
 <?php
@@ -44,32 +62,6 @@ header("Expires: 0");
 </head>
 
 <body>
-
-	<?php
-
-$sql = "SELECT * FROM event_information WHERE event = :eventName AND email = :userName";
-
-//Preparing Query
-$result = $conn->prepare($sql);
-
-//Binding Values
-$result->bindValue(":eventName", $eventName);
-$result->bindValue(":userName", $userName);
-
-//Executing Query
-$result->execute();
-
-if ($result->rowCount() > 0) {
-
-    echo "<script>Swal.fire({
-			icon: 'warning',
-			title: 'Already Registered',
-			text: 'You are Already Registerd for $eventName Event'
-		})</script>";
-
-}
-
-?>
 
 	<main class="container">
 		<div class="row">
