@@ -20,8 +20,7 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!--First AOS Animation then Include Header Script then css -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!--First Include Header Script then css -->
     <?php include_once "includes/headerScripts.php";?>
     <link rel="stylesheet" href="css/certificateVerification.css">
     <title><?php echo $techfestName ?> | VERIFY CERTIFICATE</title>
@@ -84,10 +83,6 @@ if (!isset($_SESSION['user'])) {
 include_once "includes/footer.php";
 include_once "includes/footerScripts.php";
 ?>
-
-<!-- AOS Library -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>AOS.init();</script>
 
 </body>
 

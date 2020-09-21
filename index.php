@@ -58,8 +58,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="">
 
-    <!--First Inlude Header Scripts, then Animate.css then Loader.css then Index.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <!--First Inlude Header Scripts, then Loader.css then Index.css-->
     <?php include_once "includes/headerScripts.php";?>
     <link rel="stylesheet" href="css/loader.css">
     <link rel="stylesheet" href="css/index.css">
@@ -79,7 +78,7 @@ try {
 
     <main class="container-fluid welcome-section">
         <div class="row mx-auto text-center">
-            <h1 class="p-3 font-time  mx-auto animated flip slow text-white">Welcome to <?php echo $techfestName ?> <br> National Level
+            <h1 class="p-3 font-time  mx-auto text-white" data-aos="zoom-in" data-aos-duration="1500">Welcome to <?php echo $techfestName ?> <br> National Level
                 Techfest </h1>
             <img src="images/home/shodh1.jpg" class="img-fluid" alt="Shodh1">
         </div>

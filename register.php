@@ -24,7 +24,6 @@ session_start();
 
   <!-- First HeaderScripts, then AOS Animation, then Google Recaptcha, then Register.css -->
   <?php include_once "includes/headerScripts.php";?>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <link rel="stylesheet" href="css/register.css">
 

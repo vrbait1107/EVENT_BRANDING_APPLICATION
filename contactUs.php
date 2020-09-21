@@ -26,8 +26,7 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?php echo $techfestName ?> | CONTACT US</title>
 
-    <!-- First Animate.css then Include Header Scripts then Google Recaptcha then CkEditor-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <!-- First Include Header Scripts then Google Recaptcha then CkEditor-->
     <?php include_once "includes/headerScripts.php";?>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
@@ -41,16 +40,16 @@ if (!isset($_SESSION['user'])) {
 
     <main class="mb-5 container">
 
-        <h3 class="text-center my-5 text-uppercase alert alert-info font-time animated zoomIn slow">
+        <h3 class="text-center my-5 text-uppercase alert alert-info font-time" data-aos="zoom-in" data-aos-duration="1500">
             Contact us</h3>
 
-        <h5 class="text-center w-responsive mx-auto mb-3 animated zoomIn slow">Do you have any questions? Please do not
+        <h5 class="text-center w-responsive mx-auto mb-3" data-aos="zoom-in" data-aos-duration="1500">Do you have any questions? Please do not
             hesitate to contact us directly. Our team will come back to you within
             a matter of hours to help you.</h5>
 
         <div class="row">
 
-            <section class="col-md-8 wow zoomIn slow">
+            <section class="col-md-8" data-aos="zoom-in" data-aos-duration="1500">
 
                 <form id="contactForm" action="" method="POST">
 
@@ -90,7 +89,7 @@ if (!isset($_SESSION['user'])) {
             </section>
 
 
-            <section class="col-md-3 text-center wow zoomIn slow">
+            <section class="col-md-3 text-center" data-aos="zoom-in" data-aos-duration="1500">
                 <ul class="list-unstyled">
                     <li><i class="fa fa-map-marker mb-2 fa-3x"></i>
                         <h5 class="text-success mb-5">Gharda Institute of Technology Lavel-Khed, Maharashtra, INDIA</h5>
@@ -109,11 +108,7 @@ if (!isset($_SESSION['user'])) {
         </div>
     </main>
 
-
-    <!-- WOW.js-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script>
-        new WOW().init();
         CKEDITOR.replace("message")
     </script>
 

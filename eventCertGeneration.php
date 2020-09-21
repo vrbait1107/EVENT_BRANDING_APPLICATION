@@ -19,8 +19,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php echo $techfestName ?> | EVENT CERTIFICATES</title>
 
-    <!-- First AOS Animation then Include Header Scripts-->
-     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Include Header Scripts-->
     <?php include_once "includes/headerScripts.php";?>
 
 </head>
@@ -99,9 +98,6 @@ include_once "includes/footer.php";
 include_once "includes/footerScripts.php";
 ?>
 
- <!-- AOS Library -->
- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
- <script>AOS.init();</script>
 
  <!-- Close Database Connection -->
  <?php $conn = null;?>

@@ -21,10 +21,9 @@ if (!isset($_SESSION['user'])) {
     <title><?php echo $techfestName ?> | DEVELOPERS</title>
 
 
-    <!-- First Include Header Scripts then ImageHover.css then AOS Animation-->
+    <!-- First Include Header Scripts then ImageHover.css-->
     <?php include_once "includes/headerScripts.php";?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/imagehover.css/2.0.0/css/imagehover.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 </head>
 
@@ -140,13 +139,6 @@ if (!isset($_SESSION['user'])) {
             </section>
         </div>
     </main>
-
-
-    <!-- AOS Library-->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
 
      <!-- Include Footer & Footer Script -->
     <?php

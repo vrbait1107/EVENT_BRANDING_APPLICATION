@@ -20,10 +20,9 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Vishal Bait">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php $techfestName?> | ABOUT</title>
+    <title><?php echo $techfestName ?> | ABOUT</title>
 
     <!-- First AOS Animation then Include Header Scripts then CSS file -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <?php include_once "includes/headerScripts.php";?>
     <link rel="stylesheet" href="css/aboutPage.css">
 
@@ -39,7 +38,7 @@ if (!isset($_SESSION['user'])) {
 
 
             <section class="col-md-10 offset-md-1">
-                <div class="card shadow animated zoomIn slow p-5 my-5 text-justify">
+                <div class="p-5 my-5 text-justify" data-aos="zoom-in" data-aos-duration="1500">
 
                     <h1 class="text-white p-1 text-center text-uppercase font-time bg-info">An OverView</h1>
                     <hr>
@@ -76,10 +75,6 @@ if (!isset($_SESSION['user'])) {
 include_once 'includes/footer.php';
 include_once "includes/footerScripts.php";
 ?>
-
-<!-- AOS Library -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>AOS.init();</script>
 
 </body>
 
