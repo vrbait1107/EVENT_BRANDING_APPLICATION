@@ -31,7 +31,7 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title><?php echo $techfestName?> | FACULTY COORDINATOR MANAGE ADMIN</title>
+    <title><?php echo $techfestName ?> | FACULTY COORDINATOR MANAGE ADMIN</title>
 
     <!-- Include Admin Header Scripts -->
     <?php include_once "includes/adminHeaderScripts.php";?>
@@ -49,7 +49,7 @@ include_once "includes/adminNavbar.php";
 
 
     <main id="layoutSidenav_content">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
 
                 <!-- Button trigger modal -->

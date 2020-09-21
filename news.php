@@ -59,7 +59,7 @@ $result->execute();
 
     <main class="container">
 
-        <h3 class="text-center alert alert-info font-time my-5 text-uppercase">News & Notifications</h3>
+        <h3 class="text-center alert-info font-Staatliches-heading my-5 text-uppercase">News & Notifications</h3>
 
         <div class="row">
 

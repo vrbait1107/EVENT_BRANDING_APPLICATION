@@ -25,7 +25,7 @@ if (!isset($_SESSION['adminEmail'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
-    <meta name="author" content="Vishal Bait" />
+    <meta name="author" content="" />
 
     <title><?php echo $techfestName ?> | ADMINISTARTOR MANAGE NEWS</title>
 
@@ -45,9 +45,10 @@ include_once "includes/adminNavbar.php";
 
 
     <div id="layoutSidenav_content">
-        <main class="container-fluid">
+        <main class="container">
 
-            <h1 class="font-time mt-3 mb-1">MANAGE NEWS</h1> <br />
+            <h1 class="font-Staatliches-heading text-center text-info  mt-3 mb-1">MANAGE NEWS</h1> 
+            <hr />
 
             <div class="row">
 

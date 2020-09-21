@@ -262,8 +262,9 @@
 
 nav a {
   font-family: "Staatliches", cursive;
-  color: black !important;
-  font-size: 22px;
+  font-size: 20px;
+  font-weight: 100;
+  color: #808080 !important;
 }
 
 .font-Staatliches-heading {
@@ -271,8 +272,14 @@ nav a {
   font-size: 45px;
 }
 
+.font-Staatliches {
+  font-family: "Staatliches", cursive !important;
+  font-size: 20px;
+}
+
 .navbar-brand {
   font-family: "Staatliches", cursive;
   font-size: 30px;
+  color: white !important;
 }
-/*# sourceMappingURL=common.css.map */
+/*# sourceMappingURL=adminCommon.css.map */

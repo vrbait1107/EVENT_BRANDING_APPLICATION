@@ -49,7 +49,7 @@ $result->execute();
 
     <main class="container mt-5">
 
-        <h3 class="alert alert-info text-center mb-5 font-time">SPONSOR PAGE</h3>
+        <h3 class="alert-info text-center mb-5 font-Staatliches-heading">SPONSOR PAGE</h3>
         <div class="row" id="mainContainer">
 
     <?php

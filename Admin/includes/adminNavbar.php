@@ -298,7 +298,7 @@
 
                 </div>
 
-                <div class="sb-sidenav-footer">
+                <div class="sb-sidenav-footer font-Staatliches">
                     <div class="small">Logged in as:</div>
                     <?php echo $_SESSION['adminType']; ?>
                 </div>

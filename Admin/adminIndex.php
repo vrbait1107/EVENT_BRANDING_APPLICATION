@@ -119,14 +119,10 @@ include_once "includes/adminNavbar.php";
 
     <div id="layoutSidenav_content">
 
-        <main class="container-fluid">
+        <main class="container">
 
-            <h2 class="mt-4 font-time text-uppercase">Dashboard for Shodh Administrator</h2>
-
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-
+            <h2 class="mt-4 font-Staatliches-heading text-center text-info">Dashboard for Shodh Administrator</h2>
+            <hr/>
 
             <div class="row">
 

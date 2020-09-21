@@ -39,13 +39,15 @@ if (isset($_SESSION['adminEmail']) && $_SESSION['adminType'] && $_SESSION['admin
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
-    <meta name="author" content="Vishal Bait" />
+    <meta name="author" content="" />
     <title><?php echo $techfestName ?> | SHODH ADMINISTRATOR PANEL</title>
 
      <!-- Include Header Scripts then Google Recaptcha then Css file -->
     <?php include_once "../includes/headerScripts.php";?>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="css/adminLogin.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 
 </head>
 
@@ -152,13 +154,13 @@ if (isset($_POST['login'])) {
 ?>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand font-weight-bold" href="#"><?php echo $techfestName ?></a>
+        <a class="navbar-brand" href="#"><?php echo $techfestName ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav font-weight-bold">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link text-uppercase text-dark" href="../register.php">SHODH Register</a>
                 </li>

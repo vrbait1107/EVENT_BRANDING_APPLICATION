@@ -10,6 +10,6 @@
     <!--SweetAlert.js-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <!--common StyleSheet-->
-    <link href="../css/common.css" rel="stylesheet" >
+    <link href="css/adminCommon.css" rel="stylesheet" >
     <!-- CkEditor.js -->
     <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>

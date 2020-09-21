@@ -70,13 +70,10 @@ include_once "includes/adminNavbar.php";
     <div id="layoutSidenav_content">
 
         <main class="container-fluid">
-            <h2 class="mt-4 font-time text-center">Dashboard for Student Coordinator <br/>
+            <h2 class="mt-4 font-Staatliches-heading font-time text-center text-info">Dashboard for Student Coordinator <br/>
             <span class="text-danger"><?php echo $adminEvent; ?></span>
             </h2>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-
+        <hr/>
 
             <div class="row">
                 <!-- Total Participation of the Events -->

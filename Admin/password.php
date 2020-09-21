@@ -105,7 +105,7 @@ include_once "includes/adminNavbar.php";
 
 
 <div id="layoutSidenav_content">
-    <main class="container-fluid">
+    <main class="container">
         <div class="row">
             <section class="col-md-6 offset-md-3 mt-5">
 

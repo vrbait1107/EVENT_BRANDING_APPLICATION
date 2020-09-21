@@ -117,15 +117,11 @@ include_once "includes/adminNavbar.php";
 
     <div id="layoutSidenav_content">
 
-        <main class="container-fluid">
-            <h2 class="mt-4 text-center font-time text-uppercase">Dashboard for Faculty Coordinator <br />
-                <span class="text-danger"><?php echo $_SESSION["adminDepartment"]; ?></span> </h2>
+        <main class="container">
+            <h2 class="mt-4 text-center font-Staatliches-heading text-info">Dashboard for Faculty Coordinator <br />
+               <?php echo $_SESSION["adminDepartment"]; ?></h2>
 
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-
-
+        <hr/>
             <!-- Display Data Related to Event held by Department-->
 
             <div class="row">

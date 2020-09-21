@@ -40,7 +40,7 @@ if (!isset($_SESSION['user'])) {
 
     <main class="mb-5 container">
 
-        <h3 class="text-center my-5 text-uppercase alert alert-info font-time" data-aos="zoom-in" data-aos-duration="1500">
+        <h3 class="text-center my-5 text-uppercase alert-info font-Staatliches-heading" data-aos="zoom-in" data-aos-duration="1500">
             Contact us</h3>
 
         <h5 class="text-center w-responsive mx-auto mb-3" data-aos="zoom-in" data-aos-duration="1500">Do you have any questions? Please do not

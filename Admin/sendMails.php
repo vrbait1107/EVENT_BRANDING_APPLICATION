@@ -54,7 +54,8 @@ include_once "includes/adminNavbar.php";
     <main class="container">
       <div class="row">
         <section class="col-md-6 my-5 offset-md-3">
-          <h2 class="text-center text-primary font-time">Send Mails to Participants</h2>
+          
+          <h2 class="font-Staatliches-heading text-info text-center">Send Mails to Participants</h2>
           <hr>
 
           <form action="" method="post" name="sendMailForm" id="sendMailForm" enctype="multipart/form-data">

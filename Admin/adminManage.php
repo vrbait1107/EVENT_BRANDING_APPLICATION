@@ -45,7 +45,7 @@ include_once "includes/adminNavbar.php";
 ?>
 
     <main id="layoutSidenav_content">
-        <div class="container-fluid">
+        <div class="container mt-2">
             <div class="row">
 
                 <!-- Button trigger modal -->

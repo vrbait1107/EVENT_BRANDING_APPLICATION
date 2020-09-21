@@ -53,7 +53,7 @@ include_once "includes/adminNavbar.php";
     <main class="container">
       <div class="row">
         <section class="col-md-6 my-5 offset-md-3">
-          <h2 class="text-center text-primary font-time">Send Newsletter</h2>
+          <h2 class="text-center text-info font-Staatliches-heading">Send Newsletter</h2>
           <hr>
 
           <form action="" method="post" name="sendNewsletterForm" id="sendNewsletterForm" enctype="multipart/form-data">

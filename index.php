@@ -78,7 +78,7 @@ try {
 
     <main class="container-fluid welcome-section">
         <div class="row mx-auto text-center">
-            <h1 class="p-3 font-time  mx-auto text-white" data-aos="zoom-in" data-aos-duration="1500">Welcome to <?php echo $techfestName ?> <br> National Level
+            <h1 class="p-3 font-Staatliches-heading mx-auto text-white" data-aos="zoom-in" data-aos-duration="1500">Welcome to <?php echo $techfestName ?> <br> National Level
                 Techfest </h1>
             <img src="images/home/shodh1.jpg" class="img-fluid" alt="Shodh1">
         </div>

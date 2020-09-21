@@ -38,9 +38,9 @@ if (!isset($_SESSION['user'])) {
 
 
             <section class="col-md-10 offset-md-1">
-                <div class="p-5 my-5 text-justify" data-aos="zoom-in" data-aos-duration="1500">
+                <div class="p-5 my-3 text-justify" data-aos="zoom-in" data-aos-duration="1500">
 
-                    <h1 class="text-white p-1 text-center text-uppercase font-time bg-info">An OverView</h1>
+                    <h1 class="p-1 text-center text-uppercase alert-info font-Staatliches-heading">About Shodh</h1>
                     <hr>
                     <p>SHODH, GIT Lavel is the annual science and technology festival of the Gharda Institute of
                         Technology Lavel.

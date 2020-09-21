@@ -42,8 +42,9 @@ include_once "includes/adminNavbar.php";
 ?>
 
     <main id="layoutSidenav_content">
-        <div class="container-fluid mt-3">
-            <h1 class="font-time mb-1">MANAGE EVENTS</h1> <br />
+        <div class="container mt-3">
+            <h1 class="font-Staatliches-heading text-center text-info mb-1">MANAGE EVENTS</h1>
+            <hr />
             <div class="row">
 
                 <!-- Button trigger modal -->

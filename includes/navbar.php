@@ -5,7 +5,7 @@ require_once "config/techfestName.php";
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand font-weight-bold" href="#"><?php echo $techfestName ?></a>
+    <a class="navbar-brand" href="#"><?php echo $techfestName ?></a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,15 +17,15 @@ require_once "config/techfestName.php";
         <ul class="navbar-nav mx-auto">
 
             <li>
-                <a class="nav-link font-weight-bold text-uppercase" href="index.php">Home</a>
+                <a class="nav-link text-uppercase" href="index.php">Home</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-uppercase font-weight-bold" href="eventPage.php">EVENTS</a>
+                <a class="nav-link text-uppercase " href="eventPage.php">EVENTS</a>
             </li>
 
             <li class="nav-item dropdown text-uppercase">
-                <a class="nav-link dropdown-toggle font-weight-bold" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Certificate
                 </a>
@@ -36,31 +36,31 @@ require_once "config/techfestName.php";
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-uppercase font-weight-bold" href="contactUs.php">Contact Us</a>
+                <a class="nav-link text-uppercase " href="contactUs.php">Contact Us</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-uppercase font-weight-bold" href="developers.php">Developers</a>
+                <a class="nav-link text-uppercase " href="developers.php">Developers</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-uppercase font-weight-bold" href="sponsor.php">Sponsors</a>
+                <a class="nav-link text-uppercase " href="sponsor.php">Sponsors</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-uppercase font-weight-bold" href="news.php">News & Notification</a>
+                <a class="nav-link text-uppercase " href="news.php">News & Notification</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-uppercase font-weight-bold" href="feedbackForm.php">Feedback</a>
+                <a class="nav-link text-uppercase " href="feedbackForm.php">Feedback</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-uppercase font-weight-bold" href="gallery.php">Gallery</a>
+                <a class="nav-link text-uppercase " href="gallery.php">Gallery</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-uppercase font-weight-bold" href="aboutPage.php">About</a>
+                <a class="nav-link text-uppercase " href="aboutPage.php">About</a>
             </li>
         </ul>
 

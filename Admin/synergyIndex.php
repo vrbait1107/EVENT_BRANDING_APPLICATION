@@ -43,12 +43,11 @@ include_once "includes/adminNavbar.php";
 
     <div id="layoutSidenav_content">
         <main>
-            <div class="container-fluid">
+            <div class="container">
 
-                <h1 class="mt-4">Dashboard</h1>
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Dashboard</li>
-                </ol>
+                <h1 class="mt-4 font-Staatliches-heading text-center text-info">Dashboard for Synergy Administrator</h1>
+
+                <hr />
 
                 <!--  ADD Administartor Profile Form  -->
                 <div class="row">
@@ -135,11 +134,11 @@ include_once "includes/adminNavbar.php";
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 
-     <!-- Javascript -->
+    <!-- Javascript -->
     <script src="js/synergyIndex.js"></script>
 
-  <!-- Close Database Connection -->
-  <?php $conn = null;?>
+    <!-- Close Database Connection -->
+    <?php $conn = null;?>
 
 </body>
 

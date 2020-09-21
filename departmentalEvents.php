@@ -59,7 +59,7 @@ if ($result->rowCount() > 0) {
         <div id="responsePromocode"></div>
 
     <div class="container mt-5">
-        <h2 class="text-danger text-center text-uppercase mb-5 font-time">
+        <h2 class="text-danger text-center text-uppercase mb-5 font-Staatliches-heading">
 
             <?php echo $_SESSION["eventDepartmentName"]; ?> Events</h2>
 

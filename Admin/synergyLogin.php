@@ -29,6 +29,7 @@ if (isset($_SESSION['Admin'])) {
     <?php include_once "../includes/headerScripts.php";?>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="css/synergyLogin.css">
+    <link rel="stylesheet" href="../css/common.css">
 
 </head>
 
@@ -76,13 +77,13 @@ if (isset($_POST['login'])) {
 ?>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand font-weight-bold" href="#"><?php echo $culturalFestName ?></a>
+        <a class="navbar-brand" href="#"><?php echo $culturalFestName ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav font-weight-bold">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link text-uppercase text-dark" href="../register.php">SHODH Register</a>
                 </li>

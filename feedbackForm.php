@@ -49,9 +49,9 @@ if (!isset($_SESSION['user'])) {
 
     <main class="container">
         <div class="row">
-            <section class="col-md-8 my-5 offset-md-2">
-                <h3 class="font-time alert alert-info text-center mb-5"><?php echo $techfestName ?>
-                    FEEDBACK SURVEY</h3>
+            <section class="col-md-8 mt-5 mb-3 offset-md-2">
+                <h3 class="font-Staatliches-heading alert-info text-center mb-5">
+                    EVENT FEEDBACK</h3>
 
                 <h4 class="font-time text-center">Please take few moments to complete this survey</h4>
                 <hr class="text-dark">
