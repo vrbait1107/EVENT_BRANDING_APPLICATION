@@ -7,7 +7,7 @@ require_once "../../config/configPDO.php";
 session_start();
 
 //---------------------------->> SECRETS
-require_once "../../config/Secret.php";
+require "../../config/Secret.php";
 
 extract($_POST);
 extract($_FILES);
@@ -22,7 +22,7 @@ if (isset($_POST["newsletterMessage"])) {
 
         if ($response->success) {
 
-            $sql = "SELECT DISTINCT email FROM newsletter_information";
+            $sql = "SELECT * FROM newsletter_information";
 
             //Preparing Query
             $result = $conn->prepare($sql);
@@ -30,10 +30,17 @@ if (isset($_POST["newsletterMessage"])) {
             //Executing Query
             $result->execute();
 
+            $row = $result->fetch(PDO::FETCH_ASSOC);
+
+            $newArray = array();
+
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                $newsletterEmails = $row['email'];
-                sendMail($newsletterEmails, $newsletterSubject, $newsletterMessage);
+                array_push($newArray, $row['email']);
             }
+
+            $newsletterEmails = $newArray;
+
+            sendMail($newsletterEmails, $newsletterSubject, $newsletterMessage);
 
         } else {
             echo "<script>Swal.fire({
@@ -51,11 +58,15 @@ if (isset($_POST["newsletterMessage"])) {
 
 function sendMail($newsletterEmails, $newsletterSubject, $newsletterMessage)
 {
-    //##### Include PHP Mailer Code
+    //---------------------------->> SECRETS
+    require "../../config/Secret.php";
+
+    /*Include PHP Mailer Code */
     include_once "../../emailCode/emailSendNewsletter.php";
 
     if (!$mail->send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;
+
     } else {
         echo "<script>Swal.fire({
             icon: 'success',

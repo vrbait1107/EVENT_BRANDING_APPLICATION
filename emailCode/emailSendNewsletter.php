@@ -21,7 +21,11 @@ $mail->Username = $emailUsername;
 $mail->Password = $emailPassword;
 $mail->setFrom($emailSetFrom, $techfestName);
 $mail->addReplyTo('non-reply@gmail.com', $techfestName);
-$mail->addAddress($newsletterEmails, "$techfestName Users");
+
+foreach ($newsletterEmails as $row) {
+    $mail->addBCC($row, "$techfestName Users");
+}
+
 $mail->Subject = $newsletterSubject;
 
 // multiple attachment

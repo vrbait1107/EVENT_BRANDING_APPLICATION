@@ -8,7 +8,7 @@ require_once "../../config/configPDO.php";
 session_start();
 
 //---------------------------->> SECRETS
-require_once "../../config/Secret.php";
+require "../../config/Secret.php";
 
 extract($_POST);
 extract($_FILES);
@@ -23,69 +23,111 @@ if (isset($_POST["targetMessage"])) {
 
         if ($response->success) {
 
-            if ($targetAudience === "collegeLevel") {
+            try {
 
-                $sql = "SELECT DISTINCT email FROM event_information";
+                if ($targetAudience === "collegeLevel") {
 
-                //Preparing Query
-                $result = $conn->prepare($sql);
+                    if ($targetAudience == "") {
+                        echo "<script>Swal.fire({
+                                icon: 'warning',
+                                title: 'Warning',
+                                text: 'Target Audience cannot be Empty'
+                            })</script>";
+                        exit;
+                    }
 
-                //Executing Query
-                $result->execute();
+                    $sql = "SELECT DISTINCT email FROM event_information";
 
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    $targetEmails = $row['email'];
+                    //Preparing Query
+                    $result = $conn->prepare($sql);
 
-                    sendMail($targetEmails, $targetSubject, $targetMessage);
-                }
-            } elseif ($targetAudience === "departmentLevel") {
+                    //Executing Query
+                    $result->execute();
 
-                $targetDepartment = trim($_POST['targetDepartment']);
-                $targetEvent = trim($_POST['targetEvent']);
+                    $collegeArray = array();
 
-                //Query
-                $sql = "SELECT DISTINCT email FROM event_information WHERE event_information.event IN
-          (SELECT eventName FROM events_details_information WHERE departmentName = :targetDepartment";
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        array_push($collegeArray, $row['email']);
+                    }
 
-                //Preparing Query
-                $result = $conn->prepare($sql);
-
-                //Binding Values
-                $result->bindValue(":targetDepartment", $targetDepartment);
-
-                //Executing Query
-                $result->execute();
-
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    $targetEmails = $row['email'];
+                    $targetEmails = $collegeArray;
 
                     sendMail($targetEmails, $targetSubject, $targetMessage);
-                }
 
-            } elseif ($targetAudience === "eventLevel") {
+                } elseif ($targetAudience === "departmentLevel") {
 
-                $targetDepartment = trim($_POST['targetDepartment']);
-                $targetEvent = trim($_POST['targetEvent']);
+                    if ($targetAudience == "" || $targetDepartment == "") {
+                        echo "<script>Swal.fire({
+                            icon: 'warning',
+                            title: 'Warning',
+                            text: 'Target Audience & Department cannot be Empty'
+                            })</script>";
+                        exit;
+                    }
 
-                $sql = "SELECT distinct email FROM event_information WHERE event = :targetEvent";
+                    $targetDepartment = $_POST['targetDepartment'];
 
-                //Preparing Query
-                $result = $conn->prepare($sql);
+                    //Query
+                    $sql = "SELECT DISTINCT email FROM event_information WHERE event_information.event IN
+          (SELECT eventName FROM events_details_information WHERE eventDepartment = :targetDepartment)";
 
-                //Binding Values
-                $result->bindValue(":targetEvent", $targetEvent);
+                    //Preparing Query
+                    $result = $conn->prepare($sql);
 
-                //Executing Query
-                $result->execute();
+                    //Binding Values
+                    $result->bindValue(":targetDepartment", $targetDepartment);
 
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    //Executing Query
+                    $result->execute();
 
-                    $targetEmails = $row['email'];
+                    $departmentArray = array();
+
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        array_push($departmentArray, $row['email']);
+                    }
+
+                    $targetEmails = $departmentArray;
+
                     sendMail($targetEmails, $targetSubject, $targetMessage);
+
+                } elseif ($targetAudience === "eventLevel") {
+
+                    if ($targetAudience == "" || $targetDepartment == "" || $targetEvent == "") {
+                        echo "<script>Swal.fire({
+                            icon: 'warning',
+                            title: 'Warning',
+                            text: 'Target Audience & Department cannot be Empty'
+                            })</script>";
+                        exit;
+                    }
+
+                    $sql = "SELECT distinct email FROM event_information WHERE event = :targetEvent";
+
+                    //Preparing Query
+                    $result = $conn->prepare($sql);
+
+                    //Binding Values
+                    $result->bindValue(":targetEvent", $targetEvent);
+
+                    //Executing Query
+                    $result->execute();
+
+                    $eventArray = array();
+
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        array_push($eventArray, $row['email']);
+                    }
+
+                    $targetEmails = $eventArray;
+
+                    sendMail($targetEmails, $targetSubject, $targetMessage);
+
+                } else {
+                    echo "Something Went Wrong";
                 }
 
-            } else {
-                echo "Something Went Wrong";
+            } catch (PDOException $e) {
+                echo "Something Went Wrong" . $e->getMessage();
             }
 
         } else {
@@ -106,17 +148,25 @@ if (isset($_POST["targetMessage"])) {
 
 function sendMail($targetEmails, $targetSubject, $targetMessage)
 {
-    // ##### Include PHP Mailer Code
+
+    print_r($targetEmails);
+
+    //---------------------------->> SECRETS
+    require "../../config/Secret.php";
+
+    /* Include PHP Mailer Code */
+
     include_once "../../emailCode/emailSendMails.php";
 
     if (!$mail->send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;
+
     } else {
         echo "<script>Swal.fire({
-      icon: 'success',
-      title: 'Success',
-      text: 'Email Sent'
-    })</script>";
+            icon: 'success',
+            title: 'Success',
+            text: 'Email Sent'
+            })</script>";
     }
 
 }

@@ -54,7 +54,7 @@ include_once "includes/adminNavbar.php";
     <main class="container">
       <div class="row">
         <section class="col-md-6 my-5 offset-md-3">
-          
+
           <h2 class="font-Staatliches-heading text-info text-center">Send Mails to Participants</h2>
           <hr>
 
@@ -67,7 +67,7 @@ include_once "includes/adminNavbar.php";
               <select name="targetAudience" id="targetAudience" class="form-control">
                 <option selected disabled>Choose...</option>
                 <option value="collegeLevel">College Level</option>
-                <option value="deparmentLevel">Department Level </option>
+                <option value="departmentLevel">Department Level </option>
                 <option value="eventLevel">Event Level</option>
               </select>
             </div>
