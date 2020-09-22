@@ -1,6 +1,31 @@
 <?php
 
+$currentCookieParams = session_get_cookie_params();
+$cookie_domain = 'localhost';
+if (PHP_VERSION_ID >= 70300) {
+    session_set_cookie_params([
+        'lifetime' => $currentCookieParams["lifetime"],
+        'path' => '/',
+        'domain' => $cookie_domain,
+        'secure' => "1",
+        'httponly' => "1",
+        'samesite' => 'None',
+    ]);
+} else {
+    session_set_cookie_params(
+        $currentCookieParams["lifetime"],
+        '/; samesite=None',
+        $cookie_domain,
+        "1",
+        "1"
+    );
+}
+
 session_start();
+
+// ini_set('session.cookie_secure', "1");
+// ini_set('session.cookie_httponly', "1");
+// ini_set('session.cookie_samesite', 'None');
 
 $eventName = $_POST['eventName'];
 $_SESSION["eventName"] = $eventName;
@@ -8,7 +33,6 @@ $_SESSION["eventName"] = $eventName;
 header("Pragma: no-cache");
 header("Cache-Control: no-cache");
 header("Expires: 0");
-
 
 // following files need to be included
 require_once "./lib/config_paytm.php";
@@ -61,10 +85,6 @@ foreach ($paramList as $name => $value) {
 }
 ?>
 			<input type="hidden" name="CHECKSUMHASH" value="<?php echo $checkSum ?>">
-
-			<form action="pgResponse.php" method="post">
-			<input type="hidden" name="eventName" value="<?php echo $eventName ?>">
-		</form>
 
 			</tbody>
 		</table>
