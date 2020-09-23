@@ -66,6 +66,9 @@ Development of Event Branding Application is an attempt to address the problems 
 - View/Add/Delete/Update News/Notification Information
 - View/Delete Feedaback Information & View Feedback Statistics.
 
+## Project Screenshots
+- View Project Screenshots in pdf format. [View Screenshots](https://github.com/vrbait1107/EVENT_BRANDING_APPLICATION/blob/master/Project%20Screenshots/PROJECT%20SCREENSHOTS.pdf) 
+
 ## PHP Mailer
 
 - This project use PHP Mailer library for email purpose, So you must mention your email username and password in script, for more details and documentation of PHP Mailer library go to https://github.com/PHPMailer/PHPMailer
