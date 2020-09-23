@@ -70,7 +70,7 @@ include_once "includes/adminNavbar.php";
     <div id="layoutSidenav_content">
 
         <main class="container-fluid">
-            <h2 class="mt-4 font-Staatliches-heading font-time text-center text-info">Dashboard for Student Coordinator <br/>
+            <h2 class="mt-4 font-Staatliches-heading text-center text-info">Dashboard for Student Coordinator <br/>
             <span class="text-danger"><?php echo $adminEvent; ?></span>
             </h2>
         <hr/>

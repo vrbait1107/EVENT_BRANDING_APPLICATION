@@ -19,7 +19,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php $techfestName?> | REACTIVATE USER ACCOUNT</title>
+    <title><?php echo $techfestName ?> | REACTIVATE USER ACCOUNT</title>
 
     <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
