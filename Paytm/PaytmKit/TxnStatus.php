@@ -1,7 +1,5 @@
 <?php
 
-
-
 $currentCookieParams = session_get_cookie_params();
 $cookie_domain = 'localhost';
 if (PHP_VERSION_ID >= 70300) {
@@ -24,10 +22,6 @@ if (PHP_VERSION_ID >= 70300) {
 }
 
 session_start();
-
-// ini_set('session.cookie_secure', "1");
-// ini_set('session.cookie_httponly', "1");
-// ini_set('session.cookie_samesite', 'None');
 
 header("Pragma: no-cache");
 header("Cache-Control: no-cache");

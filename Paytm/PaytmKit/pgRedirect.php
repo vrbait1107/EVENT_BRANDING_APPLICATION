@@ -23,12 +23,10 @@ if (PHP_VERSION_ID >= 70300) {
 
 session_start();
 
-// ini_set('session.cookie_secure', "1");
-// ini_set('session.cookie_httponly', "1");
-// ini_set('session.cookie_samesite', 'None');
-
 $eventName = $_POST['eventName'];
 $_SESSION["eventName"] = $eventName;
+
+print_r($_SESSION);
 
 header("Pragma: no-cache");
 header("Cache-Control: no-cache");
