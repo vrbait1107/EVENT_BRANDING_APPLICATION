@@ -70,11 +70,12 @@ try {
 <body>
 
 
+    <!--Loader-->
+    <div id="loader"></div>
+
     <!--Include User Navbar-->
     <?php include_once "includes/navbar.php";?>
 
-    <!--Loader-->
-    <div id="loader"></div>
 
     <main class="container-fluid welcome-section">
         <div class="row mx-auto text-center">
