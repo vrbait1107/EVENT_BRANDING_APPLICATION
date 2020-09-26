@@ -24,55 +24,65 @@ require_once "config/configPDO.php";
 
 if (isset($_GET['token'])) {
 
-    $token = htmlspecialchars($_GET['token']);
+    try {
 
-    $login = "login.php";
+        # Avoid XSS Attack
+        $token = htmlspecialchars($_GET['token']);
 
-    //Query
-    $sql = "SELECT * FROM user_information WHERE token = :token";
+        $login = "login.php";
 
-    //Preparing Query
-    $result = $conn->prepare($sql);
+        # Query
+        $sql = "SELECT * FROM user_information WHERE token = :token";
 
-    // Binding Values
-    $result->bindValue(":token", $token);
+        # Preparing Query
+        $result = $conn->prepare($sql);
 
-    //Executing Query
-    $result->execute();
+        # Binding Values
+        $result->bindValue(":token", $token);
 
-    $row = $result->fetch(PDO::FETCH_ASSOC);
+        # Executing Query
+        $result->execute();
 
-    $dbtokenDate = strtotime($row['tokenDate']);
+        $row = $result->fetch(PDO::FETCH_ASSOC);
 
-    $currentDatetime = date("Y-m-d H:i:s");
+        $dbtokenDate = strtotime($row['tokenDate']);
 
-    $currentDatetimeMain = strtotime($currentDatetime);
+        $currentDatetime = date("Y-m-d H:i:s");
 
-    if ($dbtokenDate >= $currentDatetimeMain) {
+        $currentDatetimeMain = strtotime($currentDatetime);
 
-        $sql1 = "UPDATE user_information SET status = :active WHERE token = :token";
+        # Checking Wether token time expired or not.
+        if ($dbtokenDate >= $currentDatetimeMain) {
 
-        $result1 = $conn->prepare($sql1);
-        $result1->bindValue(":active", "active");
-        $result1->bindValue(":token", $token);
-        $result1->execute();
+            $sql1 = "UPDATE user_information SET status = :active WHERE token = :token";
 
-        if ($result1) {
-            echo "<script>Swal.fire({
+            $result1 = $conn->prepare($sql1);
+            $result1->bindValue(":active", "active");
+            $result1->bindValue(":token", $token);
+            $result1->execute();
+
+            if ($result1) {
+                echo "<script>Swal.fire({
         icon: 'success',
         title: 'Account is Activated',
         text: 'Your account is successfully activated, Please Login to Continue',
         footer: '<a href = $login >Go to the Login Page</a>'
       })</script>";
-        }
+            }
 
-    } else {
-        echo "<script>Swal.fire({
+        } else {
+            echo "<script>Swal.fire({
         icon: 'warning',
         title: 'Token Time Expire',
         text: 'Please Register Again',
         footer: '<a href = $login >Go to the Login Page</a>'
       })</script>";
+        }
+
+    } catch (PDOException $e) {
+        echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+        # Development Purpose Error Only
+        echo "Error " . $e->getMessage();
     }
 
 }

@@ -16,14 +16,22 @@ if (!isset($_SESSION['user'])) {
 
 //------------------------------>> EXTRACT DATA FROM DB
 
-// Sql Query
-$sql = "SELECT * FROM sponsor_information";
+try {
 
-// Preparing Query
-$result = $conn->prepare($sql);
+# Sql Query
+    $sql = "SELECT * FROM sponsor_information";
 
-// Executing Query
-$result->execute();
+# Preparing Query
+    $result = $conn->prepare($sql);
+
+# Executing Query
+    $result->execute();
+
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
+}
 
 ?>
 
@@ -37,7 +45,7 @@ $result->execute();
     <title><?php echo $techfestName ?> | SPONSORS</title>
     <link rel="stylesheet" href="css/sponsor.css">
 
-    <!-- Include Header Scripts -->
+    <!--Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
 
 </head>
@@ -54,10 +62,10 @@ $result->execute();
 
     <?php
 
-//Checking Count
+#Checking Count
 if ($result->rowCount() > 0) {
 
-    // Fetching Data from Database
+    # Fetching Data from Database
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
         $sponsorLogo = $row["sponsorLogo"];

@@ -40,130 +40,138 @@ $login = "login.php";
 
 if (isset($_POST['submit'])) {
 
-    if (isset($_POST['g-recaptcha-response'])) {
+    try {
 
-        $secretKey = $recaptchaSecretKey;
-        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
-        $response = json_decode($verifyResponse);
+        if (isset($_POST['g-recaptcha-response'])) {
 
-        if ($response->success) {
+            $secretKey = $recaptchaSecretKey;
+            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
+            $response = json_decode($verifyResponse);
 
-            // Removing White Spaces
-            $userName = trim($_POST['userName']);
-            $firstName = trim($_POST['firstName']);
-            $lastName = trim($_POST['lastName']);
-            $mobileNumber = trim($_POST['mobileNumber']);
-            $collegeName = trim($_POST['collegeName']);
-            $department = trim($_POST['department']);
-            $year = trim($_POST['year']);
-            $password = trim($_POST['password']);
-            $confirm_password = trim($_POST['confirmPassword']);
+            if ($response->success) {
 
-            // Avoid XSS Attack
-            $userName = htmlspecialchars($_POST['userName']);
-            $firstName = htmlspecialchars($_POST['firstName']);
-            $lastName = htmlspecialchars($_POST['lastName']);
-            $mobileNumber = htmlspecialchars($_POST['mobileNumber']);
-            $collegeName = htmlspecialchars($_POST['collegeName']);
-            $department = htmlspecialchars($_POST['department']);
-            $year = htmlspecialchars($_POST['year']);
-            $password = htmlspecialchars($_POST['password']);
-            $confirm_password = htmlspecialchars($_POST['confirmPassword']);
+                # Removing White Spaces
+                $userName = trim($_POST['userName']);
+                $firstName = trim($_POST['firstName']);
+                $lastName = trim($_POST['lastName']);
+                $mobileNumber = trim($_POST['mobileNumber']);
+                $collegeName = trim($_POST['collegeName']);
+                $department = trim($_POST['department']);
+                $year = trim($_POST['year']);
+                $password = trim($_POST['password']);
+                $confirm_password = trim($_POST['confirmPassword']);
 
-            // Set Expiery Time for Token
-            $tokenDate = date("Y-m-d H:i:s");
-            $tokenDateMain = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($tokenDate)));
+                # Avoid XSS Attack
+                $userName = htmlspecialchars($_POST['userName']);
+                $firstName = htmlspecialchars($_POST['firstName']);
+                $lastName = htmlspecialchars($_POST['lastName']);
+                $mobileNumber = htmlspecialchars($_POST['mobileNumber']);
+                $collegeName = htmlspecialchars($_POST['collegeName']);
+                $department = htmlspecialchars($_POST['department']);
+                $year = htmlspecialchars($_POST['year']);
+                $password = htmlspecialchars($_POST['password']);
+                $confirm_password = htmlspecialchars($_POST['confirmPassword']);
 
-            // Token
-            $token = bin2hex(random_bytes(15));
+                # Set Expiery Time for Token
+                $tokenDate = date("Y-m-d H:i:s");
+                $tokenDateMain = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($tokenDate)));
 
-            // Hash Password
-            $hashPass = password_hash($password, PASSWORD_BCRYPT);
-            $hashConPass = password_hash($confirm_password, PASSWORD_BCRYPT);
+                # Token
+                $token = bin2hex(random_bytes(15));
 
-            // Query
-            $sql1 = "SELECT * FROM user_information WHERE user_information.email = :userName";
+                # Hash Password
+                $hashPass = password_hash($password, PASSWORD_BCRYPT);
+                $hashConPass = password_hash($confirm_password, PASSWORD_BCRYPT);
 
-            //Preparing Query
-            $result1 = $conn->prepare($sql1);
+                # Query
+                $sql1 = "SELECT * FROM user_information WHERE user_information.email = :userName";
 
-            //Binding Value
-            $result1->bindValue(":userName", $userName);
+                # Preparing Query
+                $result1 = $conn->prepare($sql1);
 
-            //Executing Value
-            $result1->execute();
+                # Binding Value
+                $result1->bindValue(":userName", $userName);
 
-            if ($result1->rowCount() > 0) {
-                echo "<script>Swal.fire({
+                # Executing Value
+                $result1->execute();
+
+                if ($result1->rowCount() > 0) {
+                    echo "<script>Swal.fire({
                     icon: 'warning',
                     title: 'Account is Already Exist',
                     text: 'You are already registerd with $techfestName, Login to Continue',
                     footer: '<a href = $login >Go to the Login Page</a>'
                   })</script>";
 
-            } else {
+                } else {
 
-                //Query
-                $sql = "INSERT INTO user_information(email, firstName, lastName,
+                    # Query
+                    $sql = "INSERT INTO user_information(email, firstName, lastName,
               mobileNumber, collegeName, departmentName, academicYear, password, tokenDate, token)
               VALUES (:userName, :firstName, :lastName, :mobileNumber, :collegeName, :department, :year,
               :hashPass, :tokenDateMain, :token )";
 
-                // Preparing Query
-                $result = $conn->prepare($sql);
+                    # Preparing Query
+                    $result = $conn->prepare($sql);
 
-                //Binding Values
-                $result->bindValue(":userName", $userName);
-                $result->bindValue(":firstName", $firstName);
-                $result->bindValue(":lastName", $lastName);
-                $result->bindValue(":mobileNumber", $mobileNumber);
-                $result->bindValue(":collegeName", $collegeName);
-                $result->bindValue(":department", $department);
-                $result->bindValue(":year", $year);
-                $result->bindValue(":hashPass", $hashPass);
-                $result->bindValue(":tokenDateMain", $tokenDateMain);
-                $result->bindValue(":token", $token);
+                    # Binding Values
+                    $result->bindValue(":userName", $userName);
+                    $result->bindValue(":firstName", $firstName);
+                    $result->bindValue(":lastName", $lastName);
+                    $result->bindValue(":mobileNumber", $mobileNumber);
+                    $result->bindValue(":collegeName", $collegeName);
+                    $result->bindValue(":department", $department);
+                    $result->bindValue(":year", $year);
+                    $result->bindValue(":hashPass", $hashPass);
+                    $result->bindValue(":tokenDateMain", $tokenDateMain);
+                    $result->bindValue(":token", $token);
 
-                // Executing Query
-                $result->execute();
+                    # Executing Query
+                    $result->execute();
 
-                if ($result) {
+                    if ($result) {
 
-                    echo "<script>Swal.fire({
+                        echo "<script>Swal.fire({
                         icon: 'success',
                         title: 'Activate Your Account',
                         text: 'Check Your Email for activate your account',
                         footer: '<a href = $login >Go to the Login Page</a>'
                       })</script>";
 
-                    /* PHP MAILER CODE */
-                    include_once "./emailCode/emailRegister.php";
+                        /* PHP MAILER CODE */
+                        include_once "./emailCode/emailRegister.php";
 
-                    if (!$mail->send()) {
-                        echo "Mailer Error: " . $mail->ErrorInfo;
+                        if (!$mail->send()) {
+                            echo "Mailer Error: " . $mail->ErrorInfo;
+                        } else {
+                            echo "<h5 class='text-center alert alert-warning col-md-6 offset-md-3' role='alert' >Check Your Email.</h5>";
+                        }
+
                     } else {
-                        echo "<h5 class='text-center alert alert-warning col-md-6 offset-md-3' role='alert' >Check Your Email.</h5>";
-                    }
-
-                } else {
-                    echo '<script>Swal.fire({
+                        echo '<script>Swal.fire({
                         icon: "error",
                         title: "Eror",
                         text: "Something Went Wrong",
                         footer: "<a href = ' . $login . ' >Go to the Login Page</a>"
                       })</script>';
+                    }
+
                 }
 
-            }
-
-        } else {
-            echo "<script>Swal.fire({
+            } else {
+                echo "<script>Swal.fire({
                 icon: 'warning',
                 title: 'Google Recaptcha Error',
                 text: 'Please fill Google Recaptcha'
               })</script>";
+            }
+
         }
 
+    } catch (PDOException $e) {
+        echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+        # Development Purpose Error Only
+        echo "Error " . $e->getMessage();
     }
 
 }

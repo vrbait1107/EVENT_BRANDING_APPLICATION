@@ -33,145 +33,156 @@ if (isset($_GET['token'])) {
 
     if (isset($_POST['resetPassword'])) {
 
-        // Avoid XSS Attack
+        # Avoid XSS Attack
         $userType = htmlspecialchars($_POST['userType']);
         $newPassword = htmlspecialchars($_POST['newPassword']);
         $confirmNewPassword = htmlspecialchars($_POST['confirmNewPassword']);
 
-        if ($newPassword === $confirmNewPassword) {
-            $newPassword = password_hash($newPassword, PASSWORD_BCRYPT);
-            $confirmNewPassword = password_hash($confirmNewPassword, PASSWORD_BCRYPT);
+        try {
+            if ($newPassword === $confirmNewPassword) {
+                $newPassword = password_hash($newPassword, PASSWORD_BCRYPT);
+                $confirmNewPassword = password_hash($confirmNewPassword, PASSWORD_BCRYPT);
 
-            //---------------------------------------->> USER TYPE = USER
+                //---------------------------------------->> USER TYPE = USER
 
-            if ($userType == "User") {
+                if ($userType == "User") {
 
-                // Sql Query
-                $sql1 = "SELECT * FROM user_information WHERE token = :token";
+                    # Sql Query
+                    $sql1 = "SELECT * FROM user_information WHERE token = :token";
 
-                // Preparing Query
-                $result1 = $conn->prepare($sql1);
+                    # Preparing Query
+                    $result1 = $conn->prepare($sql1);
 
-                // Binding Value
-                $result1->bindValue(":token", $token);
+                    # Binding Value
+                    $result1->bindValue(":token", $token);
 
-                // Executing Query
-                $result1->execute();
+                    # Executing Query
+                    $result1->execute();
 
-                // Fetch Data from Database
-                $row1 = $result1->fetch(PDO::FETCH_ASSOC);
+                    # Fetch Data from Database
+                    $row1 = $result1->fetch(PDO::FETCH_ASSOC);
 
-                $dbtokenDate = strtotime($row1['tokenDate']);
+                    $dbtokenDate = strtotime($row1['tokenDate']);
 
-                $currentDatetime = date("Y-m-d H:i:s");
+                    $currentDatetime = date("Y-m-d H:i:s");
 
-                $currentDatetimeMain = strtotime($currentDatetime);
+                    $currentDatetimeMain = strtotime($currentDatetime);
 
-                if ($dbtokenDate >= $currentDatetimeMain) {
+                    # Checking Wether token expired or not
+                    if ($dbtokenDate >= $currentDatetimeMain) {
 
-                    $sql = "UPDATE user_information SET password = :newPassword WHERE token = :token";
+                        $sql = "UPDATE user_information SET password = :newPassword WHERE token = :token";
 
-                    $result = $conn->prepare($sql);
+                        $result = $conn->prepare($sql);
 
-                    $result->bindValue(":newPassword", $newPassword);
-                    $result->bindValue(":token", $token);
+                        $result->bindValue(":newPassword", $newPassword);
+                        $result->bindValue(":token", $token);
 
-                    $result->execute();
+                        $result->execute();
 
-                    if ($result) {
-                        echo "<script>Swal.fire({
+                        if ($result) {
+                            echo "<script>Swal.fire({
                         icon: 'success',
                         title: 'Successful',
                         text: 'Your Password Reset Successful, Please Login to Continue'
                         })</script>";
 
-                    } else {
-                        echo "<script>Swal.fire({
+                        } else {
+                            echo "<script>Swal.fire({
                         icon: 'error',
                         title: 'Error',
                         text: 'Something Went Wrong'
                         })</script>";
+                        }
+
+                    } else {
+                        echo "<script>Swal.fire({
+                        icon: 'warning',
+                        title: 'Token Time Expired',
+                        text: 'Please Request Again'
+                    })</script>";
+
                     }
+
+                    //---------------------------------------->> USER TYPE = ADMIN
 
                 } else {
-                    echo "<script>Swal.fire({
-                        icon: 'warning',
-                        title: 'Token Time Expired',
-                        text: 'Please Request Again'
-                    })</script>";
 
-                }
+                    # Sql Query
+                    $sql3 = "SELECT * FROM admin_information WHERE token = :token";
 
-                //---------------------------------------->> USER TYPE = ADMIN
+                    # Preparing Query
+                    $result3 = $conn->prepare($sql3);
 
-            } else {
+                    # Binding Values
+                    $result3->bindValue(":token", $token);
 
-                // Sql Query
-                $sql3 = "SELECT * FROM admin_information WHERE token = :token";
+                    # Executing Query
+                    $result3->execute();
 
-                //Preparing Query
-                $result3 = $conn->prepare($sql3);
+                    $row2 = $result3->fetch(PDO::FETCH_ASSOC);
 
-                //Binding Values
-                $result3->bindValue(":token", $token);
+                    $dbtokenDate = strtotime($row2['tokenDate']);
 
-                //Executing Query
-                $result3->execute();
+                    $currentDatetime = date("Y-m-d H:i:s");
 
-                $row2 = $result3->fetch(PDO::FETCH_ASSOC);
+                    $currentDatetimeMain = strtotime($currentDatetime);
 
-                $dbtokenDate = strtotime($row2['tokenDate']);
+                    # Checking Weither token expired or not
+                    if ($dbtokenDate >= $currentDatetimeMain) {
 
-                $currentDatetime = date("Y-m-d H:i:s");
+                        # SQL Query
+                        $sql4 = "UPDATE admin_information SET adminPassword= :newPassword WHERE token = :token";
 
-                $currentDatetimeMain = strtotime($currentDatetime);
+                        # Preparing Query
+                        $result4 = $conn->query($sql4);
 
-                if ($dbtokenDate >= $currentDatetimeMain) {
+                        # Binding Value
+                        $result4->bindValue(":newPassword", $newPassword);
+                        $result4->bindValue(":token", $token);
 
-                    // SQL Query
-                    $sql4 = "UPDATE admin_information SET adminPassword= :newPassword WHERE token = :token";
+                        # Executing Query
+                        $result4->execute();
 
-                    //Preparing Query
-                    $result4 = $conn->query($sql4);
-
-                    //Binding Value
-                    $result4->bindValue(":newPassword", $newPassword);
-                    $result4->bindValue(":token", $token);
-
-                    //Executing Query
-                    $result4->execute();
-
-                    if ($result4) {
-                        echo "<script>Swal.fire({
+                        if ($result4) {
+                            echo "<script>Swal.fire({
                         icon: 'success',
                         title: 'Successful',
                         text: 'Your Password Reset Successful, Please Login to Continue'
                     })</script>";
 
-                    } else {
-                        echo "<script>Swal.fire({
+                        } else {
+                            echo "<script>Swal.fire({
                         icon: 'error',
                         title: 'Error',
                         text: 'Something Went Wrong'
                         })</script>";
-                    }
+                        }
 
-                } else {echo "<script>Swal.fire({
+                    } else {
+                        echo "<script>Swal.fire({
                         icon: 'warning',
                         title: 'Token Time Expired',
                         text: 'Please Request Again'
                     })</script>";
+                    }
+
                 }
 
-            }
-
-        } else {
-
-            echo "<script>Swal.fire({
+            } else {
+                echo "<script>Swal.fire({
                 icon: 'warning',
                 title: 'Warning',
                 text: 'New Password and Confirm Password are not same'
             })</script>";
+            }
+
+        } catch (PDOException $e) {
+
+            echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+            # Development Purpose Error Only
+            echo "Error " . $e->getMessage();
+
         }
 
     }

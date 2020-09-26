@@ -42,14 +42,21 @@ if (!isset($_SESSION['user'])) {
 
     <?php
 
-// Sql Query
-$sql = "SELECT * FROM news_information";
+try {
+# Sql Query
+    $sql = "SELECT * FROM news_information";
 
-//Preparing Query
-$result = $conn->prepare($sql);
+# Preparing Query
+    $result = $conn->prepare($sql);
 
-//Executing Query
-$result->execute();
+# Executing Query
+    $result->execute();
+
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
+}
 
 ?>
 
@@ -65,7 +72,7 @@ $result->execute();
 
             <?php
 
-// Checking Count of Database Records
+# Checking Count of Database Records
 if ($result->rowCount() > 0) {
     ?>
 
@@ -85,7 +92,7 @@ if ($result->rowCount() > 0) {
 
                             <?php
 
-    // Fetching Values from Database
+    # Fetching Values from Database
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         ?>
                             <tr>

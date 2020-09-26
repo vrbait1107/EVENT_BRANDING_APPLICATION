@@ -18,41 +18,50 @@ if (isset($_POST['event1'])) {
 
 $email = $_SESSION['user'];
 
+try {
+
 // ----------------------------->> EXTRACT ALL INFO. ABOUT USER & HIS/HER PARTICIPATION
 
-$sql = "SELECT * FROM user_information INNER JOIN event_information ON
+    $sql = "SELECT * FROM user_information INNER JOIN event_information ON
 user_information.email= event_information.email
 WHERE user_information.email = :email AND event_information.event = :buttonEvent";
 
-$result = $conn->prepare($sql);
+    $result = $conn->prepare($sql);
 
-$result->bindValue(":email", $email);
-$result->bindValue(":buttonEvent", $buttonEvent);
+    $result->bindValue(":email", $email);
+    $result->bindValue(":buttonEvent", $buttonEvent);
 
-$result->execute();
+    $result->execute();
 
-$row = $result->fetch(PDO::FETCH_ASSOC);
+    $row = $result->fetch(PDO::FETCH_ASSOC);
 
-$firstName = $row['firstName'];
-$lastName = $row['lastName'];
-$department = $row['departmentName'];
-$prize = $row['prize'];
-$validate = $row['certificateId'];
-$event = $row['event'];
+    $firstName = $row['firstName'];
+    $lastName = $row['lastName'];
+    $department = $row['departmentName'];
+    $prize = $row['prize'];
+    $validate = $row['certificateId'];
+    $event = $row['event'];
 
 // ------------------------------------>> DIFF. BACKGROUND FOR DIFFERENT DEPARTMENT
 
-$sql1 = "SELECT * from events_details_information where eventName = '$buttonEvent'";
+    $sql1 = "SELECT * from events_details_information where eventName = '$buttonEvent'";
 
-$result1 = $conn->prepare($sql1);
+    $result1 = $conn->prepare($sql1);
 
-$result1->bindValue(":buttonEvent", $buttonEvent);
+    $result1->bindValue(":buttonEvent", $buttonEvent);
 
-$result1->execute();
+    $result1->execute();
 
-$row1 = $result1->fetch(PDO::FETCH_ASSOC);
+    $row1 = $result1->fetch(PDO::FETCH_ASSOC);
 
-$certificateDepartment = $row1['eventDepartment'];
+    $certificateDepartment = $row1['eventDepartment'];
+
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
+
+}
 
 ?>
 

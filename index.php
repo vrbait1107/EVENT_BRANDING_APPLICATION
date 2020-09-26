@@ -16,24 +16,24 @@ if (!isset($_SESSION['user'])) {
 
 //------------------------------>> VISITOR COUNTER
 
-$visitorIpAddress = $_SERVER['REMOTE_ADDR'];
-
-$sql1 = "SELECT * FROM visitor_counter WHERE ipAddress = :visitorIpAddress";
-$result1 = $conn->prepare($sql1);
-$result1->bindValue("visitorIpAddress", $visitorIpAddress);
-$result1->execute();
-
-// Total row Count
-$totaVisitor = $result1->rowCount();
-
-if ($totaVisitor == 0) {
-    $sql2 = "INSERT INTO visitor_counter (ipAddress) VALUES (:visitorIpAddress)";
-    $result2 = $conn->prepare($sql);
-    $result2->bindValue(":visitorIpAddress", $visitorIpAddress);
-    $result2->execute();
-}
-
 try {
+
+    $visitorIpAddress = $_SERVER['REMOTE_ADDR'];
+
+    $sql1 = "SELECT * FROM visitor_counter WHERE ipAddress = :visitorIpAddress";
+    $result1 = $conn->prepare($sql1);
+    $result1->bindValue("visitorIpAddress", $visitorIpAddress);
+    $result1->execute();
+
+    # Total row Count
+    $totaVisitor = $result1->rowCount();
+
+    if ($totaVisitor == 0) {
+        $sql2 = "INSERT INTO visitor_counter (ipAddress) VALUES (:visitorIpAddress)";
+        $result2 = $conn->prepare($sql);
+        $result2->bindValue(":visitorIpAddress", $visitorIpAddress);
+        $result2->execute();
+    }
 
     $sql = "SELECT * FROM visitor_counter";
     $result = $conn->prepare($sql);
@@ -44,7 +44,9 @@ try {
     }
 
 } catch (PDOException $e) {
-    echo "Error" . $e->getMessage();
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
 }
 
 ?>

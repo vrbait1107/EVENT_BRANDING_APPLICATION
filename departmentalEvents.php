@@ -9,24 +9,32 @@ require_once "config/configPDO.php";
 //------------------------------>> START SESSION
 session_start();
 
-if (isset($_POST["eventDepartmentName"])) {
+try {
 
-    $eventDepartmentName = htmlspecialchars($_POST["eventDepartmentName"]);
+    if (isset($_POST["eventDepartmentName"])) {
 
-    $_SESSION["eventDepartmentName"] = $eventDepartmentName;
+        $eventDepartmentName = htmlspecialchars($_POST["eventDepartmentName"]);
 
-    $sql = "SELECT * FROM events_details_information WHERE eventDepartment = :eventDepartment";
-    $result = $conn->prepare($sql);
-    $result->bindValue(":eventDepartment", $_SESSION["eventDepartmentName"]);
-    $result->execute();
+        $_SESSION["eventDepartmentName"] = $eventDepartmentName;
 
-} else {
+        $sql = "SELECT * FROM events_details_information WHERE eventDepartment = :eventDepartment";
+        $result = $conn->prepare($sql);
+        $result->bindValue(":eventDepartment", $_SESSION["eventDepartmentName"]);
+        $result->execute();
 
-    $sql = "SELECT * FROM events_details_information WHERE eventDepartment = :eventDepartment";
-    $result = $conn->prepare($sql);
-    $result->bindValue(":eventDepartment", $_SESSION["eventDepartmentName"]);
-    $result->execute();
+    } else {
 
+        $sql = "SELECT * FROM events_details_information WHERE eventDepartment = :eventDepartment";
+        $result = $conn->prepare($sql);
+        $result->bindValue(":eventDepartment", $_SESSION["eventDepartmentName"]);
+        $result->execute();
+
+    }
+
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
 }
 
 ?>

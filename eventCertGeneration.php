@@ -43,48 +43,57 @@ session_start();
 
 $email = $_SESSION['user'];
 
-// Sql Query
-$sql = "select * FROM user_information INNER JOIN event_information ON
+try {
+
+    # Sql Query
+    $sql = "SELECT * FROM user_information INNER JOIN event_information ON
 user_information.email= event_information.email
-WHERE user_information.email = :email and attendStatus = :present";
+WHERE user_information.email = :email AND attendStatus = :present";
 
-//Preapring Query
-$result = $conn->prepare($sql);
+    # Preapring Query
+    $result = $conn->prepare($sql);
 
-//Binding Values
-$result->bindValue(":email", $email);
-$result->bindValue(":present", "present");
+    # Binding Values
+    $result->bindValue(":email", $email);
+    $result->bindValue(":present", "present");
 
-//Executing Query
-$result->execute();
+    # Executing Query
+    $result->execute();
 
-if ($result->rowCount() > 0) {
+    if ($result->rowCount() > 0) {
 
-    echo "<table class='table'>
+        echo "<table class='table'>
     <thead>
     <th class='text-center'>Event</th>
     <th class='text-center'>Action</th>
     </thead>
     <tbody>";
 
-    // Fetching Values From Database
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        echo "<tr>
+        # Fetching Values From Database
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            echo "<tr>
         <td class='text-center'>" . $row['event'] . "</td>";
-        $event = $row['event'];
-        echo "<td>
+            $event = $row['event'];
+            echo "<td>
     <form action ='certGeneration.php' method ='post'>
     <input type='hidden' name='event1' value= '$event' />
     <input type='submit' class='btn btn btn-primary rounded-pill' name='submit' value='Generate Your Certificate'>
     </form>
     </td>
     </tr>";
-    }
+        }
 
-    echo "</tbody>
+        echo "</tbody>
     </table>";
 
+    }
+
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
 }
+
 ?>
 
                 </div>

@@ -13,35 +13,43 @@ extract($_POST);
 
 // --------------------------->> APPLY PROMOCODE
 
-if (isset($_POST["apply"])) {
+try {
 
-    $sql = "SELECT * FROM events_details_information WHERE id = :eventId";
-    $result = $conn->prepare($sql);
-    $result->bindValue(":eventId", $eventId);
-    $result->execute();
+    if (isset($_POST["apply"])) {
 
-    $row = $result->fetch(PDO::FETCH_ASSOC);
+        $sql = "SELECT * FROM events_details_information WHERE id = :eventId";
+        $result = $conn->prepare($sql);
+        $result->bindValue(":eventId", $eventId);
+        $result->execute();
 
-    $dbPromocode = $row["promocode"];
-    $dbDiscount = $row["discount"];
-    $dbEventPrice = $row['eventPrice'];
+        $row = $result->fetch(PDO::FETCH_ASSOC);
 
-    if ($dbPromocode == $promocode && $dbPromocode !== "Not Applicable") {
+        $dbPromocode = $row["promocode"];
+        $dbDiscount = $row["discount"];
+        $dbEventPrice = $row['eventPrice'];
 
-        if ($dbDiscount !== 0) {
-            $discountValue = $dbEventPrice * 0.01 * $dbDiscount;
-            $newValue = $dbEventPrice - $discountValue;
-            echo $newValue;
-        }
-    } else {
-        echo "<script>Swal.fire({
+        if ($dbPromocode == $promocode && $dbPromocode !== "Not Applicable") {
+
+            if ($dbDiscount !== 0) {
+                $discountValue = $dbEventPrice * 0.01 * $dbDiscount;
+                $newValue = $dbEventPrice - $discountValue;
+                echo $newValue;
+            }
+        } else {
+            echo "<script>Swal.fire({
                         icon: 'error',
                         title: 'Invalid Promocode',
                         text: 'Check Your Promocode Again'
                     })</script>";
 
+        }
+
     }
 
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
 }
 
 // --------------------------->> CLOSE DB CONN

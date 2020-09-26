@@ -84,84 +84,93 @@ $paytmChecksum = isset($_POST["CHECKSUMHASH"]) ? $_POST["CHECKSUMHASH"] : ""; //
 $isValidChecksum = verifychecksum_e($paramList, PAYTM_MERCHANT_KEY, $paytmChecksum); //will return TRUE or FALSE string.
 
 if ($isValidChecksum == "TRUE") {
+
     if ($_POST["STATUS"] == "TXN_SUCCESS") {
 
-        // ##################################   Inserting Data into Database
+        try {
 
-        $paymentType = "Online Banking";
-        $certificateId = rand();
-        $gatewayName = $_POST['GATEWAYNAME'];
-        $resMsg = $_POST['RESPMSG'];
-        $bankName = $_POST['BANKNAME'];
-        $txnId = $_POST['TXNID'];
-        $txnAmount = $_POST['TXNAMOUNT'];
-        $orderId = $_POST['ORDERID'];
-        $status = $_POST['STATUS'];
-        $bankTxnId = $_POST['BANKTXNID'];
-        $txnDate = $_POST['TXNDATE'];
+            // ##################################   Inserting Data into Database
 
-        $sql = "INSERT INTO event_information (email, certificateId, event, paymentType,
+            $paymentType = "Online Banking";
+            $certificateId = rand();
+            $gatewayName = $_POST['GATEWAYNAME'];
+            $resMsg = $_POST['RESPMSG'];
+            $bankName = $_POST['BANKNAME'];
+            $txnId = $_POST['TXNID'];
+            $txnAmount = $_POST['TXNAMOUNT'];
+            $orderId = $_POST['ORDERID'];
+            $status = $_POST['STATUS'];
+            $bankTxnId = $_POST['BANKTXNID'];
+            $txnDate = $_POST['TXNDATE'];
+
+            $sql = "INSERT INTO event_information (email, certificateId, event, paymentType,
 			 gatewayName, resMsg, bankName, txnId, txnAmount, orderId, status,
 			 bankTxnId, txnDate) VALUES (:userName, :certificateId, :eventName, :paymentType,
 			 :gatewayName, :resMsg, :bankName, :txnId, :txnAmount, :orderId, :status,
 			 :bankTxnId, :txnDate)";
 
-        //Preparing Query
-        $result = $conn->prepare($sql);
+            //Preparing Query
+            $result = $conn->prepare($sql);
 
-        //Binding Value
-        $result->bindValue(":userName", $userName);
-        $result->bindValue(":certificateId", $certificateId);
-        $result->bindValue(":eventName", $eventName);
-        $result->bindValue(":paymentType", $paymentType);
-        $result->bindValue(":gatewayName", $gatewayName);
-        $result->bindValue(":resMsg", $resMsg);
-        $result->bindValue(":bankName", $bankName);
-        $result->bindValue(":txnId", $txnId);
-        $result->bindValue(":txnAmount", $txnAmount);
-        $result->bindValue(":orderId", $orderId);
-        $result->bindValue(":status", $status);
-        $result->bindValue(":bankTxnId", $bankTxnId);
-        $result->bindValue(":txnDate", $txnDate);
+            //Binding Value
+            $result->bindValue(":userName", $userName);
+            $result->bindValue(":certificateId", $certificateId);
+            $result->bindValue(":eventName", $eventName);
+            $result->bindValue(":paymentType", $paymentType);
+            $result->bindValue(":gatewayName", $gatewayName);
+            $result->bindValue(":resMsg", $resMsg);
+            $result->bindValue(":bankName", $bankName);
+            $result->bindValue(":txnId", $txnId);
+            $result->bindValue(":txnAmount", $txnAmount);
+            $result->bindValue(":orderId", $orderId);
+            $result->bindValue(":status", $status);
+            $result->bindValue(":bankTxnId", $bankTxnId);
+            $result->bindValue(":txnDate", $txnDate);
 
-        //Executing Query
-        $result->execute();
+            //Executing Query
+            $result->execute();
 
-        if ($result) {
+            if ($result) {
 
-            /* PHP MAILER CODE */
+                /* PHP MAILER CODE */
 
-            include_once "../../emailCode/emailEventRegistration.php";
+                include_once "../../emailCode/emailEventRegistration.php";
 
-            if (!$mail->send()) {
-                echo "<script>Swal.fire({
+                if (!$mail->send()) {
+                    echo "<script>Swal.fire({
                     icon: 'Warning',
                     title: 'Transaction Successful & Email Error',
                     text: 'Congratulation You are Successfully Registered for $eventName Event,
                     But there is issue with sending Email to your account, Please Contact Event Coordinator'
                 })</script>";
 
-            } else {
-                echo "<script>Swal.fire({
+                } else {
+                    echo "<script>Swal.fire({
                     icon: 'success',
                     title: 'Transaction Successful',
                     text: 'Congratulation You are Successfully Registered for $eventName Event'
                 })</script>";
 
-            }
+                }
 
-        } else {
-            echo "<script>Swal.fire({
+            } else {
+                echo "<script>Swal.fire({
 			icon: 'Warning',
 			title: 'Transaction Successful',
             text: 'Your Transaction is successful, but we are unable to save your details
              in database, Please contact Event Coordinator'
 		})</script>";
 
-        }
+            }
 
-        //Process your transaction here as success transaction.
-        //Verify amount & order id received from Payment gateway with your application's order id and amount.
+            //Process your transaction here as success transaction.
+            //Verify amount & order id received from Payment gateway with your application's order id and amount.
+
+        } catch (PDOException $e) {
+            echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+            # Development Purpose Error Only
+            echo "Error " . $e->getMessage();
+        }
 
     } else {
         echo "<script>Swal.fire({

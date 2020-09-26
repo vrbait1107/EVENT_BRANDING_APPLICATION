@@ -30,90 +30,104 @@ session_start();
 
     <?php
 
-if (isset($_POST['reactivate'])) {
+try {
 
-    $email = htmlspecialchars($_POST['email']);
+    if (isset($_POST['reactivate'])) {
 
-    // sql Query
-    $sql = "SELECT * FROM user_information WHERE email = :email";
+        # Avoid XSS
+        $email = htmlspecialchars($_POST['email']);
 
-    //Preparing query
-    $result = $conn->prepare($sql);
+        # sql Query
+        $sql = "SELECT * FROM user_information WHERE email = :email";
 
-    //Binding Values
-    $result->bindValue(":email", $email);
+        # Preparing query
+        $result = $conn->prepare($sql);
 
-    //Executing Query
-    $result->execute();
+        # Binding Values
+        $result->bindValue(":email", $email);
 
-    if ($result->rowCount() === 0) {
-        echo "<script>Swal.fire({
+        # Executing Query
+        $result->execute();
+
+        if ($result->rowCount() === 0) {
+            echo "<script>Swal.fire({
                 icon: 'error',
                 title: 'error',
                 text: 'No Such email present in database to reactivate your account'
             })</script>";
-    } else {
 
-        $token = bin2hex(random_bytes(15));
+        } else {
 
-        $sql = "UPDATE user_information SET token = :token WHERE email = :email";
+            # Generate Token
+            $token = bin2hex(random_bytes(15));
 
-        //Preparing Query
-        $result = $conn->prepare($sql);
+            # Sql Query
+            $sql = "UPDATE user_information SET token = :token WHERE email = :email";
 
-        //Binding Values
-        $result->bindValue(":token", $token);
-        $result->bindValue(":email", $email);
+            # Preparing Query
+            $result = $conn->prepare($sql);
 
-        //Executing Query
-        $result->execute();
+            # Binding Values
+            $result->bindValue(":token", $token);
+            $result->bindValue(":email", $email);
 
-        if ($result) {
+            # Executing Query
+            $result->execute();
 
-            /* PHP MAILER CODE */
-            include_once "./emailCode/emailDisableAccount.php";
+            if ($result) {
 
-            if (!$mail->send()) {
-                echo "Mailer Error: " . $mail->ErrorInfo;
-            } else {
-                echo " <script>Swal.fire({
+                /* PHP MAILER CODE */
+                include_once "./emailCode/emailDisableAccount.php";
+
+                if (!$mail->send()) {
+                    echo "Mailer Error: " . $mail->ErrorInfo;
+                } else {
+                    echo " <script>Swal.fire({
                             icon: 'success',
                             title: 'Success',
                             text: 'Email Sent'
                         })</script>";
+                }
+
             }
 
         }
 
     }
 
-}
-
 // -------------------------------->> ACTIVATE USER ACCOUNT
 
-if (isset($_GET['token'])) {
+    if (isset($_GET['token'])) {
 
-    $token = htmlspecialchars($_GET['token']);
+        # Avoid XSS
+        $token = htmlspecialchars($_GET['token']);
 
-    $sql = "UPDATE user_information SET status = :active WHERE token = :token";
+        # Sql Query
+        $sql = "UPDATE user_information SET status = :active WHERE token = :token";
 
-    //Preparing Query
-    $result = $conn->prepare($sql);
+        # Preparing Query
+        $result = $conn->prepare($sql);
 
-    //Binding Values
-    $result->bindValue(":active", "active");
-    $result->bindValue(":token", $token);
+        # Binding Values
+        $result->bindValue(":active", "active");
+        $result->bindValue(":token", $token);
 
-    //Executing Query
-    $result->execute();
+        # Executing Query
+        $result->execute();
 
-    if ($result) {
-        echo "<script>Swal.fire({
+        if ($result) {
+            echo "<script>Swal.fire({
                   icon: 'success',
                   title: 'Success',
                   text: 'Your account is successfully reactivated, We are happy to see you again'
                   })</script>";
+        }
     }
+
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
 }
 
 ?>

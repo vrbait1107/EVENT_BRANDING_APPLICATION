@@ -12,50 +12,61 @@ session_start();
 
 extract($_POST);
 
-if (isset($_POST['email'])) {
+try {
 
-    $email = htmlspecialchars($_POST["email"]);
+    if (isset($_POST['email'])) {
 
-    $sql1 = "SELECT * FROM user_information WHERE email = :email";
-    $result1 = $conn->prepare($sql1);
-    $result1->bindValue(":email", $email);
-    $result1->execute();
+        # Avoid XSS Attack
+        $email = htmlspecialchars($_POST["email"]);
 
-    if ($result1->rowCount() > 0) {
+        $sql1 = "SELECT * FROM user_information WHERE email = :email";
+        $result1 = $conn->prepare($sql1);
+        $result1->bindValue(":email", $email);
+        $result1->execute();
 
-        $sql2 = "SELECT * FROM newsletter_information WHERE email = :email";
-        $result2 = $conn->prepare($sql2);
-        $result2->bindValue(":email", $email);
-        $result2->execute();
+        if ($result1->rowCount() > 0) {
 
-        if ($result2->rowCount() < 0) {
+            $sql2 = "SELECT * FROM newsletter_information WHERE email = :email";
+            $result2 = $conn->prepare($sql2);
+            $result2->bindValue(":email", $email);
+            $result2->execute();
 
-            //Query
-            $sql = "INSERT INTO newsletter_information (email, subscribe) VALUES (:email, :Yes)";
+            if ($result2->rowCount() < 0) {
 
-            //Prepare Query
-            $result = $conn->prepare($sql);
+                # Query
+                $sql = "INSERT INTO newsletter_information (email, subscribe) VALUES (:email, :Yes)";
 
-            //Binding Value
-            $result->bindValue(":email", $email);
-            $result->bindValue(":Yes", "Yes");
+                # Prepare Query
+                $result = $conn->prepare($sql);
 
-            //Executing Value
-            $result->execute();
+                # Binding Value
+                $result->bindValue(":email", $email);
+                $result->bindValue(":Yes", "Yes");
 
-            if ($result) {
+                # Executing Value
+                $result->execute();
 
-                echo "<script>Swal.fire({
+                if ($result) {
+
+                    echo "<script>Swal.fire({
                     icon: 'success',
                     title: 'Success',
                     text: 'You are successfully subscribed to newsletter'
                 })</script>";
 
-            } else {
-                echo "<script>Swal.fire({
+                } else {
+                    echo "<script>Swal.fire({
                     icon: 'error',
                     title: 'Error',
                     text: 'You are failed to subscribe newsletter, Please try again'
+                })</script>";
+                }
+
+            } else {
+                echo "<script>Swal.fire({
+                    icon: 'warning',
+                    title: 'Warning',
+                    text: 'You are already subscribed to newsletter'
                 })</script>";
             }
 
@@ -63,18 +74,16 @@ if (isset($_POST['email'])) {
             echo "<script>Swal.fire({
                     icon: 'warning',
                     title: 'Warning',
-                    text: 'You are already subscribed to newsletter'
+                    text: 'Please Enter your registered email for this account'
                 })</script>";
         }
 
-    } else {
-        echo "<script>Swal.fire({
-                    icon: 'warning',
-                    title: 'Warning',
-                    text: 'Please Enter your registered email for this account'
-                })</script>";
     }
 
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
 }
 
 // --------------------------->> CLOSE DB CONNECTION
