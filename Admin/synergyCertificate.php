@@ -10,28 +10,37 @@ require_once '../config/configPDO.php';
 
 //-------------------------->> EXTRACT USER & HIS/HER PARTICIPATION DETAILS FROM DB
 
-$CertId = htmlspecialchars($_POST['certificateId']);
+try {
 
-$sql = "SELECT * FROM synergy_user_information WHERE certificateId = :certId";
+    $CertId = htmlspecialchars($_POST['certificateId']);
 
-//Preparing Query
-$result = $conn->prepare($sql);
+    $sql = "SELECT * FROM synergy_user_information WHERE certificateId = :certId";
 
-//Binding Value
-$result->bindValue(":certId", $CertId);
+    # Preparing Query
+    $result = $conn->prepare($sql);
 
-//Executing the Query
-$result->execute();
+    # Binding Value
+    $result->bindValue(":certId", $CertId);
 
-// Fetching Data from Database
-$row = $result->fetch(PDO::FETCH_ASSOC);
+    # Executing the Query
+    $result->execute();
 
-$validate = $row['certificateId'];
-$firstName = $row['firstName'];
-$lastName = $row['lastName'];
-$department = $row['departmentName'];
-$event = $row['eventName'];
-$prize = $row['prize'];
+    # Fetching Data from Database
+    $row = $result->fetch(PDO::FETCH_ASSOC);
+
+    $validate = $row['certificateId'];
+    $firstName = $row['firstName'];
+    $lastName = $row['lastName'];
+    $department = $row['departmentName'];
+    $event = $row['eventName'];
+    $prize = $row['prize'];
+
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
+}
+
 ?>
 
 

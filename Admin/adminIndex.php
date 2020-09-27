@@ -17,78 +17,86 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
 }
 
+try {
+
 // --------------------------->> DISPLAY PARTICIPANT COUNT & REVENUE
 
-$sqlData = "SELECT * FROM event_information";
-$resultData = $conn->query($sqlData);
-$resultData->execute();
-$rowCount = $resultData->rowCount();
-$totalAmount = 0;
+    $sqlData = "SELECT * FROM event_information";
+    $resultData = $conn->query($sqlData);
+    $resultData->execute();
+    $rowCount = $resultData->rowCount();
+    $totalAmount = 0;
 
-while ($rowData = $resultData->fetch(PDO::FETCH_ASSOC)) {
-    $totalAmount = $totalAmount + $rowData['txnAmount'];
-}
+    while ($rowData = $resultData->fetch(PDO::FETCH_ASSOC)) {
+        $totalAmount = $totalAmount + $rowData['txnAmount'];
+    }
 
 //--------------------------->> DISPLAY STUDENT COORDINATOR COUNT FOR COLLEGE
 
-$sqlDataAdmin = "SELECT * FROM admin_information
+    $sqlDataAdmin = "SELECT * FROM admin_information
     WHERE adminType= :studentCoordinator";
-$resultDataAdmin = $conn->prepare($sqlDataAdmin);
-$resultDataAdmin->bindValue(":studentCoordinator", "Student Coordinator");
-$resultDataAdmin->execute();
-$rowCountAdmin = $resultDataAdmin->rowCount();
+    $resultDataAdmin = $conn->prepare($sqlDataAdmin);
+    $resultDataAdmin->bindValue(":studentCoordinator", "Student Coordinator");
+    $resultDataAdmin->execute();
+    $rowCountAdmin = $resultDataAdmin->rowCount();
 
 // --------------------------->> DISPLAY FACULTY COORDINATOR COUNT FOR COLLEGE
 
-$sqlDataAdmin2 = "SELECT * FROM admin_information
+    $sqlDataAdmin2 = "SELECT * FROM admin_information
     WHERE adminType= :facultyCoordinator";
-$resultDataAdmin2 = $conn->prepare($sqlDataAdmin2);
-$resultDataAdmin2->bindValue(":facultyCoordinator", "Faculty Coordinator");
-$resultDataAdmin2->execute();
-$rowCountAdmin2 = $resultDataAdmin2->rowCount();
+    $resultDataAdmin2 = $conn->prepare($sqlDataAdmin2);
+    $resultDataAdmin2->bindValue(":facultyCoordinator", "Faculty Coordinator");
+    $resultDataAdmin2->execute();
+    $rowCountAdmin2 = $resultDataAdmin2->rowCount();
 
 // --------------------------->> PARTICIPANT COUNT DEPARTMENT WISE
 
-function count1($department)
-{
-    global $conn;
-    $sql = "SELECT * FROM event_information WHERE event IN
+    function count1($department)
+    {
+        global $conn;
+        $sql = "SELECT * FROM event_information WHERE event IN
         (SELECT eventName FROM events_details_information WHERE eventDepartment = :department)";
-    $result = $conn->prepare($sql);
-    $result->bindValue(":department", $department);
-    $result->execute();
-    $row = $result->rowCount();
-    return $row;
-}
+        $result = $conn->prepare($sql);
+        $result->bindValue(":department", $department);
+        $result->execute();
+        $row = $result->rowCount();
+        return $row;
+    }
 
 // --------------------------->> STUDENT CORDINATOR COUNT DEPARTMENT WISE
 
-function countAdmin($department)
-{
-    global $conn;
-    $sql = "SELECT * FROM admin_information
+    function countAdmin($department)
+    {
+        global $conn;
+        $sql = "SELECT * FROM admin_information
     WHERE adminType= :studentCoordinator AND adminDepartment = :department";
-    $result = $conn->prepare($sql);
-    $result->bindValue(":studentCoordinator", "Student Coordinator");
-    $result->bindValue(":department", $department);
-    $result->execute();
-    $row = $result->rowCount();
-    return $row;
-}
+        $result = $conn->prepare($sql);
+        $result->bindValue(":studentCoordinator", "Student Coordinator");
+        $result->bindValue(":department", $department);
+        $result->execute();
+        $row = $result->rowCount();
+        return $row;
+    }
 
 //--------------------------->> DISPLAY TOTAL REVENUE DEPARTMENT WISE
 
-function countRevenue($department)
-{
-    global $conn;
-    $sql = "SELECT SUM(txnAmount) AS totalAmount FROM event_information WHERE event IN
+    function countRevenue($department)
+    {
+        global $conn;
+        $sql = "SELECT SUM(txnAmount) AS totalAmount FROM event_information WHERE event IN
         (SELECT eventName FROM events_details_information WHERE eventDepartment = :department)";
-    $result = $conn->prepare($sql);
-    $result->bindValue(":department", $department);
-    $result->execute();
-    $row = $result->fetch(PDO::FETCH_ASSOC);
-    $totalAmount = $row['totalAmount'];
-    return $totalAmount + 0;
+        $result = $conn->prepare($sql);
+        $result->bindValue(":department", $department);
+        $result->execute();
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+        $totalAmount = $row['totalAmount'];
+        return $totalAmount + 0;
+    }
+
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
 }
 
 ?>

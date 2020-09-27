@@ -19,70 +19,78 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
 
 $department = $_SESSION["adminDepartment"];
 
-// ------------------------->>  DISPLAY PARTICIPATION COUNT & TOTAL REVENUE
+try {
 
-$sqlData = "SELECT * FROM event_information
+//------------------------->>  DISPLAY PARTICIPATION COUNT & TOTAL REVENUE
+
+    $sqlData = "SELECT * FROM event_information
     WHERE event IN (SELECT events_details_information.eventName
     FROM events_details_information WHERE eventDepartment ='$department')";
-$resultData = $conn->prepare($sqlData);
-$resultData->bindValue(":department", $department);
-$resultData->execute();
-$rowCount = $resultData->rowCount();
-$totalAmount = 0;
+    $resultData = $conn->prepare($sqlData);
+    $resultData->bindValue(":department", $department);
+    $resultData->execute();
+    $rowCount = $resultData->rowCount();
+    $totalAmount = 0;
 
-while ($rowData = $resultData->fetch(PDO::FETCH_ASSOC)) {
-    $totalAmount = $totalAmount + $rowData['txnAmount'];
-}
+    while ($rowData = $resultData->fetch(PDO::FETCH_ASSOC)) {
+        $totalAmount = $totalAmount + $rowData['txnAmount'];
+    }
 
-// ------------------------->>  DISPLAY ADMIN INFORMATION COUNT
+//------------------------->>  DISPLAY ADMIN INFORMATION COUNT
 
-$sqlDataAdmin = "SELECT * FROM admin_information
+    $sqlDataAdmin = "SELECT * FROM admin_information
 WHERE adminType = :studentCoordinator AND adminDepartment = :department";
-$resultDataAdmin = $conn->prepare($sqlDataAdmin);
-$resultDataAdmin->bindValue(":studentCoordinator", "Student Coordinator");
-$resultDataAdmin->bindValue(":department", $department);
-$resultDataAdmin->execute();
-$rowCountAdmin = $resultDataAdmin->rowCount();
+    $resultDataAdmin = $conn->prepare($sqlDataAdmin);
+    $resultDataAdmin->bindValue(":studentCoordinator", "Student Coordinator");
+    $resultDataAdmin->bindValue(":department", $department);
+    $resultDataAdmin->execute();
+    $rowCountAdmin = $resultDataAdmin->rowCount();
 
-// ------------------------->>  EXTRACTING EVENT NAME FROM DB IN ARRAY.
+//------------------------->>  EXTRACTING EVENT NAME FROM DB IN ARRAY.
 
-$sqlData1 = "SELECT eventName from events_details_information
+    $sqlData1 = "SELECT eventName from events_details_information
      WHERE eventDepartment = :department";
-$resultData1 = $conn->prepare($sqlData1);
-$resultData1->bindValue(":department", $department);
-$resultData1->execute();
+    $resultData1 = $conn->prepare($sqlData1);
+    $resultData1->bindValue(":department", $department);
+    $resultData1->execute();
 
-$events = array();
+    $events = array();
 
-while ($rowData1 = $resultData1->fetch(PDO::FETCH_ASSOC)) {
-    array_push($events, $rowData1['eventName']);
-}
+    while ($rowData1 = $resultData1->fetch(PDO::FETCH_ASSOC)) {
+        array_push($events, $rowData1['eventName']);
+    }
 
-// ------------------------->> PARTICIPANTS COUNT EVENT WISE
+//------------------------->> PARTICIPANTS COUNT EVENT WISE
 
-function count1($event)
-{
-    global $conn;
-    $sql = "SELECT * FROM event_information WHERE event = '$event'";
-    $result = $conn->prepare($sql);
-    $result->bindValue(":event", $event);
-    $result->execute();
-    $row = $result->rowCount();
-    return $row;
-}
+    function count1($event)
+    {
+        global $conn;
+        $sql = "SELECT * FROM event_information WHERE event = '$event'";
+        $result = $conn->prepare($sql);
+        $result->bindValue(":event", $event);
+        $result->execute();
+        $row = $result->rowCount();
+        return $row;
+    }
 
 //------------------------->> DISPLAY TOTAL REVENUE EVENT WISE
 
-function countRevenue($event)
-{
-    global $conn;
-    $sql = "SELECT SUM(txnAmount) AS totalAmount FROM event_information WHERE event = :event";
-    $result = $conn->prepare($sql);
-    $result->bindValue(":event", $event);
-    $result->execute();
-    $row = $result->fetch(PDO::FETCH_ASSOC);
-    $totalAmount = $row['totalAmount'];
-    return $totalAmount + 0;
+    function countRevenue($event)
+    {
+        global $conn;
+        $sql = "SELECT SUM(txnAmount) AS totalAmount FROM event_information WHERE event = :event";
+        $result = $conn->prepare($sql);
+        $result->bindValue(":event", $event);
+        $result->execute();
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+        $totalAmount = $row['totalAmount'];
+        return $totalAmount + 0;
+    }
+
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
 }
 
 ?>

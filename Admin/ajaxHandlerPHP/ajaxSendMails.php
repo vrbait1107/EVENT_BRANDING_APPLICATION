@@ -13,17 +13,17 @@ require "../../config/Secret.php";
 extract($_POST);
 extract($_FILES);
 
-if (isset($_POST["targetMessage"])) {
+try {
 
-    if (isset($_POST['g-recaptcha-response'])) {
+    if (isset($_POST["targetMessage"])) {
 
-        $secretKey = $recaptchaSecretKey;
-        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
-        $response = json_decode($verifyResponse);
+        if (isset($_POST['g-recaptcha-response'])) {
 
-        if ($response->success) {
+            $secretKey = $recaptchaSecretKey;
+            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
+            $response = json_decode($verifyResponse);
 
-            try {
+            if ($response->success) {
 
                 if ($targetAudience === "collegeLevel") {
 
@@ -38,10 +38,10 @@ if (isset($_POST["targetMessage"])) {
 
                     $sql = "SELECT DISTINCT email FROM event_information";
 
-                    //Preparing Query
+                    # Preparing Query
                     $result = $conn->prepare($sql);
 
-                    //Executing Query
+                    # Executing Query
                     $result->execute();
 
                     $collegeArray = array();
@@ -67,17 +67,17 @@ if (isset($_POST["targetMessage"])) {
 
                     $targetDepartment = $_POST['targetDepartment'];
 
-                    //Query
+                    # Query
                     $sql = "SELECT DISTINCT email FROM event_information WHERE event_information.event IN
           (SELECT eventName FROM events_details_information WHERE eventDepartment = :targetDepartment)";
 
-                    //Preparing Query
+                    # Preparing Query
                     $result = $conn->prepare($sql);
 
-                    //Binding Values
+                    # Binding Values
                     $result->bindValue(":targetDepartment", $targetDepartment);
 
-                    //Executing Query
+                    # Executing Query
                     $result->execute();
 
                     $departmentArray = array();
@@ -103,13 +103,13 @@ if (isset($_POST["targetMessage"])) {
 
                     $sql = "SELECT distinct email FROM event_information WHERE event = :targetEvent";
 
-                    //Preparing Query
+                    # Preparing Query
                     $result = $conn->prepare($sql);
 
-                    //Binding Values
+                    # Binding Values
                     $result->bindValue(":targetEvent", $targetEvent);
 
-                    //Executing Query
+                    # Executing Query
                     $result->execute();
 
                     $eventArray = array();
@@ -126,47 +126,49 @@ if (isset($_POST["targetMessage"])) {
                     echo "Something Went Wrong";
                 }
 
-            } catch (PDOException $e) {
-                echo "Something Went Wrong" . $e->getMessage();
-            }
-
-        } else {
-            echo "<script>Swal.fire({
+            } else {
+                echo "<script>Swal.fire({
             icon: 'warning',
             title: 'Google Recaptcha Error',
             text: 'Please fill Google Recaptcha'
           })</script>";
+            }
+
         }
 
+    } else {
+        echo "Something Went Wrong";
     }
-
-} else {
-    echo "Something Went Wrong";
-}
 
 // Mail code
 
-function sendMail($targetEmails, $targetSubject, $targetMessage)
-{
+    function sendMail($targetEmails, $targetSubject, $targetMessage)
+    {
 
-    print_r($targetEmails);
+        print_r($targetEmails);
 
-    //---------------------------->> SECRETS
-    require "../../config/Secret.php";
+        //---------------------------->> SECRETS
+        require "../../config/Secret.php";
 
-    /* Include PHP Mailer Code */
+        /* Include PHP Mailer Code */
 
-    include_once "../../emailCode/emailSendMails.php";
+        include_once "../../emailCode/emailSendMails.php";
 
-    if (!$mail->send()) {
-        echo "Mailer Error: " . $mail->ErrorInfo;
+        if (!$mail->send()) {
+            echo "Mailer Error: " . $mail->ErrorInfo;
 
-    } else {
-        echo "<script>Swal.fire({
+        } else {
+            echo "<script>Swal.fire({
             icon: 'success',
             title: 'Success',
             text: 'Email Sent'
             })</script>";
+        }
+
     }
 
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+# Development Purpose Error Only
+    echo "Error " . $e->getMessage();
 }

@@ -69,21 +69,28 @@ include_once "includes/adminNavbar.php";
 
 $department = $_SESSION['adminDepartment'];
 
-// Sql Query
+try {
 
-$sql = "SELECT * FROM user_information INNER JOIN event_information
+    # Sql Query
+    $sql = "SELECT * FROM user_information INNER JOIN event_information
         ON user_information.email= event_information.email
         WHERE event_information.event IN (SELECT events_details_information.eventName
         FROM events_details_information WHERE eventDepartment = :department)";
 
-//Preparing Query
-$result = $conn->prepare($sql);
+    # Preparing Query
+    $result = $conn->prepare($sql);
 
-//Binding Value
-$result->bindValue(":department", $department);
+    # Binding Value
+    $result->bindValue(":department", $department);
 
-//Executing Query
-$result->execute();
+    # Executing Query
+    $result->execute();
+
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
+}
 
 ?>
 

@@ -70,20 +70,22 @@ include_once "includes/adminNavbar.php";
 
                 <?php
 
-//  Sql Query
-$sql = "SELECT * FROM user_information INNER JOIN event_information ON
+try {
+
+    #  Sql Query
+    $sql = "SELECT * FROM user_information INNER JOIN event_information ON
       user_information.email= event_information.email ORDER BY firstName ASC";
 
-//Preparing Query
-$result = $conn->prepare($sql);
+    # Preparing Query
+    $result = $conn->prepare($sql);
 
-//Executing Value
-$result->execute();
+    # Executing Value
+    $result->execute();
 
-// Checking Record Count
-if ($result->rowCount() > 0) {
+    # Checking Record Count
+    if ($result->rowCount() > 0) {
 
-    ?>
+        ?>
 
                 <table class='table table-bordered' id='dataTableParticipants' class="display" width='100%' cellspacing='0'>
 
@@ -107,9 +109,9 @@ if ($result->rowCount() > 0) {
                   <tbody>
 
                     <?php
-// Fetching Data from Database
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        ?>
+# Fetching Data from Database
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            ?>
 
                     <tr>
                       <td class='text-center'> <?php echo $row['certificateId'] ?> </td>
@@ -130,12 +132,18 @@ if ($result->rowCount() > 0) {
 
                     <?php
 }
-    ?>
+        ?>
 
                   </tbody>
                 </table>
 
                 <?php
+}
+
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
 }
 ?>
 

@@ -12,68 +12,77 @@ require "../../config/Secret.php";
 extract($_POST);
 extract($_FILES);
 
-if (isset($_POST["newsletterMessage"])) {
+try {
 
-    if (isset($_POST['g-recaptcha-response'])) {
+    if (isset($_POST["newsletterMessage"])) {
 
-        $secretKey = $recaptchaSecretKey;
-        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
-        $response = json_decode($verifyResponse);
+        if (isset($_POST['g-recaptcha-response'])) {
 
-        if ($response->success) {
+            $secretKey = $recaptchaSecretKey;
+            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
+            $response = json_decode($verifyResponse);
 
-            $sql = "SELECT * FROM newsletter_information";
+            if ($response->success) {
 
-            //Preparing Query
-            $result = $conn->prepare($sql);
+                $sql = "SELECT * FROM newsletter_information";
 
-            //Executing Query
-            $result->execute();
+                # Preparing Query
+                $result = $conn->prepare($sql);
 
-            $row = $result->fetch(PDO::FETCH_ASSOC);
+                # Executing Query
+                $result->execute();
 
-            $newArray = array();
+                $row = $result->fetch(PDO::FETCH_ASSOC);
 
-            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                array_push($newArray, $row['email']);
-            }
+                $newArray = array();
 
-            $newsletterEmails = $newArray;
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    array_push($newArray, $row['email']);
+                }
 
-            sendMail($newsletterEmails, $newsletterSubject, $newsletterMessage);
+                $newsletterEmails = $newArray;
 
-        } else {
-            echo "<script>Swal.fire({
+                sendMail($newsletterEmails, $newsletterSubject, $newsletterMessage);
+
+            } else {
+                echo "<script>Swal.fire({
                 icon: 'warning',
                 title: 'Google Recaptcha Error',
                 text: 'Please fill Google Recaptcha'
               })</script>";
+            }
+
         }
 
     }
 
-}
-
 // ---------------------------------------->> MAIL CODE
 
-function sendMail($newsletterEmails, $newsletterSubject, $newsletterMessage)
-{
-    //---------------------------->> SECRETS
-    require "../../config/Secret.php";
+    function sendMail($newsletterEmails, $newsletterSubject, $newsletterMessage)
+    {
+        //---------------------------->> SECRETS
+        require "../../config/Secret.php";
 
-    /*Include PHP Mailer Code */
-    include_once "../../emailCode/emailSendNewsletter.php";
+        /*Include PHP Mailer Code */
+        include_once "../../emailCode/emailSendNewsletter.php";
 
-    if (!$mail->send()) {
-        echo "Mailer Error: " . $mail->ErrorInfo;
+        if (!$mail->send()) {
+            echo "Mailer Error: " . $mail->ErrorInfo;
 
-    } else {
-        echo "<script>Swal.fire({
+        } else {
+            echo "<script>Swal.fire({
             icon: 'success',
             title: 'Success',
             text: 'Email Sent'
           })</script>";
+        }
+
     }
+
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
 
 }
 

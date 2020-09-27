@@ -43,55 +43,65 @@ if (!isset($_SESSION['adminEmail'])) {
 <body class="sb-nav-fixed">
 
     <?php
-if (isset($_POST['changePassword'])) {
 
-    // Removing White Spaces
-    $password = trim($_POST['password']);
-    $conPassword = trim($_POST['confirmPassword']);
+try {
 
-    // Avoid XSS Attack
-    $password = htmlspecialchars($_POST['password']);
-    $conPassword = htmlspecialchars($_POST['confirmPassword']);
+    if (isset($_POST['changePassword'])) {
 
-    if ($password === $conPassword) {
-        $hashPassword = password_hash($password, PASSWORD_BCRYPT);
-        $hashConPassword = password_hash($conPassword, PASSWORD_BCRYPT);
+        # Removing White Spaces
+        $password = trim($_POST['password']);
+        $conPassword = trim($_POST['confirmPassword']);
 
-        $sql = "UPDATE admin_information SET adminPassword = :hashPassword
+        # Avoid XSS Attack
+        $password = htmlspecialchars($_POST['password']);
+        $conPassword = htmlspecialchars($_POST['confirmPassword']);
+
+        if ($password === $conPassword) {
+            $hashPassword = password_hash($password, PASSWORD_BCRYPT);
+            $hashConPassword = password_hash($conPassword, PASSWORD_BCRYPT);
+
+            # sql query
+            $sql = "UPDATE admin_information SET adminPassword = :hashPassword
                  where admin_information.email = :admin";
 
-        //Preparing Query
-        $result = $conn->prepare($sql);
+            # Preparing Query
+            $result = $conn->prepare($sql);
 
-        //Binding Value
-        $result->bindValue(":hashPassword", $hashPassword);
-        $result->bindValue(":email", $email);
+            # Binding Value
+            $result->bindValue(":hashPassword", $hashPassword);
+            $result->bindValue(":email", $email);
 
-        //Executing Query
-        $result->execute();
+            # Executing Query
+            $result->execute();
 
-        if ($result) {
-            echo "<script>Swal.fire({
+            if ($result) {
+                echo "<script>Swal.fire({
                             icon: 'success',
                             title: 'Successful',
                             text: 'Your Password is Successfully Changed'
                             })</script>";
-        } else {
-            echo "<script>Swal.fire({
+            } else {
+                echo "<script>Swal.fire({
                                 icon: 'error',
                                 title: 'Error',
                                 text: 'We are failed to change Password'
                             })</script>";
-        }
+            }
 
-    } else {
-        echo "<script>Swal.fire({
+        } else {
+            echo "<script>Swal.fire({
                             icon: 'warning',
                             title: 'Field does not match',
                             text: 'Password and Confirm New Password field are not match'
                         })</script>";
+        }
+
     }
 
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
 }
 
 ?>

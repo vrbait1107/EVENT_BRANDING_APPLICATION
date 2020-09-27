@@ -5,19 +5,21 @@ require_once "../../config/configPDO.php";
 
 extract($_POST);
 
+try {
+
 // ---------------------------->> READ OPERATION
 
-if (isset($_POST['readRecordData'])) {
+    if (isset($_POST['readRecordData'])) {
 
-    $sql = 'SELECT * FROM synergy_user_information';
+        $sql = 'SELECT * FROM synergy_user_information';
 
-    //Preparing Query
-    $result = $conn->prepare($sql);
+        # Preparing Query
+        $result = $conn->prepare($sql);
 
-    //Executing Value
-    $result->execute();
+        # Executing Value
+        $result->execute();
 
-    $data = '<table class= "table table-bordered" id= "dataTable" width="100%" cellspacing="0">
+        $data = '<table class= "table table-bordered" id= "dataTable" width="100%" cellspacing="0">
             <thead clas="text-center">
               <th>Certificate ID</th>
               <th>First Name</th>
@@ -31,11 +33,11 @@ if (isset($_POST['readRecordData'])) {
 
              <tbody>';
 
-    if ($result->rowCount() > 0) {
+        if ($result->rowCount() > 0) {
 
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
-            $data .= '<tr class="text-center">
+                $data .= '<tr class="text-center">
                 <td>' . $row['certificateId'] . '</td>
                 <td>' . $row['firstName'] . '</td>
                 <td>' . $row['lastName'] . '</td>
@@ -55,50 +57,56 @@ if (isset($_POST['readRecordData'])) {
                 <td> <button class="btn btn-danger" onclick = deleteSynergyData(' . $row["certificateId"] . ')><i class="fa fa-trash"></i></button></td>
               </tr>';
 
-        }
+            }
 
-    } else {
-        $data .= '<tr class="text-center">
+        } else {
+            $data .= '<tr class="text-center">
         <td colspan="6" class="font-weight-bold">No Records Found</td>
         </tr>';
-    }
+        }
 
-    $data .= '</tbody>
+        $data .= '</tbody>
           </table>';
 
-    echo $data;
+        echo $data;
 
-}
+    }
 
 // ---------------------------->> DELETE OPERATION
 
-if (isset($_POST['deleteId'])) {
+    if (isset($_POST['deleteId'])) {
 
-    $sql = "DELETE  FROM synergy_user_information WHERE certificateId = :deleteId";
+        $sql = "DELETE  FROM synergy_user_information WHERE certificateId = :deleteId";
 
-    //Preparing Query
-    $result = $conn->prepare($sql);
+        # Preparing Query
+        $result = $conn->prepare($sql);
 
-    //Binding Value
-    $result->bindValue(":deleteId", $deleteId);
+        # Binding Value
+        $result->bindValue(":deleteId", $deleteId);
 
-    //Executing Value
-    $result->execute();
+        # Executing Value
+        $result->execute();
 
-    if ($result) {
-        echo "<script>Swal.fire({
+        if ($result) {
+            echo "<script>Swal.fire({
             icon: 'success',
             title: 'Deleted',
             text: 'Your Data has been Deleted'
           })</script>";
 
-    } else {
-        echo "<script>Swal.fire({
+        } else {
+            echo "<script>Swal.fire({
             icon: 'error',
             title: 'ERROR',
             text: 'Unable to Delete Data'
           })</script>";
 
+        }
+
     }
 
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
 }

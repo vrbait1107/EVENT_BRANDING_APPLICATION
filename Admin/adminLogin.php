@@ -56,101 +56,110 @@ if (isset($_SESSION['adminEmail']) && $_SESSION['adminType'] && $_SESSION['admin
 
     <?php
 
-if (isset($_POST['login'])) {
+try {
 
-    if (isset($_POST['g-recaptcha-response'])) {
+    if (isset($_POST['login'])) {
 
-        $secretKey = $recaptchaSecretKey;
-        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
-        $response = json_decode($verifyResponse);
+        if (isset($_POST['g-recaptcha-response'])) {
 
-        if ($response->success) {
+            $secretKey = $recaptchaSecretKey;
+            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
+            $response = json_decode($verifyResponse);
 
-            // Removing White Spaces
-            $adminUserName = trim($_POST['email']);
-            $adminType = trim($_POST['adminType']);
-            $adminDepartment = trim($_POST['adminDepartment']);
-            $adminEvent = trim($_POST['adminEvent']);
-            $adminPassword = trim($_POST['password']);
+            if ($response->success) {
 
-            // Avoid XSS Attack
-            $adminUserName = htmlspecialchars($_POST['email']);
-            $adminType = htmlspecialchars($_POST['adminType']);
-            $adminDepartment = htmlspecialchars($_POST['adminDepartment']);
-            $adminEvent = htmlspecialchars($_POST['adminEvent']);
-            $adminPassword = htmlspecialchars($_POST['password']);
+                # Removing White Spaces
+                $adminUserName = trim($_POST['email']);
+                $adminType = trim($_POST['adminType']);
+                $adminDepartment = trim($_POST['adminDepartment']);
+                $adminEvent = trim($_POST['adminEvent']);
+                $adminPassword = trim($_POST['password']);
 
-            // Sql Query
-            $sql = "SELECT adminPassword FROM admin_information WHERE admin_information.email  = :adminUserName
+                # Avoid XSS Attack
+                $adminUserName = htmlspecialchars($_POST['email']);
+                $adminType = htmlspecialchars($_POST['adminType']);
+                $adminDepartment = htmlspecialchars($_POST['adminDepartment']);
+                $adminEvent = htmlspecialchars($_POST['adminEvent']);
+                $adminPassword = htmlspecialchars($_POST['password']);
+
+                # Sql Query
+                $sql = "SELECT adminPassword FROM admin_information WHERE admin_information.email  = :adminUserName
             AND admin_information.adminType = :adminType AND admin_information.adminEvent = :adminEvent AND
             admin_information.adminDepartment = :adminDepartment";
 
-            //Preparing Query
-            $result = $conn->prepare($sql);
+                # Preparing Query
+                $result = $conn->prepare($sql);
 
-            //Binding Values
-            $result->bindValue(":adminUserName", $adminUserName);
-            $result->bindValue(":adminType", $adminType);
-            $result->bindValue(":adminEvent", $adminEvent);
-            $result->bindValue(":adminDepartment", $adminDepartment);
+                # Binding Values
+                $result->bindValue(":adminUserName", $adminUserName);
+                $result->bindValue(":adminType", $adminType);
+                $result->bindValue(":adminEvent", $adminEvent);
+                $result->bindValue(":adminDepartment", $adminDepartment);
 
-            //Executing Value
-            $result->execute();
+                # Executing Value
+                $result->execute();
 
-            if ($result) {
+                if ($result) {
 
-                $row = $result->fetch(PDO::FETCH_ASSOC);
-                $password = $row['adminPassword'];
+                    $row = $result->fetch(PDO::FETCH_ASSOC);
+                    $password = $row['adminPassword'];
 
-                if (password_verify($adminPassword, $password) && ($adminType === "Administrator") &&
-                    ($adminDepartment === "Not Applicable") && ($adminEvent === "Not Applicable")) {
-                    $_SESSION['adminEmail'] = $adminUserName;
-                    $_SESSION['adminType'] = $adminType;
-                    $_SESSION['adminDepartment'] = $adminDepartment;
-                    $_SESSION['adminEvent'] = $adminEvent;
-                    header('Location:adminIndex.php');
+                    if (password_verify($adminPassword, $password) && ($adminType === "Administrator") &&
+                        ($adminDepartment === "Not Applicable") && ($adminEvent === "Not Applicable")) {
+                        $_SESSION['adminEmail'] = $adminUserName;
+                        $_SESSION['adminType'] = $adminType;
+                        $_SESSION['adminDepartment'] = $adminDepartment;
+                        $_SESSION['adminEvent'] = $adminEvent;
+                        header('Location:adminIndex.php');
 
-                } elseif (password_verify($adminPassword, $password) && ($adminType === "Student Coordinator")) {
-                    $_SESSION['adminEmail'] = $adminUserName;
-                    $_SESSION['adminType'] = $adminType;
-                    $_SESSION['adminDepartment'] = $adminDepartment;
-                    $_SESSION['adminEvent'] = $adminEvent;
-                    header('Location:studentCoordinatorIndex.php');
+                    } elseif (password_verify($adminPassword, $password) && ($adminType === "Student Coordinator")) {
+                        $_SESSION['adminEmail'] = $adminUserName;
+                        $_SESSION['adminType'] = $adminType;
+                        $_SESSION['adminDepartment'] = $adminDepartment;
+                        $_SESSION['adminEvent'] = $adminEvent;
+                        header('Location:studentCoordinatorIndex.php');
 
-                } elseif (password_verify($adminPassword, $password) && ($adminType === "Faculty Coordinator")) {
-                    $_SESSION['adminEmail'] = $adminUserName;
-                    $_SESSION['adminType'] = $adminType;
-                    $_SESSION['adminDepartment'] = $adminDepartment;
-                    $_SESSION['adminEvent'] = $adminEvent;
-                    header('Location:facultyCoordinatorIndex.php');
+                    } elseif (password_verify($adminPassword, $password) && ($adminType === "Faculty Coordinator")) {
+                        $_SESSION['adminEmail'] = $adminUserName;
+                        $_SESSION['adminType'] = $adminType;
+                        $_SESSION['adminDepartment'] = $adminDepartment;
+                        $_SESSION['adminEvent'] = $adminEvent;
+                        header('Location:facultyCoordinatorIndex.php');
 
-                } else {
-                    echo "<script>Swal.fire({
+                    } else {
+                        echo "<script>Swal.fire({
                                 icon: 'error',
                                 title: 'Unable to Login',
                                 text: 'Please Check Your Credential or Check Your User Role'
                             })</script>";
-                }
+                    }
 
-            } else {
-                echo "<script>Swal.fire({
+                } else {
+                    echo "<script>Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
                             text: 'Something Went Wrong'
                         })</script>";
-            }
+                }
 
-        } else {
-            echo "<script>Swal.fire({
+            } else {
+                echo "<script>Swal.fire({
                         icon: 'warning',
                         title: 'Google Recaptcha Error',
                         text: 'Please fill Google Recaptcha'
                     })</script>";
+            }
+
         }
 
     }
 
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+# Development Purpose Error Only
+    echo "Error " . $e->getMessage();
 }
+
 ?>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">

@@ -21,22 +21,31 @@ $adminEvent = $_SESSION["adminEvent"];
 
 //-------------------------------->> DISPLAY EVENT DETAILS
 
-$sql = "SELECT * FROM event_information WHERE event = :adminEvent";
+try {
 
-//Preparing Query
-$result = $conn->prepare($sql);
+    $sql = "SELECT * FROM event_information WHERE event = :adminEvent";
 
-//Binding Value
-$result->bindValue(":adminEvent", $adminEvent);
+    # Preparing Query
+    $result = $conn->prepare($sql);
 
-//Executing Query
-$result->execute();
+    # Binding Value
+    $result->bindValue(":adminEvent", $adminEvent);
 
-$row = $result->fetch(PDO::FETCH_ASSOC);
+    # Executing Query
+    $result->execute();
 
-$rowCount = $result->rowCount();
-$amount = $row['txnAmount'];
-$totalAmount = $amount * $rowCount;
+    $row = $result->fetch(PDO::FETCH_ASSOC);
+
+    $rowCount = $result->rowCount();
+    $amount = $row['txnAmount'];
+    $totalAmount = $amount * $rowCount;
+
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
+}
+
 ?>
 
 <!DOCTYPE html>

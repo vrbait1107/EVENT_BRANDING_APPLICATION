@@ -37,41 +37,52 @@ if (isset($_SESSION['Admin'])) {
 
     <?php
 
-if (isset($_POST['login'])) {
+try {
 
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
+    if (isset($_POST['login'])) {
 
-    $email = htmlspecialchars($_POST['email']);
-    $password = htmlspecialchars($_POST['password']);
+        # Remove White Spaces
+        $email = trim($_POST['email']);
+        $password = trim($_POST['password']);
 
-    $sql = "SELECT adminPassword FROM admin_information WHERE email='$email'";
+        # Avoid XSS Attack
+        $email = htmlspecialchars($_POST['email']);
+        $password = htmlspecialchars($_POST['password']);
 
-    //Preparing Query
-    $result = $conn->prepare($sql);
+        $sql = "SELECT adminPassword FROM admin_information WHERE email='$email'";
 
-    //Binding Values
-    $result->bindValue(":email", $email);
+        # Preparing Query
+        $result = $conn->prepare($sql);
 
-    //Executing Query
-    $result->execute();
+        # Binding Values
+        $result->bindValue(":email", $email);
 
-    //Fetching from DB in Associative array
-    $row = $result->fetch(PDO::FETCH_ASSOC);
+        # Executing Query
+        $result->execute();
 
-    $dbPassword = $row['adminPassword'];
+        # Fetching from DB in Associative array
+        $row = $result->fetch(PDO::FETCH_ASSOC);
 
-    if (password_verify($password, $dbPassword) && ($email = 'gitshodhadmin@gmail.com')) {
-        $_SESSION['Admin'] = $email;
-        header("Location:synergyIndex.php");
+        $dbPassword = $row['adminPassword'];
 
-    } else {
-        echo "<script>Swal.fire({
+        if (password_verify($password, $dbPassword) && ($email = 'gitshodhadmin@gmail.com')) {
+            $_SESSION['Admin'] = $email;
+            header("Location:synergyIndex.php");
+
+        } else {
+            echo "<script>Swal.fire({
                 icon: 'error',
                 title: 'Unable to Login',
                 text: 'Please Check Your Credentials!'
             })</script>";
+        }
+
     }
+
+} catch (PDOException $e) {
+    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+    # Development Purpose Error Only
+    echo "Error " . $e->getMessage();
 
 }
 ?>
