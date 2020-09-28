@@ -9,6 +9,11 @@ require_once "config/configPDO.php";
 //------------------------------>> START SESSION
 session_start();
 
+//---------------------------------->> CHECKING USER
+if (!isset($_SESSION['user'])) {
+    header("location:login.php");
+}
+
 try {
 
     if (isset($_POST["eventDepartmentName"])) {
@@ -59,7 +64,8 @@ try {
     <?php include_once "includes/navbar.php";?>
 
     <?php
-// Checking Record Counts
+
+# Checking Record Counts
 if ($result->rowCount() > 0) {
     ?>
 
@@ -74,7 +80,7 @@ if ($result->rowCount() > 0) {
         <div class="row">
 
             <?php
-// Fetching Database Values
+# Fetching Database Values
     $i = 0;
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         $i++;
@@ -173,6 +179,8 @@ if ($result->rowCount() > 0) {
 
             <?php
 }
+} else {
+    echo "No Records Available in Database";
 }
 
 ?>

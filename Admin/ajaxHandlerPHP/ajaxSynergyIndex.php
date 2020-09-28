@@ -11,6 +11,7 @@ try {
 
     if (isset($_POST['submit'])) {
 
+        # Avoid XSS Attack
         $certificateId = htmlspecialchars($_POST["certificateId"]);
         $firstName = htmlspecialchars($_POST["firstName"]);
         $lastName = htmlspecialchars($_POST["lastName"]);

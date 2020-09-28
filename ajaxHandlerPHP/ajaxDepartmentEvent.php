@@ -35,6 +35,7 @@ try {
                 $newValue = $dbEventPrice - $discountValue;
                 echo $newValue;
             }
+
         } else {
             echo "<script>Swal.fire({
                         icon: 'error',

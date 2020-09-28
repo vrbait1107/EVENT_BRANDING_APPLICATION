@@ -7,6 +7,12 @@ require_once "config/configPDO.php";
 
 //------------------------------>> START SESSION
 session_start();
+
+//---------------------------------->> CHECKING USER
+if (!isset($_SESSION['user'])) {
+    header("location:login.php");
+}
+
 ?>
 
 

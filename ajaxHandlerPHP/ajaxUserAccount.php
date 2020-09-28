@@ -42,6 +42,7 @@ try {
 
         $dbPassword = $row['password'];
 
+        # Checking Password
         if (password_verify($currentPassword, $dbPassword)) {
 
             if ($newPassword === $conNewPassword) {
@@ -138,6 +139,7 @@ try {
 
             $dbPassword = $row['password'];
 
+            # Verify Password
             if (password_verify($Password, $dbPassword)) {
 
                 # sql Query

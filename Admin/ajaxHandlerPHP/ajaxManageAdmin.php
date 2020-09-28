@@ -170,12 +170,14 @@ try {
 
     if (isset($_POST['create'])) {
 
+        # Avoid XSS Attack
         $email = htmlspecialchars($_POST['email']);
         $adminType = htmlspecialchars($_POST['adminType']);
         $adminDepartment = htmlspecialchars($_POST['adminDepartment']);
         $adminEvent = htmlspecialchars($_POST['adminEvent']);
         $password = htmlspecialchars($_POST['adminPassword']);
 
+        # Hash Password
         $hashPassword = password_hash($password, PASSWORD_BCRYPT);
 
         $sql = "SELECT * FROM admin_information WHERE admin_information.email = :email";
@@ -189,6 +191,7 @@ try {
         # Executing Query
         $result->execute();
 
+        # Checking Records
         if ($result->rowCount() > 0) {
             echo "<script>Swal.fire({
         icon: 'warning',
@@ -215,7 +218,6 @@ adminPassword) VALUES (:email, :adminType, :adminDepartment, :adminEvent, :hashP
             $result->execute();
 
             if ($result) {
-
                 echo "<script>Swal.fire({
         icon: 'success',
         title: 'Success',

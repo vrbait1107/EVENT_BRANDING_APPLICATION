@@ -83,6 +83,7 @@ if (isset($_POST["login"])) {
                 if (password_verify($password, $dbpassword)) {
                     if ($status == "active") {
 
+                        # If verify redirect to Index Page
                         $_SESSION['user'] = $userName;
                         header("Location:index.php");
 

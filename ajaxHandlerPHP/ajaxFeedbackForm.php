@@ -95,10 +95,16 @@ try {
                 echo "<script>Swal.fire({
                 icon: 'warning',
                 title: 'Google Recaptcha Error',
-                text: 'Please fill Google Recaptcha'
+                text: 'Please fill Google Recaptcha Properly'
             })</script>";
             }
 
+        }else{
+           echo "<script>Swal.fire({
+                icon: 'warning',
+                title: 'Google Recaptcha Error',
+                text: 'Please fill Google Recaptcha Properly'
+            })</script>"; 
         }
     }
 

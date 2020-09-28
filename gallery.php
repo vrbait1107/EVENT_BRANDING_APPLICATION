@@ -48,10 +48,13 @@ try {
 # Executing Value
     $result->execute();
 
-# Fetching Data from Database
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    # Checking Records Count
+    if ($result->rowCount() > 0) {
 
-        ?>
+# Fetching Data from Database
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+
+            ?>
             <section class="col-md-4 mb-5">
                 <a href="images/gallery/<?php echo $row['galleryImage']; ?>">
                     <img src="images/gallery/<?php echo $row['galleryImage']; ?>" class="img-fluid w-100" alt="images"
@@ -60,6 +63,10 @@ try {
             </section>
             <?php
 }
+
+    } else {
+        echo "No Records Available in Database";
+    }
 
 } catch (PDOException $e) {
     echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";

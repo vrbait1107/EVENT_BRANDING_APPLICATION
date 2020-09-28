@@ -14,6 +14,7 @@ try {
         $sql = "SELECT * FROM sponsor_information";
 
         $result = $conn->prepare($sql);
+
         $result->execute();
 
         $data = '<table class= "table table-striped table-bordered" class="display" id= "dataTable" width= "100%" cellspacing="0">
@@ -100,7 +101,6 @@ try {
     if (isset($_FILES['sponsorLogo'])) {
 
         # Avoid XSS Attack
-
         $sponsorName = htmlspecialchars($_POST['sponsorName']);
         $sponsoredEvent = htmlspecialchars($_POST["sponsoredEvent"]);
         $sponsoredDepartment = htmlspecialchars($_POST["sponsoredDepartment"]);
@@ -143,6 +143,7 @@ try {
                         title: 'Success',
                         text: 'Added Sponsor Successfully'
                     })</script>";
+
                 } else {
                     echo "<script>Swal.fire({
                             icon: 'error',
@@ -167,6 +168,7 @@ try {
 
     if (isset($_POST['editId'])) {
 
+        # Query
         $sql = "SELECT * FROM sponsor_information WHERE id = :editId";
 
         # Preparing Query
@@ -190,6 +192,7 @@ try {
 
     if (isset($_POST['hiddenId'])) {
 
+        # Query
         $sql = "UPDATE sponsor_information SET sponsorName = :updateSponsorName, sponsoredEvent = :updateSponsoredEvent,
        sponsoredDepartment = :updateSponsoredDepartment WHERE id = :hiddenId";
 

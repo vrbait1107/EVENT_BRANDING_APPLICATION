@@ -9,6 +9,12 @@ require_once "config/configPDO.php";
 // ----------------------------->> STARTING SESSION
 session_start();
 
+//---------------------------------->> CHECKING USER
+if (!isset($_SESSION['user'])) {
+    header("location:login.php");
+}
+
+
 if (isset($_POST['event1'])) {
     $_SESSION["buttonEvent"] = htmlspecialchars($_POST['event1']);
     $buttonEvent = $_SESSION["buttonEvent"];

@@ -83,6 +83,8 @@ if ($result->rowCount() > 0) {
 
             <?php
 }
+} else {
+    echo "No Records Available in Database";
 }
 ?>
 

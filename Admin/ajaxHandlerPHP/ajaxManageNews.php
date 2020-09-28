@@ -36,6 +36,7 @@ try {
           title: 'Successful',
           text: 'News Added Successfully'
           })</script>";
+
         } else {
             echo "<script>Swal.fire({
           icon: 'error',
@@ -136,6 +137,7 @@ try {
 
     if (isset($_POST["editId"])) {
 
+        # Query
         $sql = "SELECT * FROM news_information WHERE id = :editId";
 
         # Prepare Query

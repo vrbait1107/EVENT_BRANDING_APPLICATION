@@ -24,6 +24,7 @@ try {
         $result1->bindValue(":email", $email);
         $result1->execute();
 
+        # Checking Records
         if ($result1->rowCount() > 0) {
 
             $sql2 = "SELECT * FROM newsletter_information WHERE email = :email";
