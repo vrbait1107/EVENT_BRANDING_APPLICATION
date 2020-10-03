@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2020 at 10:37 AM
+-- Generation Time: Oct 03, 2020 at 09:11 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -59,6 +59,7 @@ INSERT INTO `admin_information` (`email`, `adminType`, `adminDepartment`, `admin
 ('studentcomp-posterpresentation@gmail.com', 'Student Coordinator', 'Computer', 'Computer Poster Presentation', '$2y$10$La84qcQAb8z0gq.CxgBmLuQQyrYcAyCSxNbdOKz7wWhD.J7HTJ7.O', NULL, NULL),
 ('studentcomp-projectpresentation@gmail.com', 'Student Coordinator', 'Computer', 'Computer Project Presentation', '$2y$10$PLftWoiFmF9jValTYODD3uM9htSpWKfb0mrKDs8/NwGMsJRe0t0HS', NULL, NULL),
 ('studentextc-calciwar@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'Calci War', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
+('studentextc-funtech@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'Fun Tech', '$2y$10$ou60bgS76CeYKV2vx3o0ReaGXZpc/NIsuYvKhaChoNXIXDafnFF7u', NULL, NULL),
 ('studentextc-logocontest@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'Logo Contest', '', NULL, NULL),
 ('studentextc-paperpresentation@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Paper Presentation', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
 ('studentextc-posterpresentation@gmail.com', 'Student Coordinator', 'Electronics and Telecommunication', 'EXTC Poster Presentation', '$2y$10$F5cE6U6aK6XdufVFbquZfOl8LrDFGadQt/ak8atQZUC8THCP5TOhC', NULL, NULL),
@@ -105,7 +106,7 @@ INSERT INTO `events_details_information` (`id`, `eventImage`, `eventName`, `even
 (9, 'paper.jpg', 'Chemical Paper Presentation', 150, 'Not Applicable', 0, 1500, 'Gharda Foundation', 'Chemical', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
 (10, 'poster.jpg', 'Chemical Poster Presentation', 150, 'Not Applicable', 0, 1500, 'Gharda Foundation', 'Chemical', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
 (11, 'chemProject.jpg', 'Chemical Project Presentation', 200, 'Not Applicable', 0, 2000, 'Gharda Foundation', 'Chemical', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
-(12, 'images/paper.jpg', 'Computer Paper Presentation', 150, 'Not Applicable', 0, 1500, 'Gharda Foundation', 'Computer', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
+(12, 'paper.jpg', 'Computer Paper Presentation', 150, 'Not Applicable', 0, 1500, 'Gharda Foundation', 'Computer', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
 (13, 'poster.jpg', 'Computer Poster Presentation', 150, 'Not Applicable', 0, 1500, 'Gharda Foundation', 'Computer', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
 (14, 'compProject.jpg', 'Computer Project Presentation', 200, 'Not Applicable', 0, 2000, 'Gharda Foundation', 'Computer', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
 (15, 'paper.jpg', 'Mechanical Paper Presentation', 150, 'Not Applicable', 0, 1500, 'Gharda Foundation', 'Mechanical', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.             Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, alias odio nihil iste vitae vero. Ab, temporibus\r\n        quisquam quidem at laboriosam maxime a corrupti dolorem vitae id exercitationem sint officia atque aspernatur\r\n        Officia reprehenderit itaque doloremque voluptas delectus cum iusto esse, sit fugit\r\n        in aut sapiente animi repellat provident blanditiis, sit ipsum similique aspernatur ullam? Eum inventore sequi\r\n        optio dolores, reprehenderit doloribus.', 'Vishal Bait 9373241085', '2021-04-15', '2021-04-16'),
@@ -573,7 +574,8 @@ INSERT INTO `feedback_information` (`email`, `attendBefore`, `likelyAttend`, `li
 ('testuser17@gmail.com', 'no', '4', '4', 'Good', 'Good', '2', '3', '5', '5', 'Good', '2020-09-08 23:33:11'),
 ('testuser18@gmail.com', 'no', '2', '3', 'Good', 'Good', '2', '3', '5', '5', 'Good', '2020-09-08 23:33:11'),
 ('testuser19@gmail.com', 'no', '5', '5', 'Good', 'Good', '5', '5', '2', '5', 'Good', '2020-09-08 23:33:11'),
-('testuser20@gmail.com', 'no', '4', '3', 'Good', 'Good', '3', '3', '3', '3', 'Good', '2020-09-08 23:33:11');
+('testuser20@gmail.com', 'no', '4', '3', 'Good', 'Good', '3', '3', '3', '3', 'Good', '2020-09-08 23:33:11'),
+('vishalbait02@gmail.com', 'yes', '5', '5', 'Good', 'Good', '5', '5', '5', '5', 'Good', '2020-09-17 12:40:32');
 
 -- --------------------------------------------------------
 
@@ -688,9 +690,34 @@ CREATE TABLE `sponsor_information` (
 --
 
 INSERT INTO `sponsor_information` (`id`, `sponsorName`, `sponsorLogo`, `sponsoredEvent`, `sponsoredDepartment`) VALUES
-(8, 'Microsoft', 'microsoft_PNG10.png', 'All College', 'All College'),
-(9, 'Google', 'google.png', 'All College', 'All College'),
+(8, 'Gharda Chemicals', 'gharda.png', 'All College', 'All College'),
+(9, 'Gharda Chemicals', 'gharda.png', 'All College', 'All College'),
 (10, 'Gharda Chemicals', 'gharda.png', 'All College', 'All College');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `synergy_events_details`
+--
+
+CREATE TABLE `synergy_events_details` (
+  `id` int(5) NOT NULL,
+  `eventImage` varchar(200) NOT NULL,
+  `eventName` varchar(200) NOT NULL,
+  `eventPrize` varchar(200) NOT NULL,
+  `eventDescription` text NOT NULL,
+  `eventRules` text NOT NULL,
+  `eventCoordinator` varchar(255) NOT NULL,
+  `eventStartDate` date NOT NULL,
+  `eventEndDate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `synergy_events_details`
+--
+
+INSERT INTO `synergy_events_details` (`id`, `eventImage`, `eventName`, `eventPrize`, `eventDescription`, `eventRules`, `eventCoordinator`, `eventStartDate`, `eventEndDate`) VALUES
+(2, 'computer-1577429933703-4050.jpg', 'Synergy Test', '1500', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n', '<p>Vishal Bait</p>\n\n<p>1234567890</p>\n', '2020-10-17', '2020-10-17');
 
 -- --------------------------------------------------------
 
@@ -722,7 +749,8 @@ INSERT INTO `synergy_user_information` (`userId`, `certificateId`, `firstName`, 
 (10, 562647614, 'Test', 'User08', 'Mechanical', 'Drama Competition', 'None'),
 (11, 273552090, 'Test', 'User09', 'Computer', 'Group Discussion Competition', 'None'),
 (12, 44422342, 'Test', 'User10', 'Computer', 'Singing Competition', 'None'),
-(13, 441087762, 'Test', 'User02', 'Electronics and Telecommunication', 'Antakshari', 'None');
+(13, 441087762, 'Test', 'User02', 'Electronics and Telecommunication', 'Antakshari', 'None'),
+(15, 600339642, 'Vishal', 'Bait', 'Electronics and Telecommunication', 'Debate Competition', 'First');
 
 -- --------------------------------------------------------
 
@@ -845,6 +873,12 @@ ALTER TABLE `sponsor_information`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `synergy_events_details`
+--
+ALTER TABLE `synergy_events_details`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `synergy_user_information`
 --
 ALTER TABLE `synergy_user_information`
@@ -897,10 +931,16 @@ ALTER TABLE `sponsor_information`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `synergy_events_details`
+--
+ALTER TABLE `synergy_events_details`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `synergy_user_information`
 --
 ALTER TABLE `synergy_user_information`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `visitor_counter`
