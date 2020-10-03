@@ -4,7 +4,7 @@ $(document).ready(function () {
   readRecordEvent = () => {
     let readRecord = "readRecord";
     $.ajax({
-      url: "ajaxHandlerPHP/ajaxManageEvent.php",
+      url: "ajaxHandlerPHP/ajaxManageSynergyEvent.php",
       type: "post",
       data: {
         readRecord: readRecord,
@@ -39,56 +39,11 @@ $(document).ready(function () {
       return false;
     }
 
-    if ($("#eventPrice") === "") {
-      Swal.fire({
-        icon: "warning",
-        title: "Warning",
-        text: "Event Fee cannot be Empty",
-      });
-      return false;
-    }
-
-    if ($("#promocode") === "") {
-      Swal.fire({
-        icon: "warning",
-        title: "Warning",
-        text: "Promocode cannot be Empty",
-      });
-      return false;
-    }
-
-    if ($("#discount") === "") {
-      Swal.fire({
-        icon: "warning",
-        title: "Warning",
-        text: "Discount cannot be Empty",
-      });
-      return false;
-    }
-
     if ($("#eventPrize") === "") {
       Swal.fire({
         icon: "warning",
         title: "Warning",
         text: "Event Prize cannot be Empty",
-      });
-      return false;
-    }
-
-    if ($("#eventSponsor") === "") {
-      Swal.fire({
-        icon: "warning",
-        title: "Warning",
-        text: "Event Sponsor cannot be Empty",
-      });
-      return false;
-    }
-
-    if ($("#eventDepartment") === "") {
-      Swal.fire({
-        icon: "warning",
-        title: "Warning",
-        text: "Event Department cannot be Empty",
       });
       return false;
     }
@@ -151,7 +106,7 @@ $(document).ready(function () {
     );
 
     $.ajax({
-      url: "ajaxHandlerPHP/ajaxManageEvent.php",
+      url: "ajaxHandlerPHP/ajaxManageSynergyEvent.php",
       type: "post",
       data: dataValue,
       contentType: false,
@@ -188,7 +143,7 @@ const deleteEventInformation = (id) => {
   }).then((result) => {
     if (result.value) {
       $.ajax({
-        url: "ajaxHandlerPHP/ajaxManageEvent.php",
+        url: "ajaxHandlerPHP/ajaxManageSynergyEvent.php",
         type: "post",
         data: {
           deleteId: deleteId,
@@ -211,7 +166,7 @@ const getEventInformation = (id) => {
   let editId = id;
 
   $.ajax({
-    url: "ajaxHandlerPHP/ajaxManageEvent.php",
+    url: "ajaxHandlerPHP/ajaxManageSynergyEvent.php",
     type: "post",
     data: {
       editId: editId,
@@ -219,12 +174,7 @@ const getEventInformation = (id) => {
     success(data) {
       let event = JSON.parse(data);
       $("#updateEventName").val(event.eventName);
-      $("#updateEventPrice").val(event.eventPrice);
-      $("#updatePromocode").val(event.promocode);
-      $("#updateDiscount").val(event.discount);
       $("#updateEventPrize").val(event.eventPrize);
-      $("#updateEventSponsor").val(event.eventSponsor);
-      $("#updateEventDepartment").val(event.eventDepartment);
       CKEDITOR.instances["updateEventDescription"].setData(
         event.eventDescription
       );
@@ -248,12 +198,7 @@ const getEventInformation = (id) => {
 
 const updateEvent = () => {
   let updateEventName = $("#updateEventName").val();
-  let updateEventPrice = $("#updateEventPrice").val();
-  let updatePromocode = $("#updatePromocode").val();
-  let updateDiscount = $("#updateDiscount").val();
   let updateEventPrize = $("#updateEventPrize").val();
-  let updateEventSponsor = $("#updateEventSponsor").val();
-  let updateEventDepartment = $("#updateEventDepartment").val();
   let updateEventDescription = CKEDITOR.instances.updateEventDescription.getData();
   let updateEventRules = CKEDITOR.instances.updateEventRules.getData();
   let updateEventCoordinator = CKEDITOR.instances.updateEventCoordinator.getData();
@@ -270,56 +215,11 @@ const updateEvent = () => {
     return false;
   }
 
-  if (updateEventPrice === "") {
-    Swal.fire({
-      icon: "warning",
-      title: "Warning",
-      text: "Event Fee cannot be Empty",
-    });
-    return false;
-  }
-
-  if (updateDiscount === "") {
-    Swal.fire({
-      icon: "warning",
-      title: "Warning",
-      text: "Discount cannot be Empty",
-    });
-    return false;
-  }
-
-  if (updatePromocode === "") {
-    Swal.fire({
-      icon: "warning",
-      title: "Warning",
-      text: "Promocode cannot be Empty",
-    });
-    return false;
-  }
-
   if (updateEventPrize === "") {
     Swal.fire({
       icon: "warning",
       title: "Warning",
       text: "Event Prize cannot be Empty",
-    });
-    return false;
-  }
-
-  if (updateEventSponsor === "") {
-    Swal.fire({
-      icon: "warning",
-      title: "Warning",
-      text: "Event Sponsor cannot be Empty",
-    });
-    return false;
-  }
-
-  if (updateEventDepartment === "") {
-    Swal.fire({
-      icon: "warning",
-      title: "Warning",
-      text: "Event Department cannot be Empty",
     });
     return false;
   }
@@ -370,16 +270,11 @@ const updateEvent = () => {
   }
 
   $.ajax({
-    url: "ajaxHandlerPHP/ajaxManageEvent.php",
+    url: "ajaxHandlerPHP/ajaxManageSynergyEvent.php",
     type: "post",
     data: {
       updateEventName: updateEventName,
-      updateEventPrice: updateEventPrice,
-      updatePromocode: updatePromocode,
-      updateDiscount: updateDiscount,
       updateEventPrize: updateEventPrize,
-      updateEventSponsor: updateEventSponsor,
-      updateEventDepartment: updateEventDepartment,
       updateEventDescription: updateEventDescription,
       updateEventRules: updateEventRules,
       updateEventCoordinator: updateEventCoordinator,

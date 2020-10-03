@@ -1,6 +1,6 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 
-    <a class="navbar-brand" href="<?php echo $adminFileName; ?>">Administrator</a>
+    <a class="navbar-brand" href="<?php echo $index; ?>">Administrator</a>
     <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
     </button>
@@ -47,12 +47,13 @@
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">Core</div>
 
-                    <a class="nav-link" href="<?php echo $adminFileName; ?>">
+                    <a class="nav-link" href="<?php echo $index; ?>">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Dashboard
                     </a>
 
                     <div class="sb-sidenav-menu-heading">Interface</div>
+
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                         aria-expanded="false" aria-controls="collapsePages">
                         <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
@@ -85,7 +86,7 @@
 
                     <div class="sb-sidenav-menu-heading">Addons</div>
 
-                         <!-- Charts-->
+                    <!-- Charts-->
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#charts"
                         aria-expanded="false" aria-controls="charts">
                         Charts
@@ -96,7 +97,7 @@
 
                     <div class="collapse" id="charts">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="<?php echo $adminFileCharts; ?>">
+                            <a class="nav-link" href="<?php echo $charts; ?>">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-chart-line"></i>
                                 </div>
@@ -118,7 +119,7 @@
 
                     <div class="collapse" id="participants">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="<?php echo $adminFileData; ?>">
+                            <a class="nav-link" href="<?php echo $participants; ?>">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-users"></i>
                                 </div>
@@ -138,7 +139,7 @@
 
                     <div class="collapse" id="admin">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="<?php echo $adminManage ?>">
+                            <a class="nav-link" href="<?php echo $admins ?>">
                                 <div class="sb-nav-link-icon">
                                     <img src="https://img.icons8.com/wired/20/000000/admin-settings-male.png" alt="admin-settings"/>
                                 </div>
@@ -159,7 +160,7 @@
 
                     <div class="collapse" id="emails">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="sendMails.php">
+                            <a class="nav-link" href="<?php echo $emails; ?>">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-envelope"></i>
                                 </div>
@@ -180,7 +181,7 @@
 
                     <div class="collapse" id="sponsors">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="manageSponsor.php">
+                            <a class="nav-link" href="<?php echo $sponsors; ?>">
                                 <div class="sb-nav-link-icon">
                                     <img src="https://img.icons8.com/dotty/20/000000/crowdfunding.png" />
                                 </div>
@@ -202,7 +203,7 @@
 
                     <div class="collapse" id="news">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="manageNews.php">
+                            <a class="nav-link" href="<?php echo $news; ?>">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-bell"></i>
                                 </div>
@@ -223,7 +224,7 @@
 
                     <div class="collapse" id="events">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="manageEvent.php">
+                            <a class="nav-link" href="<?php echo $events; ?>">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-calendar"></i>
                                 </div>
@@ -245,7 +246,7 @@
 
                     <div class="collapse" id="galleryImage">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="manageGalleryImage.php">
+                            <a class="nav-link" href="<?php echo $galleryImages; ?>">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-images"></i>
                                 </div>
@@ -266,7 +267,7 @@
 
                     <div class="collapse" id="newsletter">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="sendNewsletter.php">
+                            <a class="nav-link" href="<?php echo $newsletter; ?>">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-envelope"></i>
                                 </div>
@@ -287,7 +288,7 @@
 
                     <div class="collapse" id="feedback">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="manageFeedback.php">
+                            <a class="nav-link" href="<?php echo $feedback; ?>">
                                 <div class="sb-nav-link-icon">
                                     <img src="https://img.icons8.com/wired/20/000000/feedback.png" />
                                 </div>

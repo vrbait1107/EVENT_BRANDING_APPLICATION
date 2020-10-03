@@ -15,26 +15,9 @@ if (!isset($_SESSION['user'])) {
 }
 
 try {
-
-    if (isset($_POST["eventDepartmentName"])) {
-
-        $eventDepartmentName = htmlspecialchars($_POST["eventDepartmentName"]);
-
-        $_SESSION["eventDepartmentName"] = $eventDepartmentName;
-
-        $sql = "SELECT * FROM events_details_information WHERE eventDepartment = :eventDepartment";
-        $result = $conn->prepare($sql);
-        $result->bindValue(":eventDepartment", $_SESSION["eventDepartmentName"]);
-        $result->execute();
-
-    } else {
-
-        $sql = "SELECT * FROM events_details_information WHERE eventDepartment = :eventDepartment";
-        $result = $conn->prepare($sql);
-        $result->bindValue(":eventDepartment", $_SESSION["eventDepartmentName"]);
-        $result->execute();
-
-    }
+    $sql = "SELECT * FROM synergy_events_details";
+    $result = $conn->prepare($sql);
+    $result->execute();
 
 } catch (PDOException $e) {
     echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
@@ -51,7 +34,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $techfestName ?> | EVENT REGISTRATION & INFORMATION</title>
+    <title><?php echo $culturalFestName ?> | EVENT REGISTRATION & INFORMATION</title>
 
     <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
@@ -69,13 +52,9 @@ try {
 if ($result->rowCount() > 0) {
     ?>
 
-  <!-- Promocode Response -->
-        <div id="responsePromocode"></div>
 
     <div class="container mt-5">
-        <h2 class="text-danger text-center text-uppercase mb-5 font-Staatliches-heading">
-
-            <?php echo $_SESSION["eventDepartmentName"]; ?> Events</h2>
+        <h2 class="text-danger text-center text-uppercase mb-5 font-Staatliches-heading">Synergy Events</h2>
 
         <div class="row">
 
@@ -89,28 +68,21 @@ if ($result->rowCount() > 0) {
 
             <div class="col-md-4 mb-5">
                 <div class="card shadow text-center">
-                    <img src="images/eventImage/<?php echo $row["eventImage"]; ?>" class="img-fluid">
-                    <h5 class="text-danger my-3" id = "entryFee2<?php echo $row['id']; ?>">Entry Fee &#x20b9;<?php echo $row["eventPrice"]; ?></h5>
 
+                    <!-- Event Image -->
+                    <img src="images/eventImage/synergy/<?php echo $row['eventImage']; ?>" class="img-fluid">
 
-                        <div class="input-group my-3 px-2">
-                            <input type="text" class="form-control" id='event<?php echo $row["id"]; ?>' />
-                            <span class="input-group-btn">
-                                <button class="btn btn-secondary applyPromocode" id ='<?php echo $row["id"]; ?>'
-                                 type="button">Apply Promocode</button>
-                            </span>
-                        </div>
+                    <!-- Event Prize -->
+                    <h5 class="text-danger my-2">Event Prize &#x20b9;<?php echo $row["eventPrize"]; ?></h5>
 
+                     <!-- Register -->
+                    <a class='btn btn-primary mb-3 rounded-pill
+                    text-uppercase'>Register Here</a>
 
-                    <form method="post" action="Paytm/PaytmKit/TxnTest.php">
-                        <input type="hidden" name="eventName" value='<?php echo $row["eventName"]; ?>'>
-                        <input type="hidden" name="eventPrice" id = "entryFee3<?php echo $row['id']; ?>" value='<?php echo $row["eventPrice"]; ?>'>
-                        <input type="submit" class="btn btn-primary text-uppercase btn-block mb-2 rounded-pill"
-                            value="Click here to Register">
-                    </form>
-
+                    <!-- Open Modal -->
                     <button type='button' data-toggle="modal" data-target='#modal<?php echo $i; ?>' class='btn btn-secondary mb-3 rounded-pill
                     text-uppercase'>View Event Information</button>
+
 
                 </div>
             </div>
@@ -119,47 +91,47 @@ if ($result->rowCount() > 0) {
             <div class="modal fade" id="modal<?php echo $i; ?>" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Rules for
+                            <h5 class="modal-title" id="exampleModalCenterTitle">
                                 <?php echo $row['eventName']; ?>
                             </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+
                         <div class="modal-body">
 
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12 modal1">
-                                        <h4
-                                            class="font-weight-bold text-center text-uppercase text-danger animated heartBeat slow"
-                                            id= "entryFee<?php echo $row['id']; ?>">
-                                            Entry Fees: <?php echo $row['eventPrice']; ?></h4>
 
+                                        <!-- Event Prize -->
                                         <h4
                                             class="font-weight-bold text-center text-uppercase text-danger mb-5 animated heartBeat slow">
-                                            First Prize:<?php echo $row['eventPrize']; ?></h4>
+                                            Prize: <?php echo $row['eventPrize']; ?></h4>
 
-
+                                        <!-- Event Description -->
                                         <h4 class="font-weight-bold font-time text-info">Event Description</h4>
                                         <p class="text-justify"><?php echo $row['eventDescription']; ?></p>
 
+                                        <!-- Event Rules -->
                                         <h4 class="font-weight-bold  font-time text-info">Event Rules</h4>
                                         <p class="text-justify"><?php echo $row['eventRules']; ?></p>
 
-                                        <h4 class="font-weight-bold  font-time text-info">Event Sponsor</h4>
-                                        <p class="text-justify"><?php echo $row['eventSponsor']; ?></p>
-
+                                        <!-- Event Coordinators -->
                                         <h4 class="font-weight-bold font-time text-info">Co-ordinators:-</h4>
                                         <p><?php echo $row['eventCoordinator']; ?></p>
 
+                                        <!-- Event Start Date -->
                                         <h4 class="font-weight-bold font-time text-info">Event Start Date</h4>
-                                        <p><?php echo $row['eventEndDate']; ?></p>
-
-                                        <h4 class="font-weight-bold font-time text-info">Event Date Date</h4>
                                         <p><?php echo $row['eventStartDate']; ?></p>
+
+                                        <!-- Event End Date -->
+                                        <h4 class="font-weight-bold font-time text-info">Event Date Date</h4>
+                                        <p><?php echo $row['eventEndDate']; ?></p>
 
                                     </div>
 
@@ -198,9 +170,9 @@ include_once "includes/footerScripts.php";
     <!-- Javascript -->
     <script src="js/departmentEvent.js"></script>
     <script>
-    if (window . history . replaceState) {
-    window . history . replaceState(null, null, window . location . href);
-    }
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
     </script>
 
     <!-- Close Database Connection -->

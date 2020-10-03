@@ -1,34 +1,73 @@
 <?php
 
 if ($_SESSION['adminType'] === "Administrator") {
-    $adminFileName = "adminIndex.php";
-    $adminFileData = "adminIndexData.php";
-    $adminManage = "adminManage.php";
-    $adminFileCharts = "adminCharts.php";
+
+    $index = "adminIndex.php";
+    $charts = "adminCharts.php";
+    $participants = "adminIndexData.php";
+    $admins = "adminManage.php";
+    $emails = "sendMails.php";
+    $sponsors = "manageSponsor.php";
+    $news = "manageNews.php";
+    $events = "manageEvent.php";
+    $galleryImages = "manageGalleryImages.php";
+    $newsletters = "sendNewsletter.php";
+    $feedback = "manageFeedback.php";
 
 } elseif ($_SESSION['adminType'] === "Student Coordinator") {
-    $adminFileName = "studentCoordinatorIndex.php";
-    $adminFileData = "studentCoordinatorData.php";
-    $adminManage = "#";
-    $adminFileCharts = "#";
+
+    $index = "studentCoordinatorIndex.php";
+    $charts = "#";
+    $participants = "studentCoordinatorData.php";
+    $admins = "adminIndex.php";
+    $emails = "sendMails.php";
+    $sponsors = "manageSponsor.php";
+    $news = "manageNews.php";
+    $events = "manageEvent.php";
+    $galleryImages = "manageGalleryImages.php";
+    $newsletters = "sendNewsletter.php";
+    $feedback = "manageFeedback.php";
 
 } elseif ($_SESSION['adminType'] === "Faculty Coordinator") {
-    $adminFileName = "facultyCoordinatorIndex.php";
-    $adminFileData = "facultyCoordinatorData.php";
-    $adminManage = "facultyCoordinatorManage.php";
-    $adminFileCharts = "facultyCoordinatorCharts.php";
+
+    $index = "facultyCoordinatorIndex.php";
+    $charts = "facultyCoordinatorCharts.php";
+    $participants = "facultyCoordinatorData.php";
+    $admins = "facultyCoordinatorManage.php";
+    $events = "manageEvent.php";
+    $emails = "sendMails.php";
+    $sponsors = "manageSponsor.php";
+    $news = "manageNews.php";
+    $galleryImages = "manageGalleryImages.php";
+    $newsletters = "sendNewsletter.php";
+    $feedback = "manageFeedback.php";
 
 } elseif ($_SESSION['adminType'] === "Synergy Administrator") {
-    $adminFileName = "synergyIndex.php";
-    $adminFileData = "synergyData.php";
-    $adminManage = "#";
-    $adminFileCharts = "#";
 
+    $index = "synergyIndex.php";
+    $participants = "synergyData.php";
+    $events = "manageSynergyEvent.php";
+    $charts = "#";
+    $admins = "#";
+    $emails = "#";
+    $sponsors = "#";
+    $news = "#";
+    $galleryImages = "#";
+    $newsletters = "#";
+    $feedback = "#";
 
 } else {
-    $adminFileName = "#";
-    $adminFileData = "#";
-    $adminManage = "#";
-    $adminFileCharts = "#";
+
+    $index = "#";
+    $charts = "#";
+    $participants = "#";
+    $admins = "#";
+    $events = "#";
+    $emails = "#";
+    $sponsors = "#";
+    $news = "#";
+    $galleryImages = "#";
+    $newsletters = "#";
+    $feedback = "#";
 
 }
