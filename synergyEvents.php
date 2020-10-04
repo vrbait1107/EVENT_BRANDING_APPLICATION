@@ -75,9 +75,14 @@ if ($result->rowCount() > 0) {
                     <!-- Event Prize -->
                     <h5 class="text-danger my-2">Event Prize &#x20b9;<?php echo $row["eventPrize"]; ?></h5>
 
-                     <!-- Register -->
-                    <a class='btn btn-primary mb-3 rounded-pill
-                    text-uppercase'>Register Here</a>
+                    <!-- Synergy Event Register -->
+                    <form action="synergyEventRegister.php" method="post">
+                        <div class="form-group">
+                            <input type="hidden" name="hiddenEventName" value='<?php echo $row["eventName"]; ?>'>
+                            <input class='btn btn-primary btn-block mb-2 rounded-pill text-uppercase' type="submit"
+                                name="registerEvent" value="Register Here">
+                        </div>
+                    </form>
 
                     <!-- Open Modal -->
                     <button type='button' data-toggle="modal" data-target='#modal<?php echo $i; ?>' class='btn btn-secondary mb-3 rounded-pill

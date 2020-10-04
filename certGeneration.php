@@ -14,7 +14,6 @@ if (!isset($_SESSION['user'])) {
     header("location:login.php");
 }
 
-
 if (isset($_POST['event1'])) {
     $_SESSION["buttonEvent"] = htmlspecialchars($_POST['event1']);
     $buttonEvent = $_SESSION["buttonEvent"];
@@ -44,6 +43,7 @@ WHERE user_information.email = :email AND event_information.event = :buttonEvent
     $firstName = $row['firstName'];
     $lastName = $row['lastName'];
     $department = $row['departmentName'];
+    $collegeName = $row['collegeName'];
     $prize = $row['prize'];
     $validate = $row['certificateId'];
     $event = $row['event'];
@@ -109,6 +109,11 @@ if ($certificateDepartment === "Electronics and Telecommunication") {
             background-size: 1200px 750px;
         }
 
+        .mainContent {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size:25px !important;
+  }
+
            </style>
 
 </head>
@@ -121,10 +126,10 @@ if ($certificateDepartment === "Electronics and Telecommunication") {
     <section class="cert">
 
         <!--Content of Certificate-->
-        <p class="mainContent"> Mr./Ms.<span><?php echo $firstName ?></span>&nbsp;<span><?php echo $lastName ?></span> of
-            <span><?php echo $department ?></span>&nbsp;Department <br><br>
-            has Participated in <span><?php echo $event ?></span> Event of <?php echo $techfestName ?> held <br><br>
-            during <?php echo $techfestDate ?> at GIT, Lavel & Won <span><?php echo $prize ?></span> Prize. </p>
+        <p class="mainContent"> Mr./Ms.<span><?php echo $firstName ?></span> <span><?php echo $lastName ?></span> of
+            <span><?php echo $department ?></span> Department from <br><br>
+          <span><?php echo $collegeName ?></span> College has Participated in <span><?php echo $event ?></span> <br/> <br/>
+           Event of <?php echo $techfestName ?> held during <?php echo $techfestDate ?> at GIT, Lavel & Won <span><?php echo $prize ?></span> Prize. </p>
 
         <span id="qrcode" class="center" style="width:100px; height:100px; margin-top:10px;"></span>
 

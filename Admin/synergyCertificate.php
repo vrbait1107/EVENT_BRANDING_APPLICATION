@@ -8,37 +8,45 @@ session_start();
 //-------------------------->> DB CONFIG
 require_once '../config/configPDO.php';
 
-//-------------------------->> EXTRACT USER & HIS/HER PARTICIPATION DETAILS FROM DB
+if (isset($_POST['event1'])) {
+    $_SESSION["buttonEvent"] = htmlspecialchars($_POST['event1']);
+    $buttonEvent = $_SESSION["buttonEvent"];
+} else {
+    $buttonEvent = $_SESSION["buttonEvent"];
+}
+
+$email = $_SESSION['user'];
 
 try {
 
-    $CertId = htmlspecialchars($_POST['certificateId']);
+// ----------------------------->> EXTRACT ALL INFO. ABOUT USER & HIS/HER PARTICIPATION
 
-    $sql = "SELECT * FROM synergy_user_information WHERE certificateId = :certId";
+    $sql = "SELECT * FROM user_information INNER JOIN synergy_event_registrations ON
+user_information.email= synergy_event_registrations.email
+WHERE user_information.email = :email AND synergy_event_registrations.eventName = :buttonEvent";
 
-    # Preparing Query
     $result = $conn->prepare($sql);
 
-    # Binding Value
-    $result->bindValue(":certId", $CertId);
+    $result->bindValue(":email", $email);
+    $result->bindValue(":buttonEvent", $buttonEvent);
 
-    # Executing the Query
     $result->execute();
 
-    # Fetching Data from Database
     $row = $result->fetch(PDO::FETCH_ASSOC);
 
-    $validate = $row['certificateId'];
     $firstName = $row['firstName'];
     $lastName = $row['lastName'];
     $department = $row['departmentName'];
-    $event = $row['eventName'];
+    $collegeName = $row['collegeName'];
     $prize = $row['prize'];
+    $validate = $row['certificateId'];
+    $event = $row['eventName'];
 
 } catch (PDOException $e) {
     echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
     # Development Purpose Error Only
     echo "Error " . $e->getMessage();
+
 }
 
 ?>
@@ -101,13 +109,10 @@ try {
 
         <!-- Content of Certificate -->
 
-        <p class="para"> Mr./Ms.<span><?php echo $firstName ?></span>&nbsp;<span><?php echo $lastName ?></span> of
-            <span><?php echo $department ?></span>&nbsp;Department <br><br>
-            has Participated in <span><?php echo $event ?></span> Event of <?php echo $culturalFestName ?>
-            held <br><br>
-            during <?php echo $culturalFestDate ?> at GIT, Lavel & Won <span><?php echo $prize ?></span> Prize. </p>
-
-        <br>
+        <p class="para"> Mr./Ms.<span><?php echo $firstName ?></span> <span><?php echo $lastName ?></span> of
+            <span><?php echo $department ?></span> Department from <br><br>
+           <span><?php echo $collegeName ?></span> College has Participated in <span><?php echo $event ?></span><br> <br> Event of <?php echo $culturalFestName ?> held during
+            <?php echo $culturalFestDate ?> at GIT, Lavel & Won <span><?php echo $prize ?></span> Prize. </p>
 
 
         <div class="text-center mx-auto">
@@ -137,6 +142,25 @@ try {
 
     <!-- Convert JS Variable data into QR Code takes input above JS Variable-->
     <script type="text/javascript" src="../js/php-certQrCode.js"> </script>
+
+      <!--Script of Button to Save PDF-->
+    <script type="text/javascript">
+        $("#btnPrint").live("click", function () {
+            var printButton = document.getElementById("btnPrint");
+            //Set the print button visibility to 'hidden'
+            printButton.style.visibility = 'hidden';
+            //Print the page content
+
+            window.print();
+        });
+    </script>
+
+     <script>
+    if (window . history . replaceState) {
+    window . history . replaceState(null, null, window . location . href);
+    }
+    </script>
+
 
     <!-- Close Database Connection -->
   <?php $conn = null;?>
