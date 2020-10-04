@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2020 at 09:11 AM
+-- Generation Time: Oct 04, 2020 at 08:53 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -150,7 +150,7 @@ INSERT INTO `event_information` (`email`, `certificateId`, `event`, `paymentType
 ('testuser01@gmail.com', 1304984101, 'EXTC Paper Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200811111212800110168692401796095', '150.00', 'ORDS91250512', 'TXN_SUCCESS', '63017021', '2020-08-11 15:53:34.000000', 'absent'),
 ('testuser02@gmail.com', 1304984102, 'EXTC Paper Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200811111212800110168692401796095', '150.00', 'ORDS91250512', 'TXN_SUCCESS', '63017021', '2020-08-11 15:53:34.000000', 'absent'),
 ('testuser03@gmail.com', 1304984103, 'EXTC Paper Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200811111212800110168692401796095', '150.00', 'ORDS91250512', 'TXN_SUCCESS', '63017021', '2020-08-11 15:53:34.000000', 'absent'),
-('testuser04@gmail.com', 1304984104, 'EXTC Paper Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200811111212800110168692401796095', '150.00', 'ORDS91250512', 'TXN_SUCCESS', '63017021', '2020-08-11 15:53:34.000000', 'absent'),
+('testuser04@gmail.com', 1304984104, 'EXTC Paper Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200811111212800110168692401796095', '150.00', 'ORDS91250512', 'TXN_SUCCESS', '63017021', '2020-08-11 15:53:34.000000', 'present'),
 ('testuser05@gmail.com', 1304984105, 'EXTC Paper Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200811111212800110168692401796095', '150.00', 'ORDS91250512', 'TXN_SUCCESS', '63017021', '2020-08-11 15:53:34.000000', 'absent'),
 ('testuser06@gmail.com', 1304984106, 'EXTC Paper Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200811111212800110168692401796095', '150.00', 'ORDS91250512', 'TXN_SUCCESS', '63017021', '2020-08-11 15:53:34.000000', 'absent'),
 ('testuser07@gmail.com', 1304984107, 'EXTC Paper Presentation', 'Online Banking', 'NONE', 'WALLET', 'Txn Success', 'WALLET', '20200811111212800110168692401796095', '150.00', 'ORDS91250512', 'TXN_SUCCESS', '63017021', '2020-08-11 15:53:34.000000', 'absent'),
@@ -722,35 +722,42 @@ INSERT INTO `synergy_events_details` (`id`, `eventImage`, `eventName`, `eventPri
 -- --------------------------------------------------------
 
 --
--- Table structure for table `synergy_user_information`
+-- Table structure for table `synergy_event_registrations`
 --
 
-CREATE TABLE `synergy_user_information` (
-  `userId` int(11) NOT NULL,
-  `certificateId` int(30) NOT NULL,
-  `firstName` varchar(30) NOT NULL,
-  `lastName` varchar(30) NOT NULL,
-  `departmentName` varchar(50) NOT NULL,
-  `eventName` varchar(100) NOT NULL,
-  `prize` varchar(30) NOT NULL DEFAULT 'NONE'
+CREATE TABLE `synergy_event_registrations` (
+  `email` varchar(255) NOT NULL,
+  `certificateId` varchar(255) NOT NULL,
+  `eventName` varchar(255) NOT NULL,
+  `prize` varchar(100) DEFAULT 'None',
+  `attendStatus` varchar(100) DEFAULT 'absent'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `synergy_user_information`
+-- Dumping data for table `synergy_event_registrations`
 --
 
-INSERT INTO `synergy_user_information` (`userId`, `certificateId`, `firstName`, `lastName`, `departmentName`, `eventName`, `prize`) VALUES
-(3, 793669864, 'Test', 'User01', 'Electronics and Telecommunication', 'Singing Competition', 'None'),
-(5, 603862888, 'Test', 'User03', 'Chemical', 'Fishpond', 'None'),
-(6, 11494271, 'Test', 'User04', 'Chemical', 'Dance Competition', 'None'),
-(7, 617198528, 'Test', 'User05', 'Civil', 'Debate Competition', 'None'),
-(8, 696777007, 'Test', 'User06', 'Civil', 'Quiz Competition', 'None'),
-(9, 417517694, 'Test', 'User07', 'Mechanical', 'Fashion Show Competition', 'None'),
-(10, 562647614, 'Test', 'User08', 'Mechanical', 'Drama Competition', 'None'),
-(11, 273552090, 'Test', 'User09', 'Computer', 'Group Discussion Competition', 'None'),
-(12, 44422342, 'Test', 'User10', 'Computer', 'Singing Competition', 'None'),
-(13, 441087762, 'Test', 'User02', 'Electronics and Telecommunication', 'Antakshari', 'None'),
-(15, 600339642, 'Vishal', 'Bait', 'Electronics and Telecommunication', 'Debate Competition', 'First');
+INSERT INTO `synergy_event_registrations` (`email`, `certificateId`, `eventName`, `prize`, `attendStatus`) VALUES
+('testuser11@gmail.com', '1574788211', 'Antakshari', 'None', 'absent'),
+('testuser12@gmail.com', '1574788212', 'Fishpond', 'None', 'absent'),
+('testuser13@gmail.com', '1574788213', 'Dance Competition', 'None', 'absent'),
+('testuser14@gmail.com', '1574788214', 'Debate Competition', 'None', 'absent'),
+('testuser15@gmail.com', '1574788215', 'Quiz Competition', 'None', 'absent'),
+('testuser16@gmail.com', '1574788216', 'Fashion Show Competition', 'None', 'absent'),
+('testuser17@gmail.com', '1574788217', 'Drama Competition', 'None', 'absent'),
+('testuser18@gmail.com', '1574788218', 'Group Discussion Competition', 'None', 'absent'),
+('testuser19@gmail.com', '1574788219', 'Singing Competition', 'None', 'absent'),
+('testuser20@gmail.com', '1574788220', 'Antakshari', 'None', 'absent'),
+('testuser10@gmail.com', '1574788310', 'Singing Competition', 'None', 'absent'),
+('testuser01@gmail.com', '1574788311', 'Singing Competition', 'None', 'absent'),
+('testuser02@gmail.com', '1574788312', 'Antakshari', 'None', 'absent'),
+('testuser03@gmail.com', '1574788313', 'Fishpond', 'None', 'absent'),
+('testuser04@gmail.com', '1574788314', 'Dance Competition', 'None', 'absent'),
+('testuser05@gmail.com', '1574788315', 'Debate Competition', 'None', 'absent'),
+('testuser06@gmail.com', '1574788516', 'Quiz Competition', 'None', 'absent'),
+('testuser09@gmail.com', '1574788519', 'Group Discussion Competition', 'None', 'absent'),
+('testuser07@gmail.com', '1574788717', 'Fashion Show Competition', 'None', 'absent'),
+('testuser08@gmail.com', '1574788718', 'Drama Competition', 'None', 'absent');
 
 -- --------------------------------------------------------
 
@@ -879,10 +886,11 @@ ALTER TABLE `synergy_events_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `synergy_user_information`
+-- Indexes for table `synergy_event_registrations`
 --
-ALTER TABLE `synergy_user_information`
-  ADD PRIMARY KEY (`userId`);
+ALTER TABLE `synergy_event_registrations`
+  ADD PRIMARY KEY (`certificateId`),
+  ADD KEY `email` (`email`);
 
 --
 -- Indexes for table `user_information`
@@ -937,12 +945,6 @@ ALTER TABLE `synergy_events_details`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `synergy_user_information`
---
-ALTER TABLE `synergy_user_information`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
 -- AUTO_INCREMENT for table `visitor_counter`
 --
 ALTER TABLE `visitor_counter`
@@ -963,6 +965,12 @@ ALTER TABLE `event_information`
 --
 ALTER TABLE `newsletter_information`
   ADD CONSTRAINT `newsletter_information_ibfk_1` FOREIGN KEY (`email`) REFERENCES `user_information` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `synergy_event_registrations`
+--
+ALTER TABLE `synergy_event_registrations`
+  ADD CONSTRAINT `synergy_event_registrations_ibfk_1` FOREIGN KEY (`email`) REFERENCES `user_information` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
