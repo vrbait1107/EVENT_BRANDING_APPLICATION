@@ -26,10 +26,15 @@ try {
 
     //------------------------->>  EXTRACT EVENT NAME IN ARRAY
 
-    $sql1 = "SELECT eventName FROM synergy_events_details";
+    $sql1 = "SELECT * FROM synergy_events_details";
     $result1 = $conn->prepare($sql1);
     $result1->execute();
-    $eventArray = $result1->fetch(PDO::FETCH_ASSOC);
+
+    $eventArray = array();
+
+    while ($row1 = $result1->fetch(PDO::FETCH_ASSOC)) {
+        array_push($eventArray, $row1['eventName']);
+    }
 
     //------------------------->>  DISPLAY PARTICIPATION COUNT EVENT WISE
 
@@ -84,6 +89,7 @@ include_once "includes/adminNavbar.php";
             <h1 class="mt-2 font-Staatliches-heading text-center text-info">Dashboard for Synergy Administrator</h1>
             <hr />
 
+
             <div class="row">
                 <!-- Total Participation of the Events -->
                 <section class="col-md-6 mb-4">
@@ -123,7 +129,7 @@ include_once "includes/adminNavbar.php";
                                         Student Participants <br />
                                         <span class="text-danger"><?php echo $eventName; ?></span>
                                     </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <div class="h5 mb-0 font-weight-bold">
                                         <?php echo participantCount($conn, $eventName) ?></div>
                                 </div>
                                 <div class="col-auto">
