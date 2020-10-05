@@ -131,16 +131,13 @@ if (isset($_POST["login"])) {
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" href="register.php">SHODH Register</a>
+                    <a class="nav-link text-uppercase" href="register.php">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" href="login.php">SHODH Login</a>
+                    <a class="nav-link text-uppercase" href="login.php">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" href="Admin/adminLogin.php">SHODH Admin Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-uppercase" href="Admin/synergyLogin.php">SYNERGY Admin Login</a>
+                    <a class="nav-link text-uppercase" href="Admin/adminLogin.php">Admin Login</a>
                 </li>
             </ul>
         </div>
@@ -152,7 +149,7 @@ if (isset($_POST["login"])) {
       <section class="col-md-6 offset-md-3">
 
         <div class="card shadow p-5">
-          <h2 class="text-center text-uppercase font-time"><?php echo $techfestName ?> LOGIN</h2>
+          <h2 class="text-center text-uppercase font-time">USER LOGIN</h2>
           <hr>
 
           <form action="" method="POST">

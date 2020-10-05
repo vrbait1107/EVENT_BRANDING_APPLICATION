@@ -126,6 +126,13 @@ try {
                         $_SESSION['adminEvent'] = $adminEvent;
                         header('Location:facultyCoordinatorIndex.php');
 
+                    } elseif (password_verify($adminPassword, $password) && ($adminType === "Synergy Administrator")) {
+                        $_SESSION['adminEmail'] = $adminUserName;
+                        $_SESSION['adminType'] = $adminType;
+                        $_SESSION['adminDepartment'] = $adminDepartment;
+                        $_SESSION['adminEvent'] = $adminEvent;
+                        header('Location:synergyIndex.php');
+
                     } else {
                         echo "<script>Swal.fire({
                                 icon: 'error',
@@ -178,16 +185,13 @@ try {
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase text-dark" href="../register.php">SHODH Register</a>
+                    <a class="nav-link text-uppercase text-dark" href="../register.php">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase text-dark" href="../login.php">SHODH Login</a>
+                    <a class="nav-link text-uppercase text-dark" href="../login.php">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase text-dark" href="adminLogin.php">SHODH Admin Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-uppercase text-dark" href="synergyLogin.php">SYNERGY Admin Login</a>
+                    <a class="nav-link text-uppercase text-dark" href="adminLogin.php">Admin Login</a>
                 </li>
             </ul>
         </div>
@@ -199,7 +203,7 @@ try {
             <section class="col-md-6 offset-md-3">
 
                 <div class="card shadow px-4 py-2">
-                    <h2 class="text-center text-uppercase mt-4 font-time"><?php echo $techfestName ?> Admin Login</h2>
+                    <h2 class="text-center text-uppercase mt-4 font-time">Admin Login</h2>
 
                    <hr/>
 
@@ -218,6 +222,7 @@ try {
                             <select class="custom-select" name="adminType">
                                 <option selected disabled>Choose Admin Type</option>
                                 <option value="Administrator">Administrator</option>
+                                <option value="Synergy Administrator">Synergy Administrator</option>
                                 <option value="Faculty Coordinator">Faculty Coordinator</option>
                                 <option value="Student Coordinator">Student Coordinator</option>
                             </select>

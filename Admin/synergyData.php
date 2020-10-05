@@ -8,10 +8,15 @@ require_once '../config/configPDO.php';
 //--------------------->> START SESSION
 session_start();
 
-//--------------------->> CHECKING ADMIN
-if (!isset($_SESSION['Admin'])) {
-    header('Location:synergyLogin.php');
+// ---------------------------------------->> CHECKING ADMIN
+if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
+
+    if ($_SESSION['adminType'] !== "Synergy Administrator") {
+        header("location:adminLogin.php");
+    }
+
 }
+
 ?>
 
 

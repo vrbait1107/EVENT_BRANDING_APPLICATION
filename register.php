@@ -187,16 +187,13 @@ if (isset($_POST['submit'])) {
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" href="register.php">SHODH Register</a>
+                    <a class="nav-link text-uppercase" href="register.php">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" href="login.php">SHODH Login</a>
+                    <a class="nav-link text-uppercase" href="login.php">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" href="Admin/adminLogin.php">SHODH Admin Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-uppercase" href="Admin/synergyLogin.php">SYNERGY Admin Login</a>
+                    <a class="nav-link text-uppercase" href="Admin/adminLogin.php">Admin Login</a>
                 </li>
             </ul>
         </div>
@@ -204,7 +201,7 @@ if (isset($_POST['submit'])) {
 
   <main class="container mt-4">
 
-    <h2 class="text-center mx-auto font-time text-uppercase"><?php echo $techfestName ?> Registration</h2>
+    <h2 class="text-center mx-auto font-time text-uppercase">User Registration</h2>
      <h6 class="text-danger  text-center font-sans">Note: 1) Following details will be used
       for your Certificate Generation so please provide proper details.</h6>
 

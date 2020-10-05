@@ -8,9 +8,13 @@ require_once '../config/configPDO.php';
 // ---------------------->> START SESSION
 session_start();
 
-//------------------------>> CHECKING ADMIN
-if (!isset($_SESSION['Admin'])) {
-    header('location:synergyLogin.php');
+// ---------------------------------------->> CHECKING ADMIN
+if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
+
+    if ($_SESSION['adminType'] !== "Synergy Administrator") {
+        header("location:adminLogin.php");
+    }
+
 }
 ?>
 
@@ -78,7 +82,6 @@ try {
 
     <!-- Include Admin Navbar & Common Anchor -->
     <?php
-$_SESSION['adminType'] = 'Synergy Administrator';
 include_once "includes/commonAnchor.php";
 include_once "includes/adminNavbar.php";
 ?>
