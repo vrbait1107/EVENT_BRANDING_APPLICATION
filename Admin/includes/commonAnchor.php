@@ -47,7 +47,7 @@ if ($_SESSION['adminType'] === "Administrator") {
     $index = "synergyIndex.php";
     $participants = "synergyData.php";
     $events = "manageSynergyEvent.php";
-    $charts = "#";
+    $charts = "synergyAdminCharts.php";
     $admins = "#";
     $emails = "#";
     $sponsors = "#";
