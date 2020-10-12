@@ -70,10 +70,13 @@ if ($result->rowCount() > 0) {
                 <div class="card shadow text-center">
 
                     <!-- Event Image -->
-                    <img src="images/eventImage/synergy/<?php echo $row['eventImage']; ?>" class="img-fluid">
+                    <img src="images/eventImage/synergy/<?php echo $row['eventImage']; ?>" style="height:230px" class="img-fluid">
+
+                    <!-- Event Name -->
+                    <h5 class="text-uppercase font-time alert alert-info"><?php echo $row["eventName"]; ?></h5>
 
                     <!-- Event Prize -->
-                    <h5 class="text-danger my-2">Event Prize &#x20b9;<?php echo $row["eventPrize"]; ?></h5>
+                    <h5 class="alert font-sans alert-warning mb-2">Event Prize &#x20b9;<?php echo $row["eventPrize"]; ?></h5>
 
                     <!-- Synergy Event Register -->
                     <form action="synergyEventRegister.php" method="post">
