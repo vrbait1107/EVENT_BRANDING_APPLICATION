@@ -9,13 +9,12 @@
 2. Current Repository [Event Branding Application (PHP) ](https://github.com/vrbait1107/EVENT_BRANDING_APPLICATION)
 3. [Event Branding Application (MERN)](https://github.com/vrbait1107/MERN_EBA) Under Development
 
-## Event Branding Application: Start to End Support (Techfest Website)
+## Event Branding Application: Start to End Support (Techfest + CulturalFest Website)
 
 Event Branding Application project is a mobile based application and website that supports User registration, Event registration, Event payment and checkouts, Event Certificate generation, Event certificate verification,
-event feedback system and Administrator panel for events such as technical festival. It helps program attendees, organizers, the authors and the reviewers in their respective activities.
+event feedback system and Administrator panel for events such as technical festival and cultural festival. It helps program attendees, organizers, the authors and the reviewers in their respective activities.
 
-Development of Event Branding Application is an attempt to address the problems of managing user registration, event registration & payment details also managing users certificates and verifying their certificates & users feedbacks. The main goal of this Website & Application is to give working solution to managing entire technical festival from start to end.
-
+Development of Event Branding Application is an attempt to address the problems of managing user registration, event registration & payment details also managing users certificates and verifying their certificates & users feedbacks. The main goal of this Website & Application is to give working solution to managing entire technical festival and cultural festival from start to end.
 
 ### Typical functions supported by Event Branding Application with Website (User Level)
 
@@ -28,7 +27,7 @@ Development of Event Branding Application is an attempt to address the problems 
 
 ### Typical functions supported by Event Branding Application with Website (Administrator Level)
 
-1. **Administrator (College Level)**
+1. **Administrator for Techfest (College Level)**
 
 - View Event Revenue, Participant Count Statistics Charts.
 - View registration details.
@@ -41,7 +40,14 @@ Development of Event Branding Application is an attempt to address the problems 
 - View/Add/Delete/Update News/Notification Information.
 - View/Delete Feedaback Information & View Feedback Statistics.
 
-2. **Faculty Coordinator (Department Level)**
+2. **Administrator for Cultural fest (College Level)**
+
+- View Participant Count Statistics Charts.
+- View registration details.
+- View/Add/Delete/Update Events Details Information.
+- View and delete event level event registration details and Update it such as Prize.
+
+3. **Faculty Coordinator for Techfest (Department Level)**
 
 - View Event Revenue, Participant Count Statistics Charts.
 - View department level event registration details.
@@ -54,7 +60,7 @@ Development of Event Branding Application is an attempt to address the problems 
 - View/Add/Delete/Update News/Notification Information
 - View/Delete Feedaback Information & View Feedback Statistics.
 
-3. **Student Coordinator (Event Level)**
+4. **Student Coordinator for Techfest (Event Level)**
 
 - View Event Revenue, Participant Count Statistics Charts
 - View and delete event level event registration details and Update it such as Prize.
@@ -67,7 +73,8 @@ Development of Event Branding Application is an attempt to address the problems 
 - View/Delete Feedaback Information & View Feedback Statistics.
 
 ## Project Screenshots
-- View Project Screenshots in pdf format. [View Screenshots](https://github.com/vrbait1107/EVENT_BRANDING_APPLICATION/blob/master/Project%20Screenshots/PROJECT%20SCREENSHOTS.pdf) 
+
+- View Project Screenshots in pdf format. [View Screenshots](https://github.com/vrbait1107/EVENT_BRANDING_APPLICATION/blob/master/Project%20Screenshots/PROJECT%20SCREENSHOTS.pdf)
 
 ## PHP Mailer
 
@@ -102,7 +109,7 @@ Development of Event Branding Application is an attempt to address the problems 
 
 **For Administrator**
 
-- Emails: Check Emails from admin_information table in sql file also check Roles of Admins (College, Faculty Coordinator and Student Coordinator)
+- Emails: Check Emails from admin_information table in sql file also check Roles of Admins (Shodh Administrator, Synergy Administrator, Faculty Coordinator and Student Coordinator)
 - Password: Admin@123 (For All Administrators)
 
 **NOTE:**
@@ -143,8 +150,8 @@ Development of Event Branding Application is an attempt to address the problems 
 
 Event Branding Application is [GNU GPL v3.0 licensed](./LICENSE).
 
-
 ## Contributing Guide
+
 - Read our [Contributing Guide](./CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to Event Branding Application.
 - Please feel free to contribute in this project as well as other project in this account.
 
