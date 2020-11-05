@@ -10,8 +10,8 @@ if ($_SESSION['adminType'] === "Administrator") {
     $sponsors = "manageSponsor.php";
     $news = "manageNews.php";
     $events = "manageEvent.php";
-    $galleryImages = "manageGalleryImages.php";
-    $newsletters = "sendNewsletter.php";
+    $galleryImages = "manageGalleryImage.php";
+    $newsletter = "sendNewsletter.php";
     $feedback = "manageFeedback.php";
 
 } elseif ($_SESSION['adminType'] === "Student Coordinator") {
@@ -38,8 +38,8 @@ if ($_SESSION['adminType'] === "Administrator") {
     $emails = "sendMails.php";
     $sponsors = "manageSponsor.php";
     $news = "manageNews.php";
-    $galleryImages = "manageGalleryImages.php";
-    $newsletters = "sendNewsletter.php";
+    $galleryImages = "manageGalleryImage.php";
+    $newsletter = "sendNewsletter.php";
     $feedback = "manageFeedback.php";
 
 } elseif ($_SESSION['adminType'] === "Synergy Administrator") {
