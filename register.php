@@ -50,16 +50,152 @@ if (isset($_POST['submit'])) {
 
             if ($response->success) {
 
+                $userName = $_POST['userName'];
+                $firstName = $_POST['firstName'];
+                $lastName = $_POST['lastName'];
+                $mobileNumber = $_POST['mobileNumber'];
+                $collegeName = $_POST['collegeName'];
+                $department = $_POST['department'];
+                $year = $_POST['year'];
+                $password = $_POST['password'];
+                $confirm_password = $_POST['confirmPassword'];
+
+                if (empty($userName)):
+                    echo "<script>Swal.fire({
+											        icon: 'warning',
+											        title: 'Required',
+											        text: 'username cannot be empty',
+											  })</script>";
+                    return;
+                endif;
+
+                if (empty($firstName)):
+                    echo "<script>Swal.fire({
+															icon: 'warning',
+															title: 'Required',
+															text: 'First Name cannot be empty',
+												})</script>";
+                    return;
+                endif;
+
+                if (empty($lastName)):
+                    echo "<script>Swal.fire({
+														  icon: 'warning',
+															title: 'Required',
+															text: 'Last Name cannot be empty',
+												})</script>";
+                    return;
+                endif;
+
+                if (empty($mobileNumber)):
+                    echo "<script>Swal.fire({
+															icon: 'warning',
+															title: 'Required',
+															text: 'Mobile Number cannot be empty',
+												})</script>";
+                    return;
+                endif;
+
+                if (strlen($mobileNumber) !== 10):
+                    echo "<script>Swal.fire({
+															icon: 'warning',
+															title: 'Required',
+															text: 'Please Enter Proper Mobile Number',
+												})</script>";
+                    return;
+                endif;
+
+                if (empty($collegeName)):
+                    echo "<script>Swal.fire({
+															icon: 'warning',
+															title: 'Required',
+															text: 'Please Select Proper College Name',
+												})</script>";
+                    return;
+                endif;
+
+                if (empty($department)):
+                    echo "<script>Swal.fire({
+															icon: 'warning',
+															title: 'Required',
+															text: 'Please Select Proper Department Name',
+												})</script>";
+                    return;
+                endif;
+
+                if (empty($year)):
+                    echo "<script>Swal.fire({
+															icon: 'warning',
+															title: 'Required',
+															text: 'Please Select Proper Academic Year',
+												})</script>";
+                    return;
+                endif;
+
+                if (empty($password)):
+                    echo "<script>Swal.fire({
+															icon: 'warning',
+															title: 'Required',
+															text: 'Password Cannot be empty',
+												})</script>";
+                    return;
+                endif;
+
+                if (!preg_match('/[A-Z]/', $password)):
+                    echo '<script>Swal.fire({
+			                    icon: "warning",
+			                    title: "Required",
+			                    text: "Password must contain at least one Uppercase Letter (A-Z).",
+			                })</script>';
+                    return;
+                endif;
+
+                if (!preg_match('/[a-z]/', $password)):
+                    echo '<script>Swal.fire({
+			                    icon: "warning",
+			                    title: "Required",
+			                    text: "Password must contain at least one Lowercase Letter (a-z).",
+			                })</script>';
+                    return;
+                endif;
+
+                if (!preg_match('/[0-9]/', $password)):
+                    echo '<script>Swal.fire({
+							            icon: "warning",
+							            title: "Required",
+							            text: "Password must contain at least one number (0-9).",
+							        })</script>';
+                    return;
+                endif;
+
+                if (strlen($password) < 8):
+                    echo '<script>Swal.fire({
+							                    icon: "warning",
+							                    title: "Required",
+							                    text: "Password length must be atleast 8 Characters",
+							                })</script>';
+                    return;
+                endif;
+
+                if ($password !== $confirm_password):
+                    echo "<script>Swal.fire({
+															icon: 'warning',
+															title: 'Required',
+															text: 'Password and Confirm Password are different',
+												})</script>";
+                    return;
+                endif;
+
                 # Removing White Spaces
-                $userName = trim($_POST['userName']);
-                $firstName = trim($_POST['firstName']);
-                $lastName = trim($_POST['lastName']);
-                $mobileNumber = trim($_POST['mobileNumber']);
-                $collegeName = trim($_POST['collegeName']);
-                $department = trim($_POST['department']);
-                $year = trim($_POST['year']);
-                $password = trim($_POST['password']);
-                $confirm_password = trim($_POST['confirmPassword']);
+                $userName = trim($userName);
+                $firstName = trim($firstName);
+                $lastName = trim($lastName);
+                $mobileNumber = trim($mobileNumber);
+                $collegeName = trim($collegeName);
+                $department = trim($department);
+                $year = trim($year);
+                $password = trim($password);
+                $confirm_password = trim($confirm_password);
 
                 # Avoid XSS Attack
                 $userName = htmlspecialchars($_POST['userName']);

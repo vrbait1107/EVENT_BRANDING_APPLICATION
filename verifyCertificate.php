@@ -50,12 +50,22 @@ if (isset($_POST["submit"])) {
 
     $validate = htmlspecialchars($_POST["validateData"]);
 
+    if (empty($validate)):
+        echo "<script>Swal.fire({
+			    icon: 'warning',
+			    title: 'Required',
+			    text: 'Certificate Id cannot be empty',
+		        })</script>";
+        return;
+    endif;
+
     try {
 
         # Sql Query
-        $sql = "SELECT * FROM user_information INNER JOIN event_information ON
-    user_information.email= event_information.email
-    WHERE event_information.certificateId = :validate";
+        $sql = "SELECT firstName, lastName, departmentName, collegeName, academicYear, event, prize
+        FROM user_information INNER JOIN event_information ON
+        user_information.email= event_information.email
+        WHERE event_information.certificateId = :validate";
 
         # Preparing Query
         $result = $conn->prepare($sql);
@@ -145,10 +155,19 @@ if (isset($_POST["synergySubmit"])) {
 
     $validate = htmlspecialchars($_POST["synergyValidateData"]);
 
+    if (empty($validate)):
+        echo "<script>Swal.fire({
+				    icon: 'warning',
+				    title: 'Required',
+				    text: 'Certificate Id cannot be empty',
+			        })</script>";
+        return;
+    endif;
+
     try {
         # Sql Query
-        $sql = "SELECT * FROM synergy_user_information
-    WHERE certificateId = :validate";
+        $sql = "SELECT firstName, lastName, departmentName, eventName, prize
+         FROM synergy_user_information WHERE certificateId = :validate";
 
         # Preparing Query
         $result = $conn->prepare($sql);
@@ -230,9 +249,10 @@ if (isset($_GET["certificateId"])) {
 
     try {
 
-        $sql = "SELECT * FROM user_information INNER JOIN event_information ON
-   user_information.email= event_information.email
-    WHERE event_information.certificateId = :validate";
+        $sql = "SELECT firstName, lastName, departmentName, collegeName, academicYear, event, prize
+         FROM user_information INNER JOIN event_information ON
+         user_information.email= event_information.email
+        WHERE event_information.certificateId = :validate";
 
         $result = $conn->prepare($sql);
 
