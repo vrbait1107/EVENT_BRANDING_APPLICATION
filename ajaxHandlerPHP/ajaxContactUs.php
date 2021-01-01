@@ -12,11 +12,58 @@ extract($_POST);
 // --------------------------->> SECRETS
 require_once "../config/Secret.php";
 
+// ------------------------------>> CHECKING USER
+
+if (!isset($_SESSION['user'])):
+    header("location:../login.php");
+endif;
+
 try {
 
     if (isset($_POST['submit'])) {
 
         if (isset($_POST['captcha'])) {
+
+            $name = $_POST["name"];
+            $email = $_POST["email"];
+            $subject = $_POST["subject"];
+            $message = $_POST["message"];
+
+            if (empty($name)):
+                echo "<script>Swal.fire({
+									icon: 'warning',
+								    title: 'Required',
+									text: 'Name cannot be empty',
+								})</script>";
+                return;
+            endif;
+
+            if (empty($email)):
+                echo "<script>Swal.fire({
+									  icon: 'warning',
+									  title: 'Required',
+									  text: 'Email cannot be empty',
+								})</script>";
+                return;
+            endif;
+
+            if (empty($subject)):
+                echo "<script>Swal.fire({
+									icon: 'warning',
+									title: 'Required',
+									text: 'Subject cannot be empty',
+								})</script>";
+                return;
+            endif;
+
+            if (empty($message)):
+                echo "<script>Swal.fire({
+										 icon: 'warning',
+										 title: 'Required',
+										 text: 'Subject cannot be empty',
+									})</script>";
+                return;
+            endif;
 
             $name = htmlspecialchars($_POST["name"]);
             $email = htmlspecialchars($_POST["email"]);
@@ -54,7 +101,7 @@ try {
                 })</script>";
             }
 
-        }else {
+        } else {
             echo "<script>Swal.fire({
                     icon: 'warning',
                     title: 'Google Recaptcha Error',

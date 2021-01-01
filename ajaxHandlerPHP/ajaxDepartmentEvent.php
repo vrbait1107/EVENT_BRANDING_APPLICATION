@@ -11,6 +11,12 @@ session_start();
 
 extract($_POST);
 
+// ------------------------------>> CHECKING USER
+
+if (!isset($_SESSION['user'])):
+    header("location:../login.php");
+endif;
+
 // --------------------------->> APPLY PROMOCODE
 
 try {

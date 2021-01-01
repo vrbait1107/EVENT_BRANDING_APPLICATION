@@ -9,6 +9,13 @@ session_start();
 // ---------------------->> EXTRACT POST DATA
 extract($_POST);
 
+// ------------------------------>> CHECKING USER
+
+if (!isset($_SESSION['user'])):
+    header("location:../login.php");
+endif;
+
+
 try {
 
 // ---------------------->> EDIT OPERATION
@@ -108,12 +115,110 @@ try {
     if (isset($_POST["hiddenEmail"])) {
 
         # Avoid XSS Attack
-        $updateFirstName = htmlspecialchars($_POST["updateFirstName"]);
-        $updateLastName = htmlspecialchars($_POST["updateLastName"]);
-        $updateMobileNumber = htmlspecialchars($_POST["updateMobileNumber"]);
-        $updateCollegeName = htmlspecialchars($_POST["updateCollegeName"]);
-        $updateDepartmentName = htmlspecialchars($_POST["updateDepartmentName"]);
-        $updateAcademicYear = htmlspecialchars($_POST["updateAcademicYear"]);
+        $updateFirstName = $_POST["updateFirstName"];
+        $updateLastName = $_POST["updateLastName"];
+        $updateMobileNumber = $_POST["updateMobileNumber"];
+        $updateCollegeName = $_POST["updateCollegeName"];
+        $updateDepartmentName = $_POST["updateDepartmentName"];
+        $updateAcademicYear = $_POST["updateAcademicYear"];
+
+        if (empty($updateFirstName)):
+            echo '<script>Swal.fire({
+							icon: "warning",
+							title: "Required",
+							text: "First Name field cannot be Empty",
+						})</script>';
+            return;
+        endif;
+
+        if (is_numeric($updateFirstName)):
+            echo '<script>Swal.fire({
+								icon: "warning",
+								title: "Required",
+								text: "Only Characters allowed in First Name field",
+						})</script>';
+            return;
+        endif;
+
+        if (empty($updateLastName)):
+            echo '<script>Swal.fire({
+								icon: "warning",
+								title: "Required",
+								text: "Last Name field cannot be Empty",
+						})</script>';
+            return;
+        endif;
+
+        if (empty($updateLastName)):
+            echo '<script>Swal.fire({
+							icon: "warning",
+							title: "Required",
+							text: "Only Characters allowed in Last Name field",
+						})</script>';
+            return;
+        endif;
+
+        if (empty($updateCollegeName)):
+            echo '<script>Swal.fire({
+							icon: "warning",
+							title: "Required",
+							text: "College Name field cannot be Empty",
+						})</script>';
+            return;
+        endif;
+
+        if (is_numeric($updateCollegeName)):
+            echo '<script>Swal.fire({
+						        icon: "warning",
+								title: "Required",
+								text: "Only Characters allowed in College Name field",
+				            })</script>';
+            return;
+        endif;
+
+        if (strlen($updateMobileNumber) !== 10):
+            echo '<script>Swal.fire({
+								icon: "warning",
+			                    title: "Required",
+								text: "Mobile Numbers Length Should be 10.",
+						})</script>';
+            return;
+        endif;
+
+        if (!is_numeric($updateMobileNumber)):
+            echo '<script>Swal.fire({
+							    icon: "warning",
+								title: "Required",
+								text: "Only Numbers allowed in Mobile Number field",
+					    })</script>';
+            return;
+        endif;
+
+        if (empty($updateCollegeName)):
+            echo '<script>Swal.fire({
+							icon: "warning",
+							title: "Required",
+							text: "College Name field cannot be Empty",
+						})</script>';
+            return;
+        endif;
+
+        if (empty($updateAcademicYear)):
+            echo '<script>Swal.fire({
+							icon: "warning",
+							title: "Required",
+							text: "Academic Year field cannot be Empty",
+						})</script>';
+            return;
+        endif;
+
+        # Avoid XSS Attack
+        $updateFirstName = htmlspecialchars($updateFirstName);
+        $updateLastName = htmlspecialchars($updateLastName);
+        $updateMobileNumber = htmlspecialchars($updateMobileNumber);
+        $updateCollegeName = htmlspecialchars($updateCollegeName);
+        $updateDepartmentName = htmlspecialchars($updateDepartmentName);
+        $updateAcademicYear = htmlspecialchars($updateAcademicYear);
 
         # Query
         $sql = "UPDATE user_information SET firstName = :updateFirstName, lastName = :updateLastName,

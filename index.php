@@ -30,7 +30,7 @@ try {
 
     if ($totaVisitor == 0) {
         $sql2 = "INSERT INTO visitor_counter (ipAddress) VALUES (:visitorIpAddress)";
-        $result2 = $conn->prepare($sql);
+        $result2 = $conn->prepare($sql2);
         $result2->bindValue(":visitorIpAddress", $visitorIpAddress);
         $result2->execute();
     }

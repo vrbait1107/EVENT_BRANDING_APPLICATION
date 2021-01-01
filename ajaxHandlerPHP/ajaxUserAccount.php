@@ -9,6 +9,12 @@ session_start();
 // --------------------------->> EXTRACT DATA
 extract($_POST);
 
+// ------------------------------>> CHECKING USER
+
+if (!isset($_SESSION['user'])):
+    header("location:../login.php");
+endif;
+
 // --------------------------->> SESSION VARIABLE
 $email = $_SESSION['user'];
 

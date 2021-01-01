@@ -12,6 +12,12 @@ session_start();
 // --------------------------->> EXTRACT DATA
 extract($_POST);
 
+// ------------------------------>> CHECKING USER
+
+if (!isset($_SESSION['user'])):
+    header("location:../login.php");
+endif;
+
 try {
 
     if (isset($_POST['submit'])) {
@@ -19,16 +25,118 @@ try {
         if (isset($_POST['captcha'])) {
 
             # Avoid XSS Attack
-            $attendBefore = htmlspecialchars($_POST['attendBefore']);
-            $likelyAttend = htmlspecialchars($_POST['likelyAttend']);
-            $likelyRecommendFriend = htmlspecialchars($_POST['likelyRecommendFriend']);
-            $likeMost = htmlspecialchars($_POST['likeMost']);
-            $likeLeast = htmlspecialchars($_POST['likeLeast']);
-            $location = htmlspecialchars($_POST['location']);
-            $events = htmlspecialchars($_POST['events']);
-            $coordinators = htmlspecialchars($_POST['coordinators']);
-            $eventsPrice = htmlspecialchars($_POST['eventsPrice']);
-            $suggestion = htmlspecialchars($_POST['suggestion']);
+            $attendBefore = $_POST['attendBefore'];
+            $likelyAttend = $_POST['likelyAttend'];
+            $likelyRecommendFriend = $_POST['likelyRecommendFriend'];
+            $likeMost = $_POST['likeMost'];
+            $likeLeast = $_POST['likeLeast'];
+            $location = $_POST['location'];
+            $events = $_POST['events'];
+            $coordinators = $_POST['coordinators'];
+            $eventsPrice = $_POST['eventsPrice'];
+            $suggestion = $_POST['suggestion'];
+
+            if (empty($attendBefore)):
+                echo 'Swal.fire({
+				        icon: "warning",
+				        title: "Required",
+				        text: "Please Select Atleast One Option for Question 1",
+				      });';
+                return;
+            endif;
+
+            if (empty($likelyAttend)):
+                echo 'Swal.fire({
+				        icon: "warning",
+				        title: "Required",
+				        text: "Please Select Atleast One Option for Question 2",
+				      });';
+                return;
+            endif;
+
+            if (empty($likelyRecommendFriend)):
+                echo 'Swal.fire({
+				        icon: "warning",
+				        title: "Required",
+				        text: "Please Select Atleast One Option for Question 3",
+				      });';
+                return;
+            endif;
+
+            if (empty($likeMost)):
+                echo 'Swal.fire({
+				        icon: "warning",
+				        title: "Required",
+				        text: "Please fill Question 4 answer",
+				      });';
+                return;
+            endif;
+
+            if (empty($likeLeast)) {
+                echo 'Swal.fire({
+                icon: "warning",
+                title: "Required",
+                text: "Please fill Question 5 answer",
+            });';
+                return;
+            }
+
+            if (empty($location)):
+                echo 'Swal.fire({
+				        icon: "warning",
+				        title: "Required",
+				        text: "Please Select Atleast One Option for Question 6 Parameter 1",
+				      });';
+                return;
+            endif;
+
+            if (empty($events)):
+                echo 'Swal.fire({
+				        icon: "warning",
+				        title: "Required",
+				        text: "Please Select Atleast One Option for Question 6 Parameter 2",
+				      });';
+                return;
+            endif;
+
+            if (empty($coordinators)):
+                echo 'Swal.fire({
+				        icon: "warning",
+				        title: "Required",
+				        text: "Please Select Atleast One Option for Question 6 Parameter 3",
+				      });';
+                return;
+            endif;
+
+            if (empty($eventsPrice)):
+                echo 'Swal.fire({
+				        icon: "warning",
+				        title: "Required",
+				        text: "Please Select Atleast One Option for Question 6 Parameter 4",
+				      });';
+                return;
+            endif;
+
+            if (empty($suggestion)):
+                echo 'Swal.fire({
+				        icon: "warning",
+				        title: "Required",
+				        text: "Please fill Question 7 answer",
+				      });';
+                return;
+            endif;
+
+            # Avoid XSS Attack
+            $attendBefore = htmlspecialchars($attendBefore);
+            $likelyAttend = htmlspecialchars($likelyAttend);
+            $likelyRecommendFriend = htmlspecialchars($likelyRecommendFriend);
+            $likeMost = htmlspecialchars($likeMost);
+            $likeLeast = htmlspecialchars($likeLeast);
+            $location = htmlspecialchars($location);
+            $events = htmlspecialchars($events);
+            $coordinators = htmlspecialchars($coordinators);
+            $eventsPrice = htmlspecialchars($eventsPrice);
+            $suggestion = htmlspecialchars($suggestion);
 
             $email = $_SESSION['user'];
             $secretKey = $recaptchaSecretKey;
@@ -99,12 +207,12 @@ try {
             })</script>";
             }
 
-        }else{
-           echo "<script>Swal.fire({
+        } else {
+            echo "<script>Swal.fire({
                 icon: 'warning',
                 title: 'Google Recaptcha Error',
                 text: 'Please fill Google Recaptcha Properly'
-            })</script>"; 
+            })</script>";
         }
     }
 
