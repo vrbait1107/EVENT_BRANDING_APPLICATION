@@ -9,6 +9,12 @@ session_start();
 
 extract($_POST);
 
+# CHECKING ADMIN
+
+if ($_SESSION['adminType'] !== "Student Coordinator") {
+    header("location:../adminLogin.php");
+}
+
 try {
 
 //-------------------------------------->>  DELETE OPERATION

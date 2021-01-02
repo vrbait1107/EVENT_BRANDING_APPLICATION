@@ -10,6 +10,12 @@ extract($_POST);
 
 $department = $_SESSION["adminDepartment"];
 
+# CHECKING ADMIN 
+
+ if ($_SESSION['adminType'] !== "Faculty Coordinator") {
+        header("location:../adminLogin.php");
+    }
+
 try {
 
 // ------------------------->>  EXTRACTING EVENT NAME FROM DB IN ARRAY.

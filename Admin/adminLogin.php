@@ -68,6 +68,75 @@ try {
 
             if ($response->success) {
 
+                $adminUserName = $_POST['email'];
+                $adminType = $_POST['adminType'];
+                $adminDepartment = $_POST['adminDepartment'];
+                $adminEvent = $_POST['adminEvent'];
+                $adminPassword = $_POST['password'];
+
+                if (!filter_var($adminUserName, FILTER_VALIDATE_EMAIL)):
+                    echo '<script>Swal.fire({
+							icon: "warning",
+							title: "Warning",
+							text: "Invalid Admin Username format",
+						})</script>';
+                    return;
+                endif;
+
+                if (empty($adminType)):
+                    echo '<script>Swal.fire({
+							icon: "warning",
+							title: "Warning",
+							text: "Please Select Proper Admin Type,
+						})</script>';
+                    return;
+                endif;
+
+                if (empty($adminType)):
+                    echo '<script>Swal.fire({
+							icon: "warning",
+						    title: "Warning",
+							text: "Please Select Proper Admin Type,
+						})</script>';
+                    return;
+                endif;
+
+                if (empty($adminDepartment)):
+                    echo '<script>Swal.fire({
+							icon: "warning",
+							title: "Warning",
+							text: "Please Select Proper Admin Department,
+						})</script>';
+                    return;
+                endif;
+
+                if (empty($adminDepartment)):
+                    echo '<script>Swal.fire({
+							icon: "warning",
+							title: "Warning",
+							text: "Please Select Proper Admin Department,
+						})</script>';
+                    return;
+                endif;
+
+                if (empty($adminEvent)):
+                    echo '<script>Swal.fire({
+							icon: "warning",
+							title: "Warning",
+							text: "Please Select Proper Admin Event,
+						})</script>';
+                    return;
+                endif;
+
+                if (empty($adminPassword)):
+                    echo '<script>Swal.fire({
+							icon: "warning",
+							title: "Warning",
+							text: "Admin Password Field Cannot Be Empty,
+					})</script>';
+                    return;
+                endif;
+
                 # Removing White Spaces
                 $adminUserName = trim($_POST['email']);
                 $adminType = trim($_POST['adminType']);

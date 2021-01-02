@@ -13,6 +13,12 @@ require "../../config/Secret.php";
 extract($_POST);
 extract($_FILES);
 
+# CHECKING ADMIN
+
+if (!isset($_SESSION['adminType'])) {
+    header("location:../adminLogin.php");
+}
+
 try {
 
     if (isset($_POST["targetMessage"])) {

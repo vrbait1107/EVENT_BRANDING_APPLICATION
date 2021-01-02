@@ -9,6 +9,12 @@ session_start();
 //---------------------------->> SECRETS
 require "../../config/Secret.php";
 
+# CHECKING ADMIN
+
+if (!isset($_SESSION['adminType'])) {
+    header("location:../adminLogin.php");
+}
+
 extract($_POST);
 extract($_FILES);
 
@@ -52,7 +58,7 @@ try {
               })</script>";
             }
 
-        }else{
+        } else {
             echo "<script>Swal.fire({
                 icon: 'warning',
                 title: 'Google Recaptcha Error',

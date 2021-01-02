@@ -5,6 +5,12 @@ require_once "../../config/configPDO.php";
 
 extract($_POST);
 
+# CHECKING ADMIN
+
+if ($_SESSION['adminType'] !== "Synergy Administrator") {
+    header("location:../adminLogin.php");
+}
+
 try {
 
     if (isset($_POST["chart1"])) {

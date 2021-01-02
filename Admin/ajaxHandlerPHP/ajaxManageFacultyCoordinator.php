@@ -11,6 +11,12 @@ $sessinAdminDepartment = $_SESSION["adminDepartment"];
 
 extract($_POST);
 
+# CHECKING ADMIN
+
+if ($_SESSION['adminType'] !== "Faculty Coordinator") {
+    header("location:../adminLogin.php");
+}
+
 try {
 
 // ----------------------->>  UPDATE OPERATION

@@ -7,6 +7,12 @@ session_start();
 
 extract($_POST);
 
+# CHECKING ADMIN
+
+if ($_SESSION['adminType'] !== "Synergy Administrator") {
+    header("location:../adminLogin.php");
+}
+
 try {
 
 //-------------------------------->> READING OPERATION

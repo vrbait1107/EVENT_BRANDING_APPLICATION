@@ -9,6 +9,12 @@ session_start();
 
 extract($_POST);
 
+# CHECKING ADMIN
+
+if (!isset($_SESSION['adminType'])) {
+    header("location:../adminLogin.php");
+}
+
 try {
 
     if (isset($_POST["readRecord"])) {
