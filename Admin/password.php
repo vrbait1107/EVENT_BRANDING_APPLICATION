@@ -129,7 +129,7 @@ include_once "includes/adminNavbar.php";
                             <div class="form-group">
                                 <label>New Password</label>
                                 <input class="form-control py-4" id="password" type="password" name="password"
-                                    placeholder="Enter New Password" />
+                                    placeholder="Enter New Password" autocomplete="off" />
                                      <small class="text-danger">Password should Contain atleast 8 Character, Minimum
                                             one uppercase letter,
                                             Minimum one lowercase letter,
@@ -139,7 +139,7 @@ include_once "includes/adminNavbar.php";
                             <div class="form-group">
                                 <label>Confirm New Password</label>
                                 <input class="form-control py-4" id="confirmPassword" type="password" name="confirmPassword"
-                                    placeholder="Confirm New Password" />
+                                    placeholder="Confirm New Password" autocomplete="off"/>
                             </div>
 
                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">

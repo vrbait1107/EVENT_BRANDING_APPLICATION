@@ -84,12 +84,12 @@ if (!isset($_SESSION['user'])) {
                                 <div class="form-group">
                                     <label>Enter Current Password</label>
                                     <input type="password" class="form-control" name="currentPassword"
-                                        id="currentPassword">
+                                       autocomplete="off" id="currentPassword">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Enter New Password</label>
-                                    <input type="password" class="form-control" name="newPassword" id="newPassword">
+                                    <input type="password" class="form-control" name="newPassword" id="newPassword" autocomplete="off">
                                      <small class="text-danger">Password should Contain atleast 8 Character, Minimum
                                             one uppercase letter,
                                             Minimum one lowercase letter,
@@ -99,7 +99,7 @@ if (!isset($_SESSION['user'])) {
                                 <div class="form-group">
                                     <label>Confirm New Password</label>
                                     <input type="password" class="form-control" name="conNewPassword"
-                                        id="conNewPassword">
+                                       autocomplete="off" id="conNewPassword">
                                 </div>
 
                                 <button type="submit" class="btn btn-danger mt-3 rounded-pill btn-block"
@@ -136,7 +136,7 @@ if (!isset($_SESSION['user'])) {
 
                                 <div class="form-group">
                                     <label>Confirm to change email address by entering Password</label>
-                                    <input type="password" name="password" id="password" class="form-control">
+                                    <input type="password" name="password" id="password" autocomplete="off" class="form-control">
                                 </div>
 
                                 <input type="submit" class="btn btn-danger btn-block rounded-pill" name="changeEmail"

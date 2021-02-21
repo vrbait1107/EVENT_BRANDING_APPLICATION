@@ -168,7 +168,7 @@ if (isset($_POST["login"])) {
             <label for="Password">Password</label>
             <div class="input-group mb-3">
               <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password"
-                aria-label="Enter Password" aria-describedby="basic-addon2">
+                aria-label="Enter Password" aria-describedby="basic-addon2" autocomplete="off">
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2"><i class="fa fa-eye" aria-hidden="true"></i>
                 </span>
