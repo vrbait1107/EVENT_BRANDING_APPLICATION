@@ -24,23 +24,23 @@ try {
 
         $email = $_POST["email"];
 
-        if (empty($email)):
+        if (empty($email)) {
             echo "<script>Swal.fire({
-								icon: 'warning',
-								title: 'Required',
-								text: 'Email field cannot be empty',
-							})</script>";
+				    icon: 'warning',
+					title: 'Required',
+					text: 'Email field cannot be empty',
+				})</script>";
             return;
-        endif;
+        }
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)):
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo '<script>Swal.fire({
 			            icon: "warning",
 			            title: "Warning",
 			            text: "Invalid email format",
 			        })</script>';
             return;
-        endif;
+        }
 
         # Avoid XSS Attack
         $email = htmlspecialchars($email);

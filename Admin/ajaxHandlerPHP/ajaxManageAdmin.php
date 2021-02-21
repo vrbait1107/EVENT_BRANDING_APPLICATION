@@ -200,10 +200,10 @@ try {
         # Checking Records
         if ($result->rowCount() > 0) {
             echo "<script>Swal.fire({
-        icon: 'warning',
-        title: 'Unable to Insert Data',
-        text: 'Admin Profile Already Exist'
-    })</script>";
+                    icon: 'warning',
+                    title: 'Unable to Insert Data',
+                    text: 'Admin Profile Already Exist'
+                })</script>";
 
         } else {
 
@@ -225,17 +225,17 @@ adminPassword) VALUES (:email, :adminType, :adminDepartment, :adminEvent, :hashP
 
             if ($result) {
                 echo "<script>Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: 'Successfully Inserted Admin Profile'
-    })</script>";
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'Successfully Inserted Admin Profile'
+                })</script>";
 
             } else {
                 echo "<script>Swal.fire({
-        icon: 'error',
-        title: 'ERROR',
-        text: 'Something Went Wrong'
-    })</script>";
+                    icon: 'error',
+                    title: 'ERROR',
+                    text: 'Something Went Wrong'
+                })</script>";
 
             }
 

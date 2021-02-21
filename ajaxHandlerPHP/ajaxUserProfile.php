@@ -15,7 +15,6 @@ if (!isset($_SESSION['user'])):
     header("location:../login.php");
 endif;
 
-
 try {
 
 // ---------------------->> EDIT OPERATION
@@ -51,7 +50,7 @@ try {
     if (isset($_FILES['updateProfileImage'])) {
 
         $updateProfileImage = $_FILES['updateProfileImage'];
-        $updateProfileImageName = $_FILES['updateProfileImage']['name'];
+        $updateProfileImageName = htmlspecialchars($_FILES['updateProfileImage']['name']);
         $updateProfileImageSize = $_FILES['updateProfileImage']['size'];
         $updateProfileImageTmpDir = $_FILES['updateProfileImage']['tmp_name'];
 
@@ -82,27 +81,30 @@ try {
 
                 if ($result) {
                     echo "<script>Swal.fire({
-            icon: 'success',
-            title: 'Successful',
-            text: 'Your Profile Image Successfully Changed'
-            })</script>";
+                            icon: 'success',
+                            title: 'Successful',
+                            text: 'Your Profile Image Successfully Changed'
+                        })</script>";
 
                     $file = "C:/xampp/htdocs/EBA/images/profileImage/" . $hiddenImageName;
-                    unlink($file);
+
+                    if (file_exists($file)) {
+                        unlink($file);
+                    }
 
                 } else {
                     echo "<script>Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'We are failed to change profile Image'
-                })</script>";
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'We are failed to change profile Image'
+                    })</script>";
                 }
 
             } else {
                 echo "<script>Swal.fire({
-            icon: 'warning',
-            title: 'Image size exeeded',
-            text: 'Please Upload File less than 2MB'
+                icon: 'warning',
+                title: 'Image size exeeded',
+                text: 'Please Upload File less than 2MB'
             })</script>";
             }
 
@@ -122,95 +124,95 @@ try {
         $updateDepartmentName = $_POST["updateDepartmentName"];
         $updateAcademicYear = $_POST["updateAcademicYear"];
 
-        if (empty($updateFirstName)):
+        if (empty($updateFirstName)) {
             echo '<script>Swal.fire({
-							icon: "warning",
-							title: "Required",
-							text: "First Name field cannot be Empty",
-						})</script>';
+					icon: "warning",
+					title: "Required",
+					text: "First Name field cannot be Empty",
+				})</script>';
             return;
-        endif;
+        }
 
-        if (is_numeric($updateFirstName)):
+        if (is_numeric($updateFirstName)) {
             echo '<script>Swal.fire({
-								icon: "warning",
-								title: "Required",
-								text: "Only Characters allowed in First Name field",
-						})</script>';
+					icon: "warning",
+					title: "Required",
+					text: "Only Characters allowed in First Name field",
+				})</script>';
             return;
-        endif;
+        }
 
-        if (empty($updateLastName)):
+        if (empty($updateLastName)) {
             echo '<script>Swal.fire({
-								icon: "warning",
-								title: "Required",
-								text: "Last Name field cannot be Empty",
-						})</script>';
+					icon: "warning",
+					title: "Required",
+					text: "Last Name field cannot be Empty",
+				})</script>';
             return;
-        endif;
+        }
 
-        if (empty($updateLastName)):
+        if (empty($updateLastName)) {
             echo '<script>Swal.fire({
-							icon: "warning",
-							title: "Required",
-							text: "Only Characters allowed in Last Name field",
-						})</script>';
+					icon: "warning",
+					title: "Required",
+					text: "Only Characters allowed in Last Name field",
+				})</script>';
             return;
-        endif;
+        }
 
-        if (empty($updateCollegeName)):
+        if (empty($updateCollegeName)) {
             echo '<script>Swal.fire({
-							icon: "warning",
-							title: "Required",
-							text: "College Name field cannot be Empty",
-						})</script>';
+				    icon: "warning",
+					title: "Required",
+					text: "College Name field cannot be Empty",
+				})</script>';
             return;
-        endif;
+        }
 
         if (is_numeric($updateCollegeName)):
             echo '<script>Swal.fire({
-						        icon: "warning",
-								title: "Required",
-								text: "Only Characters allowed in College Name field",
-				            })</script>';
-            return;
-        endif;
-
-        if (strlen($updateMobileNumber) !== 10):
-            echo '<script>Swal.fire({
-								icon: "warning",
-			                    title: "Required",
-								text: "Mobile Numbers Length Should be 10.",
-						})</script>';
-            return;
-        endif;
-
-        if (!is_numeric($updateMobileNumber)):
-            echo '<script>Swal.fire({
-							    icon: "warning",
-								title: "Required",
-								text: "Only Numbers allowed in Mobile Number field",
-					    })</script>';
-            return;
-        endif;
-
-        if (empty($updateCollegeName)):
-            echo '<script>Swal.fire({
 							icon: "warning",
 							title: "Required",
-							text: "College Name field cannot be Empty",
+							text: "Only Characters allowed in College Name field",
 						})</script>';
             return;
         endif;
 
-        if (empty($updateAcademicYear)):
+        if (strlen($updateMobileNumber) !== 10) {
             echo '<script>Swal.fire({
-							icon: "warning",
-							title: "Required",
-							text: "Academic Year field cannot be Empty",
-						})</script>';
+					icon: "warning",
+				    title: "Required",
+					text: "Mobile Numbers Length Should be 10.",
+				})</script>';
             return;
-        endif;
+        }
+
+        if (!is_numeric($updateMobileNumber)) {
+            echo '<script>Swal.fire({
+					icon: "warning",
+					title: "Required",
+					text: "Only Numbers allowed in Mobile Number field",
+				})</script>';
+            return;
+        }
+
+        if (empty($updateCollegeName)) {
+            echo '<script>Swal.fire({
+					icon: "warning",
+					title: "Required",
+					text: "College Name field cannot be Empty",
+				})</script>';
+            return;
+        }
+
+        if (empty($updateAcademicYear)) {
+            echo '<script>Swal.fire({
+					icon: "warning",
+					title: "Required",
+					text: "Academic Year field cannot be Empty",
+				})</script>';
+            return;
+        }
 
         # Avoid XSS Attack
         $updateFirstName = htmlspecialchars($updateFirstName);

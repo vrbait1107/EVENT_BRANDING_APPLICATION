@@ -60,16 +60,16 @@ try {
 
             if ($result) {
                 echo "<script>Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: 'Data Successfully Updated'
-      })</script>";
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'Data Successfully Updated'
+                })</script>";
             } else {
                 echo "<script>Swal.fire({
-          icon: 'error',
-          title: 'ERROR',
-          text: 'Unable to Update Data'
-        })</script>";
+                    icon: 'error',
+                    title: 'ERROR',
+                    text: 'Unable to Update Data'
+                })</script>";
 
             }
 

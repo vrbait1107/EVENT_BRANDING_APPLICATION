@@ -151,8 +151,6 @@ try {
     function sendMail($targetEmails, $targetSubject, $targetMessage)
     {
 
-        print_r($targetEmails);
-
         //---------------------------->> SECRETS
         require "../../config/Secret.php";
 
@@ -175,6 +173,6 @@ try {
 
 } catch (PDOException $e) {
     echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
-# Development Purpose Error Only
+    # Development Purpose Error Only
     echo "Error " . $e->getMessage();
 }

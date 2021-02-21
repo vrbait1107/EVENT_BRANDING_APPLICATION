@@ -29,41 +29,41 @@ try {
             $subject = $_POST["subject"];
             $message = $_POST["message"];
 
-            if (empty($name)):
+            if (empty($name)) {
                 echo "<script>Swal.fire({
-									icon: 'warning',
-								    title: 'Required',
-									text: 'Name cannot be empty',
-								})</script>";
+						icon: 'warning',
+			            title: 'Required',
+						text: 'Name cannot be empty',
+					})</script>";
                 return;
-            endif;
+            }
 
-            if (empty($email)):
+            if (empty($email)) {
                 echo "<script>Swal.fire({
-									  icon: 'warning',
-									  title: 'Required',
-									  text: 'Email cannot be empty',
-								})</script>";
+						icon: 'warning',
+						title: 'Required',
+						text: 'Email cannot be empty',
+					})</script>";
                 return;
-            endif;
+            }
 
-            if (empty($subject)):
+            if (empty($subject)) {
                 echo "<script>Swal.fire({
-									icon: 'warning',
-									title: 'Required',
-									text: 'Subject cannot be empty',
-								})</script>";
+						icon: 'warning',
+						title: 'Required',
+						text: 'Subject cannot be empty',
+					})</script>";
                 return;
-            endif;
+            }
 
-            if (empty($message)):
+            if (empty($message)) {
                 echo "<script>Swal.fire({
-										 icon: 'warning',
-										 title: 'Required',
-										 text: 'Subject cannot be empty',
-									})</script>";
+						icon: 'warning',
+						title: 'Required',
+						text: 'Subject cannot be empty',
+					})</script>";
                 return;
-            endif;
+            }
 
             $name = htmlspecialchars($_POST["name"]);
             $email = htmlspecialchars($_POST["email"]);

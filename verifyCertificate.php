@@ -52,10 +52,10 @@ if (isset($_POST["submit"])) {
 
     if (empty($validate)):
         echo "<script>Swal.fire({
-			    icon: 'warning',
-			    title: 'Required',
-			    text: 'Certificate Id cannot be empty',
-		        })</script>";
+					icon: 'warning',
+					title: 'Required',
+					text: 'Certificate Id cannot be empty',
+				})</script>";
         return;
     endif;
 
@@ -157,10 +157,10 @@ if (isset($_POST["synergySubmit"])) {
 
     if (empty($validate)):
         echo "<script>Swal.fire({
-				    icon: 'warning',
-				    title: 'Required',
-				    text: 'Certificate Id cannot be empty',
-			        })</script>";
+					icon: 'warning',
+					title: 'Required',
+					text: 'Certificate Id cannot be empty',
+				})</script>";
         return;
     endif;
 
