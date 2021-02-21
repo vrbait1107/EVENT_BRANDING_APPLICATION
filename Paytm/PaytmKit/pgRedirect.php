@@ -23,10 +23,8 @@ if (PHP_VERSION_ID >= 70300) {
 
 session_start();
 
-$eventName = $_POST['eventName'];
+$eventName = htmlspecialchars($_POST['eventName']);
 $_SESSION["eventName"] = $eventName;
-
-print_r($_SESSION);
 
 header("Pragma: no-cache");
 header("Cache-Control: no-cache");
@@ -39,11 +37,11 @@ require_once "./lib/encdec_paytm.php";
 $checkSum = "";
 $paramList = array();
 
-$ORDER_ID = $_POST["ORDER_ID"];
-$CUST_ID = $_POST["CUST_ID"];
-$INDUSTRY_TYPE_ID = $_POST["INDUSTRY_TYPE_ID"];
-$CHANNEL_ID = $_POST["CHANNEL_ID"];
-$TXN_AMOUNT = $_POST["TXN_AMOUNT"];
+$ORDER_ID = htmlspecialchars($_POST["ORDER_ID"]);
+$CUST_ID = htmlspecialchars($_POST["CUST_ID"]);
+$INDUSTRY_TYPE_ID = htmlspecialchars($_POST["INDUSTRY_TYPE_ID"]);
+$CHANNEL_ID = htmlspecialchars($_POST["CHANNEL_ID"]);
+$TXN_AMOUNT = htmlspecialchars($_POST["TXN_AMOUNT"]);
 
 // Create an array having all required parameters for creating checksum.
 $paramList["MID"] = PAYTM_MERCHANT_MID;
@@ -77,11 +75,13 @@ $checkSum = getChecksumFromArray($paramList, PAYTM_MERCHANT_KEY);
 		<form method="post" action="<?php echo PAYTM_TXN_URL ?>" name="f1">
 		<table border="1">
 			<tbody>
+
 			<?php
 foreach ($paramList as $name => $value) {
     echo '<input type="hidden" name="' . $name . '" value="' . $value . '">';
 }
 ?>
+
 			<input type="hidden" name="CHECKSUMHASH" value="<?php echo $checkSum ?>">
 
 			</tbody>

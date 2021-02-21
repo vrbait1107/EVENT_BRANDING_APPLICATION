@@ -5,8 +5,8 @@ session_start();
 //------------------------------>> DB CONFIG
 require_once '../../config/configPDO.php';
 
-$eventName = $_POST['eventName'];
-$eventPrice = $_POST['eventPrice'];
+$eventName = htmlspecialchars($_POST['eventName']);
+$eventPrice = htmlspecialchars($_POST['eventPrice']);
 $userName = $_SESSION['user'];
 
 $sql = "SELECT * FROM event_information WHERE event = :eventName AND email = :userName";

@@ -25,7 +25,6 @@ session_start();
 
 $userName = $_SESSION['user'];
 $eventName = $_SESSION['eventName'];
-print_r($_SESSION);
 
 //-------------------->> DB CONFIG
 require_once '../../config/configPDO.php';
@@ -93,15 +92,15 @@ if ($isValidChecksum == "TRUE") {
 
             $paymentType = "Online Banking";
             $certificateId = rand();
-            $gatewayName = $_POST['GATEWAYNAME'];
-            $resMsg = $_POST['RESPMSG'];
-            $bankName = $_POST['BANKNAME'];
-            $txnId = $_POST['TXNID'];
-            $txnAmount = $_POST['TXNAMOUNT'];
-            $orderId = $_POST['ORDERID'];
-            $status = $_POST['STATUS'];
-            $bankTxnId = $_POST['BANKTXNID'];
-            $txnDate = $_POST['TXNDATE'];
+            $gatewayName = htmlspecialchars($_POST['GATEWAYNAME']);
+            $resMsg = htmlspecialchars($_POST['RESPMSG']);
+            $bankName = htmlspecialchars($_POST['BANKNAME']);
+            $txnId = htmlspecialchars($_POST['TXNID']);
+            $txnAmount = htmlspecialchars($_POST['TXNAMOUNT']);
+            $orderId = htmlspecialchars($_POST['ORDERID']);
+            $status = htmlspecialchars($_POST['STATUS']);
+            $bankTxnId = htmlspecialchars($_POST['BANKTXNID']);
+            $txnDate = htmlspecialchars($_POST['TXNDATE']);
 
             $sql = "INSERT INTO event_information (email, certificateId, event, paymentType,
 			 gatewayName, resMsg, bankName, txnId, txnAmount, orderId, status,
