@@ -20,9 +20,19 @@ endif;
 
 try {
 
-    if (isset($_POST['email'])) {
+    if (isset($_POST['email']) && !empty($_POST['email'])) {
 
         $email = $_POST["email"];
+        $sessionEmail = $_SESSION["user"];
+
+        if ($email !== $sessionEmail) {
+            echo "<script>Swal.fire({
+                    icon: 'warning',
+                    title: 'Warning',
+                    text: 'Please Enter your registered email for this account'
+                })</script>";
+            return;
+        }
 
         if (empty($email)) {
             echo "<script>Swal.fire({

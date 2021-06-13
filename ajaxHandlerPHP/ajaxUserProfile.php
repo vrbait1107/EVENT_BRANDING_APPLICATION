@@ -65,7 +65,7 @@ try {
 
             if ($updateProfileImageSize <= 2097152) {
 
-                move_uploaded_file($updateProfileImageTmpDir, "C:/xampp/htdocs/EBA/images/profileImage/" . $updateProfileImageName);
+                move_uploaded_file($updateProfileImageTmpDir, "http://localhost/EBA/images/profileImage/" . $updateProfileImageName);
 
                 #  Query
                 $sql = "UPDATE user_information SET profileImage = :updateProfileImageName WHERE email = :hiddenEmail2";
@@ -86,7 +86,7 @@ try {
                             text: 'Your Profile Image Successfully Changed'
                         })</script>";
 
-                    $file = "C:/xampp/htdocs/EBA/images/profileImage/" . $hiddenImageName;
+                    $file = "http://localhost/EBA/images/profileImage/" . $hiddenImageName;
 
                     if (file_exists($file)) {
                         unlink($file);
@@ -115,6 +115,8 @@ try {
 // ---------------------->> UPDATE OPERATION
 
     if (isset($_POST["hiddenEmail"])) {
+
+        $email = $_SESSION["user"];
 
         # Avoid XSS Attack
         $updateFirstName = $_POST["updateFirstName"];
@@ -173,7 +175,7 @@ try {
             echo '<script>Swal.fire({
 							icon: "warning",
 							title: "Required",
-							text: "Only Characters allowed in College Name field",
+		    				text: "Only Characters allowed in College Name field",
 						})</script>';
             return;
         endif;
@@ -225,7 +227,7 @@ try {
         # Query
         $sql = "UPDATE user_information SET firstName = :updateFirstName, lastName = :updateLastName,
     mobileNumber = :updateMobileNumber, collegeName = :updateCollegeName, departmentName = :updateDepartmentName,
-    academicYear = :updateAcademicYear WHERE email = :hiddenEmail";
+    academicYear = :updateAcademicYear WHERE email = :email";
 
         # Preparing query
         $result = $conn->prepare($sql);
@@ -237,7 +239,7 @@ try {
         $result->bindValue(":updateCollegeName", $updateCollegeName);
         $result->bindValue(":updateDepartmentName", $updateDepartmentName);
         $result->bindValue(":updateAcademicYear", $updateAcademicYear);
-        $result->bindValue(":hiddenEmail", $hiddenEmail);
+        $result->bindValue(":hiddenEmail", $email);
 
         # Executing query
         $result->execute();
