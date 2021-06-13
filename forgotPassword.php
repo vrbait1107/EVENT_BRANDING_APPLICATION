@@ -93,7 +93,7 @@ if (isset($_POST['submit'])) {
                         echo "<script>Swal.fire({
                         icon: 'success',
                         title: 'Successful',
-                        text: 'Password Reset Link sent to your email, Check Your Mail.'
+                        text: 'An email with your password reset link has been sent, if the provided email address is registerd with us.'
                     })</script>";
 
                     } else {
@@ -109,10 +109,11 @@ if (isset($_POST['submit'])) {
 
             } else {
                 echo "<script>Swal.fire({
-                    icon: 'warning',
-                    title: 'Warning',
-                    text: 'No Such Email Found'
-                })</script>";
+                        icon: 'success',
+                        title: 'Successful',
+                        text: 'An email with your password reset link has been sent, if the provided email address is registerd with us.'
+                    })</script>";
+
             }
 
         }
@@ -165,7 +166,7 @@ if (isset($_POST['submit'])) {
                         echo "<script>Swal.fire({
                         icon: 'success',
                         title: 'Successful',
-                        text: 'Password Reset Link sent to your email, Check Your Mail.'
+                        text: 'An email with your password reset link has been sent, if the provided email address is registerd with us.'
                     })</script>";
 
                     } else {
@@ -176,15 +177,14 @@ if (isset($_POST['submit'])) {
                     })</script>";
 
                     }
-
                 }
 
             } else {
                 echo "<script>Swal.fire({
-                    icon: 'warning',
-                    title: 'Warning',
-                    text: 'No Such Email Found'
-                })</script>";
+                        icon: 'success',
+                        title: 'Successful',
+                        text: 'An email with your password reset link has been sent, if the provided email address is registerd with us.'
+                    })</script>";
             }
 
         } else {
