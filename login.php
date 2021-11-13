@@ -30,7 +30,7 @@ if (isset($_SESSION['user'])) {
   <!-- Include Header Scripts, then Login.css then Google Recaptcha -->
   <?php include_once "includes/headerScripts.php";?>
   <link rel="stylesheet" href="css/login.css">
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 
   <title><?php echo $techfestName ?> | LOGIN</title>
 
@@ -44,11 +44,11 @@ if (isset($_POST["login"])) {
 
     try {
 
-        if (isset($_POST['g-recaptcha-response'])) {
+        if (isset($_POST['h-captcha-response'])) {
 
-            $secretKey = $recaptchaSecretKey;
+            $secretKey = $hcaptchaSecretKey;
 
-            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
+            $verifyResponse = file_get_contents('https://hcaptcha.com/siteverify?secret=' . $secretKey . '&response=' . $_POST['h-captcha-response']);
             $response = json_decode($verifyResponse);
 
             if ($response->success) {
@@ -58,9 +58,6 @@ if (isset($_POST["login"])) {
 
                 $userName = trim($_POST["userName"]);
                 $password = trim($_POST["password"]);
-
-                $userName = $_POST["userName"];
-                $password = $_POST["password"];
 
                 # SQL Query
                 $sql = "SELECT password, status FROM user_information WHERE email= :userName";
@@ -106,8 +103,8 @@ if (isset($_POST["login"])) {
             } else {
                 echo "<script>Swal.fire({
                         icon: 'warning',
-                        title: 'Google Recaptcha Error',
-                        text: 'Please fill Google Recaptcha'
+                        title: 'Captcha Error',
+                        text: 'Please fill Captcha'
                       })</script>";
             }
 
@@ -190,7 +187,7 @@ if (isset($_POST["login"])) {
             </div>
 
             <div class="text-center my-2">
-              <div class="g-recaptcha text-center" data-sitekey=<?php echo $recaptchaSiteKey; ?>></div>
+              <div class="h-captcha text-center" data-sitekey="<?php echo $hcaptchaSiteKey; ?>"></div>
             </div>
 
             <button type="submit" class="btn btn-primary rounded-pill btn-block" name="login">Login</button>
