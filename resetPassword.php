@@ -187,6 +187,8 @@ if (isset($_GET['token'])) {
 
     }
 
+} else {
+    header("Location: login.php");
 }
 
 ?>

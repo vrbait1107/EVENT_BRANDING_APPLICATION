@@ -23,6 +23,7 @@ session_start();
 
     <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 
      <title><?php echo $techfestName ?> | FORGOT PASSWORD</title>
 </head>
@@ -38,157 +39,183 @@ if (isset($_POST['submit'])) {
 
     try {
 
-        # Remove White Spaces
-        $email = trim($_POST['email']);
-        $userType = trim($_POST['userType']);
+        if (isset($_POST['h-captcha-response'])) {
 
-        # Avoid XSS Attack
-        $email = htmlspecialchars($_POST['email']);
-        $userType = htmlspecialchars($_POST['userType']);
+            $secretKey = $hcaptchaSecretKey;
 
-        // ----------------------------------------------------->> USER TYPE = USER
-        if ($userType === "user") {
+            $verifyResponse = file_get_contents('https://hcaptcha.com/siteverify?secret=' . $secretKey . '&response=' . $_POST['h-captcha-response']);
+            $response = json_decode($verifyResponse);
 
-            # Query
-            $sql = "SELECT email FROM user_information WHERE email = :email";
+            if ($response->success) {
 
-            # Preparing Query
-            $result = $conn->prepare($sql);
+                # Remove White Spaces
+                $email = trim($_POST['email']);
+                $userType = trim($_POST['userType']);
 
-            # Binding Value
-            $result->bindValue(":email", $email);
+                # Avoid XSS Attack
+                $email = htmlspecialchars($_POST['email']);
+                $userType = htmlspecialchars($_POST['userType']);
 
-            # Executing Query
-            $result->execute();
+                // ----------------------------------------------------->> USER TYPE = USER
+                if ($userType === "user") {
 
-            if ($result->rowCount() === 1) {
-
-                /* PHP MAILER CODE */
-                include "./emailCode/emailForgotPassword.php";
-
-                if (!$mail->send()) {
-                    echo "Mailer Error: " . $mail->ErrorInfo;
-
-                } else {
-
-                    $tokenDate = date("Y-m-d H:i:s");
-
-                    $tokenDateMain = date('Y-m-d H:i:s', strtotime('+45 minutes', strtotime($tokenDate)));
-
-                    # Update Query
-                    $sql = "UPDATE user_information SET token = :token, tokenDate = :tokenDateMain  WHERE email = :email";
+                    # Query
+                    $sql = "SELECT email FROM user_information WHERE email = :email";
 
                     # Preparing Query
                     $result = $conn->prepare($sql);
 
                     # Binding Value
-                    $result->bindValue(":token", $token);
-                    $result->bindValue(":tokenDateMain", $tokenDateMain);
                     $result->bindValue(":email", $email);
 
                     # Executing Query
                     $result->execute();
 
-                    if ($result) {
-                        echo "<script>Swal.fire({
+                    if ($result->rowCount() === 1) {
+
+                        /* PHP MAILER CODE */
+                        include "./emailCode/emailForgotPassword.php";
+
+                        if (!$mail->send()) {
+                            echo "Mailer Error: " . $mail->ErrorInfo;
+
+                        } else {
+
+                            $tokenDate = date("Y-m-d H:i:s");
+
+                            $tokenDateMain = date('Y-m-d H:i:s', strtotime('+45 minutes', strtotime($tokenDate)));
+
+                            # Update Query
+                            $sql = "UPDATE user_information SET token = :token, tokenDate = :tokenDateMain  WHERE email = :email";
+
+                            # Preparing Query
+                            $result = $conn->prepare($sql);
+
+                            # Binding Value
+                            $result->bindValue(":token", $token);
+                            $result->bindValue(":tokenDateMain", $tokenDateMain);
+                            $result->bindValue(":email", $email);
+
+                            # Executing Query
+                            $result->execute();
+
+                            if ($result) {
+                                echo "<script>Swal.fire({
                         icon: 'success',
                         title: 'Successful',
                         text: 'An email with your password reset link has been sent, if the provided email address is registerd with us.'
                     })</script>";
 
-                    } else {
-                        echo "<script>Swal.fire({
+                            } else {
+                                echo "<script>Swal.fire({
                         icon: 'error',
                         title: 'Failed',
                         text: 'We are failed to send email for reset password.'
+                    })</script>";
+
+                            }
+
+                        }
+
+                    } else {
+                        echo "<script>Swal.fire({
+                        icon: 'success',
+                        title: 'Successful',
+                        text: 'An email with your password reset link has been sent, if the provided email address is registerd with us.'
                     })</script>";
 
                     }
 
                 }
 
-            } else {
-                echo "<script>Swal.fire({
-                        icon: 'success',
-                        title: 'Successful',
-                        text: 'An email with your password reset link has been sent, if the provided email address is registerd with us.'
-                    })</script>";
+                // ----------------------------------------------------->> USER TYPE = ADMINISTRATOR
 
-            }
+                elseif ($userType === "admin") {
 
-        }
-
-        // ----------------------------------------------------->> USER TYPE = ADMINISTRATOR
-
-        elseif ($userType === "admin") {
-
-            # Query for admin
-            $sql = "SELECT email FROM admin_information WHERE email = :email";
-
-            # Preparing Query
-            $result = $conn->prepare($sql);
-
-            # Binding Value
-            $result->bindValue(":email", $email);
-
-            # Executing Query
-            $result->execute();
-
-            if ($result->rowCount() === 1) {
-
-                /* PHP MAILER CODE */
-
-                include "./emailCode/emailForgotPassword.php";
-
-                if (!$mail->send()) {
-                    echo "Mailer Error: " . $mail->ErrorInfo;
-
-                } else {
-
-                    $tokenDate = date("Y-m-d H:i:s");
-                    $tokenDateMain = date('Y-m-d H:i:s', strtotime('+45 minutes', strtotime($tokenDate)));
-
-                    # Update Query
-                    $sql = "UPDATE user_information SET token = :token, tokenDate = :tokenDateMain  WHERE email = :email";
+                    # Query for admin
+                    $sql = "SELECT email FROM admin_information WHERE email = :email";
 
                     # Preparing Query
                     $result = $conn->prepare($sql);
 
                     # Binding Value
-                    $result->bindValue(":token", $token);
-                    $result->bindValue(":tokenDateMain", $tokenDateMain);
                     $result->bindValue(":email", $email);
 
                     # Executing Query
                     $result->execute();
 
-                    if ($result1) {
-                        echo "<script>Swal.fire({
+                    if ($result->rowCount() === 1) {
+
+                        /* PHP MAILER CODE */
+
+                        include "./emailCode/emailForgotPassword.php";
+
+                        if (!$mail->send()) {
+                            echo "Mailer Error: " . $mail->ErrorInfo;
+
+                        } else {
+
+                            $tokenDate = date("Y-m-d H:i:s");
+                            $tokenDateMain = date('Y-m-d H:i:s', strtotime('+45 minutes', strtotime($tokenDate)));
+
+                            # Update Query
+                            $sql = "UPDATE admin_information SET token = :token, tokenDate = :tokenDateMain  WHERE email = :email";
+
+                            # Preparing Query
+                            $result = $conn->prepare($sql);
+
+                            # Binding Value
+                            $result->bindValue(":token", $token);
+                            $result->bindValue(":tokenDateMain", $tokenDateMain);
+                            $result->bindValue(":email", $email);
+
+                            # Executing Query
+                            $result->execute();
+
+                            if ($result1) {
+                                echo "<script>Swal.fire({
                         icon: 'success',
                         title: 'Successful',
                         text: 'An email with your password reset link has been sent, if the provided email address is registerd with us.'
                     })</script>";
 
-                    } else {
-                        echo "<script>Swal.fire({
+                            } else {
+                                echo "<script>Swal.fire({
                         icon: 'error',
                         title: 'Failed',
                         text: 'We are failed to send email for reset password.'
                     })</script>";
 
-                    }
-                }
+                            }
+                        }
 
-            } else {
-                echo "<script>Swal.fire({
+                    } else {
+                        echo "<script>Swal.fire({
                         icon: 'success',
                         title: 'Successful',
                         text: 'An email with your password reset link has been sent, if the provided email address is registerd with us.'
                     })</script>";
-            }
+                    }
 
+                } else {
+                    echo "Something Went Wrong";
+                }
+
+            } else {
+                echo "<script>Swal.fire({
+                        icon: 'warning',
+                        title: 'Captcha Error',
+                        text: 'Please fill Captcha'
+                      })</script>";
+
+            }
         } else {
-            echo "Something Went Wrong";
+            echo "<script>Swal.fire({
+                        icon: 'warning',
+                        title: 'Captcha Error',
+                        text: 'Please fill Captcha'
+                      })</script>";
+
         }
 
     } catch (PDOException $e) {
@@ -231,6 +258,10 @@ if (isset($_POST['submit'])) {
                                 <option value="user">Normal User</option>
                                 <option value="admin">Administrator</option>
                             </select>
+                        </div>
+
+                         <div class="text-center my-2">
+                            <div class="h-captcha text-center" data-sitekey="<?php echo $hcaptchaSiteKey; ?>"></div>
                         </div>
 
                         <input type="submit" value="Submit" name="submit"
