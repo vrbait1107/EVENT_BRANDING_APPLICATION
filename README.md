@@ -5,9 +5,8 @@
 
 ## Event Branding Application: Start to End Support (With Different Technology)
 
-1. [Event Branding Application (Bootstrap4)](https://github.com/vrbait1107/EVENT_BRANDING_WEBSITE_FRONT_END)
-2. Current Repository [Event Branding Application (PHP) ](https://github.com/vrbait1107/EVENT_BRANDING_APPLICATION)
-3. [Event Branding Application (MERN)](https://github.com/vrbait1107/MERN_EBA) Under Development
+1. Current Repository [Event Branding Application (PHP) ](https://github.com/vrbait1107/EVENT_BRANDING_APPLICATION)
+2. [Event Branding Application (MERN)](https://github.com/vrbait1107/MERN_EBA) Under Development
 
 ## Event Branding Application: Start to End Support (Techfest + CulturalFest Website)
 
