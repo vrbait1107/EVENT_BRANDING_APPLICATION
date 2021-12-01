@@ -23,6 +23,7 @@ session_start();
 
     <!-- Include Header Scripts -->
     <?php include_once "includes/headerScripts.php";?>
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 
 </head>
 
@@ -34,63 +35,89 @@ try {
 
     if (isset($_POST['reactivate'])) {
 
-        # Avoid XSS
-        $email = htmlspecialchars($_POST['email']);
+        if (isset($_POST['h-captcha-response'])) {
 
-        # sql Query
-        $sql = "SELECT * FROM user_information WHERE email = :email";
+            $secretKey = $hcaptchaSecretKey;
 
-        # Preparing query
-        $result = $conn->prepare($sql);
+            $verifyResponse = file_get_contents('https://hcaptcha.com/siteverify?secret=' . $secretKey . '&response=' . $_POST['h-captcha-response']);
+            $response = json_decode($verifyResponse);
 
-        # Binding Values
-        $result->bindValue(":email", $email);
+            if ($response->success) {
 
-        # Executing Query
-        $result->execute();
+                # Avoid XSS
+                $email = htmlspecialchars($_POST['email']);
 
-        if ($result->rowCount() === 0) {
-            echo "<script>Swal.fire({
+                # sql Query
+                $sql = "SELECT * FROM user_information WHERE email = :email";
+
+                # Preparing query
+                $result = $conn->prepare($sql);
+
+                # Binding Values
+                $result->bindValue(":email", $email);
+
+                # Executing Query
+                $result->execute();
+
+                if ($result->rowCount() === 0) {
+                    echo "<script>Swal.fire({
                 icon: 'error',
                 title: 'error',
                 text: 'No Such email present in database to reactivate your account'
             })</script>";
 
-        } else {
-
-            # Generate Token
-            $token = bin2hex(random_bytes(15));
-
-            # Sql Query
-            $sql = "UPDATE user_information SET token = :token WHERE email = :email";
-
-            # Preparing Query
-            $result = $conn->prepare($sql);
-
-            # Binding Values
-            $result->bindValue(":token", $token);
-            $result->bindValue(":email", $email);
-
-            # Executing Query
-            $result->execute();
-
-            if ($result) {
-
-                /* PHP MAILER CODE */
-                include_once "./emailCode/emailDisableAccount.php";
-
-                if (!$mail->send()) {
-                    echo "Mailer Error: " . $mail->ErrorInfo;
                 } else {
-                    echo " <script>Swal.fire({
+
+                    # Generate Token
+                    $token = bin2hex(random_bytes(15));
+
+                    # Sql Query
+                    $sql = "UPDATE user_information SET token = :token WHERE email = :email";
+
+                    # Preparing Query
+                    $result = $conn->prepare($sql);
+
+                    # Binding Values
+                    $result->bindValue(":token", $token);
+                    $result->bindValue(":email", $email);
+
+                    # Executing Query
+                    $result->execute();
+
+                    if ($result) {
+
+                        /* PHP MAILER CODE */
+                        include_once "./emailCode/emailDisableAccount.php";
+
+                        if (!$mail->send()) {
+                            echo "Mailer Error: " . $mail->ErrorInfo;
+                        } else {
+                            echo " <script>Swal.fire({
                             icon: 'success',
                             title: 'Success',
                             text: 'Email Sent'
                         })</script>";
+                        }
+
+                    }
+
                 }
+
+            }else{
+                echo "<script>Swal.fire({
+                        icon: 'warning',
+                        title: 'Captcha Error',
+                        text: 'Please fill Captcha'
+                      })</script>";
 
             }
 
+        }else{
+             echo "<script>Swal.fire({
+                        icon: 'warning',
+                        title: 'Captcha Error',
+                        text: 'Please fill Captcha'
+                      })</script>";
         }
 
     }
@@ -152,6 +179,10 @@ try {
                         <label>Enter Your Email Address</label>
                         <input type="email" name="email" class="form-control" />
                     </div>
+
+                      <div class="text-center my-2">
+                            <div class="h-captcha text-center" data-sitekey="<?php echo $hcaptchaSiteKey; ?>"></div>
+                        </div>
 
                     <input type="submit" name="reactivate" value="Submit" class="btn btn-primary btn-block rounded-pill">
                     <h6 class="mt-3"><a href="login.php">Click Here for Login Page</a></h6>
