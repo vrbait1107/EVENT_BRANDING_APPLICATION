@@ -14,9 +14,9 @@ $(document).ready(function () {
       url: "ajaxHandlerPHP/ajaxdepartmentEvent.php",
       type: "post",
       data: {
-        eventId: eventId,
-        promocode: promocode,
-        apply: apply,
+        eventId,
+        promocode,
+        apply,
       },
       success(data) {
         var discountPrice = parseInt(data);
@@ -33,6 +33,7 @@ $(document).ready(function () {
             title: "Successful",
             text: "Promocode Applied Successfully",
           });
+
         } else {
           $("#responsePromocode").html(data);
           $("#event" + eventId).val(null);

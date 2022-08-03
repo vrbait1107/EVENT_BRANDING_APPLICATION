@@ -48,11 +48,11 @@ $(document).ready(function () {
       url: "ajaxHandlerPHP/ajaxContactUs.php",
       type: "post",
       data: {
-        submit: submit,
-        name: name,
-        email: email,
-        subject: subject,
-        message: message,
+        submit,
+        name,
+        email,
+        subject,
+        message,
         captcha: grecaptcha.getResponse(),
       },
       beforeSend() {

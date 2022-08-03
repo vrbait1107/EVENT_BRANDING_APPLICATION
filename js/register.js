@@ -1,5 +1,6 @@
 $(document).ready(function () {
-  $("#userRegisterForm").on("submit", function () {
+  $("#userRegisterForm").on("submit", function (e) {
+
     let firstName = $("#firstName").val();
     let lastName = $("#lastName").val();
     let email = $("#email").val();
@@ -11,130 +12,70 @@ $(document).ready(function () {
     let confirmPassword = $("#confirmPassword").val();
 
     if (!isNaN(firstName) || firstName === "") {
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Please Provide Proper First Name",
-      });
-      return false;
-    }
-
-    if (email === "") {
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Please Provide Proper Email",
-      });
-      return false;
+      return swalError("Please Provide Proper First Name.");
     }
 
     if (!isNaN(lastName) || lastName === "") {
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Please Provide Proper Last Name",
-      });
-      return false;
+      return swalError("Please Provide Proper Last Name.");
+    }
+
+    if (email === "") {
+      return swalError("Please Provide Proper Email.");
     }
 
     if (!isNaN(collegeName) || collegeName === "") {
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Please Provide Proper College Name",
-      });
-      return false;
+      return swalError("Please Provide Proper College Name.");
     }
 
     if (!isNaN(department) || department === "") {
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Please Provide Proper Department Name",
-      });
-      return false;
+      return swalError("Please Provide Proper Department Name.");
     }
 
     if (!isNaN(year) || year === "") {
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Please Provide Proper Academic Year",
-      });
-      return false;
+      return swalError("Please Provide Proper Academic Year.");
     }
 
     if (isNaN(mobileNumber) === "") {
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Please Provide Proper Valid Mobile Number",
-      });
-      return false;
+      return swalError("Please Provide Proper Valid Mobile Number");
     }
 
     if (mobileNumber.length !== 10) {
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Please Provide Proper Valid Mobile Number",
-      });
-      return false;
+      return swalError("Please Provide Proper Valid Mobile Number");
     }
 
     if (password.length < 8) {
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Password length must be atleast 8 Characters",
-      });
-      return false;
+      return swalError("Password length must be atleast 8 Characters.");
     }
 
     if (!/[a-z]/g.test(password)) {
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Password must contain at least one Lowercase Letter (a-z)",
-      });
-      return false;
+      return swalError("Password must contain at least one Lowercase Letter (a-z).");
     }
 
     if (!/[A-Z]/g.test(password)) {
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Password must contain at least one Uppercase Letter (A-Z).",
-      });
-      return false;
+      return swalError("Password must contain at least one Uppercase Letter (A-Z).");
     }
 
     if (!/\d/g.test(password)) {
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Password must contain at least one number (0-9)",
-      });
-      return false;
+      return swalError("Password must contain at least one number (0-9).");
     }
 
     if (!/[-!$%^&*()_+|~=`{}[:;<>?,.@#\]]/g.test(password)) {
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text:
-          "Password must contain at least one Special Character. ([-!$%^&*()_+|~=`{}[:;<>?,.@#])",
-      });
-      return false;
+      return swalError("Password must contain at least one Special Character. ([-!$%^&*()_+|~=`{}[:;<>?,.@#]).");
     }
 
     if (password !== confirmPassword) {
-      Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Password & Confirm password field are not Same",
-      });
-      return false;
+      return swalError("Password & Confirm password field are not Same.");
     }
+
   });
 });
+
+
+function swalError(message) {
+  Swal.fire({
+    icon: "error",
+    title: "ERROR",
+    text: message,
+  });
+  return false;
+}

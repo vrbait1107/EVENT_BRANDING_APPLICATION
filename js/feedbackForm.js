@@ -104,7 +104,7 @@ $(document).ready(function () {
     let location = $("input[type=radio][name=location]:checked").val();
     let events = $("input[type=radio][name=events]:checked").val();
     let coordinators = $("input[type=radio][name=coordinators]:checked").val();
-    let eventsPrice = $("input[type=radio][name=eventsPrice]:checked").val();
+    let eventsPrice = $("input[type=radio][name=eventsPrice]:checked").val()
     let suggestion = $("#suggestion").val();
     let submit = "submit";
 
@@ -112,17 +112,17 @@ $(document).ready(function () {
       url: "ajaxHandlerPHP/ajaxFeedbackForm.php",
       type: "post",
       data: {
-        submit: submit,
-        attendBefore: attendBefore,
-        likelyAttend: likelyAttend,
-        likelyRecommendFriend: likelyRecommendFriend,
-        likeMost: likeMost,
-        likeLeast: likeLeast,
-        location: location,
-        events: events,
-        coordinators: coordinators,
-        eventsPrice: eventsPrice,
-        suggestion: suggestion,
+        submit,
+        attendBefore,
+        likelyAttend,
+        likelyRecommendFriend,
+        likeMost,
+        likeLeast,
+        location,
+        events,
+        coordinators,
+        eventsPrice,
+        suggestion,
         captcha: grecaptcha.getResponse(),
       },
       beforeSend() {

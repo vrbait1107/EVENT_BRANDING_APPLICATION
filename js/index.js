@@ -26,7 +26,7 @@ $(document).ready(function () {
       url: "ajaxHandlerPHP/ajaxIndex.php",
       type: "post",
       data: {
-        email: email,
+        email,
       },
       success: function (data) {
         $("form").trigger("reset"), $("#responseMessage").fadeIn().html(data);
