@@ -1,17 +1,13 @@
 <?php
-//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+
 require_once "config/techfestName.php";
 
-//------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
-//--------------------------->> SECRETS
 require_once "./config/Secret.php";
 
-//-------------------------->> START SESSION
 session_start();
 
-//-------------------------->> CHECKING USER
 if (isset($_SESSION['user'])) {
     header('Location:index.php');
 }

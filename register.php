@@ -1,15 +1,12 @@
 <?php
 
-//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
+
 require_once "config/techfestName.php";
 
-//------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
-//--------------------------->> SECRETS
 require_once "./config/Secret.php";
 
-// -------------------------->> START SESSION
 session_start();
 
 ?>
@@ -23,7 +20,7 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- First HeaderScripts, then AOS Animation, then Google Recaptcha, then Register.css -->
-  <?php include_once "includes/headerScripts.php";?>
+  <?php include_once "includes/headerScripts.php"; ?>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <link rel="stylesheet" href="css/register.css">
 
@@ -36,309 +33,223 @@ session_start();
 
   <?php
 
-$login = "login.php";
+  function swalError($msg)
+  {
+    echo "<script>
+            Swal.fire({ icon: 'error', title: 'Error', text: '$msg' })
+          </script>";
+    exit;
+  }
 
-if (isset($_POST['submit'])) {
+  function xss_filter_trim($param)
+  {
+    return trim(htmlspecialchars($param));
+  }
+
+  $login = "login.php";
+
+  if (isset($_POST['submit'])) {
 
     try {
 
-        if (isset($_POST['g-recaptcha-response'])) {
+      if (isset($_POST['g-recaptcha-response'])) {
 
-            $secretKey = $recaptchaSecretKey;
-            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
-            $response = json_decode($verifyResponse);
+        $secretKey = $recaptchaSecretKey;
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']);
+        $response = json_decode($verifyResponse);
 
-            if ($response->success) {
+        if (!$response->success) {
+          swalError('Please fill Google Recaptcha');
+        }
 
-                $userName = $_POST['userName'];
-                $firstName = $_POST['firstName'];
-                $lastName = $_POST['lastName'];
-                $mobileNumber = $_POST['mobileNumber'];
-                $collegeName = $_POST['collegeName'];
-                $department = $_POST['department'];
-                $year = $_POST['year'];
-                $password = $_POST['password'];
-                $confirm_password = $_POST['confirmPassword'];
+        $userName = $_POST['userName'];
+        $firstName = $_POST['firstName'];
+        $lastName = $_POST['lastName'];
+        $mobileNumber = $_POST['mobileNumber'];
+        $collegeName = $_POST['collegeName'];
+        $department = $_POST['department'];
+        $year = $_POST['year'];
+        $password = $_POST['password'];
+        $confirm_password = $_POST['confirmPassword'];
 
-                if (empty($userName)):
-                    echo "<script>Swal.fire({
-													        icon: 'warning',
-													        title: 'Required',
-													        text: 'username cannot be empty',
-													  })</script>";
-                    return;
-                endif;
+        if (empty($userName)) {
+          swalError('Please Enter Username');
+        }
 
-                if (empty($firstName)):
-                    echo "<script>Swal.fire({
-																	icon: 'warning',
-																	title: 'Required',
-																	text: 'First Name cannot be empty',
-														})</script>";
-                    return;
-                endif;
+        if (empty($firstName)) {
+          swalError('Please Enter First Name.');
+        }
 
-                if (empty($lastName)):
-                    echo "<script>Swal.fire({
-																  icon: 'warning',
-																	title: 'Required',
-																	text: 'Last Name cannot be empty',
-														})</script>";
-                    return;
-                endif;
+        if (empty($lastName)) {
+          swalError('Please Enter Last Name');
+        }
 
-                if (empty($mobileNumber)):
-                    echo "<script>Swal.fire({
-																	icon: 'warning',
-																	title: 'Required',
-																	text: 'Mobile Number cannot be empty',
-														})</script>";
-                    return;
-                endif;
+        if (empty($mobileNumber)) {
+          swalError('Please Enter Mobile Number');
+        }
 
-                if (strlen($mobileNumber) !== 10):
-                    echo "<script>Swal.fire({
-																	icon: 'warning',
-																	title: 'Required',
-																	text: 'Please Enter Proper Mobile Number',
-														})</script>";
-                    return;
-                endif;
+        if (strlen($mobileNumber) !== 10) {
+          swalError('Please Enter Proper Mobile Number');
+        }
 
-                if (empty($collegeName)):
-                    echo "<script>Swal.fire({
-																	icon: 'warning',
-																	title: 'Required',
-																	text: 'Please Select Proper College Name',
-														})</script>";
-                    return;
-                endif;
+        if (empty($collegeName)) {
+          swalError('Please Select Proper College Name');
+        }
 
-                if (empty($department)):
-                    echo "<script>Swal.fire({
-																	icon: 'warning',
-																	title: 'Required',
-																	text: 'Please Select Proper Department Name',
-														})</script>";
-                    return;
-                endif;
+        if (empty($department)) {
+          swalError('Please Select Proper Department Name');
+        }
 
-                if (empty($year)):
-                    echo "<script>Swal.fire({
-																	icon: 'warning',
-																	title: 'Required',
-																	text: 'Please Select Proper Academic Year',
-														})</script>";
-                    return;
-                endif;
+        if (empty($year)) {
+          swalError('Please Select Proper Academic Year');
+        }
 
-                if (empty($password)):
-                    echo "<script>Swal.fire({
-																	icon: 'warning',
-																	title: 'Required',
-																	text: 'Password Cannot be empty',
-														})</script>";
-                    return;
-                endif;
+        if (empty($password)) {
+          swalError('Password Cannot be empty');
+        }
 
-                if (!preg_match('/[A-Z]/', $password)):
-                    echo '<script>Swal.fire({
-					                    icon: "warning",
-					                    title: "Required",
-					                    text: "Password must contain at least one Uppercase Letter (A-Z).",
-					                })</script>';
-                    return;
-                endif;
+        if (!preg_match('/[A-Z]/', $password)) {
+          swalError('Password must contain at least one Uppercase Letter (A-Z).');
+        }
 
-                if (!preg_match('/[a-z]/', $password)):
-                    echo '<script>Swal.fire({
-					                    icon: "warning",
-					                    title: "Required",
-					                    text: "Password must contain at least one Lowercase Letter (a-z).",
-					                })</script>';
-                    return;
-                endif;
+        if (!preg_match('/[a-z]/', $password)) {
+          swalError('Password must contain at least one Lowercase Letter (a-z).');
+        }
 
-                if (!preg_match('/[0-9]/', $password)):
-                    echo '<script>Swal.fire({
-									            icon: "warning",
-									            title: "Required",
-									            text: "Password must contain at least one number (0-9).",
-									        })</script>';
-                    return;
-                endif;
+        if (!preg_match('/[0-9]/', $password)) {
+          swalError('Password must contain at least one number (0-9).');
+        }
 
-                if (strlen($password) < 8):
-                    echo '<script>Swal.fire({
-									                    icon: "warning",
-									                    title: "Required",
-									                    text: "Password length must be atleast 8 Characters",
-									                })</script>';
-                    return;
-                endif;
+        if (strlen($password) < 8) {
+          swalError('Password length must be atleast 8 Characters');
+        }
 
-                if ($password !== $confirm_password):
-                    echo "<script>Swal.fire({
-																	icon: 'warning',
-																	title: 'Required',
-																	text: 'Password and Confirm Password are different',
-														})</script>";
-                    return;
-                endif;
+        if ($password !== $confirm_password) {
+          swalError('Password and Confirm Password are different');
+        }
 
-                # Removing White Spaces
-                $userName = trim($userName);
-                $firstName = trim($firstName);
-                $lastName = trim($lastName);
-                $mobileNumber = trim($mobileNumber);
-                $collegeName = trim($collegeName);
-                $department = trim($department);
-                $year = trim($year);
-                $password = trim($password);
-                $confirm_password = trim($confirm_password);
+        $userName = xss_filter_trim($_POST['userName']);
+        $firstName = xss_filter_trim($_POST['firstName']);
+        $lastName = xss_filter_trim($_POST['lastName']);
+        $mobileNumber = xss_filter_trim($_POST['mobileNumber']);
+        $collegeName = xss_filter_trim($_POST['collegeName']);
+        $department = xss_filter_trim($_POST['department']);
+        $year = xss_filter_trim($_POST['year']);
+        $password = xss_filter_trim($_POST['password']);
+        $confirm_password = xss_filter_trim($_POST['confirmPassword']);
 
-                # Avoid XSS Attack
-                $userName = htmlspecialchars($_POST['userName']);
-                $firstName = htmlspecialchars($_POST['firstName']);
-                $lastName = htmlspecialchars($_POST['lastName']);
-                $mobileNumber = htmlspecialchars($_POST['mobileNumber']);
-                $collegeName = htmlspecialchars($_POST['collegeName']);
-                $department = htmlspecialchars($_POST['department']);
-                $year = htmlspecialchars($_POST['year']);
-                $password = htmlspecialchars($_POST['password']);
-                $confirm_password = htmlspecialchars($_POST['confirmPassword']);
+        # Set Expiery Time for Token
+        $tokenDate = date("Y-m-d H:i:s");
+        $tokenDateMain = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($tokenDate)));
 
-                # Set Expiery Time for Token
-                $tokenDate = date("Y-m-d H:i:s");
-                $tokenDateMain = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($tokenDate)));
+        $token = bin2hex(random_bytes(15));
 
-                # Token
-                $token = bin2hex(random_bytes(15));
+        $hashPass = password_hash($password, PASSWORD_BCRYPT);
+        $hashConPass = password_hash($confirm_password, PASSWORD_BCRYPT);
 
-                # Hash Password
-                $hashPass = password_hash($password, PASSWORD_BCRYPT);
-                $hashConPass = password_hash($confirm_password, PASSWORD_BCRYPT);
+        $sql1 = "SELECT * FROM user_information WHERE user_information.email = :userName";
 
-                # Query
-                $sql1 = "SELECT * FROM user_information WHERE user_information.email = :userName";
+        $result1 = $conn->prepare($sql1);
 
-                # Preparing Query
-                $result1 = $conn->prepare($sql1);
+        $result1->bindValue(":userName", $userName);
 
-                # Binding Value
-                $result1->bindValue(":userName", $userName);
+        $result1->execute();
 
-                # Executing Value
-                $result1->execute();
-
-                if ($result1->rowCount() > 0) {
-                    echo "<script>Swal.fire({
+        if ($result1->rowCount() >  0) {
+          echo "<script>Swal.fire({
                     icon: 'warning',
                     title: 'Account is Already Exist',
                     text: 'You are already registerd with $techfestName, Login to Continue',
                     footer: '<a href = $login >Go to the Login Page</a>'
                   })</script>";
-
-                } else {
-
-                    # Query
-                    $sql = "INSERT INTO user_information(email, firstName, lastName,
-              mobileNumber, collegeName, departmentName, academicYear, password, tokenDate, token)
-              VALUES (:userName, :firstName, :lastName, :mobileNumber, :collegeName, :department, :year,
-              :hashPass, :tokenDateMain, :token )";
-
-                    # Preparing Query
-                    $result = $conn->prepare($sql);
-
-                    # Binding Values
-                    $result->bindValue(":userName", $userName);
-                    $result->bindValue(":firstName", $firstName);
-                    $result->bindValue(":lastName", $lastName);
-                    $result->bindValue(":mobileNumber", $mobileNumber);
-                    $result->bindValue(":collegeName", $collegeName);
-                    $result->bindValue(":department", $department);
-                    $result->bindValue(":year", $year);
-                    $result->bindValue(":hashPass", $hashPass);
-                    $result->bindValue(":tokenDateMain", $tokenDateMain);
-                    $result->bindValue(":token", $token);
-
-                    # Executing Query
-                    $result->execute();
-
-                    if ($result) {
-
-                        echo "<script>Swal.fire({
-                        icon: 'success',
-                        title: 'Activate Your Account',
-                        text: 'Check Your Email for activate your account',
-                        footer: '<a href = $login >Go to the Login Page</a>'
-                      })</script>";
-
-                        /* PHP MAILER CODE */
-                        include_once "./emailCode/emailRegister.php";
-
-                        if (!$mail->send()) {
-                            echo "Mailer Error: " . $mail->ErrorInfo;
-                        } else {
-                            echo "<h5 class='text-center alert alert-warning col-md-6 offset-md-3' role='alert' >Check Your Email.</h5>";
-                        }
-
-                    } else {
-                        echo '<script>Swal.fire({
-                        icon: "error",
-                        title: "Eror",
-                        text: "Something Went Wrong",
-                        footer: "<a href = ' . $login . ' >Go to the Login Page</a>"
-                      })</script>';
-                    }
-
-                }
-
-            } else {
-                echo "<script>Swal.fire({
-                icon: 'warning',
-                title: 'Google Recaptcha Error',
-                text: 'Please fill Google Recaptcha'
-              })</script>";
-            }
-
+          exit;
         }
 
-    } catch (PDOException $e) {
-        echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
-        # Development Purpose Error Only
-        echo "Error " . $e->getMessage();
-    }
+        # Query
+        $sql = "INSERT INTO user_information(email, firstName, lastName,
+                mobileNumber, collegeName, departmentName, academicYear, password, tokenDate, token)
+                VALUES (:userName, :firstName, :lastName, :mobileNumber, :collegeName, :department, :year,
+                :hashPass, :tokenDateMain, :token )";
 
-}
-?>
+        # Preparing Query
+        $result = $conn->prepare($sql);
+
+        # Binding Values
+        $result->bindValue(":userName", $userName);
+        $result->bindValue(":firstName", $firstName);
+        $result->bindValue(":lastName", $lastName);
+        $result->bindValue(":mobileNumber", $mobileNumber);
+        $result->bindValue(":collegeName", $collegeName);
+        $result->bindValue(":department", $department);
+        $result->bindValue(":year", $year);
+        $result->bindValue(":hashPass", $hashPass);
+        $result->bindValue(":tokenDateMain", $tokenDateMain);
+        $result->bindValue(":token", $token);
+
+        # Executing Query
+        $result->execute();
+
+        if (!$result) {
+          echo '<script>Swal.fire({
+              icon: "error",
+              title: "Eror",
+              text: "Something Went Wrong",
+              footer: "<a href = ' . $login . ' >Go to the Login Page</a>"
+          })</script>';
+          exit;
+        }
+
+        echo "<script>Swal.fire({
+                icon: 'success',
+                title: 'Activate Your Account',
+                text: 'Check Your Email for activate your account',
+                footer: '<a href = $login >Go to the Login Page</a>'
+            })</script>";
+
+        /* PHP MAILER CODE */
+        include_once "./emailCode/emailRegister.php";
+
+        if (!$mail->send()) {
+          echo "Mailer Error: " . $mail->ErrorInfo;
+          exit;
+        }
+
+        echo "<h5 class='text-center alert alert-warning col-md-6 offset-md-3' role='alert' >Check Your Email.</h5>";
+        exit;
+      }
+    } catch (PDOException $e) {
+      echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+      # Development Purpose Error Only
+      echo "Error " . $e->getMessage();
+    }
+  }
+  ?>
 
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"><?php echo $techfestName ?></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link text-uppercase" href="register.php">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-uppercase" href="login.php">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-uppercase" href="Admin/adminLogin.php">Admin Login</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <a class="navbar-brand" href="#"><?php echo $techfestName ?></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link text-uppercase" href="register.php">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-uppercase" href="login.php">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-uppercase" href="Admin/adminLogin.php">Admin Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
   <main class="container mt-4">
 
     <h2 class="text-center mx-auto font-time text-uppercase">User Registration</h2>
-     <h6 class="alert alert-danger text-center font-sans">Note: 1) Following details will be used
+    <h6 class="alert alert-danger text-center font-sans">Note: 1) Following details will be used
       for your Certificate Generation so please provide proper details.</h6>
 
     <hr>
@@ -352,9 +263,9 @@ if (isset($_POST['submit'])) {
         <form action="" method="post" id="userRegisterForm">
 
 
-            <!------------------------------ First Step ----------------------------------->
+          <!------------------------------ First Step ----------------------------------->
 
-          <div id="firstStep" class="my-5">
+          <div id="firstStep" class="my-5 steps-div">
 
             <h4 class="text-uppercase font-time  breadcrumb">Personal Details</h4>
 
@@ -384,16 +295,15 @@ if (isset($_POST['submit'])) {
           </div>
 
 
-           <!------------------------------ Second Step ----------------------------------->
+          <!------------------------------ Second Step ----------------------------------->
 
-          <div id="secondStep" class="my-5">
+          <div id="secondStep" class="my-5 steps-div">
 
             <h4 class="text-uppercase font-time breadcrumb">College Details</h4>
 
             <div class="form-group">
               <label for="collegeName">Enter Your College Name</label>
-              <input list="collegeNameList" class="form-control" name="collegeName" id="collegeName"
-                placeholder="College Name" autocomplete="off">
+              <input list="collegeNameList" class="form-control" name="collegeName" id="collegeName" placeholder="College Name" autocomplete="off">
               <datalist id="collegeNameList">
                 <option disabled selected>Choose Your College</option>
                 <option> (10 )Anjuman-I-Islam's M. H. Saboo Siddik College of Engineering</option>
@@ -467,8 +377,7 @@ if (isset($_POST['submit'])) {
 
             <div class="form-group">
               <label for="department">Enter Your Department Name</label>
-              <input list="departmentName" class="form-control" name="department" id="department"
-                placeholder="Department Name" autocomplete="off">
+              <input list="departmentName" class="form-control" name="department" id="department" placeholder="Department Name" autocomplete="off">
               <datalist id="departmentName">
                 <option value="Electronics and Telecommunication"></option>
                 <option value="Chemical"></option>
@@ -494,8 +403,7 @@ if (isset($_POST['submit'])) {
 
             <div class="form-group">
               <label for="year">Enter Your Acadmic Year</label>
-              <input list="yearName" class="form-control" name="year" id="year"
-                placeholder="First/Second/Third/Last Year" autocomplete="off">
+              <input list="yearName" class="form-control" name="year" id="year" placeholder="First/Second/Third/Last Year" autocomplete="off">
               <datalist id="yearName">
                 <option value="First Year"></option>
                 <option value="Second Year"></option>
@@ -511,24 +419,22 @@ if (isset($_POST['submit'])) {
 
           <!------------------------------ Third Step ----------------------------------->
 
-          <div id="thirdStep" class="my-5">
+          <div id="thirdStep" class="my-5 steps-div">
 
             <h4 class="text-uppercase font-time breadcrumb">Password Details</h4>
 
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" name="password" id="password" placeholder="Password"
-              autocomplete="off">
+              <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off">
               <small class="text-danger">Password should Contain atleast 8 Character, Minimum one uppercase letter,
-               Minimum one lowercase letter,
-               minimum one number, Minimum one special character. </small>
+                Minimum one lowercase letter,
+                minimum one number, Minimum one special character. </small>
             </div>
 
 
             <div class="form-group">
               <label for="confirmPassword">Confirm Password</label>
-              <input type="password" class="form-control" name="confirmPassword" id="confirmPassword"
-               autocomplete="off" placeholder="Confirm Password">
+              <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" autocomplete="off" placeholder="Confirm Password">
             </div>
 
             <div class="text-center my-2">
@@ -548,42 +454,39 @@ if (isset($_POST['submit'])) {
   </main>
 
   <!-- Include Footer Script -->
-  <?php include_once "includes/footerScripts.php";?>
+  <?php include_once "includes/footerScripts.php"; ?>
 
   <!--Javascript -->
   <script src="js/register.js"></script>
 
   <script>
-    $(document).ready(function () {
-      $("#firstStepButton").click(function () {
-        $("#firstStep").hide();
+    $(document).ready(function() {
+      $("#firstStepButton").click(function() {
+        $(".steps-div").hide();
         $("#secondStep").show();
-        $("#thirdStep").hide();
       })
 
-      $("#secondStepButtonBack").click(function () {
+      $("#secondStepButtonBack").click(function() {
+        $(".steps-div").hide();
         $("#firstStep").show();
-        $("#secondStep").hide();
-        $("#thirdStep").hide();
+        
       })
 
-      $("#secondStepButtonContinue").click(function () {
-        $("#firstStep").hide();
-        $("#secondStep").hide();
+      $("#secondStepButtonContinue").click(function() {
+        $(".steps-div").hide();
         $("#thirdStep").show();
       })
 
-      $("#thirdStepButton").click(function () {
-        $("#firstStep").hide();
+      $("#thirdStepButton").click(function() {
+        $(".steps-div").hide();
         $("#secondStep").show();
-        $("#thirdStep").hide();
       })
 
     })
   </script>
 
   <!-- Close Database Connection -->
-  <?php $conn = null;?>
+  <?php $conn = null; ?>
 
 </body>
 

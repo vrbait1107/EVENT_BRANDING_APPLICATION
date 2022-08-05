@@ -1,15 +1,11 @@
 <?php
 
-//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
 require_once "config/techfestName.php";
 
-//------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
 
-// ----------------------------->> START SESSION
 session_start();
 
-//------------------------------>> CHECKING USER
 if (!isset($_SESSION['user'])) {
     header('location:login.php');
 }
@@ -27,7 +23,7 @@ if (!isset($_SESSION['user'])) {
     <title><?php echo $techfestName ?> | NEWS & NOTIFICATIONS</title>
 
     <!-- Include Header Scripts -->
-    <?php include_once "includes/headerScripts.php";?>
+    <?php include_once "includes/headerScripts.php"; ?>
 
     <style>
         hr {
@@ -42,26 +38,20 @@ if (!isset($_SESSION['user'])) {
 
     <?php
 
-try {
-# Sql Query
-    $sql = "SELECT * FROM news_information";
+    try {
+        $sql = "SELECT * FROM news_information";
+        $result = $conn->prepare($sql);
+        $result->execute();
+    } catch (PDOException $e) {
+        echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+        # Development Purpose Error Only
+        echo "Error " . $e->getMessage();
+    }
 
-# Preparing Query
-    $result = $conn->prepare($sql);
-
-# Executing Query
-    $result->execute();
-
-} catch (PDOException $e) {
-    echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
-    # Development Purpose Error Only
-    echo "Error " . $e->getMessage();
-}
-
-?>
+    ?>
 
     <!--Include User Navbar-->
-    <?php include_once "includes/navbar.php"?>
+    <?php include_once "includes/navbar.php" ?>
 
 
     <main class="container">
@@ -72,66 +62,65 @@ try {
 
             <?php
 
-# Checking Count of Database Records
-if ($result->rowCount() > 0) {
-    ?>
 
-            <section class="col-md-12 mb-5">
-                <div class="table-responsive">
-                    <table class="table table-bordered border-dark">
-                        <thead class="text-center">
-                            <tr>
-                                <th>Sr. No</th>
-                                <th>Tile</th>
-                                <th>Description</th>
-                                <th>Posted Date</th>
-                            </tr>
-                        </thead>
+            if ($result->rowCount() > 0) {
+            ?>
 
-                        <tbody class="text-center">
+                <section class="col-md-12 mb-5">
+                    <div class="table-responsive">
+                        <table class="table table-bordered border-dark">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>Sr. No</th>
+                                    <th>Tile</th>
+                                    <th>Description</th>
+                                    <th>Posted Date</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="text-center">
+
+                                <?php
+
+                                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                                ?>
+                                    <tr>
+                                        <td><?php echo $row["id"]; ?></td>
+                                        <td class="text-justify"><?php echo $row["newsTitle"]; ?></td>
+                                        <td class="text-justify"><?php echo $row["newsDescription"]; ?></td>
+                                        <td><?php echo $row["postedDate"]; ?></td>
+
+                                    </tr>
 
                             <?php
-
-    # Fetching Values from Database
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        ?>
-                            <tr>
-                                <td><?php echo $row["id"]; ?></td>
-                                <td class="text-justify"><?php echo $row["newsTitle"]; ?></td>
-                                <td class="text-justify"><?php echo $row["newsDescription"]; ?></td>
-                                <td><?php echo $row["postedDate"]; ?></td>
-
-                            </tr>
-
-                            <?php
-}
-} else {
-    echo "<script>Swal.fire({
-                            icon: 'warning',
-                            title: 'News Unavailable',
-                            text: 'No News Available'
-                            })</script>";
-}
-?>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
+                                }
+                            } else {
+                                echo "<script>Swal.fire({
+                                icon: 'warning',
+                                title: 'News Unavailable',
+                                text: 'No News Available'
+                                })</script>";
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
         </div>
     </main>
 
 
     <!--Include Footer & Footer Scripts-->
     <?php
-include_once 'includes/footer.php';
-include_once "includes/footerScripts.php";
-?>
+    include_once 'includes/footer.php';
+    include_once "includes/footerScripts.php";
+    ?>
 
-     <!--Include Footer & Footer Scripts-->
+    <!--Include Footer & Footer Scripts-->
     <script src="js/form-validation.js"></script>
 
-     <!--Close Database Connection-->
-    <?php $conn = null;?>
+    <!--Close Database Connection-->
+    <?php $conn = null; ?>
 
 </body>
 
