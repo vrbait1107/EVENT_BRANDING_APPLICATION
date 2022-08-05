@@ -3,11 +3,6 @@
 1. Website
 2. Android Application
 
-## Event Branding Application: Start to End Support (With Different Technology)
-
-1. Current Repository [Event Branding Application (PHP) ](https://github.com/vrbait1107/EVENT_BRANDING_APPLICATION)
-2. [Event Branding Application (MERN)](https://github.com/vrbait1107/MERN_EBA) Under Development
-
 ## Event Branding Application: Start to End Support (Techfest + CulturalFest Website)
 
 Event Branding Application project is a mobile based application and website that supports User registration, Event registration, Event payment and checkouts, Event Certificate generation, Event certificate verification,
