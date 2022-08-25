@@ -1,18 +1,13 @@
 <?php
 
-//------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
 require_once "config/techfestName.php";
-
-//------------------------------>> DB CONFIG
 require_once "config/configPDO.php";
-
-//------------------------------>> SECRETS
 require_once "./config/Secret.php";
 
-//------------------------------>> START SESSION
 session_start();
 
-//------------------------------>> CHECKING USER
+$_SESSION['redirect'] = "You must login before sending feedback";
+
 if (!isset($_SESSION['user'])) {
     header('location:login.php');
 }
@@ -30,7 +25,7 @@ if (!isset($_SESSION['user'])) {
     <title><?php echo $techfestName ?> | EVENT FEEDBACK</title>
 
     <!-- First Header Scripts, then Google Recaptcha -->
-    <?php include_once "includes/headerScripts.php";?>
+    <?php include_once "includes/headerScripts.php"; ?>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <style>
@@ -45,7 +40,7 @@ if (!isset($_SESSION['user'])) {
 <body>
 
     <!--Include User Navbar-->
-    <?php include_once "includes/navbar.php"?>
+    <?php include_once "includes/navbar.php" ?>
 
     <main class="container">
         <div class="row">
@@ -183,12 +178,11 @@ if (!isset($_SESSION['user'])) {
                     </div>
 
                     <div class="text-center my-2">
-                        <div class="g-recaptcha text-center" data-sitekey= <?php echo $recaptchaSiteKey; ?>>
+                        <div class="g-recaptcha text-center" data-sitekey=<?php echo $recaptchaSiteKey; ?>>
                         </div>
                     </div>
 
-                    <input type="submit" name="submit" id="submit"
-                        class="btn text-center btn-primary btn-block rounded-pill" value="Submit Feedback">
+                    <input type="submit" name="submit" id="submit" class="btn text-center btn-primary btn-block rounded-pill" value="Submit Feedback">
                 </form>
             </section>
         </div>
@@ -197,15 +191,15 @@ if (!isset($_SESSION['user'])) {
 
     <!--Include Footer & Footer Scripts-->
     <?php
-include_once 'includes/footer.php';
-include_once "includes/footerScripts.php";
-?>
+    include_once 'includes/footer.php';
+    include_once "includes/footerScripts.php";
+    ?>
 
     <!-- Javascript -->
     <script src="js/feedbackForm.js"></script>
 
-     <!-- Close Database Connection -->
-    <?php $conn = null;?>
+    <!-- Close Database Connection -->
+    <?php $conn = null; ?>
 
 </body>
 
