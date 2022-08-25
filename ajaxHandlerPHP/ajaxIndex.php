@@ -14,109 +14,59 @@ extract($_POST);
 
 // ------------------------------>> CHECKING USER
 
-if (!isset($_SESSION['user'])):
-    header("location:../login.php");
-endif;
+if (!isset($_SESSION['user'])) {
+    echo "<script>Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Please Login to Subscribe.'
+    })</script>";
+    return;
+}
 
 try {
 
     if (isset($_POST['email']) && !empty($_POST['email'])) {
 
-        $email = $_POST["email"];
-        $sessionEmail = $_SESSION["user"];
+        $email = $_SESSION["user"];
 
-        if ($email !== $sessionEmail) {
-            echo "<script>Swal.fire({
-                    icon: 'warning',
-                    title: 'Warning',
-                    text: 'Please Enter your registered email for this account'
-                })</script>";
-            return;
-        }
+        $sql2 = "SELECT * FROM newsletter_information WHERE email = :email";
+        $result2 = $conn->prepare($sql2);
+        $result2->bindValue(":email", $email);
+        $result2->execute();
 
-        if (empty($email)) {
-            echo "<script>Swal.fire({
-				    icon: 'warning',
-					title: 'Required',
-					text: 'Email field cannot be empty',
-				})</script>";
-            return;
-        }
+        if ($result2->rowCount() < 0) {
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo '<script>Swal.fire({
-			            icon: "warning",
-			            title: "Warning",
-			            text: "Invalid email format",
-			        })</script>';
-            return;
-        }
+            $sql = "INSERT INTO newsletter_information (email, subscribe) VALUES (:email, :Yes)";
 
-        # Avoid XSS Attack
-        $email = htmlspecialchars($email);
+            $result = $conn->prepare($sql);
+            $result->bindValue(":email", $email);
+            $result->bindValue(":Yes", "Yes");
 
-        $sql1 = "SELECT * FROM user_information WHERE email = :email";
-        $result1 = $conn->prepare($sql1);
-        $result1->bindValue(":email", $email);
-        $result1->execute();
+            # Executing Value
+            $result->execute();
 
-        # Checking Records
-        if ($result1->rowCount() > 0) {
-
-            $sql2 = "SELECT * FROM newsletter_information WHERE email = :email";
-            $result2 = $conn->prepare($sql2);
-            $result2->bindValue(":email", $email);
-            $result2->execute();
-
-            if ($result2->rowCount() < 0) {
-
-                # Query
-                $sql = "INSERT INTO newsletter_information (email, subscribe) VALUES (:email, :Yes)";
-
-                # Prepare Query
-                $result = $conn->prepare($sql);
-
-                # Binding Value
-                $result->bindValue(":email", $email);
-                $result->bindValue(":Yes", "Yes");
-
-                # Executing Value
-                $result->execute();
-
-                if ($result) {
-
-                    echo "<script>Swal.fire({
+            if ($result) {
+                echo "<script>Swal.fire({
                     icon: 'success',
                     title: 'Success',
                     text: 'You are successfully subscribed to newsletter'
                 })</script>";
-
-                } else {
-                    echo "<script>Swal.fire({
+            } else {
+                echo "<script>Swal.fire({
                     icon: 'error',
                     title: 'Error',
                     text: 'You are failed to subscribe newsletter, Please try again'
                 })</script>";
-                }
-
-            } else {
-                echo "<script>Swal.fire({
-                    icon: 'warning',
-                    title: 'Warning',
-                    text: 'You are already subscribed to newsletter'
-                })</script>";
             }
-
         } else {
             echo "<script>Swal.fire({
                     icon: 'warning',
                     title: 'Warning',
-                    text: 'Please Enter your registered email for this account'
+                    text: 'You are already subscribed to newsletter'
                 })</script>";
         }
-
     }
-
+    
 } catch (PDOException $e) {
     echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
     # Development Purpose Error Only

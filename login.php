@@ -9,7 +9,7 @@ require_once "./config/Secret.php";
 session_start();
 
 if (isset($_SESSION['user'])) {
-    header('Location:index.php');
+  header('Location:index.php');
 }
 
 ?>
@@ -24,7 +24,7 @@ if (isset($_SESSION['user'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Include Header Scripts, then Login.css then Google Recaptcha -->
-  <?php include_once "includes/headerScripts.php";?>
+  <?php include_once "includes/headerScripts.php"; ?>
   <link rel="stylesheet" href="css/login.css">
   <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 
@@ -36,110 +36,111 @@ if (isset($_SESSION['user'])) {
 
   <?php
 
-if (isset($_POST["login"])) {
+  if (isset($_POST["login"])) {
 
     try {
 
-        if (isset($_POST['h-captcha-response'])) {
+      if (isset($_POST['h-captcha-response'])) {
 
-            $secretKey = $hcaptchaSecretKey;
+        $secretKey = $hcaptchaSecretKey;
 
-            $verifyResponse = file_get_contents('https://hcaptcha.com/siteverify?secret=' . $secretKey . '&response=' . $_POST['h-captcha-response']);
-            $response = json_decode($verifyResponse);
+        $verifyResponse = file_get_contents('https://hcaptcha.com/siteverify?secret=' . $secretKey . '&response=' . $_POST['h-captcha-response']);
+        $response = json_decode($verifyResponse);
 
-            if ($response->success) {
+        if ($response->success) {
 
-                $userName = $_POST["userName"];
-                $password = $_POST["password"];
+          $userName = $_POST["userName"];
+          $password = $_POST["password"];
 
-                $userName = trim($_POST["userName"]);
-                $password = trim($_POST["password"]);
+          $userName = trim($_POST["userName"]);
+          $password = trim($_POST["password"]);
 
-                # SQL Query
-                $sql = "SELECT password, status FROM user_information WHERE email= :userName";
+          # SQL Query
+          $sql = "SELECT password, status FROM user_information WHERE email= :userName";
 
-                # Preparing Query
-                $result = $conn->prepare($sql);
+          # Preparing Query
+          $result = $conn->prepare($sql);
 
-                # Binding Value
-                $result->bindValue(":userName", $userName);
+          # Binding Value
+          $result->bindValue(":userName", $userName);
 
-                # Executing Value
-                $result->execute();
+          # Executing Value
+          $result->execute();
 
-                $row = $result->fetch(PDO::FETCH_ASSOC);
+          $row = $result->fetch(PDO::FETCH_ASSOC);
 
-                $status = $row['status'];
-                $dbpassword = $row['password'];
+          $status = $row['status'];
+          $dbpassword = $row['password'];
 
-                # Verify Password
-                if (password_verify($password, $dbpassword)) {
-                    if ($status == "active") {
+          # Verify Password
+          if (password_verify($password, $dbpassword)) {
+            if ($status == "active") {
 
-                        # If verify redirect to Index Page
-                        $_SESSION['user'] = $userName;
-                        header("Location:index.php");
-
-                    } else {
-                        echo "<script>Swal.fire({
+              # If verify redirect to Index Page
+              $_SESSION['user'] = $userName;
+              header("Location:index.php");
+            } else {
+              echo "<script>Swal.fire({
                               icon: 'warning',
                               title: 'Activate Account',
                               text: 'Please Activate Your Account'
                             })</script>";
-                    }
-
-                } else {
-                    echo "<script>Swal.fire({
+            }
+          } else {
+            echo "<script>Swal.fire({
                           icon: 'error',
                           title: 'Unable to Login',
                           text: 'Please Check Your Credentials'
                         })</script>";
-                }
-
-            } else {
-                echo "<script>Swal.fire({
+          }
+        } else {
+          echo "<script>Swal.fire({
                         icon: 'warning',
                         title: 'Captcha Error',
                         text: 'Please fill Captcha'
                       })</script>";
-            }
-
         }
-
+      }
     } catch (PDOException $e) {
-        echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
-        # Development Purpose Error Only
-        echo "Error " . $e->getMessage();
+      echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
+      # Development Purpose Error Only
+      echo "Error " . $e->getMessage();
     }
-}
-?>
+  }
+  ?>
 
-<!-- External Navbar -->
+  <!-- External Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"><?php echo $techfestName ?></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link text-uppercase" href="register.php">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-uppercase" href="login.php">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-uppercase" href="Admin/adminLogin.php">Admin Login</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <a class="navbar-brand" href="#"><?php echo $techfestName ?></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link text-uppercase" href="register.php">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-uppercase" href="login.php">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-uppercase" href="Admin/adminLogin.php">Admin Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
 
   <main class="container my-4">
     <div class="row">
       <section class="col-md-6 offset-md-3">
+
+
+        <?php if (!empty($_SESSION['redirect'])) : ?>
+          <div class="text-center mb-3 alert alert-danger">
+            <i class="fa fa-exclamation-triangle"></i> <?php echo $_SESSION['redirect']; unset($_SESSION['redirect']); ?>
+          </div>
+        <?php endif; ?>
 
         <div class="card shadow p-5">
           <h2 class="text-center text-uppercase font-time">USER LOGIN</h2>
@@ -153,15 +154,13 @@ if (isset($_POST["login"])) {
 
             <div class="form-group">
               <label for="Email">Username</label>
-              <input type="email" name="userName" class="form-control" id="Email" aria-describedby="emailHelp"
-                placeholder="Enter Username">
+              <input type="email" name="userName" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Enter Username">
             </div>
 
 
             <label for="Password">Password</label>
             <div class="input-group mb-3">
-              <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password"
-                aria-label="Enter Password" aria-describedby="basic-addon2" autocomplete="off">
+              <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" aria-label="Enter Password" aria-describedby="basic-addon2" autocomplete="off">
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2"><i class="fa fa-eye" aria-hidden="true"></i>
                 </span>
@@ -176,8 +175,7 @@ if (isset($_POST["login"])) {
 
 
             <div class="form-group">
-              <a href="activateDisableAccount.php" class="text-danger font-weight-bold"
-                name="activateDisableEmail">Activate
+              <a href="activateDisableAccount.php" class="text-danger font-weight-bold" name="activateDisableEmail">Activate
                 your
                 Disable Account</a>
             </div>
@@ -198,13 +196,12 @@ if (isset($_POST["login"])) {
 
 
   <!-- Footer Script -->
-  <?php include_once "includes/footerScripts.php";?>
+  <?php include_once "includes/footerScripts.php"; ?>
 
   <!-- Hiding and Showing Password Javascript -->
   <script type="text/javascript">
-
-    $(document).ready(function () {
-      $('#basic-addon2').click(function () {
+    $(document).ready(function() {
+      $('#basic-addon2').click(function() {
         let passwordField = $("#password");
         let passwordFieldType = passwordField.attr('type');
 
@@ -212,8 +209,7 @@ if (isset($_POST["login"])) {
           passwordField.attr("type", "text");
           $(this).html('<i class="fa fa-eye-slash" aria-hidden="true"></i>');
 
-        }
-        else {
+        } else {
           passwordField.attr("type", "password");
           $(this).html('<i class="fa fa-eye" aria-hidden="true"></i>');
         }
@@ -221,8 +217,8 @@ if (isset($_POST["login"])) {
     })
   </script>
 
-<!-- Close Database Connection -->
-  <?php $conn = null;?>
+  <!-- Close Database Connection -->
+  <?php $conn = null; ?>
 
 </body>
 

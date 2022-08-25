@@ -11,10 +11,6 @@ require_once "./config/Secret.php";
 //------------------------------>> STARTING SESSION
 session_start();
 
-//------------------------------>> CHECKING USER
-if (!isset($_SESSION['user'])) {
-    header("location:login.php");
-}
 ?>
 
 <!doctype html>
@@ -40,8 +36,9 @@ if (!isset($_SESSION['user'])) {
 
     <main class="mb-5 container">
 
-        <h3 class="text-center my-5 text-uppercase alert-info font-Staatliches-heading" data-aos="zoom-in" data-aos-duration="1500">
-            Contact us</h3>
+        <h1 class="text-center mt-5 text-uppercase font-Staatliches-heading" data-aos="zoom-in" data-aos-duration="1500">
+            Contact us</h1>
+        <hr class="mb-5" style="border-top: 2px solid rgba(0,0,0,.1);"/>
 
         <h5 class="text-center w-responsive mx-auto mb-3" data-aos="zoom-in" data-aos-duration="1500">Do you have any questions? Please do not
             hesitate to contact us directly. Our team will come back to you within

@@ -6,10 +6,6 @@ require_once "config/configPDO.php";
 
 session_start();
 
-if (!isset($_SESSION['user'])) {
-    header("location:login.php");
-}
-
 //------------------------------>> VISITOR COUNTER
 
 try {
@@ -38,7 +34,6 @@ try {
     if ($result) {
         $totaVisitors = $result->rowCount();
     }
-
 } catch (PDOException $e) {
     echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
     # Development Purpose Error Only
@@ -57,7 +52,7 @@ try {
     <meta name="author" content="">
 
     <!--First Inlude Header Scripts, then Loader.css then Index.css-->
-    <?php include_once "includes/headerScripts.php";?>
+    <?php include_once "includes/headerScripts.php"; ?>
     <link rel="stylesheet" href="css/loader.css">
     <link rel="stylesheet" href="css/index.css">
 
@@ -72,7 +67,7 @@ try {
     <div id="loader"></div>
 
     <!--Include User Navbar-->
-    <?php include_once "includes/navbar.php";?>
+    <?php include_once "includes/navbar.php"; ?>
 
 
     <main class="container-fluid welcome-section">
@@ -105,13 +100,11 @@ try {
 
                             </div>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button"
-                            data-slide="prev">
+                        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button"
-                            data-slide="next">
+                        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
@@ -153,19 +146,24 @@ try {
 
 
     <!--Newsletter Section-->
+
     <div class="container">
         <div class="row">
             <section class="col-md-6 offset-md-3 py-5">
                 <h2 class="text-center text-uppercase font-time  mb-4">Subscribe to our newsletter</h2>
 
                 <form id="newsletterForm">
-                    <div class="input-group">
-                        <input type="text" id="email" name="email" class="form-control" placeholder="Enter Email">
-                        <div class="input-group-append">
-                            <input type="button" class="btn btn-danger" id="submit" value="Subscribe Now">
+                    <div class="text-center mt-2">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-danger" id="submit">Subscribe Now</button>
                         </div>
+                        <span class="text-danger">
+                            You must Login to subscribe Newsletter,
+                            you will receive newsletter on your registered email.
+                        </span>
                     </div>
-                     <h5 id="responseMessage" class="mt-3 text-center font-time"></h5>
+
+                    <h5 id="responseMessage" class="mt-3 text-center font-time"></h5>
                 </form>
 
             </section>
@@ -183,15 +181,15 @@ try {
 
     <!-- Include Footer & Footer Scripts PHP -->
     <?php
-include_once "includes/footer.php";
-include_once "includes/footerScripts.php";
-?>
+    include_once "includes/footer.php";
+    include_once "includes/footerScripts.php";
+    ?>
 
-     <!-- Index js -->
+    <!-- Index js -->
     <script src="js/index.js"></script>
 
     <!-- Close Database Connection -->
-    <?php $conn = null;?>
+    <?php $conn = null; ?>
 
 </body>
 

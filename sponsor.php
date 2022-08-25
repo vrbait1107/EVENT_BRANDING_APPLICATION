@@ -9,24 +9,18 @@ require_once "config/configPDO.php";
 //------------------------------>> START SESSION
 session_start();
 
-//------------------------------>> CHECKING USER
-if (!isset($_SESSION['user'])) {
-    header("location:login.php");
-}
-
 //------------------------------>> EXTRACT DATA FROM DB
 
 try {
 
-# Sql Query
+    # Sql Query
     $sql = "SELECT * FROM sponsor_information";
 
-# Preparing Query
+    # Preparing Query
     $result = $conn->prepare($sql);
 
-# Executing Query
+    # Executing Query
     $result->execute();
-
 } catch (PDOException $e) {
     echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
     # Development Purpose Error Only
@@ -46,59 +40,61 @@ try {
     <link rel="stylesheet" href="css/sponsor.css">
 
     <!--Include Header Scripts -->
-    <?php include_once "includes/headerScripts.php";?>
+    <?php include_once "includes/headerScripts.php"; ?>
 
 </head>
 
 <body>
 
-     <!-- Include User Navbar -->
-    <?php include_once "includes/navbar.php";?>
+    <!-- Include User Navbar -->
+    <?php include_once "includes/navbar.php"; ?>
 
     <main class="container mt-5">
 
-        <h3 class="alert-info text-center mb-5 font-Staatliches-heading">SPONSOR PAGE</h3>
+        <h1 class="text-center font-Staatliches-heading"><?php echo $techfestName ?> - SPONSORS</h1>
+        <hr style="border-top: 2px solid rgba(0,0,0,.1);"/>
+
         <div class="row" id="mainContainer">
 
-    <?php
+            <?php
 
-#Checking Count
-if ($result->rowCount() > 0) {
+            #Checking Count
+            if ($result->rowCount() > 0) {
 
-    # Fetching Data from Database
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                # Fetching Data from Database
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
-        $sponsorLogo = $row["sponsorLogo"];
-        $sponsorName = $row["sponsorName"];
+                    $sponsorLogo = $row["sponsorLogo"];
+                    $sponsorName = $row["sponsorName"];
 
-        ?>
+            ?>
 
-            <section class="col-md-4 mx-auto mb-5">
-                <div class="card shadow" style="height:150px;">
-                    <img src="images/sponsorLogo/<?php echo $sponsorLogo; ?>" class="img-fluid w-100 my-auto">
-                </div>
-                <h5 class="text-center text-uppercase alert alert-info text-dark font-time"><?php echo $sponsorName; ?>
-                </h5>
-            </section>
+                    <section class="col-md-4 mx-auto mb-5">
+                        <div class="card shadow" style="height:150px;">
+                            <img src="images/sponsorLogo/<?php echo $sponsorLogo; ?>" class="img-fluid w-100 my-auto">
+                        </div>
+                        <h5 class="text-center text-uppercase alert alert-info text-dark font-time"><?php echo $sponsorName; ?>
+                        </h5>
+                    </section>
 
             <?php
-}
-} else {
-    echo "No Records Available in Database";
-}
-?>
+                }
+            } else {
+                echo "No Records Available in Database";
+            }
+            ?>
 
         </div>
     </main>
 
     <!-- Include Footer & Footer Scripts -->
     <?php
-include_once "includes/footer.php";
-include_once "includes/footerScripts.php";
-?>
+    include_once "includes/footer.php";
+    include_once "includes/footerScripts.php";
+    ?>
 
     <!-- Close DB Connection -->
-    <?php $conn = null;?>
+    <?php $conn = null; ?>
 
 </body>
 

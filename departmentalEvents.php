@@ -9,11 +9,6 @@ require_once "config/configPDO.php";
 //------------------------------>> START SESSION
 session_start();
 
-//---------------------------------->> CHECKING USER
-if (!isset($_SESSION['user'])) {
-    header("location:login.php");
-}
-
 try {
 
     if (isset($_POST["eventDepartmentName"])) {
@@ -73,9 +68,14 @@ if ($result->rowCount() > 0) {
         <div id="responsePromocode"></div>
 
     <div class="container mt-5">
-        <h2 class="text-danger text-center text-uppercase mb-5 font-Staatliches-heading">
+        <h1 class="text-info text-center text-uppercase mb-5 font-Staatliches-heading">
 
-            <?php echo $_SESSION["eventDepartmentName"]; ?> Events</h2>
+            <?php echo $_SESSION["eventDepartmentName"]; ?> Events</h1>
+
+            <div class="text-center mb-5">
+                <h6 class="alert text-uppercase font-weight-bold alert-danger"><i class="fa fa-exclamation-triangle"></i> You are not logged in, Please Log in for event registration</h6>
+            </div>
+            
 
         <div class="row">
 
@@ -89,9 +89,11 @@ if ($result->rowCount() > 0) {
 
             <div class="col-md-4 mb-5">
                 <div class="card shadow text-center">
-                    <img src="images/eventImage/<?php echo $row["eventImage"]; ?>" class="img-fluid">
+                    <img title="<?php echo $row["eventName"]; ?>" src="images/eventImage/<?php echo $row["eventImage"]; ?>" class="img-fluid">
                     <h5 class="text-danger my-3" id = "entryFee2<?php echo $row['id']; ?>">Entry Fee &#x20b9;<?php echo $row["eventPrice"]; ?></h5>
 
+
+                    <?php if(!empty($_SESSION['user'])){ ?>
 
                         <div class="input-group my-3 px-2">
                             <input type="text" class="form-control" id='event<?php echo $row["id"]; ?>' />
@@ -102,14 +104,16 @@ if ($result->rowCount() > 0) {
                         </div>
 
 
-                    <form method="post" action="Paytm/PaytmKit/TxnTest.php">
-                        <input type="hidden" name="eventName" value='<?php echo $row["eventName"]; ?>'>
-                        <input type="hidden" name="eventPrice" id = "entryFee3<?php echo $row['id']; ?>" value='<?php echo $row["eventPrice"]; ?>'>
-                        <input type="submit" class="btn btn-primary text-uppercase btn-block mb-2 rounded-pill"
-                            value="Click here to Register">
-                    </form>
+                        <form method="post" action="Paytm/PaytmKit/TxnTest.php">
+                            <input type="hidden" name="eventName" value='<?php echo $row["eventName"]; ?>'>
+                            <input type="hidden" name="eventPrice" id = "entryFee3<?php echo $row['id']; ?>" value='<?php echo $row["eventPrice"]; ?>'>
+                            <input type="submit" class="btn btn-primary text-uppercase btn-block mb-2 rounded-pill"
+                                value="Click here to Register">
+                        </form>
 
-                    <button type='button' data-toggle="modal" data-target='#modal<?php echo $i; ?>' class='btn btn-secondary mb-3 rounded-pill
+                    <?php } ?>
+
+                    <button type='button' title='View Event Information' data-toggle="modal" data-target='#modal<?php echo $i; ?>' class='btn btn-secondary mb-3 rounded-pill
                     text-uppercase'>View Event Information</button>
 
                 </div>

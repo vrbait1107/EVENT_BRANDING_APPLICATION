@@ -5,10 +5,6 @@ require_once "config/techfestName.php";
 //-------------------------->> START SESSION
 session_start();
 
-//-------------------------->> CHECKING USER
-if (!isset($_SESSION['user'])) {
-    header("location:login.php");
-}
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +18,7 @@ if (!isset($_SESSION['user'])) {
 
 
     <!-- First Include Header Scripts then ImageHover.css-->
-    <?php include_once "includes/headerScripts.php";?>
+    <?php include_once "includes/headerScripts.php"; ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/imagehover.css/2.0.0/css/imagehover.min.css">
 
 </head>
@@ -30,10 +26,11 @@ if (!isset($_SESSION['user'])) {
 <body>
 
     <!--Include User Navbar-->
-    <?php include_once "includes/navbar.php";?>
+    <?php include_once "includes/navbar.php"; ?>
 
     <main class="container">
-        <h3 class="text-center text-uppercase my-5 alert-info font-Staatliches-heading">Web Developers</h3>
+        <h1 class="text-center text-uppercase mt-5 font-Staatliches-heading">Development Team</h1>
+        <hr class="mb-5" style="border-top: 2px solid rgba(0,0,0,.1);"/>
         <div class="row">
 
 
@@ -49,14 +46,10 @@ if (!isset($_SESSION['user'])) {
 
                                 <div class="mt-3">
                                     <h6 class="mb-2">Follow Me on Social Media</h6>
-                                    <i class="fab fa-facebook fa-2x ml-2"><a
-                                            href="https://www.facebook.com/vrbait1107"></a></i>
-                                    <i class="fab fa-instagram fa-2x ml-2"><a
-                                            href="https://www.instagram.com/vrbait1107/"></a></i>
-                                    <i class="fab fa-twitter fa-2x ml-2"><a
-                                            href="https://twitter.com/vrbait1107"></a></i>
-                                    <i class="fab fa-linkedin fa-2x ml-2"><a
-                                            href="https://in.linkedin.com/in/vrbait1107"></a></i>
+                                    <i class="fab fa-facebook fa-2x ml-2"><a href="https://www.facebook.com/vrbait1107"></a></i>
+                                    <i class="fab fa-instagram fa-2x ml-2"><a href="https://www.instagram.com/vrbait1107/"></a></i>
+                                    <i class="fab fa-twitter fa-2x ml-2"><a href="https://twitter.com/vrbait1107"></a></i>
+                                    <i class="fab fa-linkedin fa-2x ml-2"><a href="https://in.linkedin.com/in/vrbait1107"></a></i>
                                     <i class="fab fa-github fa-2x ml-2"><a href="https://github.com/vrbait1107"></a></i>
                                 </div>
                             </div>
@@ -140,11 +133,11 @@ if (!isset($_SESSION['user'])) {
         </div>
     </main>
 
-     <!-- Include Footer & Footer Script -->
+    <!-- Include Footer & Footer Script -->
     <?php
-include_once "includes/footer.php";
-include_once "includes/footerScripts.php";
-?>
+    include_once "includes/footer.php";
+    include_once "includes/footerScripts.php";
+    ?>
 
 </body>
 

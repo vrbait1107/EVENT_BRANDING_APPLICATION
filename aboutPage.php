@@ -1,15 +1,8 @@
 <?php
 //------------------------------>> CENTRALIZED TECHFEST NAME WITH YEAR
 require_once "config/techfestName.php";
-
-//----------------------------->> START SESSION
 session_start();
 
-//----------------------------->> CHECKING USER
-if (!isset($_SESSION['user'])) {
-    header("location:login.php");
-
-}
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +16,7 @@ if (!isset($_SESSION['user'])) {
     <title><?php echo $techfestName ?> | ABOUT</title>
 
     <!-- First AOS Animation then Include Header Scripts then CSS file -->
-    <?php include_once "includes/headerScripts.php";?>
+    <?php include_once "includes/headerScripts.php"; ?>
     <link rel="stylesheet" href="css/aboutPage.css">
 
 </head>
@@ -31,7 +24,7 @@ if (!isset($_SESSION['user'])) {
 <body>
 
     <!-- Include User Navbar-->
-    <?php include_once "includes/navbar.php";?>
+    <?php include_once "includes/navbar.php"; ?>
 
     <main class="container">
         <div class="row">
@@ -40,8 +33,9 @@ if (!isset($_SESSION['user'])) {
             <section class="col-md-10 offset-md-1">
                 <div class="p-5 my-3 text-justify" data-aos="zoom-in" data-aos-duration="1500">
 
-                    <h1 class="p-1 text-center text-uppercase alert-info font-Staatliches-heading">About Shodh</h1>
-                    <hr>
+                    <h1 class="p-1 text-center text-uppercase font-Staatliches-heading">About Shodh</h1>
+                    <hr class="mb-5" style="border-top: 2px solid rgba(0,0,0,.1);"/>
+                    
                     <p>SHODH, GIT Lavel is the annual science and technology festival of the Gharda Institute of
                         Technology Lavel.
                         Started in 2008 with the aim of providing a platform for the Indian student community to develop
@@ -72,9 +66,9 @@ if (!isset($_SESSION['user'])) {
 
     <!-- Include Footer & Footer Scripts -->
     <?php
-include_once 'includes/footer.php';
-include_once "includes/footerScripts.php";
-?>
+    include_once 'includes/footer.php';
+    include_once "includes/footerScripts.php";
+    ?>
 
 </body>
 

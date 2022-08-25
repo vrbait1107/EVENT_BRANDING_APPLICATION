@@ -31,8 +31,8 @@ session_start();
     <?php include_once "includes/navbar.php"?>
 
     <main class="container">
-        <h3 class="text-center font-Staatliches-heading alert-info text-uppercase my-5">College Gallery</h3>
-
+        <h1 class="text-center font-Staatliches-heading text-uppercase mt-5">College Gallery</h1>
+        <hr class="mb-5" style="border-top: 2px solid rgba(0,0,0,.1);"/>
         <div class="row mx-auto images">
 
             <?php

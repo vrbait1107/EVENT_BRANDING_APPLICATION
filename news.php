@@ -6,10 +6,6 @@ require_once "config/configPDO.php";
 
 session_start();
 
-if (!isset($_SESSION['user'])) {
-    header('location:login.php');
-}
-
 ?>
 
 
@@ -56,7 +52,8 @@ if (!isset($_SESSION['user'])) {
 
     <main class="container">
 
-        <h3 class="text-center alert-info font-Staatliches-heading my-5 text-uppercase">News & Notifications</h3>
+        <h1 class="text-center font-Staatliches-heading mt-5 text-uppercase">News & Notifications</h1>
+        <hr class="mb-5" style="border-top: 2px solid rgba(0,0,0,.1);"/>
 
         <div class="row">
 

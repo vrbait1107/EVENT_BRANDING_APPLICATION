@@ -8,6 +8,8 @@ require_once "config/configPDO.php";
 //------------------------------>> START SESSION
 session_start();
 
+$_SESSION['redirect'] = "You must login before viewing your certificates.";
+
 //---------------------------------->> CHECKING USER
 if (!isset($_SESSION['user'])) {
     header("location:login.php");

@@ -9,10 +9,6 @@ require_once "config/configPDO.php";
 //------------------------------>> START SESSION
 session_start();
 
-//---------------------------------->> CHECKING USER
-if (!isset($_SESSION['user'])) {
-    header("location:login.php");
-}
 
 try {
     $sql = "SELECT * FROM synergy_events_details";
@@ -54,7 +50,10 @@ if ($result->rowCount() > 0) {
 
 
     <div class="container mt-5">
-        <h2 class="text-danger text-center text-uppercase mb-5 font-Staatliches-heading">Synergy Events</h2>
+        <h1 class="text-dark text-center text-uppercase mb-5 font-Staatliches-heading">Synergy Events</h1>
+        <div class="text-center mb-5">
+            <h6 class="alert text-uppercase font-weight-bold alert-danger"><i class="fa fa-exclamation-triangle"></i> You are not logged in, Please Log in for event registration</h6>
+        </div>
 
         <div class="row">
 
@@ -78,6 +77,7 @@ if ($result->rowCount() > 0) {
                     <!-- Event Prize -->
                     <h5 class="alert font-sans alert-warning mb-2">Event Prize &#x20b9;<?php echo $row["eventPrize"]; ?></h5>
 
+                    <?php if(!empty($_SESSION['user'])){ ?>
                     <!-- Synergy Event Register -->
                     <form action="synergyEventRegister.php" method="post">
                         <div class="form-group">
@@ -86,6 +86,7 @@ if ($result->rowCount() > 0) {
                                 name="registerEvent" value="Register Here">
                         </div>
                     </form>
+                    <?php } ?>
 
                     <!-- Open Modal -->
                     <button type='button' data-toggle="modal" data-target='#modal<?php echo $i; ?>' class='btn btn-secondary mb-3 rounded-pill
