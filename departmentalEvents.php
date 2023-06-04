@@ -72,9 +72,11 @@ if ($result->rowCount() > 0) {
 
             <?php echo $_SESSION["eventDepartmentName"]; ?> Events</h1>
 
+            <?php if(empty($_SESSION["user"])){ ?>
             <div class="text-center mb-5">
                 <h6 class="alert text-uppercase font-weight-bold alert-danger"><i class="fa fa-exclamation-triangle"></i> You are not logged in, Please Log in for event registration</h6>
             </div>
+            <?php } ?>
             
 
         <div class="row">

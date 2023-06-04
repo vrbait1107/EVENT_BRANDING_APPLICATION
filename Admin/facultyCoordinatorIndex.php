@@ -14,14 +14,13 @@ if (!isset($_SESSION['adminEmail']) || ($_SESSION['adminType'])) {
     if ($_SESSION['adminType'] !== "Faculty Coordinator") {
         header("location:adminLogin.php");
     }
-
 }
 
 $department = $_SESSION["adminDepartment"];
 
 try {
 
-//------------------------->>  DISPLAY PARTICIPATION COUNT & TOTAL REVENUE
+    //------------------------->>  DISPLAY PARTICIPATION COUNT & TOTAL REVENUE
 
     $sqlData = "SELECT * FROM event_information
     WHERE event IN (SELECT events_details_information.eventName
@@ -36,7 +35,7 @@ try {
         $totalAmount = $totalAmount + $rowData['txnAmount'];
     }
 
-//------------------------->>  DISPLAY ADMIN INFORMATION COUNT
+    //------------------------->>  DISPLAY ADMIN INFORMATION COUNT
 
     $sqlDataAdmin = "SELECT * FROM admin_information
 WHERE adminType = :studentCoordinator AND adminDepartment = :department";
@@ -46,7 +45,7 @@ WHERE adminType = :studentCoordinator AND adminDepartment = :department";
     $resultDataAdmin->execute();
     $rowCountAdmin = $resultDataAdmin->rowCount();
 
-//------------------------->>  EXTRACTING EVENT NAME FROM DB IN ARRAY.
+    //------------------------->>  EXTRACTING EVENT NAME FROM DB IN ARRAY.
 
     $sqlData1 = "SELECT eventName from events_details_information
      WHERE eventDepartment = :department";
@@ -60,7 +59,7 @@ WHERE adminType = :studentCoordinator AND adminDepartment = :department";
         array_push($events, $rowData1['eventName']);
     }
 
-//------------------------->> PARTICIPANTS COUNT EVENT WISE
+    //------------------------->> PARTICIPANTS COUNT EVENT WISE
 
     function count1($event)
     {
@@ -73,7 +72,7 @@ WHERE adminType = :studentCoordinator AND adminDepartment = :department";
         return $row;
     }
 
-//------------------------->> DISPLAY TOTAL REVENUE EVENT WISE
+    //------------------------->> DISPLAY TOTAL REVENUE EVENT WISE
 
     function countRevenue($event)
     {
@@ -86,10 +85,8 @@ WHERE adminType = :studentCoordinator AND adminDepartment = :department";
         $totalAmount = $row['totalAmount'];
         return $totalAmount + 0;
     }
-
 } catch (PDOException $e) {
     echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
-    # Development Purpose Error Only
     echo "Error " . $e->getMessage();
 }
 
@@ -105,31 +102,30 @@ WHERE adminType = :studentCoordinator AND adminDepartment = :department";
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
-    <meta name="author" content="Vishal Bait" />
+    <meta name="author" content="" />
     <title><?php echo $techfestName ?> | FACULTY COORDINATOR DASHBOARD</title>
 
-    <!-- Admin Header Scripts -->
-    <?php include_once "includes/adminHeaderScripts.php";?>
+    <?php include_once "includes/adminHeaderScripts.php"; ?>
 
 </head>
 
 <body class="sb-nav-fixed">
 
-    <!-- Include Admin Navbar -->
+
     <?php
-include_once "includes/commonAnchor.php";
-include_once "includes/adminNavbar.php";
-?>
+    include_once "includes/commonAnchor.php";
+    include_once "includes/adminNavbar.php";
+    ?>
 
 
 
     <div id="layoutSidenav_content">
 
         <main class="container">
-            <h2 class="mt-4 text-center font-Staatliches-heading text-info">Dashboard for Faculty Coordinator <br />
-               <?php echo $_SESSION["adminDepartment"]; ?></h2>
+            <h1 class="mt-4 text-center font-Staatliches-heading text-info">Dashboard for Faculty Coordinator <br />
+                <?php echo $_SESSION["adminDepartment"]; ?></h1>
 
-        <hr/>
+            <hr />
             <!-- Display Data Related to Event held by Department-->
 
             <div class="row">
@@ -201,8 +197,7 @@ include_once "includes/adminNavbar.php";
                     <!--Collaspe One-->
 
                     <div class="card-header" id="headingOne">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
-                            aria-expanded="true" aria-controls="collapseOne">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             <h5 class="text-center text-uppercase my-2 font-time">Participation Count and Revenue
                                 Event
                                 Wise</h5>
@@ -211,69 +206,67 @@ include_once "includes/adminNavbar.php";
 
                     <!--Collaspe One Target-->
 
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                        data-parent="#accordionExample">
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 
 
                         <div class="row">
 
                             <?php
 
-for ($i = 0; $i < sizeof($events); $i++) {
+                            for ($i = 0; $i < sizeof($events); $i++) {
 
-    ?>
+                            ?>
 
-                            <!-- Total student Participant Event -->
+                                <!-- Total student Participant Event -->
 
-                            <section class="col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    Total Student Participants <br />
-                                                    <span class="text-danger"><?php echo $events[$i]; ?></span>
+                                <section class="col-md-6 mb-4">
+                                    <div class="card border-left-success shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        Total Student Participants <br />
+                                                        <span class="text-danger"><?php echo $events[$i]; ?></span>
+                                                    </div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <?php echo count1($events[$i]) ?></div>
                                                 </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <?php echo count1($events[$i]) ?></div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-users fa-3x text-warning"></i>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-users fa-3x text-warning"></i>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </section>
+                                </section>
 
 
-                            <!-- Total Event Revenue Events Wise -->
+                                <!-- Total Event Revenue Events Wise -->
 
-                            <section class="col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div
-                                                    class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
-                                                    Total Event Revenue <br />
-                                                    <span class="text-danger"><?php echo $events[$i]; ?></span>
+                                <section class="col-md-6 mb-4">
+                                    <div class="card border-left-success shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                                        Total Event Revenue <br />
+                                                        <span class="text-danger"><?php echo $events[$i]; ?></span>
+                                                    </div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        &#8377; <?php echo countRevenue($events[$i]) ?></div>
                                                 </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                    &#8377; <?php echo countRevenue($events[$i]) ?></div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-rupee-sign text-warning fa-3x"></i>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-rupee-sign text-warning fa-3x"></i>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </section>
+                                </section>
 
                             <?php
 
-}
+                            }
 
-?>
+                            ?>
 
                         </div>
                     </div>
@@ -282,17 +275,12 @@ for ($i = 0; $i < sizeof($events); $i++) {
 
         </main>
 
-
-        <!-- Include Admin Footer-->
-        <?php include_once "includes/adminFooter.php";?>
+        <?php include_once "includes/adminFooter.php"; ?>
 
     </div>
 
-    <!-- Include Admin Footer Scripts -->
-    <?php include_once "includes/adminFooterScripts.php";?>
-
-    <!-- Closing Database Connnection -->
-    <?php $conn = null;?>
+    <?php include_once "includes/adminFooterScripts.php"; ?>
+    <?php $conn = null; ?>
 
 </body>
 

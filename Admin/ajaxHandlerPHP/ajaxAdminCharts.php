@@ -1,11 +1,8 @@
 <?php
-
-//----------------------->> DB CONFIG
 require_once "../../config/configPDO.php";
 
 extract($_POST);
-
-# CHECKING ADMIN 
+session_start();
 
  if ($_SESSION['adminType'] !== "Administrator") {
         header("location:../adminLogin.php");
