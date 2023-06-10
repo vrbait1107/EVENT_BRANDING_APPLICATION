@@ -4,13 +4,13 @@ require_once "../../config/configPDO.php";
 extract($_POST);
 session_start();
 
- if ($_SESSION['adminType'] !== "Administrator") {
-        header("location:../adminLogin.php");
-    }
+if ($_SESSION['adminType'] !== "Administrator") {
+    header("location:../adminLogin.php");
+}
 
 try {
 
-    function countRevenue($conn, $department)
+    function countRevenue(PDO $conn, string $department): int
     {
         $sql = "SELECT SUM(txnAmount) AS totalAmount FROM event_information WHERE event IN
         (SELECT eventName FROM events_details_information WHERE eventDepartment = :department)";
@@ -23,10 +23,10 @@ try {
         return $totalAmount + 0;
     }
 
-    function count1($conn, $department)
+    function countParticipants(PDO $conn, string $department): int
     {
 
-        $sql = "SELECT * FROM event_information WHERE event IN
+        $sql = "SELECT COUNT(*) AS count FROM event_information WHERE event IN
         (SELECT eventName FROM events_details_information WHERE eventDepartment = :department)";
 
         $result = $conn->prepare($sql);
@@ -35,51 +35,39 @@ try {
 
         $result->execute();
 
-        $row = $result->rowCount();
+        $row = $result->fetch(PDO::FETCH_ASSOC);
 
-        return $row;
+        return $row['count'];
     }
 
     if (isset($_POST["chart"])) {
 
-        $chartArray = [];
-        array_push($chartArray, ["Department", "Revenue"]);
-        array_push($chartArray, ["EXTC", countRevenue($conn, "Electronics and Telecommunication")]);
-        array_push($chartArray, ["Chemical", countRevenue($conn, "Chemical")]);
-        array_push($chartArray, ["Civil", countRevenue($conn, "Civil")]);
-        array_push($chartArray, ["Computer", countRevenue($conn, "Computer")]);
-        array_push($chartArray, ["Mechanical", countRevenue($conn, "Mechanical")]);
+        $revenueChartDetails = [];
 
-        $chartArray2 = [];
-        array_push($chartArray2, ["Department", "Participant Count"]);
-        array_push($chartArray2, ["EXTC", count1($conn, "Electronics and Telecommunication")]);
-        array_push($chartArray2, ["Chemical", count1($conn, "Chemical")]);
-        array_push($chartArray2, ["Civil", count1($conn, "Civil")]);
-        array_push($chartArray2, ["Computer", count1($conn, "Computer")]);
-        array_push($chartArray2, ["Mechanical", count1($conn, "Mechanical")]);
+        array_push($revenueChartDetails, ["Department", "Revenue"]);
+        array_push($revenueChartDetails, ["EXTC", countRevenue($conn, "Electronics and Telecommunication")]);
+        array_push($revenueChartDetails, ["Chemical", countRevenue($conn, "Chemical")]);
+        array_push($revenueChartDetails, ["Civil", countRevenue($conn, "Civil")]);
+        array_push($revenueChartDetails, ["Computer", countRevenue($conn, "Computer")]);
+        array_push($revenueChartDetails, ["Mechanical", countRevenue($conn, "Mechanical")]);
 
-        $newArray = json_encode($chartArray);
-
-        echo $newArray;
+        echo json_encode($revenueChartDetails);
 
     }
 
     if (isset($_POST["chart1"])) {
 
-        $chartArray2 = [];
-        array_push($chartArray2, ["Department", "Participant Count"]);
-        array_push($chartArray2, ["EXTC", count1($conn, "Electronics and Telecommunication")]);
-        array_push($chartArray2, ["Chemical", count1($conn, "Chemical")]);
-        array_push($chartArray2, ["Civil", count1($conn, "Civil")]);
-        array_push($chartArray2, ["Computer", count1($conn, "Computer")]);
-        array_push($chartArray2, ["Mechanical", count1($conn, "Mechanical")]);
+        $participantChartDetails = [];
+        array_push($participantChartDetails, ["Department", "Participant Count"]);
+        array_push($participantChartDetails, ["EXTC", countParticipants($conn, "Electronics and Telecommunication")]);
+        array_push($participantChartDetails, ["Chemical", countParticipants($conn, "Chemical")]);
+        array_push($participantChartDetails, ["Civil", countParticipants($conn, "Civil")]);
+        array_push($participantChartDetails, ["Computer", countParticipants($conn, "Computer")]);
+        array_push($participantChartDetails, ["Mechanical", countParticipants($conn, "Mechanical")]);
 
-        $newArray = json_encode($chartArray2);
-
-        echo $newArray;
-
+        echo json_encode($participantChartDetails);
     }
-
+    
 } catch (PDOException $e) {
     echo "<script>alert('We are sorry, there seems to be a problem with our systems. Please try again.');</script>";
     # Development Purpose Error Only

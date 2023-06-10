@@ -34,7 +34,7 @@ try {
 
 // ------------------------->> PARTICIPANTS COUNT EVENT WISE
 
-    function count1($conn, $event)
+    function count1(PDO $conn, string $event): int
     {
 
         $sql = "SELECT * FROM event_information WHERE event = :event";
@@ -47,7 +47,7 @@ try {
 
 //------------------------->> DISPLAY REVENUE DEVENT WISE
 
-    function countRevenue($conn, $event)
+    function countRevenue(PDO $conn, string $event): int
     {
         $sql = "SELECT SUM(txnAmount) AS totalAmount FROM event_information WHERE event = :event";
         $result = $conn->prepare($sql);
@@ -60,32 +60,29 @@ try {
 
     if (isset($_POST["chart"])) {
 
-        $chartArray = [];
-        array_push($chartArray, ["Events", "Revenue"]);
+        $revenueChartDetails = [];
+        array_push($revenueChartDetails, ["Events", "Revenue"]);
 
         for ($i = 0; $i < sizeof($events); $i++) {
-            array_push($chartArray, [$events[$i], countRevenue($conn, $events[$i])]);
+            array_push($revenueChartDetails, [$events[$i], countRevenue($conn, $events[$i])]);
         }
 
-        $newArray = json_encode($chartArray);
-
-        echo $newArray;
+        echo json_encode($revenueChartDetails);
 
     }
 
     if (isset($_POST["chart1"])) {
 
-        $chartArray2 = [];
+        $participantChartDetails = [];
 
-        array_push($chartArray2, ["Events", "Participant Count"]);
+        array_push($participantChartDetails, ["Events", "Participant Count"]);
 
         for ($i = 0; $i < sizeof($events); $i++) {
-            array_push($chartArray2, [$events[$i], count1($conn, $events[$i])]);
+            array_push($participantChartDetails, [$events[$i], count1($conn, $events[$i])]);
         }
 
-        $newArray = json_encode($chartArray2);
+        echo json_encode($participantChartDetails);
 
-        echo $newArray;
 
     }
 

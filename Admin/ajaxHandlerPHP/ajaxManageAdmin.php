@@ -7,6 +7,8 @@ extract($_POST);
 
 # CHECKING ADMIN
 
+session_start();
+
 if ($_SESSION['adminType'] !== "Administrator") {
     header("location:../adminLogin.php");
 }

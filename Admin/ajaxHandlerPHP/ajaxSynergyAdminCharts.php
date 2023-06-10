@@ -29,7 +29,7 @@ try {
 
 //------------------------->>  DISPLAY PARTICIPATION COUNT EVENT WISE
 
-        function participantCount($conn, $event)
+        function participantCount(PDO $conn, string $event): int
         {
             $sql = "SELECT * FROM synergy_event_registrations WHERE eventName = :event";
             $result = $conn->prepare($sql);
@@ -39,19 +39,17 @@ try {
             return $count;
         }
 
-        $chartArray2 = [];
+        $participantChartDetails = [];
 
-        array_push($chartArray2, ["Event Name", "Participant Count"]);
+        array_push($participantChartDetails, ["Event Name", "Participant Count"]);
 
         foreach ($eventArray as $eventName):
 
-            array_push($chartArray2, [$eventName, participantCount($conn, $eventName)]);
+            array_push($participantChartDetails, [$eventName, participantCount($conn, $eventName)]);
 
         endforeach;
 
-        $newArray = json_encode($chartArray2);
-
-        echo $newArray;
+       echo json_encode($participantChartDetails);
 
     }
 
