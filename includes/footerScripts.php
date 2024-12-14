@@ -13,4 +13,5 @@
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="js/userLogout.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://unpkg.com/htmx.org@1.8.5"></script>
 <script>AOS.init();</script>

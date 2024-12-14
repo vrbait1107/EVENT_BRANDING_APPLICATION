@@ -162,16 +162,21 @@ try {
     <div class="container">
         <div class="row">
             <section class="col-md-6 offset-md-3 py-5">
-                <h2 class="text-center text-uppercase font-time  mb-4">Subscribe to our newsletter</h2>
+                <h2 class="text-center text-uppercase font-time mb-4">Subscribe to our newsletter</h2>
 
-                <form id="newsletterForm">
+                <form id="newsletterForm"
+                    hx-post="ajaxHandlerPHP/ajaxIndex.php"
+                    hx-trigger="click #submit"
+                    hx-target="#responseMessage"
+                    hx-swap="innerHTML"
+                    hx-vals='{"email": "subscribe"}'>
+
                     <div class="text-center mt-2">
                         <div class="form-group">
                             <button type="button" class="btn btn-danger" id="submit">Subscribe Now</button>
                         </div>
                         <span class="text-danger">
-                            You must Login to subscribe Newsletter,
-                            you will receive newsletter on your registered email.
+                            You must Login to subscribe to the Newsletter. You will receive the newsletter at your registered email.
                         </span>
                     </div>
 
