@@ -33,30 +33,30 @@ require_once "config/techfestName.php";
             </div>
             <div class="col-md-4 text-center">
                 <h4 class="mb-3 font-weight-bold text-uppercase">Join Us</h4>
-                <a href="#" class="text-blue" target="_blank">
+                <a href="#" title="Facebook" class="text-blue" target="_blank">
                     <span class="fa-stack fa-lg">
                         <i class="fab fa-facebook-f fa-stack-1x"></i>
                     </span>
                 </a>
 
-                <a href="#" target="_blank">
+                <a href="#" title="Twitter" target="_blank">
                     <span class="fa-stack fa-lg">
                         <i class="fab fa-twitter fa-stack-1x"></i>
                     </span>
                 </a>
-                <a href="#" class="text-danger" target="_blank">
+                <a href="#" title="YouTube" class="text-danger" target="_blank">
                     <span class="fa-stack fa-lg">
                         <i class="fab fa-youtube fa-stack-1x"></i>
                     </span>
                 </a>
 
-                <a href="#" target="_blank">
+                <a href="#" target="_blank" title="LinkedIn">
                     <span class="fa-stack fa-lg">
                         <i class="fab fa-linkedin fa-stack-1x"></i>
                     </span>
                 </a>
 
-                <a href="#" class="text-danger" target="_blank">
+                <a href="#" class="text-danger" title="Instagram" target="_blank">
                     <span class="fa-stack fa-lg">
                         <i class="fab fa-instagram fa-stack-1x"></i>
                     </span>

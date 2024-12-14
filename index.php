@@ -74,7 +74,10 @@ try {
         <div class="row mx-auto text-center">
             <h1 class="p-3 font-Staatliches-heading mx-auto text-white" data-aos="zoom-in" data-aos-duration="1500">Welcome to <?php echo $techfestName ?> <br> National Level
                 Techfest </h1>
-            <img src="images/home/shodh1.jpg" class="img-fluid" alt="Shodh1">
+            <picture>
+                <source srcset="images/home/shodh1.webp" type="image/webp">
+                <img src="images/home/shodh1.jpg" class="d-block w-100 img-fluid" alt="GIT SHODH">
+            </picture>
         </div>
     </main>
 
@@ -90,13 +93,22 @@ try {
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="images/home/git1.png" class="d-block w-100 img-fluid" alt="git1">
+                                <picture>
+                                    <source srcset="images/home/git1.webp" type="image/webp">
+                                    <img src="images/home/git1.jpg" class="d-block w-100 img-fluid" alt="git1">
+                                </picture>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/home/git2.jpg" class="d-block w-100 img-fluid" lt="git2">
+                                <picture>
+                                    <source srcset="images/home/git2.webp" type="image/webp" loading="lazy">
+                                    <img src="images/home/git2.jpg" class="d-block w-100 img-fluid" alt="git2" loading="lazy">
+                                </picture>
                             </div>
                             <div class="carousel-item">
-                                <img src="images/home/git4.jpg" class="d-block w-100 img-fluid" lt="git4">
+                                <picture>
+                                    <source srcset="images/home/git4.webp" type="image/webp" loading="lazy">
+                                    <img src="images/home/git4.jpg" class="d-block w-100 img-fluid" alt="git4" loading="lazy">
+                                </picture>
 
                             </div>
                         </div>
